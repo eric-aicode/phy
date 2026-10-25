@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>範例 10：均勻梯子靠光滑垂直牆平衡・靜摩擦係數臨界 | 高中物理靜力學</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+  <link rel="stylesheet" href="shared.css">
+</head>
+<body>
+  <div class="bg-glow"></div>
+  <div class="bg-grid"></div>
+
+  <div class="container">
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+      <div class="nav-links">
+        <a href="index.html" class="nav-btn primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          回目錄
+        </a>
+        <a href="problem9.html" class="nav-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          上一題 (範例 9)
+        </a>
+        <a href="problem11.html" class="nav-btn">
+          下一題 (範例 11)
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+      <div class="badge-wrapper">
+        <span class="badge badge-page">講義 靜力學-16</span>
+        <span class="badge badge-accent">力矩平衡與三力共點幾何</span>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+      <h1 class="main-title">範例 10：<span class="gradient-text">均勻梯子靠光滑垂直牆面平衡</span></h1>
+      <p class="subtitle">轉動平衡力矩選取支點・地面綜合作用力・不滑動臨界靜摩擦係數推導</p>
+    </header>
+
+    <!-- Problem Showcase Card -->
+    <section class="card problem-card">
+      <div class="card-header">
+        <div class="card-icon">📖</div>
+        <div>
+          <h2>題目內容</h2>
+          <span class="card-tag">聯考與分科測驗最高頻題型</span>
+        </div>
+      </div>
+
+      <div class="problem-body">
+        <p>
+          一均勻梯子重 <strong>$W$</strong>，重心在其中點，長度為 <strong>$L$</strong>。斜靠在一<strong>光滑垂直牆</strong>上呈現靜止平衡。
+        </p>
+        <p>
+          已知此時<strong>梯子與鉛直牆之夾角為 $\theta$</strong>，若地面為粗糙接觸面，則：
+        </p>
+        <ul class="condition-list">
+          <li><strong>(a)</strong> 梯子與牆之間的作用力大小為何？</li>
+          <li><strong>(b)</strong> 梯子與地面之間的作用力大小為何？</li>
+          <li><strong>(c)</strong> 梯子與地板間之靜摩擦係數 $\mu_s$ 至少為何，梯子才不致滑倒？</li>
+        </ul>
+      </div>
+
+      <!-- Problem Physical Diagram (SVG) -->
+      <div class="canvas-card">
+        <div class="canvas-title-bar">
+          <h3><span class="dot dot-blue"></span> 梯子受力力矩分析 vs 三力共點交會幾何</h3>
+          <span class="view-tag">Torque Lever Arm & 3-Force Concurrency</span>
+        </div>
+        <div class="svg-wrapper">
+          <svg viewBox="0 0 760 360" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="arr-p10-red" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                <path d="M0 1L10 5L0 9z" fill="#f87171"/>
+              </marker>
+              <marker id="arr-p10-cyan" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                <path d="M0 1L10 5L0 9z" fill="#38bdf8"/>
+              </marker>
+              <marker id="arr-p10-gold" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                <path d="M0 1L10 5L0 9z" fill="#fbbf24"/>
+              </marker>
+              <marker id="arr-p10-purple" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                <path d="M0 1L10 5L0 9z" fill="#a855f7"/>
+              </marker>
+            </defs>
+
+            <!-- LEFT: 梯子受力與力臂標示 -->
+            <g transform="translate(30, 20)">
+              <rect x="0" y="0" width="340" height="315" rx="10" fill="#0f172a" stroke="#1e293b" stroke-width="1.5"/>
+              <text x="20" y="28" fill="#94a3b8" font-size="13" font-weight="600">受力與力臂分析（對底端 O 點取力矩）</text>
+
+              <!-- Smooth Wall on Left: x = 60 -->
+              <line x1="60" y1="40" x2="60" y2="280" stroke="#64748b" stroke-width="5"/>
+              <!-- Rough Ground: y = 260 -->
+              <line x1="40" y1="260" x2="310" y2="260" stroke="#64748b" stroke-width="4"/>
+
+              <!-- Wall hatching -->
+              <g stroke="#475569" stroke-width="1.5" opacity="0.4">
+                <line x1="60" y1="50" x2="48" y2="60"/><line x1="60" y1="80" x2="48" y2="90"/>
+                <line x1="60" y1="110" x2="48" y2="120"/><line x1="60" y1="140" x2="48" y2="150"/>
+                <line x1="60" y1="170" x2="48" y2="180"/><line x1="60" y1="200" x2="48" y2="210"/>
+                <line x1="60" y1="230" x2="48" y2="240"/>
+              </g>
+
+              <!-- Ladder: Top A at (60, 70), Bottom O at (200, 260) -->
+              <!-- dx = 140, dy = 190, Length approx 236 -->
+              <line x1="60" y1="70" x2="200" y2="260" stroke="#cbd5e1" stroke-width="7" stroke-linecap="round"/>
+
+              <!-- Points A & O -->
+              <circle cx="60" cy="70" r="5" fill="#38bdf8"/>
+              <text x="42" y="70" fill="#38bdf8" font-size="12" font-weight="bold">A</text>
+
+              <circle cx="200" cy="260" r="5" fill="#fbbf24"/>
+              <text x="210" y="265" fill="#fbbf24" font-size="12" font-weight="bold">O (支點)</text>
+
+              <!-- Angle theta with vertical wall at A -->
+              <path d="M 60,110 A 40,40 0 0,0 75,100" fill="none" stroke="#f43f5e" stroke-width="2"/>
+              <text x="70" y="125" fill="#f43f5e" font-size="13" font-weight="bold">θ</text>
+
+              <!-- Gravity W at midpoint (130, 165) -->
+              <circle cx="130" cy="165" r="5" fill="#f87171"/>
+              <line x1="130" y1="165" x2="130" y2="245" stroke="#f87171" stroke-width="2.5" marker-end="url(#arr-p10-red)"/>
+              <text x="138" y="225" fill="#f87171" font-size="12" font-weight="bold">重力 W</text>
+
+              <!-- Wall force N_w horizontal to right at A -->
+              <line x1="60" y1="70" x2="130" y2="70" stroke="#38bdf8" stroke-width="2.5" marker-end="url(#arr-p10-cyan)"/>
+              <text x="100" y="60" fill="#38bdf8" font-size="12" font-weight="bold">N牆</text>
+
+              <!-- Ground normal force N_g vertically up at O -->
+              <line x1="200" y1="260" x2="200" y2="200" stroke="#38bdf8" stroke-width="2.5" marker-end="url(#arr-p10-cyan)"/>
+              <text x="208" y="215" fill="#38bdf8" font-size="12" font-weight="bold">N地 = W</text>
+
+              <!-- Ground friction f to left at O -->
+              <line x1="200" y1="260" x2="140" y2="260" stroke="#fbbf24" stroke-width="2.5" marker-end="url(#arr-p10-gold)"/>
+              <text x="145" y="280" fill="#fbbf24" font-size="12" font-weight="bold">f = N牆</text>
+
+              <!-- Lever arm annotations -->
+              <line x1="200" y1="260" x2="200" y2="70" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3,3"/>
+              <line x1="60" y1="70" x2="200" y2="70" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3,3"/>
+              <text x="205" y="160" fill="#94a3b8" font-size="11">力臂 L cosθ</text>
+              <text x="140" y="295" fill="#94a3b8" font-size="11">重力力臂 = (L/2) sinθ</text>
+            </g>
+
+            <!-- RIGHT: 三力共點幾何與向量直角三角形 -->
+            <g transform="translate(390, 20)">
+              <rect x="0" y="0" width="340" height="315" rx="10" fill="#0f172a" stroke="#1e293b" stroke-width="1.5"/>
+              <text x="20" y="28" fill="#94a3b8" font-size="13" font-weight="600">三力共點 (Concurrent Forces) 幾何</text>
+
+              <!-- Wall & Ground sketch -->
+              <line x1="50" y1="50" x2="50" y2="260" stroke="#475569" stroke-width="2"/>
+              <line x1="40" y1="260" x2="290" y2="260" stroke="#475569" stroke-width="2"/>
+
+              <!-- Ladder line A(50, 70) to O(190, 260) -->
+              <line x1="50" y1="70" x2="190" y2="260" stroke="#64748b" stroke-width="4"/>
+
+              <!-- Action line of N_wall (horizontal from A to right) -->
+              <line x1="50" y1="70" x2="250" y2="70" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="4,4"/>
+
+              <!-- Action line of Gravity W (vertical from midpoint x=120) -->
+              <line x1="120" y1="30" x2="120" y2="260" stroke="#f87171" stroke-width="1.5" stroke-dasharray="4,4"/>
+
+              <!-- Concurrent point C at (120, 70) -->
+              <circle cx="120" cy="70" r="5" fill="#a855f7"/>
+              <text x="126" y="65" fill="#a855f7" font-size="12" font-weight="bold">C (三力交會點)</text>
+
+              <!-- Line from ground point O to C : R_ground must pass C! -->
+              <line x1="190" y1="260" x2="120" y2="70" stroke="#a855f7" stroke-width="2.5" marker-end="url(#arr-p10-purple)"/>
+              <rect x="155" y="150" width="130" height="36" rx="4" fill="rgba(15, 23, 42, 0.9)" stroke="#a855f7" stroke-width="1"/>
+              <text x="162" y="166" fill="#a855f7" font-size="11" font-weight="bold">地面作用力 R地</text>
+              <text x="162" y="180" fill="#e9d5ff" font-size="10">R地 = √(N地² + f²)</text>
+
+              <!-- Geometric Triangle at lower area -->
+              <g transform="translate(60, 205)">
+                <!-- Right triangle of ground force: horizontal f, vertical N_ground -->
+                <polygon points="0,70 50,70 50,10" fill="rgba(168, 85, 247, 0.2)" stroke="#a855f7" stroke-width="1.5"/>
+                <text x="15" y="85" fill="#fbbf24" font-size="10">f = ½W tanθ</text>
+                <text x="58" y="45" fill="#38bdf8" font-size="10">N地 = W</text>
+                <text x="-5" y="30" fill="#c084fc" font-size="11" font-weight="bold">R地</text>
+              </g>
+
+              <text x="140" y="240" fill="#94a3b8" font-size="11">R地 必穿過共點 C</text>
+              <text x="140" y="255" fill="#cbd5e1" font-size="11">tan φ = f / N地 = ½ tanθ</text>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Worksheet -->
+    <section class="card challenge-card">
+      <div class="card-header">
+        <div class="card-icon">✍️</div>
+        <div>
+          <h2>學生實戰作答區</h2>
+          <span class="card-tag">請選擇或填寫 (a)、(b)、(c) 三子題答案</span>
+        </div>
+      </div>
+
+      <div class="card-body">
+        <div class="worksheet-grid">
+          <!-- Question (a) -->
+          <div class="worksheet-panel" style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 12px; border: 1px solid #1e293b;">
+            <h3 style="color: #38bdf8; font-size: 16px; margin-bottom: 12px;">(a) 梯子與牆作用力大小：</h3>
+            <div class="field-group">
+              <label for="ans_a">選擇梯與牆作用力：</label>
+              <select id="ans_a" class="custom-select">
+                <option value="">-- 請選擇 --</option>
+                <option value="1/2 W tanθ">1/2 W tanθ</option>
+                <option value="W tanθ">W tanθ</option>
+                <option value="1/2 W cotθ">1/2 W cotθ</option>
+                <option value="W sinθ">W sinθ</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Question (b) -->
+          <div class="worksheet-panel" style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 12px; border: 1px solid #1e293b;">
+            <h3 style="color: #a855f7; font-size: 16px; margin-bottom: 12px;">(b) 梯子與地面作用力大小：</h3>
+            <div class="field-group">
+              <label for="ans_b">選擇梯與地面合力：</label>
+              <select id="ans_b" class="custom-select">
+                <option value="">-- 請選擇 --</option>
+                <option value="1/2 W √(4 + tan²θ)">1/2 W √(4 + tan²θ)</option>
+                <option value="W √(1 + tan²θ)">W √(1 + tan²θ)</option>
+                <option value="1/2 W √(1 + 4tan²θ)">1/2 W √(1 + 4tan²θ)</option>
+                <option value="W">W</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Question (c) -->
+          <div class="worksheet-panel" style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 12px; border: 1px solid #1e293b;">
+            <h3 style="color: #fbbf24; font-size: 16px; margin-bottom: 12px;">(c) 地面靜摩擦係數 μs 至少為何：</h3>
+            <div class="field-group">
+              <label for="ans_c">選擇臨界摩擦係數：</label>
+              <select id="ans_c" class="custom-select">
+                <option value="">-- 請選擇 --</option>
+                <option value="1/2 tanθ">1/2 tanθ</option>
+                <option value="tanθ">tanθ</option>
+                <option value="2 tanθ">2 tanθ</option>
+                <option value="1/2 cotθ">1/2 cotθ</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 12px; margin-top: 20px; flex-wrap: wrap;">
+          <button id="btnCheck" class="action-btn check-btn">
+            <span>核對答案</span>
+          </button>
+          <button id="btnToggleSolution" class="action-btn toggle-btn">
+            <span>顯示完整解析</span>
+          </button>
+        </div>
+
+        <div id="feedbackMessage" class="feedback-box" style="display: none;"></div>
+      </div>
+    </section>
+
+    <!-- Detailed Solution Section (Initially Hidden) -->
+    <section id="solutionSection" class="card solution-card" style="display: none;">
+      <div class="card-header">
+        <div class="card-icon">💡</div>
+        <div>
+          <h2>完整精闢觀念解析與公式推導</h2>
+          <span class="card-tag">聯考經典解析</span>
+        </div>
+      </div>
+
+      <div class="solution-body">
+        <!-- Key Reminder -->
+        <div class="tip-box" style="background: rgba(56, 189, 248, 0.1); border-left: 4px solid #38bdf8; padding: 16px; border-radius: 8px; margin-bottom: 24px;">
+          <h4 style="color: #38bdf8; margin-bottom: 6px; font-size: 15px;">🔍 題目幾何陷阱提醒：</h4>
+          <p style="color: #e2e8f0; font-size: 14px; line-height: 1.6; margin: 0;">
+            請特別注意題目中的角度定義：<strong>$\theta$ 是梯子與「鉛直牆」的夾角</strong>，而不是與地面夾角！<br>
+            因此：<br>
+            • 梯子頂端距離地面的鉛直高度為 $L \cos\theta$（此為牆面水平正向力 $N_{\text{牆}}$ 對底端的力臂）。<br>
+            • 梯子中點重心在水平方向距離底端的長度為 $\frac{L}{2} \sin\theta$（此為重力 $W$ 對底端的力臂）。
+          </p>
+        </div>
+
+        <!-- Step 1: Torque Equilibrium -->
+        <div class="step-card">
+          <div class="step-header">
+            <span class="step-num">Step 1</span>
+            <h3>(a) 對梯子底端接觸點 O 取力矩平衡</h3>
+          </div>
+          <div class="step-content">
+            <p>
+              選擇地面接觸點 <strong>O</strong> 作為轉軸，此時地面正向力 $N_{\text{地}}$ 與地面靜摩擦力 $f$ 之力臂皆為 0，方程式最為精簡：
+            </p>
+            <p>
+              $$\sum \tau_O = 0 \implies \tau_{N_{\text{牆}}} (\text{順時針}) = \tau_W (\text{逆時針})$$
+            </p>
+            <p>
+              $$N_{\text{牆}} \cdot (L \cos\theta) = W \cdot \left(\frac{L}{2} \sin\theta\right)$$
+            </p>
+            <p>
+              兩邊同除以 $L \cos\theta$：
+              $$N_{\text{牆}} = \frac{1}{2} W \frac{\sin\theta}{\cos\theta} = \frac{1}{2} W \tan\theta$$
+            </p>
+            <p>
+              因牆面光滑，無沿牆面的摩擦力，故<strong>梯子與牆之間的作用力即為正向力 $N_{\text{牆}} = \frac{1}{2} W \tan\theta$</strong>。
+            </p>
+          </div>
+        </div>
+
+        <!-- Step 2: Ground Force -->
+        <div class="step-card">
+          <div class="step-header">
+            <span class="step-num">Step 2</span>
+            <h3>(b) 梯子與地面之間的作用力 $R_{\text{地}}$</h3>
+          </div>
+          <div class="step-content">
+            <p>分析梯子整體的移動平衡條件：</p>
+            <ul style="color: #cbd5e1; font-size: 14.5px; line-height: 1.8; margin-bottom: 12px;">
+              <li>鉛直方向合力為 0：$\sum F_y = 0 \implies N_{\text{地}} = W$</li>
+              <li>水平方向合力為 0：$\sum F_x = 0 \implies f = N_{\text{牆}} = \frac{1}{2} W \tan\theta$</li>
+            </ul>
+            <p>
+              地面對梯子的<strong>總作用力 $R_{\text{地}}$</strong> 為地面正向力 $N_{\text{地}}$ 與地面摩擦力 $f$ 的向量和（兩者互相垂直）：
+            </p>
+            <p>
+              $$R_{\text{地}} = \sqrt{N_{\text{地}}^2 + f^2} = \sqrt{W^2 + \left(\frac{1}{2}W \tan\theta\right)^2}$$
+            </p>
+            <p>
+              提出公因數 $\frac{1}{2}W$：
+              $$R_{\text{地}} = \sqrt{\frac{4W^2 + W^2 \tan^2\theta}{4}} = \frac{1}{2} W \sqrt{4 + \tan^2\theta}$$
+            </p>
+          </div>
+        </div>
+
+        <!-- Step 3: Critical Friction Coefficient -->
+        <div class="step-card">
+          <div class="step-header">
+            <span class="step-num">Step 3</span>
+            <h3>(c) 地板之靜摩擦係數 $\mu_s$ 臨界條件</h3>
+          </div>
+          <div class="step-content">
+            <p>
+              梯子能維持靜止不下滑的條件為：實際所需的靜摩擦力 $f$ 必須<strong>小於或等於最大靜摩擦力 $f_{s,\max}$</strong>：
+            </p>
+            <p>
+              $$f \le f_{s,\max} = \mu_s N_{\text{地}}$$
+            </p>
+            <p>
+              代入 $f = \frac{1}{2} W \tan\theta$ 與 $N_{\text{地}} = W$：
+            </p>
+            <p>
+              $$\frac{1}{2} W \tan\theta \le \mu_s \cdot W$$
+            </p>
+            <p>
+              兩邊消去重量 $W$：
+              $$\mu_s \ge \frac{1}{2} \tan\theta$$
+            </p>
+            <p>
+              故梯子不致滑倒的最小靜摩擦係數為：
+              $$\mu_{s,\min} = \frac{1}{2} \tan\theta$$
+            </p>
+          </div>
+        </div>
+
+        <!-- Bonus: 3-Force Concurrency Review -->
+        <div class="step-card" style="background: rgba(168, 85, 247, 0.08); border-color: rgba(168, 85, 247, 0.3);">
+          <div class="step-header">
+            <span class="step-num" style="background: #a855f7;">幾何</span>
+            <h3 style="color: #c084fc;">三力共點幾何秒殺驗證法</h3>
+          </div>
+          <div class="step-content">
+            <p>
+              梯子僅受三力作用：光滑牆水平推力 $\vec{N}_{\text{牆}}$、重力 $\vec{W}$、地面作用力 $\vec{R}_{\text{地}}$。<br>
+              水平線（過 A）與鉛直線（過重心）交於點 $C$。因此<strong>地面作用力 $\vec{R}_{\text{地}}$ 的作用線必通過交點 $C$</strong>！
+            </p>
+            <p>
+              交點 $C$ 的水平距離距底端 $x_C = \frac{L}{2}\sin\theta$，鉛直高度距底端 $y_C = L\cos\theta$。<br>
+              地面作用力方向與鉛直線夾角 $\phi$ 滿足：
+              $$\tan\phi = \frac{x_C}{y_C} = \frac{\frac{L}{2}\sin\theta}{L\cos\theta} = \frac{1}{2}\tan\theta$$
+              由直角三角函數：
+              $$f = W \tan\phi = \frac{1}{2} W \tan\theta$$
+              完全一致，幾何與力矩互相呼應！
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Navigation -->
+    <div class="bottom-nav">
+      <a href="problem9.html" class="nav-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+        上一題 (範例 9)
+      </a>
+      <a href="index.html" class="nav-btn primary">回到講義首頁</a>
+      <a href="problem11.html" class="nav-btn">
+        下一題 (範例 11)
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+    </div>
+  
+    <!-- Related Practice & Knowledge Consolidation Section -->
+    <section class="card recommendation-card" style="margin-top: 24px; border: 1px solid rgba(0, 229, 255, 0.3); background: rgba(15, 23, 42, 0.75);">
+      <div class="card-header">
+        <div class="card-icon" style="background: rgba(0, 229, 255, 0.15); border-color: rgba(0, 229, 255, 0.35);">🎯</div>
+        <div>
+          <h2>學完本範例，接下來建議練習以下題庫！</h2>
+          <span class="card-tag">循序漸進・概念深耕・題型通關</span>
+        </div>
+      </div>
+      <p style="font-size: 0.95rem; color: var(--text-muted); margin: 6px 0 16px 0; line-height: 1.6;">
+        已為您智能引導與「<strong>梯子靠光滑垂直牆面平衡、力矩支點選定、地面最大靜摩擦力與人攀爬極限</strong>」高度相關的課堂類題與大考題庫，趁熱打鐵進行題型辨析與鞏固練習：
+      </p>
+
+      <div class="rec-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px;">
+        <!-- Card: 平衡 32 -->
+        <div class="rec-card" style="background: var(--bg-surface-elevated); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 16px; display: flex; flex-direction: column; justify-content: space-between; gap: 10px; transition: all 0.2s ease;">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <span class="badge badge-accent" style="font-size: 0.8rem;">平衡 32</span>
+              <span style="font-size: 0.75rem; color: #38bdf8; font-weight: 700; background: rgba(56, 189, 248, 0.12); padding: 2px 8px; border-radius: 4px; border: 1px solid rgba(56, 189, 248, 0.25);">🌱 梯子標準變式</span>
+            </div>
+            <h4 style="font-size: 1.02rem; color: #fff; margin-bottom: 6px;">梯子靠光滑牆與地面作用力</h4>
+            <p style="font-size: 0.86rem; color: var(--text-muted); line-height: 1.55;">
+              深入計算梯子靠牆時地面正向力與摩擦力大小，鞏固三力矩支點選取技巧。
+            </p>
+          </div>
+          <a href="equil32.html" class="nav-btn primary" style="justify-content: center; font-size: 0.88rem; padding: 7px 14px; margin-top: 6px; font-weight: 600;">
+            🚀 前往練習
+          </a>
+        </div>
+        <!-- Card: 平衡 34 -->
+        <div class="rec-card" style="background: var(--bg-surface-elevated); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 16px; display: flex; flex-direction: column; justify-content: space-between; gap: 10px; transition: all 0.2s ease;">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <span class="badge badge-accent" style="font-size: 0.8rem;">平衡 34</span>
+              <span style="font-size: 0.75rem; color: #38bdf8; font-weight: 700; background: rgba(56, 189, 248, 0.12); padding: 2px 8px; border-radius: 4px; border: 1px solid rgba(56, 189, 248, 0.25);">⭐ 攀爬極限安全範圍</span>
+            </div>
+            <h4 style="font-size: 1.02rem; color: #fff; margin-bottom: 6px;">梯子防滑拉繩極限與猴子攀爬距離</h4>
+            <p style="font-size: 0.86rem; color: var(--text-muted); line-height: 1.55;">
+              猴子沿梯向上攀爬時力臂增大，求拉繩即將斷裂或梯底即將打滑的最大攀爬高度。
+            </p>
+          </div>
+          <a href="equil34.html" class="nav-btn primary" style="justify-content: center; font-size: 0.88rem; padding: 7px 14px; margin-top: 6px; font-weight: 600;">
+            🚀 前往練習
+          </a>
+        </div>
+        <!-- Card: 平衡 36 -->
+        <div class="rec-card" style="background: var(--bg-surface-elevated); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 16px; display: flex; flex-direction: column; justify-content: space-between; gap: 10px; transition: all 0.2s ease;">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <span class="badge badge-accent" style="font-size: 0.8rem;">平衡 36</span>
+              <span style="font-size: 0.75rem; color: #38bdf8; font-weight: 700; background: rgba(56, 189, 248, 0.12); padding: 2px 8px; border-radius: 4px; border: 1px solid rgba(56, 189, 248, 0.25);">🔥 三力共點幾何梯</span>
+            </div>
+            <h4 style="font-size: 1.02rem; color: #fff; margin-bottom: 6px;">均質棒斜倚垂直壁與三力共點幾何</h4>
+            <p style="font-size: 0.86rem; color: var(--text-muted); line-height: 1.55;">
+              當牆面光滑時，地面全作用力、牆面正向力與重力必共點，利用幾何中線垂直秒解。
+            </p>
+          </div>
+          <a href="equil36.html" class="nav-btn primary" style="justify-content: center; font-size: 0.88rem; padding: 7px 14px; margin-top: 6px; font-weight: 600;">
+            🚀 前往練習
+          </a>
+        </div>
+        <!-- Card: 平衡 40 -->
+        <div class="rec-card" style="background: var(--bg-surface-elevated); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 16px; display: flex; flex-direction: column; justify-content: space-between; gap: 10px; transition: all 0.2s ease;">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <span class="badge badge-accent" style="font-size: 0.8rem;">平衡 40</span>
+              <span style="font-size: 0.75rem; color: #38bdf8; font-weight: 700; background: rgba(56, 189, 248, 0.12); padding: 2px 8px; border-radius: 4px; border: 1px solid rgba(56, 189, 248, 0.25);">🏆 雙粗糙壁難題</span>
+            </div>
+            <h4 style="font-size: 1.02rem; color: #fff; margin-bottom: 6px;">粗糙雙壁面斜倚梯子受力方向分析</h4>
+            <p style="font-size: 0.86rem; color: var(--text-muted); line-height: 1.55;">
+              若垂直牆面與地面皆有摩擦力時，分析梯子各處正向力與摩擦力方向的進階競賽題。
+            </p>
+          </div>
+          <a href="equil40.html" class="nav-btn primary" style="justify-content: center; font-size: 0.88rem; padding: 7px 14px; margin-top: 6px; font-weight: 600;">
+            🚀 前往練習
+          </a>
+        </div>
+      </div>
+      
+      <div style="margin-top: 18px; text-align: center; border-top: 1px dashed var(--border-subtle); padding-top: 14px;">
+        <a href="index.html" class="nav-btn" style="font-size: 0.88rem;">
+          📚 返回總目錄查看全單元 104 題索引
+        </a>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      if (window.renderMathInElement) {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ],
+          throwOnError: false
+        });
+      }
+
+      const answers = {
+        ans_a: "1/2 W tanθ",
+        ans_b: "1/2 W √(4 + tan²θ)",
+        ans_c: "1/2 tanθ"
+      };
+
+      const btnCheck = document.getElementById('btnCheck');
+      const btnToggle = document.getElementById('btnToggleSolution');
+      const solutionSection = document.getElementById('solutionSection');
+      const feedback = document.getElementById('feedbackMessage');
+
+      btnCheck.addEventListener('click', function() {
+        let allCorrect = true;
+        let emptyFound = false;
+
+        for (const [id, correctVal] of Object.entries(answers)) {
+          const sel = document.getElementById(id);
+          if (!sel.value) {
+            emptyFound = true;
+            sel.style.borderColor = '#fbbf24';
+          } else if (sel.value === correctVal) {
+            sel.style.borderColor = '#22c55e';
+            sel.style.background = 'rgba(34, 197, 94, 0.1)';
+          } else {
+            sel.style.borderColor = '#ef4444';
+            sel.style.background = 'rgba(239, 68, 68, 0.1)';
+            allCorrect = false;
+          }
+        }
+
+        feedback.style.display = 'block';
+        if (emptyFound) {
+          feedback.className = 'feedback-box warning';
+          feedback.innerHTML = '⚠️ 請先完成所有題目的選項再核對！';
+        } else if (allCorrect) {
+          feedback.className = 'feedback-box success';
+          feedback.innerHTML = '🎉 <strong>太棒了，全部答對！</strong><br>對梯底取力矩消去兩未知力，是梯子題最俐落的標準解法；三力共點幾何更可瞬間驗證！';
+          solutionSection.style.display = 'block';
+          btnToggle.querySelector('span').textContent = '收合完整解析';
+        } else {
+          feedback.className = 'feedback-box error';
+          feedback.innerHTML = '❌ <strong>部分答案有誤！</strong><br>提示：注意 θ 為梯子與「鉛直線」之夾角，注意力臂分別是 L cosθ 與 (L/2) sinθ。點擊下方可查看完整推導！';
+        }
+      });
+
+      btnToggle.addEventListener('click', function() {
+        if (solutionSection.style.display === 'none' || solutionSection.style.display === '') {
+          solutionSection.style.display = 'block';
+          btnToggle.querySelector('span').textContent = '收合完整解析';
+        } else {
+          solutionSection.style.display = 'none';
+          btnToggle.querySelector('span').textContent = '顯示完整解析';
+        }
+      });
+    });
+  </script>
+</body>
+</html>

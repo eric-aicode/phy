@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>靜力平衡 1：光滑斜面沿斜面與水平施力之斜面支持力 | 高中物理靜力學</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    .sub-question {
+      background: rgba(30, 41, 59, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    .sub-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #38bdf8;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .option-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 12px;
+      margin-top: 14px;
+    }
+    .option-btn {
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 10px;
+      padding: 14px 16px;
+      color: #e2e8f0;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 0.95rem;
+      text-align: left;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    .option-btn:hover {
+      background: rgba(56, 189, 248, 0.1);
+      border-color: #38bdf8;
+      transform: translateY(-2px);
+    }
+    .option-btn.correct {
+      background: rgba(16, 185, 129, 0.2);
+      border-color: #10b981;
+      color: #a7f3d0;
+    }
+    .option-btn.wrong {
+      background: rgba(239, 68, 68, 0.2);
+      border-color: #ef4444;
+      color: #fca5a5;
+    }
+    .opt-label {
+      font-weight: 800;
+      color: #38bdf8;
+      background: rgba(56, 189, 248, 0.15);
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-glow"></div>
+  <div class="bg-grid"></div>
+
+  <div class="container">
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+      <div class="nav-links">
+        <a href="index.html" class="nav-btn primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          回目錄
+        </a>
+        <a href="torque7.html" class="nav-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          上一題 (力矩 7)
+        </a>
+        <a href="equil2.html" class="nav-btn">
+          下一題 (平衡 2)
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+      <div class="badge-wrapper">
+        <span class="badge badge-page">講義 靜力學-24</span>
+        <span class="badge badge-exam">斜面受力經典</span>
+        <span class="badge badge-accent">靜力平衡・練習 1</span>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+      <h1 class="main-title">靜力平衡 1：<span class="gradient-text">光滑斜面受力方向與正向力剖析</span></h1>
+      <p class="subtitle">沿斜面施力 vs 水平方向施力・正交座標分解與封閉三角形向量比較</p>
+    </header>
+
+    <!-- Problem Showcase Card -->
+    <section class="card problem-card">
+      <div class="card-header">
+        <div class="card-icon">📖</div>
+        <div>
+          <h2>題目內容</h2>
+          <span class="card-tag">基礎觀念核心題組</span>
+        </div>
+      </div>
+
+      <div class="problem-body">
+        <p>
+          如下圖所示，一重量為 <strong>$W$</strong> 的物體，置於斜角為 <strong>$\theta$</strong> 的光滑斜面上，回答下列問題：
+        </p>
+
+        <!-- Diagram Mode Toggle Bar -->
+        <div class="diagram-toggle-container">
+          <div class="diagram-toggle-title">
+            <span class="dot dot-blue"></span>
+            <span id="diagramModeLabel">📐 原始題圖模式（未提供額外提示與公式）</span>
+          </div>
+          <div class="diagram-toggle-btns">
+            <button type="button" class="diag-btn active" id="btnModeRaw" onclick="setDiagramMode('raw')">📐 原始題圖</button>
+            <button type="button" class="diag-btn" id="btnModeHint" onclick="setDiagramMode('hint')">💡 受力與思路圖</button>
+          </div>
+        </div>
+
+        <!-- Dynamic Two Comparison Diagrams SVG -->
+        <div class="diagram-container" style="text-align: center; margin: 16px 0 24px 0;">
+          <svg viewBox="0 0 760 340" style="width: 100%; max-width: 740px; background: rgba(15, 23, 42, 0.6); border-radius: 12px; border: 1px solid rgba(255,255,255,0.08);">
+            <defs>
+              <marker id="arr-rose" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#f43f5e"/>
+              </marker>
+              <marker id="arr-sky" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#38bdf8"/>
+              </marker>
+              <marker id="arr-emerald" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#10b981"/>
+              </marker>
+            </defs>
+
+            <!-- Case (1): Left half -->
+            <g transform="translate(10, 0)">
+              <!-- Subtitle -->
+              <text x="180" y="32" fill="#38bdf8" font-size="14" font-weight="bold" text-anchor="middle">情況 (1)：沿斜面向上施力 $F_1$</text>
+
+              <!-- Incline -->
+              <polygon points="40,280 320,280 320,120" fill="rgba(51, 65, 85, 0.4)" stroke="#64748b" stroke-width="2"/>
+              <!-- Angle theta arc -->
+              <path d="M 90 280 A 50 50 0 0 0 83 255" fill="none" stroke="#fbbf24" stroke-width="1.8"/>
+              <text x="95" y="272" fill="#fbbf24" font-size="13" font-weight="bold">θ</text>
+
+              <!-- Block on incline at middle: x = 180, y = 200 -->
+              <g transform="translate(180, 200) rotate(-30)">
+                <!-- Block -->
+                <rect x="-25" y="-35" width="50" height="35" rx="3" fill="rgba(56, 189, 248, 0.25)" stroke="#38bdf8" stroke-width="2"/>
+                <text x="-6" y="-14" fill="#38bdf8" font-size="12" font-weight="bold">W</text>
+                <!-- Force F1 along incline upward (right-up) - Given in question -->
+                <line x1="25" y1="-17.5" x2="85" y2="-17.5" stroke="#38bdf8" stroke-width="3" marker-end="url(#arr-sky)"/>
+                <text x="92" y="-13" fill="#38bdf8" font-size="13" font-weight="bold">F₁</text>
+
+                <!-- Normal force N1: Hint Layer Only -->
+                <g class="fbd-hint-layer" style="display: none;">
+                  <line x1="0" y1="-35" x2="0" y2="-95" stroke="#10b981" stroke-width="3" marker-end="url(#arr-emerald)"/>
+                  <text x="8" y="-80" fill="#10b981" font-size="13" font-weight="bold">N₁</text>
+                </g>
+              </g>
+
+              <!-- Gravity W from center (180, 185) straight down -->
+              <line x1="180" y1="185" x2="180" y2="275" stroke="#f43f5e" stroke-width="3" marker-end="url(#arr-rose)"/>
+              <text x="188" y="255" fill="#f43f5e" font-size="14" font-weight="bold">W</text>
+
+              <!-- Normal force component label: Hint Layer Only -->
+              <g class="fbd-hint-layer" style="display: none;">
+                <text x="180" y="315" fill="#38bdf8" font-size="12" font-weight="bold" text-anchor="middle">垂直斜面受力平衡：N₁ = W·cosθ</text>
+              </g>
+            </g>
+
+            <!-- Divider Line -->
+            <line x1="380" y1="20" x2="380" y2="320" stroke="#334155" stroke-width="1.5" stroke-dasharray="4,4"/>
+
+            <!-- Case (2): Right half -->
+            <g transform="translate(390, 0)">
+              <!-- Subtitle -->
+              <text x="180" y="32" fill="#a78bfa" font-size="14" font-weight="bold" text-anchor="middle">情況 (2)：沿水平方向施力 $F_2$</text>
+
+              <!-- Incline -->
+              <polygon points="40,280 320,280 320,120" fill="rgba(51, 65, 85, 0.4)" stroke="#64748b" stroke-width="2"/>
+              <!-- Angle theta arc -->
+              <path d="M 90 280 A 50 50 0 0 0 83 255" fill="none" stroke="#fbbf24" stroke-width="1.8"/>
+              <text x="95" y="272" fill="#fbbf24" font-size="13" font-weight="bold">θ</text>
+
+              <!-- Block on incline -->
+              <g transform="translate(180, 200) rotate(-30)">
+                <rect x="-25" y="-35" width="50" height="35" rx="3" fill="rgba(168, 85, 247, 0.25)" stroke="#c084fc" stroke-width="2"/>
+                <text x="-6" y="-14" fill="#c084fc" font-size="12" font-weight="bold">W</text>
+
+                <!-- Normal force N2: Hint Layer Only -->
+                <g class="fbd-hint-layer" style="display: none;">
+                  <line x1="0" y1="-35" x2="0" y2="-105" stroke="#10b981" stroke-width="3" marker-end="url(#arr-emerald)"/>
+                  <text x="8" y="-90" fill="#10b981" font-size="13" font-weight="bold">N₂</text>
+                </g>
+              </g>
+
+              <!-- Horizontal Force F2 pointing right towards block - Given in question -->
+              <line x1="80" y1="185" x2="155" y2="185" stroke="#a78bfa" stroke-width="3" marker-end="url(#arr-sky)"/>
+              <text x="85" y="175" fill="#a78bfa" font-size="13" font-weight="bold">F₂ (水平)</text>
+
+              <!-- Gravity W from center (180, 185) straight down -->
+              <line x1="180" y1="185" x2="180" y2="275" stroke="#f43f5e" stroke-width="3" marker-end="url(#arr-rose)"/>
+              <text x="188" y="255" fill="#f43f5e" font-size="14" font-weight="bold">W</text>
+
+              <!-- Normal force component label: Hint Layer Only -->
+              <g class="fbd-hint-layer" style="display: none;">
+                <text x="180" y="315" fill="#a78bfa" font-size="12" font-weight="bold" text-anchor="middle">鉛直方向平衡：N₂·cosθ = W ⇒ N₂ = W / cosθ</text>
+              </g>
+            </g>
+          </svg>
+        </div>
+
+        <!-- Interactive 2-Part Checkpoints -->
+        <!-- Sub-question 1 -->
+        <div class="sub-question" id="part1">
+          <div class="sub-title">
+            <span class="opt-label">1</span>
+            問題 (1)：沿斜面向上施力使物體平衡時，斜面施於物的作用力為何？
+          </div>
+          <div class="option-grid">
+            <button class="option-btn" data-part="1" data-correct="true" data-opt="A">
+              <span class="opt-label">A</span>
+              <span>$W \cos\theta$</span>
+            </button>
+            <button class="option-btn" data-part="1" data-correct="false" data-opt="B">
+              <span class="opt-label">B</span>
+              <span>$W \sin\theta$</span>
+            </button>
+            <button class="option-btn" data-part="1" data-correct="false" data-opt="C">
+              <span class="opt-label">C</span>
+              <span>$W$</span>
+            </button>
+            <button class="option-btn" data-part="1" data-correct="false" data-opt="D">
+              <span class="opt-label">D</span>
+              <span>$\dfrac{W}{\cos\theta}$</span>
+            </button>
+          </div>
+          <div class="feedback-msg" id="msg1" style="display:none; margin-top:12px; font-size:0.92rem;"></div>
+        </div>
+
+        <!-- Sub-question 2 -->
+        <div class="sub-question" id="part2">
+          <div class="sub-title">
+            <span class="opt-label">2</span>
+            問題 (2)：沿水平方向施力使物體平衡時，斜面施於物的作用力為何？
+          </div>
+          <div class="option-grid">
+            <button class="option-btn" data-part="2" data-correct="false" data-opt="A">
+              <span class="opt-label">A</span>
+              <span>$W \cos\theta$</span>
+            </button>
+            <button class="option-btn" data-part="2" data-correct="false" data-opt="B">
+              <span class="opt-label">B</span>
+              <span>$W \tan\theta$</span>
+            </button>
+            <button class="option-btn" data-part="2" data-correct="true" data-opt="C">
+              <span class="opt-label">C</span>
+              <span>$\dfrac{W}{\cos\theta}$（即 $W \sec\theta$）</span>
+            </button>
+            <button class="option-btn" data-part="2" data-correct="false" data-opt="D">
+              <span class="opt-label">D</span>
+              <span>$W (1 + \sin\theta)$</span>
+            </button>
+          </div>
+          <div class="feedback-msg" id="msg2" style="display:none; margin-top:12px; font-size:0.92rem;"></div>
+        </div>
+
+        <!-- Student Action Buttons: View Solution & Hint -->
+        <div style="margin-top: 24px; padding-top: 18px; border-top: 1px solid rgba(255, 255, 255, 0.08); display: flex; gap: 12px; flex-wrap: wrap; align-items: center;">
+          <button type="button" class="nav-btn primary" onclick="toggleSolutionCard(true)" style="padding: 10px 20px; font-size: 0.95rem; font-weight: 700; border-radius: 8px;">
+            📝 查看完整試卷計算過程與解析
+          </button>
+          <button type="button" class="nav-btn" onclick="setDiagramMode('hint')" style="padding: 10px 18px; font-size: 0.95rem; font-weight: 600; border-radius: 8px;">
+            💡 切換受力與思路圖
+          </button>
+          <span style="font-size: 0.85rem; color: var(--text-dim);">可先自行於紙上作答，卡關隨時點擊查看！</span>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Collapsible Full Solution Section -->
+    <section class="card solution-card collapsed" id="solutionCard">
+      <div class="card-header clickable" id="solutionToggle">
+        <div class="card-icon">💡</div>
+        <div style="flex: 1;">
+          <h2>詳細解題過程與試卷作答示範</h2>
+          <span class="solution-status" id="solutionStatusText">點擊展開完整詳解 ▼</span>
+        </div>
+        <span class="badge badge-accent">靜力平衡標準詳解</span>
+      </div>
+
+      <div class="solution-body">
+        <!-- 📝 試卷標準作答範本（大考非選手寫標準） -->
+        <div class="exam-solution-box">
+          <div class="exam-solution-header">
+            <div class="exam-solution-title">
+              <span>📝 試卷標準作答範本</span>
+              <span class="exam-tag">大考手寫規範・標準書寫示範</span>
+            </div>
+            <span style="font-size: 0.85rem; color: var(--text-dim);">步驟嚴謹・列式完整・得分不漏</span>
+          </div>
+
+          <div class="exam-step-item">
+            <span class="exam-step-num">(1)</span> <strong>沿斜面向上施力 $F_1$ 時：</strong>
+            <p style="margin: 4px 0 6px 0; color: #cbd5e1;">
+              取斜面上重量為 $W$ 之物體為隔離體，建立<strong>垂直斜面方向</strong>之靜力平衡方程式：
+            </p>
+            $$\Sigma F_{\perp} = 0 \implies N_1 - W\cos\theta = 0$$
+            <div class="exam-answer-line">
+              答：斜面施於物體之作用力（正向支持力）為 <strong>$N_1 = W\cos\theta$</strong>
+            </div>
+          </div>
+
+          <div class="exam-step-item" style="margin-top: 14px;">
+            <span class="exam-step-num">(2)</span> <strong>沿水平方向施力 $F_2$ 時：</strong>
+            <p style="margin: 4px 0 6px 0; color: #cbd5e1;">
+              物體受重力 $W$（鉛直向下）、外力 $F_2$（水平向右）及斜面支持力 $N_2$（垂直斜面向上，與鉛垂線夾角亦為 $\theta$）。<br>
+              建立<strong>鉛直方向</strong>之靜力平衡方程式：
+            </p>
+            $$\Sigma F_y = 0 \implies N_2\cos\theta - W = 0$$
+            <div class="exam-answer-line">
+              答：斜面施於物體之作用力為 <strong>$N_2 = \dfrac{W}{\cos\theta} = W\sec\theta$</strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- 步驟 1 -->
+        <div class="step-card">
+          <div class="step-header">
+            <span class="step-badge">觀念深究 (1)</span>
+            <h3>沿斜面向上施力（經典斜面坐標系分解）</h3>
+          </div>
+          <p>
+            物體置於光滑斜面上，斜面施於物體的作用力即為<strong>正向支持力 $N_1$</strong>（方向垂直斜面向上）。
+          </p>
+          <p>
+            當施加<strong>沿斜面向上</strong>的外力 $F_1$ 時：
+          </p>
+          <ul>
+            <li>外力 $F_1$ 完全沿斜面方向，其垂直斜面的分力為 $0$。</li>
+            <li>將重力 $W$ 分解為：
+              <ul>
+                <li>平行斜面向下分力：$W_{\parallel} = W\sin\theta$</li>
+                <li>垂直斜面向下分力：$W_{\perp} = W\cos\theta$</li>
+              </ul>
+            </li>
+            <li><strong>垂直斜面方向受力平衡：</strong>
+              $$N_1 = W_{\perp} = W\cos\theta$$
+            </li>
+            <li>（附帶平衡關係：平行斜面方向 $F_1 = W\sin\theta$）</li>
+          </ul>
+          <div style="background: rgba(16, 185, 129, 0.15); border: 1px solid #10b981; border-radius: 8px; padding: 12px 16px; margin: 10px 0;">
+            <strong style="color: #10b981;">(1) 斜面施於物體的作用力為：$N_1 = W \cos\theta$</strong>
+          </div>
+        </div>
+
+        <!-- 步驟 2 -->
+        <div class="step-card">
+          <div class="step-header">
+            <span class="step-badge">第 (2) 小題</span>
+            <h3>沿水平方向施力（鉛直水平坐標系分解或直角封閉三角形）</h3>
+          </div>
+          <p>
+            當施加<strong>水平方向</strong>的外力 $F_2$（水平向右推向斜面）時：
+          </p>
+          <p>
+            物體受三個力：鉛直向下的重力 $W$、水平向右的推力 $F_2$、垂直斜面向左上方的正向力 $N_2$。<br>
+            正向力 $N_2$ 與鉛垂線的夾角恰好等於斜角 $\theta$！
+          </p>
+          <ul>
+            <li><strong>方法一：鉛直方向力平衡</strong><br>
+              外力 $F_2$ 為水平力，在鉛直方向無分力。因此鉛直向上只有 $N_2$ 的垂直分量：
+              $$\Sigma F_y = 0 \implies N_2 \cos\theta = W \implies N_2 = \frac{W}{\cos\theta} = W\sec\theta$$
+            </li>
+            <li><strong>方法二：三力平衡封閉向量三角形法（核心解法）</strong><br>
+              物體受三個力：重力 $\vec{W}$（鉛直向下）、外力 $\vec{F}_2$（水平向右）、斜面支持力 $\vec{N}_2$（垂直斜面向上，與鉛垂線夾角亦為 $\theta$）。<br>
+              靜力平衡條件為合力為零：$\vec{W} + \vec{F}_2 + \vec{N}_2 = \vec{0}$，三力首尾相接必構成<strong>封閉直角三角形</strong>：
+              
+              <!-- Closed Vector Triangle SVG -->
+              <div style="text-align: center; margin: 14px 0;">
+                <svg viewBox="0 0 320 220" style="width: 100%; max-width: 300px; background: rgba(15, 23, 42, 0.7); border-radius: 10px; border: 1px solid rgba(255,255,255,0.1);">
+                  <defs>
+                    <marker id="arr-tri-red" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                      <path d="M 0 1 L 10 5 L 0 9 z" fill="#f43f5e"/>
+                    </marker>
+                    <marker id="arr-tri-sky" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                      <path d="M 0 1 L 10 5 L 0 9 z" fill="#38bdf8"/>
+                    </marker>
+                    <marker id="arr-tri-emerald" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                      <path d="M 0 1 L 10 5 L 0 9 z" fill="#10b981"/>
+                    </marker>
+                  </defs>
+
+                  <!-- Vector W: from (90, 35) to (90, 175) straight down -->
+                  <line x1="90" y1="35" x2="90" y2="175" stroke="#f43f5e" stroke-width="3" marker-end="url(#arr-tri-red)"/>
+                  <text x="65" y="110" fill="#f43f5e" font-size="14" font-weight="bold">W</text>
+
+                  <!-- Vector F2: from (90, 175) to (210, 175) straight right -->
+                  <line x1="90" y1="175" x2="210" y2="175" stroke="#38bdf8" stroke-width="3" marker-end="url(#arr-tri-sky)"/>
+                  <text x="145" y="198" fill="#38bdf8" font-size="14" font-weight="bold">F₂ (水平)</text>
+
+                  <!-- Right Angle Symbol at (90, 175) -->
+                  <path d="M 90 160 L 105 160 L 105 175" fill="none" stroke="#64748b" stroke-width="1.5"/>
+
+                  <!-- Vector N2: from (210, 175) back to (90, 35) close the loop -->
+                  <line x1="210" y1="175" x2="90" y2="35" stroke="#10b981" stroke-width="3" marker-end="url(#arr-tri-emerald)"/>
+                  <text x="165" y="95" fill="#10b981" font-size="14" font-weight="bold">N₂ (斜邊)</text>
+
+                  <!-- Angle theta at top apex (90, 35) -->
+                  <path d="M 90 75 A 40 40 0 0 0 115 65" fill="none" stroke="#fbbf24" stroke-width="2"/>
+                  <text x="105" y="90" fill="#fbbf24" font-size="13" font-weight="bold">θ</text>
+                </svg>
+              </div>
+
+              由直角三角形之三角比定義：
+              $$\cos\theta = \frac{\text{鄰邊 } W}{\text{斜邊 } N_2} \implies N_2 = \frac{W}{\cos\theta} = W\sec\theta$$
+              $$\tan\theta = \frac{\text{對邊 } F_2}{\text{鄰邊 } W} \implies F_2 = W\tan\theta$$
+            </li>
+          </ul>
+          <div style="background: rgba(16, 185, 129, 0.15); border: 1px solid #10b981; border-radius: 8px; padding: 12px 16px; margin: 10px 0;">
+            <strong style="color: #10b981;">(2) 斜面施於物體的作用力為：$N_2 = \dfrac{W}{\cos\theta}$（即 $W\sec\theta$）</strong>
+          </div>
+        </div>
+
+        <!-- 步驟 3 -->
+        <div class="step-card">
+          <div class="step-header">
+            <span class="step-badge">觀念深化</span>
+            <h3>為什麼 $N_2 > N_1$？（物理直覺思考）</h3>
+          </div>
+          <p>
+            比較兩種情況的斜面正向力：
+          </p>
+          <ul>
+            <li>情況 (1)：$N_1 = W\cos\theta < W$。外力平行於斜面，沒有壓迫斜面，斜面只需承受重力的垂直分量。</li>
+            <li>情況 (2)：$N_2 = \frac{W}{\cos\theta} > W$。水平推力有一部分「斜向壓進斜面」（分力為 $F_2\sin\theta$），使得斜面所受的擠壓力大增！</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Navigation Bar -->
+    <div class="bottom-nav">
+      <a href="torque7.html" class="nav-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+        上一題：107指考均勻直尺力矩
+      </a>
+      <a href="index.html" class="nav-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        回課程總目錄
+      </a>
+      <a href="equil2.html" class="nav-btn primary">
+        下一題：雙斜面滑輪平衡比值
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // KaTeX Rendering
+      if (typeof renderMathInElement === 'function') {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ],
+          throwOnError: false
+        });
+      }
+
+      const completed = { 1: false, 2: false };
+      const solutionCard = document.getElementById("solutionCard");
+
+      // Handle Option Clicks
+      document.querySelectorAll(".option-btn").forEach(btn => {
+        btn.addEventListener("click", function() {
+          const part = this.getAttribute("data-part");
+          const isCorrect = this.getAttribute("data-correct") === "true";
+          const msgDiv = document.getElementById("msg" + part);
+
+          // Reset siblings
+          const siblings = document.querySelectorAll(`.option-btn[data-part="${part}"]`);
+          siblings.forEach(s => s.classList.remove("correct", "wrong"));
+
+          msgDiv.style.display = "block";
+
+          if (isCorrect) {
+            this.classList.add("correct");
+            completed[part] = true;
+            if (part === "1") {
+              msgDiv.innerHTML = "<span style='color:#10b981;'><strong>答對了！</strong> 沿斜面施力時，垂直斜面方向只有重力分量與正向力，$N_1 = W\\cos\\theta$。</span>";
+            } else if (part === "2") {
+              msgDiv.innerHTML = "<span style='color:#10b981;'><strong>太強了！完全正確！</strong> 水平施力時，鉛直方向平衡 $N_2\\cos\\theta = W$，故 $N_2 = \\frac{W}{\\cos\\theta}$！</span>";
+            }
+          } else {
+            this.classList.add("wrong");
+            if (part === "1") {
+              msgDiv.innerHTML = "<span style='color:#f87171;'><strong>再想想看！</strong> $W\\sin\\theta$ 是下滑分力，斜面施予的正向力是垂直斜面的 $W\\cos\\theta$ 喔！</span>";
+            } else if (part === "2") {
+              msgDiv.innerHTML = "<span style='color:#f87171;'><strong>方向要注意！</strong> 水平推力會同時壓迫斜面，鉛直方向只有 $N_2\\cos\\theta$ 平衡重力 $W$，故 $N_2 = W/\\cos\\theta$ 喔！</span>";
+            }
+          }
+
+          if (typeof renderMathInElement === 'function') {
+            renderMathInElement(msgDiv, {
+              delimiters: [
+                {left: '$$', right: '$$', display: true},
+                {left: '$', right: '$', display: false}
+              ],
+              throwOnError: false
+            });
+          }
+
+          // If both completed, open solution
+          if (completed[1] && completed[2]) {
+            toggleSolutionCard(true);
+          }
+        });
+      });
+
+      // Solution toggle on header click
+      const solutionToggle = document.getElementById("solutionToggle");
+      if (solutionToggle) {
+        solutionToggle.addEventListener("click", function() {
+          toggleSolutionCard();
+        });
+      }
+    });
+
+    // Toggle Solution Card (can be called by button or header)
+    function toggleSolutionCard(forceOpen) {
+      const card = document.getElementById("solutionCard");
+      const statusSpan = document.getElementById("solutionStatusText");
+      if (!card) return;
+
+      if (forceOpen === true) {
+        card.classList.remove("collapsed");
+        if (statusSpan) statusSpan.textContent = "點擊收合詳解 ▲";
+        setTimeout(() => {
+          card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 80);
+      } else {
+        card.classList.toggle("collapsed");
+        const isCollapsed = card.classList.contains("collapsed");
+        if (statusSpan) {
+          statusSpan.textContent = isCollapsed ? "點擊展開完整詳解 ▼" : "點擊收合詳解 ▲";
+        }
+      }
+    }
+
+    // Diagram Mode Switcher
+    function setDiagramMode(mode) {
+      const btnRaw = document.getElementById('btnModeRaw');
+      const btnHint = document.getElementById('btnModeHint');
+      const label = document.getElementById('diagramModeLabel');
+      const hintLayers = document.querySelectorAll('.fbd-hint-layer');
+
+      if (mode === 'raw') {
+        btnRaw.classList.add('active');
+        btnHint.classList.remove('active');
+        label.textContent = '📐 原始題圖模式（未提供額外提示與公式）';
+        hintLayers.forEach(el => el.style.display = 'none');
+      } else {
+        btnRaw.classList.remove('active');
+        btnHint.classList.add('active');
+        label.textContent = '💡 受力與思路圖模式（已展示受力分解與平衡提示）';
+        hintLayers.forEach(el => el.style.display = 'inline');
+      }
+    }
+  </script>
+</body>
+</html>

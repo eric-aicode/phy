@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>靜力平衡 27：【89聯考】細桿偏離鉛垂線與釘子作用力 | 高中物理靜力學</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+  <link rel="stylesheet" href="shared.css">
+</head>
+<body>
+  <div class="bg-glow"></div>
+  <div class="bg-grid"></div>
+
+  <div class="container">
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+      <div class="nav-links">
+        <a href="index.html" class="nav-btn primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          回目錄
+        </a>
+        <a href="equil26.html" class="nav-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          上一題 (平衡 26)
+        </a>
+        <a href="equil28.html" class="nav-btn">
+          下一題 (平衡 28)
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+      <div class="badge-wrapper">
+        <span class="badge badge-page">講義 靜力學-28</span>
+        <span class="badge badge-exam">89.大學聯考題</span>
+        <span class="badge badge-accent">靜力平衡・練習 27</span>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+      <h1 class="main-title">靜力平衡 27：<span class="gradient-text">細桿偏離鉛垂線與釘子作用力</span></h1>
+      <p class="subtitle">轉軸力矩平衡求水平拉力 $F$・正交合力與三角恆等式 $\tan^2\theta + 1 = \sec^2\theta$</p>
+    </header>
+
+    <!-- Problem Showcase Card -->
+    <section class="card problem-card">
+      <div class="card-header">
+        <div class="card-icon">📖</div>
+        <div>
+          <h2>題目內容</h2>
+          <span class="card-tag">89 年大學聯考經典物理試題</span>
+        </div>
+      </div>
+
+      <div class="problem-body">
+        <p>
+          一均勻細桿，長 $1\text{ 公尺}$，重量為 $W$。在距離其上端 $25\text{ 公分}$ 處以一釘子將此細桿釘在鉛直牆面上，使細桿可繞此釘子無摩擦地旋轉。今施一水平力 $F$ 於其上端，使細桿偏離鉛垂線 $\theta$ 角（$\theta < 90^\circ$），則在平衡時，<strong>釘子作用在細桿上力之量值</strong>為？
+        </p>
+
+        <!-- SVG Diagram -->
+        <div class="svg-container">
+          <svg viewBox="0 0 520 330" width="100%" height="330" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="arrow-blue" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 9 5 L 0 9 z" fill="#3b82f6"/>
+              </marker>
+              <marker id="arrow-amber" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 9 5 L 0 9 z" fill="#f59e0b"/>
+              </marker>
+              <marker id="arrow-emerald" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 9 5 L 0 9 z" fill="#10b981"/>
+              </marker>
+              <marker id="arrow-purple" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 9 5 L 0 9 z" fill="#a855f7"/>
+              </marker>
+            </defs>
+
+            <!-- Vertical Plumb Line (鉛垂線) -->
+            <line x1="260" y1="20" x2="260" y2="305" stroke="#94a3b8" stroke-width="1.8" stroke-dasharray="6,4" />
+            <text x="240" y="322" fill="#94a3b8" font-size="13" font-weight="bold">鉛垂線</text>
+
+            <!-- Inclined Rod: angle theta ~ 28 deg with vertical -->
+            <!-- Nail pivot at (260, 115) -->
+            <!-- Top end at (295, 45): arm = 25 cm -->
+            <!-- Midpoint CG at (225, 185): arm = 25 cm from nail (50 cm from top) -->
+            <!-- Bottom end at (155, 325): arm = 75 cm from nail (100 cm total) -->
+            <!-- Rod body -->
+            <line x1="160" y1="315" x2="295" y2="45" stroke="#94a3b8" stroke-width="8" stroke-linecap="round" />
+            <line x1="160" y1="315" x2="295" y2="45" stroke="#38bdf8" stroke-width="3.5" stroke-linecap="round" />
+
+            <!-- Nail pivot dot -->
+            <circle cx="260" cy="115" r="6" fill="#f59e0b" stroke="#ffffff" stroke-width="2" />
+            <text x="274" y="120" fill="#f59e0b" font-size="14" font-weight="bold">釘子 (轉軸)</text>
+
+            <!-- Angle theta arc at nail between rod and plumb line -->
+            <path d="M 260 150 A 35 35 0 0 1 244 146" fill="none" stroke="#f59e0b" stroke-width="2" />
+            <text x="245" y="140" fill="#f59e0b" font-size="13" font-weight="bold">θ</text>
+
+            <!-- Force F at top (295, 45) horizontal pointing right -->
+            <line x1="295" y1="45" x2="385" y2="45" stroke="#ec4899" stroke-width="3" marker-end="url(#arrow-purple)" />
+            <text x="395" y="50" fill="#ec4899" font-size="16" font-weight="bold">F</text>
+
+            <!-- Center of Mass (重心) at (225, 185) -->
+            <circle cx="225" cy="185" r="5" fill="#10b981" />
+            <text x="145" y="185" fill="#6ee7b7" font-size="12">重心 (距頂 50 cm)</text>
+
+            <!-- Gravity W at CG pointing down -->
+            <line x1="225" y1="185" x2="225" y2="265" stroke="#10b981" stroke-width="2.5" marker-end="url(#arrow-emerald)" />
+            <text x="233" y="240" fill="#10b981" font-size="15" font-weight="bold">W</text>
+
+            <!-- Nail Reaction Force Components at (260, 115) -->
+            <!-- Rx to left = F -->
+            <line x1="260" y1="115" x2="190" y2="115" stroke="#3b82f6" stroke-width="2" stroke-dasharray="3,3" marker-end="url(#arrow-blue)" />
+            <text x="175" y="105" fill="#3b82f6" font-size="12">R_x = F</text>
+
+            <!-- Ry upward = W -->
+            <line x1="260" y1="115" x2="260" y2="45" stroke="#3b82f6" stroke-width="2" stroke-dasharray="3,3" marker-end="url(#arrow-blue)" />
+            <text x="220" y="75" fill="#3b82f6" font-size="12">R_y = W</text>
+
+            <!-- Resultant R vector -->
+            <line x1="260" y1="115" x2="190" y2="45" stroke="#60a5fa" stroke-width="2.8" marker-end="url(#arrow-blue)" />
+            <text x="160" y="45" fill="#60a5fa" font-size="15" font-weight="bold">R (釘子力)</text>
+
+            <!-- Arm annotations -->
+            <!-- Top segment 25 cm -->
+            <line x1="295" y1="45" x2="260" y2="45" stroke="#94a3b8" stroke-width="1" stroke-dasharray="2,2" />
+            <text x="290" y="90" fill="#94a3b8" font-size="11">25 cm</text>
+
+            <!-- CG segment 25 cm -->
+            <line x1="225" y1="185" x2="260" y2="185" stroke="#94a3b8" stroke-width="1" stroke-dasharray="2,2" />
+            <text x="225" y="135" fill="#94a3b8" font-size="11">25 cm</text>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Options Grid -->
+    <section class="card quiz-card">
+      <div class="card-header">
+        <div class="card-icon">🎯</div>
+        <div>
+          <h2>選擇題挑戰</h2>
+          <span class="card-tag">點擊選項立即作答檢驗</span>
+        </div>
+      </div>
+
+      <div class="options-grid">
+        <div class="option-card" data-option="A">
+          <div class="option-indicator">A</div>
+          <div class="option-content">
+            <span class="math-opt">$W\tan\theta$</span>
+          </div>
+        </div>
+
+        <div class="option-card" data-option="B">
+          <div class="option-indicator">B</div>
+          <div class="option-content">
+            <span class="math-opt">$W\sqrt{1+\sin^2\theta}$</span>
+          </div>
+        </div>
+
+        <div class="option-card" data-option="C">
+          <div class="option-indicator">C</div>
+          <div class="option-content">
+            <span class="math-opt">$W\sec\theta$</span>
+          </div>
+        </div>
+
+        <div class="option-card" data-option="D">
+          <div class="option-indicator">D</div>
+          <div class="option-content">
+            <span class="math-opt">$\frac{W}{1-\sin\theta}$</span>
+          </div>
+        </div>
+
+        <div class="option-card" data-option="E">
+          <div class="option-indicator">E</div>
+          <div class="option-content">
+            <span class="math-opt">$W\cot\theta$</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feedback Banner -->
+      <div class="feedback-box" id="feedbackBox">
+        <div class="feedback-icon" id="feedbackIcon"></div>
+        <div class="feedback-text" id="feedbackText"></div>
+      </div>
+    </section>
+
+    <!-- Collapsible Solution Card -->
+    <section class="card solution-card collapsed" id="solutionCard">
+      <div class="card-header solution-toggle" id="solutionToggle">
+        <div class="card-icon">💡</div>
+        <div class="solution-header-content">
+          <h2>精闢解析與推導步驟</h2>
+          <span class="solution-status">點擊展開完整剖析</span>
+        </div>
+        <div class="toggle-arrow">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+      </div>
+
+      <div class="solution-body">
+        <div class="step-card">
+          <div class="step-num">Step 1</div>
+          <div class="step-text">
+            <h4>幾何長度與力的作用位置定位</h4>
+            <ul>
+              <li><strong>細桿全長</strong>：$L = 1\text{ m} = 100\text{ cm}$。</li>
+              <li><strong>均勻細桿重心</strong>：位於正中央，距離上端 $50\text{ cm}$ 處，受重力 $W$ 鉛直向下。</li>
+              <li><strong>釘子位置</strong>：距離上端 $25\text{ cm}$。</li>
+              <li><strong>關鍵觀察</strong>：
+                <ul>
+                  <li>釘子到上端施力點之距離為 $25\text{ cm}$。</li>
+                  <li>釘子到細桿重心之距離亦為 $50 - 25 = 25\text{ cm}$！兩邊之分段桿長完全相等！</li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">Step 2</div>
+          <div class="step-text">
+            <h4>以釘子為轉軸列力矩平衡求外力 $F$</h4>
+            <p>設細桿與鉛垂線夾角為 $\theta$：</p>
+            <ul>
+              <li><strong>水平外力 $F$ 的力臂</strong>：$F$ 為水平向右，其相對於釘子的垂直距離（鉛直力臂）為 $d_F = 25\cos\theta$。</li>
+              <li><strong>重力 $W$ 的力臂</strong>：$W$ 為鉛直向下，其相對於釘子的垂直距離（水平力臂）為 $d_W = 25\sin\theta$。</li>
+            </ul>
+            <p>細桿處於靜力平衡，以釘子為軸之合力矩為零：</p>
+            $$\sum \tau_{\text{釘子}} = 0 \implies \tau_F = \tau_W$$
+            $$F \cdot (25\cos\theta) = W \cdot (25\sin\theta)$$
+            $$F = W \cdot \frac{\sin\theta}{\cos\theta} = W\tan\theta$$
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">Step 3</div>
+          <div class="step-text">
+            <h4>正交力平衡與釘子作用力合成</h4>
+            <p>設釘子作用在細桿上的力為 $\vec{R}$，其水平與鉛直分量分別為 $R_x$ 與 $R_y$：</p>
+            <ul>
+              <li><strong>水平合力平衡</strong>：$\sum F_x = 0 \implies R_x = F = W\tan\theta$（方向向左）</li>
+              <li><strong>鉛直合力平衡</strong>：$\sum F_y = 0 \implies R_y = W$（方向向上）</li>
+            </ul>
+            <p>釘子作用力大小 $R$ 為：</p>
+            $$R = \sqrt{R_x^2 + R_y^2} = \sqrt{(W\tan\theta)^2 + W^2} = W\sqrt{\tan^2\theta + 1}$$
+          </div>
+        </div>
+
+        <div class="step-card highlight-step">
+          <div class="step-num">Step 4</div>
+          <div class="step-text">
+            <h4>運用三角恆等式簡化</h4>
+            <p>根據三角函數基本恆等式 $\tan^2\theta + 1 = \sec^2\theta$（因為 $\theta < 90^\circ$，$\sec\theta > 0$）：</p>
+            $$R = W\sqrt{\sec^2\theta} = W\sec\theta$$
+            <p class="final-ans-box">
+              故平衡時釘子對細桿作用力之量值為 <strong>(C) $W\sec\theta$</strong>。
+            </p>
+          </div>
+        </div>
+
+        <!-- Trap Warning -->
+        <div class="key-point-box">
+          <div class="key-point-title">⚡ 聯考高頻陷阱：</div>
+          <p>
+            許多考生只解出力矩平衡得到 $F = W\tan\theta$ 便急忙勾選 <strong>(A)</strong>，但題目詢問的是<strong>「釘子作用力」</strong>而非「外力 $F$」！釘子同時承受水平拉力 $F$ 與細桿重量 $W$ 的反作用力，合成後即為 $W\sec\theta$。
+          </p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // Auto-render KaTeX
+      if (typeof renderMathInElement === 'function') {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ],
+          throwOnError: false
+        });
+      }
+
+      // Quiz Interaction
+      const correctAnswer = "C";
+      const optionCards = document.querySelectorAll(".option-card");
+      const feedbackBox = document.getElementById("feedbackBox");
+      const feedbackIcon = document.getElementById("feedbackIcon");
+      const feedbackText = document.getElementById("feedbackText");
+      const solutionCard = document.getElementById("solutionCard");
+
+      optionCards.forEach(card => {
+        card.addEventListener("click", function() {
+          const selected = this.getAttribute("data-option");
+
+          optionCards.forEach(c => c.classList.remove("selected", "correct", "wrong"));
+          this.classList.add("selected");
+
+          feedbackBox.classList.remove("correct", "wrong");
+          feedbackBox.classList.add("show");
+
+          if (selected === correctAnswer) {
+            this.classList.add("correct");
+            feedbackBox.classList.add("correct");
+            feedbackIcon.innerHTML = "🎉";
+            feedbackText.innerHTML = "<strong>命中真理！聯考題答對！</strong><br>以釘子為軸力矩平衡：$F \\cdot 25\\cos\\theta = W \\cdot 25\\sin\\theta \\implies F = W\\tan\\theta$。<br>釘子作用力 $R = \\sqrt{F^2 + W^2} = W\\sqrt{\\tan^2\\theta + 1} = W\\sec\\theta$！";
+            solutionCard.classList.remove("collapsed");
+            const tag = solutionCard.querySelector(".solution-status");
+            if (tag) tag.textContent = "點擊收合詳解";
+          } else {
+            this.classList.add("wrong");
+            feedbackBox.classList.add("wrong");
+            feedbackIcon.innerHTML = "💡";
+            if (selected === "A") {
+              feedbackText.innerHTML = "<strong>小心陷阱！$W\\tan\\theta$ 是施加的水平外力 $F$，但題目問的是「釘子作用力」喔！</strong> 釘子力還包含支撐細桿重量 $W$ 的垂直分量！";
+            } else {
+              feedbackText.innerHTML = `<strong>選了 (${selected})，再想想看！</strong> 提示：以釘子為轉軸求外力 $F$，再合成釘子承受的水平反力 $F$ 與鉛直反力 $W$！`;
+            }
+          }
+
+          if (typeof renderMathInElement === 'function') {
+            renderMathInElement(feedbackText, {
+              delimiters: [
+                {left: '$$', right: '$$', display: true},
+                {left: '$', right: '$', display: false}
+              ],
+              throwOnError: false
+            });
+          }
+        });
+      });
+
+      // Solution toggle
+      const solutionToggle = document.getElementById("solutionToggle");
+      solutionToggle.addEventListener("click", function() {
+        solutionCard.classList.toggle("collapsed");
+        const isCollapsed = solutionCard.classList.contains("collapsed");
+        const statusSpan = solutionToggle.querySelector(".solution-status");
+        if (statusSpan) {
+          statusSpan.textContent = isCollapsed ? "點擊展開完整剖析" : "點擊收合詳解";
+        }
+      });
+    });
+  </script>
+</body>
+</html>

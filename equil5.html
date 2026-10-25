@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>靜力平衡 5：雙光滑斜板圓球支持力計算 | 高中物理靜力學</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    .method-toggle-container {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin: 0 auto 16px;
+      max-width: 720px;
+    }
+    .method-btn {
+      flex: 1;
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      background: rgba(30, 41, 59, 0.7);
+      color: #94a3b8;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .method-btn:hover {
+      background: rgba(51, 65, 85, 0.9);
+      color: #f8fafc;
+      border-color: rgba(56, 189, 248, 0.4);
+    }
+    .method-btn.active {
+      background: linear-gradient(135deg, rgba(14, 165, 233, 0.35), rgba(59, 130, 246, 0.35));
+      border-color: #38bdf8;
+      color: #ffffff;
+      box-shadow: 0 0 16px rgba(56, 189, 248, 0.3);
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-glow"></div>
+  <div class="bg-grid"></div>
+
+  <div class="container">
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+      <div class="nav-links">
+        <a href="index.html" class="nav-btn primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          回目錄
+        </a>
+        <a href="equil4.html" class="nav-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          上一題 (平衡 4)
+        </a>
+        <a href="equil6.html" class="nav-btn">
+          下一題 (平衡 6)
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+      <div class="badge-wrapper">
+        <span class="badge badge-page">講義 靜力學-24</span>
+        <span class="badge badge-exam">斜板夾球模型</span>
+        <span class="badge badge-accent">靜力平衡・練習 5</span>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+      <h1 class="main-title">靜力平衡 5：<span class="gradient-text">雙光滑斜板圓球支持力</span></h1>
+      <p class="subtitle">法線方向投影・聯立方程式有理化推導・拉密定理驗算</p>
+    </header>
+
+    <!-- Problem Showcase Card -->
+    <section class="card problem-card">
+      <div class="card-header">
+        <div class="card-icon">📖</div>
+        <div>
+          <h2>題目內容</h2>
+          <span class="card-tag">聯考與指考經典幾何受力題</span>
+        </div>
+      </div>
+
+      <div class="problem-body">
+        <p>
+          如下圖所示，一重量為 <strong>$W$</strong> 之均勻圓球，架在底緣相靠之甲、乙兩光滑平板上。已知<strong>甲板與水平面成 $60^\circ$ 角</strong>，<strong>乙板與水平面成 $45^\circ$ 角</strong>。則甲、乙兩板施予球之作用力量值分別為何？
+        </p>
+
+        <!-- Method Toggle Buttons -->
+        <div class="method-toggle-container">
+          <button type="button" class="method-btn active" id="btnMethod1" onclick="switchMethod('method1')">
+            <span>🏛️ 解法一：正交分解與聯立消去</span>
+          </button>
+          <button type="button" class="method-btn" id="btnMethod2" onclick="switchMethod('method2')">
+            <span>🎯 解法二：拉密定理 ＆ 向量封閉三角形</span>
+          </button>
+        </div>
+
+        <!-- Dynamic Two Wedges Sphere SVG Diagram -->
+        <div class="diagram-container" style="text-align: center; margin: 20px 0;">
+          <svg viewBox="0 0 760 370" style="width: 100%; max-width: 740px; background: rgba(15, 23, 42, 0.6); border-radius: 12px; border: 1px solid rgba(255,255,255,0.08);">
+            <defs>
+              <marker id="arr-rose" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#f43f5e"/>
+              </marker>
+              <marker id="arr-sky" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#38bdf8"/>
+              </marker>
+              <marker id="arr-emerald" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#10b981"/>
+              </marker>
+              <marker id="arr-amber" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#fbbf24"/>
+              </marker>
+            </defs>
+
+            <!-- Horizontal Ground Reference at y = 310 -->
+            <line x1="30" y1="310" x2="455" y2="310" stroke="#64748b" stroke-width="1.5" stroke-dasharray="4,4"/>
+
+            <!-- Bottom V-Vertex at (250, 310) -->
+            <!-- Plate 甲 on Left: angle 60° with horizontal -->
+            <line x1="250" y1="310" x2="135" y2="111" stroke="#38bdf8" stroke-width="4.5" stroke-linecap="round"/>
+            <text x="110" y="105" fill="#38bdf8" font-size="15" font-weight="bold">甲板 (60°)</text>
+            <!-- 60° Angle arc on left -->
+            <path d="M 210 310 A 40 40 0 0 1 230 275" fill="none" stroke="#fbbf24" stroke-width="2"/>
+            <text x="190" y="290" fill="#fbbf24" font-size="13" font-weight="bold">60°</text>
+
+            <!-- Plate 乙 on Right: angle 45° with horizontal -->
+            <line x1="250" y1="310" x2="427" y2="133" stroke="#a78bfa" stroke-width="4.5" stroke-linecap="round"/>
+            <text x="435" y="128" fill="#a78bfa" font-size="15" font-weight="bold">乙板 (45°)</text>
+            <!-- 45° Angle arc on right -->
+            <path d="M 290 310 A 40 40 0 0 0 278 282" fill="none" stroke="#fbbf24" stroke-width="2"/>
+            <text x="295" y="292" fill="#fbbf24" font-size="13" font-weight="bold">45°</text>
+
+            <!-- Vertex circle -->
+            <circle cx="250" cy="310" r="4" fill="#f8fafc"/>
+
+            <!-- Sphere wedged in between: Center O at (266, 198), Radius R = 75 px -->
+            <circle cx="266" cy="198" r="75" fill="rgba(56, 189, 248, 0.12)" stroke="#e2e8f0" stroke-width="3"/>
+            <circle cx="266" cy="198" r="4.5" fill="#f8fafc"/>
+            <text x="275" y="190" fill="#f8fafc" font-size="14" font-weight="bold">O</text>
+
+            <!-- Gravity W straight down from (266, 198) -->
+            <line x1="266" y1="198" x2="266" y2="288" stroke="#f43f5e" stroke-width="3" marker-end="url(#arr-rose)"/>
+            <text x="275" y="275" fill="#f43f5e" font-size="15" font-weight="bold">W</text>
+
+            <!-- Normal force N_甲: perpendicular to 甲, 60° with vertical (30° with horizontal) -->
+            <circle cx="201" cy="235.5" r="4" fill="#38bdf8"/>
+            <line x1="201" y1="235.5" x2="335" y2="158" stroke="#38bdf8" stroke-width="3" marker-end="url(#arr-sky)"/>
+            <text x="342" y="155" fill="#38bdf8" font-size="14" font-weight="bold">N_甲</text>
+
+            <!-- Normal force N_乙: perpendicular to 乙, 45° with vertical (45° with horizontal) -->
+            <circle cx="319" cy="251" r="4" fill="#a78bfa"/>
+            <line x1="319" y1="251" x2="190" y2="122" stroke="#a78bfa" stroke-width="3" marker-end="url(#arr-sky)"/>
+            <text x="160" y="120" fill="#a78bfa" font-size="14" font-weight="bold">N_乙</text>
+
+            <!-- Vertical reference line through O -->
+            <line x1="266" y1="100" x2="266" y2="288" stroke="#64748b" stroke-width="1.2" stroke-dasharray="3,3"/>
+            <!-- Angle of N_甲 with vertical: 60° -->
+            <path d="M 266 158 A 40 40 0 0 1 301 178" fill="none" stroke="#38bdf8" stroke-width="1.5"/>
+            <text x="290" y="162" fill="#38bdf8" font-size="11">60°</text>
+            <!-- Angle of N_乙 with vertical: 45° -->
+            <path d="M 266 158 A 40 40 0 0 0 238 170" fill="none" stroke="#a78bfa" stroke-width="1.5"/>
+            <text x="230" y="162" fill="#a78bfa" font-size="11">45°</text>
+
+            <!-- Right Box: Dual-Method Display Container -->
+            <g transform="translate(465, 12)">
+              <rect x="0" y="0" width="280" height="348" rx="12" fill="rgba(15, 23, 42, 0.75)" stroke="#334155" stroke-width="1.5"/>
+
+              <!-- ================= METHOD 1: ORTHOGONAL PROJECTION ================= -->
+              <g id="groupMethod1">
+                <text x="140" y="26" fill="#38bdf8" font-size="15" font-weight="700" text-anchor="middle">解法一：正交分解與聯立消去</text>
+
+                <!-- Box 1: Horizontal Balance -->
+                <rect x="15" y="38" width="250" height="80" rx="6" fill="rgba(30, 41, 59, 0.6)" stroke="#475569" stroke-width="1"/>
+                <text x="25" y="58" fill="#38bdf8" font-size="12" font-weight="700">水平分力平衡 (向左 = 向右)：</text>
+                <text x="25" y="78" fill="#cbd5e1" font-size="11.5">N_甲·sin 60° = N_乙·sin 45°</text>
+                
+                <text x="25" y="103" fill="#fbbf24" font-size="12" font-family="'Fira Code', monospace" font-weight="700">⇒ N_乙 =</text>
+                <!-- Horizontal fraction line for sqrt(6)/2 -->
+                <g transform="translate(105, 100)">
+                  <text x="0" y="-4" fill="#fbbf24" font-size="11" font-family="'Fira Code', monospace" font-weight="700" text-anchor="middle">√6</text>
+                  <line x1="-10" y1="-1" x2="10" y2="-1" stroke="#fbbf24" stroke-width="1.2"/>
+                  <text x="0" y="10" fill="#fbbf24" font-size="11" font-family="'Fira Code', monospace" font-weight="700" text-anchor="middle">2</text>
+                </g>
+                <text x="122" y="103" fill="#fbbf24" font-size="12" font-family="'Fira Code', monospace" font-weight="700">N_甲</text>
+
+                <!-- Box 2: Vertical Balance -->
+                <rect x="15" y="126" width="250" height="100" rx="6" fill="rgba(30, 41, 59, 0.6)" stroke="#475569" stroke-width="1"/>
+                <text x="25" y="146" fill="#38bdf8" font-size="12" font-weight="700">鉛直分力平衡 (向上 = 重力)：</text>
+                <text x="25" y="167" fill="#cbd5e1" font-size="11.5">N_甲·cos 60° + N_乙·cos 45° = W</text>
+                
+                <!-- Horizontal fraction for (1+sqrt(3))/2 -->
+                <text x="25" y="193" fill="#cbd5e1" font-size="11.5">代入得 N_甲 ·</text>
+                <g transform="translate(126, 189)">
+                  <text x="0" y="-4" fill="#cbd5e1" font-size="10.5" font-family="'Fira Code', monospace" text-anchor="middle">1 + √3</text>
+                  <line x1="-18" y1="-1" x2="18" y2="-1" stroke="#cbd5e1" stroke-width="1.2"/>
+                  <text x="0" y="10" fill="#cbd5e1" font-size="10.5" font-family="'Fira Code', monospace" text-anchor="middle">2</text>
+                </g>
+                <text x="150" y="193" fill="#cbd5e1" font-size="11.5">= W</text>
+                <text x="25" y="217" fill="#22c55e" font-size="13" font-family="'Fira Code', monospace" font-weight="800">⇒ N_甲 = (√3 - 1)W</text>
+
+                <!-- Box 3: Substitute to solve N_乙 -->
+                <rect x="15" y="234" width="250" height="102" rx="6" fill="rgba(30, 41, 59, 0.6)" stroke="#475569" stroke-width="1"/>
+                <text x="25" y="254" fill="#10b981" font-size="12" font-weight="700">代回解出 N_乙 (分母有理化)：</text>
+                
+                <text x="25" y="278" fill="#cbd5e1" font-size="11">N_乙 =</text>
+                <g transform="translate(80, 275)">
+                  <text x="0" y="-4" fill="#cbd5e1" font-size="10.5" font-family="'Fira Code', monospace" text-anchor="middle">√6</text>
+                  <line x1="-10" y1="-1" x2="10" y2="-1" stroke="#cbd5e1" stroke-width="1.2"/>
+                  <text x="0" y="10" fill="#cbd5e1" font-size="10.5" font-family="'Fira Code', monospace" text-anchor="middle">2</text>
+                </g>
+                <text x="96" y="278" fill="#cbd5e1" font-size="11">· (√3 - 1)W</text>
+
+                <!-- Result with horizontal line -->
+                <text x="25" y="312" fill="#10b981" font-size="12.5" font-family="'Fira Code', monospace" font-weight="800">⇒ N_乙 =</text>
+                <g transform="translate(132, 308)">
+                  <text x="0" y="-5" fill="#10b981" font-size="12" font-family="'Fira Code', monospace" font-weight="800" text-anchor="middle">3√2 - √6</text>
+                  <line x1="-28" y1="-1" x2="28" y2="-1" stroke="#10b981" stroke-width="1.5"/>
+                  <text x="0" y="12" fill="#10b981" font-size="12" font-family="'Fira Code', monospace" font-weight="800" text-anchor="middle">2</text>
+                </g>
+                <text x="166" y="312" fill="#10b981" font-size="12.5" font-family="'Fira Code', monospace" font-weight="800">W</text>
+              </g>
+
+              <!-- ================= METHOD 2: LAMI'S THEOREM & VECTOR TRIANGLE ================= -->
+              <g id="groupMethod2" style="display: none;">
+                <text x="140" y="24" fill="#fbbf24" font-size="14" font-weight="800" text-anchor="middle">解法二：拉密定理 ＆ 向量封閉三角形</text>
+                <text x="140" y="40" fill="#94a3b8" font-size="10.5" text-anchor="middle">三力首尾相接閉合，利用正弦定理秒殺</text>
+
+                <!-- Vector Closed Triangle -->
+                <!-- Vector W (Down): (70, 50) to (70, 150) -->
+                <line x1="70" y1="50" x2="70" y2="150" stroke="#f43f5e" stroke-width="2.5" marker-end="url(#arr-rose)"/>
+                <text x="62" y="105" fill="#f43f5e" font-size="11" font-weight="700" text-anchor="end">W(↓)</text>
+
+                <!-- Vector N_甲 (Up-Right): (70, 150) to (190, 85) -->
+                <line x1="70" y1="150" x2="190" y2="85" stroke="#38bdf8" stroke-width="2.5" marker-end="url(#arr-sky)"/>
+                <text x="145" y="132" fill="#38bdf8" font-size="11" font-weight="700">N_甲(↗)</text>
+
+                <!-- Vector N_乙 (Up-Left): (190, 85) to (73, 52) -->
+                <line x1="190" y1="85" x2="73" y2="52" stroke="#a78bfa" stroke-width="2.5" marker-end="url(#arr-sky)"/>
+                <text x="135" y="62" fill="#a78bfa" font-size="11" font-weight="700">N_乙(↖)</text>
+
+                <!-- Triangle Internal Angles -->
+                <text x="78" y="142" fill="#38bdf8" font-size="10" font-weight="700">60°</text>
+                <text x="78" y="68" fill="#a78bfa" font-size="10" font-weight="700">45°</text>
+                <text x="168" y="86" fill="#fbbf24" font-size="10" font-weight="700">75°</text>
+
+                <!-- Proportion Box with horizontal fraction lines -->
+                <rect x="15" y="166" width="250" height="170" rx="6" fill="rgba(30, 41, 59, 0.6)" stroke="#475569" stroke-width="1"/>
+                <text x="25" y="186" fill="#fbbf24" font-size="11.5" font-weight="700">正弦定理 / 拉密比例式：</text>
+
+                <!-- N_甲/sin45 = N_乙/sin60 = W/sin75 with horizontal lines -->
+                <g transform="translate(56, 214)">
+                  <text x="0" y="-4" fill="#38bdf8" font-size="11" font-weight="700" text-anchor="middle">N_甲</text>
+                  <line x1="-15" y1="-1" x2="15" y2="-1" stroke="#38bdf8" stroke-width="1.2"/>
+                  <text x="0" y="10" fill="#38bdf8" font-size="10" font-weight="700" text-anchor="middle">sin45°</text>
+                </g>
+                <text x="80" y="214" fill="#cbd5e1" font-size="12">=</text>
+                <g transform="translate(104, 214)">
+                  <text x="0" y="-4" fill="#a78bfa" font-size="11" font-weight="700" text-anchor="middle">N_乙</text>
+                  <line x1="-15" y1="-1" x2="15" y2="-1" stroke="#a78bfa" stroke-width="1.2"/>
+                  <text x="0" y="10" fill="#a78bfa" font-size="10" font-weight="700" text-anchor="middle">sin60°</text>
+                </g>
+                <text x="128" y="214" fill="#cbd5e1" font-size="12">=</text>
+                <g transform="translate(152, 214)">
+                  <text x="0" y="-4" fill="#f43f5e" font-size="11" font-weight="700" text-anchor="middle">W</text>
+                  <line x1="-14" y1="-1" x2="14" y2="-1" stroke="#f43f5e" stroke-width="1.2"/>
+                  <text x="0" y="10" fill="#f43f5e" font-size="10" font-weight="700" text-anchor="middle">sin75°</text>
+                </g>
+
+                <!-- sin 75 identity with horizontal fraction -->
+                <text x="25" y="244" fill="#94a3b8" font-size="10.5">其中 sin 75° =</text>
+                <g transform="translate(142, 241)">
+                  <text x="0" y="-4" fill="#94a3b8" font-size="10" font-family="'Fira Code', monospace" text-anchor="middle">√6 + √2</text>
+                  <line x1="-24" y1="-1" x2="24" y2="-1" stroke="#94a3b8" stroke-width="1"/>
+                  <text x="0" y="10" fill="#94a3b8" font-size="10" font-family="'Fira Code', monospace" text-anchor="middle">4</text>
+                </g>
+
+                <!-- Results with horizontal fraction lines -->
+                <text x="25" y="274" fill="#38bdf8" font-size="12" font-family="'Fira Code', monospace" font-weight="800">⇒ N_甲 = (√3 - 1)W</text>
+                <text x="25" y="306" fill="#a78bfa" font-size="12.5" font-family="'Fira Code', monospace" font-weight="800">⇒ N_乙 =</text>
+                <g transform="translate(136, 302)">
+                  <text x="0" y="-5" fill="#a78bfa" font-size="11.5" font-family="'Fira Code', monospace" font-weight="800" text-anchor="middle">3√2 - √6</text>
+                  <line x1="-28" y1="-1" x2="28" y2="-1" stroke="#a78bfa" stroke-width="1.5"/>
+                  <text x="0" y="12" fill="#a78bfa" font-size="11.5" font-family="'Fira Code', monospace" font-weight="800" text-anchor="middle">2</text>
+                </g>
+                <text x="170" y="306" fill="#a78bfa" font-size="12.5" font-family="'Fira Code', monospace" font-weight="800">W</text>
+              </g>
+            </g>
+          </svg>
+
+          <!-- Educational Guide Box (Method 1) -->
+          <div id="guideMethod1" style="max-width: 740px; margin: 12px auto 0; background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.25); border-radius: 8px; padding: 12px 18px; text-align: left; font-size: 0.88rem; line-height: 1.6; color: #cbd5e1;">
+            <div style="font-weight: 700; color: #38bdf8; display: flex; align-items: center; gap: 6px; margin-bottom: 4px;">
+              <span>🏛️ 解法一【正交分解與聯立消去】關鍵步驟：</span>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 4px; font-size: 0.84rem;">
+              <div>• <strong>水平方向合力為零</strong>：兩板支持力向左與向右的水平分量相互抵消：
+                $$N_甲 \sin 60^\circ = N_乙 \sin 45^\circ \implies N_乙 = \frac{\sqrt{3}}{\sqrt{2}} N_甲 = \frac{\sqrt{6}}{2} N_甲$$
+              </div>
+              <div>• <strong>鉛直方向合力為零</strong>：兩板向上抬升之垂直分量共同支撐球重 $W$：
+                $$N_甲 \cos 60^\circ + N_乙 \cos 45^\circ = W \implies N_甲 \left(\frac{1 + \sqrt{3}}{2}\right) = W$$
+              </div>
+              <div>• <strong>分母有理化得出答案</strong>：
+                $$\mathbf{N_甲 = (\sqrt{3} - 1)W} \quad , \quad \mathbf{N_乙 = \frac{3\sqrt{2} - \sqrt{6}}{2}W}$$
+              </div>
+            </div>
+          </div>
+
+          <!-- Educational Guide Box (Method 2) -->
+          <div id="guideMethod2" style="display: none; max-width: 740px; margin: 12px auto 0; background: rgba(245, 158, 11, 0.08); border: 1px solid rgba(245, 158, 11, 0.25); border-radius: 8px; padding: 12px 18px; text-align: left; font-size: 0.88rem; line-height: 1.6; color: #cbd5e1;">
+            <div style="font-weight: 700; color: #fbbf24; display: flex; align-items: center; gap: 6px; margin-bottom: 4px;">
+              <span>🎯 解法二【拉密定理 ＆ 向量封閉三角形】秒殺速解：</span>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 4px; font-size: 0.84rem;">
+              <div>• <strong>三力首尾相接向量閉合</strong>：$W(\downarrow) \to N_甲(\nearrow) \to N_乙(\nwarrow)$ 封閉回到出發點，三個內角分別為 $60^\circ$、$45^\circ$、$75^\circ$！</div>
+              <div>• <strong>直接列正弦定理 / 拉密比例式</strong>：
+                $$\frac{N_甲}{\sin 45^\circ} = \frac{N_乙}{\sin 60^\circ} = \frac{W}{\sin 75^\circ}$$
+                利用 $\sin 75^\circ = \frac{\sqrt{6} + \sqrt{2}}{4}$，免去繁瑣聯立消去，一式直達兩力：
+                $$\mathbf{N_甲 = (\sqrt{3} - 1)W} \quad , \quad \mathbf{N_乙 = \frac{3\sqrt{2} - \sqrt{6}}{2}W}$$
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Options Container -->
+        <div class="options-container" id="optionsContainer">
+          <button class="option-card" data-option="A">
+            <span class="option-letter">A</span>
+            <span class="option-text">$N_甲 = (\sqrt{3} - 1)W, \quad N_乙 = \dfrac{\sqrt{6} - \sqrt{2}}{2}W$</span>
+          </button>
+          <button class="option-card" data-option="B">
+            <span class="option-letter">B</span>
+            <span class="option-text">$N_甲 = (\sqrt{3} - 1)W, \quad N_乙 = \dfrac{3\sqrt{2} - \sqrt{6}}{2}W$</span>
+          </button>
+          <button class="option-card" data-option="C">
+            <span class="option-letter">C</span>
+            <span class="option-text">$N_甲 = \dfrac{\sqrt{3}}{2}W, \quad N_乙 = \dfrac{\sqrt{2}}{2}W$</span>
+          </button>
+          <button class="option-card" data-option="D">
+            <span class="option-letter">D</span>
+            <span class="option-text">$N_甲 = (\sqrt{3} + 1)W, \quad N_乙 = \dfrac{3\sqrt{2} + \sqrt{6}}{2}W$</span>
+          </button>
+        </div>
+
+        <!-- Real-time Feedback -->
+        <div class="feedback-box" id="feedbackBox">
+          <div class="feedback-icon" id="feedbackIcon"></div>
+          <div class="feedback-text" id="feedbackText"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Collapsible Solution Card -->
+    <section class="card solution-card collapsed" id="solutionCard">
+      <div class="card-header clickable" id="solutionToggle">
+        <div class="card-icon">💡</div>
+        <div style="flex: 1;">
+          <h2>詳細代數推導、分母有理化與拉密定理驗證</h2>
+          <span class="solution-status">點擊展開完整剖析</span>
+        </div>
+        <span class="badge badge-accent">講義標準詳解</span>
+      </div>
+
+      <div class="solution-body">
+        <!-- 步驟 1 -->
+        <div class="step-card">
+          <div class="step-header">
+            <span class="step-badge">受力幾何</span>
+            <h3>法線支持力方向判定</h3>
+          </div>
+          <p>
+            兩平板皆為光滑平板，支持力必沿各自的法線方向（且通過球心 O）：
+          </p>
+          <ul>
+            <li><strong>甲板支持力 $N_甲$：</strong> 甲板與水平夾 $60^\circ$，其法線與鉛直方向夾角即為 $60^\circ$（與水平夾 $30^\circ$），斜向右上方。</li>
+            <li><strong>乙板支持力 $N_乙$：</strong> 乙板與水平夾 $45^\circ$，其法線與鉛直方向夾角即為 $45^\circ$（與水平夾 $45^\circ$），斜向左上方。</li>
+            <li><strong>球體重力 $W$：</strong> 作用於球心，鉛直向下。</li>
+          </ul>
+        </div>
+
+        <!-- 步驟 2 -->
+        <div class="step-card">
+          <div class="step-header">
+            <span class="step-badge">平衡聯立</span>
+            <h3>正交分解列式與有理化求解</h3>
+          </div>
+          <p>
+            <strong>(1) 水平方向合力為零：</strong>
+          </p>
+          $$N_甲 \sin 60^\circ = N_乙 \sin 45^\circ \implies N_甲 \cdot \frac{\sqrt{3}}{2} = N_乙 \cdot \frac{\sqrt{2}}{2}$$
+          $$N_乙 = \frac{\sqrt{3}}{\sqrt{2}} N_甲 = \frac{\sqrt{6}}{2} N_甲 \quad \cdots\cdots \text{①}$$
+          <p>
+            <strong>(2) 鉛直方向合力為零：</strong>
+          </p>
+          $$N_甲 \cos 60^\circ + N_乙 \cos 45^\circ = W \quad \cdots\cdots \text{②}$$
+          <p>將 ① 式代入 ② 式：</p>
+          $$N_甲 \cdot \frac{1}{2} + \left(\frac{\sqrt{3}}{\sqrt{2}} N_甲\right) \cdot \frac{1}{\sqrt{2}} = W$$
+          $$N_甲 \cdot \frac{1}{2} + N_甲 \cdot \frac{\sqrt{3}}{2} = W \implies N_甲 \left(\frac{1 + \sqrt{3}}{2}\right) = W$$
+          <p>解出 $N_甲$ 並進行分母有理化：</p>
+          $$N_甲 = \frac{2}{\sqrt{3} + 1} W = \frac{2(\sqrt{3} - 1)}{(\sqrt{3} + 1)(\sqrt{3} - 1)} W = \frac{2(\sqrt{3} - 1)}{3 - 1} W = (\sqrt{3} - 1)W$$
+          <p>接著代回 ① 式求 $N_乙$：</p>
+          $$N_乙 = \frac{\sqrt{3}}{\sqrt{2}} N_甲 = \frac{\sqrt{3}}{\sqrt{2}} (\sqrt{3} - 1)W = \frac{3 - \sqrt{3}}{\sqrt{2}} W = \frac{(3 - \sqrt{3})\sqrt{2}}{2} W = \frac{3\sqrt{2} - \sqrt{6}}{2} W$$
+          <div style="background: rgba(16, 185, 129, 0.15); border: 1px solid #10b981; border-radius: 8px; padding: 16px; margin: 12px 0; text-align: center;">
+            <span style="font-size: 1.3rem; font-weight: 800; color: #10b981;">
+              $$N_甲 = (\sqrt{3} - 1)W, \quad N_乙 = \frac{3\sqrt{2} - \sqrt{6}}{2}W$$
+            </span>
+          </div>
+        </div>
+
+        <!-- 步驟 3 -->
+        <div class="step-card">
+          <div class="step-header">
+            <span class="step-badge">拉密驗證</span>
+            <h3>拉密定理 (Lami's Theorem) 快速對照</h3>
+          </div>
+          <p>
+            球心三力之間的夾角：
+          </p>
+          <ul>
+            <li>$N_甲$ 與 $W$ 的夾角為 $180^\circ - 60^\circ = 120^\circ$</li>
+            <li>$N_乙$ 與 $W$ 的夾角為 $180^\circ - 45^\circ = 135^\circ$</li>
+            <li>$N_甲$ 與 $N_乙$ 的夾角為 $60^\circ + 45^\circ = 105^\circ$</li>
+          </ul>
+          $$\frac{N_甲}{\sin 135^\circ} = \frac{N_乙}{\sin 120^\circ} = \frac{W}{\sin 105^\circ}$$
+          <p>
+            利用 $\sin 105^\circ = \sin(60^\circ + 45^\circ) = \frac{\sqrt{6} + \sqrt{2}}{4}$：
+          </p>
+          $$N_甲 = W \frac{\sin 135^\circ}{\sin 105^\circ} = W \frac{\frac{\sqrt{2}}{2}}{\frac{\sqrt{6} + \sqrt{2}}{4}} = W \frac{2\sqrt{2}}{\sqrt{6} + \sqrt{2}} = W \frac{2}{\sqrt{3} + 1} = (\sqrt{3} - 1)W$$
+          <p>兩法結果完全吻合！正確答案為 <strong>(B)</strong>。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Navigation Bar -->
+    <div class="bottom-nav">
+      <a href="equil4.html" class="nav-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+        上一題：天花板三繩吊球張力
+      </a>
+      <a href="index.html" class="nav-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        回課程總目錄
+      </a>
+      <a href="equil6.html" class="nav-btn primary">
+        下一題：雙端水平懸掛彈簧吊重
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    function switchMethod(method) {
+      const btn1 = document.getElementById('btnMethod1');
+      const btn2 = document.getElementById('btnMethod2');
+      const grp1 = document.getElementById('groupMethod1');
+      const grp2 = document.getElementById('groupMethod2');
+      const guide1 = document.getElementById('guideMethod1');
+      const guide2 = document.getElementById('guideMethod2');
+
+      if (method === 'method1') {
+        btn1.classList.add('active');
+        btn2.classList.remove('active');
+        grp1.style.display = 'inline';
+        grp2.style.display = 'none';
+        guide1.style.display = 'block';
+        guide2.style.display = 'none';
+      } else {
+        btn2.classList.add('active');
+        btn1.classList.remove('active');
+        grp1.style.display = 'none';
+        grp2.style.display = 'inline';
+        guide1.style.display = 'none';
+        guide2.style.display = 'block';
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+      // KaTeX Rendering
+      if (typeof renderMathInElement === 'function') {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ],
+          throwOnError: false
+        });
+      }
+
+      const correctAnswer = "B";
+      const optionCards = document.querySelectorAll(".option-card");
+      const feedbackBox = document.getElementById("feedbackBox");
+      const feedbackIcon = document.getElementById("feedbackIcon");
+      const feedbackText = document.getElementById("feedbackText");
+      const solutionCard = document.getElementById("solutionCard");
+
+      optionCards.forEach(card => {
+        card.addEventListener("click", function() {
+          const selected = this.getAttribute("data-option");
+
+          optionCards.forEach(c => c.classList.remove("selected", "correct", "wrong"));
+          this.classList.add("selected");
+
+          feedbackBox.classList.remove("correct", "wrong");
+          feedbackBox.classList.add("show");
+
+          if (selected === correctAnswer) {
+            this.classList.add("correct");
+            feedbackBox.classList.add("correct");
+            feedbackIcon.innerHTML = "🎉";
+            feedbackText.innerHTML = "<strong>太厲害了！完全正確！</strong><br>聯立水平與鉛直平衡式，解出 $N_甲 = (\\sqrt{3}-1)W$；代回即得 $N_乙 = \\frac{3\\sqrt{2}-\\sqrt{6}}{2}W$！";
+            solutionCard.classList.remove("collapsed");
+            const tag = solutionCard.querySelector(".solution-status");
+            if (tag) tag.textContent = "點擊收合詳解";
+          } else {
+            this.classList.add("wrong");
+            feedbackBox.classList.add("wrong");
+            feedbackIcon.innerHTML = "💡";
+            if (selected === "A") {
+              feedbackText.innerHTML = "<strong>小心分子根號運算！</strong> $N_乙 = \\frac{\\sqrt{3}}{\\sqrt{2}} \\times (\\sqrt{3}-1)W = \\frac{3-\\sqrt{3}}{\\sqrt{2}}W = \\frac{3\\sqrt{2}-\\sqrt{6}}{2}W$ 喔！";
+            } else if (selected === "D") {
+              feedbackText.innerHTML = "<strong>有理化正負號弄錯囉！</strong> 分母是 $\\sqrt{3}+1$，分子分母同乘 $(\\sqrt{3}-1)$，所以結果是 $(\\sqrt{3}-1)W$！";
+            } else {
+              feedbackText.innerHTML = `<strong>選了 (${selected})，再仔細算算！</strong> 提示：列出水平分力 $N_甲\\sin 60^\\circ = N_乙\\sin 45^\\circ$，再代入鉛直分力方程式！`;
+            }
+          }
+
+          if (typeof renderMathInElement === 'function') {
+            renderMathInElement(feedbackText, {
+              delimiters: [
+                {left: '$$', right: '$$', display: true},
+                {left: '$', right: '$', display: false}
+              ],
+              throwOnError: false
+            });
+          }
+        });
+      });
+
+      // Solution toggle
+      const solutionToggle = document.getElementById("solutionToggle");
+      solutionToggle.addEventListener("click", function() {
+        solutionCard.classList.toggle("collapsed");
+        const isCollapsed = solutionCard.classList.contains("collapsed");
+        const statusSpan = solutionToggle.querySelector(".solution-status");
+        if (statusSpan) {
+          statusSpan.textContent = isCollapsed ? "點擊展開完整剖析" : "點擊收合詳解";
+        }
+      });
+    });
+  </script>
+</body>
+</html>

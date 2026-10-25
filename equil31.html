@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>靜力平衡 31：【99指考】斜坡上兩人抬木棒與重物施力分析 | 高中物理靜力學</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+  <link rel="stylesheet" href="shared.css">
+</head>
+<body>
+  <div class="bg-glow"></div>
+  <div class="bg-grid"></div>
+
+  <div class="container">
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+      <div class="nav-links">
+        <a href="index.html" class="nav-btn primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          回目錄
+        </a>
+        <a href="equil30.html" class="nav-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          上一題 (平衡 30)
+        </a>
+        <a href="equil32.html" class="nav-btn">
+          下一題 (平衡 32)
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+      <div class="badge-wrapper">
+        <span class="badge badge-page">講義 靜力學-29</span>
+        <span class="badge badge-exam">99.大學指考題</span>
+        <span class="badge badge-accent">靜力平衡・練習 31</span>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+      <h1 class="main-title">靜力平衡 31：<span class="gradient-text">斜坡上兩人抬木棒重物受力辨析</span></h1>
+      <p class="subtitle">鉛直施力正交力平衡・以重心為軸之力臂對稱性與力矩平衡分析</p>
+    </header>
+
+    <!-- Problem Showcase Card -->
+    <section class="card problem-card">
+      <div class="card-header">
+        <div class="card-icon">📖</div>
+        <div>
+          <h2>題目內容</h2>
+          <span class="card-tag">99 年大學指考精選物理考題</span>
+        </div>
+      </div>
+
+      <div class="problem-body">
+        <p>
+          一重物以細繩固定於均勻木棒中心點，整個系統總重量為 $mg$。甲、乙兩人站在斜坡上，從木棒兩端<strong>鉛直向上</strong>提起重物而達靜力平衡，如圖所示。甲、乙兩人的施力量值分別為 $F_{\text{甲}}$ 與 $F_{\text{乙}}$，則下列敘述何者正確？
+        </p>
+
+        <!-- SVG Diagram -->
+        <div class="svg-container">
+          <svg viewBox="0 0 540 330" width="100%" height="330" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="arrow-blue" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 9 5 L 0 9 z" fill="#3b82f6"/>
+              </marker>
+              <marker id="arrow-amber" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 9 5 L 0 9 z" fill="#f59e0b"/>
+              </marker>
+              <marker id="arrow-emerald" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 9 5 L 0 9 z" fill="#10b981"/>
+              </marker>
+              <marker id="arrow-rose" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 9 5 L 0 9 z" fill="#f43f5e"/>
+              </marker>
+              <pattern id="hatch-slope" width="12" height="12" patternTransform="rotate(30 0 0)" patternUnits="userSpaceOnUse">
+                <line x1="0" y1="0" x2="0" y2="12" stroke="#64748b" stroke-width="1.2" />
+              </pattern>
+            </defs>
+
+            <!-- Slope Profile -->
+            <!-- Triangle from (60, 290) to (480, 160) to (480, 290) Z -->
+            <polygon points="60,290 480,160 480,290" fill="url(#hatch-slope)" opacity="0.35" />
+            <line x1="60" y1="290" x2="480" y2="160" stroke="#94a3b8" stroke-width="3" />
+            <line x1="60" y1="290" x2="480" y2="290" stroke="#94a3b8" stroke-width="2" />
+            <line x1="480" y1="160" x2="480" y2="290" stroke="#94a3b8" stroke-width="2" />
+
+            <!-- Person 乙 (Lower slope, standing around x = 160, slope y ~ 259) -->
+            <g transform="translate(150, 140)">
+              <!-- Head -->
+              <circle cx="20" cy="18" r="9" fill="#94a3b8" />
+              <!-- Torso -->
+              <line x1="20" y1="27" x2="20" y2="72" stroke="#94a3b8" stroke-width="4" stroke-linecap="round" />
+              <!-- Legs on slope -->
+              <line x1="20" y1="72" x2="10" y2="118" stroke="#94a3b8" stroke-width="3" stroke-linecap="round" />
+              <line x1="20" y1="72" x2="30" y2="114" stroke="#94a3b8" stroke-width="3" stroke-linecap="round" />
+              <!-- Arms holding rod -->
+              <line x1="20" y1="42" x2="42" y2="48" stroke="#94a3b8" stroke-width="3" stroke-linecap="round" />
+              <text x="5" y="8" fill="#e2e8f0" font-size="14" font-weight="bold">乙</text>
+            </g>
+
+            <!-- Person 甲 (Higher slope, standing around x = 360, slope y ~ 197) -->
+            <g transform="translate(360, 80)">
+              <!-- Head -->
+              <circle cx="20" cy="18" r="9" fill="#94a3b8" />
+              <!-- Torso -->
+              <line x1="20" y1="27" x2="20" y2="72" stroke="#94a3b8" stroke-width="4" stroke-linecap="round" />
+              <!-- Legs on slope -->
+              <line x1="20" y1="72" x2="10" y2="118" stroke="#94a3b8" stroke-width="3" stroke-linecap="round" />
+              <line x1="20" y1="72" x2="30" y2="114" stroke="#94a3b8" stroke-width="3" stroke-linecap="round" />
+              <!-- Arms holding rod -->
+              <line x1="20" y1="42" x2="-2" y2="48" stroke="#94a3b8" stroke-width="3" stroke-linecap="round" />
+              <text x="35" y="8" fill="#e2e8f0" font-size="14" font-weight="bold">甲</text>
+            </g>
+
+            <!-- Rod between 乙's hand (192, 188) and 甲's hand (358, 128) -->
+            <line x1="192" y1="188" x2="358" y2="128" stroke="#94a3b8" stroke-width="8" stroke-linecap="round" />
+            <line x1="192" y1="188" x2="358" y2="128" stroke="#38bdf8" stroke-width="3.5" stroke-linecap="round" />
+
+            <!-- Hands / Rod ends -->
+            <circle cx="192" cy="188" r="4.5" fill="#f59e0b" />
+            <circle cx="358" cy="128" r="4.5" fill="#f59e0b" />
+
+            <!-- Vertical Force F_乙 at (192, 188) pointing up -->
+            <line x1="192" y1="188" x2="192" y2="120" stroke="#f59e0b" stroke-width="2.8" marker-end="url(#arrow-amber)" />
+            <text x="145" y="140" fill="#f59e0b" font-size="15" font-weight="bold">F_乙</text>
+
+            <!-- Vertical Force F_甲 at (358, 128) pointing up -->
+            <line x1="358" y1="128" x2="358" y2="60" stroke="#f59e0b" stroke-width="2.8" marker-end="url(#arrow-amber)" />
+            <text x="368" y="80" fill="#f59e0b" font-size="15" font-weight="bold">F_甲</text>
+
+            <!-- Midpoint Center of Mass (275, 158) -->
+            <circle cx="275" cy="158" r="5" fill="#10b981" />
+            <!-- Hanging weight mg -->
+            <line x1="275" y1="158" x2="275" y2="215" stroke="#94a3b8" stroke-width="2" />
+            <rect x="260" y="215" width="30" height="26" fill="#334155" stroke="#10b981" stroke-width="2" rx="3" />
+            <text x="266" y="233" fill="#10b981" font-size="13" font-weight="bold">mg</text>
+
+            <!-- Gravity vector downward -->
+            <line x1="275" y1="241" x2="275" y2="280" stroke="#10b981" stroke-width="2.5" marker-end="url(#arrow-emerald)" />
+
+            <!-- Distance guides -->
+            <line x1="192" y1="188" x2="192" y2="300" stroke="#64748b" stroke-width="1" stroke-dasharray="2,2" opacity="0.4" />
+            <line x1="275" y1="158" x2="275" y2="300" stroke="#64748b" stroke-width="1" stroke-dasharray="2,2" opacity="0.4" />
+            <line x1="358" y1="128" x2="358" y2="300" stroke="#64748b" stroke-width="1" stroke-dasharray="2,2" opacity="0.4" />
+
+            <line x1="192" y1="300" x2="275" y2="300" stroke="#38bdf8" stroke-width="1.5" />
+            <text x="220" y="318" fill="#38bdf8" font-size="11">½L cosθ</text>
+
+            <line x1="275" y1="300" x2="358" y2="300" stroke="#38bdf8" stroke-width="1.5" />
+            <text x="300" y="318" fill="#38bdf8" font-size="11">½L cosθ</text>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Options Grid -->
+    <section class="card quiz-card">
+      <div class="card-header">
+        <div class="card-icon">🎯</div>
+        <div>
+          <h2>選擇題挑戰</h2>
+          <span class="card-tag">點擊選項立即作答檢驗</span>
+        </div>
+      </div>
+
+      <div class="options-grid">
+        <div class="option-card" data-option="A">
+          <div class="option-indicator">A</div>
+          <div class="option-content">
+            <span class="math-opt">$F_{\text{甲}} < F_{\text{乙}}$ 且 $(F_{\text{甲}} + F_{\text{乙}}) < mg$</span>
+          </div>
+        </div>
+
+        <div class="option-card" data-option="B">
+          <div class="option-indicator">B</div>
+          <div class="option-content">
+            <span class="math-opt">$F_{\text{甲}} < F_{\text{乙}}$ 且 $(F_{\text{甲}} + F_{\text{乙}}) = mg$</span>
+          </div>
+        </div>
+
+        <div class="option-card" data-option="C">
+          <div class="option-indicator">C</div>
+          <div class="option-content">
+            <span class="math-opt">$F_{\text{甲}} < F_{\text{乙}}$ 且 $(F_{\text{甲}} + F_{\text{乙}}) > mg$</span>
+          </div>
+        </div>
+
+        <div class="option-card" data-option="D">
+          <div class="option-indicator">D</div>
+          <div class="option-content">
+            <span class="math-opt">$F_{\text{甲}} = F_{\text{乙}}$ 且 $(F_{\text{甲}} + F_{\text{乙}}) = mg$</span>
+          </div>
+        </div>
+
+        <div class="option-card" data-option="E">
+          <div class="option-indicator">E</div>
+          <div class="option-content">
+            <span class="math-opt">$F_{\text{甲}} > F_{\text{乙}}$ 且 $(F_{\text{甲}} + F_{\text{乙}}) > mg$</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feedback Banner -->
+      <div class="feedback-box" id="feedbackBox">
+        <div class="feedback-icon" id="feedbackIcon"></div>
+        <div class="feedback-text" id="feedbackText"></div>
+      </div>
+    </section>
+
+    <!-- Collapsible Solution Card -->
+    <section class="card solution-card collapsed" id="solutionCard">
+      <div class="card-header solution-toggle" id="solutionToggle">
+        <div class="card-icon">💡</div>
+        <div class="solution-header-content">
+          <h2>精闢解析與推導步驟</h2>
+          <span class="solution-status">點擊展開完整剖析</span>
+        </div>
+        <div class="toggle-arrow">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+      </div>
+
+      <div class="solution-body">
+        <div class="step-card">
+          <div class="step-num">Step 1</div>
+          <div class="step-text">
+            <h4>正交力平衡分析：合力必抵銷總重</h4>
+            <p>題目明載：甲、乙兩人均為<strong>「鉛直向上提起」</strong>：</p>
+            <ul>
+              <li>外力只有三個：$F_{\text{甲}}$（向上）、$F_{\text{乙}}$（向上）、系統總重 $mg$（向下）。</li>
+              <li>因為水平方向毫無任何外力，由鉛直方向合力為零條件：
+                $$\sum F_y = 0 \implies F_{\text{甲}} + F_{\text{乙}} = mg$$
+              </li>
+              <li>此式立刻排除選項 (A)、(C)、(E)！</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">Step 2</div>
+          <div class="step-text">
+            <h4>以木棒中心點為轉軸列力矩平衡</h4>
+            <p>重物懸掛於均勻木棒正中央，故重心即在木棒中點：</p>
+            <ul>
+              <li>設木棒全長為 $L$，傾斜角為 $\theta$。</li>
+              <li>中點至甲手之桿長為 $\frac{L}{2}$，中點至乙手之桿長亦為 $\frac{L}{2}$。</li>
+              <li>因為 $F_{\text{甲}}$ 與 $F_{\text{乙}}$ 皆為鉛直向上，其相對於中點轉軸的<strong>水平力臂</strong>分別為：
+                $$d_{\text{甲}} = \frac{L}{2}\cos\theta, \quad d_{\text{乙}} = \frac{L}{2}\cos\theta$$
+              </li>
+              <li><strong>驚人發現</strong>：兩人的力臂完全對稱相等！</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="step-card highlight-step">
+          <div class="step-num">Step 3</div>
+          <div class="step-text">
+            <h4>力矩平衡得出施力等大</h4>
+            <p>以中點為轉軸，系統處於轉動平衡：</p>
+            $$\sum \tau_{\text{中點}} = 0 \implies F_{\text{甲}} \cdot d_{\text{甲}} = F_{\text{乙}} \cdot d_{\text{乙}}$$
+            $$F_{\text{甲}} \cdot \left(\frac{L}{2}\cos\theta\right) = F_{\text{乙}} \cdot \left(\frac{L}{2}\cos\theta\right)$$
+            $$\implies F_{\text{甲}} = F_{\text{乙}} = \frac{mg}{2}$$
+            <p class="final-ans-box">
+              結論：$F_{\text{甲}} = F_{\text{乙}}$ 且 $(F_{\text{甲}} + F_{\text{乙}}) = mg$。<br>
+              故正確答案為 <strong>(D)</strong>。
+            </p>
+          </div>
+        </div>
+
+        <!-- Trap Alert -->
+        <div class="key-point-box">
+          <div class="key-point-title">⚡ 大考思維直覺陷阱：</div>
+          <p>
+            許多同學誤以為「人在斜坡下方（乙）承擔比較多重量」，直覺選 (B)！但這是錯的！<br>
+            只有在「物體重心偏向下方」，或者「木棒兩端支撐方向垂直於棒身」時，兩人才會受力不等。本題兩人均<strong>「鉛直向上提起」</strong>且<strong>「重物掛在中點」</strong>，水平力臂完全相等，兩人負擔必然均等各分一半！
+          </p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // Auto-render KaTeX
+      if (typeof renderMathInElement === 'function') {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ],
+          throwOnError: false
+        });
+      }
+
+      // Quiz Interaction
+      const correctAnswer = "D";
+      const optionCards = document.querySelectorAll(".option-card");
+      const feedbackBox = document.getElementById("feedbackBox");
+      const feedbackIcon = document.getElementById("feedbackIcon");
+      const feedbackText = document.getElementById("feedbackText");
+      const solutionCard = document.getElementById("solutionCard");
+
+      optionCards.forEach(card => {
+        card.addEventListener("click", function() {
+          const selected = this.getAttribute("data-option");
+
+          optionCards.forEach(c => c.classList.remove("selected", "correct", "wrong"));
+          this.classList.add("selected");
+
+          feedbackBox.classList.remove("correct", "wrong");
+          feedbackBox.classList.add("show");
+
+          if (selected === correctAnswer) {
+            this.classList.add("correct");
+            feedbackBox.classList.add("correct");
+            feedbackIcon.innerHTML = "🎉";
+            feedbackText.innerHTML = "<strong>命中真理！指考陷阱完全破解！</strong><br>● 垂直合力零：$F_甲 + F_乙 = mg$。<br>● 對中心點取力矩，兩者水平力臂皆為 $\\frac{L}{2}\\cos\\theta$，故 $F_甲 = F_乙 = \\frac{mg}{2}$！";
+            solutionCard.classList.remove("collapsed");
+            const tag = solutionCard.querySelector(".solution-status");
+            if (tag) tag.textContent = "點擊收合詳解";
+          } else {
+            this.classList.add("wrong");
+            feedbackBox.classList.add("wrong");
+            feedbackIcon.innerHTML = "💡";
+            if (selected === "B") {
+              feedbackText.innerHTML = "<strong>小心陷阱！很多同學直覺以為下方的人（乙）比較吃力！</strong> 但兩人皆為「鉛直向上」施力，對中點的水平力臂完全相同，因此兩人力矩相等、施力必然相等！";
+            } else {
+              feedbackText.innerHTML = `<strong>選了 (${selected})，再想想看！</strong> 提示：鉛直方向合力必須等於總重 $mg$，且對中點取力矩比較兩人力臂！`;
+            }
+          }
+
+          if (typeof renderMathInElement === 'function') {
+            renderMathInElement(feedbackText, {
+              delimiters: [
+                {left: '$$', right: '$$', display: true},
+                {left: '$', right: '$', display: false}
+              ],
+              throwOnError: false
+            });
+          }
+        });
+      });
+
+      // Solution toggle
+      const solutionToggle = document.getElementById("solutionToggle");
+      solutionToggle.addEventListener("click", function() {
+        solutionCard.classList.toggle("collapsed");
+        const isCollapsed = solutionCard.classList.contains("collapsed");
+        const statusSpan = solutionToggle.querySelector(".solution-status");
+        if (statusSpan) {
+          statusSpan.textContent = isCollapsed ? "點擊展開完整剖析" : "點擊收合詳解";
+        }
+      });
+    });
+  </script>
+</body>
+</html>

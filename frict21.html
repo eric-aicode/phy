@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>靜摩擦力 21：【101指考】圓柱受力與參考點力矩平衡 | 高中物理靜力學</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+  <link rel="stylesheet" href="shared.css">
+</head>
+<body>
+  <div class="bg-glow"></div>
+  <div class="bg-grid"></div>
+
+  <div class="container">
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+      <div class="nav-links">
+        <a href="index.html" class="nav-btn primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          回目錄
+        </a>
+        <a href="frict20.html" class="nav-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          上一題 (摩擦 20)
+        </a>
+        <a href="frict22.html" class="nav-btn">
+          下一題 (摩擦 22)
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+      <div class="badge-wrapper">
+        <span class="badge badge-page">講義 靜力學-38</span>
+        <span class="badge badge-exam">101 指考多選題</span>
+        <span class="badge badge-accent">靜摩擦力・練習 21</span>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+      <h1 class="main-title">靜摩擦力 21：<span class="gradient-text">圓柱受力與參考點力矩平衡</span></h1>
+      <p class="subtitle">【101指考】圓柱體夾角平衡・以重心 O 為轉軸各外力力矩拆解・多選題精闢分析</p>
+    </header>
+
+    <!-- Main Problem Layout -->
+    <div class="problem-layout">
+      <!-- Left Column: Problem & Visualizer -->
+      <div class="problem-card">
+        <h2 class="section-title">
+          <span class="step-num">1</span>
+          題目情境與物理圖解
+        </h2>
+        <div class="problem-text">
+          <p>
+            一重量為 $W$ 的均勻圓柱體，半徑為 $R$，中心軸通過重心 O，靜止置於一水平地板上。以一沿半徑通過 O 點的水平力 $f$ 作用於圓柱體左側，使其右側緊靠著一鉛直的牆壁，並在 $f$ 的作用點處施一向上之鉛直力 $F$，使圓柱體仍與地板接觸而且保持靜力平衡，如圖所示。
+          </p>
+          <p>
+            若地板與牆壁均非光滑，且所有力矩均以 O 點為參考點，則下列敘述哪些正確？<strong>（多選）</strong>
+          </p>
+        </div>
+
+        <!-- SVG Diagram -->
+        <div class="svg-container">
+          <svg viewBox="0 0 540 320" xmlns="http://www.w3.org/2000/svg">
+            <!-- Ground -->
+            <line x1="80" y1="260" x2="480" y2="260" stroke="#94a3b8" stroke-width="3"/>
+            <path d="M90 260 l-10 12 M120 260 l-10 12 M150 260 l-10 12 M180 260 l-10 12 M210 260 l-10 12 M240 260 l-10 12 M270 260 l-10 12 M300 260 l-10 12 M330 260 l-10 12 M360 260 l-10 12 M390 260 l-10 12 M420 260 l-10 12 M450 260 l-10 12" stroke="#64748b" stroke-width="1.5"/>
+
+            <!-- Wall on Right: at x=380 from y=50 to 260 -->
+            <line x1="380" y1="50" x2="380" y2="260" stroke="#94a3b8" stroke-width="3"/>
+            <path d="M380 60 l12 -10 M380 90 l12 -10 M380 120 l12 -10 M380 150 l12 -10 M380 180 l12 -10 M380 210 l12 -10 M380 240 l12 -10" stroke="#64748b" stroke-width="1.5"/>
+
+            <!-- Cylinder: radius R = 90. Touching ground at y=260, touching wall at x=380.
+                 Center O: (380 - 90 = 290, 260 - 90 = 170) -->
+            <circle cx="290" cy="170" r="90" fill="rgba(30, 41, 59, 0.75)" stroke="#38bdf8" stroke-width="2.5"/>
+            <!-- Center O -->
+            <circle cx="290" cy="170" r="4.5" fill="#fbbf24"/>
+            <text x="300" y="175" fill="#fbbf24" font-size="16" font-weight="bold">O</text>
+
+            <!-- Radius dashed line R -->
+            <line x1="290" y1="170" x2="226" y2="106" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="3 3"/>
+            <text x="245" y="145" fill="#94a3b8" font-size="13">R</text>
+
+            <!-- Force f (horizontal push along radius to O): from x=140 to x=200 at y=170 -->
+            <line x1="130" y1="170" x2="198" y2="170" stroke="#ef4444" stroke-width="3" marker-end="url(#arrow-red-21)"/>
+            <text x="115" y="175" fill="#ef4444" font-size="16" font-weight="bold">f</text>
+
+            <!-- Vertical Force F (applied at (200, 170) pointing UP) -->
+            <line x1="200" y1="170" x2="200" y2="70" stroke="#facc15" stroke-width="3.5" marker-end="url(#arrow-yellow-21)"/>
+            <text x="208" y="75" fill="#facc15" font-size="16" font-weight="bold">F</text>
+
+            <!-- Gravity W: from O (290, 170) pointing DOWN -->
+            <line x1="290" y1="170" x2="290" y2="280" stroke="#a855f7" stroke-width="2.5" marker-end="url(#arrow-purple-21)"/>
+            <text x="300" y="275" fill="#a855f7" font-size="14" font-weight="bold">W</text>
+
+            <!-- Wall Normal N (pointing left from 380, 170 to 320, 170) -->
+            <line x1="380" y1="170" x2="330" y2="170" stroke="#00e5ff" stroke-width="2" marker-end="url(#arrow-cyan-21)"/>
+            <text x="340" y="160" fill="#00e5ff" font-size="12">N</text>
+
+            <!-- Ground Normal N1 (from 290, 260 pointing up) -->
+            <line x1="290" y1="260" x2="290" y2="215" stroke="#00e5ff" stroke-width="2" marker-end="url(#arrow-cyan-21)"/>
+            <text x="265" y="235" fill="#00e5ff" font-size="12">N₁</text>
+
+            <!-- Wall friction f1 (downwards or upwards) -->
+            <line x1="380" y1="170" x2="380" y2="220" stroke="#00e676" stroke-width="2" marker-end="url(#arrow-green-21)"/>
+            <text x="388" y="210" fill="#00e676" font-size="12">f₁</text>
+
+            <!-- Ground friction f2 (leftwards or rightwards) -->
+            <line x1="290" y1="260" x2="240" y2="260" stroke="#00e676" stroke-width="2" marker-end="url(#arrow-green-21)"/>
+            <text x="245" y="280" fill="#00e676" font-size="12">f₂</text>
+
+            <defs>
+              <marker id="arrow-red-21" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+                <polygon points="0 0, 8 4, 0 8" fill="#ef4444"/>
+              </marker>
+              <marker id="arrow-yellow-21" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+                <polygon points="0 0, 8 4, 0 8" fill="#facc15"/>
+              </marker>
+              <marker id="arrow-purple-21" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+                <polygon points="0 0, 8 4, 0 8" fill="#a855f7"/>
+              </marker>
+              <marker id="arrow-cyan-21" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+                <polygon points="0 0, 8 4, 0 8" fill="#00e5ff"/>
+              </marker>
+              <marker id="arrow-green-21" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+                <polygon points="0 0, 8 4, 0 8" fill="#00e676"/>
+              </marker>
+            </defs>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Right Column: Interactive Quiz & Solution -->
+      <div class="interactive-card">
+        <h2 class="section-title">
+          <span class="step-num">2</span>
+          即時作答（多選題）
+        </h2>
+
+        <div class="options-grid" id="options">
+          <button class="option-btn" onclick="toggleOption('A')">
+            <span class="opt-letter">A</span>
+            <span class="opt-text">作用於圓柱體的靜摩擦力，其總力矩的量值為 $FR$</span>
+          </button>
+          <button class="option-btn" onclick="toggleOption('B')">
+            <span class="opt-letter">B</span>
+            <span class="opt-text">作用於圓柱體的靜摩擦力，其總力矩為零</span>
+          </button>
+          <button class="option-btn" onclick="toggleOption('C')">
+            <span class="opt-letter">C</span>
+            <span class="opt-text">$F$ 所產生的力矩量值為 $FR$</span>
+          </button>
+          <button class="option-btn" onclick="toggleOption('D')">
+            <span class="opt-letter">D</span>
+            <span class="opt-text">$W$ 所產生的力矩量值為 $WR$</span>
+          </button>
+          <button class="option-btn" onclick="toggleOption('E')">
+            <span class="opt-letter">E</span>
+            <span class="opt-text">$F$ 與 $W$ 的量值一定相等</span>
+          </button>
+        </div>
+
+        <button class="toggle-btn" style="margin-top: 1rem; width: 100%; background: #38bdf8; color: #0f172a; font-weight: bold;" onclick="submitAnswer()">
+          ✔ 確認送出多選答案
+        </button>
+
+        <div class="feedback" id="feedback"></div>
+
+        <button class="toggle-btn" id="toggleBtn" onclick="toggleSolution()">
+          📖 查看以重心 O 為軸之各力力矩詳解
+        </button>
+
+        <div class="solution-content" id="solution">
+          <h3 style="color: #38bdf8; margin-bottom: 0.75rem;">💡 核心物理觀念詳解（以重心 O 為參考點）</h3>
+          
+          <div class="step-box">
+            <strong>1. 各力對圓心 O 的力矩分析：</strong>
+            <p>
+              <ul>
+                <li><strong>重力 $W$：</strong>作用線通過重心 O，力臂為 $0$，故對 O 的力矩為 $0$。（(D) 錯誤）</li>
+                <li><strong>水平力 $f$：</strong>沿半徑方向通過 O 點，力臂為 $0$，故力矩為 $0$。</li>
+                <li><strong>地面與牆面正向力 $N_1, N$：</strong>正向力垂直於接觸面，作用線均沿法線通過圓心 O，力矩亦為 $0$。</li>
+                <li><strong>鉛直力 $F$：</strong>切於圓柱左側向上，力臂為半徑 $R$，對 O 點產生順時針力矩，大小為 $\tau_F = FR$。（(C) 正確）</li>
+              </ul>
+            </p>
+          </div>
+
+          <div class="step-box">
+            <strong>2. 轉動平衡求靜摩擦力總力矩：</strong>
+            <p>
+              圓柱體保持靜力平衡，對 O 點的合力矩必為零：
+              $$\sum \tau_O = \tau_F + \tau_{\text{靜摩擦力}} = 0$$
+              因此接觸面（地面與牆面）所有靜摩擦力對 O 點所產生的總力矩量值必等於 $F$ 的力矩量值：
+              $$\tau_{\text{靜摩擦力}} = FR \quad (\text{逆時針})$$
+              故 (A) 正確，(B) 錯誤。
+            </p>
+          </div>
+
+          <div class="step-box">
+            <strong>3. 鉛直方向力平衡分析：</strong>
+            <p>
+              鉛直合力為零：
+              $$F + N_1 = W + f_1$$
+              其中 $N_1$ 為地面正向力，$f_1$ 為牆壁靜摩擦力。由於無法確定 $N_1$ 是否恰好等於 $f_1$，故無法保證 $F$ 與 $W$ 的大小一定相等。
+              故 (E) 錯誤。
+            </p>
+            <p>
+              <strong>結論：</strong>本題正確選項為 <strong>(A)(C)</strong>。
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const correctAnswers = ['A', 'C'];
+    let selectedOpts = new Set();
+
+    function toggleOption(opt) {
+      const btns = document.querySelectorAll('.option-btn');
+      btns.forEach(btn => {
+        const letter = btn.querySelector('.opt-letter').textContent;
+        if (letter === opt) {
+          if (selectedOpts.has(opt)) {
+            selectedOpts.delete(opt);
+            btn.classList.remove('selected');
+          } else {
+            selectedOpts.add(opt);
+            btn.classList.add('selected');
+          }
+        }
+      });
+    }
+
+    function submitAnswer() {
+      const fb = document.getElementById('feedback');
+      const chosen = Array.from(selectedOpts).sort();
+      const isCorrect = chosen.length === correctAnswers.length && chosen.every((v, i) => v === correctAnswers[i]);
+
+      const btns = document.querySelectorAll('.option-btn');
+      btns.forEach(btn => {
+        const letter = btn.querySelector('.opt-letter').textContent;
+        btn.classList.remove('correct', 'wrong');
+        if (correctAnswers.includes(letter)) {
+          btn.classList.add('correct');
+        } else if (selectedOpts.has(letter)) {
+          btn.classList.add('wrong');
+        }
+      });
+
+      if (isCorrect) {
+        fb.className = 'feedback correct';
+        fb.innerHTML = '🎉 完全正確！W、f 及兩處正向力均通過 O 點無力矩，由合力矩為零知摩擦力總力矩必等於 F 的力矩 FR，正確選項為 (A)(C)！';
+      } else {
+        fb.className = 'feedback wrong';
+        fb.innerHTML = `❌ 作答有誤。您選擇了：${chosen.join(', ') || '無'}。正確答案為 (A)(C)。請點擊下方查看詳解！`;
+      }
+    }
+
+    function toggleSolution() {
+      const sol = document.getElementById('solution');
+      const btn = document.getElementById('toggleBtn');
+      if (sol.classList.contains('show')) {
+        sol.classList.remove('show');
+        btn.textContent = '📖 查看以重心 O 為軸之各力力矩詳解';
+      } else {
+        sol.classList.add('show');
+        btn.textContent = '🔼 收起解析';
+        renderMathInElement(sol, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ]
+        });
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+      renderMathInElement(document.body, {
+        delimiters: [
+          {left: '$$', right: '$$', display: true},
+          {left: '$', right: '$', display: false}
+        ]
+      });
+    });
+  </script>
+</body>
+</html>

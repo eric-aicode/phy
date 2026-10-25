@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>練習 3：三彈簧兩物體系統與淨力分析（84聯考） | 高中物理靜力學</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+  <link rel="stylesheet" href="shared.css">
+</head>
+<body>
+  <div class="bg-glow"></div>
+  <div class="bg-grid"></div>
+
+  <div class="container">
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+      <div class="nav-links">
+        <a href="index.html" class="nav-btn primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          回目錄
+        </a>
+        <a href="exercise2.html" class="nav-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          上一題 (練習 2)
+        </a>
+        <a href="exercise4.html" class="nav-btn">
+          下一題 (練習 4)
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+      <div class="badge-wrapper">
+        <span class="badge badge-page">講義 靜力學-18</span>
+        <span class="badge badge-exam">84 聯考</span>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+      <h1 class="main-title">練習 3：<span class="gradient-text">三彈簧兩物體連繫系統之淨力</span></h1>
+      <p class="subtitle">質點相對位移・各彈簧伸長量與壓縮量精確正負號判定・淨力代數式推導</p>
+    </header>
+
+    <!-- Problem Showcase Card -->
+    <section class="card problem-card">
+      <div class="card-header">
+        <div class="card-icon">📖</div>
+        <div>
+          <h2>題目內容</h2>
+          <span class="card-tag">84年大學聯考經典物理題</span>
+        </div>
+      </div>
+
+      <div class="problem-body">
+        <p>
+          兩物體質量分別為 <strong>$m_1$</strong> 及 <strong>$m_2$</strong>，由彈力常數分別為 <strong>$k_1$、$k$、$k_2$</strong> 之三個彈簧連繫起來，如下圖所示。
+        </p>
+        <p>
+          在不考慮重力及摩擦力的情形下，設 $m_1$ 及 $m_2$ 物體偏移平衡點之位移分別為 <strong>$x_1$</strong> 及 <strong>$x_2$</strong>（<strong>設向右位移時 $x$ 為正</strong>），則 <strong>$m_2$ 物體此時所受之淨力為多少？</strong>
+        </p>
+        <ul class="condition-list">
+          <li><strong>(A)</strong> $-(k_2 + k)x_2 + k x_1$</li>
+          <li><strong>(B)</strong> $-(k_2 + k)x_2 - k x_1$</li>
+          <li><strong>(C)</strong> $-(k_1 + k)x_1 + k x_2$</li>
+          <li><strong>(D)</strong> $-k_2 x_2 + k(x_2 - x_1)$</li>
+        </ul>
+      </div>
+
+      <!-- Problem Physical Diagram (SVG) -->
+      <div class="canvas-card">
+        <div class="canvas-title-bar">
+          <h3><span class="dot dot-blue"></span> 系統位移示意圖與 m₂ 隔離體受力圖</h3>
+          <span class="view-tag">Multi-Spring System & FBD</span>
+        </div>
+        <div class="svg-wrapper">
+          <svg viewBox="0 0 760 360" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="arr-ex3-red" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                <path d="M0 1L10 5L0 9z" fill="#f87171"/>
+              </marker>
+              <marker id="arr-ex3-cyan" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                <path d="M0 1L10 5L0 9z" fill="#38bdf8"/>
+              </marker>
+              <marker id="arr-ex3-gold" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                <path d="M0 1L10 5L0 9z" fill="#fbbf24"/>
+              </marker>
+            </defs>
+
+            <!-- LEFT: Overall System with 3 Springs & 2 Masses -->
+            <g transform="translate(30, 20)">
+              <rect x="0" y="0" width="370" height="315" rx="10" fill="#0f172a" stroke="#1e293b" stroke-width="1.5"/>
+              <text x="20" y="28" fill="#94a3b8" font-size="13" font-weight="600">三彈簧兩質點聯立系統示意圖</text>
+
+              <!-- Left Wall (x = 35) -->
+              <line x1="35" y1="80" x2="35" y2="240" stroke="#64748b" stroke-width="5"/>
+              <!-- Right Wall (x = 335) -->
+              <line x1="335" y1="80" x2="335" y2="240" stroke="#64748b" stroke-width="5"/>
+
+              <!-- Wall hatchings -->
+              <g stroke="#475569" stroke-width="1.5" opacity="0.4">
+                <line x1="35" y1="90" x2="23" y2="100"/><line x1="35" y1="120" x2="23" y2="130"/><line x1="35" y1="150" x2="23" y2="160"/>
+                <line x1="35" y1="180" x2="23" y2="190"/><line x1="35" y1="210" x2="23" y2="220"/>
+                <line x1="335" y1="90" x2="347" y2="100"/><line x1="335" y1="120" x2="347" y2="130"/><line x1="335" y1="150" x2="347" y2="160"/>
+                <line x1="335" y1="180" x2="347" y2="190"/><line x1="335" y1="210" x2="347" y2="220"/>
+              </g>
+
+              <!-- Smooth Ground -->
+              <line x1="25" y1="205" x2="345" y2="205" stroke="#334155" stroke-width="2.5"/>
+
+              <!-- Spring 1 (k1): x=35 to 110 -->
+              <path d="M 35,160 L 45,160 
+                       L 50,150 L 56,170 L 62,150 L 68,170 L 74,150 L 80,170 L 86,150 L 92,170 L 98,150 L 104,160
+                       L 110,160"
+                    fill="none" stroke="#38bdf8" stroke-width="2"/>
+              <text x="70" y="140" fill="#38bdf8" font-size="11" font-weight="bold" text-anchor="middle">k₁</text>
+
+              <!-- Mass 1 (m1): x=110 to 145 -->
+              <circle cx="127" cy="160" r="17" fill="#1e293b" stroke="#38bdf8" stroke-width="2.5"/>
+              <text x="127" y="165" fill="#e2e8f0" font-size="12" font-weight="bold" text-anchor="middle">m₁</text>
+
+              <!-- Spring middle (k): x=145 to 225 -->
+              <path d="M 145,160 L 155,160 
+                       L 161,150 L 168,170 L 175,150 L 182,170 L 189,150 L 196,170 L 203,150 L 210,170 L 217,150 L 221,160
+                       L 225,160"
+                    fill="none" stroke="#fbbf24" stroke-width="2"/>
+              <text x="185" y="140" fill="#fbbf24" font-size="11" font-weight="bold" text-anchor="middle">k</text>
+
+              <!-- Mass 2 (m2): x=225 to 260 -->
+              <circle cx="242" cy="160" r="17" fill="#1e293b" stroke="#f87171" stroke-width="2.5"/>
+              <text x="242" y="165" fill="#f87171" font-size="12" font-weight="bold" text-anchor="middle">m₂</text>
+
+              <!-- Spring 2 (k2): x=260 to 335 -->
+              <path d="M 260,160 L 270,160 
+                       L 276,150 L 282,170 L 288,150 L 294,170 L 300,150 L 306,170 L 312,150 L 318,170 L 324,150 L 329,160
+                       L 335,160"
+                    fill="none" stroke="#f87171" stroke-width="2"/>
+              <text x="300" y="140" fill="#f87171" font-size="11" font-weight="bold" text-anchor="middle">k₂</text>
+
+              <!-- Displacement indicators below -->
+              <line x1="127" y1="185" x2="127" y2="240" stroke="#94a3b8" stroke-width="1" stroke-dasharray="2,2"/>
+              <line x1="127" y1="225" x2="147" y2="225" stroke="#38bdf8" stroke-width="2" marker-end="url(#arr-ex3-cyan)"/>
+              <text x="137" y="245" fill="#38bdf8" font-size="11" font-weight="bold" text-anchor="middle">x₁</text>
+
+              <line x1="242" y1="185" x2="242" y2="240" stroke="#94a3b8" stroke-width="1" stroke-dasharray="2,2"/>
+              <line x1="242" y1="225" x2="267" y2="225" stroke="#f87171" stroke-width="2" marker-end="url(#arr-ex3-red)"/>
+              <text x="254" y="245" fill="#f87171" font-size="11" font-weight="bold" text-anchor="middle">x₂</text>
+
+              <text x="185" y="285" fill="#94a3b8" font-size="11" text-anchor="middle">設向右位移為正 (+)</text>
+            </g>
+
+            <!-- RIGHT: Free Body Diagram of m2 -->
+            <g transform="translate(420, 20)">
+              <rect x="0" y="0" width="310" height="315" rx="10" fill="#0f172a" stroke="#1e293b" stroke-width="1.5"/>
+              <text x="20" y="28" fill="#94a3b8" font-size="13" font-weight="600">m₂ 物體水平受力隔離體圖</text>
+
+              <!-- Center Sphere m2 -->
+              <circle cx="155" cy="125" r="24" fill="#1e293b" stroke="#f87171" stroke-width="3"/>
+              <text x="155" y="130" fill="#f87171" font-size="14" font-weight="bold" text-anchor="middle">m₂</text>
+
+              <!-- Left force from middle spring k: -k(x2 - x1) -->
+              <line x1="131" y1="110" x2="40" y2="110" stroke="#fbbf24" stroke-width="3" marker-end="url(#arr-ex3-gold)"/>
+              <text x="35" y="95" fill="#fbbf24" font-size="11.5" font-weight="bold">中間彈簧力 F_k</text>
+              <text x="35" y="138" fill="#fde047" font-size="10.5">= -k (x₂ - x₁)</text>
+
+              <!-- Left force from right spring k2: -k2 x2 -->
+              <line x1="131" y1="145" x2="25" y2="145" stroke="#f87171" stroke-width="3" marker-end="url(#arr-ex3-red)"/>
+              <text x="25" y="170" fill="#f87171" font-size="11.5" font-weight="bold">右彈簧壓縮推力 F_k2</text>
+              <text x="25" y="186" fill="#fca5a5" font-size="10.5">= -k₂ x₂</text>
+
+              <!-- Net Force Result Box -->
+              <g transform="translate(15, 205)">
+                <rect x="0" y="0" width="280" height="95" rx="6" fill="rgba(15, 23, 42, 0.9)" stroke="#334155" stroke-width="1"/>
+                <text x="12" y="24" fill="#4ade80" font-size="12" font-weight="bold">m₂ 所受淨力合力算式：</text>
+                <text x="12" y="46" fill="#cbd5e1" font-size="11">F_淨 = F_k + F_k2</text>
+                <text x="12" y="66" fill="#cbd5e1" font-size="11">　　= -k(x₂ - x₁) - k₂ x₂</text>
+                <text x="12" y="86" fill="#4ade80" font-size="12.5" font-weight="bold">　　= -(k₂ + k) x₂ + k x₁</text>
+              </g>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Worksheet -->
+    <section class="card challenge-card">
+      <div class="card-header">
+        <div class="card-icon">✍️</div>
+        <div>
+          <h2>學生實戰單選作答區</h2>
+          <span class="card-tag">請選擇正確選項</span>
+        </div>
+      </div>
+
+      <div class="card-body">
+        <div class="option-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-bottom: 20px;">
+          <button class="choice-btn" data-choice="A">
+            <span class="choice-label">A</span>
+            <span class="choice-text">$-(k_2 + k)x_2 + k x_1$</span>
+          </button>
+          <button class="choice-btn" data-choice="B">
+            <span class="choice-label">B</span>
+            <span class="choice-text">$-(k_2 + k)x_2 - k x_1$</span>
+          </button>
+          <button class="choice-btn" data-choice="C">
+            <span class="choice-label">C</span>
+            <span class="choice-text">$-(k_1 + k)x_1 + k x_2$</span>
+          </button>
+          <button class="choice-btn" data-choice="D">
+            <span class="choice-label">D</span>
+            <span class="choice-text">$-k_2 x_2 + k(x_2 - x_1)$</span>
+          </button>
+        </div>
+
+        <div style="display: flex; gap: 12px; margin-top: 10px; flex-wrap: wrap;">
+          <button id="btnCheck" class="action-btn check-btn">
+            <span>核對答案</span>
+          </button>
+          <button id="btnToggleSolution" class="action-btn toggle-btn">
+            <span>顯示完整解析</span>
+          </button>
+        </div>
+
+        <div id="feedbackMessage" class="feedback-box" style="display: none;"></div>
+      </div>
+    </section>
+
+    <!-- Detailed Solution Section (Initially Hidden) -->
+    <section id="solutionSection" class="card solution-card" style="display: none;">
+      <div class="card-header">
+        <div class="card-icon">💡</div>
+        <div>
+          <h2>完整精闢觀念解析與公式推導</h2>
+          <span class="card-tag">聯考名題詳解</span>
+        </div>
+      </div>
+
+      <div class="solution-body">
+        <!-- Step 1 -->
+        <div class="step-card">
+          <div class="step-header">
+            <span class="step-num">Step 1</span>
+            <h3>中間彈簧（彈力常數 $k$）對 $m_2$ 之作用力</h3>
+          </div>
+          <div class="step-content">
+            <p>
+              中間彈簧的左端與 $m_1$ 相連，右端與 $m_2$ 相連：
+            </p>
+            <ul style="color: #cbd5e1; font-size: 14.5px; line-height: 1.8; margin-bottom: 12px;">
+              <li>左端向右位移 $x_1$</li>
+              <li>右端向右位移 $x_2$</li>
+              <li>
+                因此中間彈簧的<strong>伸長量</strong>為：
+                $$\Delta L = x_2 - x_1$$
+              </li>
+            </ul>
+            <p>
+              若 $x_2 > x_1$，彈簧處於被拉長狀態，對右端物體 $m_2$ 產生<strong>向左（負方向）的拉力</strong>：
+              $$F_{\text{中}} = -k (x_2 - x_1)$$
+            </p>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="step-card">
+          <div class="step-header">
+            <span class="step-num">Step 2</span>
+            <h3>右側彈簧（彈力常數 $k_2$）對 $m_2$ 之作用力</h3>
+          </div>
+          <div class="step-content">
+            <p>
+              右側彈簧右端固定於牆壁，左端與 $m_2$ 相連：
+            </p>
+            <p>
+              當 $m_2$ 向右位移 $x_2$ 時，右側彈簧被<strong>壓縮 $x_2$</strong>，故彈簧對 $m_2$ 施加<strong>向左（負方向）的推力</strong>：
+              $$F_{\text{右}} = -k_2 x_2$$
+            </p>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="step-card">
+          <div class="step-header">
+            <span class="step-num">Step 3</span>
+            <h3>求 $m_2$ 所受淨力（代數整理）</h3>
+          </div>
+          <div class="step-content">
+            <p>
+              將中間彈簧力與右彈簧力相加，即為 $m_2$ 所受之水平合力（淨力）：
+              $$F_{\text{淨}} = F_{\text{中}} + F_{\text{右}}$$
+              $$F_{\text{淨}} = -k(x_2 - x_1) - k_2 x_2$$
+              展開並按 $x_2$ 與 $x_1$ 合併同類項：
+              $$F_{\text{淨}} = -k x_2 + k x_1 - k_2 x_2 = -(k_2 + k)x_2 + k x_1$$
+            </p>
+            <p style="color: #4ade80; font-weight: bold;">
+              故本題正確選項為 (A)。
+            </p>
+          </div>
+        </div>
+
+        <!-- Bonus Note for m1 -->
+        <div class="step-card" style="background: rgba(56, 189, 248, 0.08); border-color: rgba(56, 189, 248, 0.3);">
+          <div class="step-header">
+            <span class="step-num" style="background: #0284c7;">延伸補充</span>
+            <h3 style="color: #38bdf8;">若是問 $m_1$ 所受淨力呢？</h3>
+          </div>
+          <div class="step-content">
+            <p>
+              對 $m_1$ 而言：
+              • 左彈簧 $k_1$ 被拉長 $x_1$，拉力向左：$-k_1 x_1$<br>
+              • 中間彈簧被拉長 $(x_2 - x_1)$，對 $m_1$ 拉力向右：$+k(x_2 - x_1)$<br>
+              故 $m_1$ 淨力：$F_{\text{淨}, 1} = -k_1 x_1 + k(x_2 - x_1) = -(k_1 + k)x_1 + k x_2$。兩者具備對稱的美感！
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Navigation -->
+    <div class="bottom-nav">
+      <a href="exercise2.html" class="nav-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+        上一題 (練習 2)
+      </a>
+      <a href="index.html" class="nav-btn primary">回到講義首頁</a>
+      <a href="exercise4.html" class="nav-btn">
+        下一題 (練習 4)
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      if (window.renderMathInElement) {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ],
+          throwOnError: false
+        });
+      }
+
+      let selectedChoice = null;
+      const buttons = document.querySelectorAll('.choice-btn');
+      buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          buttons.forEach(b => b.classList.remove('selected'));
+          btn.classList.add('selected');
+          selectedChoice = btn.getAttribute('data-choice');
+        });
+      });
+
+      const btnCheck = document.getElementById('btnCheck');
+      const btnToggle = document.getElementById('btnToggleSolution');
+      const solutionSection = document.getElementById('solutionSection');
+      const feedback = document.getElementById('feedbackMessage');
+
+      btnCheck.addEventListener('click', function() {
+        feedback.style.display = 'block';
+        if (!selectedChoice) {
+          feedback.className = 'feedback-box warning';
+          feedback.innerHTML = '⚠️ 請先點選一個選項再核對！';
+          return;
+        }
+
+        if (selectedChoice === 'A') {
+          feedback.className = 'feedback-box success';
+          feedback.innerHTML = '🎉 <strong>完全正確！答案為 (A) -(k₂ + k)x₂ + kx₁！</strong><br>聯考大題輕鬆拿下！精準掌握中間彈簧形變為 (x₂ - x₁)，並由向右為正列出完整淨力合式！';
+          solutionSection.style.display = 'block';
+          btnToggle.querySelector('span').textContent = '收合完整解析';
+        } else {
+          feedback.className = 'feedback-box error';
+          feedback.innerHTML = `❌ <strong>答案錯誤（您選擇了 ${selectedChoice}）！</strong><br>提示：中間彈簧伸長量為 (x₂ - x₁)，對 m₂ 施力向左；右彈簧被壓縮 x₂，對 m₂ 施力亦向左！`;
+        }
+      });
+
+      btnToggle.addEventListener('click', function() {
+        if (solutionSection.style.display === 'none' || solutionSection.style.display === '') {
+          solutionSection.style.display = 'block';
+          btnToggle.querySelector('span').textContent = '收合完整解析';
+        } else {
+          solutionSection.style.display = 'none';
+          btnToggle.querySelector('span').textContent = '顯示完整解析';
+        }
+      });
+    });
+  </script>
+</body>
+</html>

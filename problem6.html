@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>範例 6：均勻粗繩懸掛之各點張力與水平恆定性詳解 | 高中物理靜力學</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+  <link rel="stylesheet" href="shared.css">
+</head>
+<body>
+  <div class="bg-glow"></div>
+  <div class="bg-grid"></div>
+
+  <div class="container">
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+      <div class="nav-links">
+        <a href="index.html" class="nav-btn primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          回目錄
+        </a>
+        <a href="problem5.html" class="nav-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          上一題 (範例 5)
+        </a>
+        <a href="problem7.html" class="nav-btn">
+          下一題 (範例 7)
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+      <div class="badge-wrapper">
+        <span class="badge badge-page">講義 靜力學-9</span>
+        <span class="badge badge-exam">懸鏈線力學模型</span>
+        <span class="badge badge-accent">第一階段・範例 6</span>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+      <h1 class="main-title">範例 6：<span class="gradient-text">粗繩懸掛各點張力與水平恆定性</span></h1>
+      <p class="subtitle">正交分解聯立消元・共點力封閉向量三角形・最低點截段隔離分析・水平分量守恆嚴密證明</p>
+    </header>
+
+    <!-- Problem Showcase Card -->
+    <section class="card problem-card">
+      <div class="card-header">
+        <div class="card-icon">📖</div>
+        <div>
+          <h2>題目內容</h2>
+          <span class="card-tag">聯考與競賽高頻經典粗繩張力模型</span>
+        </div>
+      </div>
+
+      <div class="problem-body">
+        <p>
+          重 <strong>$W$</strong> 之均勻粗繩，懸掛在兩鉛直牆壁間成平衡，如下圖所示。若繩的兩端 $A$、$B$ 點沿繩之切線與鉛直牆夾角各為 <strong>$\theta_1$</strong> 及 <strong>$\theta_2$</strong>，繩的 $C$ 點為最低點，試回答下列問題：
+        </p>
+        <ul class="condition-list">
+          <li><strong>(1)</strong> 繩上 $A$、$B$、$C$ 各點張力大小分別為何？</li>
+          <li><strong>(2)</strong> 說明繩上任一點張力之水平分量值均相同。</li>
+        </ul>
+      </div>
+
+      <!-- Problem Physical Diagram (Progressive Multi-State Switcher) -->
+      <div class="canvas-card" style="max-width: 680px; margin: 18px auto 0;">
+        <div class="canvas-title-bar" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+          <h3 id="p6DiagTitle"><span class="dot dot-blue"></span> 題目原始圖：粗繩雙鉛直牆懸掛配置</h3>
+          <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+            <button id="btnP6Raw" type="button" class="nav-btn primary" onclick="switchP6State('raw')">📐 原始題圖</button>
+            <button id="btnP6Lami" type="button" class="nav-btn" onclick="switchP6State('lami')">💡 (1) 三力共點與向量封閉三角形</button>
+            <button id="btnP6Iso" type="button" class="nav-btn" onclick="switchP6State('iso')">💡 (2) AC / CB 截段隔離受力圖</button>
+          </div>
+        </div>
+
+        <!-- 0. Raw Original Diagram (Default: No Force Arrows, No Spoiler Values) -->
+        <div id="p6WrapRaw" class="svg-wrapper" style="display: flex; justify-content: center; padding: 12px 0;">
+          <svg viewBox="0 0 540 310" xmlns="http://www.w3.org/2000/svg" style="max-width: 540px; width: 100%;">
+            <defs>
+              <pattern id="hatch-wall-raw" width="10" height="10" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse">
+                <line x1="0" y1="0" x2="0" y2="10" stroke="#64748b" stroke-width="1.5" />
+              </pattern>
+            </defs>
+
+            <!-- Left Vertical Wall -->
+            <rect x="70" y="30" width="20" height="250" fill="url(#hatch-wall-raw)" opacity="0.4" />
+            <line x1="90" y1="30" x2="90" y2="280" stroke="#94a3b8" stroke-width="3" />
+            <text x="50" y="50" fill="#90caf9" font-size="14" font-weight="bold">鉛直牆</text>
+
+            <!-- Right Vertical Wall -->
+            <rect x="450" y="30" width="20" height="250" fill="url(#hatch-wall-raw)" opacity="0.4" />
+            <line x1="450" y1="30" x2="450" y2="280" stroke="#94a3b8" stroke-width="3" />
+            <text x="475" y="50" fill="#90caf9" font-size="14" font-weight="bold">鉛直牆</text>
+
+            <!-- The Hanging Rope Curve (Realistic catenary curve) -->
+            <path d="M 90 110 C 140 210, 170 220, 210 220 C 270 220, 360 170, 450 70" fill="none" stroke="#64748b" stroke-width="10" stroke-linecap="round" />
+            <path d="M 90 110 C 140 210, 170 220, 210 220 C 270 220, 360 170, 450 70" fill="none" stroke="#38bdf8" stroke-width="5" stroke-linecap="round" />
+
+            <!-- Point A on Left Wall -->
+            <circle cx="90" cy="110" r="5" fill="#f59e0b" />
+            <text x="104" y="105" fill="#f59e0b" font-size="16" font-weight="bold">A</text>
+
+            <!-- Tangent guide line at A downwards into the rope -->
+            <line x1="90" y1="110" x2="135" y2="195" stroke="#f59e0b" stroke-width="1.8" stroke-dasharray="4,3" />
+            <!-- Angle theta_1 arc with vertical wall -->
+            <path d="M 90 155 A 45 45 0 0 0 114 146" fill="none" stroke="#f59e0b" stroke-width="2" />
+            <text x="100" y="172" fill="#f59e0b" font-size="14" font-weight="bold">θ₁</text>
+
+            <!-- Point B on Right Wall -->
+            <circle cx="450" cy="70" r="5" fill="#f59e0b" />
+            <text x="430" y="65" fill="#f59e0b" font-size="16" font-weight="bold">B</text>
+
+            <!-- Tangent guide line at B downwards into the rope -->
+            <line x1="450" y1="70" x2="390" y2="165" stroke="#f59e0b" stroke-width="1.8" stroke-dasharray="4,3" />
+            <!-- Angle theta_2 arc with vertical wall -->
+            <path d="M 450 120 A 50 50 0 0 1 422 108" fill="none" stroke="#f59e0b" stroke-width="2" />
+            <text x="420" y="136" fill="#f59e0b" font-size="14" font-weight="bold">θ₂</text>
+
+            <!-- Point C Lowest Point (210, 220) -->
+            <circle cx="210" cy="220" r="5" fill="#f43f5e" />
+            <text x="210" y="248" fill="#f43f5e" font-size="15" font-weight="bold" text-anchor="middle">C (最低點)</text>
+            <!-- Horizontal tangent indicator line -->
+            <line x1="160" y1="220" x2="260" y2="220" stroke="#f43f5e" stroke-width="1.5" stroke-dasharray="3,3" opacity="0.6"/>
+          </svg>
+        </div>
+
+        <!-- 1. State 1: Concurrent Forces & Closed Vector Triangle -->
+        <div id="p6WrapLami" class="svg-wrapper" style="display: none; justify-content: center; padding: 12px 0;">
+          <svg viewBox="0 0 680 340" xmlns="http://www.w3.org/2000/svg" style="max-width: 680px; width: 100%;">
+            <defs>
+              <marker id="arr-blue-p6" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M0 1L10 5L0 9z" fill="#3b82f6"/>
+              </marker>
+              <marker id="arr-green-p6" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M0 1L10 5L0 9z" fill="#10b981"/>
+              </marker>
+              <marker id="arr-amber-p6" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M0 1L10 5L0 9z" fill="#f59e0b"/>
+              </marker>
+            </defs>
+
+            <!-- Card background for separation -->
+            <rect x="10" y="10" width="370" height="320" rx="8" fill="rgba(15, 23, 42, 0.6)" stroke="#1e293b" stroke-width="1.5"/>
+            <text x="20" y="32" fill="#90caf9" font-size="13" font-weight="bold">【全繩三力共點於 O 點】</text>
+
+            <!-- Left Wall -->
+            <line x1="50" y1="45" x2="50" y2="280" stroke="#64748b" stroke-width="2.5" />
+            <!-- Right Wall -->
+            <line x1="340" y1="45" x2="340" y2="280" stroke="#64748b" stroke-width="2.5" />
+
+            <!-- The Hanging Rope -->
+            <path d="M 50 110 C 90 200, 120 210, 150 210 C 200 210, 270 160, 340 75" fill="none" stroke="#38bdf8" stroke-width="3.5" />
+            <circle cx="50" cy="110" r="4" fill="#f59e0b"/>
+            <text x="35" y="115" fill="#f59e0b" font-size="13" font-weight="bold">A</text>
+
+            <circle cx="340" cy="75" r="4" fill="#f59e0b"/>
+            <text x="350" y="80" fill="#f59e0b" font-size="13" font-weight="bold">B</text>
+
+            <!-- Concurrency Point O at (180, 290) -->
+            <line x1="50" y1="110" x2="180" y2="290" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4,3" />
+            <line x1="340" y1="75" x2="180" y2="290" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4,3" />
+
+            <circle cx="180" cy="290" r="4" fill="#ef4444"/>
+            <text x="180" y="310" fill="#ef4444" font-size="12" font-weight="bold" text-anchor="middle">O (三力共點處)</text>
+
+            <!-- Tension Vector T_A -->
+            <line x1="50" y1="110" x2="25" y2="75" stroke="#3b82f6" stroke-width="3" marker-end="url(#arr-blue-p6)" />
+            <text x="10" y="70" fill="#60a5fa" font-size="13" font-weight="bold">T_A</text>
+
+            <!-- Tension Vector T_B -->
+            <line x1="340" y1="75" x2="368" y2="35" stroke="#3b82f6" stroke-width="3" marker-end="url(#arr-blue-p6)" />
+            <text x="370" y="45" fill="#60a5fa" font-size="13" font-weight="bold">T_B</text>
+
+            <!-- Weight vector W downward through O -->
+            <line x1="180" y1="165" x2="180" y2="260" stroke="#10b981" stroke-width="3" marker-end="url(#arr-green-p6)" />
+            <text x="190" y="220" fill="#10b981" font-size="14" font-weight="bold">W</text>
+
+            <!-- Right Panel: Closed Vector Triangle -->
+            <rect x="395" y="10" width="275" height="320" rx="8" fill="rgba(15, 23, 42, 0.6)" stroke="#1e293b" stroke-width="1.5"/>
+            <text x="408" y="32" fill="#90caf9" font-size="13" font-weight="bold">【向量封閉三角形 (正弦定理)】</text>
+
+            <!-- Closed Triangle: W vertical (540, 60) to (540, 240) -->
+            <line x1="540" y1="60" x2="540" y2="240" stroke="#10b981" stroke-width="3" marker-end="url(#arr-green-p6)"/>
+            <text x="550" y="155" fill="#10b981" font-size="14" font-weight="bold">W</text>
+
+            <!-- Vector T_A from (540, 240) up-left to (440, 120) -->
+            <line x1="540" y1="240" x2="445" y2="125" stroke="#3b82f6" stroke-width="3" marker-end="url(#arr-blue-p6)"/>
+            <text x="470" y="200" fill="#60a5fa" font-size="13" font-weight="bold">T_A</text>
+
+            <!-- Vector T_B from (440, 120) up-right to (540, 60) -->
+            <line x1="440" y1="120" x2="535" y2="65" stroke="#f59e0b" stroke-width="3" marker-end="url(#arr-amber-p6)"/>
+            <text x="480" y="80" fill="#fbbf24" font-size="13" font-weight="bold">T_B</text>
+
+            <!-- Angles in Triangle -->
+            <!-- Bottom angle: with vertical = theta_1 -->
+            <path d="M 540 215 A 25 25 0 0 1 520 225" fill="none" stroke="#60a5fa" stroke-width="1.5"/>
+            <text x="515" y="215" fill="#60a5fa" font-size="12" font-weight="bold">θ₁</text>
+
+            <!-- Top angle: with vertical = theta_2 -->
+            <path d="M 540 85 A 25 25 0 0 1 522 75" fill="none" stroke="#fbbf24" stroke-width="1.5"/>
+            <text x="515" y="98" fill="#fbbf24" font-size="12" font-weight="bold">θ₂</text>
+
+            <!-- Left angle opposite to W: 180° - (θ₁ + θ₂) -->
+            <text x="415" y="145" fill="#e2e8f0" font-size="11">180°-(θ₁+θ₂)</text>
+
+            <!-- Formula display below triangle -->
+            <rect x="405" y="260" width="255" height="58" rx="6" fill="#1e293b" stroke="#334155"/>
+            <text x="532" y="282" fill="#38bdf8" font-size="12" font-weight="bold" text-anchor="middle">W / sin(θ₁+θ₂) = T_A / sinθ₂</text>
+            <text x="532" y="304" fill="#a7f3d0" font-size="12" font-weight="bold" text-anchor="middle">⇒ T_A = W sinθ₂ / sin(θ₁+θ₂)</text>
+          </svg>
+        </div>
+
+        <!-- 2. State 2: Isolated Segment AC & CB Force Diagram -->
+        <div id="p6WrapIso" class="svg-wrapper" style="display: none; justify-content: center; padding: 12px 0;">
+          <svg viewBox="0 0 680 340" xmlns="http://www.w3.org/2000/svg" style="max-width: 680px; width: 100%;">
+            <defs>
+              <marker id="arr-rose-p6" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M0 1L10 5L0 9z" fill="#f43f5e"/>
+              </marker>
+            </defs>
+
+            <!-- Left Panel: Isolated Segment AC -->
+            <rect x="10" y="10" width="325" height="320" rx="8" fill="rgba(15, 23, 42, 0.6)" stroke="#1e293b" stroke-width="1.5"/>
+            <text x="20" y="32" fill="#90caf9" font-size="13" font-weight="bold">【隔離左段 AC 受力平衡】</text>
+
+            <!-- Left Wall A -->
+            <line x1="45" y1="45" x2="45" y2="280" stroke="#64748b" stroke-width="2" />
+            <!-- Segment AC curve -->
+            <path d="M 45 100 C 80 185, 110 200, 160 200" fill="none" stroke="#38bdf8" stroke-width="4.5" stroke-linecap="round"/>
+            <circle cx="45" cy="100" r="4.5" fill="#f59e0b"/>
+            <text x="32" y="95" fill="#f59e0b" font-size="13" font-weight="bold">A</text>
+
+            <circle cx="160" cy="200" r="4.5" fill="#f43f5e"/>
+            <text x="160" y="222" fill="#f43f5e" font-size="13" font-weight="bold">C</text>
+
+            <!-- Force T_A at A (up-left) -->
+            <line x1="45" y1="100" x2="20" y2="55" stroke="#3b82f6" stroke-width="2.8" marker-end="url(#arr-blue-p6)"/>
+            <text x="5" y="55" fill="#60a5fa" font-size="13" font-weight="bold">T_A</text>
+
+            <!-- T_Ax pointing left (horizontal component) -->
+            <line x1="45" y1="100" x2="20" y2="100" stroke="#60a5fa" stroke-width="2" stroke-dasharray="3,2" marker-end="url(#arr-blue-p6)"/>
+            <text x="12" y="118" fill="#60a5fa" font-size="11">T_A sinθ₁</text>
+
+            <!-- T_Ay pointing up (vertical component) -->
+            <line x1="45" y1="100" x2="45" y2="55" stroke="#60a5fa" stroke-width="2" stroke-dasharray="3,2" marker-end="url(#arr-blue-p6)"/>
+            <text x="52" y="75" fill="#60a5fa" font-size="11">T_A cosθ₁</text>
+
+            <!-- Force T_C at C (strictly horizontal rightward) -->
+            <line x1="160" y1="200" x2="245" y2="200" stroke="#f43f5e" stroke-width="3" marker-end="url(#arr-rose-p6)"/>
+            <text x="250" y="205" fill="#f43f5e" font-size="13" font-weight="bold">T_C (水平切線)</text>
+
+            <!-- Weight of AC: W_AC downward -->
+            <line x1="100" y1="160" x2="100" y2="240" stroke="#10b981" stroke-width="2.8" marker-end="url(#arr-green-p6)"/>
+            <text x="108" y="235" fill="#10b981" font-size="13" font-weight="bold">W_AC</text>
+
+            <!-- AC Equation box -->
+            <rect x="20" y="255" width="305" height="60" rx="5" fill="#1e293b" stroke="#334155"/>
+            <text x="30" y="278" fill="#38bdf8" font-size="12">水平平衡：T_C = T_A sinθ₁</text>
+            <text x="30" y="300" fill="#a7f3d0" font-size="12">鉛直平衡：W_AC = T_A cosθ₁</text>
+
+            <!-- Right Panel: Isolated Segment CB -->
+            <rect x="345" y="10" width="325" height="320" rx="8" fill="rgba(15, 23, 42, 0.6)" stroke="#1e293b" stroke-width="1.5"/>
+            <text x="355" y="32" fill="#90caf9" font-size="13" font-weight="bold">【隔離右段 CB 受力平衡】</text>
+
+            <!-- Right Wall B -->
+            <line x1="640" y1="45" x2="640" y2="280" stroke="#64748b" stroke-width="2" />
+            <!-- Segment CB curve -->
+            <path d="M 440 200 C 500 200, 570 150, 640 70" fill="none" stroke="#38bdf8" stroke-width="4.5" stroke-linecap="round"/>
+            <circle cx="440" cy="200" r="4.5" fill="#f43f5e"/>
+            <text x="432" y="222" fill="#f43f5e" font-size="13" font-weight="bold">C</text>
+
+            <circle cx="640" cy="70" r="4.5" fill="#f59e0b"/>
+            <text x="648" y="75" fill="#f59e0b" font-size="13" font-weight="bold">B</text>
+
+            <!-- Force T_B at B (up-right) -->
+            <line x1="640" y1="70" x2="668" y2="30" stroke="#f59e0b" stroke-width="2.8" marker-end="url(#arr-amber-p6)"/>
+            <text x="645" y="25" fill="#fbbf24" font-size="13" font-weight="bold">T_B</text>
+
+            <!-- T_Bx pointing right -->
+            <line x1="640" y1="70" x2="665" y2="70" stroke="#fbbf24" stroke-width="2" stroke-dasharray="3,2" marker-end="url(#arr-amber-p6)"/>
+            <text x="615" y="90" fill="#fbbf24" font-size="11">T_B sinθ₂</text>
+
+            <!-- Force T_C at C on right segment (strictly horizontal leftward) -->
+            <line x1="440" y1="200" x2="355" y2="200" stroke="#f43f5e" stroke-width="3" marker-end="url(#arr-rose-p6)"/>
+            <text x="360" y="190" fill="#f43f5e" font-size="13" font-weight="bold">T_C</text>
+
+            <!-- Weight of CB: W_CB downward -->
+            <line x1="540" y1="150" x2="540" y2="230" stroke="#10b981" stroke-width="2.8" marker-end="url(#arr-green-p6)"/>
+            <text x="548" y="225" fill="#10b981" font-size="13" font-weight="bold">W_CB</text>
+
+            <!-- CB Equation box -->
+            <rect x="355" y="255" width="305" height="60" rx="5" fill="#1e293b" stroke="#334155"/>
+            <text x="365" y="278" fill="#38bdf8" font-size="12">水平平衡：T_C = T_B sinθ₂</text>
+            <text x="365" y="300" fill="#a7f3d0" font-size="12">鉛直平衡：W_CB = T_B cosθ₂</text>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Options Grid -->
+    <section class="card quiz-card">
+      <div class="card-header">
+        <div class="card-icon">🎯</div>
+        <div>
+          <h2>選擇題挑戰（各點張力量值）</h2>
+          <span class="card-tag">點擊選項立即作答檢驗</span>
+        </div>
+      </div>
+
+      <div class="options-grid">
+        <div class="option-card" data-option="A">
+          <div class="option-indicator">A</div>
+          <div class="option-content">
+            <span class="math-opt">$T_A = \frac{W\sin\theta_2}{\sin(\theta_1+\theta_2)},\quad T_B = \frac{W\sin\theta_1}{\sin(\theta_1+\theta_2)},\quad T_C = W\frac{\sin\theta_1\sin\theta_2}{\sin(\theta_1+\theta_2)}$</span>
+          </div>
+        </div>
+
+        <div class="option-card" data-option="B">
+          <div class="option-indicator">B</div>
+          <div class="option-content">
+            <span class="math-opt">$T_A = \frac{W\cos\theta_2}{\cos(\theta_1+\theta_2)},\quad T_B = \frac{W\cos\theta_1}{\cos(\theta_1+\theta_2)},\quad T_C = W\frac{\cos\theta_1\cos\theta_2}{\cos(\theta_1+\theta_2)}$</span>
+          </div>
+        </div>
+
+        <div class="option-card" data-option="C">
+          <div class="option-indicator">C</div>
+          <div class="option-content">
+            <span class="math-opt">$T_A = \frac{W\sin\theta_1}{\sin(\theta_1+\theta_2)},\quad T_B = \frac{W\sin\theta_2}{\sin(\theta_1+\theta_2)},\quad T_C = \frac{W}{\sin(\theta_1+\theta_2)}$</span>
+          </div>
+        </div>
+
+        <div class="option-card" data-option="D">
+          <div class="option-indicator">D</div>
+          <div class="option-content">
+            <span class="math-opt">$T_A = W\sin\theta_1,\quad T_B = W\sin\theta_2,\quad T_C = W\cos(\theta_1+\theta_2)$</span>
+          </div>
+        </div>
+
+        <div class="option-card" data-option="E">
+          <div class="option-indicator">E</div>
+          <div class="option-content">
+            <span class="math-opt">$T_A = T_B = \frac{W}{2},\quad T_C = \frac{W}{2}\tan\theta_1$</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feedback Banner -->
+      <div class="feedback-box" id="feedbackBox">
+        <div class="feedback-icon" id="feedbackIcon"></div>
+        <div class="feedback-text" id="feedbackText"></div>
+      </div>
+    </section>
+
+    <!-- Comprehensive Solution Card -->
+    <section class="card solution-card" id="solutionCard">
+      <div class="card-header solution-toggle" id="solutionToggle" style="cursor: pointer;">
+        <div class="card-icon" style="background: rgba(0, 230, 118, 0.15); border-color: rgba(0, 230, 118, 0.3);">💡</div>
+        <div class="solution-header-content">
+          <h2>完整精闢解析與推導步驟</h2>
+          <span class="solution-status">已為您展開深度圖解剖析（可點擊收合）</span>
+        </div>
+        <div class="toggle-arrow">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+      </div>
+
+      <div class="solution-body">
+        <!-- Teacher Tip: Strategic Core -->
+        <div class="teacher-tip">
+          <div class="tip-icon">👨‍🏫</div>
+          <div class="tip-content">
+            <h4 style="color: var(--accent-yellow); margin-bottom: 6px; font-size: 1.05rem;">名師解題心法・粗繩懸掛題目的三大突破思維</h4>
+            <p style="font-size: 0.95rem; line-height: 1.7; color: #e2e8f0;">
+              很多同學看到繩子成曲線（懸鏈線）就覺得必須列微積分，其實靜力平衡只需要抓準三把鑰匙：<br>
+              1. <strong>全繩「整體法」</strong>：繩重 $\vec{W}$ 與兩懸掛點張力 $\vec{T}_A, \vec{T}_B$ 構成「共面三力平衡」，三力作用線必共點！由正交分解或封閉向量三角形可秒解兩端張力。<br>
+              2. <strong>最低點 $C$ 的「幾何本質」</strong>：極值點處切線斜率為零，因此最低點 $C$ 的張力 $\vec{T}_C$ <strong>必然純水平，沒有任何鉛直分量</strong>！<br>
+              3. <strong>截段「隔離法」</strong>：由最低點切開，隔離左半段繩 $AC$，水平方向只有 $T_A$ 的水平分量與 $T_C$ 互相抗衡，直接得出 $T_C = T_A \sin\theta_1$！
+            </p>
+          </div>
+        </div>
+
+        <!-- Step 1: Subquestion 1 (T_A & T_B) -->
+        <div class="step-card" style="margin-top: 20px;">
+          <div class="step-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <span class="step-pill s1">步驟 1</span>
+              <h3>第 (1) 小題：以全繩為系統，求端點張力 $T_A$ 與 $T_B$</h3>
+            </div>
+            <button type="button" class="nav-btn" style="font-size: 0.8rem; padding: 4px 10px;" onclick="switchP6State('lami'); document.querySelector('.canvas-card').scrollIntoView({behavior:'smooth'});">📐 檢視三力共點圖</button>
+          </div>
+          <div class="step-content">
+            <p>
+              將整條均勻粗繩視為一個受力整體，受三個外力作用而維持靜止平衡：
+            </p>
+            <ul>
+              <li>端點 $A$ 處的約束張力 $\vec{T}_A$：沿該處繩之切線向左上方拉，與鉛垂線夾角為 $\theta_1$。</li>
+              <li>端點 $B$ 處的約束張力 $\vec{T}_B$：沿該處繩之切線向右上方拉，與鉛垂線夾角為 $\theta_2$。</li>
+              <li>全繩總重力 $\vec{W}$：嚴格鉛直向下，作用線通過全繩質心。</li>
+            </ul>
+
+            <h4 style="color: var(--accent-cyan); margin: 14px 0 8px;">【解法一：正交分解法（最穩健、最扎實的代數聯立）】</h4>
+            <p>
+              建立直角坐標系（水平向右為 $+x$，鉛直向上為 $+y$），將各力正交分解：
+            </p>
+            <div class="formula-highlight">
+              $$\begin{cases} 
+              \sum F_x = 0 \implies T_B \sin\theta_2 - T_A \sin\theta_1 = 0 \implies T_B = T_A \frac{\sin\theta_1}{\sin\theta_2} & \cdots \text{(式 1)} \\[2mm]
+              \sum F_y = 0 \implies T_A \cos\theta_1 + T_B \cos\theta_2 = W & \cdots \text{(式 2)}
+              \end{cases}$$
+            </div>
+            <p>
+              將 (式 1) 代入 (式 2) 消去 $T_B$：
+            </p>
+            <div class="formula-highlight">
+              $$T_A \cos\theta_1 + \left(T_A \frac{\sin\theta_1}{\sin\theta_2}\right) \cos\theta_2 = W$$
+              $$\iff T_A \left[ \frac{\sin\theta_2 \cos\theta_1 + \cos\theta_2 \sin\theta_1}{\sin\theta_2} \right] = W$$
+            </div>
+            <p>
+              利用高中必備三角函數<strong>和角公式</strong>：$\sin(\theta_1 + \theta_2) = \sin\theta_1 \cos\theta_2 + \cos\theta_1 \sin\theta_2$，括號中分子巧妙化簡為 $\sin(\theta_1 + \theta_2)$！
+            </p>
+            <div class="formula-highlight" style="border-color: rgba(0, 229, 255, 0.4); background: rgba(0, 229, 255, 0.06);">
+              $$T_A \cdot \frac{\sin(\theta_1 + \theta_2)}{\sin\theta_2} = W \implies \mathbf{T_A = \frac{W\sin\theta_2}{\sin(\theta_1 + \theta_2)}}$$
+            </div>
+            <p>
+              再將 $T_A$ 代回 (式 1)，即可求出 $T_B$：
+            </p>
+            <div class="formula-highlight" style="border-color: rgba(255, 171, 0, 0.4); background: rgba(255, 171, 0, 0.06);">
+              $$T_B = \left[ \frac{W\sin\theta_2}{\sin(\theta_1 + \theta_2)} \right] \cdot \frac{\sin\theta_1}{\sin\theta_2} \implies \mathbf{T_B = \frac{W\sin\theta_1}{\sin(\theta_1 + \theta_2)}}$$
+            </div>
+
+            <h4 style="color: var(--accent-yellow); margin: 18px 0 8px;">【解法二：拉密定理／向量封閉三角形法（競賽幾何秒殺）】</h4>
+            <p>
+              三力不平行且達平衡，三力作用線必共點於 $O$ 點，將三向量首尾相接，必然構成一個<strong>封閉三角形</strong>（如上方思考圖 1 所示）：
+            </p>
+            <ul>
+              <li>$\vec{W}$ 與 $\vec{T}_A$ 的夾角為 $\theta_1$。</li>
+              <li>$\vec{W}$ 與 $\vec{T}_B$ 的夾角為 $\theta_2$。</li>
+              <li>對應於 $\vec{W}$ 的第三個內角為 $180^\circ - (\theta_1 + \theta_2)$。</li>
+            </ul>
+            <p>直接套用三角形正弦定理（即拉密定理 Lami's Theorem）：</p>
+            <div class="formula-highlight">
+              $$\frac{W}{\sin\left[180^\circ - (\theta_1 + \theta_2)\right]} = \frac{T_A}{\sin\theta_2} = \frac{T_B}{\sin\theta_1}$$
+              $$\iff \frac{W}{\sin(\theta_1 + \theta_2)} = \frac{T_A}{\sin\theta_2} = \frac{T_B}{\sin\theta_1}$$
+            </div>
+            <p>兩行即可直接得出相同的標準解，兩大方法相互印證！</p>
+          </div>
+        </div>
+
+        <!-- Step 2: Subquestion 1 (T_C) -->
+        <div class="step-card">
+          <div class="step-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <span class="step-pill s2">步驟 2</span>
+              <h3>求解最低點 $C$ 之張力 $T_C$（隔離體截段受力）</h3>
+            </div>
+            <button type="button" class="nav-btn" style="font-size: 0.8rem; padding: 4px 10px;" onclick="switchP6State('iso'); document.querySelector('.canvas-card').scrollIntoView({behavior:'smooth'});">📐 檢視 AC/CB 隔離圖</button>
+          </div>
+          <div class="step-content">
+            <p>
+              <strong>1. 最低點 $C$ 的切線幾何特徵：</strong><br>
+              點 $C$ 是全繩軌跡函數 $y(x)$ 的最低點，極值點切線斜率 $dy/dx = 0$。因此在 $C$ 點處，<strong>繩之切線方向完全水平</strong>，這意味著張力 $\vec{T}_C$ 只有水平分量，鉛直分量為零（$T_{Cy} = 0$）。
+            </p>
+            <p>
+              <strong>2. 隔離左半段繩 $AC$（設其重量為 $W_{AC}$）：</strong><br>
+              左半段繩 $AC$ 處於靜止平衡，其受力有：
+            </p>
+            <ul>
+              <li>頂端 $A$ 點：繩張力 $\vec{T}_A$（向左上方，水平分量 $T_A \sin\theta_1$ 向左）。</li>
+              <li>底端 $C$ 點：右段繩對左段繩之拉力 $\vec{T}_C$（<strong>純水平向右</strong>）。</li>
+              <li>自身重力：$W_{AC}$（鉛直向下）。</li>
+            </ul>
+            <p>對繩段 $AC$ 列出<strong>水平方向平衡方程式</strong>：</p>
+            <div class="formula-highlight">
+              $$\sum F_x = 0 \implies T_C = T_A \sin\theta_1$$
+            </div>
+            <p>將步驟 1 所求之 $T_A$ 代入：</p>
+            <div class="formula-highlight" style="border-color: rgba(244, 63, 94, 0.4); background: rgba(244, 63, 94, 0.06);">
+              $$T_C = \left[ \frac{W\sin\theta_2}{\sin(\theta_1 + \theta_2)} \right] \cdot \sin\theta_1 \implies \mathbf{T_C = W \frac{\sin\theta_1 \sin\theta_2}{\sin(\theta_1 + \theta_2)}}$$
+            </div>
+            <p>
+              <strong>3. 驗算——隔離右半段繩 $CB$：</strong><br>
+              同理，右半段繩 $CB$ 水平方向受向左的 $T_C$ 與向右的 $T_B \sin\theta_2$：
+              $$T_C = T_B \sin\theta_2 = \left[ \frac{W\sin\theta_1}{\sin(\theta_1 + \theta_2)} \right] \cdot \sin\theta_2 = W \frac{\sin\theta_1 \sin\theta_2}{\sin(\theta_1 + \theta_2)}$$
+              兩側推導完全吻合，確證 $T_C$ 運算無懈可擊！
+            </p>
+            <p>
+              💡 <strong>延伸收穫（左右兩段繩重分配）：</strong><br>
+              由鉛直平衡可知：左段重 $W_{AC} = T_A \cos\theta_1 = W \frac{\sin\theta_2 \cos\theta_1}{\sin(\theta_1+\theta_2)}$，右段重 $W_{CB} = T_B \cos\theta_2 = W \frac{\sin\theta_1 \cos\theta_2}{\sin(\theta_1+\theta_2)}$。<br>
+              兩段重量相加剛好為 $W$，清晰揭示了最低點兩側繩長的質量配置比為 $W_{AC} : W_{CB} = \tan\theta_2 : \tan\theta_1$！
+            </p>
+          </div>
+        </div>
+
+        <!-- Step 3: Subquestion 2 (Horizontal Constant Proof) -->
+        <div class="step-card">
+          <div class="step-header">
+            <span class="step-pill s3">步驟 3</span>
+            <h3>第 (2) 小題完整證明：繩上任一點張力之水平分量均相同</h3>
+          </div>
+          <div class="step-content">
+            <p>
+              題目要求說明「繩上任一點張力之水平分量值均相同」，可由下列兩種視角嚴密說明：
+            </p>
+
+            <h4 style="color: var(--accent-cyan); margin: 12px 0 6px;">【視角一：微元分析法（微分形式嚴謹證明）】</h4>
+            <p>
+              在均勻粗繩上任意位置截取長度為 $\Delta s$ 的微小繩段。該微段處於平衡狀態，所受外力為：
+            </p>
+            <ul>
+              <li>兩端切線方向之拉伸張力：$\vec{T}(s)$ 與 $\vec{T}(s + \Delta s)$。</li>
+              <li>該微段自身之微小重力：$\Delta m \cdot \vec{g}$。</li>
+            </ul>
+            <p>
+              因為<strong>重力方向完全沿鉛直向下，在水平方向之分量嚴格為零</strong>（$g_x = 0$）。因此在水平方向上，唯一的受力來源就是兩端張力的水平分量：
+            </p>
+            <div class="formula-highlight">
+              $$\sum F_x = 0 \implies T_x(s + \Delta s) - T_x(s) = 0 \implies \frac{dT_x}{ds} = 0$$
+            </div>
+            <p>
+              張力水平分量對繩長坐標之導數為零，這在數學與物理上直接證明了：<strong>整條粗繩上無論何處，張力之水平分量 $T_x$ 均為定值（常數）！</strong>
+            </p>
+
+            <h4 style="color: var(--accent-yellow); margin: 16px 0 6px;">【視角二：任意截段平衡法（宏觀代數直觀說明）】</h4>
+            <p>
+              在粗繩上<strong>任意指定一點 $P$</strong>（切線與鉛垂線夾角為 $\theta$），將繩索從 $P$ 點切開，隔離從端點 $A$ 到 $P$ 點的繩段 $AP$：
+            </p>
+            <ul>
+              <li>左端 $A$ 處受張力 $\vec{T}_A$，向左的水平分量為 $T_A \sin\theta_1$。</li>
+              <li>右端 $P$ 處受張力 $\vec{T}_P$，向右的水平分量為 $T_P \sin\theta$。</li>
+              <li>繩段 $AP$ 自身的重力 $\vec{W}_{AP}$ 純粹垂直向下，無水平分量。</li>
+            </ul>
+            <p>由該繩段的水平靜力平衡：</p>
+            <div class="formula-highlight">
+              $$\sum F_x = 0 \implies T_P \sin\theta = T_A \sin\theta_1 = \text{常數} = T_C$$
+            </div>
+            <p>
+              由於點 $P$ 是繩上隨意選取的任意點，這明確證明了：<strong>繩上任何一點的張力水平分量皆完全相等，且恆等於最低點 $C$ 的張力量值 $T_C$！</strong>
+            </p>
+          </div>
+        </div>
+
+        <!-- Step 4: Summary Box -->
+        <div class="summary-box">
+          ✅ <strong>本題標準答案與結論彙整：</strong><br>
+          <strong>(1) 各點張力大小：</strong><br>
+          • 端點 A 張力：$$T_A = \frac{W\sin\theta_2}{\sin(\theta_1 + \theta_2)}$$<br>
+          • 端點 B 張力：$$T_B = \frac{W\sin\theta_1}{\sin(\theta_1 + \theta_2)}$$<br>
+          • 最低點 C 張力：$$T_C = W \frac{\sin\theta_1 \sin\theta_2}{\sin(\theta_1 + \theta_2)}$$<br>
+          <strong>(2) 水平分量恆定性：</strong> 因全繩僅受鉛直向下之重力，水平方向無任何外力分量，故任意繩段之水平合力必為零，證明繩上任一點張力水平分量皆恆等於 $T_C = T_A\sin\theta_1 = T_B\sin\theta_2$。<br>
+          <span style="color: var(--accent-green); font-weight: bold; margin-top: 6px; display: inline-block;">故選擇題正確選項為 (A)。</span>
+        </div>
+
+        <!-- Classic Physics Insights -->
+        <div class="step-card" style="margin-top: 18px; border-color: rgba(124, 77, 255, 0.35); background: rgba(124, 77, 255, 0.04);">
+          <h4 style="color: #b388ff; margin-bottom: 8px;">⚡ 觀念延伸・懸鏈線（Catenary）四大黃金物理性質：</h4>
+          <ol style="padding-left: 20px; line-height: 1.8; color: #cbd5e1;">
+            <li><strong>張力分佈規律</strong>：任一點張力 $T = \sqrt{T_x^2 + T_y^2}$。因為水平分量 $T_x$ 處處相等，而鉛直分量 $T_y$ 等於該截點以下繩段的總重量。因此<strong>越往高處張力越大，在最低點 $C$ 達到全繩最小值 $T_{\min} = T_C$</strong>！</li>
+            <li><strong>兩牆等高懸掛特例（對稱性 $\theta_1 = \theta_2 = \theta$）</strong>：<br>
+              • $T_A = T_B = \frac{W\sin\theta}{\sin(2\theta)} = \frac{W\sin\theta}{2\sin\theta\cos\theta} = \frac{W}{2\cos\theta}$<br>
+              • 最低點張力：$T_C = \frac{W\sin^2\theta}{2\sin\theta\cos\theta} = \frac{W}{2}\tan\theta$
+            </li>
+            <li><strong>「拉不直的繩子」之謎</strong>：<br>
+              若想將均勻粗繩拉成完全水平，即 $\theta \to 90^\circ$，此時 $\cos\theta \to 0$，所需張力 $T \to \infty$。這說明在地球重力場中，<strong>任何有質量的繩索都絕對不可能被拉成絕對水平直線</strong>！
+            </li>
+            <li><strong>若為無質量輕繩</strong>：若不計繩重（$W = 0$），繩子只在兩端受力，將退化為直線，此時整條繩子張力處處相等。</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- Related Practice & Knowledge Consolidation Section -->
+    <section class="card recommendation-card" style="margin-top: 24px; border: 1px solid rgba(0, 229, 255, 0.3); background: rgba(15, 23, 42, 0.75);">
+      <div class="card-header">
+        <div class="card-icon" style="background: rgba(0, 229, 255, 0.15); border-color: rgba(0, 229, 255, 0.35);">🎯</div>
+        <div>
+          <h2>學完本範例，接下來建議練習以下題庫！</h2>
+          <span class="card-tag">循序漸進・概念深耕・題型通關</span>
+        </div>
+      </div>
+      <p style="font-size: 0.95rem; color: var(--text-muted); margin: 6px 0 16px 0; line-height: 1.6;">
+        已為您智能引導與「<strong>懸鏈線粗繩模型、最低點切線純水平、全繩水平張力處處相等</strong>」高度相關的課堂類題與大考題庫，趁熱打鐵進行題型辨析與鞏固練習：
+      </p>
+
+      <div class="rec-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px;">
+        <!-- Card: 平衡 15 -->
+        <div class="rec-card" style="background: var(--bg-surface-elevated); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 16px; display: flex; flex-direction: column; justify-content: space-between; gap: 10px; transition: all 0.2s ease;">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <span class="badge badge-accent" style="font-size: 0.8rem;">平衡 15</span>
+              <span style="font-size: 0.75rem; color: #38bdf8; font-weight: 700; background: rgba(56, 189, 248, 0.12); padding: 2px 8px; border-radius: 4px; border: 1px solid rgba(56, 189, 248, 0.25);">🌱 概念完全對標</span>
+            </div>
+            <h4 style="font-size: 1.02rem; color: #fff; margin-bottom: 6px;">均勻懸繩最低點張力與長度比</h4>
+            <p style="font-size: 0.86rem; color: var(--text-muted); line-height: 1.55;">
+              完全延續範例 6 的懸鏈線概念，求最低點張力與兩側繩長比例的深度關聯題！
+            </p>
+          </div>
+          <a href="equil15.html" class="nav-btn primary" style="justify-content: center; font-size: 0.88rem; padding: 7px 14px; margin-top: 6px; font-weight: 600;">
+            🚀 前往練習
+          </a>
+        </div>
+        <!-- Card: 平衡 44 -->
+        <div class="rec-card" style="background: var(--bg-surface-elevated); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 16px; display: flex; flex-direction: column; justify-content: space-between; gap: 10px; transition: all 0.2s ease;">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <span class="badge badge-accent" style="font-size: 0.8rem;">平衡 44</span>
+              <span style="font-size: 0.75rem; color: #38bdf8; font-weight: 700; background: rgba(56, 189, 248, 0.12); padding: 2px 8px; border-radius: 4px; border: 1px solid rgba(56, 189, 248, 0.25);">🔥 正弦定理實戰</span>
+            </div>
+            <h4 style="font-size: 1.02rem; color: #fff; margin-bottom: 6px;">雙繩共點懸掛木棒與幾何正弦定理</h4>
+            <p style="font-size: 0.86rem; color: var(--text-muted); line-height: 1.55;">
+              共點力平衡結合正弦定理與幾何角度推導，加深對角正弦比例關係的直覺。
+            </p>
+          </div>
+          <a href="equil44.html" class="nav-btn primary" style="justify-content: center; font-size: 0.88rem; padding: 7px 14px; margin-top: 6px; font-weight: 600;">
+            🚀 前往練習
+          </a>
+        </div>
+        <!-- Card: 摩擦 09 -->
+        <div class="rec-card" style="background: var(--bg-surface-elevated); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 16px; display: flex; flex-direction: column; justify-content: space-between; gap: 10px; transition: all 0.2s ease;">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <span class="badge badge-accent" style="font-size: 0.8rem;">摩擦 09</span>
+              <span style="font-size: 0.75rem; color: #38bdf8; font-weight: 700; background: rgba(56, 189, 248, 0.12); padding: 2px 8px; border-radius: 4px; border: 1px solid rgba(56, 189, 248, 0.25);">⭐ 柔性繩摩擦平衡</span>
+            </div>
+            <h4 style="font-size: 1.02rem; color: #fff; margin-bottom: 6px;">跨越平台與斜面繩子自滑之摩擦係數</h4>
+            <p style="font-size: 0.86rem; color: var(--text-muted); line-height: 1.55;">
+              柔軟重繩跨過轉角，探討各段重力下滑分力與摩擦力平衡的臨界分段分析。
+            </p>
+          </div>
+          <a href="frict9.html" class="nav-btn primary" style="justify-content: center; font-size: 0.88rem; padding: 7px 14px; margin-top: 6px; font-weight: 600;">
+            🚀 前往練習
+          </a>
+        </div>
+        <!-- Card: 類題 12 -->
+        <div class="rec-card" style="background: var(--bg-surface-elevated); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 16px; display: flex; flex-direction: column; justify-content: space-between; gap: 10px; transition: all 0.2s ease;">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <span class="badge badge-accent" style="font-size: 0.8rem;">類題 12</span>
+              <span style="font-size: 0.75rem; color: #38bdf8; font-weight: 700; background: rgba(56, 189, 248, 0.12); padding: 2px 8px; border-radius: 4px; border: 1px solid rgba(56, 189, 248, 0.25);">🏆 104 學測真題</span>
+            </div>
+            <h4 style="font-size: 1.02rem; color: #fff; margin-bottom: 6px;">繩索應力應變與極限強度綜合題</h4>
+            <p style="font-size: 0.86rem; color: var(--text-muted); line-height: 1.55;">
+              從力學平衡進一步探討繩索截面積、應力與抗拉強度的學測跨章節大考名題。
+            </p>
+          </div>
+          <a href="exercise12.html" class="nav-btn primary" style="justify-content: center; font-size: 0.88rem; padding: 7px 14px; margin-top: 6px; font-weight: 600;">
+            🚀 前往練習
+          </a>
+        </div>
+      </div>
+      
+      <div style="margin-top: 18px; text-align: center; border-top: 1px dashed var(--border-subtle); padding-top: 14px;">
+        <a href="index.html" class="nav-btn" style="font-size: 0.88rem;">
+          📚 返回總目錄查看全單元 104 題索引
+        </a>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // Auto-render KaTeX
+      if (typeof renderMathInElement === 'function') {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ],
+          throwOnError: false
+        });
+      }
+
+      // Dynamic Diagram Switcher
+      function switchP6State(mode) {
+        const wrapRaw = document.getElementById('p6WrapRaw');
+        const wrapLami = document.getElementById('p6WrapLami');
+        const wrapIso = document.getElementById('p6WrapIso');
+        const btnRaw = document.getElementById('btnP6Raw');
+        const btnLami = document.getElementById('btnP6Lami');
+        const btnIso = document.getElementById('btnP6Iso');
+        const title = document.getElementById('p6DiagTitle');
+
+        if (!wrapRaw || !wrapLami || !wrapIso) return;
+
+        [wrapRaw, wrapLami, wrapIso].forEach(el => el.style.display = 'none');
+        [btnRaw, btnLami, btnIso].forEach(b => {
+          if (b) b.classList.remove('primary');
+        });
+
+        if (mode === 'lami') {
+          wrapLami.style.display = 'flex';
+          if (btnLami) btnLami.classList.add('primary');
+          if (title) title.innerHTML = '<span class="dot dot-yellow"></span> 思考圖 (1)：粗繩整體三力共點於 O 點與向量封閉三角形';
+        } else if (mode === 'iso') {
+          wrapIso.style.display = 'flex';
+          if (btnIso) btnIso.classList.add('primary');
+          if (title) title.innerHTML = '<span class="dot dot-green"></span> 思考圖 (2)：AC / CB 截段隔離受力圖 (最低點 C 切線水平)';
+        } else {
+          wrapRaw.style.display = 'flex';
+          if (btnRaw) btnRaw.classList.add('primary');
+          if (title) title.innerHTML = '<span class="dot dot-blue"></span> 題目原始圖：粗繩雙鉛直牆懸掛配置';
+        }
+      }
+      window.switchP6State = switchP6State;
+
+      // Quiz Interaction
+      const correctAnswer = "A";
+      const optionCards = document.querySelectorAll(".option-card");
+      const feedbackBox = document.getElementById("feedbackBox");
+      const feedbackIcon = document.getElementById("feedbackIcon");
+      const feedbackText = document.getElementById("feedbackText");
+      const solutionCard = document.getElementById("solutionCard");
+
+      optionCards.forEach(card => {
+        card.addEventListener("click", function() {
+          const selected = this.getAttribute("data-option");
+
+          optionCards.forEach(c => c.classList.remove("selected", "correct", "wrong"));
+          this.classList.add("selected");
+
+          feedbackBox.classList.remove("correct", "wrong");
+          feedbackBox.classList.add("show");
+
+          if (selected === correctAnswer) {
+            this.classList.add("correct");
+            feedbackBox.classList.add("correct");
+            feedbackIcon.innerHTML = "🎉";
+            feedbackText.innerHTML = "<strong>命中真理！完全正確！</strong><br>正交分解或拉密定理皆可解得：$T_A = \\frac{W\\sin\\theta_2}{\\sin(\\theta_1+\\theta_2)}$，$T_B = \\frac{W\\sin\\theta_1}{\\sin(\\theta_1+\\theta_2)}$。<br>最低點切線水平，水平分量處處相等：$T_C = T_A\\sin\\theta_1 = W\\frac{\\sin\\theta_1\\sin\\theta_2}{\\sin(\\theta_1+\\theta_2)}$！";
+          } else {
+            this.classList.add("wrong");
+            feedbackBox.classList.add("wrong");
+            feedbackIcon.innerHTML = "💡";
+            feedbackText.innerHTML = `<strong>選了 (${selected})，再想想看！</strong> 提示：對粗繩整體正交分解 $\\sum F_x=0$ 與 $\\sum F_y=0$，或套用拉密定理求 $T_A$ 與 $T_B$，再由最低點切線水平求得 $T_C = T_{Ax}$！`;
+          }
+
+          if (typeof renderMathInElement === 'function') {
+            renderMathInElement(feedbackText, {
+              delimiters: [
+                {left: '$$', right: '$$', display: true},
+                {left: '$', right: '$', display: false}
+              ],
+              throwOnError: false
+            });
+          }
+        });
+      });
+
+      // Solution toggle
+      const solutionToggle = document.getElementById("solutionToggle");
+      solutionToggle.addEventListener("click", function() {
+        solutionCard.classList.toggle("collapsed");
+        const isCollapsed = solutionCard.classList.contains("collapsed");
+        const statusSpan = solutionToggle.querySelector(".solution-status");
+        if (statusSpan) {
+          statusSpan.textContent = isCollapsed ? "點擊展開完整剖析" : "已為您展開深度圖解剖析（可點擊收合）";
+        }
+      });
+    });
+  </script>
+</body>
+</html>

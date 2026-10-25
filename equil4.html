@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>靜力平衡 4：天花板三繩吊球張力與 120 度對稱平衡 | 高中物理靜力學</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+  <link rel="stylesheet" href="shared.css">
+</head>
+<body>
+  <div class="bg-glow"></div>
+  <div class="bg-grid"></div>
+
+  <div class="container">
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+      <div class="nav-links">
+        <a href="index.html" class="nav-btn primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          回目錄
+        </a>
+        <a href="equil3.html" class="nav-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          上一題 (平衡 3)
+        </a>
+        <a href="equil5.html" class="nav-btn">
+          下一題 (平衡 5)
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+      <div class="badge-wrapper">
+        <span class="badge badge-page">講義 靜力學-24</span>
+        <span class="badge badge-exam">120° 對稱共點力</span>
+        <span class="badge badge-accent">靜力平衡・練習 4</span>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+      <h1 class="main-title">靜力平衡 4：<span class="gradient-text">天花板三繩吊球張力</span></h1>
+      <p class="subtitle">等腰幾何餘弦定理・三力互夾 120 度平衡特徵・拉密定理與向量正三角形</p>
+    </header>
+
+    <!-- Problem Showcase Card -->
+    <section class="card problem-card">
+      <div class="card-header">
+        <div class="card-icon">📖</div>
+        <div>
+          <h2>題目內容</h2>
+          <span class="card-tag">幾何與拉密定理經典題</span>
+        </div>
+      </div>
+
+      <div class="problem-body">
+        <p>
+          如下圖所示，<strong>A</strong> 及 <strong>B</strong> 為天花板上的兩固定小釘，相距為 <strong>$\sqrt{3}l$</strong>；<strong>AC</strong>、<strong>CB</strong> 及 <strong>CD</strong> 為輕繩，其中繩長 <strong>$AC = l$</strong>、<strong>$BC = l$</strong>；<strong>D</strong> 為質量 <strong>$m$</strong> 之小球。設重力加速度為 $g$，系統達成靜止平衡時，繩 <strong>AC</strong> 上之張力為？
+        </p>
+
+        <!-- Dynamic Three Strings Hanging SVG Diagram -->
+        <div class="diagram-container" style="text-align: center; margin: 24px 0;">
+          <svg viewBox="0 0 760 360" style="width: 100%; max-width: 740px; background: rgba(15, 23, 42, 0.6); border-radius: 12px; border: 1px solid rgba(255,255,255,0.08);">
+            <defs>
+              <marker id="arr-rose" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#f43f5e"/>
+              </marker>
+              <marker id="arr-sky" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#38bdf8"/>
+              </marker>
+              <marker id="arr-amber" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#fbbf24"/>
+              </marker>
+            </defs>
+
+            <!-- Ceiling at y = 50 -->
+            <line x1="120" y1="50" x2="640" y2="50" stroke="#64748b" stroke-width="4"/>
+            <g stroke="#475569" stroke-width="1.5">
+              <line x1="140" y1="50" x2="130" y2="38"/>
+              <line x1="180" y1="50" x2="170" y2="38"/>
+              <line x1="220" y1="50" x2="210" y2="38"/>
+              <line x1="260" y1="50" x2="250" y2="38"/>
+              <line x1="300" y1="50" x2="290" y2="38"/>
+              <line x1="340" y1="50" x2="330" y2="38"/>
+              <line x1="380" y1="50" x2="370" y2="38"/>
+              <line x1="420" y1="50" x2="410" y2="38"/>
+              <line x1="460" y1="50" x2="450" y2="38"/>
+              <line x1="500" y1="50" x2="490" y2="38"/>
+              <line x1="540" y1="50" x2="530" y2="38"/>
+              <line x1="580" y1="50" x2="570" y2="38"/>
+              <line x1="620" y1="50" x2="610" y2="38"/>
+            </g>
+
+            <!-- Nails A and B on ceiling -->
+            <!-- Distance AB = sqrt(3)*l. Let l = 160 px. sqrt(3)*l ≈ 277 px. -->
+            <!-- Center at x = 380. Nail A at 380 - 138.6 = 241.4 -> x = 240 -->
+            <!-- Nail B at 380 + 138.6 = 518.6 -> x = 520 -->
+            <!-- Knot C: distance from A and B is l = 160 px. -->
+            <!-- Drop from ceiling: height = sqrt(160^2 - 138.6^2) = sqrt(25600 - 19200) = sqrt(6400) = 80 px! -->
+            <!-- Knot C is at (380, 50 + 80) = (380, 130) -->
+
+            <!-- Dimension line for AB -->
+            <line x1="240" y1="26" x2="520" y2="26" stroke="#fbbf24" stroke-width="1.8"/>
+            <line x1="240" y1="20" x2="240" y2="32" stroke="#fbbf24" stroke-width="1.8"/>
+            <line x1="520" y1="20" x2="520" y2="32" stroke="#fbbf24" stroke-width="1.8"/>
+            <text x="360" y="20" fill="#fbbf24" font-size="13" font-weight="bold">√3 l</text>
+
+            <!-- Nail A -->
+            <circle cx="240" cy="50" r="5" fill="#f8fafc"/>
+            <text x="225" y="45" fill="#f8fafc" font-size="14" font-weight="bold">A</text>
+
+            <!-- Nail B -->
+            <circle cx="520" cy="50" r="5" fill="#f8fafc"/>
+            <text x="532" y="45" fill="#f8fafc" font-size="14" font-weight="bold">B</text>
+
+            <!-- String AC -->
+            <line x1="240" y1="50" x2="380" y2="130" stroke="#f8fafc" stroke-width="2.5"/>
+            <text x="290" y="80" fill="#cbd5e1" font-size="13">l</text>
+            <!-- Tension TAC arrow -->
+            <line x1="380" y1="130" x2="310" y2="90" stroke="#38bdf8" stroke-width="3" marker-end="url(#arr-sky)"/>
+            <text x="305" y="112" fill="#38bdf8" font-size="13" font-weight="bold">T_AC</text>
+
+            <!-- String BC -->
+            <line x1="520" y1="50" x2="380" y2="130" stroke="#f8fafc" stroke-width="2.5"/>
+            <text x="465" y="80" fill="#cbd5e1" font-size="13">l</text>
+            <!-- Tension TBC arrow -->
+            <line x1="380" y1="130" x2="450" y2="90" stroke="#38bdf8" stroke-width="3" marker-end="url(#arr-sky)"/>
+            <text x="440" y="112" fill="#38bdf8" font-size="13" font-weight="bold">T_BC</text>
+
+            <!-- Angle ACB Arc at Knot C (120°) -->
+            <path d="M 352 114 A 32 32 0 0 1 408 114" fill="none" stroke="#fbbf24" stroke-width="2"/>
+            <text x="368" y="105" fill="#fbbf24" font-size="12" font-weight="bold">120°</text>
+
+            <!-- Knot C -->
+            <circle cx="380" cy="130" r="6" fill="#fbbf24" stroke="#0f172a" stroke-width="2"/>
+            <text x="395" y="135" fill="#fbbf24" font-size="15" font-weight="bold">C</text>
+
+            <!-- String CD: from C(380, 130) down to Ball D(380, 240) -->
+            <line x1="380" y1="130" x2="380" y2="240" stroke="#f8fafc" stroke-width="2.5"/>
+            <!-- Tension T_CD arrow downward on C -->
+            <line x1="380" y1="130" x2="380" y2="200" stroke="#f43f5e" stroke-width="3" marker-end="url(#arr-rose)"/>
+            <text x="390" y="180" fill="#f43f5e" font-size="13" font-weight="bold">T_CD = mg</text>
+
+            <!-- Angle ACD Arc (120°) -->
+            <path d="M 352 114 A 32 32 0 0 0 380 162" fill="none" stroke="#a78bfa" stroke-width="1.8"/>
+            <text x="340" y="150" fill="#a78bfa" font-size="12">120°</text>
+
+            <!-- Angle BCD Arc (120°) -->
+            <path d="M 380 162 A 32 32 0 0 0 408 114" fill="none" stroke="#a78bfa" stroke-width="1.8"/>
+            <text x="405" y="150" fill="#a78bfa" font-size="12">120°</text>
+
+            <!-- Ball D -->
+            <circle cx="380" cy="255" r="15" fill="#1e293b" stroke="#f43f5e" stroke-width="3"/>
+            <text x="375" y="260" fill="#f43f5e" font-size="14" font-weight="bold">D</text>
+            <text x="405" y="260" fill="#cbd5e1" font-size="13">質量 m</text>
+
+            <!-- Gravity Vector g downward -->
+            <line x1="470" y1="230" x2="470" y2="280" stroke="#94a3b8" stroke-width="2" marker-end="url(#arr-rose)"/>
+            <text x="480" y="260" fill="#94a3b8" font-size="14" font-weight="bold">g</text>
+
+            <!-- Vector Closed Triangle Side Panel -->
+            <g transform="translate(560, 120)">
+              <rect x="0" y="0" width="170" height="190" rx="8" fill="rgba(15, 23, 42, 0.75)" stroke="rgba(255,255,255,0.1)"/>
+              <text x="12" y="25" fill="#38bdf8" font-size="12" font-weight="bold">封閉向量三角形</text>
+              
+              <!-- Equilateral triangle: T_AC, T_BC, mg -->
+              <!-- Top vertex at (85, 45) -->
+              <!-- Left vertex at (45, 115) -->
+              <!-- Right vertex at (125, 115) -->
+              <polygon points="85,45 45,115 125,115" fill="rgba(56, 189, 248, 0.15)" stroke="#38bdf8" stroke-width="2"/>
+              <text x="80" y="40" fill="#fbbf24" font-size="11">60°</text>
+              <text x="45" y="80" fill="#38bdf8" font-size="11">T_AC</text>
+              <text x="105" y="80" fill="#38bdf8" font-size="11">T_BC</text>
+              <text x="75" y="132" fill="#f43f5e" font-size="11" font-weight="bold">mg</text>
+              
+              <text x="12" y="155" fill="#cbd5e1" font-size="11">正三角形（邊長相等）：</text>
+              <text x="25" y="175" fill="#10b981" font-size="12" font-weight="bold">T_AC = T_BC = mg</text>
+            </g>
+          </svg>
+        </div>
+
+        <!-- Options Container -->
+        <div class="options-container" id="optionsContainer">
+          <button class="option-card" data-option="A">
+            <span class="option-letter">A</span>
+            <span class="option-text">$\dfrac{1}{2}mg$</span>
+          </button>
+          <button class="option-card" data-option="B">
+            <span class="option-letter">B</span>
+            <span class="option-text">$\dfrac{1}{\sqrt{3}}mg$</span>
+          </button>
+          <button class="option-card" data-option="C">
+            <span class="option-letter">C</span>
+            <span class="option-text">$mg$</span>
+          </button>
+          <button class="option-card" data-option="D">
+            <span class="option-letter">D</span>
+            <span class="option-text">$2mg$</span>
+          </button>
+        </div>
+
+        <!-- Real-time Feedback -->
+        <div class="feedback-box" id="feedbackBox">
+          <div class="feedback-icon" id="feedbackIcon"></div>
+          <div class="feedback-text" id="feedbackText"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Collapsible Solution Card -->
+    <section class="card solution-card collapsed" id="solutionCard">
+      <div class="card-header clickable" id="solutionToggle">
+        <div class="card-icon">💡</div>
+        <div style="flex: 1;">
+          <h2>詳細幾何分析與三種秒殺解法</h2>
+          <span class="solution-status">點擊展開完整剖析</span>
+        </div>
+        <span class="badge badge-accent">拉密與向量三角形詳解</span>
+      </div>
+
+      <div class="solution-body">
+        <!-- 步驟 1 -->
+        <div class="step-card">
+          <div class="step-header">
+            <span class="step-badge">幾何破解</span>
+            <h3>由三邊長度求結點頂角 $\angle ACB$</h3>
+          </div>
+          <p>
+            在 $\triangle ABC$ 中，已知三邊長分別為 $AC = l$、$BC = l$、$AB = \sqrt{3}l$：
+          </p>
+          <ul>
+            <li><strong>法一（餘弦定理）：</strong>
+              $$\cos(\angle ACB) = \frac{AC^2 + BC^2 - AB^2}{2 \cdot AC \cdot BC} = \frac{l^2 + l^2 - (\sqrt{3}l)^2}{2 \cdot l \cdot l} = \frac{2l^2 - 3l^2}{2l^2} = -\frac{1}{2}$$
+              $$\implies \angle ACB = 120^\circ$$
+            </li>
+            <li><strong>法二（特殊直角三角形）：</strong>
+              作頂角平分線垂直平分底邊 $AB$，兩半邊底長均為 $\frac{\sqrt{3}}{2}l$。<br>
+              斜邊為 $l$，對邊為 $\frac{\sqrt{3}}{2}l$，故半角 $\sin\alpha = \frac{\sqrt{3}}{2} \implies \alpha = 60^\circ$。<br>
+              全頂角 $\angle ACB = 2\alpha = 120^\circ$。
+            </li>
+          </ul>
+        </div>
+
+        <!-- 步驟 2 -->
+        <div class="step-card">
+          <div class="step-header">
+            <span class="step-badge">力學平衡</span>
+            <h3>結點 C 之三力平衡分析（三種秒殺途徑）</h3>
+          </div>
+          <p>
+            結點 C 受到三個力的作用：AC 繩張力 $T_{AC}$、BC 繩張力 $T_{BC}$、CD 繩張力 $T_{CD} = mg$（鉛直向下）。
+          </p>
+          <ul>
+            <li>
+              <strong>途徑一：拉密定理 (Lami's Theorem)</strong><br>
+              鉛垂繩 CD 恰好平分對稱角，故三個力兩兩之間的夾角分別為：
+              $$\angle(T_{AC}, T_{BC}) = 120^\circ, \quad \angle(T_{AC}, mg) = 120^\circ, \quad \angle(T_{BC}, mg) = 120^\circ$$
+              由拉密定理：
+              $$\frac{T_{AC}}{\sin 120^\circ} = \frac{T_{BC}}{\sin 120^\circ} = \frac{mg}{\sin 120^\circ} \implies T_{AC} = T_{BC} = mg$$
+            </li>
+            <li>
+              <strong>途徑二：封閉向量三角形</strong><br>
+              三個力向量首尾相接形成封閉三角形。因為兩兩外角為 $120^\circ$，其三角形內角皆為 $180^\circ - 120^\circ = 60^\circ$！<br>
+              這是一個<strong>正三角形（等邊三角形）</strong>！<br>
+              因此三邊長度皆相等，直接得出：
+              $$T_{AC} = T_{BC} = mg$$
+            </li>
+            <li>
+              <strong>途徑三：鉛直方向正交分解</strong><br>
+              繩與鉛直線夾角為 $60^\circ$：
+              $$2 T_{AC} \cos 60^\circ = mg \implies 2 T_{AC} \left(\frac{1}{2}\right) = mg \implies T_{AC} = mg$$
+            </li>
+          </ul>
+          <div style="background: rgba(16, 185, 129, 0.15); border: 1px solid #10b981; border-radius: 8px; padding: 16px; margin: 12px 0; text-align: center;">
+            <span style="font-size: 1.35rem; font-weight: 800; color: #10b981;">
+              繩 AC 張力 $T_{AC} = mg$
+            </span>
+          </div>
+          <p>故正確答案為 <strong>(C)</strong>。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Navigation Bar -->
+    <div class="bottom-nav">
+      <a href="equil3.html" class="nav-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+        上一題：斜向推力與地面全作用力
+      </a>
+      <a href="index.html" class="nav-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        回課程總目錄
+      </a>
+      <a href="equil5.html" class="nav-btn primary">
+        下一題：雙光滑斜板圓球支持力
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // KaTeX Rendering
+      if (typeof renderMathInElement === 'function') {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ],
+          throwOnError: false
+        });
+      }
+
+      const correctAnswer = "C";
+      const optionCards = document.querySelectorAll(".option-card");
+      const feedbackBox = document.getElementById("feedbackBox");
+      const feedbackIcon = document.getElementById("feedbackIcon");
+      const feedbackText = document.getElementById("feedbackText");
+      const solutionCard = document.getElementById("solutionCard");
+
+      optionCards.forEach(card => {
+        card.addEventListener("click", function() {
+          const selected = this.getAttribute("data-option");
+
+          optionCards.forEach(c => c.classList.remove("selected", "correct", "wrong"));
+          this.classList.add("selected");
+
+          feedbackBox.classList.remove("correct", "wrong");
+          feedbackBox.classList.add("show");
+
+          if (selected === correctAnswer) {
+            this.classList.add("correct");
+            feedbackBox.classList.add("correct");
+            feedbackIcon.innerHTML = "🎉";
+            feedbackText.innerHTML = "<strong>太神了！完全正確！</strong><br>由三邊長 $l, l, \\sqrt{3}l$ 得頂角為 $120^\\circ$。<br>三力互夾 $120^\\circ$ 形成正三角形向量閉合，$T_{AC} = T_{BC} = mg$！";
+            solutionCard.classList.remove("collapsed");
+            const tag = solutionCard.querySelector(".solution-status");
+            if (tag) tag.textContent = "點擊收合詳解";
+          } else {
+            this.classList.add("wrong");
+            feedbackBox.classList.add("wrong");
+            feedbackIcon.innerHTML = "💡";
+            if (selected === "A") {
+              feedbackText.innerHTML = "<strong>小心三角函數！</strong> 兩繩向上的分力為 $2T\\cos 60^\\circ = 2T(1/2) = T = mg$，所以張力不是 $mg/2$ 喔！";
+            } else if (selected === "B") {
+              feedbackText.innerHTML = "<strong>算錯角度囉！</strong> 頂角為 $120^\\circ$ 不是 $60^\\circ$，繩與鉛垂線夾角是 $60^\\circ$ 喔！";
+            } else {
+              feedbackText.innerHTML = `<strong>選了 (${selected})，再想想看！</strong> 提示：先用餘弦定理求出 $\\triangle ABC$ 的頂角 $\\angle ACB$，再利用三力對稱性！`;
+            }
+          }
+
+          if (typeof renderMathInElement === 'function') {
+            renderMathInElement(feedbackText, {
+              delimiters: [
+                {left: '$$', right: '$$', display: true},
+                {left: '$', right: '$', display: false}
+              ],
+              throwOnError: false
+            });
+          }
+        });
+      });
+
+      // Solution toggle
+      const solutionToggle = document.getElementById("solutionToggle");
+      solutionToggle.addEventListener("click", function() {
+        solutionCard.classList.toggle("collapsed");
+        const isCollapsed = solutionCard.classList.contains("collapsed");
+        const statusSpan = solutionToggle.querySelector(".solution-status");
+        if (statusSpan) {
+          statusSpan.textContent = isCollapsed ? "點擊展開完整剖析" : "點擊收合詳解";
+        }
+      });
+    });
+  </script>
+</body>
+</html>

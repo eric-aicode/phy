@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>靜力平衡 44：雙繩共點懸掛木棒與幾何正弦定理 | 高中物理靜力學</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+  <link rel="stylesheet" href="shared.css">
+</head>
+<body>
+  <div class="bg-glow"></div>
+  <div class="bg-grid"></div>
+
+  <div class="container">
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+      <div class="nav-links">
+        <a href="index.html" class="nav-btn primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          回目錄
+        </a>
+        <a href="equil43.html" class="nav-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          上一題 (平衡 43)
+        </a>
+        <a href="equil45.html" class="nav-btn">
+          下一題 (平衡 45)
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+      <div class="badge-wrapper">
+        <span class="badge badge-page">講義 靜力學-32</span>
+        <span class="badge badge-exam">正弦定理・拉密定理</span>
+        <span class="badge badge-accent">靜力平衡・練習 44 (多選)</span>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+      <h1 class="main-title">靜力平衡 44：<span class="gradient-text">雙繩共點懸掛木棒與幾何正弦定理</span></h1>
+      <p class="subtitle">三力共點平衡條件・正弦定理與幾何分段力臂對偶關係・多選綜合深度剖析</p>
+    </header>
+
+    <!-- Main Problem Layout -->
+    <div class="problem-layout">
+      <!-- Left Column: Problem & Visualizer -->
+      <div class="problem-card">
+        <h2 class="section-title">
+          <span class="step-num">1</span>
+          題目情境與物理圖解
+        </h2>
+        <div class="problem-text">
+          <p>
+            如圖所示，重量為 $W$ 之木棒以長度分別為 $\ell_1$ 及 $\ell_2$ 的兩條細繩懸掛在天花板同一點 $O$ 而達成靜止平衡。
+          </p>
+          <p>
+            若兩細繩與鉛直線之夾角各為 $\theta_1$ 及 $\theta_2$，木棒與兩細繩之夾角分別為 $\alpha$ 及 $\beta$。木棒所受重力之作用線交木棒於 $P$ 點，距兩端點各為 $x_1$ 及 $x_2$，兩繩拉力各為 $T_1$ 及 $T_2$。則下列敘述哪些正確？<strong>（多選）</strong>
+          </p>
+        </div>
+
+        <div class="interactive-container">
+          <div style="font-size: 0.88rem; color: var(--text-dim); margin-bottom: 8px; display: flex; justify-content: space-between;">
+            <span>📐 三力匯聚於懸掛點 O 與兩側三角形幾何關係</span>
+            <span style="color: var(--accent-cyan);">△APO 與 △BPO 共用垂直重力線 OP</span>
+          </div>
+          <svg viewBox="0 0 540 370" class="diagram-svg" style="background: rgba(15, 23, 42, 0.7); border-radius: 8px;">
+            <defs>
+              <marker id="arr-c" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#38bdf8"/>
+              </marker>
+              <marker id="arr-g" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#00e676"/>
+              </marker>
+              <marker id="arr-r" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#f43f5e"/>
+              </marker>
+              <marker id="arr-y" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#fbbf24"/>
+              </marker>
+            </defs>
+
+            <!-- Ceiling -->
+            <line x1="80" y1="40" x2="460" y2="40" stroke="#64748b" stroke-width="4"/>
+            <!-- Hatchings -->
+            <line x1="120" y1="40" x2="135" y2="25" stroke="#475569" stroke-width="2"/>
+            <line x1="180" y1="40" x2="195" y2="25" stroke="#475569" stroke-width="2"/>
+            <line x1="240" y1="40" x2="255" y2="25" stroke="#475569" stroke-width="2"/>
+            <line x1="300" y1="40" x2="315" y2="25" stroke="#475569" stroke-width="2"/>
+            <line x1="360" y1="40" x2="375" y2="25" stroke="#475569" stroke-width="2"/>
+
+            <!-- Suspension point O = (270, 40) -->
+            <circle cx="270" cy="40" r="5" fill="#f8fafc"/>
+            <text x="278" y="38" fill="#f8fafc" font-size="15" font-weight="bold">O</text>
+
+            <!-- Rod points: A=(120, 240), B=(420, 270) -->
+            <!-- Rod AB -->
+            <line x1="120" y1="240" x2="420" y2="270" stroke="#f8fafc" stroke-width="8" stroke-linecap="round"/>
+            <line x1="120" y1="240" x2="420" y2="270" stroke="#38bdf8" stroke-width="4" stroke-linecap="round"/>
+
+            <!-- String 1: O(270, 40) to A(120, 240) -->
+            <line x1="270" y1="40" x2="120" y2="240" stroke="#00e676" stroke-width="3"/>
+            <text x="175" y="130" fill="#00e676" font-size="14" font-weight="bold">ℓ₁ (T₁)</text>
+
+            <!-- String 2: O(270, 40) to B(420, 270) -->
+            <line x1="270" y1="40" x2="420" y2="270" stroke="#c084fc" stroke-width="3"/>
+            <text x="360" y="145" fill="#c084fc" font-size="14" font-weight="bold">ℓ₂ (T₂)</text>
+
+            <!-- Vertical plumbline from O down to P on rod -->
+            <!-- P has x=270, line AB from (120, 240) to (420, 270): slope = 30/300 = 0.1 -->
+            <!-- y_P = 240 + 0.1*(270 - 120) = 240 + 15 = 255 -->
+            <line x1="270" y1="40" x2="270" y2="340" stroke="#fbbf24" stroke-width="2.5" stroke-dasharray="5 3"/>
+            <circle cx="270" cy="255" r="5" fill="#fbbf24"/>
+            <text x="278" y="250" fill="#fbbf24" font-size="14" font-weight="bold">P (重心合力線)</text>
+
+            <!-- Gravity W arrow down from P -->
+            <line x1="270" y1="255" x2="270" y2="330" stroke="#fbbf24" stroke-width="3.5" marker-end="url(#arr-y)"/>
+            <text x="280" y="325" fill="#fbbf24" font-size="15" font-weight="bold">W</text>
+
+            <!-- Angles theta1 and theta2 at O with vertical -->
+            <path d="M 245 75 A 40 40 0 0 1 270 80" fill="none" stroke="#00e676" stroke-width="2"/>
+            <text x="238" y="98" fill="#00e676" font-size="13">θ₁</text>
+
+            <path d="M 270 80 A 40 40 0 0 1 295 78" fill="none" stroke="#c084fc" stroke-width="2"/>
+            <text x="285" y="98" fill="#c084fc" font-size="13">θ₂</text>
+
+            <!-- Angles alpha and beta at A and B -->
+            <text x="145" y="235" fill="#00e676" font-size="13">α</text>
+            <text x="390" y="260" fill="#c084fc" font-size="13">β</text>
+
+            <!-- Angles phi1 and phi2 at P -->
+            <text x="245" y="245" fill="#94a3b8" font-size="11">φ₁</text>
+            <text x="282" y="245" fill="#94a3b8" font-size="11">φ₂</text>
+
+            <!-- Segments x1 and x2 -->
+            <line x1="120" y1="260" x2="270" y2="275" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="3 3"/>
+            <text x="180" y="280" fill="#94a3b8" font-size="13">x₁</text>
+
+            <line x1="270" y1="275" x2="420" y2="290" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="3 3"/>
+            <text x="340" y="295" fill="#94a3b8" font-size="13">x₂</text>
+
+            <!-- Point Labels -->
+            <text x="100" y="245" fill="#f8fafc" font-size="16" font-weight="bold">A</text>
+            <text x="430" y="280" fill="#f8fafc" font-size="16" font-weight="bold">B</text>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Right Column: Interactive Quiz -->
+      <div class="problem-card">
+        <h2 class="section-title">
+          <span class="step-num">2</span>
+          自我檢測與即時核對 (多選題)
+        </h2>
+        <p style="color: var(--text-dim); font-size: 0.95rem; margin-bottom: 16px;">
+          請依據三力平衡與正弦定理，選出所有正確的敘述（可複選）：
+        </p>
+
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="toggleMultiOption(this, 'A')">
+            <span class="opt-letter">A</span>
+            <span class="opt-text">$T_1\cos\theta_1 + T_2\cos\theta_2 = W$</span>
+          </div>
+          <div class="quiz-option" onclick="toggleMultiOption(this, 'B')">
+            <span class="opt-letter">B</span>
+            <span class="opt-text">$\dfrac{T_1}{T_2} = \dfrac{\sin\beta}{\sin\alpha}$</span>
+          </div>
+          <div class="quiz-option" onclick="toggleMultiOption(this, 'C')">
+            <span class="opt-letter">C</span>
+            <span class="opt-text">$\dfrac{T_1}{T_2} = \dfrac{\sin\theta_2}{\sin\theta_1}$</span>
+          </div>
+          <div class="quiz-option" onclick="toggleMultiOption(this, 'D')">
+            <span class="opt-letter">D</span>
+            <span class="opt-text">$\dfrac{T_1}{T_2} = \dfrac{x_2}{x_1} \cdot \dfrac{\sin\beta}{\sin\alpha}$</span>
+          </div>
+          <div class="quiz-option" onclick="toggleMultiOption(this, 'E')">
+            <span class="opt-letter">E</span>
+            <span class="opt-text">$\dfrac{x_1}{x_2} = \dfrac{\ell_1}{\ell_2} \cdot \dfrac{\sin\theta_1}{\sin\theta_2}$</span>
+          </div>
+        </div>
+
+        <div class="quiz-actions">
+          <button class="nav-btn primary" onclick="checkMultiAnswer()">核對答案</button>
+          <button class="nav-btn" onclick="toggleSolution()">查看解析</button>
+        </div>
+
+        <div id="feedback" class="quiz-feedback"></div>
+      </div>
+    </div>
+
+    <!-- Solution Section -->
+    <div id="solution-card" class="solution-card">
+      <h2 class="section-title">
+        <span class="step-num">3</span>
+        完整觀念解析與推導過程
+      </h2>
+      <div class="solution-content">
+        <div class="formula-box">
+          $$\sum F_y = 0 \implies T_1\cos\theta_1 + T_2\cos\theta_2 = W$$
+          $$\sum F_x = 0 \implies T_1\sin\theta_1 = T_2\sin\theta_2 \implies \frac{T_1}{T_2} = \frac{\sin\theta_2}{\sin\theta_1}$$
+          $$\triangle \text{正弦定理} \implies \frac{T_1}{T_2} = \frac{x_2\sin\beta}{x_1\sin\alpha}, \quad \frac{x_1}{x_2} = \frac{\ell_1\sin\theta_1}{\ell_2\sin\theta_2}$$
+        </div>
+
+        <div class="step-card">
+          <h4>步驟一：水平與鉛直方向受力平衡分析</h4>
+          <p>
+            木棒受三力作用：繩拉力 $\vec{T}_1$、繩拉力 $\vec{T}_2$ 與重力 $\vec{W}$。
+          </p>
+          <ol>
+            <li>
+              <strong>鉛直方向合力為零</strong>：
+              兩繩拉力的鉛直分量向上，抵消木棒向下的重力 $W$：
+              $$T_1\cos\theta_1 + T_2\cos\theta_2 = W$$
+              故 <strong>(A) 正確</strong>。
+            </li>
+            <li>
+              <strong>水平方向合力為零</strong>：
+              兩繩拉力在水平方向之分力大小相等、方向相反：
+              $$T_1\sin\theta_1 = T_2\sin\theta_2 \implies \frac{T_1}{T_2} = \frac{\sin\theta_2}{\sin\theta_1}$$
+              故 <strong>(C) 正確</strong>；而選項 (B) 寫成 $\frac{\sin\beta}{\sin\alpha}$，故 <strong>(B) 錯誤</strong>。
+            </li>
+          </ol>
+        </div>
+
+        <div class="step-card">
+          <h4>步驟二：利用正弦定理推導選項 (D)</h4>
+          <p>
+            三力共點於天花板懸點 $O$，因此重力作用線必通過 $O$，與木棒相交於 $P$ 點，形成兩相鄰三角形 $\triangle APO$ 與 $\triangle BPO$。
+          </p>
+          <p>
+            在 $\triangle APO$ 中應用正弦定理：
+          </p>
+          $$\frac{\overline{OP}}{\sin\alpha} = \frac{x_1}{\sin\theta_1} \implies \frac{1}{\sin\theta_1} = \frac{\overline{OP}}{x_1\sin\alpha} \quad \cdots (1)$$
+          <p>
+            在 $\triangle BPO$ 中應用正弦定理：
+          </p>
+          $$\frac{\overline{OP}}{\sin\beta} = \frac{x_2}{\sin\theta_2} \implies \sin\theta_2 = \frac{x_2\sin\beta}{\overline{OP}} \quad \cdots (2)$$
+          <p>
+            將 (1) 式與 (2) 式相乘：
+          </p>
+          $$\frac{\sin\theta_2}{\sin\theta_1} = \frac{x_2\sin\beta}{\overline{OP}} \cdot \frac{\overline{OP}}{x_1\sin\alpha} = \frac{x_2\sin\beta}{x_1\sin\alpha}$$
+          <p>
+            由步驟一已知 $\dfrac{T_1}{T_2} = \dfrac{\sin\theta_2}{\sin\theta_1}$，代入即得：
+          </p>
+          $$\frac{T_1}{T_2} = \frac{x_2}{x_1} \cdot \frac{\sin\beta}{\sin\alpha}$$
+          <p>
+            故 <strong>(D) 正確</strong>。
+          </p>
+        </div>
+
+        <div class="step-card">
+          <h4>步驟三：利用互補角推導選項 (E)</h4>
+          <p>
+            設線段 $OP$ 與木棒夾角分別為 $\phi_1$ 與 $\phi_2$。因為 $A$、$P$、$B$ 共線，故 $\phi_1 + \phi_2 = 180^\circ$。
+          </p>
+          <p>
+            由三角函數互補性質：$\sin\phi_1 = \sin(180^\circ - \phi_2) = \sin\phi_2$。
+          </p>
+          <p>
+            分別在 $\triangle APO$ 與 $\triangle BPO$ 中列出邊長 $\ell_1$、$\ell_2$ 與 $x_1$、$x_2$ 的正弦關係：
+          </p>
+          $$\frac{\ell_1}{\sin\phi_1} = \frac{x_1}{\sin\theta_1} \implies x_1 = \frac{\ell_1\sin\theta_1}{\sin\phi_1}$$
+          $$\frac{\ell_2}{\sin\phi_2} = \frac{x_2}{\sin\theta_2} \implies x_2 = \frac{\ell_2\sin\theta_2}{\sin\phi_2}$$
+          <p>
+            兩式相除，消去相等的 $\sin\phi_1$ 與 $\sin\phi_2$：
+          </p>
+          $$\frac{x_1}{x_2} = \frac{\ell_1}{\ell_2} \cdot \frac{\sin\theta_1}{\sin\theta_2}$$
+          <p>
+            故 <strong>(E) 正確</strong>。
+          </p>
+          <p>
+            綜合以上推導，正確選項為 <strong>(A)(C)(D)(E)</strong>。
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const selectedOptions = new Set();
+    const correctAnswers = new Set(['A', 'C', 'D', 'E']);
+
+    function toggleMultiOption(element, opt) {
+      if (selectedOptions.has(opt)) {
+        selectedOptions.delete(opt);
+        element.classList.remove('selected');
+      } else {
+        selectedOptions.add(opt);
+        element.classList.add('selected');
+      }
+    }
+
+    function checkMultiAnswer() {
+      const feedback = document.getElementById('feedback');
+      if (selectedOptions.size === 0) {
+        feedback.innerHTML = '<span style="color: var(--accent-yellow);">⚠️ 請先點選選項（本題為多選題）！</span>';
+        feedback.className = 'quiz-feedback show';
+        return;
+      }
+
+      const isCorrect = selectedOptions.size === correctAnswers.size &&
+                        [...selectedOptions].every(opt => correctAnswers.has(opt));
+
+      if (isCorrect) {
+        feedback.innerHTML = '🎉 <strong>完全正確！</strong> 正確選出 (A)(C)(E)(D)。水平平衡 $T_1\\sin\\theta_1 = T_2\\sin\\theta_2$，配合兩側三角形之正弦定理，精采推導出全部四項正確關係式！';
+        feedback.className = 'quiz-feedback show correct';
+        document.getElementById('solution-card').classList.add('show');
+      } else {
+        feedback.innerHTML = '❌ <strong>還不完全正確喔！</strong> 提示：水平合力為零立即得到 $\\frac{T_1}{T_2} = \\frac{\\sin\\theta_2}{\\sin\\theta_1}$。再利用兩側三角形共用中線 $OP$ 的正弦定理相除試試看！';
+        feedback.className = 'quiz-feedback show incorrect';
+      }
+    }
+
+    function toggleSolution() {
+      const sol = document.getElementById('solution-card');
+      sol.classList.toggle('show');
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      if (window.renderMathInElement) {
+        renderMathInElement(document.body, {
+          delimiters: [
+            { left: "$$", right: "$$", display: true },
+            { left: "$", right: "$", display: false }
+          ]
+        });
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>靜摩擦力 05：疊合雙塊相對滑動之摩擦係數比 | 高中物理靜力學</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+  <link rel="stylesheet" href="shared.css">
+</head>
+<body>
+  <div class="bg-glow"></div>
+  <div class="bg-grid"></div>
+
+  <div class="container">
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+      <div class="nav-links">
+        <a href="index.html" class="nav-btn primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          回目錄
+        </a>
+        <a href="frict4.html" class="nav-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          上一題 (摩擦 04)
+        </a>
+        <a href="frict6.html" class="nav-btn">
+          下一題 (摩擦 06)
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+      <div class="badge-wrapper">
+        <span class="badge badge-page">講義 靜力學-34</span>
+        <span class="badge badge-exam">疊塊隔離法・相對滑動條件</span>
+        <span class="badge badge-accent">靜摩擦力・練習 05</span>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+      <h1 class="main-title">靜摩擦力 05：<span class="gradient-text">疊合雙塊相對滑動之臨界摩擦係數比</span></h1>
+      <p class="subtitle">上下接觸面隔離分析・層間推力傳遞極限・下塊維持靜止之摩擦係數不等式</p>
+    </header>
+
+    <!-- Main Problem Layout -->
+    <div class="problem-layout">
+      <!-- Left Column: Problem & Visualizer -->
+      <div class="problem-card">
+        <h2 class="section-title">
+          <span class="step-num">1</span>
+          題目情境與物理圖解
+        </h2>
+        <div class="problem-text">
+          <p>
+            附圖中 $m$ 與 $M$ 間之靜摩擦係數為 $\mu_1$，$M$ 與地面間之靜摩擦係數為 $\mu_2$，今對 $m$ 施以一水平力 $F$。欲使 $m$ 發生移動而 $M$ 仍能保持不動之條件為下列何者？
+          </p>
+        </div>
+
+        <div class="diagram-container">
+          <div class="diagram-header">
+            <span class="diagram-tag">層間摩擦力傳遞圖解</span>
+            <span class="diagram-hint">m 傳給 M 的水平力上限為 f₁ = μ₁mg，若 f₁ &lt; f₂ 則 M 絕不會被拖動</span>
+          </div>
+          <svg class="interactive-diagram" viewBox="0 0 540 350" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="arrowRed" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+                <path d="M0,0 L0,6 L9,3 z" fill="#ef4444" />
+              </marker>
+              <marker id="arrowCyan" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+                <path d="M0,0 L0,6 L9,3 z" fill="#06b6d4" />
+              </marker>
+              <marker id="arrowGreen" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+                <path d="M0,0 L0,6 L9,3 z" fill="#10b981" />
+              </marker>
+            </defs>
+
+            <!-- Ground -->
+            <line x1="60" y1="270" x2="480" y2="270" stroke="#64748b" stroke-width="3"/>
+            <path d="M70,270 l-10,12 M100,270 l-10,12 M130,270 l-10,12 M160,270 l-10,12 M190,270 l-10,12 M220,270 l-10,12 M250,270 l-10,12 M280,270 l-10,12 M310,270 l-10,12 M340,270 l-10,12 M370,270 l-10,12 M400,270 l-10,12 M430,270 l-10,12 M460,270 l-10,12" stroke="#475569" stroke-width="1.5"/>
+
+            <!-- Block M on Ground (width 160, height 70): x=190 to 350, y=200 to 270 -->
+            <rect x="190" y="200" width="160" height="70" rx="4" fill="#1e293b" stroke="#64748b" stroke-width="2"/>
+            <text x="270" y="242" fill="#f8fafc" font-size="20" font-weight="bold" text-anchor="middle">M</text>
+
+            <!-- Block m on top of M (width 100, height 50): x=220 to 320, y=150 to 200 -->
+            <rect x="220" y="150" width="100" height="50" rx="4" fill="#3b82f6" stroke="#93c5fd" stroke-width="2"/>
+            <text x="270" y="182" fill="#ffffff" font-size="18" font-weight="bold" text-anchor="middle">m</text>
+
+            <!-- Force F pulling m to the right -->
+            <line x1="320" y1="175" x2="430" y2="175" stroke="#ef4444" stroke-width="3.5" marker-end="url(#arrowRed)"/>
+            <text x="440" y="180" fill="#ef4444" font-size="16" font-weight="bold">F</text>
+
+            <!-- Friction between m and M -->
+            <text x="330" y="198" fill="#38bdf8" font-size="13" font-weight="bold">μ₁ (m與M間)</text>
+
+            <!-- Friction between M and Ground -->
+            <text x="360" y="265" fill="#f59e0b" font-size="13" font-weight="bold">μ₂ (M與地面)</text>
+
+            <!-- Free body analysis Callout tags -->
+            <!-- Left arrow on m: f1 to left -->
+            <line x1="220" y1="190" x2="160" y2="190" stroke="#06b6d4" stroke-width="2.5" marker-end="url(#arrowCyan)"/>
+            <text x="145" y="185" fill="#06b6d4" font-size="12" font-weight="bold">f₁</text>
+
+            <!-- Friction on M from m: f1 to right -->
+            <line x1="260" y1="205" x2="310" y2="205" stroke="#06b6d4" stroke-width="2.5" marker-end="url(#arrowCyan)"/>
+            <text x="280" y="220" fill="#06b6d4" font-size="12" font-weight="bold">f₁ (推M)</text>
+
+            <!-- Friction on M from ground: f2 to left -->
+            <line x1="230" y1="270" x2="150" y2="270" stroke="#10b981" stroke-width="3" marker-end="url(#arrowGreen)"/>
+            <text x="100" y="265" fill="#10b981" font-size="13" font-weight="bold">f₂ (地阻力)</text>
+
+            <!-- Equilibrium condition text -->
+            <rect x="130" y="305" width="280" height="30" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
+            <text x="270" y="325" fill="#38bdf8" font-size="13" font-weight="bold" text-anchor="middle">M 保持不動條件：f₁ &lt; f₂</text>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Right Column: Interactive Quiz -->
+      <div class="quiz-card">
+        <h2 class="section-title">
+          <span class="step-num">2</span>
+          自我檢測與觀念選擇
+        </h2>
+        
+        <div class="question-box">
+          <p class="question-stem">
+            欲使外力 $F$ 能將木塊 $m$ 拉動，但下層木塊 $M$ 始終保持靜止不動，兩接觸面的靜摩擦係數比值 $\dfrac{\mu_1}{\mu_2}$ 必須滿足何種關係？
+          </p>
+
+          <div class="options-list">
+            <label class="option-item" onclick="selectOption(0)">
+              <input type="radio" name="opt" value="0">
+              <span class="opt-letter">A</span>
+              <span class="opt-content">$\dfrac{\mu_1}{\mu_2} < \dfrac{M}{m}$</span>
+            </label>
+            <label class="option-item" onclick="selectOption(1)">
+              <input type="radio" name="opt" value="1">
+              <span class="opt-letter">B</span>
+              <span class="opt-content">$\dfrac{\mu_1}{\mu_2} < \dfrac{M+m}{m}$</span>
+            </label>
+            <label class="option-item" onclick="selectOption(2)">
+              <input type="radio" name="opt" value="2">
+              <span class="opt-letter">C</span>
+              <span class="opt-content">$\dfrac{\mu_1}{\mu_2} > \dfrac{M}{m}$</span>
+            </label>
+            <label class="option-item" onclick="selectOption(3)">
+              <input type="radio" name="opt" value="3">
+              <span class="opt-letter">D</span>
+              <span class="opt-content">$\dfrac{\mu_1}{\mu_2} > \dfrac{M+m}{m}$</span>
+            </label>
+            <label class="option-item" onclick="selectOption(4)">
+              <input type="radio" name="opt" value="4">
+              <span class="opt-letter">E</span>
+              <span class="opt-content">$\dfrac{\mu_1}{\mu_2} > \dfrac{M}{m+M}$</span>
+            </label>
+          </div>
+
+          <div class="quiz-actions">
+            <button class="btn btn-primary" onclick="checkAnswer()">確認答案</button>
+            <button class="btn btn-secondary" onclick="toggleSolution()">查看完整詳解</button>
+          </div>
+
+          <div id="feedback" class="feedback-box"></div>
+        </div>
+
+        <!-- Detailed Solution (Collapsible) -->
+        <div id="solutionBox" class="solution-card">
+          <h3 class="solution-title">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            詳盡解析與物理思維
+          </h3>
+          <div class="solution-content">
+            <div class="step-card">
+              <h4>步驟一：計算兩接觸面的最大靜摩擦力</h4>
+              <ul>
+                <li>$m$ 與 $M$ 間接觸面：正向力 $N_1 = mg$。<br>
+                  兩塊間之最大靜摩擦力為：
+                  $$f_1 = \mu_1 N_1 = \mu_1 mg$$
+                </li>
+                <li>$M$ 與地面間接觸面：地面承受兩塊總重，正向力 $N_2 = N_1 + Mg = (m + M)g$。<br>
+                  地面對 $M$ 的最大靜摩擦力為：
+                  $$f_2 = \mu_2 N_2 = \mu_2 (m + M)g$$
+                </li>
+              </ul>
+            </div>
+
+            <div class="step-card">
+              <h4>步驟二：分析 $m$ 發生移動的條件</h4>
+              <p>
+                對 $m$ 施加水平外力 $F$。欲使 $m$ 相對 $M$ 發生移動，外力必須克服兩塊間的最大靜摩擦力：
+              </p>
+              $$F \ge f_1 = \mu_1 mg$$
+            </div>
+
+            <div class="step-card">
+              <h4>步驟三：分析 $M$ 保持不動的條件</h4>
+              <p>
+                隔離觀察下方木塊 $M$：
+              </p>
+              <ul>
+                <li>在水平方向，$m$ 滑動時透過摩擦力帶給 $M$ 向前的水平作用力，其最大值即為 $f_1 = \mu_1 mg$。</li>
+                <li>地面能提供給 $M$ 的反向最大靜摩擦阻力為 $f_2 = \mu_2 (m + M)g$。</li>
+                <li>欲使 $M$ 無論如何都不被拖動，$f_1$ 必須<strong>小於地面的最大靜摩擦力 $f_2$</strong>（即 $f_1$ 無法克服 $f_2$）：</li>
+              </ul>
+              $$f_1 < f_2$$
+              $$\mu_1 mg < \mu_2 (M + m)g$$
+              <p>兩邊消去重力加速度 $g$ 並移項：</p>
+              $$\frac{\mu_1}{\mu_2} < \frac{M + m}{m}$$
+            </div>
+
+            <div class="highlight-summary">
+              <strong>名師核心點撥：</strong><br>
+              若 $\dfrac{\mu_1}{\mu_2} > \dfrac{M+m}{m}$，則當外力加大到足以拉動 $m$ 之前，$f_1$ 早已超過了地面的 $f_2$，此時整體 $(m+M)$ 會一起被拖動！<br>
+              因此，唯有在 $\dfrac{\mu_1}{\mu_2} < \dfrac{M+m}{m}$ 時，才能實現「$m$ 被單獨拉動，而 $M$ 留在原地不動」！正確答案為 <strong>(B)</strong>。
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const correctOpt = 1;
+
+    function selectOption(idx) {
+      const items = document.querySelectorAll('.option-item');
+      items.forEach((item, i) => {
+        const radio = item.querySelector('input');
+        if (i === idx) {
+          item.classList.add('selected');
+          radio.checked = true;
+        } else {
+          item.classList.remove('selected');
+          radio.checked = false;
+        }
+      });
+    }
+
+    function checkAnswer() {
+      const selected = document.querySelector('input[name="opt"]:checked');
+      const feedback = document.getElementById('feedback');
+      if (!selected) {
+        feedback.innerHTML = '<span style="color:#f59e0b;">請先點選一個選項！</span>';
+        return;
+      }
+      const val = parseInt(selected.value);
+      if (val === correctOpt) {
+        feedback.innerHTML = '<span style="color:#10b981; font-weight:bold;">🎉 答對了！層間推力 f₁ 必須小於地面極限 f₂，比值條件為 (B)！</span>';
+      } else {
+        feedback.innerHTML = '<span style="color:#ef4444; font-weight:bold;">❌ 答案不正確，請注意地面正向力為 (M+m)g，因此 f₂ = μ₂(M+m)g。</span>';
+      }
+    }
+
+    function toggleSolution() {
+      const sol = document.getElementById('solutionBox');
+      sol.classList.toggle('show');
+      if (sol.classList.contains('show')) {
+        renderMathInElement(sol, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ],
+          throwOnError: false
+        });
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderMathInElement(document.body, {
+        delimiters: [
+          {left: '$$', right: '$$', display: true},
+          {left: '$', right: '$', display: false}
+        ],
+        throwOnError: false
+      });
+    });
+  </script>
+</body>
+</html>

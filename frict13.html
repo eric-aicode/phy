@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>靜摩擦力 13：斜面上兩方塊推力運動分析 | 高中物理靜力學</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+  <link rel="stylesheet" href="shared.css">
+</head>
+<body>
+  <div class="bg-glow"></div>
+  <div class="bg-grid"></div>
+
+  <div class="container">
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+      <div class="nav-links">
+        <a href="index.html" class="nav-btn primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          回目錄
+        </a>
+        <a href="frict12.html" class="nav-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          上一題 (摩擦 12)
+        </a>
+        <a href="frict14.html" class="nav-btn">
+          下一題 (摩擦 14)
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+      <div class="badge-wrapper">
+        <span class="badge badge-page">講義 靜力學-36</span>
+        <span class="badge badge-exam">牛頓第二定律與約束運動</span>
+        <span class="badge badge-accent">靜摩擦力・練習 13</span>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+      <h1 class="main-title">靜摩擦力 13：<span class="gradient-text">斜面上兩方塊水平推力分析</span></h1>
+      <p class="subtitle">光滑斜面兩等質量物塊・水平推力 F 作用於下塊・合力與接觸面正向力深層剖析</p>
+    </header>
+
+    <!-- Main Problem Layout -->
+    <div class="problem-layout">
+      <!-- Left Column: Problem & Visualizer -->
+      <div class="problem-card">
+        <h2 class="section-title">
+          <span class="step-num">1</span>
+          題目情境與物理圖解
+        </h2>
+        <div class="problem-text">
+          <p>
+            如圖所示，一固定斜面上有 $a$、$b$ 兩個正方形物體，它們的質量相等。$F$ 是沿水平方向作用於 $a$ 的外力。已知 $a$、$b$ 的接觸面及 $a$、$b$ 與斜面的接觸面都是光滑的，則下列敘述何者正確？
+          </p>
+        </div>
+
+        <!-- SVG Diagram -->
+        <div class="svg-container">
+          <svg viewBox="0 0 540 300" xmlns="http://www.w3.org/2000/svg">
+            <!-- Ground -->
+            <line x1="50" y1="240" x2="490" y2="240" stroke="#94a3b8" stroke-width="3"/>
+            <path d="M60 240 l-10 12 M90 240 l-10 12 M120 240 l-10 12 M150 240 l-10 12 M180 240 l-10 12 M210 240 l-10 12 M240 240 l-10 12 M270 240 l-10 12 M300 240 l-10 12 M330 240 l-10 12 M360 240 l-10 12 M390 240 l-10 12 M420 240 l-10 12 M450 240 l-10 12" stroke="#64748b" stroke-width="1.5"/>
+
+            <!-- Incline: Base from (130,240) to (370,240), height at (370,100), slope ~ 30 deg -->
+            <polygon points="130,240 370,240 370,100" fill="rgba(30, 41, 59, 0.75)" stroke="#38bdf8" stroke-width="2.5"/>
+            <path d="M 180 240 A 50 50 0 0 0 173 215" fill="none" stroke="#facc15" stroke-width="2"/>
+            <text x="190" y="232" fill="#facc15" font-size="14" font-weight="bold">θ</text>
+
+            <!-- Slope incline angle: ~ 30.25 deg -->
+            <!-- Block a and Block b aligned along incline -->
+            <!-- Let's put a group rotated by -30.25 deg at (130, 240) -->
+            <g transform="translate(130, 240) rotate(-30.25)">
+              <!-- Distance along incline: block a from 40 to 90, block b from 90 to 140 -->
+              <!-- Block a -->
+              <rect x="40" y="-45" width="50" height="45" fill="rgba(56, 189, 248, 0.3)" stroke="#38bdf8" stroke-width="2" rx="2"/>
+              <text x="60" y="-18" fill="#38bdf8" font-size="16" font-weight="bold">a</text>
+
+              <!-- Block b -->
+              <rect x="90" y="-45" width="50" height="45" fill="rgba(168, 85, 247, 0.3)" stroke="#a855f7" stroke-width="2" rx="2"/>
+              <text x="110" y="-18" fill="#a855f7" font-size="16" font-weight="bold">b</text>
+
+              <!-- Normal force on b from incline -->
+              <line x1="115" y1="-22" x2="115" y2="-65" stroke="#a855f7" stroke-width="2" marker-end="url(#arrow-purple-13)"/>
+              <text x="120" y="-60" fill="#a855f7" font-size="12">Nb</text>
+
+              <!-- Normal force on a from incline -->
+              <line x1="65" y1="-22" x2="65" y2="-75" stroke="#38bdf8" stroke-width="2" marker-end="url(#arrow-cyan-13)"/>
+              <text x="70" y="-70" fill="#38bdf8" font-size="12">Na</text>
+            </g>
+
+            <!-- Force F pushing horizontally on a -->
+            <line x1="80" y1="200" x2="160" y2="200" stroke="#ef4444" stroke-width="3" marker-end="url(#arrow-red-13)"/>
+            <text x="65" y="205" fill="#ef4444" font-size="16" font-weight="bold">F</text>
+
+            <defs>
+              <marker id="arrow-red-13" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+                <polygon points="0 0, 8 4, 0 8" fill="#ef4444"/>
+              </marker>
+              <marker id="arrow-purple-13" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+                <polygon points="0 0, 8 4, 0 8" fill="#a855f7"/>
+              </marker>
+              <marker id="arrow-cyan-13" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+                <polygon points="0 0, 8 4, 0 8" fill="#38bdf8"/>
+              </marker>
+            </defs>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Right Column: Interactive Quiz & Solution -->
+      <div class="interactive-card">
+        <h2 class="section-title">
+          <span class="step-num">2</span>
+          即時作答與選項解析
+        </h2>
+
+        <div class="options-grid" id="options">
+          <button class="option-btn" onclick="checkAnswer('A')">
+            <span class="opt-letter">A</span>
+            <span class="opt-text">a、b 一定沿斜面向上運動</span>
+          </button>
+          <button class="option-btn" onclick="checkAnswer('B')">
+            <span class="opt-letter">B</span>
+            <span class="opt-text">a 對 b 的作用力沿水平方向</span>
+          </button>
+          <button class="option-btn" onclick="checkAnswer('C')">
+            <span class="opt-letter">C</span>
+            <span class="opt-text">a、b 對斜面的正向下壓力相等</span>
+          </button>
+          <button class="option-btn" onclick="checkAnswer('D')">
+            <span class="opt-letter">D</span>
+            <span class="opt-text">a 受到合力沿水平方向的分力等於 b 受到合力沿水平方向的分力</span>
+          </button>
+        </div>
+
+        <div class="feedback" id="feedback"></div>
+
+        <button class="toggle-btn" id="toggleBtn" onclick="toggleSolution()">
+          📖 查看牛頓第二定律與受力逐項詳解
+        </button>
+
+        <div class="solution-content" id="solution">
+          <h3 style="color: #38bdf8; margin-bottom: 0.75rem;">💡 核心物理觀念逐項剖析</h3>
+          
+          <div class="step-box">
+            <strong>(A) 選項錯誤：</strong>
+            <p>
+              整體是否沿斜面向上滑動，取決於水平推力沿斜面向上的分力 $F\cos\theta$ 與整體重力沿斜面向下的下滑分力 $(m_a+m_b)g\sin\theta$ 之大小關係。
+              若 $F\cos\theta < 2mg\sin\theta$，物體將沿斜面向下滑動，因此不一定沿斜面向上運動。
+            </p>
+          </div>
+
+          <div class="step-box">
+            <strong>(B) 選項錯誤：</strong>
+            <p>
+              兩塊物體的接觸面互相貼合且垂直於斜面，且表面光滑無摩擦，故兩者間的正向推力必垂直於接觸面，也就是<strong>沿斜面方向</strong>，而非水平方向。
+            </p>
+          </div>
+
+          <div class="step-box">
+            <strong>(C) 選項錯誤：</strong>
+            <p>
+              <ul>
+                <li>物體 $b$ 對斜面的壓力大小等於斜面對其正向力：$N_b = mg\cos\theta$</li>
+                <li>物體 $a$ 不僅受重力分量，還受水平推力 $F$ 向斜面內部的擠壓分量 $F\sin\theta$：
+                  $$N_a = mg\cos\theta + F\sin\theta > N_b$$
+                </li>
+              </ul>
+              因此 $a$ 對斜面的正向下壓力明顯大於 $b$，兩者不相等。
+            </p>
+          </div>
+
+          <div class="step-box">
+            <strong>(D) 選項正確：</strong>
+            <p>
+              $a$、$b$ 始終保持接觸並一起沿斜面運動，兩者之運動加速度必完全相等：
+              $$\vec{a}_a = \vec{a}_b = \vec{a}$$
+              由牛頓第二定律，兩物質量相等（$m_a = m_b = m$），故兩物體所受之「合力向量」完全相同：
+              $$\vec{F}_{\text{合},a} = m\vec{a}_a = m\vec{a} = \vec{F}_{\text{合},b}$$
+              兩者合力向量在大小與方向上均完全相同，因此在任何特定方向（包含水平方向）上的投影分力亦必然完全相等！
+              故正確答案為 <strong>(D)</strong>。
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const correctAns = 'D';
+
+    function checkAnswer(chosen) {
+      const fb = document.getElementById('feedback');
+      const btns = document.querySelectorAll('.option-btn');
+      
+      btns.forEach(btn => {
+        btn.classList.remove('selected', 'correct', 'wrong');
+        const letter = btn.querySelector('.opt-letter').textContent;
+        if (letter === chosen) {
+          btn.classList.add('selected');
+          if (chosen === correctAns) {
+            btn.classList.add('correct');
+          } else {
+            btn.classList.add('wrong');
+          }
+        }
+        if (letter === correctAns && chosen !== correctAns) {
+          btn.classList.add('correct');
+        }
+      });
+
+      if (chosen === correctAns) {
+        fb.className = 'feedback correct';
+        fb.innerHTML = '🎉 正確！因為兩物體質量相同且一起運動加速度相同，兩者的合力向量完全相同，其水平分量必然相等！';
+      } else {
+        fb.className = 'feedback wrong';
+        fb.innerHTML = '❌ 不正確。提示：由牛頓第二定律 F_net = m·a，質量相同的兩物體加速度相同時，合力向量必相等！';
+      }
+    }
+
+    function toggleSolution() {
+      const sol = document.getElementById('solution');
+      const btn = document.getElementById('toggleBtn');
+      if (sol.classList.contains('show')) {
+        sol.classList.remove('show');
+        btn.textContent = '📖 查看牛頓第二定律與受力逐項詳解';
+      } else {
+        sol.classList.add('show');
+        btn.textContent = '🔼 收起解析';
+        renderMathInElement(sol, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ]
+        });
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+      renderMathInElement(document.body, {
+        delimiters: [
+          {left: '$$', right: '$$', display: true},
+          {left: '$', right: '$', display: false}
+        ]
+      });
+    });
+  </script>
+</body>
+</html>

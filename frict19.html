@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>靜摩擦力 19：平行斜面外力極值比與靜摩擦係數 | 高中物理靜力學</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+  <link rel="stylesheet" href="shared.css">
+</head>
+<body>
+  <div class="bg-glow"></div>
+  <div class="bg-grid"></div>
+
+  <div class="container">
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+      <div class="nav-links">
+        <a href="index.html" class="nav-btn primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          回目錄
+        </a>
+        <a href="frict18.html" class="nav-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          上一題 (摩擦 18)
+        </a>
+        <a href="frict20.html" class="nav-btn">
+          下一題 (摩擦 20)
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+      <div class="badge-wrapper">
+        <span class="badge badge-page">講義 靜力學-37</span>
+        <span class="badge badge-exam">斜面滑動極限與摩擦係數比</span>
+        <span class="badge badge-accent">靜摩擦力・練習 19</span>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+      <h1 class="main-title">靜摩擦力 19：<span class="gradient-text">平行斜面外力極值比推導</span></h1>
+      <p class="subtitle">恰將上滑最大力 Fmax 與恰將下滑最小力 Fmin・摩擦力方向反轉與代數化簡</p>
+    </header>
+
+    <!-- Main Problem Layout -->
+    <div class="problem-layout">
+      <!-- Left Column: Problem & Visualizer -->
+      <div class="problem-card">
+        <h2 class="section-title">
+          <span class="step-num">1</span>
+          題目情境與物理圖解
+        </h2>
+        <div class="problem-text">
+          <p>
+            在傾斜角為 $\theta$ 的粗糙面上置一物體會自行滑下，若以平行於斜面向上之力支持之，在物體得以平衡的範圍內，改變力的大小，發現最大值為最小值的 $n$ 倍（$n > 1$），則靜摩擦係數 $\mu$ 為？
+          </p>
+        </div>
+
+        <!-- SVG Diagram -->
+        <div class="svg-container">
+          <svg viewBox="0 0 540 300" xmlns="http://www.w3.org/2000/svg">
+            <!-- Ground -->
+            <line x1="40" y1="240" x2="500" y2="240" stroke="#94a3b8" stroke-width="3"/>
+            <path d="M50 240 l-10 12 M80 240 l-10 12 M110 240 l-10 12 M140 240 l-10 12 M170 240 l-10 12 M200 240 l-10 12 M230 240 l-10 12 M260 240 l-10 12 M290 240 l-10 12 M320 240 l-10 12 M350 240 l-10 12 M380 240 l-10 12 M410 240 l-10 12 M440 240 l-10 12 M470 240 l-10 12" stroke="#64748b" stroke-width="1.5"/>
+
+            <!-- Incline: base from (120,240) to (420,240), height (420,80), angle ~ 28 deg -->
+            <polygon points="120,240 420,240 420,80" fill="rgba(30, 41, 59, 0.75)" stroke="#38bdf8" stroke-width="2.5"/>
+            <path d="M 170 240 A 50 50 0 0 0 164 216" fill="none" stroke="#facc15" stroke-width="2"/>
+            <text x="180" y="233" fill="#facc15" font-size="14" font-weight="bold">θ</text>
+
+            <!-- Case 1: Fmin (Left box) -->
+            <g transform="translate(230, 181) rotate(-28)">
+              <rect x="-25" y="-35" width="50" height="35" fill="rgba(0, 229, 255, 0.25)" stroke="#00e5ff" stroke-width="2" rx="2"/>
+              <text x="-12" y="-12" fill="#00e5ff" font-size="12" font-weight="bold">Fmin</text>
+              <!-- Fmin arrow up slope -->
+              <line x1="25" y1="-17.5" x2="65" y2="-17.5" stroke="#00e5ff" stroke-width="2.5" marker-end="url(#arrow-cyan-19)"/>
+              <!-- fs,max arrow up slope (prevents sliding down) -->
+              <line x1="0" y1="0" x2="35" y2="0" stroke="#00e676" stroke-width="2" marker-end="url(#arrow-green-19)"/>
+              <text x="5" y="15" fill="#00e676" font-size="11">fs(上)</text>
+              <!-- mg sin theta down slope -->
+              <line x1="-25" y1="-17.5" x2="-65" y2="-17.5" stroke="#ef4444" stroke-width="2" marker-end="url(#arrow-red-19)"/>
+              <text x="-65" y="-23" fill="#ef4444" font-size="11">mg sinθ</text>
+            </g>
+
+            <!-- Case 2: Fmax (Right box) -->
+            <g transform="translate(340, 123) rotate(-28)">
+              <rect x="-25" y="-35" width="50" height="35" fill="rgba(239, 68, 68, 0.25)" stroke="#ef4444" stroke-width="2" rx="2"/>
+              <text x="-14" y="-12" fill="#ef4444" font-size="12" font-weight="bold">Fmax</text>
+              <!-- Fmax arrow up slope -->
+              <line x1="25" y1="-17.5" x2="80" y2="-17.5" stroke="#ef4444" stroke-width="3" marker-end="url(#arrow-red-19)"/>
+              <!-- fs,max arrow DOWN slope (opposes moving up) -->
+              <line x1="0" y1="0" x2="-35" y2="0" stroke="#00e676" stroke-width="2" marker-end="url(#arrow-green-19)"/>
+              <text x="-35" y="15" fill="#00e676" font-size="11">fs(下)</text>
+            </g>
+
+            <defs>
+              <marker id="arrow-cyan-19" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+                <polygon points="0 0, 8 4, 0 8" fill="#00e5ff"/>
+              </marker>
+              <marker id="arrow-green-19" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+                <polygon points="0 0, 8 4, 0 8" fill="#00e676"/>
+              </marker>
+              <marker id="arrow-red-19" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+                <polygon points="0 0, 8 4, 0 8" fill="#ef4444"/>
+              </marker>
+            </defs>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Right Column: Interactive Quiz & Solution -->
+      <div class="interactive-card">
+        <h2 class="section-title">
+          <span class="step-num">2</span>
+          即時作答與物理定律判斷
+        </h2>
+
+        <div class="options-grid" id="options">
+          <button class="option-btn" onclick="checkAnswer('A')">
+            <span class="opt-letter">A</span>
+            <span class="opt-text">$\dfrac{\tan\theta}{n}$</span>
+          </button>
+          <button class="option-btn" onclick="checkAnswer('B')">
+            <span class="opt-letter">B</span>
+            <span class="opt-text">$\dfrac{n}{\tan\theta}$</span>
+          </button>
+          <button class="option-btn" onclick="checkAnswer('C')">
+            <span class="opt-letter">C</span>
+            <span class="opt-text">$\dfrac{n-1}{n+1}\tan\theta$</span>
+          </button>
+          <button class="option-btn" onclick="checkAnswer('D')">
+            <span class="opt-letter">D</span>
+            <span class="opt-text">$\dfrac{n+1}{n-1}\sin\theta$</span>
+          </button>
+          <button class="option-btn" onclick="checkAnswer('E')">
+            <span class="opt-letter">E</span>
+            <span class="opt-text">以上皆非</span>
+          </button>
+        </div>
+
+        <div class="feedback" id="feedback"></div>
+
+        <button class="toggle-btn" id="toggleBtn" onclick="toggleSolution()">
+          📖 查看上滑與下滑雙臨界聯立推導
+        </button>
+
+        <div class="solution-content" id="solution">
+          <h3 style="color: #38bdf8; margin-bottom: 0.75rem;">💡 核心物理觀念詳解</h3>
+          
+          <div class="step-box">
+            <strong>1. 物體受力分析：</strong>
+            <p>
+              物體受重力沿斜面下滑分力 $mg\sin\theta$，以及垂直斜面的正向力 $N = mg\cos\theta$。
+              最大靜摩擦力大小為：
+              $$f_{s,\max} = \mu N = \mu mg\cos\theta$$
+            </p>
+          </div>
+
+          <div class="step-box">
+            <strong>2. 恰將下滑（外力最小值 $F_{\min}$）：</strong>
+            <p>
+              當外力較小、物體恰要下滑時，最大靜摩擦力方向<strong>沿斜面向上</strong>協助支持物體：
+              $$F_{\min} + f_{s,\max} = mg\sin\theta$$
+              $$F_{\min} = mg\sin\theta - \mu mg\cos\theta \quad \cdots \text{(式 1)}$$
+            </p>
+          </div>
+
+          <div class="step-box">
+            <strong>3. 恰將上滑（外力最大值 $F_{\max}$）：</strong>
+            <p>
+              當外力增大至物體恰要向上滑動時，最大靜摩擦力方向<strong>沿斜面向下</strong>抵抗上滑：
+              $$F_{\max} = mg\sin\theta + f_{s,\max}$$
+              $$F_{\max} = mg\sin\theta + \mu mg\cos\theta \quad \cdots \text{(式 2)}$$
+            </p>
+          </div>
+
+          <div class="step-box">
+            <strong>4. 聯立求靜摩擦係數 $\mu$：</strong>
+            <p>
+              已知 $F_{\max} = n F_{\min}$，將式 2 除以式 1：
+              $$\frac{F_{\max}}{F_{\min}} = \frac{mg\sin\theta + \mu mg\cos\theta}{mg\sin\theta - \mu mg\cos\theta} = n$$
+              分子分母同除以 $mg\cos\theta$：
+              $$\frac{\tan\theta + \mu}{\tan\theta - \mu} = n$$
+              交叉相乘：
+              $$\tan\theta + \mu = n\tan\theta - n\mu$$
+              $$(n + 1)\mu = (n - 1)\tan\theta$$
+              $$\mu = \frac{n - 1}{n + 1}\tan\theta$$
+              故正確答案為 <strong>(C)</strong>。
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const correctAns = 'C';
+
+    function checkAnswer(chosen) {
+      const fb = document.getElementById('feedback');
+      const btns = document.querySelectorAll('.option-btn');
+      
+      btns.forEach(btn => {
+        btn.classList.remove('selected', 'correct', 'wrong');
+        const letter = btn.querySelector('.opt-letter').textContent;
+        if (letter === chosen) {
+          btn.classList.add('selected');
+          if (chosen === correctAns) {
+            btn.classList.add('correct');
+          } else {
+            btn.classList.add('wrong');
+          }
+        }
+        if (letter === correctAns && chosen !== correctAns) {
+          btn.classList.add('correct');
+        }
+      });
+
+      if (chosen === correctAns) {
+        fb.className = 'feedback correct';
+        fb.innerHTML = '🎉 正確！Fmax = mg(sinθ + μ cosθ)，Fmin = mg(sinθ - μ cosθ)，相除得 (tanθ+μ)/(tanθ-μ) = n，解出 μ = [(n-1)/(n+1)] tanθ！';
+      } else {
+        fb.className = 'feedback wrong';
+        fb.innerHTML = '❌ 不正確。注意：下滑臨界時最大靜摩擦力朝上，上滑臨界時最大靜摩擦力朝下，列出比值交叉相乘！';
+      }
+    }
+
+    function toggleSolution() {
+      const sol = document.getElementById('solution');
+      const btn = document.getElementById('toggleBtn');
+      if (sol.classList.contains('show')) {
+        sol.classList.remove('show');
+        btn.textContent = '📖 查看上滑與下滑雙臨界聯立推導';
+      } else {
+        sol.classList.add('show');
+        btn.textContent = '🔼 收起解析';
+        renderMathInElement(sol, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ]
+        });
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+      renderMathInElement(document.body, {
+        delimiters: [
+          {left: '$$', right: '$$', display: true},
+          {left: '$', right: '$', display: false}
+        ]
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>靜力平衡 48：斜傾木棒樞紐施力方向與夾角範圍 | 高中物理靜力學</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+  <link rel="stylesheet" href="shared.css">
+</head>
+<body>
+  <div class="bg-glow"></div>
+  <div class="bg-grid"></div>
+
+  <div class="container">
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+      <div class="nav-links">
+        <a href="index.html" class="nav-btn primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          回目錄
+        </a>
+        <a href="equil47.html" class="nav-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          上一題 (平衡 47)
+        </a>
+        <a href="equil49.html" class="nav-btn">
+          下一題 (平衡 49)
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+      <div class="badge-wrapper">
+        <span class="badge badge-page">講義 靜力學-33</span>
+        <span class="badge badge-exam">樞紐施力角度不等式</span>
+        <span class="badge badge-accent">靜力平衡・練習 48</span>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+      <h1 class="main-title">靜力平衡 48：<span class="gradient-text">斜傾木棒樞紐施力方向與夾角範圍</span></h1>
+      <p class="subtitle">底端水平拉繩約束・力矩平衡求解繩張力・正切函數單調性嚴格證明夾角範圍</p>
+    </header>
+
+    <!-- Main Problem Layout -->
+    <div class="problem-layout">
+      <!-- Left Column: Problem & Visualizer -->
+      <div class="problem-card">
+        <h2 class="section-title">
+          <span class="step-num">1</span>
+          題目情境與物理圖解
+        </h2>
+        <div class="problem-text">
+          <p>
+            如圖所示，有一木棒上端以樞紐固定於牆角，木棒中間懸掛一重物 $W$，且木棒下端以一水平細繩固定於右側垂直牆面。
+          </p>
+          <p>
+            設木棒與鉛直線之夾角為 $\theta$（$0^\circ < \theta < 90^\circ$）。若樞紐施予木棒之力 $F$ 的方向與鉛直線之夾角為 $\alpha$，則夾角 $\alpha$ 可能為下列何者？
+          </p>
+        </div>
+
+        <div class="interactive-container">
+          <div style="font-size: 0.88rem; color: var(--text-dim); margin-bottom: 8px; display: flex; justify-content: space-between;">
+            <span>📐 樞紐反作用力與力矩正交分解</span>
+            <span style="color: var(--accent-cyan);">tan α = (1/2) tan θ &lt; tan θ ⇒ 0° &lt; α &lt; θ</span>
+          </div>
+          <svg viewBox="0 0 540 370" class="diagram-svg" style="background: rgba(15, 23, 42, 0.7); border-radius: 8px;">
+            <defs>
+              <marker id="arr-c" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#38bdf8"/>
+              </marker>
+              <marker id="arr-g" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#00e676"/>
+              </marker>
+              <marker id="arr-r" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#f43f5e"/>
+              </marker>
+              <marker id="arr-y" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#fbbf24"/>
+              </marker>
+            </defs>
+
+            <!-- Ceiling / Wall Corner -->
+            <line x1="80" y1="120" x2="300" y2="120" stroke="#64748b" stroke-width="4"/>
+            <!-- Right Vertical Wall -->
+            <line x1="420" y1="80" x2="420" y2="340" stroke="#64748b" stroke-width="4"/>
+
+            <!-- Corner Hinge O = (300, 120) -->
+            <circle cx="300" cy="120" r="7" fill="#f43f5e" stroke="#f8fafc" stroke-width="2"/>
+            <text x="312" y="115" fill="#f43f5e" font-size="14" font-weight="bold">樞紐 O</text>
+
+            <!-- Vertical reference dashed line down from O -->
+            <line x1="300" y1="50" x2="300" y2="320" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4 3"/>
+
+            <!-- Rod OB: angle theta with vertical. Let theta = 45 deg.
+                 length ell = 180.
+                 Bottom B = (300 + 180*sin(45), 120 + 180*cos(45)) = (300 + 127, 120 + 127) = (427, 247).
+                 Wait, wall is at x=420. Let's make wall at x=440.
+                 B = (400, 260) with dx=100, dy=140.
+            -->
+            <line x1="300" y1="120" x2="400" y2="260" stroke="#f8fafc" stroke-width="8" stroke-linecap="round"/>
+            <line x1="300" y1="120" x2="400" y2="260" stroke="#38bdf8" stroke-width="4" stroke-linecap="round"/>
+
+            <!-- Angle theta with vertical -->
+            <path d="M 300 170 A 50 50 0 0 0 328 159" fill="none" stroke="#38bdf8" stroke-width="2"/>
+            <text x="312" y="185" fill="#38bdf8" font-size="13" font-weight="bold">θ</text>
+
+            <!-- Midpoint M = (350, 190) with hanging weight W -->
+            <circle cx="350" cy="190" r="5" fill="#fbbf24"/>
+            <line x1="350" y1="190" x2="350" y2="270" stroke="#fbbf24" stroke-width="2.5"/>
+            <rect x="335" y="270" width="30" height="30" fill="#1e293b" stroke="#fbbf24" stroke-width="2" rx="4"/>
+            <text x="342" y="291" fill="#fbbf24" font-size="14" font-weight="bold">W</text>
+            <text x="358" y="215" fill="#fbbf24" font-size="12">中點重物</text>
+
+            <!-- Horizontal string from B(400, 260) to right wall (440, 260) -->
+            <line x1="400" y1="260" x2="440" y2="260" stroke="#f43f5e" stroke-width="3" stroke-dasharray="5 3"/>
+            <line x1="400" y1="260" x2="435" y2="260" stroke="#f43f5e" stroke-width="3" marker-end="url(#arr-r)"/>
+            <text x="375" y="285" fill="#f43f5e" font-size="13" font-weight="bold">水平繩張力 T</text>
+
+            <!-- Hinge Force F pointing up-left:
+                 Vertical component Fy = W (upwards)
+                 Horizontal component Fx = T (leftwards)
+                 Since tan(alpha) = T / W = 1/2 tan(theta), alpha < theta.
+                 Vector from O(300, 120) pointing up-left:
+                 dx = -80, dy = -110 -->
+            <line x1="300" y1="120" x2="225" y2="40" stroke="#00e676" stroke-width="3.5" marker-end="url(#arr-g)"/>
+            <text x="175" y="45" fill="#00e676" font-size="15" font-weight="bold">F (樞紐力)</text>
+
+            <!-- Angle alpha with vertical upward dashed line -->
+            <path d="M 300 75 A 45 45 0 0 0 270 73" fill="none" stroke="#00e676" stroke-width="2"/>
+            <text x="268" y="65" fill="#00e676" font-size="13" font-weight="bold">α</text>
+
+            <!-- Formula note -->
+            <g transform="translate(40, 160)">
+              <rect x="0" y="0" width="190" height="130" fill="rgba(30, 41, 59, 0.85)" stroke="rgba(255,255,255,0.15)" rx="6"/>
+              <text x="12" y="24" fill="#38bdf8" font-size="12" font-weight="bold">力矩與力平衡聯立</text>
+              <text x="12" y="48" fill="#e2e8f0" font-size="11">對 O 點列力矩：</text>
+              <text x="24" y="66" fill="#fbbf24" font-size="11">T = ½ W tan θ</text>
+              <text x="12" y="88" fill="#e2e8f0" font-size="11">樞紐力分解：tan α = T / W</text>
+              <text x="24" y="108" fill="#00e676" font-size="12" font-weight="bold">tan α = ½ tan θ</text>
+              <text x="12" y="124" fill="#38bdf8" font-size="11">⇒ 0° &lt; α &lt; θ</text>
+            </g>
+
+            <text x="408" y="255" fill="#f8fafc" font-size="15" font-weight="bold">B</text>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Right Column: Interactive Quiz -->
+      <div class="problem-card">
+        <h2 class="section-title">
+          <span class="step-num">2</span>
+          自我檢測與即時核對
+        </h2>
+        <p style="color: var(--text-dim); font-size: 0.95rem; margin-bottom: 16px;">
+          請依據轉動平衡與正切函數關係，選出夾角 $\alpha$ 的正確範圍：
+        </p>
+
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="selectOption(this, 'A')">
+            <span class="opt-letter">A</span>
+            <span class="opt-text">$\alpha = 0^\circ$</span>
+          </div>
+          <div class="quiz-option" onclick="selectOption(this, 'B')">
+            <span class="opt-letter">B</span>
+            <span class="opt-text">$0^\circ < \alpha < \theta$</span>
+          </div>
+          <div class="quiz-option" onclick="selectOption(this, 'C')">
+            <span class="opt-letter">C</span>
+            <span class="opt-text">$\alpha = \theta$</span>
+          </div>
+          <div class="quiz-option" onclick="selectOption(this, 'D')">
+            <span class="opt-letter">D</span>
+            <span class="opt-text">$\theta < \alpha < 90^\circ$</span>
+          </div>
+          <div class="quiz-option" onclick="selectOption(this, 'E')">
+            <span class="opt-letter">E</span>
+            <span class="opt-text">皆有可能</span>
+          </div>
+        </div>
+
+        <div class="quiz-actions">
+          <button class="nav-btn primary" onclick="checkAnswer()">核對答案</button>
+          <button class="nav-btn" onclick="toggleSolution()">查看解析</button>
+        </div>
+
+        <div id="feedback" class="quiz-feedback"></div>
+      </div>
+    </div>
+
+    <!-- Solution Section -->
+    <div id="solution-card" class="solution-card">
+      <h2 class="section-title">
+        <span class="step-num">3</span>
+        完整觀念解析與推導過程
+      </h2>
+      <div class="solution-content">
+        <div class="formula-box">
+          $$\sum \tau_O = 0 \implies W \cdot \left(\frac{1}{2}\ell \sin\theta\right) = T \cdot (\ell \cos\theta) \implies T = \frac{1}{2}W \tan\theta$$
+          $$\sum F_y = 0 \implies F\cos\alpha = W, \quad \sum F_x = 0 \implies F\sin\alpha = T$$
+          $$\tan\alpha = \frac{T}{W} = \frac{1}{2}\tan\theta < \tan\theta \implies 0^\circ < \alpha < \theta$$
+        </div>
+
+        <div class="step-card">
+          <h4>步驟一：以樞紐 O 為轉軸求水平繩張力 T</h4>
+          <p>
+            木棒長度為 $\ell$，與鉛垂線夾角為 $\theta$。以木棒上端樞紐 $O$ 為支點：
+          </p>
+          <ul>
+            <li>重物 $W$ 懸掛於木棒中點（距 $O$ 點 $\frac{1}{2}\ell$），鉛直向下之重力力臂為 $\frac{1}{2}\ell \sin\theta$，產生順時針力矩。</li>
+            <li>木棒下端受水平細繩拉力 $T$ 向右拉，水平拉力之鉛直力臂為 $\ell \cos\theta$，產生逆時針力矩。</li>
+          </ul>
+          $$W \cdot \left(\frac{1}{2}\ell \sin\theta\right) = T \cdot (\ell \cos\theta)$$
+          $$T = \frac{1}{2}W \cdot \frac{\sin\theta}{\cos\theta} = \frac{1}{2}W \tan\theta$$
+        </div>
+
+        <div class="step-card">
+          <h4>步驟二：分析樞紐反作用力 F 之正交分量</h4>
+          <p>
+            木棒處於合力平衡狀態，設樞紐施予木棒之力為 $F$，方向與鉛垂線夾角為 $\alpha$（向左上方傾斜）：
+          </p>
+          <ul>
+            <li><strong>鉛直合力平衡</strong>：樞紐力鉛直向上分量平衡重力 $W$：
+              $$F\cos\alpha = W$$
+            </li>
+            <li><strong>水平合力平衡</strong>：樞紐力水平向左分量平衡水平繩張力 $T$：
+              $$F\sin\alpha = T$$
+            </li>
+          </ul>
+        </div>
+
+        <div class="step-card">
+          <h4>步驟三：正切函數嚴格單調遞增證明角度範圍</h4>
+          <p>
+            將兩分力方程式相除：
+          </p>
+          $$\tan\alpha = \frac{F\sin\alpha}{F\cos\alpha} = \frac{T}{W}$$
+          <p>
+            將步驟一所求得的 $T = \frac{1}{2}W\tan\theta$ 代入：
+          </p>
+          $$\tan\alpha = \frac{\frac{1}{2}W\tan\theta}{W} = \frac{1}{2}\tan\theta$$
+          <p>
+            因為木棒處於實際傾斜平衡，夾角滿足 $0^\circ < \theta < 90^\circ$。在第一象限內，正切函數 $\tan x$ 為嚴格遞增函數且恆為正：
+          </p>
+          $$0 < \tan\alpha = \frac{1}{2}\tan\theta < \tan\theta$$
+          $$\implies 0^\circ < \alpha < \theta$$
+          <p>
+            因此，夾角 $\alpha$ 的範圍必定介於 $0^\circ$ 與 $\theta$ 之間。正確選項為 <strong>(B)</strong>。
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let selectedOption = null;
+    const correctAnswer = 'B';
+
+    function selectOption(element, opt) {
+      document.querySelectorAll('.quiz-option').forEach(el => el.classList.remove('selected'));
+      element.classList.add('selected');
+      selectedOption = opt;
+    }
+
+    function checkAnswer() {
+      const feedback = document.getElementById('feedback');
+      if (!selectedOption) {
+        feedback.innerHTML = '<span style="color: var(--accent-yellow);">⚠️ 請先點擊選擇一個選項！</span>';
+        feedback.className = 'quiz-feedback show';
+        return;
+      }
+      if (selectedOption === correctAnswer) {
+        feedback.innerHTML = '🎉 <strong>完全正確！</strong> 對轉軸 O 列力矩得 $T = \\frac{1}{2}W\\tan\\theta$，樞紐力滿足 $\\tan\\alpha = \\frac{T}{W} = \\frac{1}{2}\\tan\\theta$。由正切函數遞增性，得到 $0^\\circ < \\alpha < \\theta$！';
+        feedback.className = 'quiz-feedback show correct';
+        document.getElementById('solution-card').classList.add('show');
+      } else {
+        feedback.innerHTML = '❌ <strong>答案不對喔！</strong> 提示：先由力矩平衡求出繩張力 $T = \\frac{1}{2}W\\tan\\theta$，再由樞紐力平衡 $\\tan\\alpha = T/W = \\frac{1}{2}\\tan\\theta$ 比較 $\\alpha$ 與 $\\theta$ 的大小！';
+        feedback.className = 'quiz-feedback show incorrect';
+      }
+    }
+
+    function toggleSolution() {
+      const sol = document.getElementById('solution-card');
+      sol.classList.toggle('show');
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      if (window.renderMathInElement) {
+        renderMathInElement(document.body, {
+          delimiters: [
+            { left: "$$", right: "$$", display: true },
+            { left: "$", right: "$", display: false }
+          ]
+        });
+      }
+    });
+  </script>
+</body>
+</html>

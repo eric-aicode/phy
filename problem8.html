@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>範例 8：水平輕棒懸繩掛重物與樞鈕受力分析 | 高中物理靜力學</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+  <link rel="stylesheet" href="shared.css">
+</head>
+<body>
+  <div class="bg-glow"></div>
+  <div class="bg-grid"></div>
+
+  <div class="container">
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+      <div class="nav-links">
+        <a href="index.html" class="nav-btn primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          回目錄
+        </a>
+        <a href="problem7.html" class="nav-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          上一題 (範例 7)
+        </a>
+        <a href="problem9.html" class="nav-btn">
+          下一題 (範例 9)
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+      <div class="badge-wrapper">
+        <span class="badge badge-page">講義 靜力學-13</span>
+        <span class="badge badge-accent">樞鈕約束力與三力共點分析</span>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+      <h1 class="main-title">範例 8：<span class="gradient-text">水平輕棒懸重之樞鈕力分析</span></h1>
+      <p class="subtitle">力矩方程式分析分量・三力共點幾何秒殺判斷樞鈕作用力與夾角動態趨勢</p>
+    </header>
+
+    <!-- Problem Showcase Card -->
+    <section class="card problem-card">
+      <div class="card-header">
+        <div class="card-icon">📖</div>
+        <div>
+          <h2>題目內容</h2>
+          <span class="card-tag">聯考與段考經典概念定性題</span>
+        </div>
+      </div>
+
+      <div class="problem-body">
+        <p>
+          一木棒長 <strong>$\ell$</strong>，其重量可忽略。一端 <strong>O</strong> 以樞鈕固定於牆上，另端 <strong>P</strong> 用輕繩懸於牆，使木棒成水平，而輕繩與棒成 <strong>$\theta$</strong> 之夾角。
+        </p>
+        <p>
+          於木棒上距牆為 <strong>$x$</strong> 距離處懸一重 <strong>$W$</strong> 的物體，其平衡狀態如下圖所示。
+        </p>
+        <p>
+          今若將木棒上懸重物之位置<strong>向右移（即令 $x$ 增大）</strong>，則下列各物理量將如何變化？（請判斷為<strong>【變大】</strong>、<strong>【變小】</strong>或<strong>【不變】</strong>）
+        </p>
+        <ul class="condition-list">
+          <li><strong>(A)</strong> 輕繩上張力的量值 $T$</li>
+          <li><strong>(B)</strong> 樞鈕施予木棒作用力的水平分量 $F_x$</li>
+          <li><strong>(C)</strong> 樞鈕施予木棒作用力之鉛直分量 $F_y$</li>
+          <li><strong>(D)</strong> 樞鈕對木棒作用力方向與水平的夾角 $\alpha$</li>
+        </ul>
+      </div>
+
+      <!-- Problem Physical Diagram (SVG) -->
+      <div class="canvas-card">
+        <div class="canvas-title-bar">
+          <h3><span class="dot dot-blue"></span> 裝置受力圖與三力共點幾何對照</h3>
+          <span class="view-tag">Force & Geometry Diagram</span>
+        </div>
+        <div class="svg-wrapper">
+          <svg viewBox="0 0 760 360" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="arr-p8-f" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                <path d="M0 1L10 5L0 9z" fill="#ff5252"/>
+              </marker>
+              <marker id="arr-p8-c" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                <path d="M0 1L10 5L0 9z" fill="#00e5ff"/>
+              </marker>
+              <marker id="arr-p8-g" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                <path d="M0 1L10 5L0 9z" fill="#00e676"/>
+              </marker>
+            </defs>
+
+            <!-- LEFT: Physical Setup with Forces -->
+            <g transform="translate(40, 20)">
+              <rect x="0" y="0" width="340" height="310" rx="10" fill="#0f172a" stroke="#1e293b" stroke-width="1.5"/>
+              <text x="20" y="28" fill="#94a3b8" font-size="13" font-weight="600">受力分析圖（x 增大趨勢）</text>
+
+              <!-- Vertical Wall -->
+              <line x1="60" y1="40" x2="60" y2="280" stroke="#78909c" stroke-width="5"/>
+              <g stroke="#546e7a" stroke-width="1.5" opacity="0.3">
+                <line x1="60" y1="50" x2="48" y2="60"/><line x1="60" y1="80" x2="48" y2="90"/>
+                <line x1="60" y1="110" x2="48" y2="120"/><line x1="60" y1="140" x2="48" y2="150"/>
+                <line x1="60" y1="170" x2="48" y2="180"/><line x1="60" y1="200" x2="48" y2="210"/>
+                <line x1="60" y1="230" x2="48" y2="240"/><line x1="60" y1="260" x2="48" y2="270"/>
+              </g>
+
+              <!-- Horizontal Rod OP: O at (60, 180), P at (280, 180), length = 220px -->
+              <line x1="60" y1="180" x2="280" y2="180" stroke="#cbd5e1" stroke-width="6" stroke-linecap="round"/>
+              <!-- Pivot O -->
+              <circle cx="60" cy="180" r="7" fill="#fff" stroke="#ffab00" stroke-width="3"/>
+              <text x="40" y="185" fill="#ffab00" font-size="13" font-weight="bold">O</text>
+              <text x="285" y="185" fill="#cbd5e1" font-size="13" font-weight="bold">P</text>
+
+              <!-- Rope from (60, 70) to (280, 180) -->
+              <line x1="60" y1="70" x2="280" y2="180" stroke="#00e5ff" stroke-width="3"/>
+              <rect x="140" y="105" width="60" height="22" rx="4" fill="rgba(15, 23, 42, 0.9)" stroke="#00e5ff" stroke-width="1"/>
+              <text x="170" y="120" fill="#00e5ff" font-size="11" font-weight="bold" text-anchor="middle">張力 T</text>
+
+              <!-- Angle theta at P -->
+              <path d="M240,180 A40,40 0 0,1 247,163" fill="none" stroke="#00e5ff" stroke-width="1.8"/>
+              <text x="232" y="172" fill="#00e5ff" font-size="11" font-weight="bold">θ</text>
+
+              <!-- Hanging Mass W at distance x = 140px (X = 200) -->
+              <line x1="180" y1="180" x2="180" y2="225" stroke="#94a3b8" stroke-width="2"/>
+              <rect x="160" y="225" width="40" height="34" rx="4" fill="#334155" stroke="#64748b" stroke-width="1.5"/>
+              <text x="180" y="247" fill="#fff" font-size="11" font-weight="bold" text-anchor="middle">W</text>
+
+              <!-- Dimension x -->
+              <line x1="60" y1="195" x2="180" y2="195" stroke="#ffab00" stroke-width="1.5"/>
+              <text x="120" y="210" fill="#ffab00" font-size="11" font-weight="bold" text-anchor="middle">距離 x ➔ 右移</text>
+
+              <!-- Pivot Reaction Force components -->
+              <!-- Fx right -->
+              <line x1="60" y1="180" x2="115" y2="180" stroke="#00e676" stroke-width="2.5" marker-end="url(#arr-p8-g)"/>
+              <text x="90" y="172" fill="#00e676" font-size="10" font-weight="bold">Fx</text>
+              <!-- Fy up -->
+              <line x1="60" y1="180" x2="60" y2="135" stroke="#00e676" stroke-width="2.5" marker-end="url(#arr-p8-g)"/>
+              <text x="68" y="145" fill="#00e676" font-size="10" font-weight="bold">Fy</text>
+            </g>
+
+            <!-- RIGHT: Three Concurrent Forces Geometry -->
+            <g transform="translate(410, 20)">
+              <rect x="0" y="0" width="310" height="310" rx="10" fill="#0f172a" stroke="#1e293b" stroke-width="1.5"/>
+              <text x="20" y="28" fill="#00e676" font-size="13" font-weight="600">三力共點交點變化圖解（秒殺法）</text>
+
+              <!-- Mini Rod OP -->
+              <line x1="40" y1="180" x2="260" y2="180" stroke="#64748b" stroke-width="4"/>
+              <circle cx="40" cy="180" r="5" fill="#ffab00"/>
+              <text x="28" y="185" fill="#ffab00" font-size="12">O</text>
+              <text x="268" y="185" fill="#64748b" font-size="12">P</text>
+
+              <!-- Rope line extending up-left -->
+              <line x1="260" y1="180" x2="40" y2="70" stroke="#00e5ff" stroke-width="2"/>
+
+              <!-- State 1: x1 = 110. Intersection C1 is on rope line -->
+              <!-- Line equation: Y = 180 - (180 - 70) / (260 - 40) * (260 - X) = 180 - 0.5*(260 - X) -->
+              <!-- At X = 130: Y = 180 - 65 = 115. Intersection C1 = (130, 115) -->
+              <line x1="130" y1="180" x2="130" y2="80" stroke="#ff5252" stroke-width="1.5" stroke-dasharray="2,2"/>
+              <circle cx="130" cy="115" r="4" fill="#ffd54f"/>
+              <!-- Line from O(40, 180) to C1(130, 115) -->
+              <line x1="40" y1="180" x2="130" y2="115" stroke="#ffd54f" stroke-width="2"/>
+              <text x="95" y="138" fill="#ffd54f" font-size="10">夾角 α₁</text>
+
+              <!-- State 2: x2 right shift X = 190. Intersection C2: Y = 180 - 0.5*(260 - 190) = 145 -->
+              <line x1="190" y1="180" x2="190" y2="120" stroke="#ff4081" stroke-width="1.5" stroke-dasharray="2,2"/>
+              <circle cx="190" cy="145" r="5" fill="#ff4081"/>
+              <!-- Line from O(40, 180) to C2(190, 145) -->
+              <line x1="40" y1="180" x2="190" y2="145" stroke="#ff4081" stroke-width="2.5"/>
+              <text x="145" y="172" fill="#ff4081" font-size="10" font-weight="bold">夾角 α₂ 變小！</text>
+
+              <rect x="20" y="235" width="270" height="58" rx="6" fill="rgba(124, 77, 255, 0.1)" stroke="#7c4dff" stroke-width="1"/>
+              <text x="30" y="255" fill="#d1c4e9" font-size="11">三力平衡必共點：重力線與繩力交點</text>
+              <text x="30" y="271" fill="#ffab00" font-size="11">隨 x 增大向右下方移動 ➔</text>
+              <text x="30" y="285" fill="#00e676" font-size="11" font-weight="bold">樞鈕力與水平夾角 α 必然變小！</text>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- Student Worksheet Card -->
+    <section class="card worksheet-card">
+      <div class="card-header">
+        <div class="card-icon">✏️</div>
+        <div>
+          <h2>學生自主作答區（4項變化趨勢判斷）</h2>
+          <span class="card-tag">請依思考選擇各項變化趨勢</span>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 16px;">
+        <!-- QA -->
+        <div class="quiz-item">
+          <label>
+            <span class="q-num">A</span> (A) 輕繩上張力的量值 $T$：
+          </label>
+          <div class="options-grid">
+            <button class="option-btn" data-qid="A" data-val="增大">變大 (正確)</button>
+            <button class="option-btn" data-qid="A" data-val="減小">變小</button>
+            <button class="option-btn" data-qid="A" data-val="不變">不變</button>
+          </div>
+          <span class="feedback-msg" id="fbA"></span>
+        </div>
+
+        <!-- QB -->
+        <div class="quiz-item">
+          <label>
+            <span class="q-num">B</span> (B) 樞鈕施予木棒作用力的水平分量 $F_x$：
+          </label>
+          <div class="options-grid">
+            <button class="option-btn" data-qid="B" data-val="增大">變大 (正確)</button>
+            <button class="option-btn" data-qid="B" data-val="減小">變小</button>
+            <button class="option-btn" data-qid="B" data-val="不變">不變</button>
+          </div>
+          <span class="feedback-msg" id="fbB"></span>
+        </div>
+
+        <!-- QC -->
+        <div class="quiz-item">
+          <label>
+            <span class="q-num">C</span> (C) 樞鈕施予木棒作用力之鉛直分量 $F_y$：
+          </label>
+          <div class="options-grid">
+            <button class="option-btn" data-qid="C" data-val="增大">變大</button>
+            <button class="option-btn" data-qid="C" data-val="減小">變小 (正確)</button>
+            <button class="option-btn" data-qid="C" data-val="不變">不變</button>
+          </div>
+          <span class="feedback-msg" id="fbC"></span>
+        </div>
+
+        <!-- QD -->
+        <div class="quiz-item highlight-q">
+          <label>
+            <span class="q-num">D</span> <strong>(D) 樞鈕對木棒作用力方向與水平的夾角 $\alpha$：</strong>
+          </label>
+          <div class="options-grid">
+            <button class="option-btn" data-qid="D" data-val="增大">變大</button>
+            <button class="option-btn" data-qid="D" data-val="減小">變小 (正確)</button>
+            <button class="option-btn" data-qid="D" data-val="不變">不變</button>
+          </div>
+          <span class="feedback-msg" id="fbD"></span>
+        </div>
+      </div>
+
+      <div class="worksheet-actions">
+        <button id="btnCheckAnswer" class="btn-primary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          送出並核對答案
+        </button>
+        <button id="btnToggleHint" class="btn-secondary">
+          💡 顯示解題引導提示
+        </button>
+        <button id="btnRevealSolution" class="btn-accent">
+          🔓 解鎖完整圖解詳解
+        </button>
+      </div>
+
+      <!-- Hint Box -->
+      <div id="hintBox" class="hint-box hidden">
+        <h4>💡 名師思考引導：</h4>
+        <ol>
+          <li><strong>求張力 $T$（對 O 點取力矩）</strong>：$\tau_{\text{順}} = W \cdot x$，$\tau_{\text{逆}} = (T\sin\theta)\cdot \ell$。兩者平衡 $\implies T = \frac{W x}{\ell\sin\theta}$。因 $x$ 增大，繩張力 $T$ 必然<strong>變大</strong>！</li>
+          <li><strong>求水平分量 $F_x$（水平力平衡）</strong>：木棒水平方向只有樞鈕向右推力 $F_x$ 與繩張力向左拉力 $T\cos\theta$ $\implies F_x = T\cos\theta$。因 $T$ 變大，$F_x$ 亦<strong>變大</strong>！</li>
+          <li><strong>求鉛直分量 $F_y$（鉛直力平衡）</strong>：$F_y + T\sin\theta = W \implies F_y = W - T\sin\theta = W\left(1 - \frac{x}{\ell}\right)$。隨著重物右移，$T$ 向上分擔更多重量，樞鈕負擔變輕，$F_y$ 必然<strong>變小</strong>！</li>
+          <li><strong>求夾角 $\alpha$（方向判斷）</strong>：$\tan\alpha = \frac{F_y}{F_x}$。因分子 $F_y$ 變小、分母 $F_x$ 變大，$\tan\alpha$ 顯著減小，故夾角 $\alpha$ 必然<strong>變小</strong>！</li>
+        </ol>
+      </div>
+
+      <!-- Result Banner -->
+      <div id="resultBanner" class="result-banner hidden"></div>
+    </section>
+
+    <!-- Solution Section (Initially Hidden) -->
+    <section id="solutionSection" class="solution-section">
+      <div class="card solution-card">
+        <div class="card-header">
+          <div class="card-icon" style="background: rgba(0, 230, 118, 0.15); border-color: rgba(0, 230, 118, 0.3);">💡</div>
+          <div>
+            <h2>完整圖解解析</h2>
+            <span class="card-tag">代數方程式推導與三力共點圖解法對照</span>
+          </div>
+        </div>
+
+        <!-- Step 1 -->
+        <div class="step-card">
+          <div class="step-header">
+            <span class="step-pill s1">方法一：代數方程式</span>
+            <h3>(A) 對轉軸 O 點取力矩求張力 $T$</h3>
+          </div>
+          <div class="step-content">
+            <p>
+              將轉軸選在樞鈕 O 點（可消除未知的樞鈕反作用力）：
+            </p>
+            <div class="formula-highlight">
+              $$\Sigma \tau_O = 0 \implies (T \sin\theta) \times \ell = W \times x \implies T = \left(\frac{W}{\ell \sin\theta}\right) x$$
+            </div>
+            <p>
+              因木棒長 $\ell$、角度 $\theta$ 及物重 $W$ 均為定值，故 $T \propto x$。
+              當 $x$ 增大時，<strong>張力 $T$ 隨之變大</strong>。
+            </p>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="step-card">
+          <div class="step-header">
+            <span class="step-pill s2">方法一：代數方程式</span>
+            <h3>(B) 水平力平衡求樞鈕水平分量 $F_x$</h3>
+          </div>
+          <div class="step-content">
+            <p>
+              木棒水平方向合力為零：
+            </p>
+            <div class="formula-highlight">
+              $$\Sigma F_x = 0 \implies F_x = T \cos\theta = \left(\frac{W \cos\theta}{\ell \sin\theta}\right) x = \left(\frac{W}{\ell \tan\theta}\right) x$$
+            </div>
+            <p>
+              因 $x$ 增大且 $T$ 變大，故<strong>水平分量 $F_x$ 亦隨之變大</strong>。
+            </p>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="step-card">
+          <div class="step-header">
+            <span class="step-pill s3">方法一：代數方程式</span>
+            <h3>(C) 鉛直力平衡求樞鈕鉛直分量 $F_y$</h3>
+          </div>
+          <div class="step-content">
+            <p>
+              木棒鉛直方向合力為零：
+            </p>
+            <div class="formula-highlight">
+              $$\Sigma F_y = 0 \implies F_y + T \sin\theta = W \implies F_y = W - T \sin\theta = W - \frac{Wx}{\ell} = W\left(1 - \frac{x}{\ell}\right)$$
+            </div>
+            <p>
+              當重物 $x$ 增大時，$W(1 - x/\ell)$ 必然減小，故<strong>鉛直分量 $F_y$ 變小</strong>。
+              （物理直觀：重物越靠近右端 P，右端懸繩負擔的重量越多，左端樞鈕負擔越少！）
+            </p>
+          </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="step-card">
+          <div class="step-header">
+            <span class="step-pill s4">方法一：代數方程式</span>
+            <h3>(D) 求樞鈕作用力與水平之夾角 $\alpha$</h3>
+          </div>
+          <div class="step-content">
+            <p>
+              樞鈕反作用力 $\vec{F} = (F_x, F_y)$ 與水平面的夾角為 $\alpha$：
+            </p>
+            <div class="formula-highlight">
+              $$\tan\alpha = \frac{F_y}{F_x} = \frac{W\left(1 - \frac{x}{\ell}\right)}{\left(\frac{W}{\ell \tan\theta}\right) x} = \tan\theta \left(\frac{\ell}{x} - 1\right)$$
+            </div>
+            <p>
+              當 $x$ 增大時，$\left(\frac{\ell}{x} - 1\right)$ 明顯減小，故 $\tan\alpha$ 減小 $\implies$ <strong>夾角 $\alpha$ 變小</strong>。
+            </p>
+            <div class="summary-box">
+              ✅ <strong>最終標準解答：</strong><br>
+              (A) 變大 &nbsp;&nbsp;&nbsp; (B) 變大 &nbsp;&nbsp;&nbsp; (C) 變小 &nbsp;&nbsp;&nbsp; (D) 變小
+            </div>
+          </div>
+        </div>
+
+        <!-- Teacher Tip -->
+        <div class="teacher-tip">
+          <div class="tip-icon">👨‍🏫</div>
+          <div class="tip-content">
+            <h4>名師解題心法・三力共點幾何秒殺術</h4>
+            <p>
+              剛體若僅受三個不平行的外力平衡，<strong>此三力的作用線必交於同一點（共點力原理）</strong>！<br>
+              • 本題木棒受三力：重力 $W$（鉛直線）、繩張力 $T$（沿繩線）、樞鈕作用力 $\vec{F}$。<br>
+              • 重力作用線與繩作用線的交點 $C$：當重物向右移（$x$ 增大）時，鉛直線向右平移，其與傾斜繩子的交點 $C$ <strong>必然朝向右下方移動</strong>！<br>
+              • 樞鈕力 $\vec{F}$ 必須從 O 點指向交點 $C$。當交點 $C$ 向右下方沉降時，連接線 $OC$ 與水平面的夾角 $\alpha$ <strong>肉眼可見地明顯變小</strong>！幾何圖解不用列任何公式，3 秒直接秒殺！
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+    <!-- Related Practice & Knowledge Consolidation Section -->
+    <section class="card recommendation-card" style="margin-top: 24px; border: 1px solid rgba(0, 229, 255, 0.3); background: rgba(15, 23, 42, 0.75);">
+      <div class="card-header">
+        <div class="card-icon" style="background: rgba(0, 229, 255, 0.15); border-color: rgba(0, 229, 255, 0.35);">🎯</div>
+        <div>
+          <h2>學完本範例，接下來建議練習以下題庫！</h2>
+          <span class="card-tag">循序漸進・概念深耕・題型通關</span>
+        </div>
+      </div>
+      <p style="font-size: 0.95rem; color: var(--text-muted); margin: 6px 0 16px 0; line-height: 1.6;">
+        已為您智能引導與「<strong>輕棒懸掛重物、轉軸樞紐力大小與方向判定、三力共點定性分析</strong>」高度相關的課堂類題與大考題庫，趁熱打鐵進行題型辨析與鞏固練習：
+      </p>
+
+      <div class="rec-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px;">
+        <!-- Card: 平衡 25 -->
+        <div class="rec-card" style="background: var(--bg-surface-elevated); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 16px; display: flex; flex-direction: column; justify-content: space-between; gap: 10px; transition: all 0.2s ease;">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <span class="badge badge-accent" style="font-size: 0.8rem;">平衡 25</span>
+              <span style="font-size: 0.75rem; color: #38bdf8; font-weight: 700; background: rgba(56, 189, 248, 0.12); padding: 2px 8px; border-radius: 4px; border: 1px solid rgba(56, 189, 248, 0.25);">🌱 完全對應計算題</span>
+            </div>
+            <h4 style="font-size: 1.02rem; color: #fff; margin-bottom: 6px;">水平輕棒懸重與牆壁樞紐作用力</h4>
+            <p style="font-size: 0.86rem; color: var(--text-muted); line-height: 1.55;">
+              範例 8 的定量數值計算版本，完整算出牆壁樞紐施加於輕棒的水平與鉛直反作用力。
+            </p>
+          </div>
+          <a href="equil25.html" class="nav-btn primary" style="justify-content: center; font-size: 0.88rem; padding: 7px 14px; margin-top: 6px; font-weight: 600;">
+            🚀 前往練習
+          </a>
+        </div>
+        <!-- Card: 平衡 26 -->
+        <div class="rec-card" style="background: var(--bg-surface-elevated); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 16px; display: flex; flex-direction: column; justify-content: space-between; gap: 10px; transition: all 0.2s ease;">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <span class="badge badge-accent" style="font-size: 0.8rem;">平衡 26</span>
+              <span style="font-size: 0.75rem; color: #38bdf8; font-weight: 700; background: rgba(56, 189, 248, 0.12); padding: 2px 8px; border-radius: 4px; border: 1px solid rgba(56, 189, 248, 0.25);">⭐ 均質重棒樞紐</span>
+            </div>
+            <h4 style="font-size: 1.02rem; color: #fff; margin-bottom: 6px;">均質木棒天花板樞紐與水平繫繩</h4>
+            <p style="font-size: 0.86rem; color: var(--text-muted); line-height: 1.55;">
+              由「輕棒」進階至「有自身重量的均勻木棒」，體驗重力加入後的樞紐力夾角變化。
+            </p>
+          </div>
+          <a href="equil26.html" class="nav-btn primary" style="justify-content: center; font-size: 0.88rem; padding: 7px 14px; margin-top: 6px; font-weight: 600;">
+            🚀 前往練習
+          </a>
+        </div>
+        <!-- Card: 平衡 48 -->
+        <div class="rec-card" style="background: var(--bg-surface-elevated); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 16px; display: flex; flex-direction: column; justify-content: space-between; gap: 10px; transition: all 0.2s ease;">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <span class="badge badge-accent" style="font-size: 0.8rem;">平衡 48</span>
+              <span style="font-size: 0.75rem; color: #38bdf8; font-weight: 700; background: rgba(56, 189, 248, 0.12); padding: 2px 8px; border-radius: 4px; border: 1px solid rgba(56, 189, 248, 0.25);">🔥 樞紐角度範圍</span>
+            </div>
+            <h4 style="font-size: 1.02rem; color: #fff; margin-bottom: 6px;">斜傾木棒樞紐施力方向與夾角範圍</h4>
+            <p style="font-size: 0.86rem; color: var(--text-muted); line-height: 1.55;">
+              深入探討樞紐反作用力隨繫繩位置移動時，其施力夾角的不等式範圍判定。
+            </p>
+          </div>
+          <a href="equil48.html" class="nav-btn primary" style="justify-content: center; font-size: 0.88rem; padding: 7px 14px; margin-top: 6px; font-weight: 600;">
+            🚀 前往練習
+          </a>
+        </div>
+        <!-- Card: 平衡 27 -->
+        <div class="rec-card" style="background: var(--bg-surface-elevated); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 16px; display: flex; flex-direction: column; justify-content: space-between; gap: 10px; transition: all 0.2s ease;">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <span class="badge badge-accent" style="font-size: 0.8rem;">平衡 27</span>
+              <span style="font-size: 0.75rem; color: #38bdf8; font-weight: 700; background: rgba(56, 189, 248, 0.12); padding: 2px 8px; border-radius: 4px; border: 1px solid rgba(56, 189, 248, 0.25);">🏆 89 聯考名作</span>
+            </div>
+            <h4 style="font-size: 1.02rem; color: #fff; margin-bottom: 6px;">細桿偏離鉛垂線與釘子作用力</h4>
+            <p style="font-size: 0.86rem; color: var(--text-muted); line-height: 1.55;">
+              釘子樞紐固定端受力分析，三力共點幾何條件在大考真題中的絕妙展現。
+            </p>
+          </div>
+          <a href="equil27.html" class="nav-btn primary" style="justify-content: center; font-size: 0.88rem; padding: 7px 14px; margin-top: 6px; font-weight: 600;">
+            🚀 前往練習
+          </a>
+        </div>
+      </div>
+      
+      <div style="margin-top: 18px; text-align: center; border-top: 1px dashed var(--border-subtle); padding-top: 14px;">
+        <a href="index.html" class="nav-btn" style="font-size: 0.88rem;">
+          📚 返回總目錄查看全單元 104 題索引
+        </a>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      if (window.renderMathInElement) {
+        renderMathInElement(document.body, {
+          delimiters: [
+            { left: "$$", right: "$$", display: true },
+            { left: "$", right: "$", display: false }
+          ]
+        });
+      }
+
+      const userChoices = { A: null, B: null, C: null, D: null };
+      const optionBtns = document.querySelectorAll(".option-btn");
+      optionBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+          const qid = btn.getAttribute("data-qid");
+          const val = btn.getAttribute("data-val");
+          document.querySelectorAll(`.option-btn[data-qid="${qid}"]`).forEach(b => b.classList.remove("selected"));
+          btn.classList.add("selected");
+          userChoices[qid] = val;
+        });
+      });
+
+      const btnToggleHint = document.getElementById("btnToggleHint");
+      const hintBox = document.getElementById("hintBox");
+      btnToggleHint.addEventListener("click", () => {
+        hintBox.classList.toggle("hidden");
+        btnToggleHint.textContent = hintBox.classList.contains("hidden") ? "💡 顯示解題引導提示" : "💡 收合解題引導提示";
+      });
+
+      const btnRevealSolution = document.getElementById("btnRevealSolution");
+      const solutionSection = document.getElementById("solutionSection");
+      btnRevealSolution.addEventListener("click", () => {
+        solutionSection.classList.toggle("visible");
+        if (solutionSection.classList.contains("visible")) {
+          btnRevealSolution.textContent = "🔒 隱藏解析";
+          solutionSection.scrollIntoView({ behavior: 'smooth' });
+        } else {
+          btnRevealSolution.textContent = "🔓 解鎖完整圖解詳解";
+        }
+      });
+
+      const btnCheckAnswer = document.getElementById("btnCheckAnswer");
+      const resultBanner = document.getElementById("resultBanner");
+
+      btnCheckAnswer.addEventListener("click", () => {
+        let correctCount = 0;
+        let filledCount = 0;
+
+        // A: 增大
+        const fbA = document.getElementById("fbA");
+        if (userChoices.A) {
+          filledCount++;
+          if (userChoices.A === "增大") {
+            fbA.textContent = "✓ 正確！T 正比於 x，隨之變大";
+            fbA.className = "feedback-msg correct";
+            correctCount++;
+          } else {
+            fbA.textContent = "✗ 提示：力矩平衡 T*L*sinθ = W*x";
+            fbA.className = "feedback-msg incorrect";
+          }
+        }
+
+        // B: 增大
+        const fbB = document.getElementById("fbB");
+        if (userChoices.B) {
+          filledCount++;
+          if (userChoices.B === "增大") {
+            fbB.textContent = "✓ 正確！Fx = T*cosθ，隨 T 變大而變大";
+            fbB.className = "feedback-msg correct";
+            correctCount++;
+          } else {
+            fbB.textContent = "✗ 提示：水平平衡 Fx = T*cosθ";
+            fbB.className = "feedback-msg incorrect";
+          }
+        }
+
+        // C: 減小
+        const fbC = document.getElementById("fbC");
+        if (userChoices.C) {
+          filledCount++;
+          if (userChoices.C === "減小") {
+            fbC.textContent = "✓ 正確！Fy = W*(1 - x/L)，隨之變小";
+            fbC.className = "feedback-msg correct";
+            correctCount++;
+          } else {
+            fbC.textContent = "✗ 提示：右端繩子分擔更多，左端樞鈕負擔變輕";
+            fbC.className = "feedback-msg incorrect";
+          }
+        }
+
+        // D: 減小
+        const fbD = document.getElementById("fbD");
+        if (userChoices.D) {
+          filledCount++;
+          if (userChoices.D === "減小") {
+            fbD.textContent = "✓ 正確！tanα = Fy/Fx 變小，夾角 α 變小";
+            fbD.className = "feedback-msg correct";
+            correctCount++;
+          } else {
+            fbD.textContent = "✗ 提示：三力交點往右下移，或 tanα = Fy/Fx 變小";
+            fbD.className = "feedback-msg incorrect";
+          }
+        }
+
+        if (filledCount === 0) {
+          resultBanner.className = "result-banner partial";
+          resultBanner.textContent = "⚠️ 請先選擇至少一個選項以進行核對！";
+          resultBanner.classList.remove("hidden");
+          return;
+        }
+
+        resultBanner.classList.remove("hidden");
+        if (correctCount === 4) {
+          resultBanner.className = "result-banner success";
+          resultBanner.innerHTML = "🎉 太出色了！4 項物理量全部判斷正確！已為您解鎖下方詳解！";
+          solutionSection.classList.add("visible");
+          btnRevealSolution.textContent = "🔒 隱藏解析";
+        } else {
+          resultBanner.className = "result-banner partial";
+          resultBanner.innerHTML = `📝 目前答對 ${correctCount} / ${filledCount} 項。請參考「💡 顯示提示」或點擊「🔓 解鎖完整圖解詳解」查看推導！`;
+        }
+      });
+    });
+  </script>
+</body>
+</html>

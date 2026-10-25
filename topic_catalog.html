@@ -1,0 +1,2119 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>靜力學題型專題精熟學習地圖 | 104 題系統化專題題庫</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    /* Dedicated Topic Catalog Styles */
+    :root {
+      --topic1-glow: rgba(56, 189, 248, 0.2);
+      --topic2-glow: rgba(168, 85, 247, 0.2);
+      --topic3-glow: rgba(16, 185, 129, 0.2);
+      --topic4-glow: rgba(245, 158, 11, 0.2);
+      --topic5-glow: rgba(236, 72, 153, 0.2);
+      --topic6-glow: rgba(249, 115, 22, 0.2);
+    }
+
+    body {
+      padding-bottom: 80px;
+    }
+
+    /* Top Sticky Dashboard Navigation */
+    .catalog-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(10, 15, 29, 0.92);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 12px 0;
+      margin-bottom: 24px;
+    }
+
+    .nav-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .nav-top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-icon {
+      width: 36px;
+      height: 36px;
+      background: linear-gradient(135deg, #00e5ff, #3b82f6);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      box-shadow: 0 0 15px rgba(0, 229, 255, 0.4);
+    }
+
+    .brand-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: 0.5px;
+    }
+
+    .brand-tag {
+      font-size: 0.72rem;
+      padding: 2px 8px;
+      border-radius: 20px;
+      background: rgba(0, 229, 255, 0.15);
+      color: #00e5ff;
+      border: 1px solid rgba(0, 229, 255, 0.3);
+      font-weight: 600;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-switch-mode {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 8px;
+      color: #e2e8f0;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+
+    .btn-switch-mode:hover {
+      background: rgba(68, 138, 255, 0.2);
+      border-color: #448aff;
+      color: #fff;
+      transform: translateY(-1px);
+    }
+
+    /* Filter Pills */
+    .filter-pills {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+      scrollbar-width: thin;
+    }
+
+    .filter-pill {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 5px 12px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #94a3b8;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .filter-pill:hover {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.25);
+    }
+
+    .filter-pill.active {
+      background: #0284c7;
+      color: #fff;
+      border-color: #38bdf8;
+      box-shadow: 0 0 12px rgba(56, 189, 248, 0.4);
+    }
+
+    .pill-count {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.72rem;
+      background: rgba(0, 0, 0, 0.25);
+      padding: 1px 6px;
+      border-radius: 10px;
+    }
+
+    /* Search & Stats Bar */
+    .search-stats-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      padding: 12px 18px;
+      border-radius: 12px;
+    }
+
+    .search-box {
+      position: relative;
+      flex: 1;
+      max-width: 480px;
+      min-width: 240px;
+    }
+
+    .search-box input {
+      width: 100%;
+      background: rgba(10, 15, 29, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 8px;
+      padding: 8px 12px 8px 36px;
+      color: #fff;
+      font-size: 0.9rem;
+      outline: none;
+      transition: all 0.2s;
+    }
+
+    .search-box input:focus {
+      border-color: #00e5ff;
+      box-shadow: 0 0 10px rgba(0, 229, 255, 0.25);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #64748b;
+      font-size: 0.9rem;
+    }
+
+    .progress-stats {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.85rem;
+      color: #94a3b8;
+    }
+
+    .progress-bar-bg {
+      width: 140px;
+      height: 8px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #10b981, #00e5ff);
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+
+    /* Topic Module Section Card */
+    .topic-section {
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      margin-bottom: 32px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      transition: border-color 0.2s ease;
+    }
+
+    .topic-section:hover {
+      border-color: rgba(255, 255, 255, 0.18);
+    }
+
+    .topic-header {
+      padding: 20px 24px;
+      background: linear-gradient(180deg, rgba(30, 41, 59, 0.7) 0%, rgba(15, 23, 42, 0.4) 100%);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .topic-title-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .topic-title-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .topic-icon-box {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .topic-heading {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #f8fafc;
+      margin: 0;
+    }
+
+    .topic-badge-count {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.8rem;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-weight: 700;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #f1f5f9;
+    }
+
+    /* Core Insight Callout Box */
+    .topic-insight-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 12px;
+      margin-top: 8px;
+    }
+
+    .insight-card {
+      background: rgba(10, 15, 29, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 0.86rem;
+      line-height: 1.5;
+    }
+
+    .insight-card .label {
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 4px;
+      font-size: 0.82rem;
+    }
+
+    .insight-concept .label { color: #38bdf8; }
+    .insight-breakthrough .label { color: #f59e0b; }
+    .insight-card p { margin: 0; color: #cbd5e1; }
+
+    /* Ultra-Compact Problem List */
+    .topic-problem-list {
+      padding: 14px 20px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .problem-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 7px 14px;
+      min-height: 40px;
+      background: rgba(15, 23, 42, 0.45);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 8px;
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.15s ease;
+      position: relative;
+    }
+
+    .problem-row:hover {
+      background: rgba(30, 41, 59, 0.7);
+      border-color: #00e5ff;
+      transform: translateX(4px);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4), 0 0 12px rgba(0, 229, 255, 0.15);
+    }
+
+    .row-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+      flex: 1;
+    }
+
+    /* Checkbox for Mastery Tracking */
+    .mastery-checkbox {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 18px;
+      height: 18px;
+      border: 1.5px solid rgba(255, 255, 255, 0.25);
+      border-radius: 4px;
+      background: rgba(0, 0, 0, 0.3);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.15s ease;
+      flex-shrink: 0;
+    }
+
+    .mastery-checkbox:checked {
+      background: #10b981;
+      border-color: #10b981;
+    }
+
+    .mastery-checkbox:checked::after {
+      content: '✓';
+      color: #fff;
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .row-tag-num {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 4px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .tag-problem { background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.3); color: #38bdf8; }
+    .tag-exercise { background: rgba(168, 85, 247, 0.15); border: 1px solid rgba(168, 85, 247, 0.3); color: #c084fc; }
+    .tag-torque { background: rgba(245, 158, 11, 0.15); border: 1px solid rgba(245, 158, 11, 0.3); color: #fbbf24; }
+    .tag-equil { background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.3); color: #34d399; }
+    .tag-frict { background: rgba(249, 115, 22, 0.15); border: 1px solid rgba(249, 115, 22, 0.3); color: #fb923c; }
+
+    .row-title {
+      font-size: 0.94rem;
+      font-weight: 600;
+      color: #f1f5f9;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      transition: color 0.15s ease;
+    }
+
+    .problem-row:hover .row-title {
+      color: #00e5ff;
+    }
+
+    .row-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+      margin-left: 10px;
+    }
+
+    .row-badge {
+      font-size: 0.72rem;
+      padding: 2px 8px;
+      border-radius: 4px;
+      white-space: nowrap;
+    }
+
+    .row-badge.exam {
+      background: rgba(255, 171, 0, 0.12);
+      border: 1px solid rgba(255, 171, 0, 0.3);
+      color: #fcd34d;
+    }
+
+    .row-badge.page {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #94a3b8;
+    }
+
+    .row-arrow {
+      color: #64748b;
+      font-size: 0.9rem;
+      transition: all 0.15s ease;
+    }
+
+    .problem-row:hover .row-arrow {
+      color: #00e5ff;
+      transform: translateX(3px);
+    }
+
+    /* Completed state */
+    .problem-row.is-completed {
+      opacity: 0.75;
+      border-left: 3px solid #10b981;
+    }
+
+    .problem-row.is-completed .row-title {
+      text-decoration: line-through;
+      color: #94a3b8;
+    }
+
+    @media (max-width: 768px) {
+      .row-badge.page { display: none; }
+      .topic-insight-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Top Sticky Navigation -->
+  <header class="catalog-nav">
+    <div class="nav-inner">
+      <div class="nav-top-row">
+        <div class="nav-brand">
+          <div class="brand-icon">🧭</div>
+          <div>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span class="brand-title">靜力學題型專題精熟學習地圖</span>
+              <span class="brand-tag">6 大專題・104 題全收錄</span>
+            </div>
+            <div style="font-size: 0.75rem; color: #94a3b8; margin-top: 2px;">
+              聚焦物理核心模型，集中刷題至直覺精熟
+            </div>
+          </div>
+        </div>
+
+        <div class="nav-actions">
+          <a href="index.html" class="btn-switch-mode">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            切換回【原章節目錄】
+          </a>
+        </div>
+      </div>
+
+      <!-- Quick Topic Filter Pills -->
+      <div class="filter-pills" id="topicFilterPills">
+        <button class="filter-pill active" onclick="filterTopic('all', this)">
+          🔥 全部專題 <span class="pill-count">104</span>
+        </button>
+        <button class="filter-pill" onclick="filterTopic('topic-1', this)">
+          🪀 專題一 彈簧力學 <span class="pill-count">14</span>
+        </button>
+        <button class="filter-pill" onclick="filterTopic('topic-2', this)">
+          📐 專題二 封閉三角形 <span class="pill-count">15</span>
+        </button>
+        <button class="filter-pill" onclick="filterTopic('topic-3', this)">
+          ⚾ 專題三 雙球接觸堆疊 <span class="pill-count">11</span>
+        </button>
+        <button class="filter-pill" onclick="filterTopic('topic-4', this)">
+          ⚖️ 專題四 力矩與蹺起 <span class="pill-count">15</span>
+        </button>
+        <button class="filter-pill" onclick="filterTopic('topic-5', this)">
+          🪜 專題五 梯子與樞紐剛體 <span class="pill-count">24</span>
+        </button>
+        <button class="filter-pill" onclick="filterTopic('topic-6', this)">
+          🧱 專題六 摩擦力與滑動傾倒 <span class="pill-count">25</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="container" style="max-width: 1280px; margin: 0 auto; padding: 0 20px;">
+    
+    <!-- Search Bar & Mastery Progress Bar -->
+    <div class="search-stats-bar">
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="searchInput" placeholder="搜尋題號、考題出處（如 103指考）、關鍵字..." oninput="handleSearch()">
+      </div>
+      <div class="progress-stats">
+        <span>精熟進度：<strong id="completedCount" style="color:#10b981;">0</strong> / 104 題</span>
+        <div class="progress-bar-bg">
+          <div class="progress-bar-fill" id="progressFill"></div>
+        </div>
+        <span id="progressPercent" style="font-family:'Fira Code', monospace; font-size:0.8rem; color:#00e5ff;">0%</span>
+      </div>
+    </div>
+
+    <!-- Topic Sections -->
+
+    <!-- 專題一：彈簧與彈性系統（虎克定律、串並聯、自重與形變） -->
+    <section class="topic-section" id="topic-1">
+      <div class="topic-header" style="border-top: 3px solid #38bdf8;">
+        <div class="topic-title-row">
+          <div class="topic-title-left">
+            <div class="topic-icon-box" style="box-shadow: 0 0 15px #38bdf833;">🪀</div>
+            <div>
+              <h2 class="topic-heading">專題一：彈簧與彈性系統（虎克定律、串並聯、自重與形變）</h2>
+              <div style="font-size: 0.8rem; color: #94a3b8; margin-top: 3px;">
+                本專題包含 <strong style="color: #38bdf8;">14</strong> 題完整精選考題
+              </div>
+            </div>
+          </div>
+          <span class="topic-badge-count">14 題</span>
+        </div>
+
+        <div class="topic-insight-grid">
+          <div class="insight-card insight-concept">
+            <div class="label">🎯 專題核心考點</div>
+            <p>彈簧切割與串並聯等效力常數（$k \propto 1/L$）、彈簧兩端施力與彈力、自重彈簧非均勻形變</p>
+          </div>
+          <div class="insight-card insight-breakthrough">
+            <div class="label">⚡ 一秒解題突破口</div>
+            <p>切割後長度越短越難拉；串聯力同形變加，並聯形變同力加；自重彈簧張力隨高度由下往上線性增加。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="topic-problem-list">
+        <div class="problem-row" data-href="viewer.html?id=problem1" data-id="problem1.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('problem1.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=problem1" class="row-tag-num tag-problem" style="text-decoration:none;">範例 01</a>
+            <a href="viewer.html?id=problem1" class="row-title" style="text-decoration:none;">彈性繩對折與並聯力學</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">103 指考</span>
+            <span class="row-badge page">講義 靜力學-4</span>
+            <a href="viewer.html?id=problem1" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+        <div class="problem-row" data-href="viewer.html?id=problem2" data-id="problem2.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('problem2.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=problem2" class="row-tag-num tag-problem" style="text-decoration:none;">範例 02</a>
+            <a href="viewer.html?id=problem2" class="row-title" style="text-decoration:none;">雙彈簧與雙重物鉛直平衡</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">經典雙彈簧</span>
+            <span class="row-badge page">講義 靜力學-4</span>
+            <a href="viewer.html?id=problem2" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+        <div class="problem-row" data-href="viewer.html?id=exercise1" data-id="exercise1.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('exercise1.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=exercise1" class="row-tag-num tag-exercise" style="text-decoration:none;">類題 01</a>
+            <a href="viewer.html?id=exercise1" class="row-title" style="text-decoration:none;">懸掛彈簧與重錘壓木板作用力</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">練習 1</span>
+            <span class="row-badge page">講義 靜力學-18</span>
+            <a href="viewer.html?id=exercise1" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+        <div class="problem-row" data-href="viewer.html?id=exercise2" data-id="exercise2.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('exercise2.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=exercise2" class="row-tag-num tag-exercise" style="text-decoration:none;">類題 02</a>
+            <a href="viewer.html?id=exercise2" class="row-title" style="text-decoration:none;">雙彈簧水平並聯推移所需外力</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">練習 2</span>
+            <span class="row-badge page">講義 靜力學-18</span>
+            <a href="viewer.html?id=exercise2" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+        <div class="problem-row" data-href="viewer.html?id=exercise3" data-id="exercise3.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('exercise3.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=exercise3" class="row-tag-num tag-exercise" style="text-decoration:none;">類題 03</a>
+            <a href="viewer.html?id=exercise3" class="row-title" style="text-decoration:none;">三彈簧兩物體連繫系統之淨力</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">84 聯考</span>
+            <span class="row-badge page">講義 靜力學-18</span>
+            <a href="viewer.html?id=exercise3" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+        <div class="problem-row" data-href="viewer.html?id=exercise4" data-id="exercise4.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('exercise4.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=exercise4" class="row-tag-num tag-exercise" style="text-decoration:none;">類題 04</a>
+            <a href="viewer.html?id=exercise4" class="row-title" style="text-decoration:none;">自重彈簧下垂刻度非均勻伸長</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">聯考題</span>
+            <span class="row-badge page">講義 靜力學-18</span>
+            <a href="viewer.html?id=exercise4" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+        <div class="problem-row" data-href="viewer.html?id=exercise5" data-id="exercise5.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('exercise5.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=exercise5" class="row-tag-num tag-exercise" style="text-decoration:none;">類題 05</a>
+            <a href="viewer.html?id=exercise5" class="row-title" style="text-decoration:none;">雙彈簧串聯吊重與平臺交互作用力</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">練習 5</span>
+            <span class="row-badge page">講義 靜力學-19</span>
+            <a href="viewer.html?id=exercise5" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+        <div class="problem-row" data-href="viewer.html?id=exercise10" data-id="exercise10.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('exercise10.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=exercise10" class="row-tag-num tag-exercise" style="text-decoration:none;">類題 10</a>
+            <a href="viewer.html?id=exercise10" class="row-title" style="text-decoration:none;">雙彈簧垂直彈射裝置伸長量</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">102 指考</span>
+            <span class="row-badge page">講義 靜力學-20</span>
+            <a href="viewer.html?id=exercise10" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+        <div class="problem-row" data-href="viewer.html?id=exercise11" data-id="exercise11.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('exercise11.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=exercise11" class="row-tag-num tag-exercise" style="text-decoration:none;">類題 11</a>
+            <a href="viewer.html?id=exercise11" class="row-title" style="text-decoration:none;">套裝雙彈簧 F-x 特性圖與彈力常數</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">練習 11</span>
+            <span class="row-badge page">講義 靜力學-20</span>
+            <a href="viewer.html?id=exercise11" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+        <div class="problem-row" data-href="viewer.html?id=exercise12" data-id="exercise12.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('exercise12.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=exercise12" class="row-tag-num tag-exercise" style="text-decoration:none;">類題 12</a>
+            <a href="viewer.html?id=exercise12" class="row-title" style="text-decoration:none;">繩索應力應變與極限強度綜合題</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">104 學測</span>
+            <span class="row-badge page">講義 靜力學-20~21</span>
+            <a href="viewer.html?id=exercise12" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+        <div class="problem-row" data-href="viewer.html?id=equil6" data-id="equil6.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('equil6.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=equil6" class="row-tag-num tag-equil" style="text-decoration:none;">平衡 06</a>
+            <a href="viewer.html?id=equil6" class="row-title" style="text-decoration:none;">雙端水平懸掛彈簧吊重平衡</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">水平雙彈簧</span>
+            <span class="row-badge page">講義 靜力學-24</span>
+            <a href="viewer.html?id=equil6" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+        <div class="problem-row" data-href="viewer.html?id=equil12" data-id="equil12.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('equil12.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=equil12" class="row-tag-num tag-equil" style="text-decoration:none;">平衡 12</a>
+            <a href="viewer.html?id=equil12" class="row-title" style="text-decoration:none;">兩球夾壓縮彈簧平衡形變量</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">雙球彈力</span>
+            <span class="row-badge page">講義 靜力學-25</span>
+            <a href="viewer.html?id=equil12" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+        <div class="problem-row" data-href="viewer.html?id=equil20" data-id="equil20.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('equil20.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=equil20" class="row-tag-num tag-equil" style="text-decoration:none;">平衡 20</a>
+            <a href="viewer.html?id=equil20" class="row-title" style="text-decoration:none;">雙物體繩簧系統與水平拉力</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">繩簧連接</span>
+            <span class="row-badge page">講義 靜力學-27</span>
+            <a href="viewer.html?id=equil20" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+        <div class="problem-row" data-href="viewer.html?id=equil41" data-id="equil41.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('equil41.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=equil41" class="row-tag-num tag-equil" style="text-decoration:none;">平衡 41</a>
+            <a href="viewer.html?id=equil41" class="row-title" style="text-decoration:none;">三彈簧 120 度對稱懸吊球體與形變多解</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">120°對稱</span>
+            <span class="row-badge page">講義 靜力學-31</span>
+            <a href="viewer.html?id=equil41" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 專題二：平面共點力平衡與向量封閉三角形（拉密定理、幾何相似法、懸繩吊重） -->
+    <section class="topic-section" id="topic-2">
+      <div class="topic-header" style="border-top: 3px solid #a855f7;">
+        <div class="topic-title-row">
+          <div class="topic-title-left">
+            <div class="topic-icon-box" style="box-shadow: 0 0 15px #a855f733;">📐</div>
+            <div>
+              <h2 class="topic-heading">專題二：平面共點力平衡與向量封閉三角形（拉密定理、幾何相似法、懸繩吊重）</h2>
+              <div style="font-size: 0.8rem; color: #94a3b8; margin-top: 3px;">
+                本專題包含 <strong style="color: #a855f7;">15</strong> 題完整精選考題
+              </div>
+            </div>
+          </div>
+          <span class="topic-badge-count">15 題</span>
+        </div>
+
+        <div class="topic-insight-grid">
+          <div class="insight-card insight-concept">
+            <div class="label">🎯 專題核心考點</div>
+            <p>三力共點平衡條件、直角/任意封閉力三角形、拉密定理（正弦定理）、動態圓分析</p>
+          </div>
+          <div class="insight-card insight-breakthrough">
+            <div class="label">⚡ 一秒解題突破口</div>
+            <p>共點三力必構成封閉首尾相接三角形；繩長固定旋轉外力時善用外接圓直徑找極值與最小值。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="topic-problem-list">
+        <div class="problem-row" data-href="viewer.html?id=problem3" data-id="problem3.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('problem3.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=problem3" class="row-tag-num tag-problem" style="text-decoration:none;">範例 03</a>
+            <a href="viewer.html?id=problem3" class="row-title" style="text-decoration:none;">三細線拉銅環之合力運算</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">正交分解</span>
+            <span class="row-badge page">講義 靜力學-6</span>
+            <a href="viewer.html?id=problem3" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+        <div class="problem-row" data-href="viewer.html?id=problem4" data-id="problem4.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('problem4.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=problem4" class="row-tag-num tag-problem" style="text-decoration:none;">範例 04</a>
+            <a href="viewer.html?id=problem4" class="row-title" style="text-decoration:none;">細繩與彈簧懸吊平衡</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">封閉三角形核心</span>
+            <span class="row-badge page">講義 靜力學-8</span>
+            <a href="viewer.html?id=problem4" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+        <div class="problem-row" data-href="viewer.html?id=problem6" data-id="problem6.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('problem6.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=problem6" class="row-tag-num tag-problem" style="text-decoration:none;">範例 06</a>
+            <a href="viewer.html?id=problem6" class="row-title" style="text-decoration:none;">粗繩懸掛各點張力與水平恆定性</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">粗繩懸掛</span>
+            <span class="row-badge page">講義 靜力學-9</span>
+            <a href="viewer.html?id=problem6" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+        <div class="problem-row" data-href="viewer.html?id=exercise6" data-id="exercise6.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('exercise6.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=exercise6" class="row-tag-num tag-exercise" style="text-decoration:none;">類題 06</a>
+            <a href="viewer.html?id=exercise6" class="row-title" style="text-decoration:none;">二力反向合力與相互垂直合力</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">練習 6</span>
+            <span class="row-badge page">講義 靜力學-19</span>
+            <a href="viewer.html?id=exercise6" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+        <div class="problem-row" data-href="viewer.html?id=exercise8" data-id="exercise8.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('exercise8.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=exercise8" class="row-tag-num tag-exercise" style="text-decoration:none;">類題 08</a>
+            <a href="viewer.html?id=exercise8" class="row-title" style="text-decoration:none;">運河拖船三力平衡多選題</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">練習 8・多選</span>
+            <span class="row-badge page">講義 靜力學-19</span>
+            <a href="viewer.html?id=exercise8" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+        <div class="problem-row" data-href="viewer.html?id=exercise9" data-id="exercise9.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('exercise9.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=exercise9" class="row-tag-num tag-exercise" style="text-decoration:none;">類題 09</a>
+            <a href="viewer.html?id=exercise9" class="row-title" style="text-decoration:none;">逆風航行帆船前進推力分解</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">練習 9</span>
+            <span class="row-badge page">講義 靜力學-19</span>
+            <a href="viewer.html?id=exercise9" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+        <div class="problem-row" data-href="viewer.html?id=equil3" data-id="equil3.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('equil3.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=equil3" class="row-tag-num tag-equil" style="text-decoration:none;">平衡 03</a>
+            <a href="viewer.html?id=equil3" class="row-title" style="text-decoration:none;">斜向推力與地面全作用力</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">斜向推力</span>
+            <span class="row-badge page">講義 靜力學-24</span>
+            <a href="viewer.html?id=equil3" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+        <div class="problem-row" data-href="viewer.html?id=equil4" data-id="equil4.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('equil4.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=equil4" class="row-tag-num tag-equil" style="text-decoration:none;">平衡 04</a>
+            <a href="viewer.html?id=equil4" class="row-title" style="text-decoration:none;">天花板三繩吊球張力</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">三繩吊球</span>
+            <span class="row-badge page">講義 靜力學-24</span>
+            <a href="viewer.html?id=equil4" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+        <div class="problem-row" data-href="viewer.html?id=equil8" data-id="equil8.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('equil8.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=equil8" class="row-tag-num tag-equil" style="text-decoration:none;">平衡 08</a>
+            <a href="viewer.html?id=equil8" class="row-title" style="text-decoration:none;">88聯考對摺細繩分開最大距離</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">88 聯考</span>
+            <span class="row-badge page">講義 靜力學-25</span>
+            <a href="viewer.html?id=equil8" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+        <div class="problem-row" data-href="viewer.html?id=equil9" data-id="equil9.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('equil9.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=equil9" class="row-tag-num tag-equil" style="text-decoration:none;">平衡 09</a>
+            <a href="viewer.html?id=equil9" class="row-title" style="text-decoration:none;">光滑垂直壁懸球繩張力與支持力</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">垂直壁懸球</span>
+            <span class="row-badge page">講義 靜力學-25</span>
+            <a href="viewer.html?id=equil9" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+        <div class="problem-row" data-href="viewer.html?id=equil11" data-id="equil11.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('equil11.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=equil11" class="row-tag-num tag-equil" style="text-decoration:none;">平衡 11</a>
+            <a href="viewer.html?id=equil11" class="row-title" style="text-decoration:none;">大球面輕繩懸小球支持力</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">相似三角形</span>
+            <span class="row-badge page">講義 靜力學-25</span>
+            <a href="viewer.html?id=equil11" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+        <div class="problem-row" data-href="viewer.html?id=equil14" data-id="equil14.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('equil14.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=equil14" class="row-tag-num tag-equil" style="text-decoration:none;">平衡 14</a>
+            <a href="viewer.html?id=equil14" class="row-title" style="text-decoration:none;">93指考掛畫細繩最短長度</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">93 指考</span>
+            <span class="row-badge page">講義 靜力學-26</span>
+            <a href="viewer.html?id=equil14" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+        <div class="problem-row" data-href="viewer.html?id=equil15" data-id="equil15.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('equil15.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=equil15" class="row-tag-num tag-equil" style="text-decoration:none;">平衡 15</a>
+            <a href="viewer.html?id=equil15" class="row-title" style="text-decoration:none;">均勻懸繩最低點張力與長度比</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">懸繩最低點</span>
+            <span class="row-badge page">講義 靜力學-26</span>
+            <a href="viewer.html?id=equil15" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+        <div class="problem-row" data-href="viewer.html?id=equil16" data-id="equil16.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('equil16.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=equil16" class="row-tag-num tag-equil" style="text-decoration:none;">平衡 16</a>
+            <a href="viewer.html?id=equil16" class="row-title" style="text-decoration:none;">動態拉起過程懸繩張力變化</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">動態力分析</span>
+            <span class="row-badge page">講義 靜力學-26</span>
+            <a href="viewer.html?id=equil16" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+        <div class="problem-row" data-href="practice.html" data-id="practice.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('practice.html', event)" title="標記為已精熟">
+            <a href="practice.html" class="row-tag-num tag-problem" style="text-decoration:none;">挑戰題</a>
+            <a href="practice.html" class="row-title" style="text-decoration:none;">自我檢測：37°-53° 懸吊力學挑戰題</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">37°-53° 變式</span>
+            <span class="row-badge page">自我檢測</span>
+            <a href="practice.html" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 專題三：多接觸面、雙斜面與多球堆疊模型（隔離體法與系統整體法） -->
+    <section class="topic-section" id="topic-3">
+      <div class="topic-header" style="border-top: 3px solid #10b981;">
+        <div class="topic-title-row">
+          <div class="topic-title-left">
+            <div class="topic-icon-box" style="box-shadow: 0 0 15px #10b98133;">⚾</div>
+            <div>
+              <h2 class="topic-heading">專題三：多接觸面、雙斜面與多球堆疊模型（隔離體法與系統整體法）</h2>
+              <div style="font-size: 0.8rem; color: #94a3b8; margin-top: 3px;">
+                本專題包含 <strong style="color: #10b981;">11</strong> 題完整精選考題
+              </div>
+            </div>
+          </div>
+          <span class="topic-badge-count">11 題</span>
+        </div>
+
+        <div class="topic-insight-grid">
+          <div class="insight-card insight-concept">
+            <div class="label">🎯 專題核心考點</div>
+            <p>圓球接觸正向力通過球心、隔離體法求內部交互作用力、系統法求外壁總支持力</p>
+          </div>
+          <div class="insight-card insight-breakthrough">
+            <div class="label">⚡ 一秒解題突破口</div>
+            <p>圓弧接觸面法線必過球心，畫出球心連心線三角形；先取整體求外側支撐力，再隔離單球解內力。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="topic-problem-list">
+        <div class="problem-row" data-href="viewer.html?id=problem5" data-id="problem5.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('problem5.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=problem5" class="row-tag-num tag-problem" style="text-decoration:none;">範例 05</a>
+            <a href="viewer.html?id=problem5" class="row-title" style="text-decoration:none;">容器內雙球接觸正向力分析</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">名校聯考經典</span>
+            <span class="row-badge page">講義 靜力學-8</span>
+            <a href="viewer.html?id=problem5" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+        <div class="problem-row" data-href="viewer.html?id=exercise7" data-id="exercise7.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('exercise7.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=exercise7" class="row-tag-num tag-exercise" style="text-decoration:none;">類題 07</a>
+            <a href="viewer.html?id=exercise7" class="row-title" style="text-decoration:none;">光滑斜面跨滑輪雙物體平衡</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">練習 7</span>
+            <span class="row-badge page">講義 靜力學-19</span>
+            <a href="viewer.html?id=exercise7" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+        <div class="problem-row" data-href="viewer.html?id=equil1" data-id="equil1.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('equil1.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=equil1" class="row-tag-num tag-equil" style="text-decoration:none;">平衡 01</a>
+            <a href="viewer.html?id=equil1" class="row-title" style="text-decoration:none;">光滑斜面沿斜面與水平施力之正向力</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">斜面推力</span>
+            <span class="row-badge page">講義 靜力學-24</span>
+            <a href="viewer.html?id=equil1" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+        <div class="problem-row" data-href="viewer.html?id=equil2" data-id="equil2.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('equil2.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=equil2" class="row-tag-num tag-equil" style="text-decoration:none;">平衡 02</a>
+            <a href="viewer.html?id=equil2" class="row-title" style="text-decoration:none;">雙斜面跨滑輪雙物體平衡比值</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">雙斜面滑輪</span>
+            <span class="row-badge page">講義 靜力學-24</span>
+            <a href="viewer.html?id=equil2" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+        <div class="problem-row" data-href="viewer.html?id=equil5" data-id="equil5.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('equil5.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=equil5" class="row-tag-num tag-equil" style="text-decoration:none;">平衡 05</a>
+            <a href="viewer.html?id=equil5" class="row-title" style="text-decoration:none;">雙光滑斜板圓球支持力</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">雙斜板夾球</span>
+            <span class="row-badge page">講義 靜力學-24</span>
+            <a href="viewer.html?id=equil5" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+        <div class="problem-row" data-href="viewer.html?id=equil10" data-id="equil10.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('equil10.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=equil10" class="row-tag-num tag-equil" style="text-decoration:none;">平衡 10</a>
+            <a href="viewer.html?id=equil10" class="row-title" style="text-decoration:none;">斜面固定鉛直擋板球受力判斷</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">擋板壓球</span>
+            <span class="row-badge page">講義 靜力學-25</span>
+            <a href="viewer.html?id=equil10" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+        <div class="problem-row" data-href="viewer.html?id=equil13" data-id="equil13.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('equil13.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=equil13" class="row-tag-num tag-equil" style="text-decoration:none;">平衡 13</a>
+            <a href="viewer.html?id=equil13" class="row-title" style="text-decoration:none;">斜面雙外力平衡正向力推導</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">雙外力推導</span>
+            <span class="row-badge page">講義 靜力學-25</span>
+            <a href="viewer.html?id=equil13" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+        <div class="problem-row" data-href="viewer.html?id=equil17" data-id="equil17.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('equil17.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=equil17" class="row-tag-num tag-equil" style="text-decoration:none;">平衡 17</a>
+            <a href="viewer.html?id=equil17" class="row-title" style="text-decoration:none;">半球形碗內雙球平衡作用力</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">半球碗雙球</span>
+            <span class="row-badge page">講義 靜力學-26</span>
+            <a href="viewer.html?id=equil17" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+        <div class="problem-row" data-href="viewer.html?id=equil18" data-id="equil18.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('equil18.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=equil18" class="row-tag-num tag-equil" style="text-decoration:none;">平衡 18</a>
+            <a href="viewer.html?id=equil18" class="row-title" style="text-decoration:none;">碗內三球堆疊平衡分析</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">三球對稱堆疊</span>
+            <span class="row-badge page">講義 靜力學-26</span>
+            <a href="viewer.html?id=equil18" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+        <div class="problem-row" data-href="viewer.html?id=equil19" data-id="equil19.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('equil19.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=equil19" class="row-tag-num tag-equil" style="text-decoration:none;">平衡 19</a>
+            <a href="viewer.html?id=equil19" class="row-title" style="text-decoration:none;">三光滑圓柱堆疊與鋼繩張力</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">圓柱鋼繩束縛</span>
+            <span class="row-badge page">講義 靜力學-27</span>
+            <a href="viewer.html?id=equil19" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+        <div class="problem-row" data-href="viewer.html?id=equil49" data-id="equil49.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('equil49.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=equil49" class="row-tag-num tag-equil" style="text-decoration:none;">平衡 49</a>
+            <a href="viewer.html?id=equil49" class="row-title" style="text-decoration:none;">雙斜面夾光滑圓球的受力分析</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">雙斜面夾球</span>
+            <span class="row-badge page">講義 靜力學-33</span>
+            <a href="viewer.html?id=equil49" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 專題四：力矩運算、轉動平衡與蹺起臨界（支點選擇法、槓桿、重心） -->
+    <section class="topic-section" id="topic-4">
+      <div class="topic-header" style="border-top: 3px solid #f59e0b;">
+        <div class="topic-title-row">
+          <div class="topic-title-left">
+            <div class="topic-icon-box" style="box-shadow: 0 0 15px #f59e0b33;">⚖️</div>
+            <div>
+              <h2 class="topic-heading">專題四：力矩運算、轉動平衡與蹺起臨界（支點選擇法、槓桿、重心）</h2>
+              <div style="font-size: 0.8rem; color: #94a3b8; margin-top: 3px;">
+                本專題包含 <strong style="color: #f59e0b;">15</strong> 題完整精選考題
+              </div>
+            </div>
+          </div>
+          <span class="topic-badge-count">15 題</span>
+        </div>
+
+        <div class="topic-insight-grid">
+          <div class="insight-card insight-concept">
+            <div class="label">🎯 專題核心考點</div>
+            <p>力矩定義 $\tau = r F \sin\theta$、轉動平衡 $\Sigma \tau = 0$、蹺起翻覆臨界條件（遠端正向力 $N \to 0$）</p>
+          </div>
+          <div class="insight-card insight-breakthrough">
+            <div class="label">⚡ 一秒解題突破口</div>
+            <p>支點設在未知力交會點消去力矩；求即將翹起/翻覆時，令不翹那一端或外側支撐點的正向力 $N = 0$。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="topic-problem-list">
+        <div class="problem-row" data-href="viewer.html?id=problem7" data-id="problem7.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('problem7.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=problem7" class="row-tag-num tag-problem" style="text-decoration:none;">範例 07</a>
+            <a href="viewer.html?id=problem7" class="row-title" style="text-decoration:none;">高架工作車翻覆臨界力矩</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">99 指考</span>
+            <span class="row-badge page">講義 靜力學-12</span>
+            <a href="viewer.html?id=problem7" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+        <div class="problem-row" data-href="viewer.html?id=torque1" data-id="torque1.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('torque1.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=torque1" class="row-tag-num tag-torque" style="text-decoration:none;">力矩 01</a>
+            <a href="viewer.html?id=torque1" class="row-title" style="text-decoration:none;">正三角形板三力對頂點之合力矩</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">力矩 1</span>
+            <span class="row-badge page">講義 靜力學-22</span>
+            <a href="viewer.html?id=torque1" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+        <div class="problem-row" data-href="viewer.html?id=torque2" data-id="torque2.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('torque2.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=torque2" class="row-tag-num tag-torque" style="text-decoration:none;">力矩 02</a>
+            <a href="viewer.html?id=torque2" class="row-title" style="text-decoration:none;">傾斜細桿兩端質點對中心力矩</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">力矩 2</span>
+            <span class="row-badge page">講義 靜力學-22</span>
+            <a href="viewer.html?id=torque2" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+        <div class="problem-row" data-href="viewer.html?id=torque3" data-id="torque3.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('torque3.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=torque3" class="row-tag-num tag-torque" style="text-decoration:none;">力矩 03</a>
+            <a href="viewer.html?id=torque3" class="row-title" style="text-decoration:none;">87聯考雙質點細桿重力合力矩</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">87 聯考</span>
+            <span class="row-badge page">講義 靜力學-22</span>
+            <a href="viewer.html?id=torque3" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+        <div class="problem-row" data-href="viewer.html?id=torque4" data-id="torque4.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('torque4.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=torque4" class="row-tag-num tag-torque" style="text-decoration:none;">力矩 04</a>
+            <a href="viewer.html?id=torque4" class="row-title" style="text-decoration:none;">98指考圓輪推上階梯臨界力矩</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">98 指考</span>
+            <span class="row-badge page">講義 靜力學-22</span>
+            <a href="viewer.html?id=torque4" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+        <div class="problem-row" data-href="viewer.html?id=torque5" data-id="torque5.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('torque5.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=torque5" class="row-tag-num tag-torque" style="text-decoration:none;">力矩 05</a>
+            <a href="viewer.html?id=torque5" class="row-title" style="text-decoration:none;">任意角度維持平衡之懸掛支點</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">力矩 5</span>
+            <span class="row-badge page">講義 靜力學-22</span>
+            <a href="viewer.html?id=torque5" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+        <div class="problem-row" data-href="viewer.html?id=torque6" data-id="torque6.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('torque6.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=torque6" class="row-tag-num tag-torque" style="text-decoration:none;">力矩 06</a>
+            <a href="viewer.html?id=torque6" class="row-title" style="text-decoration:none;">均質木棒懸重臨界翹起平衡</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">力矩 6</span>
+            <span class="row-badge page">講義 靜力學-23</span>
+            <a href="viewer.html?id=torque6" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+        <div class="problem-row" data-href="viewer.html?id=torque7" data-id="torque7.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('torque7.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=torque7" class="row-tag-num tag-torque" style="text-decoration:none;">力矩 07</a>
+            <a href="viewer.html?id=torque7" class="row-title" style="text-decoration:none;">107指考均勻直尺力矩平衡</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">107 指考</span>
+            <span class="row-badge page">講義 靜力學-23</span>
+            <a href="viewer.html?id=torque7" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+        <div class="problem-row" data-href="viewer.html?id=equil21" data-id="equil21.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('equil21.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=equil21" class="row-tag-num tag-equil" style="text-decoration:none;">平衡 21</a>
+            <a href="viewer.html?id=equil21" class="row-title" style="text-decoration:none;">均勻平板小孩行走蹺起臨界問題</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">蹺起臨界</span>
+            <span class="row-badge page">講義 靜力學-27</span>
+            <a href="viewer.html?id=equil21" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+        <div class="problem-row" data-href="viewer.html?id=equil22" data-id="equil22.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('equil22.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=equil22" class="row-tag-num tag-equil" style="text-decoration:none;">平衡 22</a>
+            <a href="viewer.html?id=equil22" class="row-title" style="text-decoration:none;">正三角形面板轉動不移動受力辨析</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">94 指考</span>
+            <span class="row-badge page">講義 靜力學-27</span>
+            <a href="viewer.html?id=equil22" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+        <div class="problem-row" data-href="viewer.html?id=equil24" data-id="equil24.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('equil24.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=equil24" class="row-tag-num tag-equil" style="text-decoration:none;">平衡 24</a>
+            <a href="viewer.html?id=equil24" class="row-title" style="text-decoration:none;">不均勻木桿分別鉛直提起求棒重</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">提起求棒重</span>
+            <span class="row-badge page">講義 靜力學-28</span>
+            <a href="viewer.html?id=equil24" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+        <div class="problem-row" data-href="viewer.html?id=equil31" data-id="equil31.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('equil31.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=equil31" class="row-tag-num tag-equil" style="text-decoration:none;">平衡 31</a>
+            <a href="viewer.html?id=equil31" class="row-title" style="text-decoration:none;">斜坡上兩人抬木棒重物受力辨析</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">99 指考</span>
+            <span class="row-badge page">講義 靜力學-29</span>
+            <a href="viewer.html?id=equil31" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+        <div class="problem-row" data-href="viewer.html?id=equil39" data-id="equil39.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('equil39.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=equil39" class="row-tag-num tag-equil" style="text-decoration:none;">平衡 39</a>
+            <a href="viewer.html?id=equil39" class="row-title" style="text-decoration:none;">直角三角板懸掛平衡與質量比</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">三角板懸掛</span>
+            <span class="row-badge page">講義 靜力學-31</span>
+            <a href="viewer.html?id=equil39" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+        <div class="problem-row" data-href="viewer.html?id=equil46" data-id="equil46.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('equil46.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=equil46" class="row-tag-num tag-equil" style="text-decoration:none;">平衡 46</a>
+            <a href="viewer.html?id=equil46" class="row-title" style="text-decoration:none;">輪軸互換力臂與幾何平均物重</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">輪軸力矩</span>
+            <span class="row-badge page">講義 靜力學-32</span>
+            <a href="viewer.html?id=equil46" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+        <div class="problem-row" data-href="viewer.html?id=equil47" data-id="equil47.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('equil47.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=equil47" class="row-tag-num tag-equil" style="text-decoration:none;">平衡 47</a>
+            <a href="viewer.html?id=equil47" class="row-title" style="text-decoration:none;">輪軸加速吊升與物體繩張力矩</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">105 指考</span>
+            <span class="row-badge page">講義 靜力學-32</span>
+            <a href="viewer.html?id=equil47" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 專題五：剛體桿件平衡、梯子模型與樞紐力分析（不共點力的綜合平衡） -->
+    <section class="topic-section" id="topic-5">
+      <div class="topic-header" style="border-top: 3px solid #ec4899;">
+        <div class="topic-title-row">
+          <div class="topic-title-left">
+            <div class="topic-icon-box" style="box-shadow: 0 0 15px #ec489933;">🪜</div>
+            <div>
+              <h2 class="topic-heading">專題五：剛體桿件平衡、梯子模型與樞紐力分析（不共點力的綜合平衡）</h2>
+              <div style="font-size: 0.8rem; color: #94a3b8; margin-top: 3px;">
+                本專題包含 <strong style="color: #ec4899;">24</strong> 題完整精選考題
+              </div>
+            </div>
+          </div>
+          <span class="topic-badge-count">24 題</span>
+        </div>
+
+        <div class="topic-insight-grid">
+          <div class="insight-card insight-concept">
+            <div class="label">🎯 專題核心考點</div>
+            <p>剛體三力平衡必共點或平行、光滑牆面無切向力、樞紐作用力需聯立 $\Sigma F_x=0, \Sigma F_y=0, \Sigma \tau=0$</p>
+          </div>
+          <div class="insight-card insight-breakthrough">
+            <div class="label">⚡ 一秒解題突破口</div>
+            <p>梯子底端摩擦力必等於頂端牆面正向力；樞紐反力方向不是沿棒向，一定要分成水平與鉛直兩個分量求解！</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="topic-problem-list">
+        <div class="problem-row" data-href="viewer.html?id=problem8" data-id="problem8.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('problem8.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=problem8" class="row-tag-num tag-problem" style="text-decoration:none;">範例 08</a>
+            <a href="viewer.html?id=problem8" class="row-title" style="text-decoration:none;">水平輕棒懸重之樞鈕力分析</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">經典定性題</span>
+            <span class="row-badge page">講義 靜力學-13</span>
+            <a href="viewer.html?id=problem8" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+        <div class="problem-row" data-href="viewer.html?id=problem10" data-id="problem10.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('problem10.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=problem10" class="row-tag-num tag-problem" style="text-decoration:none;">範例 10</a>
+            <a href="viewer.html?id=problem10" class="row-title" style="text-decoration:none;">均勻梯子靠光滑垂直牆面平衡</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">聯考必考</span>
+            <span class="row-badge page">講義 靜力學-16</span>
+            <a href="viewer.html?id=problem10" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+        <div class="problem-row" data-href="viewer.html?id=equil23" data-id="equil23.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('equil23.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=equil23" class="row-tag-num tag-equil" style="text-decoration:none;">平衡 23</a>
+            <a href="viewer.html?id=equil23" class="row-title" style="text-decoration:none;">均勻桿傾斜懸掛細繩張力分析</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">懸掛傾斜桿</span>
+            <span class="row-badge page">講義 靜力學-27</span>
+            <a href="viewer.html?id=equil23" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+        <div class="problem-row" data-href="viewer.html?id=equil25" data-id="equil25.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('equil25.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=equil25" class="row-tag-num tag-equil" style="text-decoration:none;">平衡 25</a>
+            <a href="viewer.html?id=equil25" class="row-title" style="text-decoration:none;">水平輕棒懸重與牆壁樞紐作用力</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">樞紐作用力</span>
+            <span class="row-badge page">講義 靜力學-28</span>
+            <a href="viewer.html?id=equil25" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+        <div class="problem-row" data-href="viewer.html?id=equil26" data-id="equil26.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('equil26.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=equil26" class="row-tag-num tag-equil" style="text-decoration:none;">平衡 26</a>
+            <a href="viewer.html?id=equil26" class="row-title" style="text-decoration:none;">均質木棒天花板樞紐與水平繫繩</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">天花板樞紐</span>
+            <span class="row-badge page">講義 靜力學-28</span>
+            <a href="viewer.html?id=equil26" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+        <div class="problem-row" data-href="viewer.html?id=equil27" data-id="equil27.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('equil27.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=equil27" class="row-tag-num tag-equil" style="text-decoration:none;">平衡 27</a>
+            <a href="viewer.html?id=equil27" class="row-title" style="text-decoration:none;">細桿偏離鉛垂線與釘子作用力</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">89 聯考</span>
+            <span class="row-badge page">講義 靜力學-28</span>
+            <a href="viewer.html?id=equil27" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+        <div class="problem-row" data-href="viewer.html?id=equil28" data-id="equil28.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('equil28.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=equil28" class="row-tag-num tag-equil" style="text-decoration:none;">平衡 28</a>
+            <a href="viewer.html?id=equil28" class="row-title" style="text-decoration:none;">斜立木棒拉繩與地面作用力</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">斜立木棒</span>
+            <span class="row-badge page">講義 靜力學-28</span>
+            <a href="viewer.html?id=equil28" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+        <div class="problem-row" data-href="viewer.html?id=equil29" data-id="equil29.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('equil29.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=equil29" class="row-tag-num tag-equil" style="text-decoration:none;">平衡 29</a>
+            <a href="viewer.html?id=equil29" class="row-title" style="text-decoration:none;">緩慢拉起木棒之定性變化</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">動態拉起桿</span>
+            <span class="row-badge page">講義 靜力學-29</span>
+            <a href="viewer.html?id=equil29" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+        <div class="problem-row" data-href="viewer.html?id=equil30" data-id="equil30.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('equil30.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=equil30" class="row-tag-num tag-equil" style="text-decoration:none;">平衡 30</a>
+            <a href="viewer.html?id=equil30" class="row-title" style="text-decoration:none;">斜桿光滑地面與細繩懸吊</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">光滑地面桿</span>
+            <span class="row-badge page">講義 靜力學-29</span>
+            <a href="viewer.html?id=equil30" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+        <div class="problem-row" data-href="viewer.html?id=equil32" data-id="equil32.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('equil32.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=equil32" class="row-tag-num tag-equil" style="text-decoration:none;">平衡 32</a>
+            <a href="viewer.html?id=equil32" class="row-title" style="text-decoration:none;">梯子靠光滑牆與地面作用力</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">梯子經典</span>
+            <span class="row-badge page">講義 靜力學-29</span>
+            <a href="viewer.html?id=equil32" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+        <div class="problem-row" data-href="viewer.html?id=equil33" data-id="equil33.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('equil33.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=equil33" class="row-tag-num tag-equil" style="text-decoration:none;">平衡 33</a>
+            <a href="viewer.html?id=equil33" class="row-title" style="text-decoration:none;">輕桿靠光滑牆與參考點力矩量值</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">力矩等價性</span>
+            <span class="row-badge page">講義 靜力學-29</span>
+            <a href="viewer.html?id=equil33" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+        <div class="problem-row" data-href="viewer.html?id=equil34" data-id="equil34.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('equil34.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=equil34" class="row-tag-num tag-equil" style="text-decoration:none;">平衡 34</a>
+            <a href="viewer.html?id=equil34" class="row-title" style="text-decoration:none;">梯子防滑拉繩極限與猴子攀爬距離</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">猴子爬梯極限</span>
+            <span class="row-badge page">講義 靜力學-30</span>
+            <a href="viewer.html?id=equil34" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+        <div class="problem-row" data-href="viewer.html?id=equil35" data-id="equil35.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('equil35.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=equil35" class="row-tag-num tag-equil" style="text-decoration:none;">平衡 35</a>
+            <a href="viewer.html?id=equil35" class="row-title" style="text-decoration:none;">輕桿懸掛重物與幾何相似力三角形</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">幾何相似三角形</span>
+            <span class="row-badge page">講義 靜力學-30</span>
+            <a href="viewer.html?id=equil35" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+        <div class="problem-row" data-href="viewer.html?id=equil36" data-id="equil36.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('equil36.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=equil36" class="row-tag-num tag-equil" style="text-decoration:none;">平衡 36</a>
+            <a href="viewer.html?id=equil36" class="row-title" style="text-decoration:none;">均質棒斜倚垂直壁與三力共點幾何</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">等腰中線垂直</span>
+            <span class="row-badge page">講義 靜力學-30</span>
+            <a href="viewer.html?id=equil36" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+        <div class="problem-row" data-href="viewer.html?id=equil37" data-id="equil37.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('equil37.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=equil37" class="row-tag-num tag-equil" style="text-decoration:none;">平衡 37</a>
+            <a href="viewer.html?id=equil37" class="row-title" style="text-decoration:none;">均勻棒斜跨粗糙地面與光滑斜面</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">地面全作用力</span>
+            <span class="row-badge page">講義 靜力學-30</span>
+            <a href="viewer.html?id=equil37" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+        <div class="problem-row" data-href="viewer.html?id=equil38" data-id="equil38.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('equil38.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=equil38" class="row-tag-num tag-equil" style="text-decoration:none;">平衡 38</a>
+            <a href="viewer.html?id=equil38" class="row-title" style="text-decoration:none;">均勻木棍斜靠光滑半球面的切點力矩</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">半球面切點力臂</span>
+            <span class="row-badge page">講義 靜力學-30</span>
+            <a href="viewer.html?id=equil38" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+        <div class="problem-row" data-href="viewer.html?id=equil40" data-id="equil40.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('equil40.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=equil40" class="row-tag-num tag-equil" style="text-decoration:none;">平衡 40</a>
+            <a href="viewer.html?id=equil40" class="row-title" style="text-decoration:none;">粗糙雙壁面斜倚梯子受力方向分析</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">雙粗糙面梯子</span>
+            <span class="row-badge page">講義 靜力學-31</span>
+            <a href="viewer.html?id=equil40" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+        <div class="problem-row" data-href="viewer.html?id=equil42" data-id="equil42.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('equil42.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=equil42" class="row-tag-num tag-equil" style="text-decoration:none;">平衡 42</a>
+            <a href="viewer.html?id=equil42" class="row-title" style="text-decoration:none;">均勻木棒斜置光滑半球碗之邊緣力矩</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">半球碗緣切力矩</span>
+            <span class="row-badge page">講義 靜力學-31</span>
+            <a href="viewer.html?id=equil42" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+        <div class="problem-row" data-href="viewer.html?id=equil43" data-id="equil43.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('equil43.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=equil43" class="row-tag-num tag-equil" style="text-decoration:none;">平衡 43</a>
+            <a href="viewer.html?id=equil43" class="row-title" style="text-decoration:none;">小童沿木板等速下滑之牆面與地面力變化</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">等速下滑反力</span>
+            <span class="row-badge page">講義 靜力學-31</span>
+            <a href="viewer.html?id=equil43" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+        <div class="problem-row" data-href="viewer.html?id=equil44" data-id="equil44.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('equil44.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=equil44" class="row-tag-num tag-equil" style="text-decoration:none;">平衡 44</a>
+            <a href="viewer.html?id=equil44" class="row-title" style="text-decoration:none;">雙繩共點懸掛木棒與幾何正弦定理</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">雙繩正弦定理</span>
+            <span class="row-badge page">講義 靜力學-32</span>
+            <a href="viewer.html?id=equil44" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+        <div class="problem-row" data-href="viewer.html?id=equil45" data-id="equil45.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('equil45.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=equil45" class="row-tag-num tag-equil" style="text-decoration:none;">平衡 45</a>
+            <a href="viewer.html?id=equil45" class="row-title" style="text-decoration:none;">雙繩懸掛均勻木棒與直角中線定理</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">直角斜邊中線</span>
+            <span class="row-badge page">講義 靜力學-32</span>
+            <a href="viewer.html?id=equil45" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+        <div class="problem-row" data-href="viewer.html?id=equil48" data-id="equil48.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('equil48.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=equil48" class="row-tag-num tag-equil" style="text-decoration:none;">平衡 48</a>
+            <a href="viewer.html?id=equil48" class="row-title" style="text-decoration:none;">斜傾木棒樞紐施力方向與夾角範圍</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">樞紐施力角度</span>
+            <span class="row-badge page">講義 靜力學-33</span>
+            <a href="viewer.html?id=equil48" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+        <div class="problem-row" data-href="viewer.html?id=equil50" data-id="equil50.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('equil50.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=equil50" class="row-tag-num tag-equil" style="text-decoration:none;">平衡 50</a>
+            <a href="viewer.html?id=equil50" class="row-title" style="text-decoration:none;">雙斜面支撐均勻木棒與物體位置</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">雙斜面支撐棒</span>
+            <span class="row-badge page">講義 靜力學-33</span>
+            <a href="viewer.html?id=equil50" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+        <div class="problem-row" data-href="viewer.html?id=equil51" data-id="equil51.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('equil51.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=equil51" class="row-tag-num tag-equil" style="text-decoration:none;">平衡 51</a>
+            <a href="viewer.html?id=equil51" class="row-title" style="text-decoration:none;">起重機臂吊物與鋼索張力矩平衡</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">110 指考</span>
+            <span class="row-badge page">講義 靜力學-33</span>
+            <a href="viewer.html?id=equil51" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 專題六：摩擦力與滑動／傾倒雙重臨界（斜面、疊塊、自鎖與多體連接） -->
+    <section class="topic-section" id="topic-6">
+      <div class="topic-header" style="border-top: 3px solid #f97316;">
+        <div class="topic-title-row">
+          <div class="topic-title-left">
+            <div class="topic-icon-box" style="box-shadow: 0 0 15px #f9731633;">🧱</div>
+            <div>
+              <h2 class="topic-heading">專題六：摩擦力與滑動／傾倒雙重臨界（斜面、疊塊、自鎖與多體連接）</h2>
+              <div style="font-size: 0.8rem; color: #94a3b8; margin-top: 3px;">
+                本專題包含 <strong style="color: #f97316;">25</strong> 題完整精選考題
+              </div>
+            </div>
+          </div>
+          <span class="topic-badge-count">25 題</span>
+        </div>
+
+        <div class="topic-insight-grid">
+          <div class="insight-card insight-concept">
+            <div class="label">🎯 專題核心考點</div>
+            <p>靜摩擦力 $f_s \le \mu_s N$（被動調整）、滑動臨界 $f_s = \mu_s N$、滑動與傾倒臨界競爭、疊層物體隔離法</p>
+          </div>
+          <div class="insight-card insight-breakthrough">
+            <div class="label">⚡ 一秒解題突破口</div>
+            <p>實際靜摩擦力看主動外力平衡，只有「恰滑動」才等於 $\mu_s N$；剛體推動時，先算滑動所需推力與傾倒推力，小者先發生！</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="topic-problem-list">
+        <div class="problem-row" data-href="viewer.html?id=problem9" data-id="problem9.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('problem9.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=problem9" class="row-tag-num tag-problem" style="text-decoration:none;">範例 09</a>
+            <a href="viewer.html?id=problem9" class="row-title" style="text-decoration:none;">斜面物體靜止與等速下滑受力</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">高頻觀念題</span>
+            <span class="row-badge page">講義 靜力學-16</span>
+            <a href="viewer.html?id=problem9" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+        <div class="problem-row" data-href="viewer.html?id=problem11" data-id="problem11.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('problem11.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=problem11" class="row-tag-num tag-problem" style="text-decoration:none;">範例 11</a>
+            <a href="viewer.html?id=problem11" class="row-title" style="text-decoration:none;">水平推力木箱滑動與傾倒臨界</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">剛體大考名題</span>
+            <span class="row-badge page">講義 靜力學-17</span>
+            <a href="viewer.html?id=problem11" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+        <div class="problem-row" data-href="viewer.html?id=frict1" data-id="frict1.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('frict1.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=frict1" class="row-tag-num tag-frict" style="text-decoration:none;">摩擦 01</a>
+            <a href="viewer.html?id=frict1" class="row-title" style="text-decoration:none;">筷子夾滷蛋平衡之受力分析</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">靜摩擦本質</span>
+            <span class="row-badge page">講義 靜力學-34</span>
+            <a href="viewer.html?id=frict1" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+        <div class="problem-row" data-href="viewer.html?id=frict2" data-id="frict2.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('frict2.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=frict2" class="row-tag-num tag-frict" style="text-decoration:none;">摩擦 02</a>
+            <a href="viewer.html?id=frict2" class="row-title" style="text-decoration:none;">輪胎胎紋之物理機制與安全排水</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">生活物理抓地力</span>
+            <span class="row-badge page">講義 靜力學-34</span>
+            <a href="viewer.html?id=frict2" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+        <div class="problem-row" data-href="viewer.html?id=frict3" data-id="frict3.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('frict3.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=frict3" class="row-tag-num tag-frict" style="text-decoration:none;">摩擦 03</a>
+            <a href="viewer.html?id=frict3" class="row-title" style="text-decoration:none;">疊合楔形木塊與桌面間摩擦力分析</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">系統與隔離法</span>
+            <span class="row-badge page">講義 靜力學-34</span>
+            <a href="viewer.html?id=frict3" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+        <div class="problem-row" data-href="viewer.html?id=frict4" data-id="frict4.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('frict4.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=frict4" class="row-tag-num tag-frict" style="text-decoration:none;">摩擦 04</a>
+            <a href="viewer.html?id=frict4" class="row-title" style="text-decoration:none;">斜面滑輪系統保持靜止之質量比範圍</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">91 研究試題</span>
+            <span class="row-badge page">講義 靜力學-34</span>
+            <a href="viewer.html?id=frict4" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+        <div class="problem-row" data-href="viewer.html?id=frict5" data-id="frict5.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('frict5.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=frict5" class="row-tag-num tag-frict" style="text-decoration:none;">摩擦 05</a>
+            <a href="viewer.html?id=frict5" class="row-title" style="text-decoration:none;">疊合雙塊相對滑動之臨界摩擦係數比</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">相對滑動條件</span>
+            <span class="row-badge page">講義 靜力學-34</span>
+            <a href="viewer.html?id=frict5" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+        <div class="problem-row" data-href="viewer.html?id=frict6" data-id="frict6.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('frict6.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=frict6" class="row-tag-num tag-frict" style="text-decoration:none;">摩擦 06</a>
+            <a href="viewer.html?id=frict6" class="row-title" style="text-decoration:none;">小蟲爬半球碗壁之最大鉛直高度</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">曲面切向臨界</span>
+            <span class="row-badge page">講義 靜力學-35</span>
+            <a href="viewer.html?id=frict6" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+        <div class="problem-row" data-href="viewer.html?id=frict7" data-id="frict7.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('frict7.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=frict7" class="row-tag-num tag-frict" style="text-decoration:none;">摩擦 07</a>
+            <a href="viewer.html?id=frict7" class="row-title" style="text-decoration:none;">雙層木塊滑輪連接體拉動臨界分析</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">複式滑輪連接</span>
+            <span class="row-badge page">講義 靜力學-35</span>
+            <a href="viewer.html?id=frict7" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+        <div class="problem-row" data-href="viewer.html?id=frict8" data-id="frict8.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('frict8.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=frict8" class="row-tag-num tag-frict" style="text-decoration:none;">摩擦 08</a>
+            <a href="viewer.html?id=frict8" class="row-title" style="text-decoration:none;">繩結共點力傳遞與實際靜摩擦力判斷</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">被動摩擦力判定</span>
+            <span class="row-badge page">講義 靜力學-35</span>
+            <a href="viewer.html?id=frict8" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+        <div class="problem-row" data-href="viewer.html?id=frict9" data-id="frict9.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('frict9.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=frict9" class="row-tag-num tag-frict" style="text-decoration:none;">摩擦 09</a>
+            <a href="viewer.html?id=frict9" class="row-title" style="text-decoration:none;">跨越平台與斜面繩子自滑之摩擦係數</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">柔性繩分段平衡</span>
+            <span class="row-badge page">講義 靜力學-35</span>
+            <a href="viewer.html?id=frict9" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+        <div class="problem-row" data-href="viewer.html?id=frict10" data-id="frict10.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('frict10.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=frict10" class="row-tag-num tag-frict" style="text-decoration:none;">摩擦 10</a>
+            <a href="viewer.html?id=frict10" class="row-title" style="text-decoration:none;">等加速滑動與動摩擦係數計算</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">運動學與動摩擦</span>
+            <span class="row-badge page">講義 靜力學-35</span>
+            <a href="viewer.html?id=frict10" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+        <div class="problem-row" data-href="viewer.html?id=frict11" data-id="frict11.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('frict11.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=frict11" class="row-tag-num tag-frict" style="text-decoration:none;">摩擦 11</a>
+            <a href="viewer.html?id=frict11" class="row-title" style="text-decoration:none;">正立方體滑動與轉動同時臨界條件</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">滑動與翻倒偶合</span>
+            <span class="row-badge page">講義 靜力學-36</span>
+            <a href="viewer.html?id=frict11" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+        <div class="problem-row" data-href="viewer.html?id=frict12" data-id="frict12.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('frict12.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=frict12" class="row-tag-num tag-frict" style="text-decoration:none;">摩擦 12</a>
+            <a href="viewer.html?id=frict12" class="row-title" style="text-decoration:none;">楔形木塊地面摩擦力判斷</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">反作用力分析</span>
+            <span class="row-badge page">講義 靜力學-36</span>
+            <a href="viewer.html?id=frict12" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+        <div class="problem-row" data-href="viewer.html?id=frict13" data-id="frict13.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('frict13.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=frict13" class="row-tag-num tag-frict" style="text-decoration:none;">摩擦 13</a>
+            <a href="viewer.html?id=frict13" class="row-title" style="text-decoration:none;">斜面上兩方塊水平推力分析</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">約束平衡</span>
+            <span class="row-badge page">講義 靜力學-36</span>
+            <a href="viewer.html?id=frict13" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+        <div class="problem-row" data-href="viewer.html?id=frict14" data-id="frict14.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('frict14.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=frict14" class="row-tag-num tag-frict" style="text-decoration:none;">摩擦 14</a>
+            <a href="viewer.html?id=frict14" class="row-title" style="text-decoration:none;">物體下滑與斜面維持靜止條件</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">底面臨界摩擦</span>
+            <span class="row-badge page">講義 靜力學-36</span>
+            <a href="viewer.html?id=frict14" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+        <div class="problem-row" data-href="viewer.html?id=frict15" data-id="frict15.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('frict15.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=frict15" class="row-tag-num tag-frict" style="text-decoration:none;">摩擦 15</a>
+            <a href="viewer.html?id=frict15" class="row-title" style="text-decoration:none;">堆疊楔形木塊砝碼滑動判斷</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">自鎖效應</span>
+            <span class="row-badge page">講義 靜力學-37</span>
+            <a href="viewer.html?id=frict15" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+        <div class="problem-row" data-href="viewer.html?id=frict16" data-id="frict16.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('frict16.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=frict16" class="row-tag-num tag-frict" style="text-decoration:none;">摩擦 16</a>
+            <a href="viewer.html?id=frict16" class="row-title" style="text-decoration:none;">木棒細繩繫牆臨界摩擦係數</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">96 指考經典</span>
+            <span class="row-badge page">講義 靜力學-37</span>
+            <a href="viewer.html?id=frict16" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+        <div class="problem-row" data-href="viewer.html?id=frict17" data-id="frict17.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('frict17.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=frict17" class="row-tag-num tag-frict" style="text-decoration:none;">摩擦 17</a>
+            <a href="viewer.html?id=frict17" class="row-title" style="text-decoration:none;">小蟲爬折線斜面之極限段數</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">摩擦角爬坡</span>
+            <span class="row-badge page">講義 靜力學-37</span>
+            <a href="viewer.html?id=frict17" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+        <div class="problem-row" data-href="viewer.html?id=frict18" data-id="frict18.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('frict18.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=frict18" class="row-tag-num tag-frict" style="text-decoration:none;">摩擦 18</a>
+            <a href="viewer.html?id=frict18" class="row-title" style="text-decoration:none;">木棒斜靠光滑半圓柱正向力分析</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">半圓柱支承</span>
+            <span class="row-badge page">講義 靜力學-37</span>
+            <a href="viewer.html?id=frict18" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+        <div class="problem-row" data-href="viewer.html?id=frict19" data-id="frict19.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('frict19.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=frict19" class="row-tag-num tag-frict" style="text-decoration:none;">摩擦 19</a>
+            <a href="viewer.html?id=frict19" class="row-title" style="text-decoration:none;">平行斜面外力極值比推導</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">雙向滑動比值</span>
+            <span class="row-badge page">講義 靜力學-37</span>
+            <a href="viewer.html?id=frict19" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+        <div class="problem-row" data-href="viewer.html?id=frict20" data-id="frict20.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('frict20.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=frict20" class="row-tag-num tag-frict" style="text-decoration:none;">摩擦 20</a>
+            <a href="viewer.html?id=frict20" class="row-title" style="text-decoration:none;">斜面總作用力恆定性分析</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">總約束力二力平衡</span>
+            <span class="row-badge page">講義 靜力學-38</span>
+            <a href="viewer.html?id=frict20" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+        <div class="problem-row" data-href="viewer.html?id=frict21" data-id="frict21.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('frict21.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=frict21" class="row-tag-num tag-frict" style="text-decoration:none;">摩擦 21</a>
+            <a href="viewer.html?id=frict21" class="row-title" style="text-decoration:none;">圓柱受力與參考點力矩平衡</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">101 指考</span>
+            <span class="row-badge page">講義 靜力學-38</span>
+            <a href="viewer.html?id=frict21" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+        <div class="problem-row" data-href="viewer.html?id=frict22" data-id="frict22.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('frict22.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=frict22" class="row-tag-num tag-frict" style="text-decoration:none;">摩擦 22</a>
+            <a href="viewer.html?id=frict22" class="row-title" style="text-decoration:none;">鑷子夾球受力分析與臨界摩擦</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">109 指考</span>
+            <span class="row-badge page">講義 靜力學-38</span>
+            <a href="viewer.html?id=frict22" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+        <div class="problem-row" data-href="viewer.html?id=frict23" data-id="frict23.html">
+          <div class="row-left">
+            <input type="checkbox" class="mastery-checkbox" onclick="toggleMastery('frict23.html', event)" title="標記為已精熟">
+            <a href="viewer.html?id=frict23" class="row-tag-num tag-frict" style="text-decoration:none;">摩擦 23</a>
+            <a href="viewer.html?id=frict23" class="row-title" style="text-decoration:none;">雙箱滑輪連接等速移動分析</a>
+          </div>
+          <div class="row-right">
+            <span class="row-badge exam">111 分科測驗</span>
+            <span class="row-badge page">講義 靜力學-39 (完結篇)</span>
+            <a href="viewer.html?id=frict23" class="row-arrow" style="text-decoration:none;">➔</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <script>
+    // KaTeX Auto Render
+    document.addEventListener("DOMContentLoaded", function() {
+      if (typeof renderMathInElement === 'function') {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ],
+          throwOnError: false
+        });
+      }
+      loadMasteryState();
+    });
+
+    // Mastery Progress with LocalStorage
+    function getStoredMastery() {
+      try {
+        const stored = localStorage.getItem('physics_static_mastery');
+        return stored ? JSON.parse(stored) : {};
+      } catch (e) {
+        return {};
+      }
+    }
+
+    function toggleMastery(fileId, event) {
+      event.stopPropagation();
+      const mastery = getStoredMastery();
+      mastery[fileId] = !mastery[fileId];
+      localStorage.setItem('physics_static_mastery', JSON.stringify(mastery));
+      applyMasteryState();
+    }
+
+    function loadMasteryState() {
+      applyMasteryState();
+    }
+
+    function applyMasteryState() {
+      const mastery = getStoredMastery();
+      const rows = document.querySelectorAll('.problem-row');
+      let completedCount = 0;
+
+      rows.forEach(row => {
+        const fileId = row.getAttribute('data-id');
+        const checkbox = row.querySelector('.mastery-checkbox');
+        if (mastery[fileId]) {
+          row.classList.add('is-completed');
+          if (checkbox) checkbox.checked = true;
+          completedCount++;
+        } else {
+          row.classList.remove('is-completed');
+          if (checkbox) checkbox.checked = false;
+        }
+      });
+
+      const totalCount = rows.length;
+      document.getElementById('completedCount').textContent = completedCount;
+      const pct = totalCount > 0 ? Math.round((completedCount / totalCount) * 100) : 0;
+      document.getElementById('progressFill').style.width = pct + '%';
+      document.getElementById('progressPercent').textContent = pct + '%';
+    }
+
+    let currentTopicFilter = 'all';
+
+    // Filter Topic Function
+    function filterTopic(topicId, btn) {
+      currentTopicFilter = topicId;
+      document.querySelectorAll('.filter-pill').forEach(pill => {
+        pill.classList.remove('active');
+      });
+      if (btn) btn.classList.add('active');
+
+      const q = document.getElementById('searchInput').value.trim().toLowerCase();
+      applyFilters(q);
+    }
+
+    // Search Filter
+    function handleSearch() {
+      const q = document.getElementById('searchInput').value.trim().toLowerCase();
+      applyFilters(q);
+    }
+
+    function applyFilters(q) {
+      const sections = document.querySelectorAll('.topic-section');
+
+      sections.forEach(sec => {
+        const matchesTopic = (currentTopicFilter === 'all' || sec.id === currentTopicFilter);
+        if (!matchesTopic) {
+          sec.style.display = 'none';
+          return;
+        }
+
+        let visibleCount = 0;
+        const rows = sec.querySelectorAll('.problem-row');
+        rows.forEach(row => {
+          const text = row.innerText.toLowerCase();
+          if (!q || text.includes(q)) {
+            row.style.display = 'flex';
+            visibleCount++;
+          } else {
+            row.style.display = 'none';
+          }
+        });
+
+        sec.style.display = (visibleCount > 0) ? 'block' : 'none';
+      });
+    }
+
+    // Allow clicking anywhere on problem row to navigate (except checkbox)
+    document.querySelectorAll('.problem-row').forEach(row => {
+      row.addEventListener('click', function(e) {
+        if (e.target.tagName !== 'INPUT') {
+          const href = this.getAttribute('data-href');
+          if (href) window.location.href = href;
+        }
+      });
+    });
+  </script>
+</body>
+</html>

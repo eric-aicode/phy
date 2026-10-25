@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>靜力平衡 50：雙斜面支撐均勻木棒與物體位置 | 高中物理靜力學</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+  <link rel="stylesheet" href="shared.css">
+</head>
+<body>
+  <div class="bg-glow"></div>
+  <div class="bg-grid"></div>
+
+  <div class="container">
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+      <div class="nav-links">
+        <a href="index.html" class="nav-btn primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          回目錄
+        </a>
+        <a href="equil49.html" class="nav-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          上一題 (平衡 49)
+        </a>
+        <a href="equil51.html" class="nav-btn">
+          下一題 (平衡 51)
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+      <div class="badge-wrapper">
+        <span class="badge badge-page">講義 靜力學-33</span>
+        <span class="badge badge-exam">合力與力矩雙重平衡</span>
+        <span class="badge badge-accent">靜力平衡・練習 50</span>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+      <h1 class="main-title">靜力平衡 50：<span class="gradient-text">雙斜面支撐均勻木棒與物體位置</span></h1>
+      <p class="subtitle">光滑斜面垂直正向力・水平與垂直合力為零・以端點為軸求解力矩平衡</p>
+    </header>
+
+    <!-- Main Problem Layout -->
+    <div class="problem-layout">
+      <!-- Left Column: Problem & Visualizer -->
+      <div class="problem-card">
+        <h2 class="section-title">
+          <span class="step-num">1</span>
+          題目情境與物理圖解
+        </h2>
+        <div class="problem-text">
+          <p>
+            有一長度 $4\text{ m}$、重量 $2\text{ kgw}$ 的均勻棒子，兩端分別用兩個光滑斜面支撐（左側斜面仰角 $60^\circ$、右側斜面仰角 $30^\circ$）。今在棒子上方置一重量 $8\text{ kgw}$ 的物體，恰可使棒子成「水平」的靜止平衡狀態，如圖所示，則該物體與棒子 $B$ 端的距離為多少 $\text{m}$？
+          </p>
+        </div>
+
+        <div class="diagram-container">
+          <div class="diagram-header">
+            <span class="diagram-tag">剛體靜力平衡圖解</span>
+            <span class="diagram-hint">棒呈水平：重力垂直向下，正向力垂直於各斜面</span>
+          </div>
+          <svg class="interactive-diagram" viewBox="0 0 540 360" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="arrowRed" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+                <path d="M0,0 L0,6 L9,3 z" fill="#ef4444" />
+              </marker>
+              <marker id="arrowGreen" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+                <path d="M0,0 L0,6 L9,3 z" fill="#10b981" />
+              </marker>
+              <marker id="arrowCyan" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+                <path d="M0,0 L0,6 L9,3 z" fill="#06b6d4" />
+              </marker>
+              <marker id="arrowOrange" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+                <path d="M0,0 L0,6 L9,3 z" fill="#f59e0b" />
+              </marker>
+            </defs>
+
+            <!-- Ground reference dashed line -->
+            <line x1="50" y1="310" x2="490" y2="310" stroke="#64748b" stroke-dasharray="4,4" stroke-width="1.5"/>
+
+            <!-- Valley of two inclined planes meeting at (210, 310) -->
+            <!-- Left incline: angle 60° to horizontal. From (210, 310) going up-left: dx = -140, dy = -140 * tan(60°) = -242 => (70, 68) -->
+            <!-- Right incline: angle 30° to horizontal. From (210, 310) going up-right: dx = 280, dy = -280 * tan(30°) = -161 => (490, 149) -->
+            <polygon points="70,68 210,310 490,149 490,310 70,310" fill="#1e293b" opacity="0.6"/>
+            <line x1="70" y1="68" x2="210" y2="310" stroke="#94a3b8" stroke-width="5"/>
+            <line x1="210" y1="310" x2="490" y2="149" stroke="#94a3b8" stroke-width="5"/>
+
+            <!-- Angle labels -->
+            <path d="M170,310 A40,40 0 0,1 190,275" fill="none" stroke="#38bdf8" stroke-width="2"/>
+            <text x="140" y="295" fill="#38bdf8" font-size="14" font-weight="bold">60°</text>
+
+            <path d="M260,310 A50,50 0 0,0 253,285" fill="none" stroke="#fbbf24" stroke-width="2"/>
+            <text x="268" y="300" fill="#fbbf24" font-size="14" font-weight="bold">30°</text>
+
+            <!-- Horizontal rod AB at y = 170 -->
+            <!-- Left contact with 60° slope: x = 210 - (310-170)/tan(60°) = 210 - 140/1.732 = 210 - 80.8 = 129.2 -->
+            <!-- Right contact with 30° slope: x = 210 + (310-170)/tan(30°) = 210 + 140*1.732 = 210 + 242.5 = 452.5 -->
+            <!-- Rod AB: x from 129 to 452.5 (length in px = 323.3, representing 4 m) -->
+            <rect x="129" y="166" width="324" height="12" rx="4" fill="#64748b" stroke="#cbd5e1" stroke-width="1.5"/>
+            <text x="110" y="155" fill="#f8fafc" font-size="16" font-weight="bold">A</text>
+            <text x="460" y="155" fill="#f8fafc" font-size="16" font-weight="bold">B</text>
+
+            <!-- Center of rod: x = (129 + 453)/2 = 291 -->
+            <!-- Rod weight 2 kgw -->
+            <line x1="291" y1="178" x2="291" y2="245" stroke="#ef4444" stroke-width="2.5" marker-end="url(#arrowRed)"/>
+            <circle cx="291" cy="172" r="3" fill="#ef4444"/>
+            <text x="296" y="240" fill="#ef4444" font-size="13" font-weight="bold">2 kgw (棒重)</text>
+
+            <!-- Object 8 kgw at x: distance from B is 0.75m -> (0.75/4) * 323 = 60.6 px to the left of B (452 - 61 = 391) -->
+            <rect x="373" y="136" width="36" height="30" rx="3" fill="#3b82f6" stroke="#93c5fd" stroke-width="1.5"/>
+            <text x="391" y="156" fill="#ffffff" font-size="12" font-weight="bold" text-anchor="middle">8 kgw</text>
+            <!-- Object gravity arrow -->
+            <line x1="391" y1="178" x2="391" y2="255" stroke="#ef4444" stroke-width="3" marker-end="url(#arrowRed)"/>
+            <text x="398" y="250" fill="#ef4444" font-size="13" font-weight="bold">8 kgw</text>
+
+            <!-- Dimension x to B -->
+            <line x1="391" y1="125" x2="453" y2="125" stroke="#38bdf8" stroke-width="1.5"/>
+            <line x1="391" y1="120" x2="391" y2="130" stroke="#38bdf8" stroke-width="1.5"/>
+            <line x1="453" y1="120" x2="453" y2="130" stroke="#38bdf8" stroke-width="1.5"/>
+            <text x="422" y="118" fill="#38bdf8" font-size="13" font-weight="bold" text-anchor="middle">x</text>
+
+            <!-- Normal force N1 at A (perpendicular to 60° plane -> angle 30° above horizontal, up-right) -->
+            <!-- dx = 70*cos(30) = 60.6, dy = -70*sin(30) = -35 => (129+61, 172-35) = (190, 137) -->
+            <line x1="129" y1="172" x2="190" y2="137" stroke="#10b981" stroke-width="3" marker-end="url(#arrowGreen)"/>
+            <text x="145" y="125" fill="#10b981" font-size="13" font-weight="bold">N₁=5 kgw</text>
+
+            <!-- Normal force N2 at B (perpendicular to 30° plane -> angle 60° above horizontal, up-left) -->
+            <!-- dx = -70*cos(60) = -35, dy = -70*sin(60) = -60.6 => (453-35, 172-61) = (418, 111) -->
+            <line x1="453" y1="172" x2="418" y2="111" stroke="#06b6d4" stroke-width="3" marker-end="url(#arrowCyan)"/>
+            <text x="430" y="100" fill="#06b6d4" font-size="13" font-weight="bold">N₂=5√3 kgw</text>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Right Column: Interactive Quiz -->
+      <div class="quiz-card">
+        <h2 class="section-title">
+          <span class="step-num">2</span>
+          自我檢測與觀念選擇
+        </h2>
+        
+        <div class="question-box">
+          <p class="question-stem">
+            由水平方向合力為零、鉛直方向合力為零，並以 $B$ 端為支點列力矩平衡，該 $8\text{ kgw}$ 物體與棒子 $B$ 端的距離 $x$ 為多少公尺？
+          </p>
+
+          <div class="options-list">
+            <label class="option-item" onclick="selectOption(0)">
+              <input type="radio" name="opt" value="0">
+              <span class="opt-letter">A</span>
+              <span class="opt-content">$0.50\text{ m}\quad (\dfrac{1}{2}\text{ m})$</span>
+            </label>
+            <label class="option-item" onclick="selectOption(1)">
+              <input type="radio" name="opt" value="1">
+              <span class="opt-letter">B</span>
+              <span class="opt-content">$0.75\text{ m}\quad (\dfrac{3}{4}\text{ m})$</span>
+            </label>
+            <label class="option-item" onclick="selectOption(2)">
+              <input type="radio" name="opt" value="2">
+              <span class="opt-letter">C</span>
+              <span class="opt-content">$1.00\text{ m}$</span>
+            </label>
+            <label class="option-item" onclick="selectOption(3)">
+              <input type="radio" name="opt" value="3">
+              <span class="opt-letter">D</span>
+              <span class="opt-content">$1.25\text{ m}\quad (\dfrac{5}{4}\text{ m})$</span>
+            </label>
+            <label class="option-item" onclick="selectOption(4)">
+              <input type="radio" name="opt" value="4">
+              <span class="opt-letter">E</span>
+              <span class="opt-content">$1.50\text{ m}\quad (\dfrac{3}{2}\text{ m})$</span>
+            </label>
+          </div>
+
+          <div class="quiz-actions">
+            <button class="btn btn-primary" onclick="checkAnswer()">確認答案</button>
+            <button class="btn btn-secondary" onclick="toggleSolution()">查看完整詳解</button>
+          </div>
+
+          <div id="feedback" class="feedback-box"></div>
+        </div>
+
+        <!-- Detailed Solution (Collapsible) -->
+        <div id="solutionBox" class="solution-card">
+          <h3 class="solution-title">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            詳盡解析與物理思維
+          </h3>
+          <div class="solution-content">
+            <div class="step-card">
+              <h4>步驟一：分析斜面支撐正向力的方向</h4>
+              <p>斜面皆為光滑，正向力必垂直於接觸斜面：</p>
+              <ul>
+                <li>左斜面仰角 $60^\circ$：法線正向力 $N_1$ 朝右上方，與鉛直線夾角為 $60^\circ$（與水平線夾角為 $30^\circ$）。</li>
+                <li>右斜面仰角 $30^\circ$：法線正向力 $N_2$ 朝左上方，與鉛直線夾角為 $30^\circ$（與水平線夾角為 $60^\circ$）。</li>
+              </ul>
+            </div>
+
+            <div class="step-card">
+              <h4>步驟二：利用移動平衡求解兩正向力</h4>
+              <p>木棒維持靜止，水平合力與鉛直合力皆為零：</p>
+              <p><strong>水平方向平衡：</strong></p>
+              $$N_1 \sin 60^\circ = N_2 \sin 30^\circ \implies N_1 \frac{\sqrt{3}}{2} = N_2 \frac{1}{2} \implies N_2 = \sqrt{3} N_1$$
+              <p><strong>鉛直方向平衡（總重 $2 + 8 = 10\text{ kgw}$）：</strong></p>
+              $$N_1 \cos 60^\circ + N_2 \cos 30^\circ = 10$$
+              <p>代入 $N_2 = \sqrt{3} N_1$：</p>
+              $$N_1 \left(\frac{1}{2}\right) + (\sqrt{3}N_1)\left(\frac{\sqrt{3}}{2}\right) = 10 \implies \frac{1}{2}N_1 + \frac{3}{2}N_1 = 2N_1 = 10$$
+              $$\therefore N_1 = 5\text{ kgw},\quad N_2 = 5\sqrt{3}\text{ kgw}$$
+            </div>
+
+            <div class="step-card">
+              <h4>步驟三：選取 $B$ 端為轉軸列力矩平衡</h4>
+              <p>以 $B$ 點為轉動支點（$N_2$ 通過 $B$ 點力矩為零，且 $N_1$ 水平分量沿水平木棒共線力矩亦為零）：</p>
+              <ul>
+                <li>均勻木棒重 $2\text{ kgw}$ 作用於中點，力臂為 $2\text{ m}$（逆時針力矩）。</li>
+                <li>物體重 $8\text{ kgw}$ 距 $B$ 端為 $x$，力臂為 $x$（逆時針力矩）。</li>
+                <li>左端 $A$ 處正向力鉛直分量 $N_1 \cos 60^\circ = 5 \times \frac{1}{2} = 2.5\text{ kgw}$，力臂為全棒長 $4\text{ m}$（順時針力矩）。</li>
+              </ul>
+              $$\sum \tau_B = 0 \implies 8x + 2 \times 2 = (N_1 \cos 60^\circ) \times 4$$
+              $$8x + 4 = 5 \times \frac{1}{2} \times 4 = 10$$
+              $$8x = 6 \implies x = \frac{6}{8} = 0.75\text{ m} = \frac{3}{4}\text{ m}$$
+            </div>
+
+            <div class="highlight-summary">
+              <strong>名師核心點撥：</strong><br>
+              本題是剛體平衡「移平衡＋轉平衡」的標準範例。選取其中一個未知力通過的端點（如 $B$ 端）為支點，不僅避開了 $N_2$ 的計算，更因為木棒水平，水平方向分力與棒共線，力矩自然為零，大大簡化了計算步驟！
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const correctOpt = 1;
+
+    function selectOption(idx) {
+      const items = document.querySelectorAll('.option-item');
+      items.forEach((item, i) => {
+        const radio = item.querySelector('input');
+        if (i === idx) {
+          item.classList.add('selected');
+          radio.checked = true;
+        } else {
+          item.classList.remove('selected');
+          radio.checked = false;
+        }
+      });
+    }
+
+    function checkAnswer() {
+      const selected = document.querySelector('input[name="opt"]:checked');
+      const feedback = document.getElementById('feedback');
+      if (!selected) {
+        feedback.innerHTML = '<span style="color:#f59e0b;">請先點選一個選項！</span>';
+        return;
+      }
+      const val = parseInt(selected.value);
+      if (val === correctOpt) {
+        feedback.innerHTML = '<span style="color:#10b981; font-weight:bold;">🎉 答對了！精準聯立合力與端點力矩方程，求得距離為 0.75 m (B)！</span>';
+      } else {
+        feedback.innerHTML = '<span style="color:#ef4444; font-weight:bold;">❌ 答案不正確，請注意棒子本身重量 2 kgw 作用在中點（距 B 端 2 m），請重新列式計算。</span>';
+      }
+    }
+
+    function toggleSolution() {
+      const sol = document.getElementById('solutionBox');
+      sol.classList.toggle('show');
+      if (sol.classList.contains('show')) {
+        renderMathInElement(sol, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ],
+          throwOnError: false
+        });
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderMathInElement(document.body, {
+        delimiters: [
+          {left: '$$', right: '$$', display: true},
+          {left: '$', right: '$', display: false}
+        ],
+        throwOnError: false
+      });
+    });
+  </script>
+</body>
+</html>

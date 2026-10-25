@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>靜力平衡 30：斜桿置於光滑地面與細繩懸吊張力 | 高中物理靜力學</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+  <link rel="stylesheet" href="shared.css">
+</head>
+<body>
+  <div class="bg-glow"></div>
+  <div class="bg-grid"></div>
+
+  <div class="container">
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+      <div class="nav-links">
+        <a href="index.html" class="nav-btn primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          回目錄
+        </a>
+        <a href="equil29.html" class="nav-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          上一題 (平衡 29)
+        </a>
+        <a href="equil31.html" class="nav-btn">
+          下一題 (平衡 31)
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+      <div class="badge-wrapper">
+        <span class="badge badge-page">講義 靜力學-29</span>
+        <span class="badge badge-exam">光滑地面無摩擦力</span>
+        <span class="badge badge-accent">靜力平衡・練習 30</span>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+      <h1 class="main-title">靜力平衡 30：<span class="gradient-text">斜桿光滑地面與細繩懸吊</span></h1>
+      <p class="subtitle">光滑面約束力特性分析・接觸點力矩平衡消去夾角 $\cos 45^\circ$</p>
+    </header>
+
+    <!-- Problem Showcase Card -->
+    <section class="card problem-card">
+      <div class="card-header">
+        <div class="card-icon">📖</div>
+        <div>
+          <h2>題目內容</h2>
+          <span class="card-tag">聯考與段考經典約束分析題</span>
+        </div>
+      </div>
+
+      <div class="problem-body">
+        <p>
+          桿長 $L$、重 $W$，一端以細繩懸吊，另一端置於水平光滑地面，且與水平夾 $45^\circ$ 角，如圖所示，則<strong>繩張力</strong>為？
+        </p>
+
+        <!-- SVG Diagram -->
+        <div class="svg-container">
+          <svg viewBox="0 0 520 300" width="100%" height="300" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="arrow-blue" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 9 5 L 0 9 z" fill="#3b82f6"/>
+              </marker>
+              <marker id="arrow-amber" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 9 5 L 0 9 z" fill="#f59e0b"/>
+              </marker>
+              <marker id="arrow-emerald" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 9 5 L 0 9 z" fill="#10b981"/>
+              </marker>
+              <pattern id="hatch-ceiling" width="10" height="10" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse">
+                <line x1="0" y1="0" x2="0" y2="10" stroke="#64748b" stroke-width="1.5" />
+              </pattern>
+            </defs>
+
+            <!-- Top Ceiling -->
+            <rect x="250" y="25" width="200" height="20" fill="url(#hatch-ceiling)" opacity="0.3" />
+            <line x1="250" y1="45" x2="450" y2="45" stroke="#94a3b8" stroke-width="2.5" />
+
+            <!-- Bottom Smooth Ground -->
+            <line x1="80" y1="240" x2="440" y2="240" stroke="#94a3b8" stroke-width="2.5" />
+            <text x="90" y="260" fill="#38bdf8" font-size="12">光滑水平地面 (摩擦力 f = 0)</text>
+
+            <!-- Vertical Hanging String from Ceiling (370, 45) to Rod Top (370, 100) -->
+            <line x1="370" y1="45" x2="370" y2="100" stroke="#f59e0b" stroke-width="2.5" />
+            <circle cx="370" cy="45" r="3" fill="#94a3b8" />
+            <circle cx="370" cy="100" r="4" fill="#f59e0b" />
+
+            <!-- Tension Vector T upward -->
+            <line x1="370" y1="100" x2="370" y2="55" stroke="#f59e0b" stroke-width="3" marker-end="url(#arrow-amber)" />
+            <text x="382" y="75" fill="#f59e0b" font-size="16" font-weight="bold">T (繩張力)</text>
+
+            <!-- Inclined Rod from (230, 240) to (370, 100) -->
+            <!-- dx = 140, dy = 140 (45 deg!) -->
+            <line x1="230" y1="240" x2="370" y2="100" stroke="#94a3b8" stroke-width="10" stroke-linecap="round" />
+            <line x1="230" y1="240" x2="370" y2="100" stroke="#38bdf8" stroke-width="4" stroke-linecap="round" />
+
+            <!-- Ground Contact Point -->
+            <circle cx="230" cy="240" r="5" fill="#38bdf8" />
+            <text x="210" y="255" fill="#38bdf8" font-size="14" font-weight="bold">O</text>
+
+            <!-- Normal Force N from ground upward -->
+            <line x1="230" y1="240" x2="230" y2="175" stroke="#3b82f6" stroke-width="2.5" marker-end="url(#arrow-blue)" />
+            <text x="240" y="190" fill="#3b82f6" font-size="14" font-weight="bold">N = W/2</text>
+
+            <!-- Angle 45 deg arc -->
+            <path d="M 270 240 A 40 40 0 0 0 258 212" fill="none" stroke="#f59e0b" stroke-width="2" />
+            <text x="275" y="230" fill="#f59e0b" font-size="14" font-weight="bold">45°</text>
+
+            <!-- Midpoint Center of Mass (300, 170) -->
+            <circle cx="300" cy="170" r="5" fill="#10b981" />
+            <line x1="300" y1="170" x2="300" y2="235" stroke="#10b981" stroke-width="2.5" marker-end="url(#arrow-emerald)" />
+            <text x="310" y="215" fill="#10b981" font-size="15" font-weight="bold">W</text>
+            <text x="280" y="160" fill="#6ee7b7" font-size="12">重心 (L/2)</text>
+
+            <!-- Horizontal projection helper lines -->
+            <line x1="230" y1="240" x2="230" y2="280" stroke="#64748b" stroke-width="1" stroke-dasharray="3,3" opacity="0.4" />
+            <line x1="300" y1="170" x2="300" y2="280" stroke="#64748b" stroke-width="1" stroke-dasharray="3,3" opacity="0.4" />
+            <line x1="370" y1="100" x2="370" y2="280" stroke="#64748b" stroke-width="1" stroke-dasharray="3,3" opacity="0.4" />
+
+            <line x1="230" y1="275" x2="300" y2="275" stroke="#94a3b8" stroke-width="1.5" />
+            <text x="245" y="292" fill="#94a3b8" font-size="11">½L cos45°</text>
+
+            <line x1="230" y1="275" x2="370" y2="275" stroke="#94a3b8" stroke-width="1.5" />
+            <text x="325" y="292" fill="#94a3b8" font-size="11">L cos45°</text>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Options Grid -->
+    <section class="card quiz-card">
+      <div class="card-header">
+        <div class="card-icon">🎯</div>
+        <div>
+          <h2>選擇題挑戰</h2>
+          <span class="card-tag">點擊選項立即作答檢驗</span>
+        </div>
+      </div>
+
+      <div class="options-grid">
+        <div class="option-card" data-option="A">
+          <div class="option-indicator">A</div>
+          <div class="option-content">
+            <span class="math-opt">$W$</span>
+          </div>
+        </div>
+
+        <div class="option-card" data-option="B">
+          <div class="option-indicator">B</div>
+          <div class="option-content">
+            <span class="math-opt">$\frac{W}{\sqrt{2}}$</span>
+          </div>
+        </div>
+
+        <div class="option-card" data-option="C">
+          <div class="option-indicator">C</div>
+          <div class="option-content">
+            <span class="math-opt">$\frac{W}{\sqrt{3}}$</span>
+          </div>
+        </div>
+
+        <div class="option-card" data-option="D">
+          <div class="option-indicator">D</div>
+          <div class="option-content">
+            <span class="math-opt">$\frac{W}{2}$</span>
+          </div>
+        </div>
+
+        <div class="option-card" data-option="E">
+          <div class="option-indicator">E</div>
+          <div class="option-content">
+            <span class="math-opt">$\frac{W}{3}$</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feedback Banner -->
+      <div class="feedback-box" id="feedbackBox">
+        <div class="feedback-icon" id="feedbackIcon"></div>
+        <div class="feedback-text" id="feedbackText"></div>
+      </div>
+    </section>
+
+    <!-- Collapsible Solution Card -->
+    <section class="card solution-card collapsed" id="solutionCard">
+      <div class="card-header solution-toggle" id="solutionToggle">
+        <div class="card-icon">💡</div>
+        <div class="solution-header-content">
+          <h2>精闢解析與推導步驟</h2>
+          <span class="solution-status">點擊展開完整剖析</span>
+        </div>
+        <div class="toggle-arrow">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+      </div>
+
+      <div class="solution-body">
+        <div class="step-card">
+          <div class="step-num">Step 1</div>
+          <div class="step-text">
+            <h4>物理受力與方向定向</h4>
+            <ul>
+              <li><strong>地面為「光滑地面」</strong>：地面只能提供鉛直向上的正向支持力 $N$，水平摩擦力 $f = 0$。</li>
+              <li><strong>細繩張力必鉛直向上</strong>：因為水平方向合力必須為零（$\sum F_x = 0$），若細繩張力有任何水平傾斜分量，系統將無法保持平衡。因此細繩必須呈鉛直下垂，張力 $T$ <strong>鉛直向上</strong>！</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">Step 2</div>
+          <div class="step-text">
+            <h4>以地面接觸點為支點列力矩平衡</h4>
+            <p>選取棒與地面接觸點 $O$ 為轉軸，地面正向力 $N$ 通過轉軸，不產生力矩：</p>
+            <ul>
+              <li><strong>繩張力 $T$ 的力臂</strong>：$T$ 鉛直向上，水平力臂為 $d_T = L\cos 45^\circ$（逆時針力矩）。</li>
+              <li><strong>棒重力 $W$ 的力臂</strong>：重力作用於中點 $\frac{L}{2}$ 鉛直向下，水平力臂為 $d_W = \frac{L}{2}\cos 45^\circ$（順時針力矩）。</li>
+            </ul>
+            $$\sum \tau_O = 0 \implies \tau_T = \tau_W$$
+            $$T \cdot (L \cos 45^\circ) = W \cdot \left(\frac{L}{2} \cos 45^\circ\right)$$
+          </div>
+        </div>
+
+        <div class="step-card highlight-step">
+          <div class="step-num">Step 3</div>
+          <div class="step-text">
+            <h4>消去幾何因子求張力 $T$</h4>
+            <p>等號兩側直接消去公因子 $L\cos 45^\circ$：</p>
+            $$T = \frac{W}{2}$$
+            <p class="final-ans-box">
+              故繩張力為 <strong>(D) $\dfrac{W}{2}$</strong>。
+            </p>
+          </div>
+        </div>
+
+        <!-- Note -->
+        <div class="key-point-box">
+          <div class="key-point-title">⚡ 深度物理視野（與傾角無關！）：</div>
+          <p>
+            只要地面光滑且細繩鉛直，兩端鉛直支撐的水平力臂比永遠等於桿長比（$L : \frac{L}{2} = 2 : 1$）。因此<strong>無論夾角是 $45^\circ$、$30^\circ$ 還是任何角度 $\theta$</strong>，繩張力恆為 $T = \frac{W}{2}$！
+          </p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // Auto-render KaTeX
+      if (typeof renderMathInElement === 'function') {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ],
+          throwOnError: false
+        });
+      }
+
+      // Quiz Interaction
+      const correctAnswer = "D";
+      const optionCards = document.querySelectorAll(".option-card");
+      const feedbackBox = document.getElementById("feedbackBox");
+      const feedbackIcon = document.getElementById("feedbackIcon");
+      const feedbackText = document.getElementById("feedbackText");
+      const solutionCard = document.getElementById("solutionCard");
+
+      optionCards.forEach(card => {
+        card.addEventListener("click", function() {
+          const selected = this.getAttribute("data-option");
+
+          optionCards.forEach(c => c.classList.remove("selected", "correct", "wrong"));
+          this.classList.add("selected");
+
+          feedbackBox.classList.remove("correct", "wrong");
+          feedbackBox.classList.add("show");
+
+          if (selected === correctAnswer) {
+            this.classList.add("correct");
+            feedbackBox.classList.add("correct");
+            feedbackIcon.innerHTML = "🎉";
+            feedbackText.innerHTML = "<strong>太神了！完全正確！</strong><br>以地面為轉軸：$T \\cdot L\\cos 45^\\circ = W \\cdot \\frac{L}{2}\\cos 45^\\circ$。<br>消去 $L\\cos 45^\\circ$ 即得 $T = \\frac{W}{2}$！此結果甚至與傾角無關！";
+            solutionCard.classList.remove("collapsed");
+            const tag = solutionCard.querySelector(".solution-status");
+            if (tag) tag.textContent = "點擊收合詳解";
+          } else {
+            this.classList.add("wrong");
+            feedbackBox.classList.add("wrong");
+            feedbackIcon.innerHTML = "💡";
+            feedbackText.innerHTML = `<strong>選了 (${selected})，再想想看！</strong> 提示：因為地面光滑無摩擦力，繩張力必鉛直向上；對地面接觸點取力矩，兩邊皆有 $\\cos 45^\\circ$ 因子可直接相消！`;
+          }
+
+          if (typeof renderMathInElement === 'function') {
+            renderMathInElement(feedbackText, {
+              delimiters: [
+                {left: '$$', right: '$$', display: true},
+                {left: '$', right: '$', display: false}
+              ],
+              throwOnError: false
+            });
+          }
+        });
+      });
+
+      // Solution toggle
+      const solutionToggle = document.getElementById("solutionToggle");
+      solutionToggle.addEventListener("click", function() {
+        solutionCard.classList.toggle("collapsed");
+        const isCollapsed = solutionCard.classList.contains("collapsed");
+        const statusSpan = solutionToggle.querySelector(".solution-status");
+        if (statusSpan) {
+          statusSpan.textContent = isCollapsed ? "點擊展開完整剖析" : "點擊收合詳解";
+        }
+      });
+    });
+  </script>
+</body>
+</html>

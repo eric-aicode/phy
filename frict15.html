@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>靜摩擦力 15：堆疊楔形木塊砝碼滑動判斷 | 高中物理靜力學</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+  <link rel="stylesheet" href="shared.css">
+</head>
+<body>
+  <div class="bg-glow"></div>
+  <div class="bg-grid"></div>
+
+  <div class="container">
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+      <div class="nav-links">
+        <a href="index.html" class="nav-btn primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          回目錄
+        </a>
+        <a href="frict14.html" class="nav-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          上一題 (摩擦 14)
+        </a>
+        <a href="frict16.html" class="nav-btn">
+          下一題 (摩擦 16)
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+      <div class="badge-wrapper">
+        <span class="badge badge-page">講義 靜力學-37</span>
+        <span class="badge badge-exam">自鎖效應與臨界滑動角</span>
+        <span class="badge badge-accent">靜摩擦力・練習 15</span>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+      <h1 class="main-title">靜摩擦力 15：<span class="gradient-text">堆疊楔形木塊砝碼滑動判斷</span></h1>
+      <p class="subtitle">楔形 A、B 堆疊・接觸面斜角 37° 與 μs=0.8・正向力與下滑力同比例關係</p>
+    </header>
+
+    <!-- Main Problem Layout -->
+    <div class="problem-layout">
+      <!-- Left Column: Problem & Visualizer -->
+      <div class="problem-card">
+        <h2 class="section-title">
+          <span class="step-num">1</span>
+          題目情境與物理圖解
+        </h2>
+        <div class="problem-text">
+          <p>
+            水平桌面上置有 A、B 兩塊楔形木塊，呈靜止狀態，如圖所示。A、B 木塊的重量分別為 $2\text{ kgw}$ 與 $4\text{ kgw}$，A 與 B 接觸面的靜摩擦係數為 $\mu_s = 0.8$。
+          </p>
+          <p>
+            今將每一個均為 $1\text{ kgw}$ 的砝碼置於 A 上，則當放置幾個砝碼時將會使 A 下滑？
+          </p>
+        </div>
+
+        <!-- SVG Diagram -->
+        <div class="svg-container">
+          <svg viewBox="0 0 540 320" xmlns="http://www.w3.org/2000/svg">
+            <!-- Ground -->
+            <line x1="50" y1="260" x2="490" y2="260" stroke="#94a3b8" stroke-width="3"/>
+            <path d="M60 260 l-10 12 M90 260 l-10 12 M120 260 l-10 12 M150 260 l-10 12 M180 260 l-10 12 M210 260 l-10 12 M240 260 l-10 12 M270 260 l-10 12 M300 260 l-10 12 M330 260 l-10 12 M360 260 l-10 12 M390 260 l-10 12 M420 260 l-10 12 M450 260 l-10 12" stroke="#64748b" stroke-width="1.5"/>
+
+            <!-- Combined Rectangular Block divided diagonally: Left x=160, right x=380. Top y=80, bottom y=260 -->
+            <!-- Wedge B (bottom-left triangle): (160,80) to (160,260) to (380,260) -->
+            <polygon points="160,80 160,260 380,260" fill="rgba(30, 41, 59, 0.8)" stroke="#38bdf8" stroke-width="2.5"/>
+            <text x="210" y="210" fill="#38bdf8" font-size="20" font-weight="bold">B (4 kgw)</text>
+
+            <!-- Wedge A (top-right triangle): (160,80) to (380,80) to (380,260) -->
+            <polygon points="160,80 380,80 380,260" fill="rgba(168, 85, 247, 0.25)" stroke="#a855f7" stroke-width="2.5"/>
+            <text x="310" y="140" fill="#a855f7" font-size="20" font-weight="bold">A (2 kgw)</text>
+
+            <!-- Angle 37 deg at (380, 260) -->
+            <path d="M 330 260 A 50 50 0 0 1 340 228" fill="none" stroke="#facc15" stroke-width="2"/>
+            <text x="310" y="245" fill="#facc15" font-size="14" font-weight="bold">37°</text>
+
+            <!-- Weights added on top of A -->
+            <rect x="250" y="45" width="80" height="35" rx="3" fill="rgba(234, 179, 8, 0.3)" stroke="#eab308" stroke-width="2"/>
+            <text x="260" y="68" fill="#eab308" font-size="13" font-weight="bold">+ 砝碼 (n kgw)</text>
+
+            <!-- Friction comparison banner -->
+            <rect x="50" y="110" width="100" height="70" rx="6" fill="#1e293b" stroke="#00e676" stroke-width="1.5"/>
+            <text x="58" y="132" fill="#94a3b8" font-size="12">下滑分力：</text>
+            <text x="58" y="150" fill="#f43f5e" font-size="13" font-weight="bold">0.60 Mg</text>
+            <text x="58" y="168" fill="#00e676" font-size="13" font-weight="bold">fs,max=0.64Mg</text>
+
+            <defs>
+              <marker id="arrow-yellow-15" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+                <polygon points="0 0, 8 4, 0 8" fill="#facc15"/>
+              </marker>
+            </defs>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Right Column: Interactive Quiz & Solution -->
+      <div class="interactive-card">
+        <h2 class="section-title">
+          <span class="step-num">2</span>
+          即時作答與物理定律判斷
+        </h2>
+
+        <div class="options-grid" id="options">
+          <button class="option-btn" onclick="checkAnswer('A')">
+            <span class="opt-letter">A</span>
+            <span class="opt-text">1 個</span>
+          </button>
+          <button class="option-btn" onclick="checkAnswer('B')">
+            <span class="opt-letter">B</span>
+            <span class="opt-text">2 個</span>
+          </button>
+          <button class="option-btn" onclick="checkAnswer('C')">
+            <span class="opt-letter">C</span>
+            <span class="opt-text">4 個</span>
+          </button>
+          <button class="option-btn" onclick="checkAnswer('D')">
+            <span class="opt-letter">D</span>
+            <span class="opt-text">6 個</span>
+          </button>
+          <button class="option-btn" onclick="checkAnswer('E')">
+            <span class="opt-letter">E</span>
+            <span class="opt-text">以上數目均無法使 A 下滑</span>
+          </button>
+        </div>
+
+        <div class="feedback" id="feedback"></div>
+
+        <button class="toggle-btn" id="toggleBtn" onclick="toggleSolution()">
+          📖 查看質量無關性與自鎖現象推導
+        </button>
+
+        <div class="solution-content" id="solution">
+          <h3 style="color: #38bdf8; margin-bottom: 0.75rem;">💡 核心物理觀念詳解</h3>
+          
+          <div class="step-box">
+            <strong>1. 下滑力與質量關係：</strong>
+            <p>
+              設 A 與放置於其上的砝碼總質量為 $M$。
+              A 沿著兩木塊間 $37^\circ$ 接觸斜面下滑的分力為：
+              $$F_{\text{下滑}} = M g \sin 37^\circ = 0.60 M g$$
+            </p>
+          </div>
+
+          <div class="step-box">
+            <strong>2. 最大靜摩擦力與質量關係：</strong>
+            <p>
+              A 壓在接觸面上的正向力為 $N = M g \cos 37^\circ$。
+              已知靜摩擦係數 $\mu_s = 0.8$，因此接觸面所能提供的最大靜摩擦力為：
+              $$f_{s,\max} = \mu_s N = 0.8 \times (M g \cos 37^\circ) = 0.8 \times 0.80 M g = 0.64 M g$$
+            </p>
+          </div>
+
+          <div class="step-box">
+            <strong>3. 比較與自鎖效應結論：</strong>
+            <p>
+              比較下滑分力與最大靜摩擦力：
+              $$F_{\text{下滑}} = 0.60 M g < f_{s,\max} = 0.64 M g$$
+              亦即：
+              $$\tan 37^\circ = 0.75 < \mu_s = 0.80$$
+              當接觸面傾角小於靜摩擦角（$\tan\theta < \mu_s$）時，物體處於<strong>「自鎖狀態」</strong>。
+              在此狀態下，增加砝碼質量 $M$ 的同時，最大靜摩擦力與下滑力同比例增加，最大靜摩擦力永遠大於下滑力，因此<strong>不論放置多少個砝碼，A 都絕對不會下滑</strong>！
+              故正確答案為 <strong>(E)</strong>。
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const correctAns = 'E';
+
+    function checkAnswer(chosen) {
+      const fb = document.getElementById('feedback');
+      const btns = document.querySelectorAll('.option-btn');
+      
+      btns.forEach(btn => {
+        btn.classList.remove('selected', 'correct', 'wrong');
+        const letter = btn.querySelector('.opt-letter').textContent;
+        if (letter === chosen) {
+          btn.classList.add('selected');
+          if (chosen === correctAns) {
+            btn.classList.add('correct');
+          } else {
+            btn.classList.add('wrong');
+          }
+        }
+        if (letter === correctAns && chosen !== correctAns) {
+          btn.classList.add('correct');
+        }
+      });
+
+      if (chosen === correctAns) {
+        fb.className = 'feedback correct';
+        fb.innerHTML = '🎉 正確！tan 37° = 0.75 < μs = 0.8，處於「自鎖狀態」，下滑力 0.60Mg 永遠小於最大靜摩擦力 0.64Mg，與質量無關，永不下壓！';
+      } else {
+        fb.className = 'feedback wrong';
+        fb.innerHTML = '❌ 不正確。注意：增加砝碼會同時等比例增加正向力與最大靜摩擦力，下滑條件只取決於 tanθ 與 μs！';
+      }
+    }
+
+    function toggleSolution() {
+      const sol = document.getElementById('solution');
+      const btn = document.getElementById('toggleBtn');
+      if (sol.classList.contains('show')) {
+        sol.classList.remove('show');
+        btn.textContent = '📖 查看質量無關性與自鎖現象推導';
+      } else {
+        sol.classList.add('show');
+        btn.textContent = '🔼 收起解析';
+        renderMathInElement(sol, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ]
+        });
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+      renderMathInElement(document.body, {
+        delimiters: [
+          {left: '$$', right: '$$', display: true},
+          {left: '$', right: '$', display: false}
+        ]
+      });
+    });
+  </script>
+</body>
+</html>

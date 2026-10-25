@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>靜力平衡 22：94指考正三角形面板轉動不移動受力分析 | 高中物理靜力學</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+  <link rel="stylesheet" href="shared.css">
+</head>
+<body>
+  <div class="bg-glow"></div>
+  <div class="bg-grid"></div>
+
+  <div class="container">
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+      <div class="nav-links">
+        <a href="index.html" class="nav-btn primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          回目錄
+        </a>
+        <a href="equil21.html" class="nav-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          上一題 (平衡 21)
+        </a>
+        <a href="equil23.html" class="nav-btn">
+          下一題 (平衡 23)
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+      <div class="badge-wrapper">
+        <span class="badge badge-page">講義 靜力學-27</span>
+        <span class="badge badge-exam">94年大學指考</span>
+        <span class="badge badge-accent">靜力平衡・練習 22</span>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+      <h1 class="main-title">靜力平衡 22：<span class="gradient-text">正三角形面板「轉動而不移動」受力辨析</span></h1>
+      <p class="subtitle">平移平衡條件（合力為零）・轉動不平衡條件（合力矩不為零）・三力共點定理</p>
+    </header>
+
+    <!-- Problem Showcase Card -->
+    <section class="card problem-card">
+      <div class="card-header">
+        <div class="card-icon">📖</div>
+        <div>
+          <h2>題目內容</h2>
+          <span class="card-tag">【94.大學指考】經典試題</span>
+        </div>
+      </div>
+
+      <div class="problem-body">
+        <p>
+          在光滑水平面上，有一正三角形的均勻面板，現以所示的幾種方式施水平力，圖中各力的大小都相等（施力與面板邊緣的夾角為 $0^\circ$、$60^\circ$、$90^\circ$、$120^\circ$ 或 $150^\circ$）。試問下列圖中，哪些施力方式會使面板<strong>「轉動而不會移動」</strong>？
+        </p>
+
+        <!-- SVG Diagram: 5 configurations (甲) ~ (戊) -->
+        <div class="diagram-wrapper">
+          <svg viewBox="0 0 760 330" class="physics-svg" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="arrow-green" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#10b981"/>
+              </marker>
+              <marker id="arrow-red" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#f43f5e"/>
+              </marker>
+              <marker id="arrow-blue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#38bdf8"/>
+              </marker>
+            </defs>
+
+            <!-- 5 Triangular Panels side by side:
+                 Centers at x = 75, 215, 355, 495, 635
+                 y base = 180, side = 70 px. Height = 70 * 0.866 = 60 px.
+                 Apex at y = 120, Base at y = 180.
+            -->
+
+            <!-- Panel (甲) -->
+            <g transform="translate(15, 0)">
+              <rect x="10" y="30" width="130" height="250" rx="10" fill="rgba(16, 185, 129, 0.08)" stroke="#10b981" stroke-width="2"/>
+              <text x="75" y="60" fill="#10b981" font-size="16" font-weight="800" text-anchor="middle">(甲) ✓ 正確</text>
+              <polygon points="75,100 40,165 110,165" fill="#334155" stroke="#94a3b8" stroke-width="2"/>
+              <!-- Forces cyclic around edges -->
+              <!-- Top edge going down-left -->
+              <line x1="75" y1="100" x2="30" y2="183" stroke="#10b981" stroke-width="2.5" marker-end="url(#arrow-green)"/>
+              <!-- Bottom edge going right -->
+              <line x1="40" y1="165" x2="135" y2="165" stroke="#10b981" stroke-width="2.5" marker-end="url(#arrow-green)"/>
+              <!-- Right edge going up-left -->
+              <line x1="110" y1="165" x2="65" y2="80" stroke="#10b981" stroke-width="2.5" marker-end="url(#arrow-green)"/>
+              <text x="75" y="215" fill="#10b981" font-size="12" font-weight="700" text-anchor="middle">ΣF = 0 (合力零)</text>
+              <text x="75" y="235" fill="#f59e0b" font-size="12" font-weight="700" text-anchor="middle">Στ ≠ 0 (轉動！)</text>
+              <text x="75" y="260" fill="#e2e8f0" font-size="11" text-anchor="middle">只轉不移</text>
+            </g>
+
+            <!-- Panel (乙) -->
+            <g transform="translate(160, 0)">
+              <rect x="10" y="30" width="130" height="250" rx="10" fill="rgba(30, 41, 59, 0.4)" stroke="#475569" stroke-width="1"/>
+              <text x="75" y="60" fill="#94a3b8" font-size="16" font-weight="700" text-anchor="middle">(乙)</text>
+              <polygon points="75,100 40,165 110,165" fill="#334155" stroke="#94a3b8" stroke-width="2"/>
+              <!-- Forces: one upward at apex, two downward at corners -->
+              <line x1="75" y1="100" x2="75" y2="55" stroke="#f43f5e" stroke-width="2.5" marker-end="url(#arrow-red)"/>
+              <line x1="40" y1="165" x2="40" y2="210" stroke="#f43f5e" stroke-width="2.5" marker-end="url(#arrow-red)"/>
+              <line x1="110" y1="165" x2="110" y2="210" stroke="#f43f5e" stroke-width="2.5" marker-end="url(#arrow-red)"/>
+              <text x="75" y="225" fill="#f43f5e" font-size="12" font-weight="700" text-anchor="middle">ΣF ≠ 0 (合力非零)</text>
+              <text x="75" y="250" fill="#94a3b8" font-size="11" text-anchor="middle">會產生移動！</text>
+            </g>
+
+            <!-- Panel (丙) -->
+            <g transform="translate(305, 0)">
+              <rect x="10" y="30" width="130" height="250" rx="10" fill="rgba(30, 41, 59, 0.4)" stroke="#475569" stroke-width="1"/>
+              <text x="75" y="60" fill="#94a3b8" font-size="16" font-weight="700" text-anchor="middle">(丙)</text>
+              <polygon points="75,100 40,165 110,165" fill="#334155" stroke="#94a3b8" stroke-width="2"/>
+              <!-- Lines pass through a single point -->
+              <line x1="75" y1="100" x2="75" y2="155" stroke="#38bdf8" stroke-width="2" marker-end="url(#arrow-blue)"/>
+              <line x1="40" y1="165" x2="70" y2="148" stroke="#38bdf8" stroke-width="2" marker-end="url(#arrow-blue)"/>
+              <line x1="110" y1="165" x2="80" y2="148" stroke="#38bdf8" stroke-width="2" marker-end="url(#arrow-blue)"/>
+              <circle cx="75" cy="148" r="3" fill="#f59e0b"/>
+              <text x="75" y="225" fill="#38bdf8" font-size="12" font-weight="700" text-anchor="middle">三力共點 (交於一點)</text>
+              <text x="75" y="250" fill="#94a3b8" font-size="11" text-anchor="middle">Στ = 0 (不轉動)</text>
+            </g>
+
+            <!-- Panel (丁) -->
+            <g transform="translate(450, 0)">
+              <rect x="10" y="30" width="130" height="250" rx="10" fill="rgba(30, 41, 59, 0.4)" stroke="#475569" stroke-width="1"/>
+              <text x="75" y="60" fill="#94a3b8" font-size="16" font-weight="700" text-anchor="middle">(丁)</text>
+              <polygon points="75,100 40,165 110,165" fill="#334155" stroke="#94a3b8" stroke-width="2"/>
+              <!-- Forces lines intersect at a point outside or center -->
+              <line x1="75" y1="100" x2="120" y2="100" stroke="#38bdf8" stroke-width="2" marker-end="url(#arrow-blue)"/>
+              <line x1="40" y1="165" x2="0" y2="185" stroke="#38bdf8" stroke-width="2" marker-end="url(#arrow-blue)"/>
+              <line x1="110" y1="165" x2="145" y2="185" stroke="#38bdf8" stroke-width="2" marker-end="url(#arrow-blue)"/>
+              <text x="75" y="225" fill="#38bdf8" font-size="12" font-weight="700" text-anchor="middle">延長線交於同一點</text>
+              <text x="75" y="250" fill="#94a3b8" font-size="11" text-anchor="middle">Στ = 0 (不轉動)</text>
+            </g>
+
+            <!-- Panel (戊) -->
+            <g transform="translate(595, 0)">
+              <rect x="10" y="30" width="130" height="250" rx="10" fill="rgba(30, 41, 59, 0.4)" stroke="#475569" stroke-width="1"/>
+              <text x="75" y="60" fill="#94a3b8" font-size="16" font-weight="700" text-anchor="middle">(戊)</text>
+              <polygon points="75,100 40,165 110,165" fill="#334155" stroke="#94a3b8" stroke-width="2"/>
+              <!-- Symmetrical outward radial forces -->
+              <line x1="75" y1="100" x2="75" y2="55" stroke="#38bdf8" stroke-width="2" marker-end="url(#arrow-blue)"/>
+              <line x1="40" y1="165" x2="10" y2="185" stroke="#38bdf8" stroke-width="2" marker-end="url(#arrow-blue)"/>
+              <line x1="110" y1="165" x2="140" y2="185" stroke="#38bdf8" stroke-width="2" marker-end="url(#arrow-blue)"/>
+              <text x="75" y="225" fill="#38bdf8" font-size="12" font-weight="700" text-anchor="middle">對稱輻射共點</text>
+              <text x="75" y="250" fill="#94a3b8" font-size="11" text-anchor="middle">ΣF = 0 且 Στ = 0</text>
+            </g>
+          </svg>
+        </div>
+
+        <p class="question-prompt">
+          試問上述五種施力方式中，何者會使面板<strong>「轉動而不會移動」</strong>？
+        </p>
+
+        <!-- Options Container -->
+        <div class="options-container">
+          <div class="option-card" data-option="A">
+            <span class="option-label">A</span>
+            <div class="option-content">
+              <span class="katex-text">(甲)</span>
+            </div>
+          </div>
+
+          <div class="option-card" data-option="B">
+            <span class="option-label">B</span>
+            <div class="option-content">
+              <span class="katex-text">(乙)</span>
+            </div>
+          </div>
+
+          <div class="option-card" data-option="C">
+            <span class="option-label">C</span>
+            <div class="option-content">
+              <span class="katex-text">(丙)</span>
+            </div>
+          </div>
+
+          <div class="option-card" data-option="D">
+            <span class="option-label">D</span>
+            <div class="option-content">
+              <span class="katex-text">(丁)</span>
+            </div>
+          </div>
+
+          <div class="option-card" data-option="E">
+            <span class="option-label">E</span>
+            <div class="option-content">
+              <span class="katex-text">(戊)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Feedback Alert Box -->
+        <div class="feedback-box" id="feedbackBox">
+          <div class="feedback-icon" id="feedbackIcon"></div>
+          <div class="feedback-text" id="feedbackText"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Collapsible Solution Card -->
+    <section class="card solution-card collapsed" id="solutionCard">
+      <div class="card-header toggle-header" id="solutionToggle">
+        <div class="card-icon">💡</div>
+        <div>
+          <h2>核心解析與詳細推導</h2>
+          <span class="card-tag">點擊展開 / 收合完整解析</span>
+        </div>
+        <span class="solution-status">點擊展開完整剖析</span>
+      </div>
+
+      <div class="solution-content">
+        <div class="solution-step">
+          <span class="step-num">物理本質</span>
+          <h3>「轉動而不移動」的充要條件</h3>
+          <p>
+            剛體在平面受多力作用時：
+          </p>
+          <ul>
+            <li><strong>不移動（平移平衡）</strong>：合力必須為零，即 $\Sigma \vec{F} = \vec{0}$。</li>
+            <li><strong>轉動（轉動不平衡）</strong>：對任意參考點（或質心）之合力矩不為零，即 $\Sigma \tau \neq 0$。</li>
+          </ul>
+        </div>
+
+        <div class="solution-step">
+          <span class="step-num">全圖逐一辨析</span>
+          <h3>五種施力模式剖析</h3>
+          <div class="comparison-grid">
+            <div class="comp-box">
+              <div class="comp-title">(甲) 沿邊界循環推動</div>
+              <p>
+                三力大小相等、互成 $120^\circ$，首尾相連構成封閉正三角形 $\implies \Sigma \vec{F} = \vec{0}$（不移動）。<br>
+                對中心而言，三力皆產生同向（順時針）之力矩，合力矩 $\Sigma \tau \neq 0$ $\implies$ <strong>純轉動而不移動</strong>！
+              </p>
+            </div>
+
+            <div class="comp-box">
+              <div class="comp-title">(乙) 向上與向下平行力</div>
+              <p>
+                上方一力向上，底邊兩角兩力向下，合力鉛直向下不為零（$\Sigma \vec{F} \neq \vec{0}$），面板會產生向下之平移加速度（會移動）。
+              </p>
+            </div>
+
+            <div class="comp-box">
+              <div class="comp-title">(丙) 與 (丁) 三力共點</div>
+              <p>
+                三力之作用線延長後交於同一點。<br>
+                若以該交點為轉軸，各力力臂均為零，故合力矩 $\Sigma \tau = 0$（不會轉動）。
+              </p>
+            </div>
+
+            <div class="comp-box">
+              <div class="comp-title">(戊) 輻射對稱向外</div>
+              <p>
+                三力延長線相交於正三角形幾何中心，且三力互成 $120^\circ$ 對稱。<br>
+                $\Sigma \vec{F} = \vec{0}$ 且 $\Sigma \tau = 0$，面板完全保持靜止（不轉也不移）。
+              </p>
+            </div>
+          </div>
+          <div class="conclusion-box">
+            <strong>結論：</strong> 唯一滿足「轉動而不會移動」的施力方式為 <strong>(A) 甲</strong>。
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Navigation Footer -->
+    <footer class="footer-nav">
+      <a href="equil21.html" class="nav-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+        上一題 (平衡 21)
+      </a>
+      <a href="index.html" class="nav-btn primary">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        單元總覽
+      </a>
+      <a href="equil23.html" class="nav-btn">
+        下一題 (平衡 23)
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+    </footer>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // KaTeX Auto-render
+      if (typeof renderMathInElement === 'function') {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ],
+          throwOnError: false
+        });
+      }
+
+      // Quiz Interaction
+      const correctAnswer = "A";
+      const optionCards = document.querySelectorAll(".option-card");
+      const feedbackBox = document.getElementById("feedbackBox");
+      const feedbackIcon = document.getElementById("feedbackIcon");
+      const feedbackText = document.getElementById("feedbackText");
+      const solutionCard = document.getElementById("solutionCard");
+
+      optionCards.forEach(card => {
+        card.addEventListener("click", function() {
+          const selected = this.getAttribute("data-option");
+
+          optionCards.forEach(c => c.classList.remove("selected", "correct", "wrong"));
+          this.classList.add("selected");
+
+          feedbackBox.classList.remove("correct", "wrong");
+          feedbackBox.classList.add("show");
+
+          if (selected === correctAnswer) {
+            this.classList.add("correct");
+            feedbackBox.classList.add("correct");
+            feedbackIcon.innerHTML = "🎉";
+            feedbackText.innerHTML = "<strong>命中真理！完全正確！</strong><br>「轉動而不會移動」需滿足 $\\Sigma\\vec{F} = \\vec{0}$ 且 $\\Sigma\\tau \\neq 0$。<br>(甲) 圖三力向量首尾封閉故合力為零，且對中心之力矩同向相加，故<strong>純轉動而不移動</strong>！";
+            solutionCard.classList.remove("collapsed");
+            const tag = solutionCard.querySelector(".solution-status");
+            if (tag) tag.textContent = "點擊收合詳解";
+          } else {
+            this.classList.add("wrong");
+            feedbackBox.classList.add("wrong");
+            feedbackIcon.innerHTML = "💡";
+            if (selected === "B") {
+              feedbackText.innerHTML = "<strong>(乙) 圖合力不為零！</strong> 上下一力、下兩力，向下合力不為零，會產生向下平移加速喔！";
+            } else if (selected === "C" || selected === "D") {
+              feedbackText.innerHTML = `<strong>(${selected}) 圖三力交於同一點！</strong> 三力共點對交點之力臂為零，合力矩為零，不會轉動喔！`;
+            } else {
+              feedbackText.innerHTML = "<strong>(戊) 圖完全靜止！</strong> 三力對稱向外輻射共點，合力與合力矩皆為零，不移動也不轉動喔！";
+            }
+          }
+
+          if (typeof renderMathInElement === 'function') {
+            renderMathInElement(feedbackText, {
+              delimiters: [
+                {left: '$$', right: '$$', display: true},
+                {left: '$', right: '$', display: false}
+              ],
+              throwOnError: false
+            });
+          }
+        });
+      });
+
+      // Solution toggle
+      const solutionToggle = document.getElementById("solutionToggle");
+      solutionToggle.addEventListener("click", function() {
+        solutionCard.classList.toggle("collapsed");
+        const isCollapsed = solutionCard.classList.contains("collapsed");
+        const statusSpan = solutionToggle.querySelector(".solution-status");
+        if (statusSpan) {
+          statusSpan.textContent = isCollapsed ? "點擊展開完整剖析" : "點擊收合詳解";
+        }
+      });
+    });
+  </script>
+</body>
+</html>

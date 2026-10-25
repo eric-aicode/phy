@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>練習 8：運河拖船三力平衡多選題 | 高中物理靜力學</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    .multi-choice-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 16px;
+    }
+    .multi-choice-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 14px 20px;
+      background: rgba(30, 41, 59, 0.6);
+      border: 1.5px solid rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      user-select: none;
+    }
+    .multi-choice-item:hover {
+      background: rgba(51, 65, 85, 0.8);
+      border-color: #38bdf8;
+    }
+    .multi-choice-item.selected {
+      background: rgba(56, 189, 248, 0.15);
+      border-color: #38bdf8;
+    }
+    .multi-choice-item.is-correct {
+      background: rgba(52, 211, 153, 0.2) !important;
+      border-color: #34d399 !important;
+    }
+    .multi-choice-item.is-wrong {
+      background: rgba(244, 63, 94, 0.2) !important;
+      border-color: #f43f5e !important;
+    }
+    .checkbox-box {
+      width: 22px;
+      height: 22px;
+      border-radius: 6px;
+      border: 2px solid #64748b;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      color: #fff;
+      font-size: 14px;
+      transition: all 0.2s ease;
+      flex-shrink: 0;
+    }
+    .multi-choice-item.selected .checkbox-box {
+      border-color: #38bdf8;
+      background: #0284c7;
+    }
+    .multi-choice-item.selected .checkbox-box::after {
+      content: "✓";
+    }
+    .opt-tag {
+      font-weight: 800;
+      color: #38bdf8;
+      font-size: 16px;
+      width: 24px;
+      flex-shrink: 0;
+    }
+    .opt-content {
+      font-size: 15px;
+      color: #e2e8f0;
+      flex-grow: 1;
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-glow"></div>
+  <div class="bg-grid"></div>
+
+  <div class="container">
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+      <div class="nav-links">
+        <a href="index.html" class="nav-btn primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          回目錄
+        </a>
+        <a href="exercise7.html" class="nav-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          上一題 (練習 7)
+        </a>
+        <a href="exercise9.html" class="nav-btn">
+          下一題 (練習 9)
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+      <div class="badge-wrapper">
+        <span class="badge badge-page">講義 靜力學-19</span>
+        <span class="badge badge-accent">分力平衡・練習 8</span>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+      <h1 class="main-title">練習 8：<span class="gradient-text">運河拖船三力平衡多選題</span></h1>
+      <p class="subtitle">正交坐標分解・橫向力完全抵銷條件・多重施力方向判定</p>
+    </header>
+
+    <!-- Problem Showcase Card -->
+    <section class="card problem-card">
+      <div class="card-header">
+        <div class="card-icon">📖</div>
+        <div>
+          <h2>題目內容</h2>
+          <span class="card-tag">經典多選平衡物理題</span>
+        </div>
+      </div>
+
+      <div class="problem-body">
+        <p>
+          兩個人與一個小孩沿運河拖拉一船，此兩大人的拉力分別為 $\vec{F}_1$ 與 $\vec{F}_2$；已知：
+        </p>
+        <ul class="key-points" style="margin: 12px 0;">
+          <li>$\vec{F}_1 = 400\text{ 牛頓}$，與河岸夾角為 <strong>$60^\circ$</strong>（偏向上側河岸）。</li>
+          <li>$\vec{F}_2 = 320\text{ 牛頓}$，與河岸夾角為 <strong>$30^\circ$</strong>（偏向下側河岸）。</li>
+        </ul>
+        <p>
+          欲保持船在<strong>運河中央直線前進</strong>（即垂直運河方向的橫向淨力為零），則小孩所施的拉力量值及其可能的作用方向為何？（應選 2 項）
+        </p>
+
+        <!-- Dynamic Canal Towing SVG Diagram -->
+        <div class="diagram-container" style="text-align: center; margin: 24px 0;">
+          <svg viewBox="0 0 760 340" style="width: 100%; max-width: 740px; background: rgba(15, 23, 42, 0.6); border-radius: 12px; border: 1px solid rgba(255,255,255,0.08);">
+            <defs>
+              <marker id="arrow-f1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#38bdf8"/>
+              </marker>
+              <marker id="arrow-f2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#fbbf24"/>
+              </marker>
+              <marker id="arrow-fc1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#34d399"/>
+              </marker>
+              <marker id="arrow-fc2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#f43f5e"/>
+              </marker>
+            </defs>
+
+            <!-- 河岸背景 -->
+            <rect x="40" y="30" width="680" height="280" fill="rgba(14, 165, 233, 0.05)" rx="8"/>
+            
+            <!-- 上河岸線 -->
+            <line x1="40" y1="50" x2="720" y2="50" stroke="#475569" stroke-width="3"/>
+            <text x="60" y="42" fill="#64748b" font-size="12">上側河岸 (F₁ 側)</text>
+
+            <!-- 下河岸線 -->
+            <line x1="40" y1="290" x2="720" y2="290" stroke="#475569" stroke-width="3"/>
+            <text x="60" y="308" fill="#64748b" font-size="12">下側河岸 (F₂ 側)</text>
+
+            <!-- 運河中心線 (Dash) -->
+            <line x1="40" y1="170" x2="720" y2="170" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="6,6"/>
+            <text x="650" y="162" fill="#94a3b8" font-size="12">運河中心線</text>
+
+            <!-- 船隻本體 (位於中心線上，中心位於 x=240, y=170) -->
+            <g transform="translate(240, 170)">
+              <!-- 船身幾何 -->
+              <path d="M -50 -14 L 30 -14 Q 55 0 30 14 L -50 14 Q -60 0 -50 -14 Z" fill="#334155" stroke="#94a3b8" stroke-width="2"/>
+              <circle cx="20" cy="0" r="5" fill="#f8fafc"/>
+              <text x="-10" y="4" fill="#e2e8f0" font-size="12" font-weight="bold" text-anchor="middle">船</text>
+
+              <!-- 拖拉繩結點 (20, 0) -->
+
+              <!-- F1 向量: 400N, 60度, 長度約 140 -->
+              <!-- dx = 140*cos(60) = 70, dy = -140*sin(60) = -121.2 -->
+              <line x1="20" y1="0" x2="90" y2="-121" stroke="#38bdf8" stroke-width="3.5" marker-end="url(#arrow-f1)"/>
+              <text x="100" y="-120" fill="#38bdf8" font-size="14" font-weight="bold">F₁ = 400 N (60°)</text>
+
+              <!-- F1 角度弧線 -->
+              <path d="M 55 0 A 35 35 0 0 0 37.5 -30.3" fill="none" stroke="#38bdf8" stroke-width="1.5"/>
+              <text x="50" y="-16" fill="#38bdf8" font-size="11">60°</text>
+
+              <!-- F2 向量: 320N, -30度, 長度約 120 -->
+              <!-- dx = 120*cos(30) = 103.9, dy = 120*sin(30) = 60 -->
+              <line x1="20" y1="0" x2="124" y2="60" stroke="#fbbf24" stroke-width="3.5" marker-end="url(#arrow-f2)"/>
+              <text x="135" y="65" fill="#fbbf24" font-size="14" font-weight="bold">F₂ = 320 N (30°)</text>
+
+              <!-- F2 角度弧線 -->
+              <path d="M 60 0 A 40 40 0 0 1 54.6 20" fill="none" stroke="#fbbf24" stroke-width="1.5"/>
+              <text x="55" y="16" fill="#fbbf24" font-size="11">30°</text>
+
+              <!-- 小孩施力方案一 (選項 C): 垂直向下 (向 F2 側) -->
+              <!-- dy = (200*sqrt(3) - 160) * 0.45 ≈ 186.4 * 0.45 = 84 -->
+              <line x1="20" y1="0" x2="20" y2="84" stroke="#34d399" stroke-width="3" stroke-dasharray="2,2" marker-end="url(#arrow-fc1)"/>
+              <text x="-4" y="98" fill="#34d399" font-size="12" font-weight="bold">方案 C (垂直拉)：[200√3 - 160] N</text>
+
+              <!-- 小孩施力方案二 (選項 E): 沿 F2 方向拉 -->
+              <line x1="20" y1="0" x2="160" y2="81" stroke="#f43f5e" stroke-width="2.5" stroke-dasharray="4,4" marker-end="url(#arrow-fc2)"/>
+              <text x="95" y="105" fill="#f43f5e" font-size="12" font-weight="bold">方案 E (沿 F₂ 夾30°拉)：[400√3 - 320] N</text>
+            </g>
+
+            <!-- 右側橫向垂直分量對比分析 -->
+            <g transform="translate(530, 70)">
+              <rect x="0" y="0" width="180" height="175" rx="8" fill="rgba(15, 23, 42, 0.9)" stroke="rgba(255,255,255,0.1)"/>
+              <text x="90" y="24" fill="#94a3b8" font-size="13" font-weight="bold" text-anchor="middle">【橫向 y 軸分量】</text>
+              
+              <text x="14" y="55" fill="#38bdf8" font-size="12">F₁ 向上分量：</text>
+              <text x="14" y="75" fill="#38bdf8" font-size="12" font-weight="bold">400×sin60° = 200√3 N</text>
+
+              <text x="14" y="105" fill="#fbbf24" font-size="12">F₂ 向下分量：</text>
+              <text x="14" y="125" fill="#fbbf24" font-size="12" font-weight="bold">320×sin30° = 160 N</text>
+
+              <line x1="10" y1="138" x2="170" y2="138" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+              <text x="90" y="158" fill="#34d399" font-size="12" font-weight="bold" text-anchor="middle">合力偏向上方 200√3 - 160</text>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Interactive Answer Area -->
+    <section class="card interactive-card">
+      <div class="card-header">
+        <div class="card-icon">✍️</div>
+        <div>
+          <h2>即時動手作答（多選題）</h2>
+          <span class="card-tag">請勾選所有正確的選項後送出</span>
+        </div>
+      </div>
+
+      <div class="multi-choice-grid" id="multiGrid">
+        <div class="multi-choice-item" data-opt="A">
+          <div class="checkbox-box"></div>
+          <span class="opt-tag">A</span>
+          <div class="opt-content">$[(\sqrt{3})200 - 160]\text{ 牛頓}$ 沿 $\vec{F}_1$ 作用</div>
+        </div>
+        <div class="multi-choice-item" data-opt="B">
+          <div class="checkbox-box"></div>
+          <span class="opt-tag">B</span>
+          <div class="opt-content">$[(\sqrt{3})400 - 320]\text{ 牛頓}$ 沿 $\vec{F}_1$ 作用</div>
+        </div>
+        <div class="multi-choice-item" data-opt="C">
+          <div class="checkbox-box"></div>
+          <span class="opt-tag">C</span>
+          <div class="opt-content">$[(\sqrt{3})200 - 160]\text{ 牛頓}$，和運河垂直，向 $\vec{F}_2$ 一邊</div>
+        </div>
+        <div class="multi-choice-item" data-opt="D">
+          <div class="checkbox-box"></div>
+          <span class="opt-tag">D</span>
+          <div class="opt-content">$[(\sqrt{3})200 - 160]\text{ 牛頓}$，和運河垂直，向 $\vec{F}_1$ 一邊</div>
+        </div>
+        <div class="multi-choice-item" data-opt="E">
+          <div class="checkbox-box"></div>
+          <span class="opt-tag">E</span>
+          <div class="opt-content">$[(\sqrt{3})400 - 320]\text{ 牛頓}$ 沿 $\vec{F}_2$ 作用</div>
+        </div>
+      </div>
+
+      <div style="margin-top: 20px; text-align: center;">
+        <button id="submitMultiBtn" class="nav-btn primary" style="padding: 12px 32px; font-size: 16px; cursor: pointer;">
+          核對多選答案
+        </button>
+      </div>
+
+      <div id="feedbackBox" class="feedback-box hidden">
+        <div class="feedback-icon" id="feedbackIcon"></div>
+        <div class="feedback-text" id="feedbackText"></div>
+      </div>
+    </section>
+
+    <!-- Detailed Solution Area (Hidden by default) -->
+    <section class="card solution-card collapsed" id="solutionCard">
+      <div class="card-header solution-toggle" id="solutionToggle" role="button" tabindex="0">
+        <div class="card-icon">💡</div>
+        <div style="flex-grow: 1;">
+          <h2>精闢詳解與向量圖解步驟</h2>
+          <span class="card-tag solution-status">點擊展開完整剖析</span>
+        </div>
+        <div class="toggle-arrow">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+      </div>
+
+      <div class="solution-content" id="solutionContent">
+        <div class="step-card">
+          <div class="step-badge">觀念一</div>
+          <h3>物理物理條件轉譯</h3>
+          <p>
+            題目要求「<strong>船保持在運河中央前進</strong>」，這意味著：
+          </p>
+          <ul class="key-points">
+            <li>船沿運河方向（$x$ 軸）可以有加速度或等速前進。</li>
+            <li>船在<strong>垂直於運河兩岸的方向（$y$ 軸橫向）合力必須為零</strong>：$\sum F_y = 0$。</li>
+          </ul>
+        </div>
+
+        <div class="step-card">
+          <div class="step-badge">觀念二</div>
+          <h3>計算兩位大人的橫向分力</h3>
+          <p>
+            以運河中心線為 $x$ 軸（向右為正），向上側河岸為 $+y$ 方向，向下側河岸為 $-y$ 方向：
+          </p>
+          <ul class="key-points">
+            <li>
+              <strong>大人 1（$\vec{F}_1 = 400\text{ N}$，與河岸夾 $60^\circ$）：</strong>
+              $$F_{1y} = +F_1 \sin 60^\circ = +400 \times \frac{\sqrt{3}}{2} = +200\sqrt{3}\text{ N} \quad (\approx +346.4\text{ N})$$
+            </li>
+            <li>
+              <strong>大人 2（$\vec{F}_2 = 320\text{ N}$，與河岸夾 $30^\circ$）：</strong>
+              $$F_{2y} = -F_2 \sin 30^\circ = -320 \times \frac{1}{2} = -160\text{ N}$$
+            </li>
+          </ul>
+          <p>
+            兩大人的橫向合力分量：
+            $$\sum F_{大人, y} = 200\sqrt{3} - 160\text{ N} > 0 \quad (\text{強烈偏向上側河岸 }\vec{F}_1\text{ 一側})$$
+          </p>
+          <p>
+            因此，<strong>小孩必須提供向下側（即向 $\vec{F}_2$ 一邊）的橫向拉力</strong>，其量值必須恰好抵銷：
+            $$F_{小孩, y} = 200\sqrt{3} - 160\text{ N} \quad (\text{方向朝向 }\vec{F}_2\text{ 一側})$$
+          </p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-badge">觀念三</div>
+          <h3>分析小孩不同施力方向的可能解</h3>
+          
+          <h4>【情況一：小孩直接沿垂直運河方向拉】</h4>
+          <p>
+            若小孩垂直運河向 $\vec{F}_2$ 一邊施力，則小孩拉力的全部大小皆轉化為橫向分力：
+            $$F_c = F_{小孩, y} = [200\sqrt{3} - 160]\text{ 牛頓}$$
+            方向：<strong>和運河垂直，向 $\vec{F}_2$ 一邊</strong>。此完全符合 <strong>選項 (C)</strong>！
+          </p>
+
+          <h4>【情況二：小孩沿 $\vec{F}_2$ 方向拉】</h4>
+          <p>
+            若小孩站在 $\vec{F}_2$ 一側，順著 $\vec{F}_2$ 的繩索方向（與河岸夾 $30^\circ$）施力：
+            $$F_c \sin 30^\circ = 200\sqrt{3} - 160$$
+            $$F_c = \frac{200\sqrt{3} - 160}{\sin 30^\circ} = \frac{200\sqrt{3} - 160}{\frac{1}{2}} = [400\sqrt{3} - 320]\text{ 牛頓}$$
+            方向：<strong>沿 $\vec{F}_2$ 作用</strong>。此完全符合 <strong>選項 (E)</strong>！
+          </p>
+
+          <h4>【其餘選項錯誤原因】</h4>
+          <ul class="key-points">
+            <li>(A)、(B)、(D) 皆偏向 $\vec{F}_1$ 一側，反而會使船更加往上側河岸偏撞，故不合！</li>
+          </ul>
+        </div>
+
+        <div class="final-summary">
+          <div class="summary-badge">結論</div>
+          <p>
+            本題正解為 <strong>(C) 與 (E)</strong>。<br>
+            這是一道極具物理素養的典型大考多選題，考查的不僅僅是代數投影，更包含了幾何角度調整時斜拉力分量與正向分量的轉換！
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Navigation -->
+    <div class="bottom-nav">
+      <a href="exercise7.html" class="nav-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+        上一題 (練習 7)
+      </a>
+      <a href="index.html" class="nav-btn primary">
+        目錄總覽
+      </a>
+      <a href="exercise9.html" class="nav-btn">
+        下一題 (練習 9)
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // Render KaTeX
+      if (typeof renderMathInElement === 'function') {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ],
+          throwOnError: false
+        });
+      }
+
+      const items = document.querySelectorAll(".multi-choice-item");
+      const submitBtn = document.getElementById("submitMultiBtn");
+      const feedbackBox = document.getElementById("feedbackBox");
+      const feedbackIcon = document.getElementById("feedbackIcon");
+      const feedbackText = document.getElementById("feedbackText");
+      const solutionCard = document.getElementById("solutionCard");
+
+      items.forEach(item => {
+        item.addEventListener("click", function() {
+          this.classList.toggle("selected");
+        });
+      });
+
+      submitBtn.addEventListener("click", function() {
+        const selectedOpts = Array.from(document.querySelectorAll(".multi-choice-item.selected"))
+                                  .map(el => el.getAttribute("data-opt"))
+                                  .sort();
+
+        feedbackBox.classList.remove("hidden", "correct", "wrong");
+        items.forEach(item => item.classList.remove("is-correct", "is-wrong"));
+
+        const isExactMatch = selectedOpts.length === 2 && selectedOpts.includes("C") && selectedOpts.includes("E");
+
+        if (isExactMatch) {
+          items.forEach(item => {
+            const opt = item.getAttribute("data-opt");
+            if (opt === "C" || opt === "E") item.classList.add("is-correct");
+          });
+          feedbackBox.classList.add("correct");
+          feedbackIcon.innerHTML = "🎉";
+          feedbackText.innerHTML = "<strong>全對！太神了！</strong> 正解正是 <strong>(C) 與 (E)</strong>！垂直拉需 $[200\\sqrt{3} - 160]\\text{ N}$，沿 $\\vec{F}_2$ 斜拉 $30^\\circ$ 則需 $[400\\sqrt{3} - 320]\\text{ N}$！詳解已為您展開。";
+
+          solutionCard.classList.remove("collapsed");
+          const tag = solutionCard.querySelector(".solution-status");
+          if (tag) tag.textContent = "點擊收合詳解";
+        } else {
+          feedbackBox.classList.add("wrong");
+          feedbackIcon.innerHTML = "💡";
+
+          items.forEach(item => {
+            const opt = item.getAttribute("data-opt");
+            if (item.classList.contains("selected")) {
+              if (opt === "C" || opt === "E") {
+                item.classList.add("is-correct");
+              } else {
+                item.classList.add("is-wrong");
+              }
+            }
+          });
+
+          if (selectedOpts.includes("C") && !selectedOpts.includes("E") && selectedOpts.length === 1) {
+            feedbackText.innerHTML = "<strong>答對了一半 (C)！</strong> 這是一題多選題，除了垂直拉以外，小孩也可以沿著 $\\vec{F}_2$ 的角度施力喔，看看還有哪一個選項符合？";
+          } else if (selectedOpts.includes("E") && !selectedOpts.includes("C") && selectedOpts.length === 1) {
+            feedbackText.innerHTML = "<strong>答對了一半 (E)！</strong> 這是一題多選題，除了沿 $\\vec{F}_2$ 斜拉，小孩如果最省力地直接垂直運河拉，是哪一個選項呢？";
+          } else {
+            feedbackText.innerHTML = "<strong>答案未完全正確！</strong> 提示：大人的橫向合力偏向 $\\vec{F}_1$ 側，因此小孩必須向 $\\vec{F}_2$ 側施力！請檢查垂直拉與沿 $\\vec{F}_2$ 拉的兩種情況。";
+          }
+        }
+
+        if (typeof renderMathInElement === 'function') {
+          renderMathInElement(feedbackText, {
+            delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false}
+            ],
+            throwOnError: false
+          });
+        }
+      });
+
+      // Solution toggle
+      const solutionToggle = document.getElementById("solutionToggle");
+      solutionToggle.addEventListener("click", function() {
+        solutionCard.classList.toggle("collapsed");
+        const isCollapsed = solutionCard.classList.contains("collapsed");
+        const statusSpan = solutionToggle.querySelector(".solution-status");
+        if (statusSpan) {
+          statusSpan.textContent = isCollapsed ? "點擊展開完整剖析" : "點擊收合詳解";
+        }
+      });
+    });
+  </script>
+</body>
+</html>

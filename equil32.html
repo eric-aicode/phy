@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>靜力平衡 32：梯靠光滑牆中點站人求地面作用力 | 高中物理靜力學</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+  <link rel="stylesheet" href="shared.css">
+</head>
+<body>
+  <div class="bg-glow"></div>
+  <div class="bg-grid"></div>
+
+  <div class="container">
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+      <div class="nav-links">
+        <a href="index.html" class="nav-btn primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          回目錄
+        </a>
+        <a href="equil31.html" class="nav-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          上一題 (平衡 31)
+        </a>
+        <a href="equil33.html" class="nav-btn">
+          下一題 (平衡 33)
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+      <div class="badge-wrapper">
+        <span class="badge badge-page">講義 靜力學-29</span>
+        <span class="badge badge-exam">梯子力學模型</span>
+        <span class="badge badge-accent">靜力平衡・練習 32</span>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+      <h1 class="main-title">靜力平衡 32：<span class="gradient-text">梯子靠光滑牆與地面作用力</span></h1>
+      <p class="subtitle">光滑壁面正向力・地面摩擦力與正向支持力之商高定理合成</p>
+    </header>
+
+    <!-- Problem Showcase Card -->
+    <section class="card problem-card">
+      <div class="card-header">
+        <div class="card-icon">📖</div>
+        <div>
+          <h2>題目內容</h2>
+          <span class="card-tag">經典斜梯靜力平衡模型</span>
+        </div>
+      </div>
+
+      <div class="problem-body">
+        <p>
+          一梯子長 $L$ 重量不計，靠在光滑直立牆上。若一人重 $W$ 立於梯的中點，試求<strong>梯子和地面的作用力</strong>為若干？（設梯與鉛直牆面夾角 $\theta = 30^\circ$）
+        </p>
+
+        <!-- SVG Diagram -->
+        <div class="svg-container">
+          <svg viewBox="0 0 520 330" width="100%" height="330" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="arrow-blue" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 9 5 L 0 9 z" fill="#3b82f6"/>
+              </marker>
+              <marker id="arrow-amber" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 9 5 L 0 9 z" fill="#f59e0b"/>
+              </marker>
+              <marker id="arrow-emerald" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 9 5 L 0 9 z" fill="#10b981"/>
+              </marker>
+              <marker id="arrow-purple" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 9 5 L 0 9 z" fill="#a855f7"/>
+              </marker>
+              <pattern id="hatch-wall" width="10" height="10" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse">
+                <line x1="0" y1="0" x2="0" y2="10" stroke="#64748b" stroke-width="1.5" />
+              </pattern>
+            </defs>
+
+            <!-- Vertical Smooth Wall on Left -->
+            <rect x="80" y="30" width="20" height="250" fill="url(#hatch-wall)" opacity="0.3" />
+            <line x1="100" y1="30" x2="100" y2="280" stroke="#94a3b8" stroke-width="3" />
+            <text x="50" y="20" fill="#94a3b8" font-size="12">光滑鉛直牆</text>
+
+            <!-- Horizontal Ground at Bottom -->
+            <line x1="80" y1="280" x2="440" y2="280" stroke="#94a3b8" stroke-width="3" />
+            <rect x="80" y="280" width="360" height="20" fill="url(#hatch-wall)" opacity="0.2" />
+
+            <!-- Ladder: Top at (100, 60), Bottom at (225, 280) -->
+            <!-- Height = 220, Width = 125. Angle with vertical = arctan(125/220) ~ 30 deg -->
+            <!-- Ladder rails -->
+            <line x1="100" y1="60" x2="225" y2="280" stroke="#94a3b8" stroke-width="8" stroke-linecap="round" />
+            <line x1="100" y1="60" x2="225" y2="280" stroke="#38bdf8" stroke-width="3.5" stroke-linecap="round" />
+
+            <!-- Angle theta = 30 deg at top wall -->
+            <path d="M 100 110 A 50 50 0 0 0 125 103" fill="none" stroke="#f59e0b" stroke-width="2" />
+            <text x="110" y="125" fill="#f59e0b" font-size="14" font-weight="bold">θ = 30°</text>
+
+            <!-- Wall Normal Force N_1 at (100, 60) pointing right -->
+            <line x1="100" y1="60" x2="175" y2="60" stroke="#ec4899" stroke-width="2.8" marker-end="url(#arrow-purple)" />
+            <text x="182" y="65" fill="#ec4899" font-size="14" font-weight="bold">N₁</text>
+
+            <!-- Person standing at midpoint (162.5, 170) -->
+            <circle cx="162.5" cy="170" r="5" fill="#10b981" />
+            <g transform="translate(162.5, 110)">
+              <!-- Small person icon -->
+              <circle cx="15" cy="15" r="7" fill="#cbd5e1" />
+              <line x1="15" y1="22" x2="15" y2="48" stroke="#cbd5e1" stroke-width="3" />
+              <line x1="15" y1="48" x2="0" y2="60" stroke="#cbd5e1" stroke-width="2.5" />
+            </g>
+            <!-- Weight W at midpoint pointing downward -->
+            <line x1="162.5" y1="170" x2="162.5" y2="245" stroke="#10b981" stroke-width="2.8" marker-end="url(#arrow-emerald)" />
+            <text x="172" y="235" fill="#10b981" font-size="15" font-weight="bold">W (人重)</text>
+            <text x="110" y="175" fill="#6ee7b7" font-size="12">中點 (L/2)</text>
+
+            <!-- Ground Contact Point at (225, 280) -->
+            <circle cx="225" cy="280" r="5" fill="#38bdf8" />
+            <text x="235" y="295" fill="#38bdf8" font-size="14" font-weight="bold">地面支點</text>
+
+            <!-- Ground Force Components at (225, 280) -->
+            <!-- Friction f pointing left (opposing N1) -->
+            <line x1="225" y1="280" x2="155" y2="280" stroke="#3b82f6" stroke-width="2.5" marker-end="url(#arrow-blue)" />
+            <text x="175" y="272" fill="#3b82f6" font-size="12">f = N₁</text>
+
+            <!-- Normal support N_2 pointing up -->
+            <line x1="225" y1="280" x2="225" y2="210" stroke="#3b82f6" stroke-width="2.5" marker-end="url(#arrow-blue)" />
+            <text x="232" y="225" fill="#3b82f6" font-size="12">N₂ = W</text>
+
+            <!-- Ground Resultant Force F_地 -->
+            <line x1="225" y1="280" x2="160" y2="215" stroke="#818cf8" stroke-width="3" marker-end="url(#arrow-blue)" />
+            <text x="115" y="215" fill="#a5b4fc" font-size="14" font-weight="bold">F_地 (作用力)</text>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Options Grid -->
+    <section class="card quiz-card">
+      <div class="card-header">
+        <div class="card-icon">🎯</div>
+        <div>
+          <h2>選擇題挑戰</h2>
+          <span class="card-tag">點擊選項立即作答檢驗</span>
+        </div>
+      </div>
+
+      <div class="options-grid">
+        <div class="option-card" data-option="A">
+          <div class="option-indicator">A</div>
+          <div class="option-content">
+            <span class="math-opt">$2W$</span>
+          </div>
+        </div>
+
+        <div class="option-card" data-option="B">
+          <div class="option-indicator">B</div>
+          <div class="option-content">
+            <span class="math-opt">$W$</span>
+          </div>
+        </div>
+
+        <div class="option-card" data-option="C">
+          <div class="option-indicator">C</div>
+          <div class="option-content">
+            <span class="math-opt">$\frac{1}{4}W$</span>
+          </div>
+        </div>
+
+        <div class="option-card" data-option="D">
+          <div class="option-indicator">D</div>
+          <div class="option-content">
+            <span class="math-opt">$\sqrt{\frac{13}{18}}W$</span>
+          </div>
+        </div>
+
+        <div class="option-card" data-option="E">
+          <div class="option-indicator">E</div>
+          <div class="option-content">
+            <span class="math-opt">$\sqrt{\frac{13}{12}}W$</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feedback Banner -->
+      <div class="feedback-box" id="feedbackBox">
+        <div class="feedback-icon" id="feedbackIcon"></div>
+        <div class="feedback-text" id="feedbackText"></div>
+      </div>
+    </section>
+
+    <!-- Collapsible Solution Card -->
+    <section class="card solution-card collapsed" id="solutionCard">
+      <div class="card-header solution-toggle" id="solutionToggle">
+        <div class="card-icon">💡</div>
+        <div class="solution-header-content">
+          <h2>精闢解析與推導步驟</h2>
+          <span class="solution-status">點擊展開完整剖析</span>
+        </div>
+        <div class="toggle-arrow">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+      </div>
+
+      <div class="solution-body">
+        <div class="step-card">
+          <div class="step-num">Step 1</div>
+          <div class="step-text">
+            <h4>受力分析與正交力平衡條件</h4>
+            <p>梯子處於靜止平衡，其受力為：</p>
+            <ul>
+              <li><strong>光滑牆面正向力 $N_1$</strong>：水平向右作用於梯頂。</li>
+              <li><strong>人體重量 $W$</strong>：鉛直向下作用於梯中點（$\frac{L}{2}$ 處）。</li>
+              <li><strong>地面作用力 $\vec{F}_{\text{地}}$</strong>：包含鉛直向上支持力 $N_2$ 與水平向左之靜摩擦力 $f$。</li>
+            </ul>
+            <p>由力平衡：</p>
+            $$\sum F_y = 0 \implies N_2 = W$$
+            $$\sum F_x = 0 \implies f = N_1$$
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">Step 2</div>
+          <div class="step-text">
+            <h4>以地面接觸點為軸列力矩平衡求 $N_1$</h4>
+            <p>注意梯與鉛直牆之夾角為 $\theta = 30^\circ$：</p>
+            <ul>
+              <li>人重 $W$ 距地面之水平距離（力臂）：$d_W = \frac{L}{2}\sin 30^\circ$（逆時針力矩）。</li>
+              <li>牆面正向力 $N_1$ 距地面之鉛直高度（力臂）：$d_{N_1} = L\cos 30^\circ$（順時針力矩）。</li>
+            </ul>
+            $$\sum \tau_{\text{地}} = 0 \implies W \cdot \left(\frac{L}{2}\sin 30^\circ\right) = N_1 \cdot \left(L\cos 30^\circ\right)$$
+            $$N_1 = \frac{W}{2} \cdot \frac{\sin 30^\circ}{\cos 30^\circ} = \frac{W}{2}\tan 30^\circ = \frac{W}{2} \times \frac{1}{\sqrt{3}} = \frac{W}{2\sqrt{3}}$$
+            <p>由水平力平衡，地面摩擦力 $f = N_1 = \frac{W}{2\sqrt{3}}$。</p>
+          </div>
+        </div>
+
+        <div class="step-card highlight-step">
+          <div class="step-num">Step 3</div>
+          <div class="step-text">
+            <h4>商高定理合成地面對梯子之總作用力</h4>
+            <p>地面作用於梯子之力為支持力 $N_2$ 與摩擦力 $f$ 之向量和：</p>
+            $$F_{\text{地}} = \sqrt{f^2 + N_2^2} = \sqrt{\left(\frac{W}{2\sqrt{3}}\right)^2 + W^2} = \sqrt{\frac{W^2}{12} + W^2} = \sqrt{\frac{13}{12}}W$$
+            <p class="final-ans-box">
+              故梯子和地面的作用力為 <strong>(E) $\sqrt{\dfrac{13}{12}}W$</strong>。
+            </p>
+          </div>
+        </div>
+
+        <!-- Note -->
+        <div class="key-point-box">
+          <div class="key-point-title">⚡ 關鍵概念剖析：</div>
+          <p>
+            「地面作用力」是指地面施加於梯子的<strong>合力</strong>（包含正向支持力 $N_2$ 與靜摩擦力 $f$ 二者合成），切勿只回答正向力 $W$ 或只回答摩擦力 $\frac{W}{2\sqrt{3}}$！
+          </p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // Auto-render KaTeX
+      if (typeof renderMathInElement === 'function') {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ],
+          throwOnError: false
+        });
+      }
+
+      // Quiz Interaction
+      const correctAnswer = "E";
+      const optionCards = document.querySelectorAll(".option-card");
+      const feedbackBox = document.getElementById("feedbackBox");
+      const feedbackIcon = document.getElementById("feedbackIcon");
+      const feedbackText = document.getElementById("feedbackText");
+      const solutionCard = document.getElementById("solutionCard");
+
+      optionCards.forEach(card => {
+        card.addEventListener("click", function() {
+          const selected = this.getAttribute("data-option");
+
+          optionCards.forEach(c => c.classList.remove("selected", "correct", "wrong"));
+          this.classList.add("selected");
+
+          feedbackBox.classList.remove("correct", "wrong");
+          feedbackBox.classList.add("show");
+
+          if (selected === correctAnswer) {
+            this.classList.add("correct");
+            feedbackBox.classList.add("correct");
+            feedbackIcon.innerHTML = "🎉";
+            feedbackText.innerHTML = "<strong>命中真理！完全正確！</strong><br>對地面力矩平衡得牆正向力 $N_1 = \\frac{W}{2}\\tan 30^\\circ = \\frac{W}{2\\sqrt{3}}$。<br>水平摩擦力 $f = N_1$，垂直支持力 $N_2 = W$。<br>地面作用力 $F = \\sqrt{f^2 + N_2^2} = \\sqrt{\\frac{1}{12} + 1}\\,W = \\sqrt{\\frac{13}{12}}W$！";
+            solutionCard.classList.remove("collapsed");
+            const tag = solutionCard.querySelector(".solution-status");
+            if (tag) tag.textContent = "點擊收合詳解";
+          } else {
+            this.classList.add("wrong");
+            feedbackBox.classList.add("wrong");
+            feedbackIcon.innerHTML = "💡";
+            if (selected === "B") {
+              feedbackText.innerHTML = "<strong>小心陷阱！$W$ 只是地面的「鉛直正向力」$N_2$！</strong> 地面還有水平摩擦力 $f$，地面作用力必須用商高定理合成！";
+            } else {
+              feedbackText.innerHTML = `<strong>選了 (${selected})，再想想看！</strong> 提示：先由力矩平衡求牆正向力 $N_1 = \\frac{W}{2\\sqrt{3}}$，再合成水平摩擦力與垂直支持力 $W$！`;
+            }
+          }
+
+          if (typeof renderMathInElement === 'function') {
+            renderMathInElement(feedbackText, {
+              delimiters: [
+                {left: '$$', right: '$$', display: true},
+                {left: '$', right: '$', display: false}
+              ],
+              throwOnError: false
+            });
+          }
+        });
+      });
+
+      // Solution toggle
+      const solutionToggle = document.getElementById("solutionToggle");
+      solutionToggle.addEventListener("click", function() {
+        solutionCard.classList.toggle("collapsed");
+        const isCollapsed = solutionCard.classList.contains("collapsed");
+        const statusSpan = solutionToggle.querySelector(".solution-status");
+        if (statusSpan) {
+          statusSpan.textContent = isCollapsed ? "點擊展開完整剖析" : "點擊收合詳解";
+        }
+      });
+    });
+  </script>
+</body>
+</html>

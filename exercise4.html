@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>練習 4：均勻自重彈簧下垂刻度非均勻伸長（聯考題） | 高中物理靜力學</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+  <link rel="stylesheet" href="shared.css">
+</head>
+<body>
+  <div class="bg-glow"></div>
+  <div class="bg-grid"></div>
+
+  <div class="container">
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+      <div class="nav-links">
+        <a href="index.html" class="nav-btn primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          回目錄
+        </a>
+        <a href="exercise3.html" class="nav-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          上一題 (練習 3)
+        </a>
+        <a href="index.html" class="nav-btn">
+          回到目錄大廳
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+      <div class="badge-wrapper">
+        <span class="badge badge-page">講義 靜力學-18</span>
+        <span class="badge badge-exam">聯考經典名題</span>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+      <h1 class="main-title">練習 4：<span class="gradient-text">自重均勻彈簧下垂刻度非均勻伸長</span></h1>
+      <p class="subtitle">彈簧自重張力線性遞減・微元受力與伸長量正比於下方自重・聯考經典思維秒殺</p>
+    </header>
+
+    <!-- Problem Showcase Card -->
+    <section class="card problem-card">
+      <div class="card-header">
+        <div class="card-icon">📖</div>
+        <div>
+          <h2>題目內容</h2>
+          <span class="card-tag">聯考經典自重彈簧題</span>
+        </div>
+      </div>
+
+      <div class="problem-body">
+        <p>
+          一均勻彈簧水平放置未受力時長度為 <strong>$1\text{ 米}$（$100\text{ 厘米}$）</strong>，在其上依次以 <strong>$1\text{ 厘米}$</strong> 之間隔畫上刻度 $0, 1, 2, \dots, 99, 100$。設此彈簧各段均嚴格遵守虎克定律。
+        </p>
+        <p>
+          今將此彈簧 <strong>$0$ 刻度</strong> 的一端掛在天花板上，令另一端自然下垂，平衡時測得<strong>刻度 $50$ 與 $51$ 相距 $1.1\text{ 厘米}$</strong>。
+        </p>
+        <p>
+          則下列各選項中，<strong>兩刻度間距離最接近 $2.1\text{ 厘米}$</strong> 的是：
+        </p>
+        <ul class="condition-list">
+          <li><strong>(A)</strong> 刻度 $0$ 與 $2$</li>
+          <li><strong>(B)</strong> 刻度 $24$ 與 $26$</li>
+          <li><strong>(C)</strong> 刻度 $49$ 與 $51$</li>
+          <li><strong>(D)</strong> 刻度 $74$ 與 $76$</li>
+        </ul>
+      </div>
+
+      <!-- Problem Physical Diagram (SVG) -->
+      <div class="canvas-card">
+        <div class="canvas-title-bar">
+          <h3><span class="dot dot-blue"></span> 自重彈簧下垂張力線性分佈圖與刻度伸長分析</h3>
+          <span class="view-tag">Tension Distribution & Non-uniform Stretch</span>
+        </div>
+        <div class="svg-wrapper">
+          <svg viewBox="0 0 760 360" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="grad-spring" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#f43f5e"/>
+                <stop offset="50%" stop-color="#fbbf24"/>
+                <stop offset="100%" stop-color="#38bdf8"/>
+              </linearGradient>
+            </defs>
+
+            <!-- LEFT: Hanging Spring with Scale -->
+            <g transform="translate(40, 20)">
+              <rect x="0" y="0" width="320" height="315" rx="10" fill="#0f172a" stroke="#1e293b" stroke-width="1.5"/>
+              <text x="20" y="28" fill="#94a3b8" font-size="13" font-weight="600">自然下垂彈簧刻度示意圖</text>
+
+              <!-- Ceiling -->
+              <rect x="50" y="45" width="220" height="10" fill="#334155" stroke="#475569" stroke-width="1.5"/>
+              <g stroke="#64748b" stroke-width="1.5" opacity="0.4">
+                <line x1="60" y1="45" x2="50" y2="35"/><line x1="90" y1="45" x2="80" y2="35"/>
+                <line x1="120" y1="45" x2="110" y2="35"/><line x1="150" y1="45" x2="140" y2="35"/>
+                <line x1="180" y1="45" x2="170" y2="35"/><line x1="210" y1="45" x2="200" y2="35"/>
+                <line x1="240" y1="45" x2="230" y2="35"/>
+              </g>
+
+              <!-- Top fixed point: scale 0 -->
+              <circle cx="120" cy="55" r="5" fill="#f43f5e"/>
+              <text x="75" y="60" fill="#f43f5e" font-size="12" font-weight="bold">刻度 0</text>
+
+              <!-- Spring with dense at bottom, sparse at top -->
+              <!-- Top section: large coil pitch (high tension) -->
+              <path d="M 120,55 
+                       L 132,68 L 108,82 L 132,96 L 108,110 L 132,124 L 108,138 L 132,152
+                       L 110,164 L 130,174 L 110,184 L 130,194 L 110,204 L 130,214 L 110,224
+                       L 128,232 L 112,240 L 128,248 L 112,256 L 128,264 L 112,272 L 120,280"
+                    fill="none" stroke="url(#grad-spring)" stroke-width="3" stroke-linecap="round"/>
+
+              <!-- Bottom free end: scale 100 -->
+              <circle cx="120" cy="280" r="5" fill="#38bdf8"/>
+              <text x="60" y="285" fill="#38bdf8" font-size="12" font-weight="bold">刻度 100</text>
+
+              <!-- Middle mark: scale 50 -->
+              <line x1="100" y1="152" x2="140" y2="152" stroke="#fbbf24" stroke-width="2"/>
+              <text x="148" y="156" fill="#fbbf24" font-size="12" font-weight="bold">刻度 50~51</text>
+              <text x="148" y="172" fill="#cbd5e1" font-size="10.5">間距 = 1.1 cm</text>
+              <text x="148" y="186" fill="#4ade80" font-size="10.5">(伸長量 = 0.1 cm)</text>
+
+              <!-- Target mark: scale 75 -->
+              <line x1="105" y1="224" x2="135" y2="224" stroke="#4ade80" stroke-width="2"/>
+              <text x="148" y="228" fill="#4ade80" font-size="12" font-weight="bold">刻度 74~76 (約75)</text>
+              <text x="148" y="244" fill="#a7f3d0" font-size="10.5">間距 ≈ 2.1 cm</text>
+            </g>
+
+            <!-- RIGHT: Tension vs Scale Chart & Proportionality -->
+            <g transform="translate(390, 20)">
+              <rect x="0" y="0" width="340" height="315" rx="10" fill="#0f172a" stroke="#1e293b" stroke-width="1.5"/>
+              <text x="20" y="28" fill="#94a3b8" font-size="13" font-weight="600">各刻度張力與每格伸長量曲線</text>
+
+              <!-- Graph axes -->
+              <!-- y-axis: Tension T -->
+              <line x1="50" y1="240" x2="50" y2="60" stroke="#94a3b8" stroke-width="1.5"/>
+              <text x="40" y="55" fill="#38bdf8" font-size="12" font-weight="bold">張力 T</text>
+
+              <!-- x-axis: Scale N from 0 to 100 -->
+              <line x1="50" y1="240" x2="300" y2="240" stroke="#94a3b8" stroke-width="1.5"/>
+              <text x="280" y="260" fill="#94a3b8" font-size="11">刻度 N</text>
+
+              <!-- Scale ticks -->
+              <text x="48" y="258" fill="#cbd5e1" font-size="11">0</text>
+              <text x="165" y="258" fill="#fbbf24" font-size="11">50</text>
+              <text x="225" y="258" fill="#4ade80" font-size="11">75</text>
+              <text x="280" y="258" fill="#38bdf8" font-size="11">100</text>
+
+              <!-- Linear Tension Line: T = (100 - N)/100 * W -->
+              <!-- At N=0: T=W (x=50, y=70). At N=100: T=0 (x=285, y=240) -->
+              <line x1="50" y1="70" x2="285" y2="240" stroke="#f43f5e" stroke-width="3"/>
+
+              <!-- Point N=50 -->
+              <circle cx="168" cy="155" r="4.5" fill="#fbbf24"/>
+              <line x1="168" y1="155" x2="168" y2="240" stroke="#fbbf24" stroke-width="1" stroke-dasharray="2,2"/>
+              <text x="175" y="145" fill="#fbbf24" font-size="10.5">承載 50 格自重</text>
+              <text x="175" y="160" fill="#fbbf24" font-size="10.5">每格伸長 0.1cm</text>
+
+              <!-- Point N=75 -->
+              <circle cx="226" cy="197" r="4.5" fill="#4ade80"/>
+              <line x1="226" y1="197" x2="226" y2="240" stroke="#4ade80" stroke-width="1" stroke-dasharray="2,2"/>
+              <text x="232" y="195" fill="#4ade80" font-size="10.5">承載 25 格自重</text>
+              <text x="232" y="210" fill="#4ade80" font-size="10.5">每格伸長 0.05cm</text>
+
+              <!-- Math formula box -->
+              <g transform="translate(20, 270)">
+                <rect x="0" y="0" width="300" height="35" rx="6" fill="rgba(15, 23, 42, 0.9)" stroke="#334155" stroke-width="1"/>
+                <text x="150" y="22" fill="#4ade80" font-size="11.5" font-weight="bold" text-anchor="middle">2 格總長 = 2.0cm + 2 × (0.05cm) = 2.1cm ➔ 選 74與76！</text>
+              </g>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Worksheet -->
+    <section class="card challenge-card">
+      <div class="card-header">
+        <div class="card-icon">✍️</div>
+        <div>
+          <h2>學生實戰單選作答區</h2>
+          <span class="card-tag">請選擇正確選項</span>
+        </div>
+      </div>
+
+      <div class="card-body">
+        <div class="option-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin-bottom: 20px;">
+          <button class="choice-btn" data-choice="A">
+            <span class="choice-label">A</span>
+            <span class="choice-text">刻度 $0$ 與 $2$</span>
+          </button>
+          <button class="choice-btn" data-choice="B">
+            <span class="choice-label">B</span>
+            <span class="choice-text">刻度 $24$ 與 $26$</span>
+          </button>
+          <button class="choice-btn" data-choice="C">
+            <span class="choice-label">C</span>
+            <span class="choice-text">刻度 $49$ 與 $51$</span>
+          </button>
+          <button class="choice-btn" data-choice="D">
+            <span class="choice-label">D</span>
+            <span class="choice-text">刻度 $74$ 與 $76$</span>
+          </button>
+        </div>
+
+        <div style="display: flex; gap: 12px; margin-top: 10px; flex-wrap: wrap;">
+          <button id="btnCheck" class="action-btn check-btn">
+            <span>核對答案</span>
+          </button>
+          <button id="btnToggleSolution" class="action-btn toggle-btn">
+            <span>顯示完整解析</span>
+          </button>
+        </div>
+
+        <div id="feedbackMessage" class="feedback-box" style="display: none;"></div>
+      </div>
+    </section>
+
+    <!-- Detailed Solution Section (Initially Hidden) -->
+    <section id="solutionSection" class="card solution-card" style="display: none;">
+      <div class="card-header">
+        <div class="card-icon">💡</div>
+        <div>
+          <h2>完整精闢觀念解析與公式推導</h2>
+          <span class="card-tag">名師詳解</span>
+        </div>
+      </div>
+
+      <div class="solution-body">
+        <!-- Golden Tip -->
+        <div class="tip-box" style="background: rgba(244, 63, 94, 0.1); border-left: 4px solid #f43f5e; padding: 16px; border-radius: 8px; margin-bottom: 24px;">
+          <h4 style="color: #f87171; margin-bottom: 6px; font-size: 15px;">⭐ 物理本質核心：彈簧自重不能忽略！</h4>
+          <p style="color: #e2e8f0; font-size: 14px; line-height: 1.6; margin: 0;">
+            未掛外物時，彈簧各段依然會伸長，是因為<strong>彈簧各圈本身具有質量（自重）</strong>！<br>
+            • 頂端（刻度 0）：下方承受了整根彈簧（100 厘米）的全部重量，張力最大，伸長最劇烈。<br>
+            • 底端（刻度 100）：下方空無一物，張力為 0，完全沒有伸長。<br>
+            • 任意刻度 $N$ 處：所受的拉力<strong>嚴格正比於其下方所懸掛的剩餘格數 $(100 - N)$</strong>！
+          </p>
+        </div>
+
+        <!-- Step 1 -->
+        <div class="step-card">
+          <div class="step-header">
+            <span class="step-num">Step 1</span>
+            <h3>由題目條件推導每單位自重所造成的伸長率</h3>
+          </div>
+          <div class="step-content">
+            <p>
+              刻度 $50$ 與 $51$ 之間原本未受力時相距 $1\text{ 厘米}$（原長 $\Delta L_0 = 1.0\text{ cm}$）。<br>
+              平衡時測得間距為 $1.1\text{ 厘米}$，因此這 1 格的伸長量為：
+              $$\Delta x_{50} = 1.1\text{ cm} - 1.0\text{ cm} = 0.1\text{ cm}$$
+            </p>
+            <p>
+              在刻度 $50$ 處，其下方還懸掛著第 $50 \sim 100$ 刻度共 <strong>$50\text{ 厘米}$</strong> 的彈簧重量。<br>
+              這表示：<strong>下方每有 $50\text{ 格}$ 的自重，就能使 1 格彈簧伸長 $0.1\text{ cm}$</strong>！
+            </p>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="step-card">
+          <div class="step-header">
+            <span class="step-num">Step 2</span>
+            <h3>分析各選項「兩刻度間距」的物理意義</h3>
+          </div>
+          <div class="step-content">
+            <p>
+              觀察四個選項：(A) 0與2、(B) 24與26、(C) 49與51、(D) 74與76，所有選項皆跨越 <strong>$2\text{ 個刻度}$（即原長為 $2.0\text{ cm}$）</strong>！
+            </p>
+            <p>
+              若兩刻度間距離為 $2.1\text{ 厘米}$，代表：
+              $$\text{總長} = \text{原長} + \text{總伸長量} \implies 2.1\text{ cm} = 2.0\text{ cm} + \Delta x_{\text{總}}$$
+              $$\Delta x_{\text{總}} = 0.1\text{ cm}$$
+            </p>
+            <p>
+              這兩格的總伸長量為 $0.1\text{ cm}$，換算成<strong>平均每格伸長量</strong>：
+              $$\Delta x_{\text{單格}} = \frac{0.1\text{ cm}}{2} = 0.05\text{ cm}$$
+            </p>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="step-card">
+          <div class="step-header">
+            <span class="step-num">Step 3</span>
+            <h3>正比推算所在位置並選出選項</h3>
+          </div>
+          <div class="step-content">
+            <p>
+              由虎克定律，單格伸長量正比於下方自重長度：
+              $$\frac{\Delta x}{0.1\text{ cm}} = \frac{\text{下方長度}}{50\text{ cm}}$$
+              $$\text{下方長度} = 50\text{ cm} \times \frac{0.05\text{ cm}}{0.1\text{ cm}} = 25\text{ cm}$$
+            </p>
+            <p>
+              下方剩餘長度為 $25\text{ 厘米}$，代表該處的刻度約為：
+              $$N \approx 100 - 25 = 75$$
+            </p>
+            <p>
+              檢視四個選項之刻度中心：
+            </p>
+            <ul style="color: #cbd5e1; font-size: 14.5px; line-height: 1.8;">
+              <li>(A) 0 與 2（中點 1）：下方約 99 格，間距約 $2.0 + 2 \times 0.20 = 2.40\text{ cm}$</li>
+              <li>(B) 24 與 26（中點 25）：下方約 75 格，間距約 $2.0 + 2 \times 0.15 = 2.30\text{ cm}$</li>
+              <li>(C) 49 與 51（中點 50）：下方約 50 格，間距約 $2.0 + 2 \times 0.10 = 2.20\text{ cm}$</li>
+              <li>(D) <strong>74 與 76（中點 75）</strong>：下方約 25 格，間距約 $2.0 + 2 \times 0.05 = \mathbf{2.10\text{ cm}}$！</li>
+            </ul>
+            <p style="color: #4ade80; font-weight: bold;">
+              故最接近 $2.1\text{ 厘米}$ 的是 (D) 74 與 76。
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Navigation -->
+    <div class="bottom-nav">
+      <a href="exercise3.html" class="nav-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+        上一題 (練習 3)
+      </a>
+      <a href="index.html" class="nav-btn primary">回到講義首頁大廳</a>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      if (window.renderMathInElement) {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ],
+          throwOnError: false
+        });
+      }
+
+      let selectedChoice = null;
+      const buttons = document.querySelectorAll('.choice-btn');
+      buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          buttons.forEach(b => b.classList.remove('selected'));
+          btn.classList.add('selected');
+          selectedChoice = btn.getAttribute('data-choice');
+        });
+      });
+
+      const btnCheck = document.getElementById('btnCheck');
+      const btnToggle = document.getElementById('btnToggleSolution');
+      const solutionSection = document.getElementById('solutionSection');
+      const feedback = document.getElementById('feedbackMessage');
+
+      btnCheck.addEventListener('click', function() {
+        feedback.style.display = 'block';
+        if (!selectedChoice) {
+          feedback.className = 'feedback-box warning';
+          feedback.innerHTML = '⚠️ 請先點選一個選項再核對！';
+          return;
+        }
+
+        if (selectedChoice === 'D') {
+          feedback.className = 'feedback-box success';
+          feedback.innerHTML = '🎉 <strong>太厲害了！正確答案為 (D) 74 與 76！</strong><br>精準洞察「兩刻度原長為 2cm，總伸長 0.1cm 相當於每格伸長 0.05cm，下方自重必為 25 格，故位置在 75 刻度附近」！';
+          solutionSection.style.display = 'block';
+          btnToggle.querySelector('span').textContent = '收合完整解析';
+        } else {
+          feedback.className = 'feedback-box error';
+          feedback.innerHTML = `❌ <strong>答案錯誤（您選擇了 ${selectedChoice}）！</strong><br>提示：注意 49 與 51 的間距是 2.2 cm（因為 2 格各伸長 0.1cm）；要達到 2.1 cm，伸長量只有一半，需要下方自重只有一半的位置！`;
+        }
+      });
+
+      btnToggle.addEventListener('click', function() {
+        if (solutionSection.style.display === 'none' || solutionSection.style.display === '') {
+          solutionSection.style.display = 'block';
+          btnToggle.querySelector('span').textContent = '收合完整解析';
+        } else {
+          solutionSection.style.display = 'none';
+          btnToggle.querySelector('span').textContent = '顯示完整解析';
+        }
+      });
+    });
+  </script>
+</body>
+</html>

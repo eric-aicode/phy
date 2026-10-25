@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>靜力平衡 47：輪軸加速吊升與物體繩張力矩【105指考】 | 高中物理靜力學</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+  <link rel="stylesheet" href="shared.css">
+</head>
+<body>
+  <div class="bg-glow"></div>
+  <div class="bg-grid"></div>
+
+  <div class="container">
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+      <div class="nav-links">
+        <a href="index.html" class="nav-btn primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          回目錄
+        </a>
+        <a href="equil46.html" class="nav-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          上一題 (平衡 46)
+        </a>
+        <a href="equil48.html" class="nav-btn">
+          下一題 (平衡 48)
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+      <div class="badge-wrapper">
+        <span class="badge badge-page">講義 靜力學-32</span>
+        <span class="badge badge-exam">105指考真題</span>
+        <span class="badge badge-accent">靜力平衡・練習 47</span>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+      <h1 class="main-title">靜力平衡 47：<span class="gradient-text">輪軸加速吊升與物體繩張力矩【105指考】</span></h1>
+      <p class="subtitle">牛頓第二定律求動態張力・精準審題識別指定力矩・半徑比例代換運算</p>
+    </header>
+
+    <!-- Main Problem Layout -->
+    <div class="problem-layout">
+      <!-- Left Column: Problem & Visualizer -->
+      <div class="problem-card">
+        <h2 class="section-title">
+          <span class="step-num">1</span>
+          題目情境與物理圖解
+        </h2>
+        <div class="problem-text">
+          <p>
+            如圖所示的輪軸（左邊為側視圖，右邊為正視圖），外輪半徑 $R$ 為內軸半徑 $r$ 的 2 倍（$R = 2r$）。
+          </p>
+          <p>
+            當施定力 $F$ 於外輪上的細繩時，可使質量為 $m$ 的物體以<strong>加速度 $0.2g$ 向上運動</strong>，$g$ 為重力加速度。
+          </p>
+          <p>
+            若空氣阻力、繩子的重量與軸承摩擦力皆可忽略不計，則<strong>懸掛物體的繩子張力對軸心 $O$ 點所產生的力矩量值</strong>為下列何者？【105指考】
+          </p>
+        </div>
+
+        <div class="interactive-container">
+          <div style="font-size: 0.88rem; color: var(--text-dim); margin-bottom: 8px; display: flex; justify-content: space-between;">
+            <span>📐 輪軸正視立體視角與受力圖解</span>
+            <span style="color: var(--accent-cyan);">T - mg = m(0.2g) ⇒ T = 1.2mg 且 r = R/2</span>
+          </div>
+          <svg viewBox="0 0 540 370" class="diagram-svg" style="background: rgba(15, 23, 42, 0.7); border-radius: 8px;">
+            <defs>
+              <marker id="arr-c" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#38bdf8"/>
+              </marker>
+              <marker id="arr-g" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#00e676"/>
+              </marker>
+              <marker id="arr-r" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#f43f5e"/>
+              </marker>
+              <marker id="arr-y" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#fbbf24"/>
+              </marker>
+            </defs>
+
+            <!-- Left: Side View 3D Cylinder -->
+            <g transform="translate(40, 60)">
+              <rect x="0" y="0" width="160" height="230" fill="rgba(30, 41, 59, 0.6)" stroke="rgba(255,255,255,0.1)" rx="8"/>
+              <text x="50" y="25" fill="#38bdf8" font-size="13" font-weight="bold">側視圖</text>
+
+              <!-- Outer Wheel Cylinder -->
+              <rect x="25" y="50" width="20" height="120" fill="rgba(56, 189, 248, 0.25)" stroke="#38bdf8" stroke-width="2"/>
+              <!-- Inner Axle Cylinder -->
+              <rect x="45" y="80" width="70" height="60" fill="rgba(244, 63, 94, 0.25)" stroke="#f43f5e" stroke-width="2"/>
+
+              <!-- String on outer wheel pulled by Hand F -->
+              <line x1="35" y1="170" x2="35" y2="215" stroke="#00e676" stroke-width="2.5" marker-end="url(#arr-g)"/>
+              <text x="15" y="210" fill="#00e676" font-size="12" font-weight="bold">F</text>
+
+              <!-- String on axle hanging mass m -->
+              <line x1="80" y1="140" x2="80" y2="185" stroke="#fbbf24" stroke-width="2"/>
+              <rect x="68" y="185" width="24" height="24" fill="#1e293b" stroke="#fbbf24" stroke-width="1.5" rx="3"/>
+              <text x="75" y="202" fill="#fbbf24" font-size="12" font-weight="bold">m</text>
+            </g>
+
+            <!-- Right: Front View with Forces -->
+            <g transform="translate(240, 30)">
+              <rect x="0" y="0" width="260" height="300" fill="rgba(30, 41, 59, 0.6)" stroke="rgba(255,255,255,0.1)" rx="8"/>
+              <text x="105" y="25" fill="#fbbf24" font-size="14" font-weight="bold">正視圖</text>
+
+              <!-- Center O = (130, 110) -->
+              <!-- Outer Wheel R = 70 -->
+              <circle cx="130" cy="110" r="70" fill="rgba(56, 189, 248, 0.15)" stroke="#38bdf8" stroke-width="3"/>
+              <!-- Inner Axle r = 35 -->
+              <circle cx="130" cy="110" r="35" fill="rgba(244, 63, 94, 0.2)" stroke="#f43f5e" stroke-width="2.5"/>
+              <circle cx="130" cy="110" r="4" fill="#f8fafc"/>
+              <text x="135" y="105" fill="#f8fafc" font-size="14" font-weight="bold">O</text>
+
+              <!-- Radii R and r -->
+              <line x1="130" y1="110" x2="200" y2="110" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="3 2"/>
+              <text x="160" y="105" fill="#38bdf8" font-size="12">R</text>
+
+              <line x1="130" y1="110" x2="130" y2="75" stroke="#f43f5e" stroke-width="1.5" stroke-dasharray="3 2"/>
+              <text x="135" y="90" fill="#f43f5e" font-size="11">r = R/2</text>
+
+              <!-- Mass hanging from inner axle left side (x = 130 - 35 = 95) -->
+              <line x1="95" y1="110" x2="95" y2="190" stroke="#fbbf24" stroke-width="2"/>
+              <!-- Tension T arrow up on mass -->
+              <line x1="95" y1="160" x2="95" y2="130" stroke="#fbbf24" stroke-width="3" marker-end="url(#arr-y)"/>
+              <text x="45" y="145" fill="#fbbf24" font-size="12" font-weight="bold">T = 1.2mg</text>
+
+              <rect x="75" y="190" width="40" height="35" fill="#1e293b" stroke="#fbbf24" stroke-width="2" rx="4"/>
+              <text x="88" y="213" fill="#fbbf24" font-size="14" font-weight="bold">m</text>
+              <!-- Gravity mg arrow down -->
+              <line x1="95" y1="225" x2="95" y2="260" stroke="#f43f5e" stroke-width="2.5" marker-end="url(#arr-r)"/>
+              <text x="80" y="280" fill="#f43f5e" font-size="12">mg</text>
+
+              <!-- Acceleration indicator a = 0.2g up -->
+              <line x1="45" y1="220" x2="45" y2="185" stroke="#00e676" stroke-width="2.5" marker-end="url(#arr-g)"/>
+              <text x="10" y="200" fill="#00e676" font-size="11" font-weight="bold">a = 0.2g ↑</text>
+
+              <!-- Force F on outer wheel right side (x = 130 + 70 = 200) -->
+              <line x1="200" y1="110" x2="200" y2="230" stroke="#00e676" stroke-width="3" marker-end="url(#arr-g)"/>
+              <text x="210" y="225" fill="#00e676" font-size="14" font-weight="bold">F</text>
+            </g>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Right Column: Interactive Quiz -->
+      <div class="problem-card">
+        <h2 class="section-title">
+          <span class="step-num">2</span>
+          自我檢測與即時核對
+        </h2>
+        <p style="color: var(--text-dim); font-size: 0.95rem; margin-bottom: 16px;">
+          請依據物體向上加速運動之牛頓定律與張力矩，選出正確的答案：
+        </p>
+
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="selectOption(this, 'A')">
+            <span class="opt-letter">A</span>
+            <span class="opt-text">$0$</span>
+          </div>
+          <div class="quiz-option" onclick="selectOption(this, 'B')">
+            <span class="opt-letter">B</span>
+            <span class="opt-text">$0.6mgR$</span>
+          </div>
+          <div class="quiz-option" onclick="selectOption(this, 'C')">
+            <span class="opt-letter">C</span>
+            <span class="opt-text">$1.2mgR$</span>
+          </div>
+          <div class="quiz-option" onclick="selectOption(this, 'D')">
+            <span class="opt-letter">D</span>
+            <span class="opt-text">$1.6mgR$</span>
+          </div>
+          <div class="quiz-option" onclick="selectOption(this, 'E')">
+            <span class="opt-letter">E</span>
+            <span class="opt-text">$2.0mgR$</span>
+          </div>
+        </div>
+
+        <div class="quiz-actions">
+          <button class="nav-btn primary" onclick="checkAnswer()">核對答案</button>
+          <button class="nav-btn" onclick="toggleSolution()">查看解析</button>
+        </div>
+
+        <div id="feedback" class="quiz-feedback"></div>
+      </div>
+    </div>
+
+    <!-- Solution Section -->
+    <div id="solution-card" class="solution-card">
+      <h2 class="section-title">
+        <span class="step-num">3</span>
+        完整觀念解析與推導過程
+      </h2>
+      <div class="solution-content">
+        <div class="formula-box">
+          $$\sum F = T - mg = m \cdot a = m(0.2g) \implies T = 1.2mg$$
+          $$\tau_T = T \cdot r = (1.2mg) \cdot \left(\frac{R}{2}\right) = 0.6mgR$$
+        </div>
+
+        <div class="step-card">
+          <h4>步驟一：精準審題 —— 鎖定求值標的</h4>
+          <p>
+            題目清楚問的是：「<strong>懸掛物體的繩子張力對軸心 $O$ 點所產生的力矩量值</strong>」。
+          </p>
+          <p>
+            因此，本題完全<strong>不需要</strong>計算外力 $F$ 的大小，亦不需要計算整個輪軸系統的合力矩，只需專注求出「物體懸繩的張力 $T$」以及「該張力對 $O$ 點的力臂 $r$」！
+          </p>
+        </div>
+
+        <div class="step-card">
+          <h4>步驟二：隔離物體 $m$，由牛頓第二定律求張力 $T$</h4>
+          <p>
+            隔離分析懸掛之質量 $m$：
+          </p>
+          <ul>
+            <li>受繩子張力 $T$ 鉛直向上。</li>
+            <li>受地球重力 $mg$ 鉛直向下。</li>
+            <li>物體向上具有加速度 $a = 0.2g$。</li>
+          </ul>
+          $$\begin{aligned}
+          \sum F &= m \cdot a \\
+          T - mg &= m(0.2g) \\
+          \implies T &= mg + 0.2mg = 1.2mg
+          \end{aligned}$$
+        </div>
+
+        <div class="step-card">
+          <h4>步驟三：代入內軸力臂 $r = \frac{R}{2}$ 求張力矩</h4>
+          <p>
+            物體繩索繞於內軸上，繩索與軸心半徑垂直，因此張力對軸心 $O$ 點的力臂即為內軸半徑 $r$。
+          </p>
+          <p>
+            已知外輪半徑 $R$ 為內軸半徑 $r$ 的 2 倍，即 $R = 2r \implies r = \dfrac{R}{2}$。
+          </p>
+          $$\tau_T = T \cdot r = (1.2mg) \cdot \left(\frac{R}{2}\right) = 0.6mgR$$
+          <p>
+            因此，繩張力對軸心 $O$ 點所產生的力矩大小為 <strong>$0.6mgR$</strong>。正確選項為 <strong>(B)</strong>。
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let selectedOption = null;
+    const correctAnswer = 'B';
+
+    function selectOption(element, opt) {
+      document.querySelectorAll('.quiz-option').forEach(el => el.classList.remove('selected'));
+      element.classList.add('selected');
+      selectedOption = opt;
+    }
+
+    function checkAnswer() {
+      const feedback = document.getElementById('feedback');
+      if (!selectedOption) {
+        feedback.innerHTML = '<span style="color: var(--accent-yellow);">⚠️ 請先點擊選擇一個選項！</span>';
+        feedback.className = 'quiz-feedback show';
+        return;
+      }
+      if (selectedOption === correctAnswer) {
+        feedback.innerHTML = '🎉 <strong>完全正確！</strong> 由牛頓第二運動定律 $T - mg = m(0.2g) \\implies T = 1.2mg$。內軸半徑 $r = \\frac{R}{2}$，張力矩即為 $1.2mg \\cdot \\frac{R}{2} = 0.6mgR$！';
+        feedback.className = 'quiz-feedback show correct';
+        document.getElementById('solution-card').classList.add('show');
+      } else {
+        feedback.innerHTML = '❌ <strong>答案不對喔！</strong> 提示：題目只問「懸掛物體的繩子張力產生的力矩」。先由 $T - mg = 0.2mg$ 算出 $T$，再乘上內軸力臂 $r = R/2$ 試試看！';
+        feedback.className = 'quiz-feedback show incorrect';
+      }
+    }
+
+    function toggleSolution() {
+      const sol = document.getElementById('solution-card');
+      sol.classList.toggle('show');
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      if (window.renderMathInElement) {
+        renderMathInElement(document.body, {
+          delimiters: [
+            { left: "$$", right: "$$", display: true },
+            { left: "$", right: "$", display: false }
+          ]
+        });
+      }
+    });
+  </script>
+</body>
+</html>

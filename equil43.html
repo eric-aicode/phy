@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>靜力平衡 43：小童沿木板等速下滑之牆面與地面力變化 | 高中物理靜力學</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+  <link rel="stylesheet" href="shared.css">
+</head>
+<body>
+  <div class="bg-glow"></div>
+  <div class="bg-grid"></div>
+
+  <div class="container">
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+      <div class="nav-links">
+        <a href="index.html" class="nav-btn primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          回目錄
+        </a>
+        <a href="equil42.html" class="nav-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          上一題 (平衡 42)
+        </a>
+        <a href="equil44.html" class="nav-btn">
+          下一題 (平衡 44)
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+      <div class="badge-wrapper">
+        <span class="badge badge-page">講義 靜力學-31</span>
+        <span class="badge badge-exam">等速下滑與系統合力恆定</span>
+        <span class="badge badge-accent">靜力平衡・練習 43</span>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+      <h1 class="main-title">靜力平衡 43：<span class="gradient-text">小童沿木板等速下滑之牆面與地面力變化</span></h1>
+      <p class="subtitle">等速運動合力為零・整體系統三力平衡・力矩遞減趨勢與向量和守恆</p>
+    </header>
+
+    <!-- Main Problem Layout -->
+    <div class="problem-layout">
+      <!-- Left Column: Problem & Visualizer -->
+      <div class="problem-card">
+        <h2 class="section-title">
+          <span class="step-num">1</span>
+          題目情境與物理圖解
+        </h2>
+        <div class="problem-text">
+          <p>
+            如圖所示，取一均質木板一端靠於鉛直光滑牆面，另一端以樞紐固定於水平地面。
+          </p>
+          <p>
+            今若一小童自此木板高處<strong>等速滑下</strong>，下滑過程中木板保持固定且不變形。若此期間光滑牆對木板之作用力為 $X$，地面對木板之作用力為 $Y$。
+          </p>
+          <p>
+            則此兩力在小童之下滑過程中，如何變化？
+          </p>
+        </div>
+
+        <div class="interactive-container">
+          <div style="font-size: 0.88rem; color: var(--text-dim); margin-bottom: 8px; display: flex; justify-content: space-between;">
+            <span>📐 （木板+小童）系統受力與動態下滑趨勢</span>
+            <span style="color: var(--accent-cyan);">X + Y + W = 0 ⇒ 向量和 X + Y = -W 恆定</span>
+          </div>
+          <svg viewBox="0 0 540 370" class="diagram-svg" style="background: rgba(15, 23, 42, 0.7); border-radius: 8px;">
+            <defs>
+              <marker id="arr-c" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#38bdf8"/>
+              </marker>
+              <marker id="arr-g" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#00e676"/>
+              </marker>
+              <marker id="arr-r" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#f43f5e"/>
+              </marker>
+              <marker id="arr-y" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#fbbf24"/>
+              </marker>
+            </defs>
+
+            <!-- Wall and Ground -->
+            <line x1="120" y1="50" x2="120" y2="300" stroke="#64748b" stroke-width="4"/>
+            <line x1="80" y1="300" x2="480" y2="300" stroke="#64748b" stroke-width="4"/>
+
+            <!-- Wall hatchings -->
+            <line x1="105" y1="70" x2="120" y2="85" stroke="#475569" stroke-width="2"/>
+            <line x1="105" y1="120" x2="120" y2="135" stroke="#475569" stroke-width="2"/>
+            <line x1="105" y1="170" x2="120" y2="185" stroke="#475569" stroke-width="2"/>
+            <line x1="105" y1="220" x2="120" y2="235" stroke="#475569" stroke-width="2"/>
+            <line x1="105" y1="270" x2="120" y2="285" stroke="#475569" stroke-width="2"/>
+
+            <!-- Wooden Board: from top B=(120, 100) to ground hinge A=(380, 300) -->
+            <line x1="120" y1="100" x2="380" y2="300" stroke="#f8fafc" stroke-width="8" stroke-linecap="round"/>
+            <line x1="120" y1="100" x2="380" y2="300" stroke="#38bdf8" stroke-width="4" stroke-linecap="round"/>
+
+            <!-- Smooth wall force X at B=(120, 100) pointing RIGHT -->
+            <line x1="120" y1="100" x2="190" y2="100" stroke="#00e676" stroke-width="3.5" marker-end="url(#arr-g)"/>
+            <text x="195" y="95" fill="#00e676" font-size="14" font-weight="bold">X (牆面力，水平向右)</text>
+
+            <!-- Ground Hinge A at (380, 300) -->
+            <circle cx="380" cy="300" r="6" fill="#f43f5e"/>
+            <text x="390" y="325" fill="#f43f5e" font-size="15" font-weight="bold">A (地面樞紐轉軸)</text>
+
+            <!-- Ground force Y from A pointing up-left -->
+            <line x1="380" y1="300" x2="310" y2="190" stroke="#c084fc" stroke-width="3.5" marker-end="url(#arr-c)"/>
+            <text x="315" y="180" fill="#c084fc" font-size="15" font-weight="bold">Y (地面力)</text>
+
+            <!-- Sliding Child: sliding down along board -->
+            <circle cx="210" cy="169" r="9" fill="#fbbf24"/>
+            <text x="225" y="160" fill="#fbbf24" font-size="13" font-weight="bold">👦 小童等速下滑 (v = 常數)</text>
+            <!-- Velocity arrow along board -->
+            <line x1="220" y1="177" x2="250" y2="200" stroke="#fbbf24" stroke-width="2.5" marker-end="url(#arr-y)"/>
+
+            <!-- Total gravity W (Board + Child) pointing DOWN -->
+            <line x1="250" y1="200" x2="250" y2="290" stroke="#fbbf24" stroke-width="3" marker-end="url(#arr-y)"/>
+            <text x="258" y="275" fill="#fbbf24" font-size="14" font-weight="bold">W_總 (定值)</text>
+
+            <!-- Vector triangle inset on top-right -->
+            <g transform="translate(350, 40)">
+              <rect x="0" y="0" width="160" height="110" fill="rgba(30, 41, 59, 0.9)" stroke="rgba(255,255,255,0.15)" rx="6"/>
+              <text x="12" y="22" fill="#38bdf8" font-size="12" font-weight="bold">向量合力平衡閉合</text>
+              <line x1="30" y1="40" x2="80" y2="40" stroke="#00e676" stroke-width="2.5" marker-end="url(#arr-g)"/>
+              <text x="50" y="35" fill="#00e676" font-size="11">X</text>
+
+              <line x1="80" y1="40" x2="30" y2="95" stroke="#c084fc" stroke-width="2.5" marker-end="url(#arr-c)"/>
+              <text x="65" y="75" fill="#c084fc" font-size="11">Y</text>
+
+              <line x1="30" y1="95" x2="30" y2="40" stroke="#fbbf24" stroke-width="2.5" marker-end="url(#arr-y)"/>
+              <text x="12" y="70" fill="#fbbf24" font-size="11">W</text>
+              <text x="12" y="105" fill="#00e676" font-size="10" font-weight="bold">X + Y = -W (定向量)</text>
+            </g>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Right Column: Interactive Quiz -->
+      <div class="problem-card">
+        <h2 class="section-title">
+          <span class="step-num">2</span>
+          自我檢測與即時核對
+        </h2>
+        <p style="color: var(--text-dim); font-size: 0.95rem; margin-bottom: 16px;">
+          請考慮小童等速滑下之物理特性與受力平衡，選出正確的選項：
+        </p>
+
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="selectOption(this, 'A')">
+            <span class="opt-letter">A</span>
+            <span class="opt-text">$X$ 量值漸大、$Y$ 量值漸小</span>
+          </div>
+          <div class="quiz-option" onclick="selectOption(this, 'B')">
+            <span class="opt-letter">B</span>
+            <span class="opt-text">$X$ 量值漸大、$Y$ 量值漸大</span>
+          </div>
+          <div class="quiz-option" onclick="selectOption(this, 'C')">
+            <span class="opt-letter">C</span>
+            <span class="opt-text">$X$ 量值漸小、$Y$ 量值漸大</span>
+          </div>
+          <div class="quiz-option" onclick="selectOption(this, 'D')">
+            <span class="opt-letter">D</span>
+            <span class="opt-text">$Y$ 之方向與地面之夾角保持不變</span>
+          </div>
+          <div class="quiz-option" onclick="selectOption(this, 'E')">
+            <span class="opt-letter">E</span>
+            <span class="opt-text">$X$ 與 $Y$ 的向量和保持不變</span>
+          </div>
+        </div>
+
+        <div class="quiz-actions">
+          <button class="nav-btn primary" onclick="checkAnswer()">核對答案</button>
+          <button class="nav-btn" onclick="toggleSolution()">查看解析</button>
+        </div>
+
+        <div id="feedback" class="quiz-feedback"></div>
+      </div>
+    </div>
+
+    <!-- Solution Section -->
+    <div id="solution-card" class="solution-card">
+      <h2 class="section-title">
+        <span class="step-num">3</span>
+        完整觀念解析與推導過程
+      </h2>
+      <div class="solution-content">
+        <div class="formula-box">
+          $$\text{小童等速下滑 } \implies \vec{a} = 0 \implies \sum \vec{F}_{\text{系統}} = 0$$
+          $$\vec{X} + \vec{Y} + \vec{W} = 0 \implies \vec{X} + \vec{Y} = -\vec{W} \quad (\text{大小與方向皆恆定})$$
+          $$\sum \tau_A = 0 \implies X \text{ 漸減，} Y = \sqrt{X^2 + W^2} \text{ 亦漸減}$$
+        </div>
+
+        <div class="step-card">
+          <h4>步驟一：整體系統法與向量和恆定性（直接得解）</h4>
+          <p>
+            將「木板 + 小童」視為一個整體力學系統。因為小童是「<strong>等速</strong>滑下」，其加速度 $\vec{a} = 0$。因此對整體系統而言，合外力必定恆等於零：
+          </p>
+          $$\sum \vec{F} = \vec{X} + \vec{Y} + \vec{W}_{\text{總}} = 0$$
+          <p>
+            移項可得：
+          </p>
+          $$\vec{X} + \vec{Y} = -\vec{W}_{\text{總}}$$
+          <p>
+            因為木板與小童的總重力 $\vec{W}_{\text{總}}$ 是量值恆定、方向鉛直向下的定向量，所以 $-\vec{W}_{\text{總}}$ 為向上且大小固定的定向量。因此，<strong>$\vec{X}$ 與 $\vec{Y}$ 的向量和在下滑全程保持不變</strong>！選項 <strong>(E) 正確</strong>。
+          </p>
+        </div>
+
+        <div class="step-card">
+          <h4>步驟二：以轉軸 A 列力矩分析 $X$ 的量值變化趨勢</h4>
+          <p>
+            以地面樞紐 $A$ 點為轉軸，此時地面力 $Y$ 對 $A$ 的力矩為 0。
+          </p>
+          <p>
+            光滑垂直牆面之正向力 $X$ 水平向右，其對 $A$ 的力臂為木板頂端高度 $h$（維持不變）。
+          </p>
+          <p>
+            當小童沿木板向下滑動時，小童離轉軸 $A$ 的水平距離逐漸縮小，因此小童重力對轉軸 $A$ 產生的順時針力矩逐漸變小。
+          </p>
+          <p>
+            為維持合力矩為零（$X \cdot h = \tau_{\text{板重}} + \tau_{\text{童重}}$），牆壁力矩必須隨之變小，因力臂 $h$ 固定，故 <strong>$X$ 的量值漸小</strong>。
+          </p>
+        </div>
+
+        <div class="step-card">
+          <h4>步驟三：分析 $Y$ 的量值與方向變化（排除 A、B、C、D）</h4>
+          <p>
+            由整體系統之正交平衡：
+          </p>
+          <ul>
+            <li>水平平衡：$Y_x = X$。因為 $X$ 漸小，所以 $Y$ 的水平分量 $Y_x$ 漸小。</li>
+            <li>鉛直平衡：$Y_y = W_{\text{總}}$。因為垂直牆面光滑無摩擦力，地面鉛直分力必須完全承擔總重力，故 $Y_y$ 維持不變。</li>
+            <li>地面力量值：$Y = \sqrt{Y_x^2 + Y_y^2} = \sqrt{X^2 + W_{\text{總}}^2}$。因為 $X$ 漸小，故 <strong>$Y$ 的量值亦漸小</strong>（排除 A、B、C）。</li>
+            <li>地面力方向夾角 $\phi$：$\tan\phi = \dfrac{Y_y}{Y_x} = \dfrac{W_{\text{總}}}{X}$。因為 $X$ 漸小，$\tan\phi$ 增大，即 $Y$ 與地面的仰角逐漸增大，並非保持不變（排除 D）。</li>
+          </ul>
+          <p>
+            綜合以上各點，唯一正確的選項為 <strong>(E)</strong>。
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let selectedOption = null;
+    const correctAnswer = 'E';
+
+    function selectOption(element, opt) {
+      document.querySelectorAll('.quiz-option').forEach(el => el.classList.remove('selected'));
+      element.classList.add('selected');
+      selectedOption = opt;
+    }
+
+    function checkAnswer() {
+      const feedback = document.getElementById('feedback');
+      if (!selectedOption) {
+        feedback.innerHTML = '<span style="color: var(--accent-yellow);">⚠️ 請先點擊選擇一個選項！</span>';
+        feedback.className = 'quiz-feedback show';
+        return;
+      }
+      if (selectedOption === correctAnswer) {
+        feedback.innerHTML = '🎉 <strong>完全正確！</strong> 將（木板+小童）視為整體系統，因為小童等速下滑 $\\vec{a}=0$，合外力 $\\vec{X} + \\vec{Y} + \\vec{W} = 0$，故 $\\vec{X} + \\vec{Y} = -\\vec{W}$ 恆等於向上之定向量！';
+        feedback.className = 'quiz-feedback show correct';
+        document.getElementById('solution-card').classList.add('show');
+      } else {
+        feedback.innerHTML = '❌ <strong>答案不對喔！</strong> 提示：把小童與木板視為同一個系統，等速運動合力為零，思考 $\\vec{X} + \\vec{Y} + \\vec{W} = 0$ 的向量關係！';
+        feedback.className = 'quiz-feedback show incorrect';
+      }
+    }
+
+    function toggleSolution() {
+      const sol = document.getElementById('solution-card');
+      sol.classList.toggle('show');
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      if (window.renderMathInElement) {
+        renderMathInElement(document.body, {
+          delimiters: [
+            { left: "$$", right: "$$", display: true },
+            { left: "$", right: "$", display: false }
+          ]
+        });
+      }
+    });
+  </script>
+</body>
+</html>

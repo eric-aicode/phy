@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>靜力平衡 14：93指考掛畫細繩最短長度 | 高中物理靜力學</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+  <link rel="stylesheet" href="shared.css">
+</head>
+<body>
+  <div class="bg-glow"></div>
+  <div class="bg-grid"></div>
+
+  <div class="container">
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+      <div class="nav-links">
+        <a href="index.html" class="nav-btn primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          回目錄
+        </a>
+        <a href="equil13.html" class="nav-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          上一題 (平衡 13)
+        </a>
+        <a href="equil15.html" class="nav-btn">
+          下一題 (平衡 15)
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+      <div class="badge-wrapper">
+        <span class="badge badge-page">講義 靜力學-26</span>
+        <span class="badge badge-exam">93年大學指考</span>
+        <span class="badge badge-accent">靜力平衡・練習 14</span>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+      <h1 class="main-title">靜力平衡 14：<span class="gradient-text">掛畫細繩張力極限與最短長度</span></h1>
+      <p class="subtitle">對稱懸掛幾何・鉛直分力平衡條件・繩長愈短張力愈大臨界分析</p>
+    </header>
+
+    <!-- Problem Showcase Card -->
+    <section class="card problem-card">
+      <div class="card-header">
+        <div class="card-icon">📖</div>
+        <div>
+          <h2>題目內容</h2>
+          <span class="card-tag">【93.大學指考】經典試題</span>
+        </div>
+      </div>
+
+      <div class="problem-body">
+        <p>
+          小軒要在客廳裡掛上一幅重 $1\text{ kgw}$ 的畫（含畫框），畫框背面有兩個相距 $1\text{ m}$、位置固定的釘子。他將畫對稱地掛在牆壁的掛鉤上，掛繩最大可以承受 $1\text{ kgw}$ 的張力，掛好後整條細繩呈緊繃狀態。假設細繩可以承受的最大張力與繩長無關，則細繩<strong>最少需要幾公尺</strong>才不至於斷掉？
+        </p>
+
+        <!-- SVG Diagram -->
+        <div class="diagram-wrapper">
+          <svg viewBox="0 0 760 380" class="physics-svg" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="arrow-blue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#38bdf8"/>
+              </marker>
+              <marker id="arrow-red" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#f43f5e"/>
+              </marker>
+              <marker id="arrow-amber" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#f59e0b"/>
+              </marker>
+              <linearGradient id="frame-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#334155"/>
+                <stop offset="100%" stop-color="#1e293b"/>
+              </linearGradient>
+            </defs>
+
+            <!-- Painting Frame Outline -->
+            <rect x="70" y="160" width="340" height="190" rx="6" fill="url(#frame-grad)" stroke="#64748b" stroke-width="2.5"/>
+            <rect x="90" y="180" width="300" height="150" rx="4" fill="rgba(15, 23, 42, 0.6)" stroke="#475569" stroke-width="1.5"/>
+            <text x="240" y="260" fill="#94a3b8" font-size="16" font-weight="600" text-anchor="middle">畫作本體（含框重 W = 1 kgw）</text>
+
+            <!-- Hook on Wall: Point H (240, 50) -->
+            <circle cx="240" cy="50" r="5" fill="#f59e0b" stroke="#ffffff" stroke-width="1.5"/>
+            <text x="240" y="35" fill="#f59e0b" font-size="14" font-weight="700" text-anchor="middle">掛鉤 (H)</text>
+
+            <!-- Nails on Frame: distance = 1 m -->
+            <!-- Hook is at x = 240. Nails at x = 240 - 100 = 140, and 240 + 100 = 340. y = 190. -->
+            <circle cx="140" cy="190" r="4.5" fill="#e2e8f0" stroke="#0ea5e9" stroke-width="2"/>
+            <text x="125" y="180" fill="#38bdf8" font-size="13" font-weight="700">釘子 A</text>
+
+            <circle cx="340" cy="190" r="4.5" fill="#e2e8f0" stroke="#0ea5e9" stroke-width="2"/>
+            <text x="355" y="180" fill="#38bdf8" font-size="13" font-weight="700">釘子 B</text>
+
+            <!-- Dimension Line between Nails (1 m) -->
+            <line x1="140" y1="210" x2="340" y2="210" stroke="#94a3b8" stroke-width="1.5"/>
+            <line x1="140" y1="205" x2="140" y2="215" stroke="#94a3b8" stroke-width="1.5"/>
+            <line x1="340" y1="205" x2="340" y2="215" stroke="#94a3b8" stroke-width="1.5"/>
+            <text x="240" y="225" fill="#cbd5e1" font-size="12" font-family="'Fira Code', monospace" text-anchor="middle">d = 1 m (兩釘子相距 1m)</text>
+
+            <!-- Hanging String -->
+            <line x1="140" y1="190" x2="240" y2="50" stroke="#38bdf8" stroke-width="3"/>
+            <line x1="340" y1="190" x2="240" y2="50" stroke="#38bdf8" stroke-width="3"/>
+
+            <!-- Vertical Dash Line at Hook -->
+            <line x1="240" y1="50" x2="240" y2="190" stroke="#64748b" stroke-dasharray="4,4" stroke-width="1.5"/>
+
+            <!-- Angle theta with vertical -->
+            <path d="M 220 78 A 35 35 0 0 1 240 85" fill="none" stroke="#f59e0b" stroke-width="2"/>
+            <text x="215" y="100" fill="#f59e0b" font-size="13" font-weight="700">θ</text>
+
+            <path d="M 260 78 A 35 35 0 0 0 240 85" fill="none" stroke="#f59e0b" stroke-width="2"/>
+            <text x="260" y="100" fill="#f59e0b" font-size="13" font-weight="700">θ</text>
+
+            <!-- Half Base d/2 = 0.5 m -->
+            <text x="185" y="180" fill="#38bdf8" font-size="12" font-style="italic">0.5 m</text>
+            <text x="285" y="180" fill="#38bdf8" font-size="12" font-style="italic">0.5 m</text>
+
+            <!-- String segments length L/2 -->
+            <text x="170" y="110" fill="#38bdf8" font-size="13" font-weight="600">L/2</text>
+            <text x="300" y="110" fill="#38bdf8" font-size="13" font-weight="600">L/2</text>
+
+            <!-- Force Vectors on Hook/System -->
+            <!-- Tension T_max = 1 kgw along string -->
+            <line x1="240" y1="50" x2="200" y2="106" stroke="#38bdf8" stroke-width="2.5" marker-end="url(#arrow-blue)"/>
+            <text x="165" y="80" fill="#38bdf8" font-size="13" font-weight="700">T ≤ 1 kgw</text>
+
+            <!-- Gravity W downwards from painting center -->
+            <line x1="240" y1="260" x2="240" y2="330" stroke="#f43f5e" stroke-width="3" marker-end="url(#arrow-red)"/>
+            <text x="250" y="325" fill="#f43f5e" font-size="14" font-weight="700">W = 1 kgw</text>
+
+            <!-- Right: Physics & Geometry Analysis Box -->
+            <g transform="translate(460, 40)">
+              <rect x="0" y="0" width="275" height="305" rx="12" fill="rgba(15, 23, 42, 0.75)" stroke="#334155" stroke-width="1.5"/>
+              <text x="137" y="30" fill="#38bdf8" font-size="15" font-weight="700" text-anchor="middle">受力平衡與臨界條件</text>
+
+              <!-- Derivation items -->
+              <text x="20" y="65" fill="#f8fafc" font-size="13" font-weight="600">1. 鉛直方向力平衡：</text>
+              <text x="35" y="90" fill="#38bdf8" font-size="14" font-family="'Fira Code', monospace">2T·cos θ = W = 1</text>
+
+              <text x="20" y="125" fill="#f8fafc" font-size="13" font-weight="600">2. 最大張力臨界值 (T = 1 kgw)：</text>
+              <text x="35" y="150" fill="#f59e0b" font-size="14" font-family="'Fira Code', monospace">2(1)·cos θ = 1</text>
+              <text x="35" y="175" fill="#f59e0b" font-size="14" font-family="'Fira Code', monospace">⇒ cos θ = 1/2  (θ = 60°)</text>
+
+              <text x="20" y="210" fill="#f8fafc" font-size="13" font-weight="600">3. 幾何直角三角形：</text>
+              <text x="35" y="235" fill="#10b981" font-size="13" font-family="'Fira Code', monospace">sin θ = (d/2) / (L/2)</text>
+              <text x="35" y="260" fill="#10b981" font-size="14" font-family="'Fira Code', monospace">L = 2 × (0.5 / sin 60°)</text>
+
+              <rect x="20" y="270" width="235" height="26" rx="4" fill="rgba(56, 189, 248, 0.15)"/>
+              <text x="137" y="288" fill="#38bdf8" font-size="14" font-weight="800" text-anchor="middle">L_min = 2 / √3 (m)</text>
+            </g>
+          </svg>
+        </div>
+
+        <p class="question-prompt">
+          依據上述受力與幾何限制，細繩最短需為幾公尺才不至於斷掉？
+        </p>
+
+        <!-- Options Container -->
+        <div class="options-container">
+          <div class="option-card" data-option="A">
+            <span class="option-label">A</span>
+            <div class="option-content">
+              <span class="katex-text">$\frac{2}{\sqrt{3}}\text{ m}$</span>
+            </div>
+          </div>
+
+          <div class="option-card" data-option="B">
+            <span class="option-label">B</span>
+            <div class="option-content">
+              <span class="katex-text">$\frac{3}{2}\text{ m}$</span>
+            </div>
+          </div>
+
+          <div class="option-card" data-option="C">
+            <span class="option-label">C</span>
+            <div class="option-content">
+              <span class="katex-text">$2\text{ m}$</span>
+            </div>
+          </div>
+
+          <div class="option-card" data-option="D">
+            <span class="option-label">D</span>
+            <div class="option-content">
+              <span class="katex-text">$\frac{5}{2}\text{ m}$</span>
+            </div>
+          </div>
+
+          <div class="option-card" data-option="E">
+            <span class="option-label">E</span>
+            <div class="option-content">
+              <span class="katex-text">$2\sqrt{3}\text{ m}$</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Feedback Alert Box -->
+        <div class="feedback-box" id="feedbackBox">
+          <div class="feedback-icon" id="feedbackIcon"></div>
+          <div class="feedback-text" id="feedbackText"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Collapsible Solution Card -->
+    <section class="card solution-card collapsed" id="solutionCard">
+      <div class="card-header toggle-header" id="solutionToggle">
+        <div class="card-icon">💡</div>
+        <div>
+          <h2>核心解析與詳細推導</h2>
+          <span class="card-tag">點擊展開 / 收合完整解析</span>
+        </div>
+        <span class="solution-status">點擊展開完整剖析</span>
+      </div>
+
+      <div class="solution-content">
+        <div class="solution-step">
+          <span class="step-num">步驟 1</span>
+          <h3>由鉛直平衡求極限傾角 $\theta$</h3>
+          <p>
+            整幅畫重量為 $W = 1\text{ kgw}$，由左右兩段對稱細繩共同吊起。<br>
+            設兩繩與鉛垂線之夾角各為 $\theta$，每段繩的張力為 $T$。<br>
+            系統達鉛直力平衡：
+            $$2T\cos\theta = W$$
+            題目給定繩子最大僅能承受 $T_{\max} = 1\text{ kgw}$ 的張力。<br>
+            當細繩長度愈短，頂角愈大，繩與鉛垂線夾角 $\theta$ 愈大，$\cos\theta$ 愈小，張力 $T = \frac{W}{2\cos\theta}$ 就愈大。<br>
+            因此在即將斷掉的臨界狀態時，張力達到最大值 $T = 1\text{ kgw}$：
+            $$2 \times 1 \times \cos\theta = 1 \implies \cos\theta = \frac{1}{2} \implies \theta = 60^\circ$$
+          </p>
+        </div>
+
+        <div class="solution-step">
+          <span class="step-num">步驟 2</span>
+          <h3>由幾何三角形計算細繩最短長度 $L$</h3>
+          <p>
+            設細繩總長為 $L$，由對稱懸掛可知左右兩段長度各為 $\frac{L}{2}$。<br>
+            畫框背面兩釘子相距 $d = 1\text{ m}$，因此對稱軸兩側的水平距離為：
+            $$\frac{d}{2} = 0.5\text{ m}$$
+            在由掛鉤、釘子與鉛垂線構成的直角三角形中：
+            $$\sin\theta = \frac{\text{水平對邊}}{\text{斜邊}} = \frac{0.5}{\frac{L}{2}}$$
+            代入 $\theta = 60^\circ$（$\sin 60^\circ = \frac{\sqrt{3}}{2}$）：
+            $$\frac{\sqrt{3}}{2} = \frac{0.5}{\frac{L}{2}} \implies \frac{L}{2} = \frac{0.5}{\frac{\sqrt{3}}{2}} = \frac{1}{\sqrt{3}}\text{ m}$$
+            解得細繩總長：
+            $$L = 2 \times \frac{1}{\sqrt{3}} = \frac{2}{\sqrt{3}}\text{ m}$$
+          </p>
+          <div class="conclusion-box">
+            <strong>結論：</strong> 本題正確答案為 <strong>(A) $\frac{2}{\sqrt{3}}$</strong>。
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Navigation Footer -->
+    <footer class="footer-nav">
+      <a href="equil13.html" class="nav-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+        上一題 (平衡 13)
+      </a>
+      <a href="index.html" class="nav-btn primary">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        單元總覽
+      </a>
+      <a href="equil15.html" class="nav-btn">
+        下一題 (平衡 15)
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+    </footer>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // KaTeX Auto-render
+      if (typeof renderMathInElement === 'function') {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ],
+          throwOnError: false
+        });
+      }
+
+      // Quiz Interaction
+      const correctAnswer = "A";
+      const optionCards = document.querySelectorAll(".option-card");
+      const feedbackBox = document.getElementById("feedbackBox");
+      const feedbackIcon = document.getElementById("feedbackIcon");
+      const feedbackText = document.getElementById("feedbackText");
+      const solutionCard = document.getElementById("solutionCard");
+
+      optionCards.forEach(card => {
+        card.addEventListener("click", function() {
+          const selected = this.getAttribute("data-option");
+
+          optionCards.forEach(c => c.classList.remove("selected", "correct", "wrong"));
+          this.classList.add("selected");
+
+          feedbackBox.classList.remove("correct", "wrong");
+          feedbackBox.classList.add("show");
+
+          if (selected === correctAnswer) {
+            this.classList.add("correct");
+            feedbackBox.classList.add("correct");
+            feedbackIcon.innerHTML = "🎉";
+            feedbackText.innerHTML = "<strong>命中真理！完全正確！</strong><br>臨界時 $2(1)\\cos\\theta = 1 \\implies \\cos\\theta = \\frac{1}{2} \\implies \\theta = 60^\\circ$。<br>半繩長 $\\frac{L}{2} = \\frac{0.5}{\\sin 60^\\circ} = \\frac{1}{\\sqrt{3}}$，總繩長 $L = \\frac{2}{\\sqrt{3}}\\text{ m}$！";
+            solutionCard.classList.remove("collapsed");
+            const tag = solutionCard.querySelector(".solution-status");
+            if (tag) tag.textContent = "點擊收合詳解";
+          } else {
+            this.classList.add("wrong");
+            feedbackBox.classList.add("wrong");
+            feedbackIcon.innerHTML = "💡";
+            if (selected === "C") {
+              feedbackText.innerHTML = "<strong>若繩長為 2 m 則頂角為 60°，此時張力更小更安全，但不是題目問的『最短』臨界長度喔！</strong>";
+            } else if (selected === "E") {
+              feedbackText.innerHTML = "<strong>小心別把根號 3 乘反了！</strong> $\\sin 60^\\circ = \\frac{\\sqrt{3}}{2}$ 在分母，計算結果應為 $\\frac{2}{\\sqrt{3}}$ 喔！";
+            } else {
+              feedbackText.innerHTML = `<strong>選了 (${selected})，再想想看！</strong> 提示：先由鉛直平衡 $2T\\cos\\theta = W$ 求出臨界角 $\\theta=60^\\circ$，再利用 $\\sin\\theta = \\frac{0.5}{L/2}$ 求出最短長度 $L$！`;
+            }
+          }
+
+          if (typeof renderMathInElement === 'function') {
+            renderMathInElement(feedbackText, {
+              delimiters: [
+                {left: '$$', right: '$$', display: true},
+                {left: '$', right: '$', display: false}
+              ],
+              throwOnError: false
+            });
+          }
+        });
+      });
+
+      // Solution toggle
+      const solutionToggle = document.getElementById("solutionToggle");
+      solutionToggle.addEventListener("click", function() {
+        solutionCard.classList.toggle("collapsed");
+        const isCollapsed = solutionCard.classList.contains("collapsed");
+        const statusSpan = solutionToggle.querySelector(".solution-status");
+        if (statusSpan) {
+          statusSpan.textContent = isCollapsed ? "點擊展開完整剖析" : "點擊收合詳解";
+        }
+      });
+    });
+  </script>
+</body>
+</html>

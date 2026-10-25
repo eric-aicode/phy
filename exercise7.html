@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>練習 7：光滑斜面跨滑輪雙物體平衡 | 高中物理靜力學</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+  <link rel="stylesheet" href="shared.css">
+</head>
+<body>
+  <div class="bg-glow"></div>
+  <div class="bg-grid"></div>
+
+  <div class="container">
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+      <div class="nav-links">
+        <a href="index.html" class="nav-btn primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          回目錄
+        </a>
+        <a href="exercise6.html" class="nav-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          上一題 (練習 6)
+        </a>
+        <a href="exercise8.html" class="nav-btn">
+          下一題 (練習 8)
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+      <div class="badge-wrapper">
+        <span class="badge badge-page">講義 靜力學-19</span>
+        <span class="badge badge-accent">斜面平衡・練習 7</span>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+      <h1 class="main-title">練習 7：<span class="gradient-text">光滑斜面跨滑輪雙物體平衡</span></h1>
+      <p class="subtitle">斜面正交分力・輕繩張力傳遞・三力平衡封閉直角三角形</p>
+    </header>
+
+    <!-- Problem Showcase Card -->
+    <section class="card problem-card">
+      <div class="card-header">
+        <div class="card-icon">📖</div>
+        <div>
+          <h2>題目內容</h2>
+          <span class="card-tag">經典斜面滑輪平衡題</span>
+        </div>
+      </div>
+
+      <div class="problem-body">
+        <p>
+          重量為 <strong>$2.4\text{ kgw}$</strong> 的物體 <strong>A</strong>，置於斜角為 <strong>$30^\circ$</strong> 的光滑斜面上，以輕細線連接物體 <strong>B</strong>，跨過斜面頂端無摩擦的輕滑輪，如圖所示。若物體 A 能靜止於斜面上，則物體 B 的重量應為多少 $\text{kgw}$？
+        </p>
+
+        <!-- Physics Mechanical Diagram (SVG) -->
+        <div class="diagram-container" style="text-align: center; margin: 24px 0;">
+          <svg viewBox="0 0 740 320" style="width: 100%; max-width: 720px; background: rgba(15, 23, 42, 0.6); border-radius: 12px; border: 1px solid rgba(255,255,255,0.08);">
+            <defs>
+              <marker id="arrow-blue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#38bdf8"/>
+              </marker>
+              <marker id="arrow-gold" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#fbbf24"/>
+              </marker>
+              <marker id="arrow-rose" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#f43f5e"/>
+              </marker>
+              <marker id="arrow-green" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#34d399"/>
+              </marker>
+            </defs>
+
+            <!-- 地面 -->
+            <line x1="80" y1="270" x2="660" y2="270" stroke="#475569" stroke-width="3"/>
+            <pattern id="ground-hatch" width="10" height="10" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse">
+              <line x1="0" y1="0" x2="0" y2="10" stroke="#334155" stroke-width="1.5" />
+            </pattern>
+            <rect x="80" y="270" width="580" height="15" fill="url(#ground-hatch)"/>
+
+            <!-- 光滑斜面 (30度) -->
+            <!-- 底角 (120, 270), 頂點 (480, 270 - 360*tan(30) = 270 - 207.8 = 62) -->
+            <polygon points="120,270 480,62 480,270" fill="rgba(30, 41, 59, 0.7)" stroke="#64748b" stroke-width="2"/>
+            
+            <!-- 30度角度標記 -->
+            <path d="M 170 270 A 50 50 0 0 0 163 245" fill="none" stroke="#38bdf8" stroke-width="2"/>
+            <text x="180" y="260" fill="#38bdf8" font-size="15" font-weight="bold">30°</text>
+
+            <!-- 滑輪在頂點 (480, 62) -->
+            <circle cx="488" cy="57" r="14" fill="#334155" stroke="#94a3b8" stroke-width="2"/>
+            <circle cx="488" cy="57" r="4" fill="#f8fafc"/>
+            <line x1="480" y1="62" x2="488" y2="57" stroke="#64748b" stroke-width="3"/>
+
+            <!-- 物體 A 放在斜面上 (約斜邊中間 x=280, y=177.8) -->
+            <!-- 斜邊角度 30 度: 旋轉 -30 度 -->
+            <g transform="translate(280, 178) rotate(-30)">
+              <rect x="-30" y="-35" width="60" height="35" rx="4" fill="#1e293b" stroke="#38bdf8" stroke-width="2.5"/>
+              <text x="0" y="-13" fill="#38bdf8" font-size="16" font-weight="bold" text-anchor="middle">A (2.4kgw)</text>
+              <!-- 繩子接點 -->
+              <circle cx="30" cy="-17.5" r="3" fill="#fbbf24"/>
+            </g>
+
+            <!-- 繩子：從 A 表面到滑輪頂部 -->
+            <!-- A 繩點約在 (280 + 30*cos(-30) - (-17.5)*sin(-30), 178 + 30*sin(-30) + (-17.5)*cos(-30)) -->
+            <line x1="298" y1="148" x2="488" y2="43" stroke="#fbbf24" stroke-width="3"/>
+
+            <!-- 繩子繞過滑輪下垂到 B -->
+            <line x1="502" y1="57" x2="502" y2="160" stroke="#fbbf24" stroke-width="3"/>
+
+            <!-- 物體 B 懸掛 -->
+            <g transform="translate(502, 160)">
+              <rect x="-24" y="0" width="48" height="45" rx="4" fill="#1e293b" stroke="#f43f5e" stroke-width="2.5"/>
+              <text x="0" y="27" fill="#f43f5e" font-size="16" font-weight="bold" text-anchor="middle">B</text>
+              <line x1="0" y1="45" x2="0" y2="85" stroke="#f43f5e" stroke-width="2.5" marker-end="url(#arrow-rose)"/>
+              <text x="15" y="80" fill="#f43f5e" font-size="13" font-weight="bold">W_B = ?</text>
+            </g>
+
+            <!-- 右側：受力分解向量輔助視圖 -->
+            <g transform="translate(560, 40)">
+              <rect x="0" y="0" width="165" height="190" rx="8" fill="rgba(15, 23, 42, 0.8)" stroke="rgba(255,255,255,0.1)"/>
+              <text x="82" y="25" fill="#94a3b8" font-size="13" font-weight="bold" text-anchor="middle">【A 受力平衡圖】</text>
+
+              <!-- 重力 W_A 向下 -->
+              <line x1="82" y1="80" x2="82" y2="160" stroke="#f8fafc" stroke-width="2.5" marker-end="url(#arrow-blue)"/>
+              <text x="92" y="145" fill="#f8fafc" font-size="12">W_A</text>
+
+              <!-- 沿斜面下滑分力 -->
+              <line x1="82" y1="80" x2="47" y2="100" stroke="#fbbf24" stroke-width="2" marker-end="url(#arrow-gold)"/>
+              <text x="25" y="75" fill="#fbbf24" font-size="11">W_A sin30°</text>
+
+              <!-- 繩張力 T 沿斜面向上 -->
+              <line x1="82" y1="80" x2="117" y2="60" stroke="#34d399" stroke-width="2.5" marker-end="url(#arrow-green)"/>
+              <text x="125" y="60" fill="#34d399" font-size="12" font-weight="bold">T</text>
+
+              <!-- 正向力 N 垂直斜面向上 -->
+              <line x1="82" y1="80" x2="52" y2="28" stroke="#38bdf8" stroke-width="2" marker-end="url(#arrow-blue)"/>
+              <text x="45" y="25" fill="#38bdf8" font-size="11">N</text>
+
+              <text x="82" y="180" fill="#34d399" font-size="11" text-anchor="middle">T = W_A sin30° = W_B</text>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Interactive Answer Area -->
+    <section class="card interactive-card">
+      <div class="card-header">
+        <div class="card-icon">✍️</div>
+        <div>
+          <h2>即時動手作答</h2>
+          <span class="card-tag">請點選或填寫數值</span>
+        </div>
+      </div>
+
+      <div class="options-grid" id="optionsGrid">
+        <button class="option-btn" data-val="0.6">
+          <span class="option-label">A</span>
+          <span class="option-text">$0.6\text{ kgw}$</span>
+        </button>
+        <button class="option-btn" data-val="1.2">
+          <span class="option-label">B</span>
+          <span class="option-text">$1.2\text{ kgw}$</span>
+        </button>
+        <button class="option-btn" data-val="2.4">
+          <span class="option-label">C</span>
+          <span class="option-text">$2.4\text{ kgw}$</span>
+        </button>
+        <button class="option-btn" data-val="4.8">
+          <span class="option-label">D</span>
+          <span class="option-text">$4.8\text{ kgw}$</span>
+        </button>
+      </div>
+
+      <!-- Quick Numeric Input -->
+      <div style="margin-top: 18px; display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap;">
+        <span style="color: #94a3b8; font-size: 14px;">或直接輸入數值：</span>
+        <input type="number" step="0.1" id="customInput" placeholder="請填寫數字" style="padding: 10px 16px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); background: rgba(30,41,59,0.8); color: #fff; font-size: 16px; width: 140px; text-align: center;">
+        <span style="color: #cbd5e1; font-weight: bold;">kgw</span>
+        <button id="submitInputBtn" class="nav-btn primary" style="cursor: pointer; padding: 10px 20px;">送出檢查</button>
+      </div>
+
+      <div id="feedbackBox" class="feedback-box hidden">
+        <div class="feedback-icon" id="feedbackIcon"></div>
+        <div class="feedback-text" id="feedbackText"></div>
+      </div>
+    </section>
+
+    <!-- Detailed Solution Area (Hidden by default) -->
+    <section class="card solution-card collapsed" id="solutionCard">
+      <div class="card-header solution-toggle" id="solutionToggle" role="button" tabindex="0">
+        <div class="card-icon">💡</div>
+        <div style="flex-grow: 1;">
+          <h2>精闢詳解與向量圖解步驟</h2>
+          <span class="card-tag solution-status">點擊展開完整剖析</span>
+        </div>
+        <div class="toggle-arrow">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+      </div>
+
+      <div class="solution-content" id="solutionContent">
+        <div class="step-card">
+          <div class="step-badge">步驟一</div>
+          <h3>隔離物體 B 進行受力平衡分析</h3>
+          <p>
+            物體 B 受兩力作用而靜止懸掛於空中：
+          </p>
+          <ul class="key-points">
+            <li><strong>向上拉力：</strong>輕繩張力 $T$。</li>
+            <li><strong>向下拉力：</strong>物體 B 的自身重力 $W_B$。</li>
+          </ul>
+          <p>
+            依垂直方向靜力平衡條件：
+            $$T = W_B \quad \cdots\cdots\text{①}$$
+          </p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-badge">步驟二</div>
+          <h3>隔離斜面上的物體 A（正交分解法）</h3>
+          <p>
+            物體 A 位於斜角 $\theta = 30^\circ$ 的光滑斜面上，受到三個力作用：
+          </p>
+          <ol class="key-points">
+            <li><strong>地球引力（重力）：</strong>$W_A = 2.4\text{ kgw}$，垂直向下。</li>
+            <li><strong>光滑斜面正向支撐力：</strong>$N$，垂直於斜面向上。</li>
+            <li><strong>細線拉力：</strong>$T$，平行於斜面向上。</li>
+          </ol>
+          <p>
+            將重力 $W_A$ 沿「平行斜面」與「垂直斜面」兩軸進行正交分解：
+            $$\begin{cases}
+              W_{A\parallel} = W_A \sin 30^\circ = 2.4 \times \frac{1}{2} = 1.2\text{ kgw} \quad (\text{沿斜面向下}) \\
+              W_{A\perp} = W_A \cos 30^\circ = 2.4 \times \frac{\sqrt{3}}{2} = 1.2\sqrt{3}\text{ kgw} \quad (\text{垂直壓向斜面})
+            \end{cases}$$
+          </p>
+          <p>
+            因為斜面<strong>完全光滑（無摩擦力）</strong>，物體 A 要能在斜面上靜止，則平行斜面方向的合力必為零：
+            $$T = W_{A\parallel} = W_A \sin 30^\circ = 1.2\text{ kgw} \quad \cdots\cdots\text{②}$$
+          </p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-badge">步驟三</div>
+          <h3>向量封閉直角三角形觀點</h3>
+          <p>
+            物體 A 靜止受三力 $\vec{W}_A + \vec{N} + \vec{T} = \vec{0}$。
+          </p>
+          <p>
+            由於斜面正向力 $\vec{N}$ 垂直於斜面，而繩拉力 $\vec{T}$ 平行於斜面，因此兩者<strong>彼此互相垂直</strong> $(\vec{N} \perp \vec{T})$。
+          </p>
+          <p>
+            三力首尾相接必構成一個<strong>斜邊為重力 $W_A$ 的直角三角形</strong>：
+            $$T = W_A \sin 30^\circ = 2.4 \times \frac{1}{2} = 1.2\text{ kgw}$$
+            $$N = W_A \cos 30^\circ = 1.2\sqrt{3}\text{ kgw}$$
+          </p>
+          <p>
+            由 ①、② 兩式聯立，立即求得：
+            $$\mathbf{W_B = T = 1.2\text{ kgw}}$$
+          </p>
+        </div>
+
+        <div class="final-summary">
+          <div class="summary-badge">結論</div>
+          <p>
+            物體 B 的重量應為 <strong>$1.2\text{ kgw}$</strong>。<br>
+            記憶核心技巧：光滑斜面上若僅靠繩張力拉住，平衡張力永遠等於 <strong>$W \sin\theta$</strong>。只要 $\theta = 30^\circ$，其分力就是重力的一半！
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Navigation -->
+    <div class="bottom-nav">
+      <a href="exercise6.html" class="nav-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+        上一題 (練習 6)
+      </a>
+      <a href="index.html" class="nav-btn primary">
+        目錄總覽
+      </a>
+      <a href="exercise8.html" class="nav-btn">
+        下一題 (練習 8)
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // Render KaTeX
+      if (typeof renderMathInElement === 'function') {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ],
+          throwOnError: false
+        });
+      }
+
+      const correctVal = 1.2;
+      const optionBtns = document.querySelectorAll(".option-btn");
+      const customInput = document.getElementById("customInput");
+      const submitInputBtn = document.getElementById("submitInputBtn");
+      const feedbackBox = document.getElementById("feedbackBox");
+      const feedbackIcon = document.getElementById("feedbackIcon");
+      const feedbackText = document.getElementById("feedbackText");
+      const solutionCard = document.getElementById("solutionCard");
+
+      function checkAnswer(val) {
+        optionBtns.forEach(b => b.classList.remove("selected", "correct", "wrong"));
+        feedbackBox.classList.remove("hidden", "correct", "wrong");
+
+        if (Math.abs(val - correctVal) < 0.05) {
+          optionBtns.forEach(b => {
+            if (parseFloat(b.getAttribute("data-val")) === correctVal) {
+              b.classList.add("correct");
+            }
+          });
+          feedbackBox.classList.add("correct");
+          feedbackIcon.innerHTML = "🎉";
+          feedbackText.innerHTML = "<strong>太優秀了！答案完全正確！</strong> 物體 B 的重量正為 <strong>$1.2\\text{ kgw}$</strong> ($W_A \\sin 30^\\circ = 2.4 \\times 0.5$)！詳解已為您展開。";
+          
+          solutionCard.classList.remove("collapsed");
+          const tag = solutionCard.querySelector(".solution-status");
+          if (tag) tag.textContent = "點擊收合詳解";
+        } else {
+          optionBtns.forEach(b => {
+            if (parseFloat(b.getAttribute("data-val")) === val) {
+              b.classList.add("wrong");
+            }
+          });
+          feedbackBox.classList.add("wrong");
+          feedbackIcon.innerHTML = "💡";
+          feedbackText.innerHTML = `<strong>答案 ${val} kgw 不太正確喔！</strong> 提示：因為斜面傾角為 $30^\\circ$，物體 A 下滑的分力為 $W_A \\sin 30^\\circ$，再試一次看看！`;
+        }
+
+        if (typeof renderMathInElement === 'function') {
+          renderMathInElement(feedbackText, {
+            delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false}
+            ],
+            throwOnError: false
+          });
+        }
+      }
+
+      optionBtns.forEach(btn => {
+        btn.addEventListener("click", function() {
+          const val = parseFloat(this.getAttribute("data-val"));
+          customInput.value = val;
+          checkAnswer(val);
+        });
+      });
+
+      submitInputBtn.addEventListener("click", function() {
+        const val = parseFloat(customInput.value);
+        if (isNaN(val)) {
+          alert("請輸入數值！");
+          return;
+        }
+        checkAnswer(val);
+      });
+
+      customInput.addEventListener("keydown", function(e) {
+        if (e.key === "Enter") {
+          submitInputBtn.click();
+        }
+      });
+
+      // Solution toggle
+      const solutionToggle = document.getElementById("solutionToggle");
+      solutionToggle.addEventListener("click", function() {
+        solutionCard.classList.toggle("collapsed");
+        const isCollapsed = solutionCard.classList.contains("collapsed");
+        const statusSpan = solutionToggle.querySelector(".solution-status");
+        if (statusSpan) {
+          statusSpan.textContent = isCollapsed ? "點擊展開完整剖析" : "點擊收合詳解";
+        }
+      });
+    });
+  </script>
+</body>
+</html>

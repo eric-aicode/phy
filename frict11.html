@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>靜摩擦力 11：正立方體滑動與翻倒臨界分析 | 高中物理靜力學</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+  <link rel="stylesheet" href="shared.css">
+</head>
+<body>
+  <div class="bg-glow"></div>
+  <div class="bg-grid"></div>
+
+  <div class="container">
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+      <div class="nav-links">
+        <a href="index.html" class="nav-btn primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          回目錄
+        </a>
+        <a href="frict10.html" class="nav-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          上一題 (摩擦 10)
+        </a>
+        <a href="frict12.html" class="nav-btn">
+          下一題 (摩擦 12)
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+      <div class="badge-wrapper">
+        <span class="badge badge-page">講義 靜力學-36</span>
+        <span class="badge badge-exam">滑動與翻倒臨界偶合</span>
+        <span class="badge badge-accent">靜摩擦力・練習 11</span>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+      <h1 class="main-title">靜摩擦力 11：<span class="gradient-text">正立方體滑動與轉動同時臨界條件</span></h1>
+      <p class="subtitle">邊長 L 正立方體・外力斜向下傾角 θ・移動臨界與力矩轉動臨界聯立求解</p>
+    </header>
+
+    <!-- Main Problem Layout -->
+    <div class="problem-layout">
+      <!-- Left Column: Problem & Visualizer -->
+      <div class="problem-card">
+        <h2 class="section-title">
+          <span class="step-num">1</span>
+          題目情境與物理圖解
+        </h2>
+        <div class="problem-text">
+          <p>
+            水平桌面上有一邊長為 $L$ 的正立方體，此立方體的某垂直面（$x-z$ 平面）的正中央繫一繩，繩在 $y-z$ 平面且與水平的 $y$ 方向成 $\theta$ 角，如附圖所示。
+          </p>
+          <p>
+            當拉力 $F$ 逐漸增大時，發現在立方體開始滑動的同時，亦開始以 $x$ 軸為轉軸發生轉動。設桌面與立方體間的靜摩擦係數為 $\mu_s$，則 $\mu_s$ 之值為何？
+          </p>
+        </div>
+
+        <!-- SVG Diagram -->
+        <div class="svg-container">
+          <svg viewBox="0 0 540 320" xmlns="http://www.w3.org/2000/svg">
+            <!-- Floor / Table -->
+            <line x1="50" y1="250" x2="490" y2="250" stroke="#94a3b8" stroke-width="3"/>
+            <path d="M60 250 l-10 12 M90 250 l-10 12 M120 250 l-10 12 M150 250 l-10 12 M180 250 l-10 12 M210 250 l-10 12 M240 250 l-10 12 M270 250 l-10 12 M300 250 l-10 12 M330 250 l-10 12 M360 250 l-10 12 M390 250 l-10 12 M420 250 l-10 12 M450 250 l-10 12 M480 250 l-10 12" stroke="#64748b" stroke-width="1.5"/>
+
+            <!-- Cube: side L = 140. Left x=120, right x=260, top y=110, bottom y=250 -->
+            <rect x="120" y="110" width="140" height="140" fill="rgba(30, 41, 59, 0.7)" stroke="#38bdf8" stroke-width="2.5" rx="2"/>
+
+            <!-- Axes: Origin (x-axis) at bottom right of the face (x=260, y=250) -->
+            <!-- z-axis: from (260, 250) upwards -->
+            <line x1="260" y1="270" x2="260" y2="70" stroke="#f1f5f9" stroke-width="2" marker-end="url(#arrow-white)"/>
+            <text x="250" y="65" fill="#f1f5f9" font-size="15" font-weight="700">z</text>
+
+            <!-- y-axis: from (260, 250) rightwards -->
+            <line x1="240" y1="250" x2="440" y2="250" stroke="#f1f5f9" stroke-width="2" marker-end="url(#arrow-white)"/>
+            <text x="445" y="255" fill="#f1f5f9" font-size="15" font-weight="700">y</text>
+
+            <!-- Axis point x (origin) -->
+            <circle cx="260" cy="250" r="4.5" fill="#fbbf24"/>
+            <text x="255" y="275" fill="#fbbf24" font-size="14" font-weight="700">x 軸 (轉軸)</text>
+
+            <!-- Attachment point at center of x-z face: x=260, y=180 (height L/2) -->
+            <circle cx="260" cy="180" r="4" fill="#ef4444"/>
+            <!-- Horizontal dashed line for angle theta -->
+            <line x1="260" y1="180" x2="360" y2="180" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4 3"/>
+
+            <!-- Force F: pulling rightwards and downwards at angle theta (approx 30 deg) -->
+            <line x1="260" y1="180" x2="370" y2="235" stroke="#ef4444" stroke-width="3" marker-end="url(#arrow-red)"/>
+            <text x="380" y="240" fill="#ef4444" font-size="16" font-weight="bold">F</text>
+
+            <!-- Arc for theta -->
+            <path d="M 310 180 A 50 50 0 0 1 305 202" fill="none" stroke="#facc15" stroke-width="2"/>
+            <text x="318" y="196" fill="#facc15" font-size="14" font-weight="bold">θ</text>
+
+            <!-- Gravity W at center: cx=190, cy=180 -->
+            <circle cx="190" cy="180" r="4" fill="#a855f7"/>
+            <line x1="190" y1="180" x2="190" y2="230" stroke="#a855f7" stroke-width="2.5" marker-end="url(#arrow-purple)"/>
+            <text x="175" y="225" fill="#a855f7" font-size="14" font-weight="bold">W</text>
+
+            <!-- Dimension L -->
+            <line x1="120" y1="95" x2="260" y2="95" stroke="#94a3b8" stroke-width="1.5"/>
+            <line x1="120" y1="90" x2="120" y2="100" stroke="#94a3b8" stroke-width="1.5"/>
+            <line x1="260" y1="90" x2="260" y2="100" stroke="#94a3b8" stroke-width="1.5"/>
+            <text x="185" y="88" fill="#94a3b8" font-size="13">L</text>
+
+            <!-- Arrow markers -->
+            <defs>
+              <marker id="arrow-red" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+                <polygon points="0 0, 8 4, 0 8" fill="#ef4444"/>
+              </marker>
+              <marker id="arrow-white" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+                <polygon points="0 0, 8 4, 0 8" fill="#f1f5f9"/>
+              </marker>
+              <marker id="arrow-purple" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+                <polygon points="0 0, 8 4, 0 8" fill="#a855f7"/>
+              </marker>
+            </defs>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Right Column: Interactive Quiz & Solution -->
+      <div class="interactive-card">
+        <h2 class="section-title">
+          <span class="step-num">2</span>
+          即時作答與力學分析
+        </h2>
+
+        <div class="options-grid" id="options">
+          <button class="option-btn" onclick="checkAnswer('A')">
+            <span class="opt-letter">A</span>
+            <span class="opt-text">$1 - \tan\theta$</span>
+          </button>
+          <button class="option-btn" onclick="checkAnswer('B')">
+            <span class="opt-letter">B</span>
+            <span class="opt-text">$1 + \tan\theta$</span>
+          </button>
+          <button class="option-btn" onclick="checkAnswer('C')">
+            <span class="opt-letter">C</span>
+            <span class="opt-text">$\dfrac{1}{1 - \tan\theta}$</span>
+          </button>
+          <button class="option-btn" onclick="checkAnswer('D')">
+            <span class="opt-letter">D</span>
+            <span class="opt-text">$\dfrac{1}{1 + \tan\theta}$</span>
+          </button>
+        </div>
+
+        <div class="feedback" id="feedback"></div>
+
+        <button class="toggle-btn" id="toggleBtn" onclick="toggleSolution()">
+          📖 查看力學平衡與臨界推導
+        </button>
+
+        <div class="solution-content" id="solution">
+          <h3 style="color: #38bdf8; margin-bottom: 0.75rem;">💡 核心物理觀念詳解</h3>
+          
+          <div class="step-box">
+            <strong>1. 受力分析（正立方體重力 $W$）：</strong>
+            <p>
+              外力 $\vec{F}$ 作用於側面中心點，向右下方傾斜：
+              <ul>
+                <li>水平分力：$F_y = F\cos\theta$（向右）</li>
+                <li>鉛直分力：$F_z = F\sin\theta$（向下）</li>
+              </ul>
+              鉛直方向合力為零：
+              $$N = W + F\sin\theta$$
+            </p>
+          </div>
+
+          <div class="step-box">
+            <strong>2. 滑動臨界條件（水平方向恰將滑動）：</strong>
+            <p>
+              水平拉力達到最大靜摩擦力：
+              $$F\cos\theta = f_{s,\max} = \mu_s N = \mu_s(W + F\sin\theta) \quad \cdots \text{(式 1)}$$
+            </p>
+          </div>
+
+          <div class="step-box">
+            <strong>3. 轉動臨界條件（以底邊 $x$ 軸為轉軸）：</strong>
+            <p>
+              當立方體恰開始以 $x$ 軸（右下邊緣）為軸翻轉時，底面正向力與摩擦力皆集中於 $x$ 軸，對 $x$ 軸的力矩均為零：
+              <ul>
+                <li>重力 $W$ 力臂為 $\dfrac{L}{2}$，產生逆時針力矩：$\tau_W = W \times \dfrac{L}{2}$</li>
+                <li>拉力水平分力 $F\cos\theta$ 力臂為高度 $\dfrac{L}{2}$，產生順時針翻轉力矩：$\tau_{F_y} = F\cos\theta \times \dfrac{L}{2}$</li>
+                <li>拉力鉛直分力 $F\sin\theta$ 通過 $x$ 軸上方側面，其作用線通過 $x$ 軸，力臂為 $0$（力矩為 $0$）</li>
+              </ul>
+              因此轉動平衡臨界力矩方程式：
+              $$F\cos\theta \times \frac{L}{2} = W \times \frac{L}{2} \implies F\cos\theta = W$$
+            </p>
+          </div>
+
+          <div class="step-box">
+            <strong>4. 聯立求靜摩擦係數 $\mu_s$：</strong>
+            <p>
+              將 $W = F\cos\theta$ 代入鉛直正向力表示式：
+              $$N = W + F\sin\theta = W + \left(\frac{W}{\cos\theta}\right)\sin\theta = W(1 + \tan\theta)$$
+              再代入滑動臨界方程式 $F\cos\theta = \mu_s N$：
+              $$W = \mu_s \cdot [W(1 + \tan\theta)]$$
+              兩邊消去 $W$：
+              $$\mu_s = \frac{1}{1 + \tan\theta}$$
+              故正確答案為 <strong>(D)</strong>。
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const correctAns = 'D';
+
+    function checkAnswer(chosen) {
+      const fb = document.getElementById('feedback');
+      const btns = document.querySelectorAll('.option-btn');
+      
+      btns.forEach(btn => {
+        btn.classList.remove('selected', 'correct', 'wrong');
+        const letter = btn.querySelector('.opt-letter').textContent;
+        if (letter === chosen) {
+          btn.classList.add('selected');
+          if (chosen === correctAns) {
+            btn.classList.add('correct');
+          } else {
+            btn.classList.add('wrong');
+          }
+        }
+        if (letter === correctAns && chosen !== correctAns) {
+          btn.classList.add('correct');
+        }
+      });
+
+      if (chosen === correctAns) {
+        fb.className = 'feedback correct';
+        fb.innerHTML = '🎉 正確！當翻倒與滑動同時發生時，外力水平分力等於物重，正向力被外力垂直向下分量加大，摩擦係數為 1/(1 + tanθ)。';
+      } else {
+        fb.className = 'feedback wrong';
+        fb.innerHTML = '❌ 不正確。注意：外力向下壓桌面使 N = W + F sinθ，以 x 軸取力矩時只有 F cosθ 與 W 有力矩。';
+      }
+    }
+
+    function toggleSolution() {
+      const sol = document.getElementById('solution');
+      const btn = document.getElementById('toggleBtn');
+      if (sol.classList.contains('show')) {
+        sol.classList.remove('show');
+        btn.textContent = '📖 查看力學平衡與臨界推導';
+      } else {
+        sol.classList.add('show');
+        btn.textContent = '🔼 收起解析';
+        renderMathInElement(sol, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ]
+        });
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+      renderMathInElement(document.body, {
+        delimiters: [
+          {left: '$$', right: '$$', display: true},
+          {left: '$', right: '$', display: false}
+        ]
+      });
+    });
+  </script>
+</body>
+</html>

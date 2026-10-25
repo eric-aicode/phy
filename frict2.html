@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>靜摩擦力 02：輪胎胎紋之物理機制與排水 | 高中物理靜力學</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+  <link rel="stylesheet" href="shared.css">
+</head>
+<body>
+  <div class="bg-glow"></div>
+  <div class="bg-grid"></div>
+
+  <div class="container">
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+      <div class="nav-links">
+        <a href="index.html" class="nav-btn primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          回目錄
+        </a>
+        <a href="frict1.html" class="nav-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          上一題 (摩擦 01)
+        </a>
+        <a href="frict3.html" class="nav-btn">
+          下一題 (摩擦 03)
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+      <div class="badge-wrapper">
+        <span class="badge badge-page">講義 靜力學-34</span>
+        <span class="badge badge-exam">生活物理・摩擦抓地力</span>
+        <span class="badge badge-accent">靜摩擦力・練習 02</span>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+      <h1 class="main-title">靜摩擦力 02：<span class="gradient-text">輪胎胎紋之物理機制與安全排水</span></h1>
+      <p class="subtitle">流體水膜破壞・防止水漂效應・維持橡膠與路面直接接觸提供抓地靜摩擦力</p>
+    </header>
+
+    <!-- Main Problem Layout -->
+    <div class="problem-layout">
+      <!-- Left Column: Problem & Visualizer -->
+      <div class="problem-card">
+        <h2 class="section-title">
+          <span class="step-num">1</span>
+          題目情境與物理圖解
+        </h2>
+        <div class="problem-text">
+          <p>
+            為了安全的考量，一般腳踏車或汽、機車輪胎的表面都有胎紋。當胎紋的磨損嚴重時，必須更換新輪胎。下列何者是輪胎有胎紋的主要原因？
+          </p>
+        </div>
+
+        <div class="diagram-container">
+          <div class="diagram-header">
+            <span class="diagram-tag">輪胎接觸面排水力學圖解</span>
+            <span class="diagram-hint">胎紋溝槽排出水層，防止車輪浮於水膜上（水漂現象）</span>
+          </div>
+          <svg class="interactive-diagram" viewBox="0 0 540 350" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="roadGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#334155"/>
+                <stop offset="100%" stop-color="#0f172a"/>
+              </linearGradient>
+              <linearGradient id="waterGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.8"/>
+                <stop offset="100%" stop-color="#0284c7" stop-opacity="0.4"/>
+              </linearGradient>
+              <marker id="arrowWater" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+                <path d="M0,0 L0,6 L9,3 z" fill="#38bdf8" />
+              </marker>
+            </defs>
+
+            <!-- Asphalt Ground -->
+            <rect x="30" y="270" width="480" height="60" fill="url(#roadGrad)" rx="6"/>
+            <!-- Road texture -->
+            <line x1="30" y1="270" x2="510" y2="270" stroke="#64748b" stroke-width="3"/>
+            <text x="270" y="310" fill="#94a3b8" font-size="14" font-weight="bold" text-anchor="middle">瀝青路面 (微觀粗糙表面)</text>
+
+            <!-- Water film layer on road -->
+            <rect x="30" y="260" width="480" height="10" fill="url(#waterGrad)"/>
+            <text x="70" y="254" fill="#38bdf8" font-size="12" font-weight="bold">雨水層 (積水)</text>
+
+            <!-- Tire rubber blocks with deep grooves (Tread patterns) -->
+            <!-- Block 1 -->
+            <rect x="80" y="90" width="60" height="170" rx="4" fill="#1e293b" stroke="#475569" stroke-width="2"/>
+            <!-- Block 2 -->
+            <rect x="170" y="90" width="60" height="170" rx="4" fill="#1e293b" stroke="#475569" stroke-width="2"/>
+            <!-- Block 3 -->
+            <rect x="260" y="90" width="60" height="170" rx="4" fill="#1e293b" stroke="#475569" stroke-width="2"/>
+            <!-- Block 4 -->
+            <rect x="350" y="90" width="60" height="170" rx="4" fill="#1e293b" stroke="#475569" stroke-width="2"/>
+            <!-- Block 5 -->
+            <rect x="440" y="90" width="60" height="170" rx="4" fill="#1e293b" stroke="#475569" stroke-width="2"/>
+
+            <!-- Tire Body above -->
+            <rect x="60" y="40" width="460" height="55" rx="8" fill="#0f172a" stroke="#64748b" stroke-width="2"/>
+            <text x="290" y="75" fill="#f8fafc" font-size="16" font-weight="bold" text-anchor="middle">輪胎本體 (橡膠 Tire Body)</text>
+
+            <!-- Grooves (channels) with water squirt arrows -->
+            <!-- Groove 1 at x = 140 to 170 -->
+            <line x1="155" y1="265" x2="155" y2="170" stroke="#38bdf8" stroke-width="3" marker-end="url(#arrowWater)"/>
+            <!-- Groove 2 at x = 230 to 260 -->
+            <line x1="245" y1="265" x2="245" y2="170" stroke="#38bdf8" stroke-width="3" marker-end="url(#arrowWater)"/>
+            <!-- Groove 3 at x = 320 to 350 -->
+            <line x1="335" y1="265" x2="335" y2="170" stroke="#38bdf8" stroke-width="3" marker-end="url(#arrowWater)"/>
+            <!-- Groove 4 at x = 410 to 440 -->
+            <line x1="425" y1="265" x2="425" y2="170" stroke="#38bdf8" stroke-width="3" marker-end="url(#arrowWater)"/>
+
+            <text x="245" y="150" fill="#38bdf8" font-size="12" font-weight="bold" text-anchor="middle">排水溝槽</text>
+            <text x="335" y="150" fill="#38bdf8" font-size="12" font-weight="bold" text-anchor="middle">迅速導流</text>
+
+            <!-- Grip contact callouts -->
+            <rect x="180" y="210" width="180" height="30" rx="6" fill="#10b981" opacity="0.9"/>
+            <text x="270" y="230" fill="#ffffff" font-size="13" font-weight="bold" text-anchor="middle">橡膠直接咬合路面產生抓地力</text>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Right Column: Interactive Quiz -->
+      <div class="quiz-card">
+        <h2 class="section-title">
+          <span class="step-num">2</span>
+          自我檢測與觀念選擇
+        </h2>
+        
+        <div class="question-box">
+          <p class="question-stem">
+            輪胎表面設計有凹凸胎紋的最核心物理安全考量為何？
+          </p>
+
+          <div class="options-list">
+            <label class="option-item" onclick="selectOption(0)">
+              <input type="radio" name="opt" value="0">
+              <span class="opt-letter">A</span>
+              <span class="opt-content">多樣化的胎紋，使輪胎看起來比較美觀時尚</span>
+            </label>
+            <label class="option-item" onclick="selectOption(1)">
+              <input type="radio" name="opt" value="1">
+              <span class="opt-letter">B</span>
+              <span class="opt-content">可減少製造輪胎所需的橡膠材料，降低生產成本</span>
+            </label>
+            <label class="option-item" onclick="selectOption(2)">
+              <input type="radio" name="opt" value="2">
+              <span class="opt-letter">C</span>
+              <span class="opt-content">雨天時，地面的積水可自胎紋縫隙流走，避免車子打滑（排水防滑）</span>
+            </label>
+            <label class="option-item" onclick="selectOption(3)">
+              <input type="radio" name="opt" value="3">
+              <span class="opt-letter">D</span>
+              <span class="opt-content">減少輪胎與地面的接觸面積，以降低行車時輪胎的磨損</span>
+            </label>
+          </div>
+
+          <div class="quiz-actions">
+            <button class="btn btn-primary" onclick="checkAnswer()">確認答案</button>
+            <button class="btn btn-secondary" onclick="toggleSolution()">查看完整詳解</button>
+          </div>
+
+          <div id="feedback" class="feedback-box"></div>
+        </div>
+
+        <!-- Detailed Solution (Collapsible) -->
+        <div id="solutionBox" class="solution-card">
+          <h3 class="solution-title">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            詳盡解析與物理思維
+          </h3>
+          <div class="solution-content">
+            <div class="step-card">
+              <h4>步驟一：理解乾地與濕地行車的摩擦機制</h4>
+              <p>
+                在乾燥平整的路面上，固體與固體間的最大靜摩擦力由正向力與接觸面特性決定（$f_{s,\max} = \mu_s N$）。專業賽車（如 F1）在乾燥晴天甚至使用完全沒有胎紋的<strong>「光頭胎」（Slick tires）</strong>，以求橡膠與地面有最大的微觀咬合面積。
+              </p>
+            </div>
+
+            <div class="step-card">
+              <h4>步驟二：下雨天時致命的「水漂現象」（Hydroplaning）</h4>
+              <p>
+                當路面有積水時，高速滾動的輪胎會將前方積水捲入輪胎底部：
+              </p>
+              <ul>
+                <li>若輪胎<strong>沒有胎紋</strong>，積水無法在短時間內散去，水流動壓會將輪胎整顆「托起」，使輪胎浮於水膜之上！</li>
+                <li>此時輪胎與路面失去直接接觸，橡膠與水的摩擦係數極小，靜摩擦力幾近消失，車輛立即失去轉向與煞車能力，極易失控打滑！</li>
+              </ul>
+            </div>
+
+            <div class="step-card">
+              <h4>步驟三：胎紋溝槽的流體力學導流功能</h4>
+              <p>
+                輪胎上的縱向與橫向胎紋，本質上是一組<strong>高速排水溝渠系統</strong>：
+              </p>
+              <p>
+                行駛時，輪胎壓迫路面積水，水流能順著胎紋縫隙以極高速度向外排出，切破連續水膜，確保輪胎的橡膠胎塊能「緊密咬住粗糙路面」，維持足夠的<strong>靜摩擦力</strong>提供推力、煞車力與過彎向心力。
+              </p>
+            </div>
+
+            <div class="highlight-summary">
+              <strong>名師核心點撥：</strong><br>
+              胎紋的核心使命就是「排水」！當胎紋深度不足 $1.6\text{ mm}$ 時，雨天排水效率暴跌，極易發生水漂事故，因此交通法規嚴格規定胎紋過淺必須強制更換。正確答案為 <strong>(C)</strong>。
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const correctOpt = 2;
+
+    function selectOption(idx) {
+      const items = document.querySelectorAll('.option-item');
+      items.forEach((item, i) => {
+        const radio = item.querySelector('input');
+        if (i === idx) {
+          item.classList.add('selected');
+          radio.checked = true;
+        } else {
+          item.classList.remove('selected');
+          radio.checked = false;
+        }
+      });
+    }
+
+    function checkAnswer() {
+      const selected = document.querySelector('input[name="opt"]:checked');
+      const feedback = document.getElementById('feedback');
+      if (!selected) {
+        feedback.innerHTML = '<span style="color:#f59e0b;">請先點選一個選項！</span>';
+        return;
+      }
+      const val = parseInt(selected.value);
+      if (val === correctOpt) {
+        feedback.innerHTML = '<span style="color:#10b981; font-weight:bold;">🎉 答對了！胎紋溝槽的核心物理功能就是雨天排水，防止水漂打滑 (C)！</span>';
+      } else {
+        feedback.innerHTML = '<span style="color:#ef4444; font-weight:bold;">❌ 觀念錯誤，輪胎胎紋並非為美觀或省料，更不是減少面積，主要在於雨天排水導流。</span>';
+      }
+    }
+
+    function toggleSolution() {
+      const sol = document.getElementById('solutionBox');
+      sol.classList.toggle('show');
+      if (sol.classList.contains('show')) {
+        renderMathInElement(sol, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ],
+          throwOnError: false
+        });
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderMathInElement(document.body, {
+        delimiters: [
+          {left: '$$', right: '$$', display: true},
+          {left: '$', right: '$', display: false}
+        ],
+        throwOnError: false
+      });
+    });
+  </script>
+</body>
+</html>

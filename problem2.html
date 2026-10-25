@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>範例 2：雙彈簧與雙重物系統鉛直平衡 | 高中物理靜力學</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+  <link rel="stylesheet" href="shared.css">
+</head>
+<body>
+  <div class="bg-glow"></div>
+  <div class="bg-grid"></div>
+
+  <div class="container">
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+      <div class="nav-links">
+        <a href="index.html" class="nav-btn primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          回目錄
+        </a>
+        <a href="problem1.html" class="nav-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          上一題 (範例 1)
+        </a>
+        <a href="problem3.html" class="nav-btn">
+          下一題 (範例 3)
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+      <div class="badge-wrapper">
+        <span class="badge badge-page">講義 靜力學-4</span>
+        <span class="badge badge-accent">雙彈簧串接與隔離體受力</span>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+      <h1 class="main-title">範例 2：<span class="gradient-text">雙彈簧與雙重物平衡受力分析</span></h1>
+      <p class="subtitle">彈簧伸長量與壓縮量判讀、隔離體圖分析及平臺下移之正向力臨界分析</p>
+    </header>
+
+    <!-- Problem Showcase Card -->
+    <section class="card problem-card">
+      <div class="card-header">
+        <div class="card-icon">📖</div>
+        <div>
+          <h2>題目內容</h2>
+          <span class="card-tag">經典連鎖彈簧力學名題</span>
+        </div>
+      </div>
+
+      <div class="problem-body">
+        <p>
+          長 <strong>$20\text{ cm}$</strong>，彈力常數 <strong>$k = 2.0\text{ gw/cm}$</strong> 之完全相同的 a、b 兩條彈簧（質量不計），與兩個質量均為 <strong>$10\text{ g}$</strong>（重量 $10\text{ gw}$）之重物 m、n，如下圖連接。
+        </p>
+        <p>
+          彈簧 a 之上端固定於 A 壁，重物 n 放在平臺 B 上，全體保持鉛直。忽略物體高度，試回答下列問題：
+        </p>
+        <ul class="condition-list">
+          <li><strong>(1)</strong> 當 A、B 之距離為 <strong>$40\text{ cm}$</strong> 時，a、b 兩彈簧長分別為多少 $\text{cm}$？</li>
+          <li><strong>(2)</strong> 平臺 B 由靜止緩緩下移使 A、B 之距離增加為 <strong>$50\text{ cm}$</strong>，則 a 彈簧長為多少 $\text{cm}$？此時平臺 B 對 n 之作用力為多少 $\text{gw}$？</li>
+          <li><strong>(3)</strong> A、B 間距離若干 $\text{cm}$ 時，平臺 B 對 n 之作用力恰為零？</li>
+        </ul>
+      </div>
+
+      <!-- Problem Physical Diagram (Progressive Multi-State Switcher) -->
+      <div class="canvas-card" style="max-width: 580px; margin: 18px auto 0;">
+        <div class="canvas-title-bar" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+          <h3 id="p2DiagTitle"><span class="dot dot-blue"></span> 題目原始圖：串聯彈簧雙重物鉛直配置</h3>
+          <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+            <button id="btnP2Raw" type="button" class="nav-btn primary" onclick="switchP2State('raw')">📐 原始題圖</button>
+            <button id="btnP2S1" type="button" class="nav-btn" onclick="switchP2State('1')">💡 (1) 40cm</button>
+            <button id="btnP2S2" type="button" class="nav-btn" onclick="switchP2State('2')">💡 (2) 50cm</button>
+            <button id="btnP2S3" type="button" class="nav-btn" onclick="switchP2State('3')">💡 (3) 臨界N=0</button>
+          </div>
+        </div>
+
+        <!-- 0. Raw Original Diagram (Default: No Numerical Values) -->
+        <div id="p2WrapRaw" class="svg-wrapper" style="display: flex; justify-content: center; padding: 12px 0;">
+          <svg viewBox="0 0 240 350" xmlns="http://www.w3.org/2000/svg" style="max-width: 260px;">
+            <!-- Ceiling A -->
+            <line x1="30" y1="45" x2="210" y2="45" stroke="#78909c" stroke-width="5" stroke-linecap="round"/>
+            <g stroke="#546e7a" stroke-width="1.5" opacity="0.4">
+              <line x1="45" y1="45" x2="55" y2="33"/><line x1="75" y1="45" x2="85" y2="33"/>
+              <line x1="105" y1="45" x2="115" y2="33"/><line x1="135" y1="45" x2="145" y2="33"/>
+              <line x1="165" y1="45" x2="175" y2="33"/><line x1="195" y1="45" x2="205" y2="33"/>
+            </g>
+            <text x="35" y="40" fill="#90caf9" font-size="15" font-weight="bold">A</text>
+
+            <!-- Spring a (Natural length 20cm, no deformation shown) -->
+            <path d="M120,45 L120,55 
+                     L130,67 L110,79 L130,91 L110,103 L130,115 L110,127 L130,139 L110,151 
+                     L120,163 L120,172" 
+                  fill="none" stroke="#448aff" stroke-width="2.5"/>
+            <text x="145" y="112" fill="#448aff" font-size="14" font-weight="bold">a</text>
+
+            <!-- Mass m -->
+            <rect x="95" y="172" width="50" height="26" rx="4" fill="#334155" stroke="#94a3b8" stroke-width="1.5"/>
+            <text x="120" y="190" fill="#fff" font-size="13" font-weight="bold" text-anchor="middle">m</text>
+
+            <!-- Spring b (Natural length 20cm) -->
+            <path d="M120,198 L120,206 
+                     L130,218 L110,230 L130,242 L110,254 L130,266 L110,278 
+                     L120,288 L120,296" 
+                  fill="none" stroke="#ffab00" stroke-width="2.5"/>
+            <text x="145" y="250" fill="#ffab00" font-size="14" font-weight="bold">b</text>
+
+            <!-- Mass n -->
+            <rect x="95" y="296" width="50" height="24" rx="4" fill="#334155" stroke="#94a3b8" stroke-width="1.5"/>
+            <text x="120" y="313" fill="#fff" font-size="13" font-weight="bold" text-anchor="middle">n</text>
+
+            <!-- Platform B -->
+            <line x1="30" y1="320" x2="210" y2="320" stroke="#78909c" stroke-width="5" stroke-linecap="round"/>
+            <text x="35" y="338" fill="#90caf9" font-size="15" font-weight="bold">B</text>
+          </svg>
+        </div>
+
+        <!-- 1. State 1 (L = 40 cm) -->
+        <div id="p2WrapS1" class="svg-wrapper" style="display: none; justify-content: center; padding: 12px 0;">
+          <svg viewBox="0 0 240 350" xmlns="http://www.w3.org/2000/svg" style="max-width: 260px;">
+            <rect x="10" y="10" width="220" height="330" rx="8" fill="rgba(15, 23, 42, 0.6)" stroke="#1e293b" stroke-width="1.5"/>
+            <!-- Ceiling A -->
+            <line x1="30" y1="45" x2="210" y2="45" stroke="#78909c" stroke-width="4"/>
+            <text x="25" y="40" fill="#90caf9" font-size="13" font-weight="bold">A</text>
+
+            <!-- Spring a (stretched: 22.5cm) -->
+            <path d="M120,45 L120,55 L130,67 L110,79 L130,91 L110,103 L130,115 L110,127 L130,139 L110,151 L120,163 L120,172" fill="none" stroke="#448aff" stroke-width="2.5"/>
+            <text x="150" y="105" fill="#448aff" font-size="12" font-weight="bold">彈簧 a</text>
+            <text x="150" y="122" fill="#38bdf8" font-size="11">22.5 cm (伸)</text>
+
+            <!-- Mass m -->
+            <rect x="95" y="172" width="50" height="24" rx="4" fill="#334155" stroke="#64748b" stroke-width="1.5"/>
+            <text x="120" y="188" fill="#fff" font-size="12" font-weight="bold" text-anchor="middle">m (10g)</text>
+
+            <!-- Spring b (compressed: 17.5cm) -->
+            <path d="M120,196 L120,204 L130,214 L110,224 L130,234 L110,244 L130,254 L110,264 L120,272 L120,280" fill="none" stroke="#ffab00" stroke-width="2.5"/>
+            <text x="150" y="235" fill="#ffab00" font-size="12" font-weight="bold">彈簧 b</text>
+            <text x="150" y="252" fill="#fbbf24" font-size="11">17.5 cm (縮)</text>
+
+            <!-- Mass n -->
+            <rect x="95" y="280" width="50" height="22" rx="4" fill="#334155" stroke="#64748b" stroke-width="1.5"/>
+            <text x="120" y="295" fill="#fff" font-size="12" font-weight="bold" text-anchor="middle">n (10g)</text>
+
+            <!-- Platform B -->
+            <line x1="30" y1="302" x2="210" y2="302" stroke="#78909c" stroke-width="4"/>
+            <text x="25" y="318" fill="#90caf9" font-size="13" font-weight="bold">B</text>
+            <text x="120" y="332" fill="#38bdf8" font-size="11" text-anchor="middle">總距離 L = 40 cm</text>
+          </svg>
+        </div>
+
+        <!-- 2. State 2 (L = 50 cm) -->
+        <div id="p2WrapS2" class="svg-wrapper" style="display: none; justify-content: center; padding: 12px 0;">
+          <svg viewBox="0 0 240 360" xmlns="http://www.w3.org/2000/svg" style="max-width: 260px;">
+            <defs>
+              <marker id="arr-p2-green" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                <path d="M0 1L10 5L0 9z" fill="#00e676"/>
+              </marker>
+            </defs>
+            <rect x="10" y="10" width="220" height="340" rx="8" fill="rgba(15, 23, 42, 0.6)" stroke="#1e293b" stroke-width="1.5"/>
+            <!-- Ceiling A -->
+            <line x1="30" y1="45" x2="210" y2="45" stroke="#78909c" stroke-width="4"/>
+            <text x="25" y="40" fill="#90caf9" font-size="13" font-weight="bold">A</text>
+
+            <!-- Spring a (stretched: 27.5cm) -->
+            <path d="M120,45 L120,55 L130,68 L110,81 L130,94 L110,107 L130,120 L110,133 L130,146 L110,159 L120,172 L120,182" fill="none" stroke="#448aff" stroke-width="2.5"/>
+            <text x="150" y="115" fill="#448aff" font-size="12" font-weight="bold">彈簧 a</text>
+            <text x="150" y="132" fill="#38bdf8" font-size="11">27.5 cm (伸)</text>
+
+            <!-- Mass m -->
+            <rect x="95" y="182" width="50" height="22" rx="4" fill="#334155" stroke="#64748b" stroke-width="1.5"/>
+            <text x="120" y="197" fill="#fff" font-size="12" font-weight="bold" text-anchor="middle">m</text>
+
+            <!-- Spring b (stretched: 22.5cm) -->
+            <path d="M120,204 L120,212 L130,222 L110,232 L130,242 L110,252 L130,262 L110,272 L120,280 L120,288" fill="none" stroke="#00e676" stroke-width="2.5"/>
+            <text x="150" y="245" fill="#00e676" font-size="12" font-weight="bold">彈簧 b</text>
+            <text x="150" y="262" fill="#69f0ae" font-size="11">22.5 cm (伸)</text>
+
+            <!-- Mass n -->
+            <rect x="95" y="288" width="50" height="22" rx="4" fill="#334155" stroke="#64748b" stroke-width="1.5"/>
+            <text x="120" y="303" fill="#fff" font-size="12" font-weight="bold" text-anchor="middle">n</text>
+
+            <!-- Platform B -->
+            <line x1="30" y1="310" x2="210" y2="310" stroke="#78909c" stroke-width="4"/>
+            <text x="25" y="325" fill="#90caf9" font-size="13" font-weight="bold">B</text>
+
+            <!-- Support N = 5gw -->
+            <line x1="120" y1="340" x2="120" y2="315" stroke="#00e676" stroke-width="3" marker-end="url(#arr-p2-green)"/>
+            <text x="135" y="335" fill="#00e676" font-size="11" font-weight="bold">N = 5 gw</text>
+          </svg>
+        </div>
+
+        <!-- 3. State 3 (Critical N = 0, L = 55 cm) -->
+        <div id="p2WrapS3" class="svg-wrapper" style="display: none; justify-content: center; padding: 12px 0;">
+          <svg viewBox="0 0 240 370" xmlns="http://www.w3.org/2000/svg" style="max-width: 260px;">
+            <rect x="10" y="10" width="220" height="350" rx="8" fill="rgba(15, 23, 42, 0.6)" stroke="#1e293b" stroke-width="1.5"/>
+            <!-- Ceiling A -->
+            <line x1="30" y1="45" x2="210" y2="45" stroke="#78909c" stroke-width="4"/>
+            <text x="25" y="40" fill="#90caf9" font-size="13" font-weight="bold">A</text>
+
+            <!-- Spring a (30 cm) -->
+            <path d="M120,45 L120,55 L130,70 L110,85 L130,100 L110,115 L130,130 L110,145 L130,160 L110,175 L120,188 L120,198" fill="none" stroke="#b388ff" stroke-width="2.5"/>
+            <text x="150" y="120" fill="#b388ff" font-size="12" font-weight="bold">彈簧 a</text>
+            <text x="150" y="137" fill="#d1c4e9" font-size="11">30 cm (伸10)</text>
+
+            <!-- Mass m -->
+            <rect x="95" y="198" width="50" height="20" rx="4" fill="#334155" stroke="#64748b" stroke-width="1.5"/>
+            <text x="120" y="213" fill="#fff" font-size="12" font-weight="bold" text-anchor="middle">m</text>
+
+            <!-- Spring b (25 cm) -->
+            <path d="M120,218 L120,226 L130,238 L110,250 L130,262 L110,274 L130,286 L120,298 L120,306" fill="none" stroke="#b388ff" stroke-width="2.5"/>
+            <text x="150" y="260" fill="#b388ff" font-size="12" font-weight="bold">彈簧 b</text>
+            <text x="150" y="277" fill="#d1c4e9" font-size="11">25 cm (伸5)</text>
+
+            <!-- Mass n -->
+            <rect x="95" y="306" width="50" height="20" rx="4" fill="#334155" stroke="#64748b" stroke-width="1.5"/>
+            <text x="120" y="321" fill="#fff" font-size="12" font-weight="bold" text-anchor="middle">n</text>
+
+            <!-- Platform B (Separating) -->
+            <line x1="30" y1="332" x2="210" y2="332" stroke="#78909c" stroke-width="2" stroke-dasharray="4,4"/>
+            <text x="120" y="347" fill="#fbbf24" font-size="11" text-anchor="middle">恰脫離 (N = 0) 總長 55cm</text>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- Student Worksheet Card -->
+    <section class="card worksheet-card">
+      <div class="card-header">
+        <div class="card-icon">✏️</div>
+        <div>
+          <h2>學生自主作答區（3小題填答與即時核對）</h2>
+          <span class="card-tag">請依題目三小題依序輸入數值</span>
+        </div>
+      </div>
+
+      <form id="quizForm" class="quiz-grid" onsubmit="return false;">
+        <!-- Q1 -->
+        <div class="quiz-item">
+          <label for="ansQ1a">
+            <span class="q-num">1-1</span> (1) 當 $L_{AB} = 40\text{ cm}$ 時，a 彈簧長 $\ell_a$：
+          </label>
+          <div class="input-wrapper">
+            <input type="number" step="0.1" id="ansQ1a" placeholder="例如: 22.5">
+            <span class="unit">cm</span>
+          </div>
+          <span class="feedback-msg" id="fbQ1a"></span>
+        </div>
+
+        <div class="quiz-item">
+          <label for="ansQ1b">
+            <span class="q-num">1-2</span> (1) 當 $L_{AB} = 40\text{ cm}$ 時，b 彈簧長 $\ell_b$：
+          </label>
+          <div class="input-wrapper">
+            <input type="number" step="0.1" id="ansQ1b" placeholder="例如: 17.5">
+            <span class="unit">cm</span>
+          </div>
+          <span class="feedback-msg" id="fbQ1b"></span>
+        </div>
+
+        <!-- Q2 -->
+        <div class="quiz-item">
+          <label for="ansQ2a">
+            <span class="q-num">2-1</span> (2) 當 $L_{AB} = 50\text{ cm}$ 時，a 彈簧長 $\ell_a$：
+          </label>
+          <div class="input-wrapper">
+            <input type="number" step="0.1" id="ansQ2a" placeholder="例如: 27.5">
+            <span class="unit">cm</span>
+          </div>
+          <span class="feedback-msg" id="fbQ2a"></span>
+        </div>
+
+        <div class="quiz-item">
+          <label for="ansQ2N">
+            <span class="q-num">2-2</span> (2) 此時平臺 B 對 n 之作用力 $N$：
+          </label>
+          <div class="input-wrapper">
+            <input type="number" step="0.1" id="ansQ2N" placeholder="例如: 5">
+            <span class="unit">gw</span>
+          </div>
+          <span class="feedback-msg" id="fbQ2N"></span>
+        </div>
+
+        <!-- Q3 -->
+        <div class="quiz-item highlight-q" style="grid-column: 1 / -1;">
+          <label for="ansQ3">
+            <span class="q-num">3</span> <strong>(3) 當平臺 B 對 n 之作用力恰為零時，$L_{AB}$ 距離</strong>：
+          </label>
+          <div class="input-wrapper">
+            <input type="number" step="0.1" id="ansQ3" placeholder="例如: 55">
+            <span class="unit">cm</span>
+          </div>
+          <span class="feedback-msg" id="fbQ3"></span>
+        </div>
+      </form>
+
+      <div class="worksheet-actions">
+        <button id="btnCheckAnswer" class="btn-primary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          送出並核對答案
+        </button>
+        <button id="btnToggleHint" class="btn-secondary">
+          💡 顯示解題引導提示
+        </button>
+        <button id="btnRevealSolution" class="btn-accent">
+          🔓 解鎖完整圖解詳解
+        </button>
+      </div>
+
+      <!-- Hint Box -->
+      <div id="hintBox" class="hint-box hidden">
+        <h4>💡 名師思考引導：</h4>
+        <ol>
+          <li><strong>(1) $40\text{ cm}$ 恰好是兩彈簧原長和 ($20 + 20$)</strong>：若 a 彈簧伸長 $x_a$，則 b 彈簧必壓縮 $x_b = x_a$。分析重物 m 的受力平衡：向上有 a 的拉力，下方有 b 的向上推力，共同平衡 m 的重力 $10\text{ gw}$！</li>
+          <li><strong>(2) 平臺下移至 $50\text{ cm}$</strong>：此時兩彈簧皆伸長，$x_a + x_b = 50 - 40 = 10\text{ cm}$。對 m 列平衡方程式：向上拉力 $F_a$ 平衡向下拉力 $F_b$ 與重力 $W_m$ $\implies k x_a - k x_b = 10\text{ gw}$。解聯立方程式即可求出 $x_a, x_b$，再由 n 受力平衡求出平臺正向力 $N$。</li>
+          <li><strong>(3) 作用力為零 ($N = 0$)</strong>：當平臺支持力為零時，重物 n 的重量 $10\text{ gw}$ 完全由彈簧 b 承擔，所以彈簧 b 伸長 $x_b = \frac{10}{k}$；而彈簧 a 需承擔 $(m + n)$ 兩者總重 $20\text{ gw}$，故伸長 $x_a = \frac{20}{k}$。總長度即為原長加兩者伸長量！</li>
+        </ol>
+      </div>
+
+      <!-- Result Banner -->
+      <div id="resultBanner" class="result-banner hidden"></div>
+    </section>
+
+    <!-- Solution Section (Initially Hidden) -->
+    <section id="solutionSection" class="solution-section">
+      <div class="card solution-card">
+        <div class="card-header">
+          <div class="card-icon" style="background: rgba(0, 230, 118, 0.15); border-color: rgba(0, 230, 118, 0.3);">💡</div>
+          <div>
+            <h2>完整圖解解析</h2>
+            <span class="card-tag">隔離體受力平衡與長度關係詳解</span>
+          </div>
+        </div>
+
+        <!-- Step 1 -->
+        <div class="step-card">
+          <div class="step-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <span class="step-pill s1">第 (1) 小題</span>
+              <h3>當 $L_{AB} = 40\text{ cm}$ 時之彈簧長</h3>
+            </div>
+            <button type="button" class="nav-btn" style="font-size: 0.8rem; padding: 4px 10px;" onclick="switchP2State('1'); document.querySelector('.canvas-card').scrollIntoView({behavior:'smooth'});">📐 檢視 (1) 狀態圖</button>
+          </div>
+          <div class="step-content">
+            <p>
+              兩彈簧原長總和 $L_0 + L_0 = 20 + 20 = 40\text{ cm}$。現全體長度仍為 $40\text{ cm}$，
+              故若彈簧 a 伸長量為 $x_a$，則彈簧 b 必處於<strong>壓縮狀態</strong>，其壓縮量 $x_b = x_a$。
+            </p>
+            <p>
+              <strong>隔離中間重物 m 受力分析：</strong><br>
+              • 向上力量：上方彈簧 a 向上的拉力 $F_a = k x_a$<br>
+              • 向上力量：下方彈簧 b 受壓向上的推力 $F_b = k x_b = k x_a$<br>
+              • 向下力量：重物 m 的重力 $W_m = 10\text{ gw}$
+            </p>
+            <div class="formula-highlight">
+              $$F_a + F_b = W_m \implies k x_a + k x_a = 10 \implies 2 \times 2.0 \times x_a = 10 \implies x_a = 2.5\text{ cm}$$
+            </div>
+            <p>
+              因此：<br>
+              • a 彈簧長度：$\ell_a = 20 + 2.5 = \mathbf{22.5\text{ cm}}$（伸長）<br>
+              • b 彈簧長度：$\ell_b = 20 - 2.5 = \mathbf{17.5\text{ cm}}$（壓縮）
+            </p>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="step-card">
+          <div class="step-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <span class="step-pill s2">第 (2) 小題</span>
+              <h3>當平臺下移至 $L_{AB} = 50\text{ cm}$ 時</h3>
+            </div>
+            <button type="button" class="nav-btn" style="font-size: 0.8rem; padding: 4px 10px;" onclick="switchP2State('2'); document.querySelector('.canvas-card').scrollIntoView({behavior:'smooth'});">📐 檢視 (2) 狀態圖</button>
+          </div>
+          <div class="step-content">
+            <p>
+              當距離增加至 $50\text{ cm}$ 時，兩彈簧伸長量總和為：
+            </p>
+            <div class="formula-highlight">
+              $$(20 + x_a) + (20 + x_b) = 50 \implies x_a + x_b = 10\text{ cm} \quad \cdots \text{(式 1)}$$
+            </div>
+            <p>
+              <strong>隔離重物 m 受力分析：</strong><br>
+              此時彈簧 b 已變為拉伸狀態，對 m 施加向下拉力 $F_b = k x_b$：
+            </p>
+            <div class="formula-highlight">
+              $$F_a = W_m + F_b \implies k x_a - k x_b = W_m = 10 \implies x_a - x_b = \frac{10}{2.0} = 5\text{ cm} \quad \cdots \text{(式 2)}$$
+            </div>
+            <p>
+              由 (式 1) 與 (式 2) 聯立相加：
+              $$2 x_a = 15 \implies x_a = 7.5\text{ cm}, \quad x_b = 2.5\text{ cm}$$
+              故 a 彈簧長為：$\ell_a = 20 + 7.5 = \mathbf{27.5\text{ cm}}$。
+            </p>
+            <p>
+              <strong>隔離底端重物 n 受力分析：</strong><br>
+              重物 n 受到向上力量有平臺正向力 $N$ 與彈簧 b 的向上拉力 $F_b = k x_b = 2.0 \times 2.5 = 5\text{ gw}$，
+              向下力量為 n 的重力 $W_n = 10\text{ gw}$：
+            </p>
+            <div class="formula-highlight">
+              $$N + F_b = W_n \implies N + 5 = 10 \implies N = \mathbf{5\text{ gw}}$$
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="step-card">
+          <div class="step-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <span class="step-pill s3">第 (3) 小題</span>
+              <h3>平臺 B 對 n 之作用力恰為零 ($N = 0$) 臨界距離</h3>
+            </div>
+            <button type="button" class="nav-btn" style="font-size: 0.8rem; padding: 4px 10px;" onclick="switchP2State('3'); document.querySelector('.canvas-card').scrollIntoView({behavior:'smooth'});">📐 檢視 (3) 狀態圖</button>
+          </div>
+          <div class="step-content">
+            <p>
+              當平臺支持力 $N = 0$ 時，重物 n 恰好即將離開平臺：
+            </p>
+            <p>
+              <strong>1. 對重物 n 分析：</strong><br>
+              此時彈簧 b 的拉力必須獨自支撐重物 n 的重量：
+              $$F_b = k x_b = W_n = 10\text{ gw} \implies x_b = \frac{10}{2.0} = 5.0\text{ cm}$$
+              因此彈簧 b 的長度為：$\ell_b = 20 + 5.0 = 25.0\text{ cm}$。
+            </p>
+            <p>
+              <strong>2. 對整體系統 (m + n) 分析：</strong><br>
+              上方彈簧 a 的拉力必須支撐重物 m 與 n 的總重量：
+              $$F_a = k x_a = W_m + W_n = 10 + 10 = 20\text{ gw} \implies x_a = \frac{20}{2.0} = 10.0\text{ cm}$$
+              因此彈簧 a 的長度為：$\ell_a = 20 + 10.0 = 30.0\text{ cm}$。
+            </p>
+            <div class="formula-highlight">
+              $$L_{AB} = \ell_a + \ell_b = 30.0\text{ cm} + 25.0\text{ cm} = \mathbf{55.0\text{ cm}}$$
+            </div>
+            <div class="summary-box">
+              ✅ <strong>最終標準解答：</strong><br>
+              (1) $\ell_a = 22.5\text{ cm}, \ell_b = 17.5\text{ cm}$<br>
+              (2) $\ell_a = 27.5\text{ cm}$，平臺作用力 $N = 5\text{ gw}$<br>
+              (3) A、B 距離為 <strong>$55\text{ cm}$</strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- Teacher Tip -->
+        <div class="teacher-tip">
+          <div class="tip-icon">👨‍🏫</div>
+          <div class="tip-content">
+            <h4>名師解題心法・整體法與隔離法的妙用</h4>
+            <p>
+              遇到多彈簧、多質點的鉛直靜力學題：<br>
+              1. <strong>善用「整體受力」求頂端懸掛力</strong>：在第 (3) 小題中，一旦平臺支持力 $N = 0$，整體外力只有彈簧 a 拉力與兩重物重力，直接 $F_a = W_m + W_n$，免去繁雜的多層方程式！<br>
+              2. <strong>注意正負方向與壓縮狀態</strong>：在第 (1) 小題中，長度不足時，底下的彈簧 b 處於「被壓縮」狀態，推力向上而非拉力，切勿公式死套！
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+    <!-- Related Practice & Knowledge Consolidation Section -->
+    <section class="card recommendation-card" style="margin-top: 24px; border: 1px solid rgba(0, 229, 255, 0.3); background: rgba(15, 23, 42, 0.75);">
+      <div class="card-header">
+        <div class="card-icon" style="background: rgba(0, 229, 255, 0.15); border-color: rgba(0, 229, 255, 0.35);">🎯</div>
+        <div>
+          <h2>學完本範例，接下來建議練習以下題庫！</h2>
+          <span class="card-tag">循序漸進・概念深耕・題型通關</span>
+        </div>
+      </div>
+      <p style="font-size: 0.95rem; color: var(--text-muted); margin: 6px 0 16px 0; line-height: 1.6;">
+        已為您智能引導與「<strong>鉛直雙彈簧雙重物、伸長與壓縮形變判讀、平臺正向力 N 與臨界脫離</strong>」高度相關的課堂類題與大考題庫，趁熱打鐵進行題型辨析與鞏固練習：
+      </p>
+
+      <div class="rec-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px;">
+        <!-- Card: 類題 05 -->
+        <div class="rec-card" style="background: var(--bg-surface-elevated); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 16px; display: flex; flex-direction: column; justify-content: space-between; gap: 10px; transition: all 0.2s ease;">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <span class="badge badge-accent" style="font-size: 0.8rem;">類題 05</span>
+              <span style="font-size: 0.75rem; color: #38bdf8; font-weight: 700; background: rgba(56, 189, 248, 0.12); padding: 2px 8px; border-radius: 4px; border: 1px solid rgba(56, 189, 248, 0.25);">🌱 完全姊妹題</span>
+            </div>
+            <h4 style="font-size: 1.02rem; color: #fff; margin-bottom: 6px;">雙彈簧串聯吊重與平臺交互作用力</h4>
+            <p style="font-size: 0.86rem; color: var(--text-muted); line-height: 1.55;">
+              與範例 2 相同架構的經典名題，練習平臺升降過程中各彈簧受力狀態切換。
+            </p>
+          </div>
+          <a href="exercise5.html" class="nav-btn primary" style="justify-content: center; font-size: 0.88rem; padding: 7px 14px; margin-top: 6px; font-weight: 600;">
+            🚀 前往練習
+          </a>
+        </div>
+        <!-- Card: 類題 01 -->
+        <div class="rec-card" style="background: var(--bg-surface-elevated); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 16px; display: flex; flex-direction: column; justify-content: space-between; gap: 10px; transition: all 0.2s ease;">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <span class="badge badge-accent" style="font-size: 0.8rem;">類題 01</span>
+              <span style="font-size: 0.75rem; color: #38bdf8; font-weight: 700; background: rgba(56, 189, 248, 0.12); padding: 2px 8px; border-radius: 4px; border: 1px solid rgba(56, 189, 248, 0.25);">⭐ 基礎受力</span>
+            </div>
+            <h4 style="font-size: 1.02rem; color: #fff; margin-bottom: 6px;">懸掛彈簧與重錘壓木板作用力</h4>
+            <p style="font-size: 0.86rem; color: var(--text-muted); line-height: 1.55;">
+              加深理解「彈簧拉力與物體對底板壓力（正向力）」之間的消長互補關係。
+            </p>
+          </div>
+          <a href="exercise1.html" class="nav-btn primary" style="justify-content: center; font-size: 0.88rem; padding: 7px 14px; margin-top: 6px; font-weight: 600;">
+            🚀 前往練習
+          </a>
+        </div>
+        <!-- Card: 類題 03 -->
+        <div class="rec-card" style="background: var(--bg-surface-elevated); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 16px; display: flex; flex-direction: column; justify-content: space-between; gap: 10px; transition: all 0.2s ease;">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <span class="badge badge-accent" style="font-size: 0.8rem;">類題 03</span>
+              <span style="font-size: 0.75rem; color: #38bdf8; font-weight: 700; background: rgba(56, 189, 248, 0.12); padding: 2px 8px; border-radius: 4px; border: 1px solid rgba(56, 189, 248, 0.25);">🔥 84 聯考經典</span>
+            </div>
+            <h4 style="font-size: 1.02rem; color: #fff; margin-bottom: 6px;">三彈簧兩物體連繫系統之淨力</h4>
+            <p style="font-size: 0.86rem; color: var(--text-muted); line-height: 1.55;">
+              進階三彈簧串接多質點系統，隔離體法與整體受力平衡的極致演練。
+            </p>
+          </div>
+          <a href="exercise3.html" class="nav-btn primary" style="justify-content: center; font-size: 0.88rem; padding: 7px 14px; margin-top: 6px; font-weight: 600;">
+            🚀 前往練習
+          </a>
+        </div>
+        <!-- Card: 平衡 20 -->
+        <div class="rec-card" style="background: var(--bg-surface-elevated); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 16px; display: flex; flex-direction: column; justify-content: space-between; gap: 10px; transition: all 0.2s ease;">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <span class="badge badge-accent" style="font-size: 0.8rem;">平衡 20</span>
+              <span style="font-size: 0.75rem; color: #38bdf8; font-weight: 700; background: rgba(56, 189, 248, 0.12); padding: 2px 8px; border-radius: 4px; border: 1px solid rgba(56, 189, 248, 0.25);">🏆 進階整合</span>
+            </div>
+            <h4 style="font-size: 1.02rem; color: #fff; margin-bottom: 6px;">雙物體繩簧系統與水平拉力</h4>
+            <p style="font-size: 0.86rem; color: var(--text-muted); line-height: 1.55;">
+              雙質點連繫體受外力拉動之平衡條件，強化多隔離體受力圖分析能力。
+            </p>
+          </div>
+          <a href="equil20.html" class="nav-btn primary" style="justify-content: center; font-size: 0.88rem; padding: 7px 14px; margin-top: 6px; font-weight: 600;">
+            🚀 前往練習
+          </a>
+        </div>
+      </div>
+      
+      <div style="margin-top: 18px; text-align: center; border-top: 1px dashed var(--border-subtle); padding-top: 14px;">
+        <a href="index.html" class="nav-btn" style="font-size: 0.88rem;">
+          📚 返回總目錄查看全單元 104 題索引
+        </a>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      if (window.renderMathInElement) {
+        renderMathInElement(document.body, {
+          delimiters: [
+            { left: "$$", right: "$$", display: true },
+            { left: "$", right: "$", display: false }
+          ]
+        });
+      }
+
+      const btnToggleHint = document.getElementById("btnToggleHint");
+      const hintBox = document.getElementById("hintBox");
+      btnToggleHint.addEventListener("click", () => {
+        hintBox.classList.toggle("hidden");
+        btnToggleHint.textContent = hintBox.classList.contains("hidden") ? "💡 顯示解題引導提示" : "💡 收合解題引導提示";
+      });
+
+      const btnRevealSolution = document.getElementById("btnRevealSolution");
+      const solutionSection = document.getElementById("solutionSection");
+      btnRevealSolution.addEventListener("click", () => {
+        solutionSection.classList.toggle("visible");
+        if (solutionSection.classList.contains("visible")) {
+          btnRevealSolution.textContent = "🔒 隱藏解析";
+          solutionSection.scrollIntoView({ behavior: 'smooth' });
+        } else {
+          btnRevealSolution.textContent = "🔓 解鎖完整圖解詳解";
+        }
+      });
+
+      const btnCheckAnswer = document.getElementById("btnCheckAnswer");
+      const resultBanner = document.getElementById("resultBanner");
+
+      btnCheckAnswer.addEventListener("click", () => {
+        let correctCount = 0;
+        let filledCount = 0;
+
+        // Q1a: 22.5
+        const vQ1a = parseFloat(document.getElementById("ansQ1a").value);
+        const fbQ1a = document.getElementById("fbQ1a");
+        if (!isNaN(vQ1a)) {
+          filledCount++;
+          if (Math.abs(vQ1a - 22.5) <= 0.2) {
+            fbQ1a.textContent = "✓ 正確！la = 20 + 2.5 = 22.5 cm";
+            fbQ1a.className = "feedback-msg correct";
+            correctCount++;
+          } else {
+            fbQ1a.textContent = "✗ 提示：2k*x = 10 => x = 2.5 cm";
+            fbQ1a.className = "feedback-msg incorrect";
+          }
+        }
+
+        // Q1b: 17.5
+        const vQ1b = parseFloat(document.getElementById("ansQ1b").value);
+        const fbQ1b = document.getElementById("fbQ1b");
+        if (!isNaN(vQ1b)) {
+          filledCount++;
+          if (Math.abs(vQ1b - 17.5) <= 0.2) {
+            fbQ1b.textContent = "✓ 正確！lb = 20 - 2.5 = 17.5 cm (壓縮)";
+            fbQ1b.className = "feedback-msg correct";
+            correctCount++;
+          } else {
+            fbQ1b.textContent = "✗ 提示：40 - 22.5 = 17.5 cm";
+            fbQ1b.className = "feedback-msg incorrect";
+          }
+        }
+
+        // Q2a: 27.5
+        const vQ2a = parseFloat(document.getElementById("ansQ2a").value);
+        const fbQ2a = document.getElementById("fbQ2a");
+        if (!isNaN(vQ2a)) {
+          filledCount++;
+          if (Math.abs(vQ2a - 27.5) <= 0.2) {
+            fbQ2a.textContent = "✓ 正確！la = 20 + 7.5 = 27.5 cm";
+            fbQ2a.className = "feedback-msg correct";
+            correctCount++;
+          } else {
+            fbQ2a.textContent = "✗ 提示：xa + xb = 10 且 xa - xb = 5";
+            fbQ2a.className = "feedback-msg incorrect";
+          }
+        }
+
+        // Q2N: 5
+        const vQ2N = parseFloat(document.getElementById("ansQ2N").value);
+        const fbQ2N = document.getElementById("fbQ2N");
+        if (!isNaN(vQ2N)) {
+          filledCount++;
+          if (Math.abs(vQ2N - 5.0) <= 0.2) {
+            fbQ2N.textContent = "✓ 正確！N = 10 - k*xb = 5 gw";
+            fbQ2N.className = "feedback-msg correct";
+            correctCount++;
+          } else {
+            fbQ2N.textContent = "✗ 提示：N = Wn - Fb = 10 - 2*2.5";
+            fbQ2N.className = "feedback-msg incorrect";
+          }
+        }
+
+        // Q3: 55
+        const vQ3 = parseFloat(document.getElementById("ansQ3").value);
+        const fbQ3 = document.getElementById("fbQ3");
+        if (!isNaN(vQ3)) {
+          filledCount++;
+          if (Math.abs(vQ3 - 55.0) <= 0.5) {
+            fbQ3.textContent = "✓ 正確！LAB = 30 + 25 = 55 cm";
+            fbQ3.className = "feedback-msg correct";
+            correctCount++;
+          } else {
+            fbQ3.textContent = "✗ 提示：xa=20/2=10, xb=10/2=5 => 總長=55";
+            fbQ3.className = "feedback-msg incorrect";
+          }
+        }
+
+        if (filledCount === 0) {
+          resultBanner.className = "result-banner partial";
+          resultBanner.textContent = "⚠️ 請先填寫至少一題的答案以進行核對！";
+          resultBanner.classList.remove("hidden");
+          return;
+        }
+
+        resultBanner.classList.remove("hidden");
+        if (correctCount === 5) {
+          resultBanner.className = "result-banner success";
+          resultBanner.innerHTML = "🎉 太精彩了！3 個小題共 5 項答案全部答對！已為您解鎖下方詳解！";
+          solutionSection.classList.add("visible");
+          btnRevealSolution.textContent = "🔒 隱藏解析";
+        } else {
+          resultBanner.className = "result-banner partial";
+          resultBanner.innerHTML = `📝 目前答對 ${correctCount} / ${filledCount} 項。可參考「💡 顯示提示」或點擊「🔓 解鎖完整圖解詳解」查看推導！`;
+        }
+      });
+    });
+
+    // Dynamic Multi-State Diagram Switcher (Progressive display for Problem 2)
+    function switchP2State(state) {
+      const raw = document.getElementById('p2WrapRaw');
+      const s1 = document.getElementById('p2WrapS1');
+      const s2 = document.getElementById('p2WrapS2');
+      const s3 = document.getElementById('p2WrapS3');
+      const title = document.getElementById('p2DiagTitle');
+      const btnRaw = document.getElementById('btnP2Raw');
+      const btnS1 = document.getElementById('btnP2S1');
+      const btnS2 = document.getElementById('btnP2S2');
+      const btnS3 = document.getElementById('btnP2S3');
+
+      if (!raw || !s1 || !s2 || !s3) return;
+
+      [raw, s1, s2, s3].forEach(el => el.style.display = 'none');
+      [btnRaw, btnS1, btnS2, btnS3].forEach(b => {
+        if (b) b.classList.remove('primary');
+      });
+
+      if (state === '1') {
+        s1.style.display = 'flex';
+        if (btnS1) btnS1.classList.add('primary');
+        if (title) title.innerHTML = '<span class="dot dot-yellow"></span> 狀態 (1)：A、B 總長 40 cm 受力與形變狀態';
+      } else if (state === '2') {
+        s2.style.display = 'flex';
+        if (btnS2) btnS2.classList.add('primary');
+        if (title) title.innerHTML = '<span class="dot dot-green"></span> 狀態 (2)：平臺下移至 50 cm 受力與支持力 N';
+      } else if (state === '3') {
+        s3.style.display = 'flex';
+        if (btnS3) btnS3.classList.add('primary');
+        if (title) title.innerHTML = '<span class="dot dot-purple"></span> 狀態 (3)：平臺支持力 N = 0 脫離臨界分析';
+      } else {
+        raw.style.display = 'flex';
+        if (btnRaw) btnRaw.classList.add('primary');
+        if (title) title.innerHTML = '<span class="dot dot-blue"></span> 題目原始圖：串聯彈簧雙重物鉛直配置';
+      }
+    }
+    window.switchP2State = switchP2State;
+  </script>
+</body>
+</html>

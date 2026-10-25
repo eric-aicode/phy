@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>範例 7：高架工作車翻覆臨界與力矩平衡【99指考】| 高中物理靜力學</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+  <link rel="stylesheet" href="shared.css">
+</head>
+<body>
+  <div class="bg-glow"></div>
+  <div class="bg-grid"></div>
+
+  <div class="container">
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+      <div class="nav-links">
+        <a href="index.html" class="nav-btn primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          回目錄
+        </a>
+        <a href="problem6.html" class="nav-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          上一題 (範例 6)
+        </a>
+        <a href="problem8.html" class="nav-btn">
+          下一題 (範例 8)
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+      <div class="badge-wrapper">
+        <span class="badge badge-page">講義 靜力學-11</span>
+        <span class="badge badge-exam">99 指考</span>
+        <span class="badge badge-accent">轉動平衡與翻覆臨界力矩</span>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+      <h1 class="main-title">範例 7：<span class="gradient-text">高架工作車之翻覆臨界力矩</span></h1>
+      <p class="subtitle">支點選擇技巧・前輪正向力為零之臨界狀態・多質點力臂幾何運算</p>
+    </header>
+
+    <!-- Problem Showcase Card -->
+    <section class="card problem-card">
+      <div class="card-header">
+        <div class="card-icon">📖</div>
+        <div>
+          <h2>題目內容</h2>
+          <span class="card-tag">99年度指定科目考試試題</span>
+        </div>
+      </div>
+
+      <div class="problem-body">
+        <p>
+          下圖為在水平面上的高架工作車示意圖。車體質量為 <strong>$M$</strong>（不含支架），<strong>質心恰在前輪軸正上方</strong>，前後輪軸間距為 <strong>$a$</strong>。
+        </p>
+        <p>
+          均質支架質量為 <strong>$M/8$</strong>，支架底端的支點恰在後輪軸正上方。支架頂端工作台與人員總質量為 <strong>$M/4$</strong>，質心恰在支架頂端正上方。
+        </p>
+        <p>
+          設工作時支架與鉛垂線的夾角為 <strong>$30^\circ$</strong>，要使車體不至翻覆，支架長度最大可為多少？
+        </p>
+        <div class="question-goal">
+          <strong>選項：</strong> (A) $8a$ &nbsp;&nbsp; (B) $32a/5$ &nbsp;&nbsp; (C) $16a/3$ &nbsp;&nbsp; (D) $16a/5$ &nbsp;&nbsp; (E) $a/8$
+        </div>
+      </div>
+
+      <!-- Problem Physical Diagram (SVG) -->
+      <div class="canvas-card">
+        <div class="canvas-title-bar">
+          <h3><span class="dot dot-blue"></span> 高架工作車幾何結構與力矩力臂示意圖</h3>
+          <span class="view-tag">Torque & Arm Setup</span>
+        </div>
+        <div class="svg-wrapper">
+          <svg viewBox="0 0 760 380" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="arr-p7-w" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                <path d="M0 1L10 5L0 9z" fill="#ff5252"/>
+              </marker>
+              <marker id="arr-p7-dim" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                <path d="M0 1L10 5L0 9z" fill="#94a3b8"/>
+              </marker>
+            </defs>
+
+            <!-- Ground -->
+            <line x1="60" y1="310" x2="700" y2="310" stroke="#78909c" stroke-width="4"/>
+            <g stroke="#546e7a" stroke-width="1.5" opacity="0.3">
+              <line x1="80" y1="310" x2="68" y2="325"/><line x1="130" y1="310" x2="118" y2="325"/>
+              <line x1="180" y1="310" x2="168" y2="325"/><line x1="230" y1="310" x2="218" y2="325"/>
+              <line x1="280" y1="310" x2="268" y2="325"/><line x1="330" y1="310" x2="318" y2="325"/>
+              <line x1="380" y1="310" x2="368" y2="325"/><line x1="430" y1="310" x2="418" y2="325"/>
+              <line x1="480" y1="310" x2="468" y2="325"/><line x1="530" y1="310" x2="518" y2="325"/>
+              <line x1="580" y1="310" x2="568" y2="325"/><line x1="630" y1="310" x2="618" y2="325"/>
+            </g>
+
+            <!-- Wheels:
+                 Rear wheel (Pivot P): X = 420, Y = 290, Radius = 20
+                 Front wheel: X = 220, Y = 290, Radius = 20
+                 Distance a = 420 - 220 = 200px
+            -->
+            <!-- Truck Body -->
+            <path d="M190,290 L190,240 L260,240 L280,265 L445,265 L445,290 Z" fill="#1e293b" stroke="#64748b" stroke-width="2.5"/>
+            <!-- Truck Cab window -->
+            <polygon points="200,245 240,245 255,265 200,265" fill="rgba(0, 229, 255, 0.2)" stroke="#00e5ff" stroke-width="1.5"/>
+
+            <!-- Wheels -->
+            <!-- Front Wheel (X = 220) -->
+            <circle cx="220" cy="290" r="20" fill="#0f172a" stroke="#cbd5e1" stroke-width="3"/>
+            <circle cx="220" cy="290" r="8" fill="#475569"/>
+            <!-- Rear Wheel / Pivot (X = 420) -->
+            <circle cx="420" cy="290" r="20" fill="#0f172a" stroke="#ffab00" stroke-width="3.5"/>
+            <circle cx="420" cy="290" r="8" fill="#ffab00"/>
+            <!-- Pivot Indicator -->
+            <text x="420" y="340" fill="#ffab00" font-size="12" font-weight="bold" text-anchor="middle">翻覆轉軸 (後輪 P)</text>
+
+            <!-- Wheelbase a dimension line -->
+            <line x1="220" y1="325" x2="420" y2="325" stroke="#94a3b8" stroke-width="1.5"/>
+            <line x1="220" y1="320" x2="220" y2="330" stroke="#94a3b8" stroke-width="1.5"/>
+            <line x1="420" y1="320" x2="420" y2="330" stroke="#94a3b8" stroke-width="1.5"/>
+            <text x="320" y="340" fill="#94a3b8" font-size="12" font-weight="bold" text-anchor="middle">輪距 a</text>
+
+            <!-- Truck Center of Mass (Directly above front wheel X = 220) -->
+            <circle cx="220" cy="235" r="6" fill="#00e5ff" stroke="#fff" stroke-width="2"/>
+            <text x="145" y="238" fill="#00e5ff" font-size="12" font-weight="bold">車體質心 M</text>
+            <!-- Truck gravity vector Mg -->
+            <line x1="220" y1="235" x2="220" y2="150" stroke="#00e5ff" stroke-width="3" marker-end="url(#arr-p7-w)"/>
+            <text x="230" y="180" fill="#00e5ff" font-size="12" font-weight="bold">Mg (力臂 a)</text>
+
+            <!-- Boom / Crane:
+                 Base attached at rear wheel X = 420, Y = 265
+                 Length L = 220px, angle 30° to vertical:
+                 dx = L * sin(30°) = 220 * 0.5 = 110px.
+                 dy = L * cos(30°) = 220 * 0.866 = 190.5px.
+                 Top at (420 + 110, 265 - 190.5) = (530, 74.5)
+            -->
+            <!-- Vertical reference dashed line -->
+            <line x1="420" y1="265" x2="420" y2="60" stroke="#64748b" stroke-width="1.5" stroke-dasharray="4,4"/>
+            <!-- 30° arc -->
+            <path d="M420,195 A70,70 0 0,1 455,205" fill="none" stroke="#ffd54f" stroke-width="2"/>
+            <text x="432" y="190" fill="#ffd54f" font-size="13" font-weight="bold">30°</text>
+
+            <!-- Boom line -->
+            <line x1="420" y1="265" x2="530" y2="75" stroke="#e2e8f0" stroke-width="5" stroke-linecap="round"/>
+            <!-- Boom Center of Mass (L/2): (420 + 55, 265 - 95.25) = (475, 170) -->
+            <circle cx="475" cy="170" r="5" fill="#a78bfa" stroke="#fff" stroke-width="2"/>
+            <!-- Boom gravity M/8 g down -->
+            <line x1="475" y1="170" x2="475" y2="230" stroke="#a78bfa" stroke-width="2.5" marker-end="url(#arr-p7-w)"/>
+            <rect x="485" y="195" width="115" height="24" rx="4" fill="rgba(15, 23, 42, 0.9)" stroke="#a78bfa" stroke-width="1"/>
+            <text x="542" y="211" fill="#a78bfa" font-size="10" font-weight="bold" text-anchor="middle">(M/8)g・臂 (L/2)sin30°</text>
+
+            <!-- Platform & Workers at top (530, 75) -->
+            <!-- Basket -->
+            <rect x="505" y="45" width="50" height="36" rx="4" fill="#334155" stroke="#f59e0b" stroke-width="2"/>
+            <!-- Worker symbol -->
+            <circle cx="530" cy="30" r="7" fill="#f59e0b"/>
+            <line x1="530" y1="37" x2="530" y2="52" stroke="#f59e0b" stroke-width="2.5"/>
+            <!-- Platform gravity M/4 g down -->
+            <line x1="530" y1="75" x2="530" y2="155" stroke="#f59e0b" stroke-width="3" marker-end="url(#arr-p7-w)"/>
+            <rect x="540" y="115" width="110" height="24" rx="4" fill="rgba(15, 23, 42, 0.9)" stroke="#f59e0b" stroke-width="1"/>
+            <text x="595" y="131" fill="#f59e0b" font-size="10" font-weight="bold" text-anchor="middle">(M/4)g・臂 L sin30°</text>
+
+            <!-- Torque direction tags -->
+            <rect x="250" y="90" width="120" height="30" rx="6" fill="rgba(0, 229, 255, 0.15)" stroke="#00e5ff" stroke-width="1"/>
+            <text x="310" y="110" fill="#00e5ff" font-size="12" font-weight="bold" text-anchor="middle">順時針力矩 (穩定)</text>
+
+            <rect x="590" y="60" width="120" height="30" rx="6" fill="rgba(255, 82, 82, 0.15)" stroke="#ff5252" stroke-width="1"/>
+            <text x="650" y="80" fill="#ff5252" font-size="12" font-weight="bold" text-anchor="middle">逆時針力矩 (翻覆)</text>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- Student Worksheet Card -->
+    <section class="card worksheet-card">
+      <div class="card-header">
+        <div class="card-icon">✏️</div>
+        <div>
+          <h2>學生自主挑戰作答區</h2>
+          <span class="card-tag">請依思考步驟核對或直接選出答案</span>
+        </div>
+      </div>
+
+      <!-- Multiple Choice Options -->
+      <div style="margin-bottom: 20px;">
+        <p style="font-size: 0.95rem; color: #cbd5e1; margin-bottom: 10px;">
+          <strong>🎯 請選擇你的解答選項：</strong>
+        </p>
+        <div class="options-grid">
+          <button class="option-btn" data-choice="A">(A) 8a</button>
+          <button class="option-btn" data-choice="B">(B) 32a / 5</button>
+          <button class="option-btn" data-choice="C">(C) 16a / 3</button>
+          <button class="option-btn" data-choice="D">(D) 16a / 5</button>
+          <button class="option-btn" data-choice="E">(E) a / 8</button>
+        </div>
+      </div>
+
+      <!-- Step Calculation Inputs -->
+      <form id="quizForm" class="quiz-grid" onsubmit="return false;">
+        <div class="quiz-item">
+          <label for="ansArmCar">
+            <span class="q-num">1</span> 車體重力 $Mg$ 對後輪之水平力臂（請填入 $a$ 的倍數）：
+          </label>
+          <div class="input-wrapper">
+            <input type="number" step="0.1" id="ansArmCar" placeholder="例如: 1.0">
+            <span class="unit">× a</span>
+          </div>
+          <span class="feedback-msg" id="fbArmCar"></span>
+        </div>
+
+        <div class="quiz-item">
+          <label for="ansArmBoom">
+            <span class="q-num">2</span> 均質支架重力對後輪之水平力臂（填 $L$ 的倍數）：
+          </label>
+          <div class="input-wrapper">
+            <input type="number" step="0.05" id="ansArmBoom" placeholder="例如: 0.25">
+            <span class="unit">× L</span>
+          </div>
+          <span class="feedback-msg" id="fbArmBoom"></span>
+        </div>
+
+        <div class="quiz-item">
+          <label for="ansArmWorker">
+            <span class="q-num">3</span> 頂端人員工作台重力對後輪水平力臂（填 $L$ 的倍數）：
+          </label>
+          <div class="input-wrapper">
+            <input type="number" step="0.1" id="ansArmWorker" placeholder="例如: 0.5">
+            <span class="unit">× L</span>
+          </div>
+          <span class="feedback-msg" id="fbArmWorker"></span>
+        </div>
+
+        <div class="quiz-item highlight-q">
+          <label for="ansLratio">
+            <span class="q-num">4</span> <strong>最大支架長度 $L_{\max}$（填入 $a$ 之小數倍，即 $32/5$）：</strong>
+          </label>
+          <div class="input-wrapper">
+            <input type="number" step="0.1" id="ansLratio" placeholder="例如: 6.4">
+            <span class="unit">× a</span>
+          </div>
+          <span class="feedback-msg" id="fbLratio"></span>
+        </div>
+      </form>
+
+      <div class="worksheet-actions">
+        <button id="btnCheckAnswer" class="btn-primary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          送出並核對答案
+        </button>
+        <button id="btnToggleHint" class="btn-secondary">
+          💡 顯示解題引導提示
+        </button>
+        <button id="btnRevealSolution" class="btn-accent">
+          🔓 解鎖完整圖解詳解
+        </button>
+      </div>
+
+      <!-- Hint Box -->
+      <div id="hintBox" class="hint-box hidden">
+        <h4>💡 名師思考引導：</h4>
+        <ol>
+          <li><strong>轉軸選擇</strong>：當支架向右後方傾斜伸長時，車體若要翻覆必以<strong>後輪接觸點</strong>為轉軸向後翻！</li>
+          <li><strong>翻覆臨界條件</strong>：恰不翻覆的臨界狀態，前輪正向力恰好降為零（$N_{\text{前}} = 0$）。</li>
+          <li><strong>車體質心位置</strong>：題目清楚說明「質心恰在<strong>前輪軸正上方</strong>」，所以車體重力 $Mg$ 對後輪軸的力臂整整就是輪距 <strong>$a$</strong>，提供向左下壓的順時針穩定力矩 $\tau_{\text{順}} = Mg \cdot a$！</li>
+          <li><strong>支架與人員力矩</strong>：支架質心在中點（距後輪軸 $L/2$），力臂為 $\frac{L}{2}\sin 30^\circ = \frac{L}{4}$；頂端工作台在頂點（距後輪軸 $L$），力臂為 $L\sin 30^\circ = \frac{L}{2}$。兩者皆提供向後拉倒的逆時針力矩。令順時針力矩＝逆時針力矩即可秒殺！</li>
+        </ol>
+      </div>
+
+      <!-- Result Banner -->
+      <div id="resultBanner" class="result-banner hidden"></div>
+    </section>
+
+    <!-- Solution Section (Initially Hidden) -->
+    <section id="solutionSection" class="solution-section">
+      <div class="card solution-card">
+        <div class="card-header">
+          <div class="card-icon" style="background: rgba(0, 230, 118, 0.15); border-color: rgba(0, 230, 118, 0.3);">💡</div>
+          <div>
+            <h2>完整圖解解析</h2>
+            <span class="card-tag">轉軸力矩平衡與翻覆臨界標準推導</span>
+          </div>
+        </div>
+
+        <!-- Step 1 -->
+        <div class="step-card">
+          <div class="step-header">
+            <span class="step-pill s1">步驟 1</span>
+            <h3>確定轉動支點與臨界翻覆狀態</h3>
+          </div>
+          <div class="step-content">
+            <p>
+              工作車支架向後上方伸長，若長度過長將向後翻倒，因此<strong>翻覆轉動之轉軸必在後輪接觸點 P</strong>。
+            </p>
+            <p>
+              當支架長度達到最大臨界值 $L_{\max}$ 時，車體恰好即將離地，此時<strong>前輪正向力 $N_{\text{前}} = 0$</strong>。
+            </p>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="step-card">
+          <div class="step-header">
+            <span class="step-pill s2">步驟 2</span>
+            <h3>分析各重力對後輪軸 P 的力臂與力矩</h3>
+          </div>
+          <div class="step-content">
+            <p>
+              <strong>1. 車體重力 $Mg$（順時針力矩，防止翻車）：</strong><br>
+              車體質心恰在前輪正上方，因此其重力作用線與後輪 P 的垂直水平距離為輪距 $a$：
+            </p>
+            <div class="formula-highlight">
+              $$\tau_{\text{順}} = Mg \times a$$
+            </div>
+            <p>
+              <strong>2. 均質支架重力 $\frac{M}{8}g$（逆時針力矩，造成翻車）：</strong><br>
+              支架為均勻材質，質心在其長度中點（距底端 $L/2$ 處），支架與鉛直線夾角為 $30^\circ$：
+              $$\text{力臂 } d_1 = \frac{L}{2} \sin 30^\circ = \frac{L}{2} \times \frac{1}{2} = \frac{L}{4}$$
+              $$\tau_1 = \left(\frac{M}{8}g\right) \times \left(\frac{L}{4}\right) = \frac{MgL}{32}$$
+            </p>
+            <p>
+              <strong>3. 人員與工作台重力 $\frac{M}{4}g$（逆時針力矩，造成翻車）：</strong><br>
+              工作台位於支架最頂端（距底端 $L$ 處）：
+              $$\text{力臂 } d_2 = L \sin 30^\circ = L \times \frac{1}{2} = \frac{L}{2}$$
+              $$\tau_2 = \left(\frac{M}{4}g\right) \times \left(\frac{L}{2}\right) = \frac{MgL}{8}$$
+            </p>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="step-card">
+          <div class="step-header">
+            <span class="step-pill s3">步驟 3</span>
+            <h3>列出轉動平衡方程式 $\Sigma \tau_P = 0$</h3>
+          </div>
+          <div class="step-content">
+            <p>
+              要使車體不至翻覆，順時針力矩必須大於或等於逆時針力矩：
+            </p>
+            <div class="formula-highlight">
+              $$\tau_{\text{順}} \ge \tau_1 + \tau_2$$
+              $$Mga \ge \frac{MgL}{32} + \frac{MgL}{8}$$
+            </div>
+            <p>
+              兩邊同除以 $Mg$：
+              $$a \ge L \left(\frac{1}{32} + \frac{4}{32}\right) = L \times \frac{5}{32}$$
+              $$L \le \frac{32}{5}a = 6.4a$$
+            </p>
+            <div class="summary-box">
+              ✅ <strong>正確答案：</strong> 支架長度最大可為 <strong>$\mathbf{\frac{32}{5}a}$</strong>，本題應選 <strong>(B)</strong>。
+            </div>
+          </div>
+        </div>
+
+        <!-- Teacher Tip -->
+        <div class="teacher-tip">
+          <div class="tip-icon">👨‍🏫</div>
+          <div class="tip-content">
+            <h4>名師點撥・審題陷阱提醒</h4>
+            <p>
+              歷屆考生在這一題最常犯的錯誤有兩個：<br>
+              1. <strong>誤把車體質心當作前後輪中點</strong>：題目特別強調「車體質心恰在<strong>前輪軸正上方</strong>」，因此力臂是整整的 $a$，而非 $a/2$（若是 $a/2$，答案就會誤選成 D 選項 $16a/5$）。<br>
+              2. <strong>支架質心力臂忘記減半</strong>：均勻支架的重量作用在中點，因此力臂是 $\frac{L}{2}\sin 30^\circ$ 而不是 $L\sin 30^\circ$！<br>
+              只要看清題目文字、選對翻覆支點，力矩秒算無比輕鬆！
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+    <!-- Related Practice & Knowledge Consolidation Section -->
+    <section class="card recommendation-card" style="margin-top: 24px; border: 1px solid rgba(0, 229, 255, 0.3); background: rgba(15, 23, 42, 0.75);">
+      <div class="card-header">
+        <div class="card-icon" style="background: rgba(0, 229, 255, 0.15); border-color: rgba(0, 229, 255, 0.35);">🎯</div>
+        <div>
+          <h2>學完本範例，接下來建議練習以下題庫！</h2>
+          <span class="card-tag">循序漸進・概念深耕・題型通關</span>
+        </div>
+      </div>
+      <p style="font-size: 0.95rem; color: var(--text-muted); margin: 6px 0 16px 0; line-height: 1.6;">
+        已為您智能引導與「<strong>剛體翻覆臨界力矩、旋轉轉軸選定、正向力消失 (N=0) 臨界條件</strong>」高度相關的課堂類題與大考題庫，趁熱打鐵進行題型辨析與鞏固練習：
+      </p>
+
+      <div class="rec-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px;">
+        <!-- Card: 力矩 06 -->
+        <div class="rec-card" style="background: var(--bg-surface-elevated); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 16px; display: flex; flex-direction: column; justify-content: space-between; gap: 10px; transition: all 0.2s ease;">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <span class="badge badge-accent" style="font-size: 0.8rem;">力矩 06</span>
+              <span style="font-size: 0.75rem; color: #38bdf8; font-weight: 700; background: rgba(56, 189, 248, 0.12); padding: 2px 8px; border-radius: 4px; border: 1px solid rgba(56, 189, 248, 0.25);">🌱 翹起臨界同型題</span>
+            </div>
+            <h4 style="font-size: 1.02rem; color: #fff; margin-bottom: 6px;">均質木棒懸重臨界翹起平衡</h4>
+            <p style="font-size: 0.86rem; color: var(--text-muted); line-height: 1.55;">
+              木棒懸掛於兩支點，探討右端掛重使左端支點恰好離地 ($N_1=0$) 的力矩極限。
+            </p>
+          </div>
+          <a href="torque6.html" class="nav-btn primary" style="justify-content: center; font-size: 0.88rem; padding: 7px 14px; margin-top: 6px; font-weight: 600;">
+            🚀 前往練習
+          </a>
+        </div>
+        <!-- Card: 平衡 21 -->
+        <div class="rec-card" style="background: var(--bg-surface-elevated); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 16px; display: flex; flex-direction: column; justify-content: space-between; gap: 10px; transition: all 0.2s ease;">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <span class="badge badge-accent" style="font-size: 0.8rem;">平衡 21</span>
+              <span style="font-size: 0.75rem; color: #38bdf8; font-weight: 700; background: rgba(56, 189, 248, 0.12); padding: 2px 8px; border-radius: 4px; border: 1px solid rgba(56, 189, 248, 0.25);">⭐ 經典行走臨界</span>
+            </div>
+            <h4 style="font-size: 1.02rem; color: #fff; margin-bottom: 6px;">均勻平板小孩行走蹺起臨界問題</h4>
+            <p style="font-size: 0.86rem; color: var(--text-muted); line-height: 1.55;">
+              小孩沿懸空木板向前走，求木板不發生翻轉時小孩能走到的最遠極限距離。
+            </p>
+          </div>
+          <a href="equil21.html" class="nav-btn primary" style="justify-content: center; font-size: 0.88rem; padding: 7px 14px; margin-top: 6px; font-weight: 600;">
+            🚀 前往練習
+          </a>
+        </div>
+        <!-- Card: 力矩 04 -->
+        <div class="rec-card" style="background: var(--bg-surface-elevated); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 16px; display: flex; flex-direction: column; justify-content: space-between; gap: 10px; transition: all 0.2s ease;">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <span class="badge badge-accent" style="font-size: 0.8rem;">力矩 04</span>
+              <span style="font-size: 0.75rem; color: #38bdf8; font-weight: 700; background: rgba(56, 189, 248, 0.12); padding: 2px 8px; border-radius: 4px; border: 1px solid rgba(56, 189, 248, 0.25);">🔥 98 指考真題</span>
+            </div>
+            <h4 style="font-size: 1.02rem; color: #fff; margin-bottom: 6px;">98指考圓輪推上階梯臨界力矩</h4>
+            <p style="font-size: 0.86rem; color: var(--text-muted); line-height: 1.55;">
+              以階梯稜角為轉動支點，求將重輪滾上階梯所需的最小施力方向與力量大小。
+            </p>
+          </div>
+          <a href="torque4.html" class="nav-btn primary" style="justify-content: center; font-size: 0.88rem; padding: 7px 14px; margin-top: 6px; font-weight: 600;">
+            🚀 前往練習
+          </a>
+        </div>
+        <!-- Card: 平衡 51 -->
+        <div class="rec-card" style="background: var(--bg-surface-elevated); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 16px; display: flex; flex-direction: column; justify-content: space-between; gap: 10px; transition: all 0.2s ease;">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <span class="badge badge-accent" style="font-size: 0.8rem;">平衡 51</span>
+              <span style="font-size: 0.75rem; color: #38bdf8; font-weight: 700; background: rgba(56, 189, 248, 0.12); padding: 2px 8px; border-radius: 4px; border: 1px solid rgba(56, 189, 248, 0.25);">🏆 110 指考力學</span>
+            </div>
+            <h4 style="font-size: 1.02rem; color: #fff; margin-bottom: 6px;">起重機臂吊物與鋼索張力矩平衡</h4>
+            <p style="font-size: 0.86rem; color: var(--text-muted); line-height: 1.55;">
+              最新大考起重機懸臂題，以轉軸為參考點，列出吊重力矩與鋼索拉力矩方程式。
+            </p>
+          </div>
+          <a href="equil51.html" class="nav-btn primary" style="justify-content: center; font-size: 0.88rem; padding: 7px 14px; margin-top: 6px; font-weight: 600;">
+            🚀 前往練習
+          </a>
+        </div>
+      </div>
+      
+      <div style="margin-top: 18px; text-align: center; border-top: 1px dashed var(--border-subtle); padding-top: 14px;">
+        <a href="index.html" class="nav-btn" style="font-size: 0.88rem;">
+          📚 返回總目錄查看全單元 104 題索引
+        </a>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      if (window.renderMathInElement) {
+        renderMathInElement(document.body, {
+          delimiters: [
+            { left: "$$", right: "$$", display: true },
+            { left: "$", right: "$", display: false }
+          ]
+        });
+      }
+
+      let selectedChoice = null;
+      const optionBtns = document.querySelectorAll(".option-btn");
+      optionBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+          optionBtns.forEach(b => b.classList.remove("selected"));
+          btn.classList.add("selected");
+          selectedChoice = btn.getAttribute("data-choice");
+        });
+      });
+
+      const btnToggleHint = document.getElementById("btnToggleHint");
+      const hintBox = document.getElementById("hintBox");
+      btnToggleHint.addEventListener("click", () => {
+        hintBox.classList.toggle("hidden");
+        btnToggleHint.textContent = hintBox.classList.contains("hidden") ? "💡 顯示解題引導提示" : "💡 收合解題引導提示";
+      });
+
+      const btnRevealSolution = document.getElementById("btnRevealSolution");
+      const solutionSection = document.getElementById("solutionSection");
+      btnRevealSolution.addEventListener("click", () => {
+        solutionSection.classList.toggle("visible");
+        if (solutionSection.classList.contains("visible")) {
+          btnRevealSolution.textContent = "🔒 隱藏解析";
+          solutionSection.scrollIntoView({ behavior: 'smooth' });
+        } else {
+          btnRevealSolution.textContent = "🔓 解鎖完整圖解詳解";
+        }
+      });
+
+      const btnCheckAnswer = document.getElementById("btnCheckAnswer");
+      const resultBanner = document.getElementById("resultBanner");
+
+      btnCheckAnswer.addEventListener("click", () => {
+        let correctCount = 0;
+        let filledCount = 0;
+
+        if (selectedChoice) {
+          filledCount++;
+          if (selectedChoice === "B") {
+            correctCount++;
+          }
+        }
+
+        // Q1: ArmCar = 1.0
+        const vArmCar = parseFloat(document.getElementById("ansArmCar").value);
+        const fbArmCar = document.getElementById("fbArmCar");
+        if (!isNaN(vArmCar)) {
+          filledCount++;
+          if (Math.abs(vArmCar - 1.0) <= 0.05) {
+            fbArmCar.textContent = "✓ 正確！車體質心在前輪正上方，力臂恰為 a";
+            fbArmCar.className = "feedback-msg correct";
+            correctCount++;
+          } else {
+            fbArmCar.textContent = "✗ 提示：質心恰在前輪正上方，距離後輪整整 a";
+            fbArmCar.className = "feedback-msg incorrect";
+          }
+        }
+
+        // Q2: ArmBoom = 0.25 (L/4)
+        const vArmBoom = parseFloat(document.getElementById("ansArmBoom").value);
+        const fbArmBoom = document.getElementById("fbArmBoom");
+        if (!isNaN(vArmBoom)) {
+          filledCount++;
+          if (Math.abs(vArmBoom - 0.25) <= 0.02) {
+            fbArmBoom.textContent = "✓ 正確！中點力臂 = (L/2)*sin30° = 0.25 L";
+            fbArmBoom.className = "feedback-msg correct";
+            correctCount++;
+          } else {
+            fbArmBoom.textContent = "✗ 提示：(L/2) * sin30° = 0.25 L";
+            fbArmBoom.className = "feedback-msg incorrect";
+          }
+        }
+
+        // Q3: ArmWorker = 0.5 (L/2)
+        const vArmWorker = parseFloat(document.getElementById("ansArmWorker").value);
+        const fbArmWorker = document.getElementById("fbArmWorker");
+        if (!isNaN(vArmWorker)) {
+          filledCount++;
+          if (Math.abs(vArmWorker - 0.5) <= 0.05) {
+            fbArmWorker.textContent = "✓ 正確！頂端力臂 = L*sin30° = 0.5 L";
+            fbArmWorker.className = "feedback-msg correct";
+            correctCount++;
+          } else {
+            fbArmWorker.textContent = "✗ 提示：L * sin30° = 0.5 L";
+            fbArmWorker.className = "feedback-msg incorrect";
+          }
+        }
+
+        // Q4: Lratio = 6.4 (32/5)
+        const vLratio = parseFloat(document.getElementById("ansLratio").value);
+        const fbLratio = document.getElementById("fbLratio");
+        if (!isNaN(vLratio)) {
+          filledCount++;
+          if (Math.abs(vLratio - 6.4) <= 0.1) {
+            fbLratio.textContent = "✓ 正確！L = 32/5 a = 6.4 a";
+            fbLratio.className = "feedback-msg correct";
+            correctCount++;
+          } else {
+            fbLratio.textContent = "✗ 提示：32/5 = 6.4";
+            fbLratio.className = "feedback-msg incorrect";
+          }
+        }
+
+        if (filledCount === 0) {
+          resultBanner.className = "result-banner partial";
+          resultBanner.textContent = "⚠️ 請先選擇選項 (A~E) 或在輸入框中填寫計算數值！";
+          resultBanner.classList.remove("hidden");
+          return;
+        }
+
+        resultBanner.classList.remove("hidden");
+        if (correctCount === filledCount && (selectedChoice === "B" || Math.abs(vLratio - 6.4) <= 0.1)) {
+          resultBanner.className = "result-banner success";
+          resultBanner.innerHTML = "🎉 太棒了！全部回答正確！答案為 (B) 32a / 5。已為您解鎖下方詳解！";
+          solutionSection.classList.add("visible");
+          btnRevealSolution.textContent = "🔒 隱藏解析";
+        } else {
+          resultBanner.className = "result-banner partial";
+          resultBanner.innerHTML = `📝 核對完成：答對 ${correctCount} / ${filledCount} 項。請參考「💡 顯示提示」或點擊「🔓 解鎖完整圖解詳解」查看推導！`;
+        }
+      });
+    });
+  </script>
+</body>
+</html>

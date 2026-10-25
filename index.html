@@ -1,0 +1,1500 @@
+<!DOCTYPE html>
+
+<html lang="zh-TW">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>高中物理靜力學講義：互動解題與圖解題庫大廳</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&amp;family=Noto+Sans+TC:wght@300;400;500;700;900&amp;family=Fira+Code:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" rel="stylesheet"/>
+<script defer="" src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+<script defer="" src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+<link href="shared.css" rel="stylesheet"/>
+<style>
+    .hub-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 20px;
+      margin-top: 24px;
+    }
+
+    .problem-hub-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.25s ease;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .problem-hub-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--accent-blue);
+      opacity: 0.8;
+      transition: width 0.2s ease;
+    }
+
+    .problem-hub-card:hover {
+      border-color: var(--accent-cyan);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 229, 255, 0.15);
+    }
+
+    .problem-hub-card:hover::before {
+      width: 6px;
+    }
+
+    .card-top-info {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 12px;
+    }
+
+    .hub-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 8px;
+      line-height: 1.4;
+    }
+
+    .hub-desc {
+      font-size: 0.94rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+
+    .hub-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 14px;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .hub-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--accent-cyan);
+      font-size: 0.88rem;
+      font-weight: 600;
+    }
+
+    .concept-tag {
+      font-size: 0.72rem;
+      padding: 2px 8px;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-dim);
+    }
+
+    .badge-stage {
+      background: rgba(0, 230, 118, 0.15);
+      border-color: rgba(0, 230, 118, 0.35);
+      color: var(--accent-green);
+    }
+  
+
+    /* Ultra-Compact Single-line Problem Row Layout */
+    .problem-list {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin-top: 10px;
+      margin-bottom: 20px;
+    }
+
+    .problem-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 6px 14px;
+      min-height: 38px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.15s ease;
+    }
+
+    .problem-row:hover {
+      background: var(--bg-surface-elevated);
+      border-color: var(--accent-cyan);
+      transform: translateX(3px);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35), 0 0 12px rgba(0, 229, 255, 0.1);
+    }
+
+    .row-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+      flex: 1;
+    }
+
+    .row-tag-num {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 4px;
+      background: rgba(68, 138, 255, 0.12);
+      border: 1px solid rgba(68, 138, 255, 0.28);
+      color: var(--accent-cyan);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .row-title {
+      font-size: 0.94rem;
+      font-weight: 600;
+      color: #f1f5f9;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      transition: color 0.15s ease;
+    }
+
+    .problem-row:hover .row-title {
+      color: var(--accent-cyan);
+    }
+
+    .row-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+      margin-left: 10px;
+    }
+
+    .row-badge {
+      font-size: 0.72rem;
+      padding: 2px 6px;
+      border-radius: 4px;
+      white-space: nowrap;
+    }
+
+    .row-badge.exam {
+      background: rgba(255, 171, 0, 0.12);
+      border: 1px solid rgba(255, 171, 0, 0.3);
+      color: var(--accent-yellow);
+    }
+
+    .row-badge.page {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-dim);
+    }
+
+    .row-arrow {
+      color: var(--text-dim);
+      font-size: 0.88rem;
+      transition: transform 0.15s ease, color 0.15s ease;
+      margin-left: 2px;
+    }
+
+    .problem-row:hover .row-arrow {
+      color: var(--accent-cyan);
+      transform: translateX(2px);
+    }
+
+    @media (max-width: 640px) {
+      .problem-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+        padding: 8px 10px;
+      }
+      .row-right {
+        margin-left: 0;
+        width: 100%;
+        justify-content: space-between;
+      }
+    }
+    </style>
+</head>
+<body>
+<div class="bg-glow"></div>
+<div class="bg-grid"></div>
+<div class="container">
+<!-- Top Navigation / Banner -->
+<header class="header">
+<div class="badge-wrapper">
+<span class="badge">高中物理・力學篇</span>
+<span class="badge badge-accent">第三章 靜力學講義</span>
+<span class="badge badge-stage">範例 1~11 全篇完成（含補齊之範例 6）</span>
+<span class="badge" style="background: rgba(168, 85, 247, 0.2); border-color: rgba(168, 85, 247, 0.4); color: #c084fc;">彈簧與合力（練習 1~12 全數上線）</span>
+<span class="badge" style="background: rgba(244, 63, 94, 0.2); border-color: rgba(244, 63, 94, 0.4); color: #fb7185;">力矩篇（練習 1~7 全數上線）</span>
+<span class="badge" style="background: rgba(16, 185, 129, 0.2); border-color: rgba(16, 185, 129, 0.4); color: #34d399;">靜力平衡篇（練習 1~51 全篇 51 題 100% 全數上線）🔥</span>
+<span class="badge" style="background: rgba(244, 63, 94, 0.2); border-color: rgba(244, 63, 94, 0.4); color: #fb7185;">靜摩擦力篇（練習 1~23 全篇 23 題 100% 全數上線）🔥</span>
+<span class="badge" style="background: rgba(250, 204, 21, 0.2); border-color: rgba(250, 204, 21, 0.5); color: #facc15;">🎉 全冊講義所有題目 100% 大圓滿完結！</span>
+</div>
+<h1 class="main-title">靜力學<span class="gradient-text">互動圖解題庫</span>大廳</h1>
+<p class="subtitle">依原始講義頁碼與題目順序編排・一題一網頁・精緻向量物理圖解・預設遮蔽解答讓學生自主動筆挑戰！</p>
+<div style="margin-top: 18px; display: flex; justify-content: center; gap: 14px; flex-wrap: wrap;">
+<a class="nav-btn primary" href="print.html" style="padding: 10px 24px; font-size: 1rem; font-weight: 700; border-radius: 9999px; box-shadow: 0 4px 16px rgba(0,229,255,0.3); display: inline-flex; align-items: center; gap: 8px;">
+          🖨️ 列印全套題本 / 匯出 PDF（純黑白 A4 題本版・共 104 題）➔
+</a>
+<a class="nav-btn" href="topic_catalog.html" style="padding: 10px 24px; font-size: 1rem; font-weight: 700; border-radius: 9999px; background: linear-gradient(135deg, rgba(168, 85, 247, 0.25), rgba(56, 189, 248, 0.25)); border: 1px solid #38bdf8; color: #fff; box-shadow: 0 4px 16px rgba(56, 189, 248, 0.3); display: inline-flex; align-items: center; gap: 8px; text-decoration: none;">
+          🧭 切換至【6 大題型專題精熟學習地圖】（按題型分類集中刷題）➔
+</a>
+<a class="nav-btn" href="exam_spheres_a4.html" style="padding: 10px 24px; font-size: 1rem; font-weight: 700; border-radius: 9999px; background: linear-gradient(135deg, rgba(16, 185, 129, 0.25), rgba(56, 189, 248, 0.25)); border: 1px solid #10b981; color: #fff; box-shadow: 0 4px 16px rgba(16, 185, 129, 0.3); display: inline-flex; align-items: center; gap: 8px; text-decoration: none;">
+          📄【圓球接觸與堆疊 9 步學習路徑】類題實戰評量卷（A4 一欄式大圖・含解析卷）➔
+</a>
+</div>
+</header>
+<div style="margin: 32px 0 16px 0; display: flex; align-items: center; gap: 12px;">
+<h2 style="font-size: 1.35rem; color: #fff; display: flex; align-items: center; gap: 8px;">
+<span style="display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: #38bdf8;"></span>
+        第一階段：質點、彈簧與共點力平衡（範例 1 ～ 6）
+      </h2>
+</div>
+<!-- Hub Cards Grid 1 -->
+<div class="problem-list">
+<a class="problem-row" href="viewer.html?id=problem1">
+<div class="row-left">
+<span class="row-tag-num">範例 01</span>
+<span class="row-title">彈性繩對折與並聯力學</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">103 指考</span>
+<span class="row-badge page">講義 靜力學-4</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+<a class="problem-row" href="viewer.html?id=problem2">
+<div class="row-left">
+<span class="row-tag-num">範例 02</span>
+<span class="row-title">雙彈簧與雙重物鉛直平衡</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">經典雙彈簧</span>
+<span class="row-badge page">講義 靜力學-4</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+<a class="problem-row" href="viewer.html?id=problem3">
+<div class="row-left">
+<span class="row-tag-num">範例 03</span>
+<span class="row-title">三細線拉銅環之合力運算</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">向量合成</span>
+<span class="row-badge page">講義 靜力學-6</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+<a class="problem-row" href="viewer.html?id=problem4">
+<div class="row-left">
+<span class="row-tag-num">範例 04</span>
+<span class="row-title">細繩與彈簧懸吊平衡</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">封閉三角形核心</span>
+<span class="row-badge page">講義 靜力學-8</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+<a class="problem-row" href="viewer.html?id=problem5">
+<div class="row-left">
+<span class="row-tag-num">範例 05</span>
+<span class="row-title">容器內雙球接觸正向力分析</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">名校聯考經典</span>
+<span class="row-badge page">講義 靜力學-8</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+<a class="problem-row" href="viewer.html?id=problem6">
+<div class="row-left">
+<span class="row-tag-num">範例 06</span>
+<span class="row-title">粗繩懸掛各點張力與水平恆定性</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">範例 6</span>
+<span class="row-badge page">講義 靜力學-9</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+</div>
+<!-- Section 2: 剛體、力矩與轉動平衡篇 (範例 7 ~ 11) -->
+<div style="margin: 48px 0 16px 0; display: flex; align-items: center; gap: 12px;">
+<h2 style="font-size: 1.35rem; color: #fff; display: flex; align-items: center; gap: 8px;">
+<span style="display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: #a855f7;"></span>
+        第二階段：剛體、力矩與轉動平衡（範例 7 ～ 11）
+      </h2>
+<span class="badge" style="background: rgba(168, 85, 247, 0.15); color: #c084fc; border-color: rgba(168, 85, 247, 0.3);">全篇 5 大範例完全收錄</span>
+</div>
+<div class="problem-list">
+<a class="problem-row" href="viewer.html?id=problem7">
+<div class="row-left">
+<span class="row-tag-num">範例 07</span>
+<span class="row-title">高架工作車翻覆臨界力矩</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">99 指考</span>
+<span class="row-badge page">講義 靜力學-12</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+<a class="problem-row" href="viewer.html?id=problem8">
+<div class="row-left">
+<span class="row-tag-num">範例 08</span>
+<span class="row-title">水平輕棒懸重之樞鈕力分析</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">經典定性題</span>
+<span class="row-badge page">講義 靜力學-13</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+<a class="problem-row" href="viewer.html?id=problem9">
+<div class="row-left">
+<span class="row-tag-num">範例 09</span>
+<span class="row-title">斜面物體靜止與等速下滑受力</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">高頻觀念題</span>
+<span class="row-badge page">講義 靜力學-16</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+<a class="problem-row" href="viewer.html?id=problem10">
+<div class="row-left">
+<span class="row-tag-num">範例 10</span>
+<span class="row-title">均勻梯子靠光滑垂直牆面平衡</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">聯考必考</span>
+<span class="row-badge page">講義 靜力學-16</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+<a class="problem-row" href="viewer.html?id=problem11">
+<div class="row-left">
+<span class="row-tag-num">範例 11</span>
+<span class="row-title">水平推力木箱滑動與傾倒臨界</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">剛體大考名題</span>
+<span class="row-badge page">講義 靜力學-17</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+</div>
+<!-- Section 3: 其他練習題（彈簧和合力 1 ~ 12） -->
+<div style="margin: 48px 0 16px 0; display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+<h2 style="font-size: 1.35rem; color: #fff; display: flex; align-items: center; gap: 8px;">
+<span style="display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: #38bdf8;"></span>
+        第三階段：其他練習題・彈簧和合力（練習 1 ～ 12）
+      </h2>
+<span class="badge" style="background: rgba(56, 189, 248, 0.15); color: #38bdf8; border-color: rgba(56, 189, 248, 0.3);">講義第 18～21 頁全數上線</span>
+</div>
+<div class="problem-list">
+<a class="problem-row" href="viewer.html?id=exercise1">
+<div class="row-left">
+<span class="row-tag-num">類題 01</span>
+<span class="row-title">懸掛彈簧與重錘壓木板作用力</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">練習 1</span>
+<span class="row-badge page">講義 靜力學-18</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+<a class="problem-row" href="viewer.html?id=exercise2">
+<div class="row-left">
+<span class="row-tag-num">類題 02</span>
+<span class="row-title">雙彈簧水平並聯推移所需外力</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">練習 2</span>
+<span class="row-badge page">講義 靜力學-18</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+<a class="problem-row" href="viewer.html?id=exercise3">
+<div class="row-left">
+<span class="row-tag-num">類題 03</span>
+<span class="row-title">三彈簧兩物體連繫系統之淨力</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">84 聯考</span>
+<span class="row-badge page">講義 靜力學-18</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+<a class="problem-row" href="viewer.html?id=exercise4">
+<div class="row-left">
+<span class="row-tag-num">類題 04</span>
+<span class="row-title">自重彈簧下垂刻度非均勻伸長</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">聯考題</span>
+<span class="row-badge page">講義 靜力學-18</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+<a class="problem-row" href="viewer.html?id=exercise5">
+<div class="row-left">
+<span class="row-tag-num">類題 05</span>
+<span class="row-title">雙彈簧串聯吊重與平臺交互作用力</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">練習 5</span>
+<span class="row-badge page">講義 靜力學-19</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+<a class="problem-row" href="viewer.html?id=exercise6">
+<div class="row-left">
+<span class="row-tag-num">類題 06</span>
+<span class="row-title">二力反向合力與相互垂直合力</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">練習 6</span>
+<span class="row-badge page">講義 靜力學-19</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+<a class="problem-row" href="viewer.html?id=exercise7">
+<div class="row-left">
+<span class="row-tag-num">類題 07</span>
+<span class="row-title">光滑斜面跨滑輪雙物體平衡</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">練習 7</span>
+<span class="row-badge page">講義 靜力學-19</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+<a class="problem-row" href="viewer.html?id=exercise8">
+<div class="row-left">
+<span class="row-tag-num">類題 08</span>
+<span class="row-title">運河拖船三力平衡多選題</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">練習 8・多選</span>
+<span class="row-badge page">講義 靜力學-19</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+<a class="problem-row" href="viewer.html?id=exercise9">
+<div class="row-left">
+<span class="row-tag-num">類題 09</span>
+<span class="row-title">逆風航行帆船前進推力分解</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">練習 9</span>
+<span class="row-badge page">講義 靜力學-19</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+<a class="problem-row" href="viewer.html?id=exercise10">
+<div class="row-left">
+<span class="row-tag-num">類題 10</span>
+<span class="row-title">雙彈簧垂直彈射裝置伸長量</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">102 指考・練習 10</span>
+<span class="row-badge page">講義 靜力學-20</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+<a class="problem-row" href="viewer.html?id=exercise11">
+<div class="row-left">
+<span class="row-tag-num">類題 11</span>
+<span class="row-title">套裝雙彈簧 F-x 特性圖與彈力常數</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">練習 11</span>
+<span class="row-badge page">講義 靜力學-20</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+<a class="problem-row" href="viewer.html?id=exercise12">
+<div class="row-left">
+<span class="row-tag-num">類題 12</span>
+<span class="row-title">繩索應力應變與極限強度綜合題</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">104 學測・練習 12</span>
+<span class="row-badge page">講義 靜力學-20~21</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+</div>
+<!-- Section 4: 其他練習題（力矩篇 1 ~ 7） -->
+<div style="margin: 48px 0 16px 0; display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+<h2 style="font-size: 1.35rem; color: #fff; display: flex; align-items: center; gap: 8px;">
+<span style="display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: #f43f5e;"></span>
+        第四階段：其他練習題・力矩與轉動平衡（練習 1 ～ 7）
+      </h2>
+<span class="badge" style="background: rgba(244, 63, 94, 0.15); color: #fb7185; border-color: rgba(244, 63, 94, 0.3);">講義第 22～23 頁全數上線</span>
+</div>
+<div class="problem-list">
+<a class="problem-row" href="viewer.html?id=torque1">
+<div class="row-left">
+<span class="row-tag-num">力矩 01</span>
+<span class="row-title">正三角形板三力對頂點之合力矩</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">力矩 1</span>
+<span class="row-badge page">講義 靜力學-22</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+<a class="problem-row" href="viewer.html?id=torque2">
+<div class="row-left">
+<span class="row-tag-num">力矩 02</span>
+<span class="row-title">傾斜細桿兩端質點對中心力矩</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">力矩 2</span>
+<span class="row-badge page">講義 靜力學-22</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+<a class="problem-row" href="viewer.html?id=torque3">
+<div class="row-left">
+<span class="row-tag-num">力矩 03</span>
+<span class="row-title">87聯考雙質點細桿重力合力矩</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">87 聯考</span>
+<span class="row-badge page">講義 靜力學-22</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+<a class="problem-row" href="viewer.html?id=torque4">
+<div class="row-left">
+<span class="row-tag-num">力矩 04</span>
+<span class="row-title">98指考圓輪推上階梯臨界力矩</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">98 指考</span>
+<span class="row-badge page">講義 靜力學-22</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+<a class="problem-row" href="viewer.html?id=torque5">
+<div class="row-left">
+<span class="row-tag-num">力矩 05</span>
+<span class="row-title">任意角度維持平衡之懸掛支點</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">力矩 5</span>
+<span class="row-badge page">講義 靜力學-22</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+<a class="problem-row" href="viewer.html?id=torque6">
+<div class="row-left">
+<span class="row-tag-num">力矩 06</span>
+<span class="row-title">均質木棒懸重臨界翹起平衡</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">力矩 6</span>
+<span class="row-badge page">講義 靜力學-23</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+<a class="problem-row" href="viewer.html?id=torque7">
+<div class="row-left">
+<span class="row-tag-num">力矩 07</span>
+<span class="row-title">107指考均勻直尺力矩平衡</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">107 指考</span>
+<span class="row-badge page">講義 靜力學-23</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+</div>
+<!-- Section 5: 其他練習題（靜力平衡篇 1 ~ 23） -->
+<div style="margin: 48px 0 16px 0; display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+<h2 style="font-size: 1.35rem; color: #fff; display: flex; align-items: center; gap: 8px;">
+<span style="display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: #10b981;"></span>
+        第五階段：其他練習題・靜力平衡（練習 1 ～ 6、8 ～ 23）
+      </h2>
+<span class="badge" style="background: rgba(16, 185, 129, 0.15); color: #34d399; border-color: rgba(16, 185, 129, 0.3);">講義第 24～27 頁共 22 題全數上線</span>
+</div>
+<div class="problem-list">
+<a class="problem-row" href="viewer.html?id=equil1">
+<div class="row-left">
+<span class="row-tag-num">平衡 01</span>
+<span class="row-title">光滑斜面沿斜面與水平施力之正向力</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">平衡 1</span>
+<span class="row-badge page">講義 靜力學-24</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+<a class="problem-row" href="viewer.html?id=equil2">
+<div class="row-left">
+<span class="row-tag-num">平衡 02</span>
+<span class="row-title">雙斜面跨滑輪雙物體平衡比值</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">平衡 2</span>
+<span class="row-badge page">講義 靜力學-24</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+<a class="problem-row" href="viewer.html?id=equil3">
+<div class="row-left">
+<span class="row-tag-num">平衡 03</span>
+<span class="row-title">斜向推力與地面全作用力</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">平衡 3</span>
+<span class="row-badge page">講義 靜力學-24</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+<a class="problem-row" href="viewer.html?id=equil4">
+<div class="row-left">
+<span class="row-tag-num">平衡 04</span>
+<span class="row-title">天花板三繩吊球張力</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">平衡 4</span>
+<span class="row-badge page">講義 靜力學-24</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+<a class="problem-row" href="viewer.html?id=equil5">
+<div class="row-left">
+<span class="row-tag-num">平衡 05</span>
+<span class="row-title">雙光滑斜板圓球支持力</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">平衡 5</span>
+<span class="row-badge page">講義 靜力學-24</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+<a class="problem-row" href="viewer.html?id=equil6">
+<div class="row-left">
+<span class="row-tag-num">平衡 06</span>
+<span class="row-title">雙端水平懸掛彈簧吊重平衡</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">平衡 6</span>
+<span class="row-badge page">講義 靜力學-24</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+<a class="problem-row" href="viewer.html?id=equil8">
+<div class="row-left">
+<span class="row-tag-num">平衡 08</span>
+<span class="row-title">88聯考對摺細繩分開最大距離</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">88年聯考</span>
+<span class="row-badge page">講義 靜力學-25</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+<a class="problem-row" href="viewer.html?id=equil9">
+<div class="row-left">
+<span class="row-tag-num">平衡 09</span>
+<span class="row-title">光滑垂直壁懸球繩張力與支持力</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">平衡 9</span>
+<span class="row-badge page">講義 靜力學-25</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+<a class="problem-row" href="viewer.html?id=equil10">
+<div class="row-left">
+<span class="row-tag-num">平衡 10</span>
+<span class="row-title">斜面固定鉛直擋板球受力判斷</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">平衡 10</span>
+<span class="row-badge page">講義 靜力學-25</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+<a class="problem-row" href="viewer.html?id=equil11">
+<div class="row-left">
+<span class="row-tag-num">平衡 11</span>
+<span class="row-title">大球面輕繩懸小球支持力</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">平衡 11</span>
+<span class="row-badge page">講義 靜力學-25</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+<a class="problem-row" href="viewer.html?id=equil12">
+<div class="row-left">
+<span class="row-tag-num">平衡 12</span>
+<span class="row-title">兩球夾壓縮彈簧平衡形變量</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">平衡 12</span>
+<span class="row-badge page">講義 靜力學-25</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+<a class="problem-row" href="viewer.html?id=equil13">
+<div class="row-left">
+<span class="row-tag-num">平衡 13</span>
+<span class="row-title">斜面雙外力平衡正向力推導</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">平衡 13</span>
+<span class="row-badge page">講義 靜力學-25</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+<a class="problem-row" href="viewer.html?id=equil14">
+<div class="row-left">
+<span class="row-tag-num">平衡 14</span>
+<span class="row-title">93指考掛畫細繩最短長度</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">93年指考</span>
+<span class="row-badge page">講義 靜力學-26</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+<a class="problem-row" href="viewer.html?id=equil15">
+<div class="row-left">
+<span class="row-tag-num">平衡 15</span>
+<span class="row-title">均勻懸繩最低點張力與長度比</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">平衡 15</span>
+<span class="row-badge page">講義 靜力學-26</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+<a class="problem-row" href="viewer.html?id=equil16">
+<div class="row-left">
+<span class="row-tag-num">平衡 16</span>
+<span class="row-title">動態拉起過程懸繩張力變化</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">平衡 16</span>
+<span class="row-badge page">講義 靜力學-26</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+<a class="problem-row" href="viewer.html?id=equil17">
+<div class="row-left">
+<span class="row-tag-num">平衡 17</span>
+<span class="row-title">半球形碗內雙球平衡作用力</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">平衡 17</span>
+<span class="row-badge page">講義 靜力學-26</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+<a class="problem-row" href="viewer.html?id=equil18">
+<div class="row-left">
+<span class="row-tag-num">平衡 18</span>
+<span class="row-title">碗內三球堆疊平衡分析</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">平衡 18</span>
+<span class="row-badge page">講義 靜力學-26</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+<a class="problem-row" href="viewer.html?id=equil19">
+<div class="row-left">
+<span class="row-tag-num">平衡 19</span>
+<span class="row-title">三光滑圓柱堆疊與鋼繩張力</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">平衡 19</span>
+<span class="row-badge page">講義 靜力學-27</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+<a class="problem-row" href="viewer.html?id=equil20">
+<div class="row-left">
+<span class="row-tag-num">平衡 20</span>
+<span class="row-title">雙物體繩簧系統與水平拉力</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">平衡 20</span>
+<span class="row-badge page">講義 靜力學-27</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+<a class="problem-row" href="viewer.html?id=equil21">
+<div class="row-left">
+<span class="row-tag-num">平衡 21</span>
+<span class="row-title">均勻平板小孩行走蹺起臨界問題</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">平衡 21</span>
+<span class="row-badge page">講義 靜力學-27</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+<a class="problem-row" href="viewer.html?id=equil22">
+<div class="row-left">
+<span class="row-tag-num">平衡 22</span>
+<span class="row-title">正三角形面板轉動不移動受力辨析</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">94年指考</span>
+<span class="row-badge page">講義 靜力學-27</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+<a class="problem-row" href="viewer.html?id=equil23">
+<div class="row-left">
+<span class="row-tag-num">平衡 23</span>
+<span class="row-title">均勻桿傾斜懸掛細繩張力分析</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">平衡 23</span>
+<span class="row-badge page">講義 靜力學-27</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+<a class="problem-row" href="viewer.html?id=equil24">
+<div class="row-left">
+<span class="row-tag-num">平衡 24</span>
+<span class="row-title">不均勻木桿分別鉛直提起求棒重</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">平衡 24</span>
+<span class="row-badge page">講義 靜力學-28</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+<a class="problem-row" href="viewer.html?id=equil25">
+<div class="row-left">
+<span class="row-tag-num">平衡 25</span>
+<span class="row-title">水平輕棒懸重與牆壁樞紐作用力</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">平衡 25</span>
+<span class="row-badge page">講義 靜力學-28</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+<a class="problem-row" href="viewer.html?id=equil26">
+<div class="row-left">
+<span class="row-tag-num">平衡 26</span>
+<span class="row-title">均質木棒天花板樞紐與水平繫繩</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">平衡 26</span>
+<span class="row-badge page">講義 靜力學-28</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+<a class="problem-row" href="viewer.html?id=equil27">
+<div class="row-left">
+<span class="row-tag-num">平衡 27</span>
+<span class="row-title">細桿偏離鉛垂線與釘子作用力</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">89聯考</span>
+<span class="row-badge page">講義 靜力學-28</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+<a class="problem-row" href="viewer.html?id=equil28">
+<div class="row-left">
+<span class="row-tag-num">平衡 28</span>
+<span class="row-title">斜立木棒拉繩與地面作用力</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">平衡 28</span>
+<span class="row-badge page">講義 靜力學-28</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+<a class="problem-row" href="viewer.html?id=equil29">
+<div class="row-left">
+<span class="row-tag-num">平衡 29</span>
+<span class="row-title">緩慢拉起木棒之定性變化</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">動態力矩定性分析</span>
+<span class="row-badge page">講義 靜力學-29</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+<a class="problem-row" href="viewer.html?id=equil30">
+<div class="row-left">
+<span class="row-tag-num">平衡 30</span>
+<span class="row-title">斜桿光滑地面與細繩懸吊</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">光滑地面無摩擦力</span>
+<span class="row-badge page">講義 靜力學-29</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+<a class="problem-row" href="viewer.html?id=equil31">
+<div class="row-left">
+<span class="row-tag-num">平衡 31</span>
+<span class="row-title">斜坡上兩人抬木棒重物受力辨析</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">99.大學指考題</span>
+<span class="row-badge page">講義 靜力學-29</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+<a class="problem-row" href="viewer.html?id=equil32">
+<div class="row-left">
+<span class="row-tag-num">平衡 32</span>
+<span class="row-title">梯子靠光滑牆與地面作用力</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">梯子力學模型</span>
+<span class="row-badge page">講義 靜力學-29</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+<a class="problem-row" href="viewer.html?id=equil33">
+<div class="row-left">
+<span class="row-tag-num">平衡 33</span>
+<span class="row-title">輕桿靠光滑牆與參考點力矩量值</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">力矩平衡等價性</span>
+<span class="row-badge page">講義 靜力學-29</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+<a class="problem-row" href="viewer.html?id=equil34">
+<div class="row-left">
+<span class="row-tag-num">平衡 34</span>
+<span class="row-title">梯子防滑拉繩極限與猴子攀爬距離</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">拉力極限安全範圍</span>
+<span class="row-badge page">講義 靜力學-30</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+<a class="problem-row" href="viewer.html?id=equil35">
+<div class="row-left">
+<span class="row-tag-num">平衡 35</span>
+<span class="row-title">輕桿懸掛重物與幾何相似力三角形</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">幾何相似力三角形</span>
+<span class="row-badge page">講義 靜力學-30</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+<a class="problem-row" href="viewer.html?id=equil36">
+<div class="row-left">
+<span class="row-tag-num">平衡 36</span>
+<span class="row-title">均質棒斜倚垂直壁與三力共點幾何</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">三力共點・等腰中線垂直</span>
+<span class="row-badge page">講義 靜力學-30</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+<a class="problem-row" href="viewer.html?id=equil37">
+<div class="row-left">
+<span class="row-tag-num">平衡 37</span>
+<span class="row-title">均勻棒斜跨粗糙地面與光滑斜面</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">地面綜合作用力</span>
+<span class="row-badge page">講義 靜力學-30</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+<a class="problem-row" href="viewer.html?id=equil38">
+<div class="row-left">
+<span class="row-tag-num">平衡 38</span>
+<span class="row-title">均勻木棍斜靠光滑半球面的切點力矩</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">幾何切線半徑力臂</span>
+<span class="row-badge page">講義 靜力學-30</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+<a class="problem-row" href="viewer.html?id=equil39">
+<div class="row-left">
+<span class="row-tag-num">平衡 39</span>
+<span class="row-title">直角三角板懸掛平衡與質量比</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">懸掛力矩比值</span>
+<span class="row-badge page">講義 靜力學-31</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+<a class="problem-row" href="viewer.html?id=equil40">
+<div class="row-left">
+<span class="row-tag-num">平衡 40</span>
+<span class="row-title">粗糙雙壁面斜倚梯子受力方向分析</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">三力匯聚與摩擦阻力</span>
+<span class="row-badge page">講義 靜力學-31</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+<a class="problem-row" href="viewer.html?id=equil41">
+<div class="row-left">
+<span class="row-tag-num">平衡 41</span>
+<span class="row-title">三彈簧 120 度對稱懸吊球體與形變多解</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">彈簧拉推形變多解</span>
+<span class="row-badge page">講義 靜力學-31</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+<a class="problem-row" href="viewer.html?id=equil42">
+<div class="row-left">
+<span class="row-tag-num">平衡 42</span>
+<span class="row-title">均勻木棒斜置光滑半球碗之邊緣力矩</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">圓周弦長力臂幾何</span>
+<span class="row-badge page">講義 靜力學-31</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+<a class="problem-row" href="viewer.html?id=equil43">
+<div class="row-left">
+<span class="row-tag-num">平衡 43</span>
+<span class="row-title">小童沿木板等速下滑之牆面與地面力變化</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">等速下滑與系統合力恆定</span>
+<span class="row-badge page">講義 靜力學-31</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+<a class="problem-row" href="viewer.html?id=equil44">
+<div class="row-left">
+<span class="row-tag-num">平衡 44</span>
+<span class="row-title">雙繩共點懸掛木棒與幾何正弦定理</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">正弦定理・拉密定理</span>
+<span class="row-badge page">講義 靜力學-32</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+<a class="problem-row" href="viewer.html?id=equil45">
+<div class="row-left">
+<span class="row-tag-num">平衡 45</span>
+<span class="row-title">雙繩懸掛均勻木棒與直角中線定理</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">直角三角形斜邊中線</span>
+<span class="row-badge page">講義 靜力學-32</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+<a class="problem-row" href="viewer.html?id=equil46">
+<div class="row-left">
+<span class="row-tag-num">平衡 46</span>
+<span class="row-title">輪軸互換力臂與幾何平均物重</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">輪軸力矩幾何平均</span>
+<span class="row-badge page">講義 靜力學-32</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+<a class="problem-row" href="viewer.html?id=equil47">
+<div class="row-left">
+<span class="row-tag-num">平衡 47</span>
+<span class="row-title">輪軸加速吊升與物體繩張力矩【105指考】</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">105指考真題</span>
+<span class="row-badge page">講義 靜力學-32</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+<a class="problem-row" href="viewer.html?id=equil48">
+<div class="row-left">
+<span class="row-tag-num">平衡 48</span>
+<span class="row-title">斜傾木棒樞紐施力方向與夾角範圍</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">樞紐施力角度不等式</span>
+<span class="row-badge page">講義 靜力學-33</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+<a class="problem-row" href="viewer.html?id=equil49">
+<div class="row-left">
+<span class="row-tag-num">平衡 49</span>
+<span class="row-title">雙斜面夾光滑圓球的受力分析</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">拉密定理・共點三力</span>
+<span class="row-badge page">講義 靜力學-33</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+<a class="problem-row" href="viewer.html?id=equil50">
+<div class="row-left">
+<span class="row-tag-num">平衡 50</span>
+<span class="row-title">雙斜面支撐均勻木棒與物體位置</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">合力與力矩雙重平衡</span>
+<span class="row-badge page">講義 靜力學-33</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+<a class="problem-row" href="viewer.html?id=equil51">
+<div class="row-left">
+<span class="row-tag-num">平衡 51</span>
+<span class="row-title">起重機臂吊物與鋼索張力矩平衡</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">110年指考力學真題</span>
+<span class="row-badge page">講義 靜力學-33</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+</div>
+<!-- Section 5: 靜摩擦力篇 (練習 1 ~ 23) -->
+<div style="margin: 48px 0 16px 0; display: flex; align-items: center; gap: 12px;">
+<h2 style="font-size: 1.35rem; color: #fff; display: flex; align-items: center; gap: 8px;">
+<span style="display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: #f43f5e;"></span>
+        第五階段：靜摩擦力篇（練習 1 ～ 23 全數上線）🔥
+      </h2>
+<span class="badge" style="background: rgba(244, 63, 94, 0.15); color: #fb7185; border-color: rgba(244, 63, 94, 0.3);">全篇 23 大題 100% 完整收錄</span>
+</div>
+<div class="problem-list">
+<a class="problem-row" href="viewer.html?id=frict1">
+<div class="row-left">
+<span class="row-tag-num">摩擦 01</span>
+<span class="row-title">筷子夾滷蛋平衡之受力分析</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">平衡狀態與靜摩擦力本質</span>
+<span class="row-badge page">講義 靜力學-34</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+<a class="problem-row" href="viewer.html?id=frict2">
+<div class="row-left">
+<span class="row-tag-num">摩擦 02</span>
+<span class="row-title">輪胎胎紋之物理機制與安全排水</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">生活物理・摩擦抓地力</span>
+<span class="row-badge page">講義 靜力學-34</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+<a class="problem-row" href="viewer.html?id=frict3">
+<div class="row-left">
+<span class="row-tag-num">摩擦 03</span>
+<span class="row-title">疊合楔形木塊與桌面間摩擦力分析</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">系統整體法・內力與外力</span>
+<span class="row-badge page">講義 靜力學-34</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+<a class="problem-row" href="viewer.html?id=frict4">
+<div class="row-left">
+<span class="row-tag-num">摩擦 04</span>
+<span class="row-title">斜面滑輪系統保持靜止之質量比範圍</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">91年研究試題・雙向滑動臨界</span>
+<span class="row-badge page">講義 靜力學-34</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+<a class="problem-row" href="viewer.html?id=frict5">
+<div class="row-left">
+<span class="row-tag-num">摩擦 05</span>
+<span class="row-title">疊合雙塊相對滑動之臨界摩擦係數比</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">疊塊隔離法・相對滑動條件</span>
+<span class="row-badge page">講義 靜力學-34</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+<a class="problem-row" href="viewer.html?id=frict6">
+<div class="row-left">
+<span class="row-tag-num">摩擦 06</span>
+<span class="row-title">小蟲爬半球碗壁之最大鉛直高度</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">曲面切向平衡・最大靜摩擦</span>
+<span class="row-badge page">講義 靜力學-35</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+<a class="problem-row" href="viewer.html?id=frict7">
+<div class="row-left">
+<span class="row-tag-num">摩擦 07</span>
+<span class="row-title">雙層木塊滑輪連接體拉動臨界分析</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">複式滑輪連接體・臨界拉力</span>
+<span class="row-badge page">講義 靜力學-35</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+<a class="problem-row" href="viewer.html?id=frict8">
+<div class="row-left">
+<span class="row-tag-num">摩擦 08</span>
+<span class="row-title">繩結共點力傳遞與實際靜摩擦力判斷</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">繩結平衡・被動摩擦力判定</span>
+<span class="row-badge page">講義 靜力學-35</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+<a class="problem-row" href="viewer.html?id=frict9">
+<div class="row-left">
+<span class="row-tag-num">摩擦 09</span>
+<span class="row-title">跨越平台與斜面繩子自滑之摩擦係數</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">柔性繩分段平衡臨界</span>
+<span class="row-badge page">講義 靜力學-35</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+<a class="problem-row" href="viewer.html?id=frict10">
+<div class="row-left">
+<span class="row-tag-num">摩擦 10</span>
+<span class="row-title">等加速滑動與動摩擦係數計算</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">等加速度運動學與動摩擦</span>
+<span class="row-badge page">講義 靜力學-35</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+<a class="problem-row" href="viewer.html?id=frict11">
+<div class="row-left">
+<span class="row-tag-num">摩擦 11</span>
+<span class="row-title">正立方體滑動與轉動同時臨界條件</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">滑動與翻倒臨界偶合</span>
+<span class="row-badge page">講義 靜力學-36</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+<a class="problem-row" href="viewer.html?id=frict12">
+<div class="row-left">
+<span class="row-tag-num">摩擦 12</span>
+<span class="row-title">楔形木塊地面摩擦力判斷</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">質點系統與動態反作用力</span>
+<span class="row-badge page">講義 靜力學-36</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+<a class="problem-row" href="viewer.html?id=frict13">
+<div class="row-left">
+<span class="row-tag-num">摩擦 13</span>
+<span class="row-title">斜面上兩方塊水平推力分析</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">牛頓第二定律與約束運動</span>
+<span class="row-badge page">講義 靜力學-36</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+<a class="problem-row" href="viewer.html?id=frict14">
+<div class="row-left">
+<span class="row-tag-num">摩擦 14</span>
+<span class="row-title">物體下滑與斜面維持靜止條件</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">斜面反作用力與底面臨界摩擦</span>
+<span class="row-badge page">講義 靜力學-36</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+<a class="problem-row" href="viewer.html?id=frict15">
+<div class="row-left">
+<span class="row-tag-num">摩擦 15</span>
+<span class="row-title">堆疊楔形木塊砝碼滑動判斷</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">自鎖效應與臨界滑動角</span>
+<span class="row-badge page">講義 靜力學-37</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+<a class="problem-row" href="viewer.html?id=frict16">
+<div class="row-left">
+<span class="row-tag-num">摩擦 16</span>
+<span class="row-title">木棒細繩繫牆臨界摩擦係數</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">96 指考經典試題</span>
+<span class="row-badge page">講義 靜力學-37</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+<a class="problem-row" href="viewer.html?id=frict17">
+<div class="row-left">
+<span class="row-tag-num">摩擦 17</span>
+<span class="row-title">小蟲爬折線斜面之極限段數</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">摩擦角與極限爬坡分析</span>
+<span class="row-badge page">講義 靜力學-37</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+<a class="problem-row" href="viewer.html?id=frict18">
+<div class="row-left">
+<span class="row-tag-num">摩擦 18</span>
+<span class="row-title">木棒斜靠光滑半圓柱正向力分析</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">力矩平衡與支承正向力</span>
+<span class="row-badge page">講義 靜力學-37</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+<a class="problem-row" href="viewer.html?id=frict19">
+<div class="row-left">
+<span class="row-tag-num">摩擦 19</span>
+<span class="row-title">平行斜面外力極值比推導</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">斜面滑動極限與摩擦係數比</span>
+<span class="row-badge page">講義 靜力學-37</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+<a class="problem-row" href="viewer.html?id=frict20">
+<div class="row-left">
+<span class="row-tag-num">摩擦 20</span>
+<span class="row-title">斜面總作用力恆定性分析</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">總約束力與二力平衡本質</span>
+<span class="row-badge page">講義 靜力學-38</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+<a class="problem-row" href="viewer.html?id=frict21">
+<div class="row-left">
+<span class="row-tag-num">摩擦 21</span>
+<span class="row-title">圓柱受力與參考點力矩平衡</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">101 指考多選題</span>
+<span class="row-badge page">講義 靜力學-38</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+<a class="problem-row" href="viewer.html?id=frict22">
+<div class="row-left">
+<span class="row-tag-num">摩擦 22</span>
+<span class="row-title">鑷子夾球受力分析與臨界摩擦</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">109 指考大題</span>
+<span class="row-badge page">講義 靜力學-38</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+<a class="problem-row" href="viewer.html?id=frict23">
+<div class="row-left">
+<span class="row-tag-num">摩擦 23</span>
+<span class="row-title">雙箱滑輪連接等速移動分析</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">111 分科測驗名題</span>
+<span class="row-badge page">講義 靜力學-39 (完結篇)</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+</div>
+<!-- Section 6: 延伸自主學習與動態實驗室 -->
+<div style="margin: 48px 0 16px 0; display: flex; align-items: center; gap: 12px;">
+<h2 style="font-size: 1.35rem; color: #fff; display: flex; align-items: center; gap: 8px;">
+<span style="display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: #fbbf24;"></span>
+        第六階段：延伸自主學習與動態模擬實驗室
+      </h2>
+</div>
+<div class="problem-list">
+<a class="problem-row" href="practice.html">
+<div class="row-left">
+<span class="row-tag-num">題目</span>
+<span class="row-title">自我檢測：37°-53° 懸吊力學挑戰題</span>
+</div>
+<div class="row-right">
+<span class="row-badge exam">37° - 53° 變式</span>
+<span class="row-arrow">➔</span>
+</div>
+</a>
+</div>
+<!-- Extra Feature Banner -->
+<div style="margin-top: 36px; padding: 20px 24px; background: rgba(68, 138, 255, 0.08); border: 1px solid rgba(68, 138, 255, 0.25); border-radius: var(--radius-md); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px;">
+<div>
+<h4 style="font-size: 1.1rem; color: #fff; margin-bottom: 4px;">🎛️ 想要即時拖曳角度與彈簧模擬動態變化？</h4>
+<p style="font-size: 0.92rem; color: var(--text-muted);">
+          探索「範例 4 動態力學實驗室」，支援任意調整懸吊角度、彈力係數並即時顯示封閉三角形動態形變。
+        </p>
+</div>
+<a class="nav-btn primary" href="example4_interactive.html" style="font-size: 0.92rem; padding: 10px 18px;">
+        開啟動態實驗室 ➔
+      </a>
+</div>
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+      if (window.renderMathInElement) {
+        renderMathInElement(document.body, {
+          delimiters: [
+            { left: "$$", right: "$$", display: true },
+            { left: "$", right: "$", display: false }
+          ]
+        });
+      }
+    });
+  </script>
+</body>
+</html>

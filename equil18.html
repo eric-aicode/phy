@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>靜力平衡 18：碗內三球堆疊平衡綜合受力分析 | 高中物理靜力學</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    .method-toggle-container {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin: 18px 0 14px;
+      flex-wrap: wrap;
+    }
+    .method-btn {
+      padding: 7px 18px;
+      border-radius: 20px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      cursor: pointer;
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #94a3b8;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+    .method-btn:hover {
+      color: #fff;
+      border-color: rgba(0, 229, 255, 0.4);
+      background: rgba(0, 229, 255, 0.08);
+    }
+    .method-btn.active {
+      background: rgba(0, 229, 255, 0.18);
+      border-color: #00e5ff;
+      color: #00e5ff;
+      box-shadow: 0 0 14px rgba(0, 229, 255, 0.35);
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-glow"></div>
+  <div class="bg-grid"></div>
+
+  <div class="container">
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+      <div class="nav-links">
+        <a href="index.html" class="nav-btn primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          回目錄
+        </a>
+        <a href="equil17.html" class="nav-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          上一題 (平衡 17)
+        </a>
+        <a href="equil19.html" class="nav-btn">
+          下一題 (平衡 19)
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+      <div class="badge-wrapper">
+        <span class="badge badge-page">講義 靜力學-26</span>
+        <span class="badge badge-exam">整體法與隔離法</span>
+        <span class="badge badge-accent">靜力平衡・練習 18</span>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+      <h1 class="main-title">靜力平衡 18：<span class="gradient-text">碗內三球堆疊平衡分析</span></h1>
+      <p class="subtitle">三球系統整體平衡求碗壁支持力・頂層球隔離法・底層球正交平衡推導</p>
+    </header>
+
+    <!-- Problem Showcase Card -->
+    <section class="card problem-card">
+      <div class="card-header">
+        <div class="card-icon">📖</div>
+        <div>
+          <h2>題目內容</h2>
+          <span class="card-tag">聯考與分科測驗壓軸經典題</span>
+        </div>
+      </div>
+
+      <div class="problem-body">
+        <p>
+          如圖所示，將三個半徑皆為 $R$、重量皆為 $W$ 的相同小球 $A$、$B$、$C$ 靜置於半徑為 $3R$ 的光滑大碗內。已知頂部 $C$ 球之球心恰好位在大碗之圓心處，且三球球心連線構成一正三角形。試求：<br>
+          (1) $B$、$C$ 兩球間之相互作用力為多少？<br>
+          (2) $A$、$B$ 兩球間之相互作用力為多少？<br>
+          (3) $A$ 球作用於碗壁之力為多少？
+        </p>
+
+        <!-- Method Toggle Buttons -->
+        <div class="method-toggle-container">
+          <button id="btnMethod1" class="method-btn active" onclick="switchMethod('method1')">
+            <span>🏛️ 解法一：整體法＋隔離法（三步標準解）</span>
+          </button>
+          <button id="btnMethod2" class="method-btn" onclick="switchMethod('method2')">
+            <span>🎯 解法二：頂球拉密＋底球共線力三角形</span>
+          </button>
+        </div>
+
+        <!-- SVG Diagram -->
+        <div class="diagram-wrapper">
+          <svg viewBox="0 0 760 380" class="physics-svg" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="arrow-blue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#38bdf8"/>
+              </marker>
+              <marker id="arrow-red" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#f43f5e"/>
+              </marker>
+              <marker id="arrow-green" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#10b981"/>
+              </marker>
+              <marker id="arrow-amber" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#f59e0b"/>
+              </marker>
+              <radialGradient id="sphereA" cx="35%" cy="35%" r="65%">
+                <stop offset="0%" stop-color="#bae6fd"/>
+                <stop offset="50%" stop-color="#38bdf8"/>
+                <stop offset="100%" stop-color="#0284c7"/>
+              </radialGradient>
+              <radialGradient id="sphereB" cx="35%" cy="35%" r="65%">
+                <stop offset="0%" stop-color="#fed7aa"/>
+                <stop offset="50%" stop-color="#f97316"/>
+                <stop offset="100%" stop-color="#c2410c"/>
+              </radialGradient>
+              <radialGradient id="sphereC" cx="35%" cy="35%" r="65%">
+                <stop offset="0%" stop-color="#dcfce7"/>
+                <stop offset="50%" stop-color="#22c55e"/>
+                <stop offset="100%" stop-color="#15803d"/>
+              </radialGradient>
+            </defs>
+
+            <!-- Bowl Center O at (240, 115). Radius 3R = 195 px. -->
+            <line x1="30" y1="115" x2="450" y2="115" stroke="#94a3b8" stroke-width="2"/>
+            <path d="M 45 115 A 195 195 0 0 0 435 115" fill="rgba(30, 41, 59, 0.4)" stroke="#64748b" stroke-width="4"/>
+
+            <!-- Bowl Stand -->
+            <path d="M 180 305 L 300 305 L 320 345 L 160 345 Z" fill="rgba(15, 23, 42, 0.8)" stroke="#475569" stroke-width="1.5"/>
+            <line x1="140" y1="345" x2="340" y2="345" stroke="#94a3b8" stroke-width="2"/>
+
+            <!-- Equilateral triangle dashed line -->
+            <polygon points="240,115 175,228 305,228" fill="rgba(245, 158, 11, 0.08)" stroke="#f59e0b" stroke-dasharray="3,3" stroke-width="1.5"/>
+
+            <!-- Sphere A (Bottom Left) -->
+            <circle cx="175" cy="228" r="65" fill="url(#sphereA)" stroke="#38bdf8" stroke-width="1.5" opacity="0.9"/>
+            <circle cx="175" cy="228" r="4.5" fill="#ffffff"/>
+            <text x="175" y="233" fill="#ffffff" font-size="15" font-weight="800" text-anchor="middle">A</text>
+
+            <!-- Sphere B (Bottom Right) -->
+            <circle cx="305" cy="228" r="65" fill="url(#sphereB)" stroke="#f97316" stroke-width="1.5" opacity="0.9"/>
+            <circle cx="305" cy="228" r="4.5" fill="#ffffff"/>
+            <text x="305" y="233" fill="#ffffff" font-size="15" font-weight="800" text-anchor="middle">B</text>
+
+            <!-- Sphere C (Top Center) -->
+            <circle cx="240" cy="115" r="65" fill="url(#sphereC)" stroke="#22c55e" stroke-width="1.5" opacity="0.9"/>
+            <circle cx="240" cy="115" r="4.5" fill="#ffffff"/>
+            <text x="240" y="120" fill="#ffffff" font-size="15" font-weight="800" text-anchor="middle">C</text>
+
+            <!-- Normal Forces from Bowl: N_A and N_B pointing toward C -->
+            <line x1="120" y1="323" x2="160" y2="254" stroke="#38bdf8" stroke-width="3" marker-end="url(#arrow-blue)"/>
+            <text x="100" y="290" fill="#38bdf8" font-size="14" font-weight="800">N_A</text>
+
+            <line x1="360" y1="323" x2="320" y2="254" stroke="#38bdf8" stroke-width="3" marker-end="url(#arrow-blue)"/>
+            <text x="370" y="290" fill="#38bdf8" font-size="14" font-weight="800">N_B</text>
+
+            <!-- Right Panel: Dual-Method Display Container -->
+            <g transform="translate(450, 20)">
+              <rect x="0" y="0" width="290" height="348" rx="12" fill="rgba(15, 23, 42, 0.75)" stroke="#334155" stroke-width="1.5"/>
+
+              <!-- ================= METHOD 1: OVERALL + ISOLATION ================= -->
+              <g id="groupMethod1">
+                <text x="145" y="26" fill="#38bdf8" font-size="15" font-weight="700" text-anchor="middle">解法一：整體法＋隔離法</text>
+
+                <!-- Box 1: Overall System (3 balls) -->
+                <rect x="15" y="38" width="260" height="92" rx="6" fill="rgba(30, 41, 59, 0.6)" stroke="#475569" stroke-width="1"/>
+                <text x="25" y="58" fill="#f59e0b" font-size="13" font-weight="700">(1) 整體系統（A+B+C）：</text>
+                <text x="35" y="80" fill="#cbd5e1" font-size="12">鉛直平衡：2 N_B·cos 30° = 3W</text>
+                <text x="35" y="102" fill="#38bdf8" font-size="13" font-family="'Fira Code', monospace">⇒ N_A = N_B = √3 W</text>
+                <text x="35" y="120" fill="#94a3b8" font-size="11">（即第 (3) 小題答案：√3 W）</text>
+
+                <!-- Box 2: Top Ball C -->
+                <rect x="15" y="138" width="260" height="88" rx="6" fill="rgba(30, 41, 59, 0.6)" stroke="#475569" stroke-width="1"/>
+                <text x="25" y="158" fill="#22c55e" font-size="13" font-weight="700">(2) 隔離頂部 C 球：</text>
+                <text x="35" y="180" fill="#cbd5e1" font-size="12">鉛直平衡：2 F_BC·cos 30° = W</text>
+                <text x="35" y="205" fill="#22c55e" font-size="13" font-family="'Fira Code', monospace">⇒ F_BC =</text>
+                <g transform="translate(112, 202)">
+                  <text x="0" y="-4" fill="#22c55e" font-size="11" font-family="'Fira Code', monospace" text-anchor="middle">W</text>
+                  <line x1="-10" y1="-1" x2="10" y2="-1" stroke="#22c55e" stroke-width="1.2"/>
+                  <text x="0" y="10" fill="#22c55e" font-size="11" font-family="'Fira Code', monospace" text-anchor="middle">√3</text>
+                </g>
+                <text x="130" y="205" fill="#22c55e" font-size="13" font-family="'Fira Code', monospace">=</text>
+                <g transform="translate(152, 202)">
+                  <text x="0" y="-4" fill="#22c55e" font-size="11" font-family="'Fira Code', monospace" text-anchor="middle">√3</text>
+                  <line x1="-10" y1="-1" x2="10" y2="-1" stroke="#22c55e" stroke-width="1.2"/>
+                  <text x="0" y="10" fill="#22c55e" font-size="11" font-family="'Fira Code', monospace" text-anchor="middle">3</text>
+                </g>
+                <text x="168" y="205" fill="#22c55e" font-size="13" font-family="'Fira Code', monospace">W</text>
+                <text x="35" y="221" fill="#94a3b8" font-size="11">（即第 (1) 小題答案）</text>
+
+                <!-- Box 3: Bottom Ball B -->
+                <rect x="15" y="234" width="260" height="98" rx="6" fill="rgba(30, 41, 59, 0.6)" stroke="#475569" stroke-width="1"/>
+                <text x="25" y="254" fill="#f97316" font-size="13" font-weight="700">(3) 隔離底層 B 球：</text>
+                <text x="35" y="274" fill="#cbd5e1" font-size="12">水平平衡：F_AB = (N_B - F_BC)·sin 30°</text>
+                <text x="35" y="297" fill="#f97316" font-size="12" font-family="'Fira Code', monospace">F_AB =</text>
+                <g transform="translate(90, 294)">
+                  <text x="0" y="-4" fill="#f97316" font-size="11" font-family="'Fira Code', monospace" text-anchor="middle">2√3</text>
+                  <line x1="-14" y1="-1" x2="14" y2="-1" stroke="#f97316" stroke-width="1.2"/>
+                  <text x="0" y="10" fill="#f97316" font-size="11" font-family="'Fira Code', monospace" text-anchor="middle">3</text>
+                </g>
+                <text x="108" y="297" fill="#f97316" font-size="12" font-family="'Fira Code', monospace">W ×</text>
+                <g transform="translate(142, 294)">
+                  <text x="0" y="-4" fill="#f97316" font-size="11" font-family="'Fira Code', monospace" text-anchor="middle">1</text>
+                  <line x1="-8" y1="-1" x2="8" y2="-1" stroke="#f97316" stroke-width="1.2"/>
+                  <text x="0" y="10" fill="#f97316" font-size="11" font-family="'Fira Code', monospace" text-anchor="middle">2</text>
+                </g>
+                <text x="35" y="322" fill="#f97316" font-size="13" font-family="'Fira Code', monospace">⇒ F_AB =</text>
+                <g transform="translate(112, 319)">
+                  <text x="0" y="-4" fill="#f97316" font-size="11" font-family="'Fira Code', monospace" text-anchor="middle">√3</text>
+                  <line x1="-10" y1="-1" x2="10" y2="-1" stroke="#f97316" stroke-width="1.2"/>
+                  <text x="0" y="10" fill="#f97316" font-size="11" font-family="'Fira Code', monospace" text-anchor="middle">3</text>
+                </g>
+                <text x="128" y="322" fill="#f97316" font-size="13" font-family="'Fira Code', monospace">W</text>
+              </g>
+
+              <!-- ================= METHOD 2: LAMI + COLLINEAR TRIANGLE ================= -->
+              <g id="groupMethod2" style="display: none;">
+                <!-- Section A: Top Ball C with Lami -->
+                <text x="145" y="22" fill="#22c55e" font-size="13" font-weight="800" text-anchor="middle">① 頂球 C：拉密定理 (Lami)</text>
+                <circle cx="145" cy="72" r="3.5" fill="#fff"/>
+                <text x="138" y="65" fill="#fff" font-size="11" font-weight="700">C</text>
+
+                <!-- Vector W down from C -->
+                <line x1="145" y1="72" x2="145" y2="120" stroke="#f43f5e" stroke-width="2.5" marker-end="url(#arrow-red)"/>
+                <text x="152" y="105" fill="#f43f5e" font-size="11" font-weight="700">W</text>
+
+                <!-- Vector F_AC (up-right) -->
+                <line x1="145" y1="72" x2="175" y2="28" stroke="#38bdf8" stroke-width="2.5" marker-end="url(#arrow-blue)"/>
+                <text x="180" y="38" fill="#38bdf8" font-size="11" font-weight="700">F_AC</text>
+
+                <!-- Vector F_BC (up-left) -->
+                <line x1="145" y1="72" x2="115" y2="28" stroke="#f59e0b" stroke-width="2.5" marker-end="url(#arrow-amber)"/>
+                <text x="82" y="38" fill="#f59e0b" font-size="11" font-weight="700">F_BC</text>
+
+                <!-- Angles around C -->
+                <path d="M 160 50 A 30 30 0 0 0 130 50" fill="none" stroke="#22c55e" stroke-width="1.5"/>
+                <text x="145" y="44" fill="#22c55e" font-size="11" font-weight="700" text-anchor="middle">60°</text>
+                <text x="165" y="95" fill="#94a3b8" font-size="10">150°</text>
+
+                <!-- Lami calculation for C with horizontal line -->
+                <g transform="translate(62, 138)">
+                  <text x="0" y="-4" fill="#cbd5e1" font-size="10" text-anchor="middle">W</text>
+                  <line x1="-12" y1="-1" x2="12" y2="-1" stroke="#cbd5e1" stroke-width="1"/>
+                  <text x="0" y="10" fill="#cbd5e1" font-size="10" text-anchor="middle">sin60°</text>
+                </g>
+                <text x="82" y="138" fill="#cbd5e1" font-size="11">=</text>
+                <g transform="translate(108, 138)">
+                  <text x="0" y="-4" fill="#cbd5e1" font-size="10" text-anchor="middle">F_BC</text>
+                  <line x1="-14" y1="-1" x2="14" y2="-1" stroke="#cbd5e1" stroke-width="1"/>
+                  <text x="0" y="10" fill="#cbd5e1" font-size="10" text-anchor="middle">sin150°</text>
+                </g>
+                <text x="135" y="138" fill="#cbd5e1" font-size="11">⇒ F_BC =</text>
+                <g transform="translate(196, 138)">
+                  <text x="0" y="-4" fill="#22c55e" font-size="11" font-weight="800" text-anchor="middle">W</text>
+                  <line x1="-12" y1="-1" x2="12" y2="-1" stroke="#22c55e" stroke-width="1.2"/>
+                  <text x="0" y="10" fill="#22c55e" font-size="11" font-weight="800" text-anchor="middle">√3</text>
+                </g>
+
+                <!-- Divider -->
+                <line x1="15" y1="150" x2="275" y2="150" stroke="#334155" stroke-dasharray="3,3"/>
+
+                <!-- Section B: Bottom Ball B with Collinear reduction -->
+                <text x="145" y="170" fill="#f97316" font-size="13" font-weight="800" text-anchor="middle">② 底球 B：共線力合成直角三角形</text>
+                <text x="145" y="186" fill="#94a3b8" font-size="10.5" text-anchor="middle">N_B(↖) 與 F_BC(↘) 反向共線！合力 F_net ↖</text>
+
+                <!-- Force Triangle for B: W(down), F_AB(right), F_net(up-left) -->
+                <line x1="95" y1="202" x2="95" y2="272" stroke="#f43f5e" stroke-width="2.5" marker-end="url(#arrow-red)"/>
+                <text x="75" y="240" fill="#f43f5e" font-size="12" font-weight="700" text-anchor="end">W(↓)</text>
+
+                <line x1="95" y1="272" x2="135" y2="272" stroke="#10b981" stroke-width="2.5" marker-end="url(#arrow-green)"/>
+                <text x="115" y="292" fill="#10b981" font-size="12" font-weight="700" text-anchor="middle">F_AB (→)</text>
+
+                <line x1="135" y1="272" x2="98" y2="206" stroke="#38bdf8" stroke-width="2.5" marker-end="url(#arrow-blue)"/>
+                <text x="140" y="235" fill="#38bdf8" font-size="11" font-weight="800">F_net(↖)</text>
+
+                <path d="M 95 222 A 20 20 0 0 0 105 220" fill="none" stroke="#f59e0b" stroke-width="1.2"/>
+                <text x="106" y="218" fill="#f59e0b" font-size="10" font-weight="700">30°</text>
+
+                <!-- Triangle formulas with horizontal line -->
+                <rect x="148" y="202" width="128" height="96" rx="4" fill="rgba(30, 41, 59, 0.7)" stroke="#475569" stroke-width="1"/>
+                <text x="154" y="218" fill="#10b981" font-size="10.5" font-weight="700">F_AB = W·tan30°</text>
+                <text x="154" y="238" fill="#10b981" font-size="11" font-weight="700">=</text>
+                <g transform="translate(178, 235)">
+                  <text x="0" y="-4" fill="#10b981" font-size="10.5" font-weight="700" text-anchor="middle">√3</text>
+                  <line x1="-8" y1="-1" x2="8" y2="-1" stroke="#10b981" stroke-width="1.2"/>
+                  <text x="0" y="10" fill="#10b981" font-size="10.5" font-weight="700" text-anchor="middle">3</text>
+                </g>
+                <text x="190" y="238" fill="#10b981" font-size="11" font-weight="700">W</text>
+
+                <text x="154" y="260" fill="#38bdf8" font-size="10.5">F_net =</text>
+                <g transform="translate(202, 257)">
+                  <text x="0" y="-4" fill="#38bdf8" font-size="10.5" text-anchor="middle">2W</text>
+                  <line x1="-10" y1="-1" x2="10" y2="-1" stroke="#38bdf8" stroke-width="1"/>
+                  <text x="0" y="10" fill="#38bdf8" font-size="10.5" text-anchor="middle">√3</text>
+                </g>
+                <text x="154" y="278" fill="#38bdf8" font-size="10.5">N_B = F_net + F_BC</text>
+                <text x="160" y="293" fill="#38bdf8" font-size="11" font-weight="700">= √3 W</text>
+              </g>
+            </g>
+          </svg>
+
+          <!-- Educational Guide Box (Method 1) -->
+          <div id="guideMethod1" style="max-width: 740px; margin: 12px auto 0; background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.25); border-radius: 8px; padding: 12px 18px; text-align: left; font-size: 0.88rem; line-height: 1.6; color: #cbd5e1;">
+            <div style="font-weight: 700; color: #38bdf8; display: flex; align-items: center; gap: 6px; margin-bottom: 4px;">
+              <span>🏛️ 解法一【整體法＋隔離法】口訣：先包成整體消內力，再拆單球求推力！</span>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 4px; font-size: 0.84rem;">
+              <div>• <strong>整體系統（A+B+C）</strong>：內部的互推力全部抵消，總重 $3W$，兩側碗壁對稱支撐，鉛直列式 $2N_B \cos 30^\circ = 3W \implies \mathbf{N_B = \sqrt{3}W}$（秒解第 3 小題）。</div>
+              <div>• <strong>隔離頂球 C</strong>：受重力 $W$ 及底層兩球斜向支持，鉛直列式 $2F_{BC} \cos 30^\circ = W \implies \mathbf{F_{BC} = \frac{\sqrt{3}}{3}W}$（秒解第 1 小題）。</div>
+              <div>• <strong>隔離底球 B</strong>：受到四個力，水平列式 $F_{AB} = (N_B - F_{BC})\sin 30^\circ \implies \mathbf{F_{AB} = \frac{\sqrt{3}}{3}W}$（秒解第 2 小題）。</div>
+            </div>
+          </div>
+
+          <!-- Educational Guide Box (Method 2) -->
+          <div id="guideMethod2" style="display: none; max-width: 740px; margin: 12px auto 0; background: rgba(245, 158, 11, 0.08); border: 1px solid rgba(245, 158, 11, 0.25); border-radius: 8px; padding: 12px 18px; text-align: left; font-size: 0.88rem; line-height: 1.6; color: #cbd5e1;">
+            <div style="font-weight: 700; color: #fbbf24; display: flex; align-items: center; gap: 6px; margin-bottom: 4px;">
+              <span>🎯 解法二【頂球拉密＋底球共線直角三角形】：幾何視覺秒殺流！</span>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 4px; font-size: 0.84rem;">
+              <div>• <strong>頂球 C 剛好三力共點</strong>：兩支持力夾角 $60^\circ$（對面是重力 $W$），與重力各夾 $150^\circ$。套拉密定理：
+                $\frac{W}{\sin 60^\circ} = \frac{F_{BC}}{\sin 150^\circ} \implies \mathbf{F_{BC} = \frac{W}{\sqrt{3}}}$！</div>
+              <div>• <strong>底球 B 四力變三力的絕技（反向共線）</strong>：碗壁力 $N_B(\nwarrow)$ 與頂球壓力 $F_{BC}(\searrow)$ 在同一條通過 C 的直線上，合成為淨力 $F_{\text{net}} = N_B - F_{BC}$。</div>
+              <div>• <strong>首尾相接直角三角形</strong>：$W(\downarrow) \to F_{AB}(\rightarrow) \to F_{\text{net}}(\nwarrow)$，邊長比為 $1 : \sqrt{3} : 2$：
+                $\mathbf{F_{AB} = W \tan 30^\circ = \frac{W}{\sqrt{3}}}$，$\mathbf{N_B = F_{\text{net}} + F_{BC} = \sqrt{3}W}$！</div>
+            </div>
+          </div>
+        </div>
+
+        <p class="question-prompt">
+          依據受力平衡分析，三道小題之答案依序為何？
+        </p>
+
+        <!-- Options Container -->
+        <div class="options-container">
+          <div class="option-card" data-option="A">
+            <span class="option-label">A</span>
+            <div class="option-content">
+              <span class="katex-text">(1) $\frac{\sqrt{3}}{3}W$；(2) $\frac{\sqrt{3}}{3}W$；(3) $\sqrt{3}W$</span>
+            </div>
+          </div>
+
+          <div class="option-card" data-option="B">
+            <span class="option-label">B</span>
+            <div class="option-content">
+              <span class="katex-text">(1) $\frac{\sqrt{3}}{2}W$；(2) $\frac{1}{2}W$；(3) $3W$</span>
+            </div>
+          </div>
+
+          <div class="option-card" data-option="C">
+            <span class="option-label">C</span>
+            <div class="option-content">
+              <span class="katex-text">(1) $\frac{\sqrt{3}}{3}W$；(2) $\frac{\sqrt{3}}{2}W$；(3) $2\sqrt{3}W$</span>
+            </div>
+          </div>
+
+          <div class="option-card" data-option="D">
+            <span class="option-label">D</span>
+            <div class="option-content">
+              <span class="katex-text">(1) $\frac{1}{2}W$；(2) $\frac{\sqrt{3}}{3}W$；(3) $\sqrt{3}W$</span>
+            </div>
+          </div>
+
+          <div class="option-card" data-option="E">
+            <span class="option-label">E</span>
+            <div class="option-content">
+              <span class="katex-text">(1) $\sqrt{3}W$；(2) $\sqrt{3}W$；(3) $3W$</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Feedback Alert Box -->
+        <div class="feedback-box" id="feedbackBox">
+          <div class="feedback-icon" id="feedbackIcon"></div>
+          <div class="feedback-text" id="feedbackText"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Collapsible Solution Card -->
+    <section class="card solution-card collapsed" id="solutionCard">
+      <div class="card-header toggle-header" id="solutionToggle">
+        <div class="card-icon">💡</div>
+        <div>
+          <h2>核心解析與詳細推導</h2>
+          <span class="card-tag">點擊展開 / 收合完整解析</span>
+        </div>
+        <span class="solution-status">點擊展開完整剖析</span>
+      </div>
+
+      <div class="solution-content">
+        <div class="solution-step">
+          <span class="step-num">幾何分析</span>
+          <h3>球心幾何特徵與正三角形構成</h3>
+          <p>
+            大碗半徑為 $3R$，各小球半徑為 $R$。<br>
+            頂層球 $C$ 之球心恰為碗心，因此由碗心至 $A$、$B$ 兩球球心之距離均為 $3R - R = 2R$。<br>
+            而兩兩小球接觸，球心間距皆為 $R + R = 2R$。<br>
+            因此 $\triangle ABC$ 為邊長 $2R$ 的正三角形，三邊與鉛垂線之夾角均為 $30^\circ$。
+          </p>
+        </div>
+
+        <div class="solution-step">
+          <span class="step-num">步驟 1</span>
+          <h3>整體法求碗壁對球之支持力（求解第 3 小題）</h3>
+          <p>
+            以三球整體 $(A+B+C)$ 為系統，總重量為 $3W$。<br>
+            系統僅受兩側碗壁的支持力 $N_A$ 與 $N_B$ 向上支撐。由於支持力通過球心與碗心，方向與鉛垂線夾角均為 $30^\circ$：
+            $$N_A \cos 30^\circ + N_B \cos 30^\circ = 3W$$
+            由左右對稱性 $N_A = N_B$：
+            $$2 N_A \left(\frac{\sqrt{3}}{2}\right) = 3W \implies N_A = N_B = \sqrt{3}W$$
+            由牛頓第三定律，球作用於碗壁之力亦為 $\sqrt{3}W$。
+          </p>
+        </div>
+
+        <div class="solution-step">
+          <span class="step-num">步驟 2</span>
+          <h3>隔離頂層 C 球求球間作用力 $F_{BC}$（求解第 1 小題）</h3>
+          <p>
+            $C$ 球受自身重力 $W$ 鉛直向下，以及底層兩球對其之支持力 $F_{AC}$ 與 $F_{BC}$。<br>
+            由對稱性 $F_{AC} = F_{BC}$，兩力與鉛垂線夾角皆為 $30^\circ$：
+            $$2 F_{BC} \cos 30^\circ = W \implies 2 F_{BC} \left(\frac{\sqrt{3}}{2}\right) = W$$
+            解得：
+            $$F_{BC} = \frac{W}{\sqrt{3}} = \frac{\sqrt{3}}{3}W$$
+          </p>
+        </div>
+
+        <div class="solution-step">
+          <span class="step-num">步驟 3</span>
+          <h3>隔離底層 B 球求水平互推力 $F_{AB}$（求解第 2 小題）</h3>
+          <p>
+            $B$ 球受到四個力作用：
+          </p>
+          <ul>
+            <li>碗壁支持力 $N_B = \sqrt{3}W$（斜向左上，與鉛垂線夾 $30^\circ$）。</li>
+            <li>$C$ 球推力 $F_{BC} = \frac{\sqrt{3}}{3}W$（斜向右下，與鉛垂線夾 $30^\circ$）。</li>
+            <li>重力 $W$（鉛直向下）。</li>
+            <li>$A$ 球對 $B$ 球之水平推力 $F_{AB}$（水平向右）。</li>
+          </ul>
+          <p>
+            注意：$N_B$ 與 $F_{BC}$ 剛好在同一直線上且方向相反！<br>
+            列水平方向合力為零：
+            $$F_{AB} = (N_B - F_{BC})\sin 30^\circ$$
+            代入已知量：
+            $$F_{AB} = \left(\sqrt{3}W - \frac{\sqrt{3}}{3}W\right) \times \frac{1}{2} = \left(\frac{2\sqrt{3}}{3}W\right) \times \frac{1}{2} = \frac{\sqrt{3}}{3}W$$
+          </p>
+          <div class="solution-step" style="border-left: 3px solid #f59e0b; background: rgba(245, 158, 11, 0.05); padding: 12px 16px; border-radius: 0 8px 8px 0; margin-top: 16px;">
+            <span class="step-num" style="background: #f59e0b;">另解技巧</span>
+            <h3 style="color: #fbbf24;">解法二：頂球拉密定理 ＋ 底球共線力直角三角形</h3>
+            <p>
+              <strong>① 頂球 C（三力共點，拉密定理秒殺）：</strong><br>
+              受重力 $W(\downarrow)$ 與底層兩球支持力 $F_{AC}(\nearrow)$、$F_{BC}(\nwarrow)$。<br>
+              $F_{AC}$ 與 $F_{BC}$ 夾角為 $60^\circ$（對應 $W$）；各自與 $W$ 夾角為 $150^\circ$。<br>
+              代入拉密定理：
+              $$\frac{W}{\sin 60^\circ} = \frac{F_{BC}}{\sin 150^\circ} \implies F_{BC} = W \cdot \frac{1/2}{\sqrt{3}/2} = \frac{\sqrt{3}}{3}W$$
+            </p>
+            <p>
+              <strong>② 底球 B（四力變三力：共線力直角三角形）：</strong><br>
+              底球 $B$ 受四個力：重力 $W(\downarrow)$、頂球推力 $F_{BC}(\searrow)$、碗壁支持力 $N_B(\nwarrow)$、水平推力 $F_{AB}(\rightarrow)$。<br>
+              關鍵觀察：$N_B$ 與 $F_{BC}$ <strong>共線且反向</strong>（均沿連心線方向，與鉛直夾 $30^\circ$）！<br>
+              將兩者合成為一個沿此斜線的淨力 $F_{\text{net}} = N_B - F_{BC}(\nwarrow)$。<br>
+              此時底球等效為受三個力：$W(\downarrow)$、$F_{AB}(\rightarrow)$、$F_{\text{net}}(\nwarrow)$，恰構成一個 <strong>$30^\circ-60^\circ-90^\circ$ 直角三角形</strong>！<br>
+              $$F_{AB} = W \tan 30^\circ = \frac{\sqrt{3}}{3}W$$
+              $$F_{\text{net}} = \frac{W}{\cos 30^\circ} = \frac{2\sqrt{3}}{3}W \implies N_B = F_{\text{net}} + F_{BC} = \frac{2\sqrt{3}}{3}W + \frac{\sqrt{3}}{3}W = \sqrt{3}W$$
+            </p>
+          </div>
+
+          <div class="conclusion-box">
+            <strong>結論：</strong> 本題正確答案為 <strong>(A) (1) $\frac{\sqrt{3}}{3}W$；(2) $\frac{\sqrt{3}}{3}W$；(3) $\sqrt{3}W$</strong>。
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Navigation Footer -->
+    <footer class="footer-nav">
+      <a href="equil17.html" class="nav-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+        上一題 (平衡 17)
+      </a>
+      <a href="index.html" class="nav-btn primary">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        單元總覽
+      </a>
+      <a href="equil19.html" class="nav-btn">
+        下一題 (平衡 19)
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+    </footer>
+  </div>
+
+  <script>
+    function switchMethod(method) {
+      const btn1 = document.getElementById('btnMethod1');
+      const btn2 = document.getElementById('btnMethod2');
+      const grp1 = document.getElementById('groupMethod1');
+      const grp2 = document.getElementById('groupMethod2');
+      const guide1 = document.getElementById('guideMethod1');
+      const guide2 = document.getElementById('guideMethod2');
+
+      if (method === 'method1') {
+        btn1.classList.add('active');
+        btn2.classList.remove('active');
+        grp1.style.display = 'inline';
+        grp2.style.display = 'none';
+        guide1.style.display = 'block';
+        guide2.style.display = 'none';
+      } else {
+        btn2.classList.add('active');
+        btn1.classList.remove('active');
+        grp1.style.display = 'none';
+        grp2.style.display = 'inline';
+        guide1.style.display = 'none';
+        guide2.style.display = 'block';
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+      // KaTeX Auto-render
+      if (typeof renderMathInElement === 'function') {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ],
+          throwOnError: false
+        });
+      }
+
+      // Quiz Interaction
+      const correctAnswer = "A";
+      const optionCards = document.querySelectorAll(".option-card");
+      const feedbackBox = document.getElementById("feedbackBox");
+      const feedbackIcon = document.getElementById("feedbackIcon");
+      const feedbackText = document.getElementById("feedbackText");
+      const solutionCard = document.getElementById("solutionCard");
+
+      optionCards.forEach(card => {
+        card.addEventListener("click", function() {
+          const selected = this.getAttribute("data-option");
+
+          optionCards.forEach(c => c.classList.remove("selected", "correct", "wrong"));
+          this.classList.add("selected");
+
+          feedbackBox.classList.remove("correct", "wrong");
+          feedbackBox.classList.add("show");
+
+          if (selected === correctAnswer) {
+            this.classList.add("correct");
+            feedbackBox.classList.add("correct");
+            feedbackIcon.innerHTML = "🎉";
+            feedbackText.innerHTML = "<strong>太出色了！全對滿分！</strong><br>1. 整體法 $2N\\cos 30^\\circ = 3W \\implies N = \\sqrt{3}W$。<br>2. 頂層球 $2F_{BC}\\cos 30^\\circ = W \\implies F_{BC} = \\frac{\\sqrt{3}}{3}W$。<br>3. 底層球水平平衡 $F_{AB} = (N - F_{BC})\\sin 30^\\circ = \\frac{\\sqrt{3}}{3}W$！";
+            solutionCard.classList.remove("collapsed");
+            const tag = solutionCard.querySelector(".solution-status");
+            if (tag) tag.textContent = "點擊收合詳解";
+          } else {
+            this.classList.add("wrong");
+            feedbackBox.classList.add("wrong");
+            feedbackIcon.innerHTML = "💡";
+            if (selected === "B") {
+              feedbackText.innerHTML = "<strong>小心別忘了整體是三個球重 3W 喔！</strong> 鉛直分量是 $2N\\cos 30^\\circ = 3W$！";
+            } else {
+              feedbackText.innerHTML = `<strong>選了 (${selected})，再想想看！</strong> 提示：先用整體法解出碗支持力 $N = \\sqrt{3}W$，再分別隔離 C 球與 B 球求球間作用力！`;
+            }
+          }
+
+          if (typeof renderMathInElement === 'function') {
+            renderMathInElement(feedbackText, {
+              delimiters: [
+                {left: '$$', right: '$$', display: true},
+                {left: '$', right: '$', display: false}
+              ],
+              throwOnError: false
+            });
+          }
+        });
+      });
+
+      // Solution toggle
+      const solutionToggle = document.getElementById("solutionToggle");
+      solutionToggle.addEventListener("click", function() {
+        solutionCard.classList.toggle("collapsed");
+        const isCollapsed = solutionCard.classList.contains("collapsed");
+        const statusSpan = solutionToggle.querySelector(".solution-status");
+        if (statusSpan) {
+          statusSpan.textContent = isCollapsed ? "點擊展開完整剖析" : "點擊收合詳解";
+        }
+      });
+    });
+  </script>
+</body>
+</html>

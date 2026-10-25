@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>靜力平衡 3：斜向推力與地面全作用力分析 | 高中物理靜力學</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+  <link rel="stylesheet" href="shared.css">
+</head>
+<body>
+  <div class="bg-glow"></div>
+  <div class="bg-grid"></div>
+
+  <div class="container">
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+      <div class="nav-links">
+        <a href="index.html" class="nav-btn primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          回目錄
+        </a>
+        <a href="equil2.html" class="nav-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          上一題 (平衡 2)
+        </a>
+        <a href="equil4.html" class="nav-btn">
+          下一題 (平衡 4)
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+      <div class="badge-wrapper">
+        <span class="badge badge-page">講義 靜力學-24</span>
+        <span class="badge badge-exam">地面全作用力</span>
+        <span class="badge badge-accent">靜力平衡・練習 3</span>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+      <h1 class="main-title">靜力平衡 3：<span class="gradient-text">斜向推力與地面全作用力</span></h1>
+      <p class="subtitle">正向力與靜摩擦力向量合成・全接觸力（接觸面抗力）本質剖析</p>
+    </header>
+
+    <!-- Problem Showcase Card -->
+    <section class="card problem-card">
+      <div class="card-header">
+        <div class="card-icon">📖</div>
+        <div>
+          <h2>題目內容</h2>
+          <span class="card-tag">名校月考與大考陷阱題</span>
+        </div>
+      </div>
+
+      <div class="problem-body">
+        <p>
+          如下圖所示，施一與水平夾角為 <strong>$30^\circ$</strong> 的斜向下外力 <strong>$F$</strong> 推一重量為 <strong>$W$</strong> 的木塊，木塊<strong>仍保持靜止不運動</strong>，則此時<strong>地面對物體之作用力</strong>為？
+        </p>
+
+        <!-- Dynamic Inclined Pushing Block SVG Diagram -->
+        <div class="diagram-container" style="text-align: center; margin: 24px 0;">
+          <svg viewBox="0 0 760 340" style="width: 100%; max-width: 740px; background: rgba(15, 23, 42, 0.6); border-radius: 12px; border: 1px solid rgba(255,255,255,0.08);">
+            <defs>
+              <marker id="arr-rose" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#f43f5e"/>
+              </marker>
+              <marker id="arr-sky" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#38bdf8"/>
+              </marker>
+              <marker id="arr-emerald" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#10b981"/>
+              </marker>
+              <marker id="arr-amber" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#fbbf24"/>
+              </marker>
+            </defs>
+
+            <!-- Ground Base at y = 260 -->
+            <rect x="80" y="260" width="600" height="30" fill="rgba(51, 65, 85, 0.4)"/>
+            <line x1="60" y1="260" x2="700" y2="260" stroke="#64748b" stroke-width="3"/>
+            <!-- Hatch marks on ground -->
+            <g stroke="#475569" stroke-width="1.5">
+              <line x1="100" y1="260" x2="90" y2="275"/>
+              <line x1="160" y1="260" x2="150" y2="275"/>
+              <line x1="220" y1="260" x2="210" y2="275"/>
+              <line x1="280" y1="260" x2="270" y2="275"/>
+              <line x1="340" y1="260" x2="330" y2="275"/>
+              <line x1="400" y1="260" x2="390" y2="275"/>
+              <line x1="460" y1="260" x2="450" y2="275"/>
+              <line x1="520" y1="260" x2="510" y2="275"/>
+              <line x1="580" y1="260" x2="570" y2="275"/>
+              <line x1="640" y1="260" x2="630" y2="275"/>
+            </g>
+
+            <!-- Wooden Block: center at (280, 200), width 100, height 120 -->
+            <rect x="230" y="140" width="100" height="120" rx="4" fill="rgba(245, 158, 11, 0.2)" stroke="#f59e0b" stroke-width="2.5"/>
+            <text x="272" y="195" fill="#f59e0b" font-size="16" font-weight="bold">W</text>
+
+            <!-- External Push Force F: pushing top-left corner (230, 160) at 30° downwards -->
+            <!-- Angle 30° with horizontal. cos(30°)=0.866, sin(30°)=0.5 -->
+            <!-- Line comes from (110, 90) to (230, 160): dx = 120, dy = 70 -->
+            <line x1="110" y1="91" x2="225" y2="157" stroke="#38bdf8" stroke-width="3.5" marker-end="url(#arr-sky)"/>
+            <text x="120" y="80" fill="#38bdf8" font-size="15" font-weight="bold">F (施力)</text>
+
+            <!-- Angle 30° guide lines -->
+            <line x1="110" y1="91" x2="190" y2="91" stroke="#64748b" stroke-width="1.5" stroke-dasharray="3,3"/>
+            <path d="M 155 91 A 45 45 0 0 1 150 115" fill="none" stroke="#fbbf24" stroke-width="1.8"/>
+            <text x="165" y="110" fill="#fbbf24" font-size="12" font-weight="bold">30°</text>
+
+            <!-- Gravity W pointing down from center (280, 200) -->
+            <line x1="280" y1="200" x2="280" y2="290" stroke="#f43f5e" stroke-width="3" marker-end="url(#arr-rose)"/>
+            <text x="290" y="280" fill="#f43f5e" font-size="14" font-weight="bold">W (重力)</text>
+
+            <!-- Ground Contact Forces -->
+            <!-- Normal force N pointing up at bottom (280, 260) -->
+            <line x1="280" y1="260" x2="280" y2="180" stroke="#10b981" stroke-width="2.5" marker-end="url(#arr-emerald)"/>
+            <text x="290" y="175" fill="#10b981" font-size="12" font-weight="bold">N = W + F sin30°</text>
+
+            <!-- Static friction f pointing left at bottom (280, 260) -->
+            <line x1="280" y1="260" x2="200" y2="260" stroke="#fbbf24" stroke-width="2.5" marker-end="url(#arr-amber)"/>
+            <text x="155" y="250" fill="#fbbf24" font-size="12" font-weight="bold">f = F cos30°</text>
+
+            <!-- Total Contact Force R (Ground force vector) -->
+            <!-- Resultant of N (up) and f (left): vector pointing up-left -->
+            <line x1="280" y1="260" x2="200" y2="180" stroke="#c084fc" stroke-width="3" stroke-dasharray="4,4" marker-end="url(#arr-sky)"/>
+            <text x="165" y="170" fill="#c084fc" font-size="13" font-weight="bold">地面總作用力 R = √(N² + f²)</text>
+
+            <!-- Right Side: Vector Triangle / Component Breakdown Panel -->
+            <g transform="translate(480, 40)">
+              <!-- Panel Background -->
+              <rect x="0" y="0" width="240" height="230" rx="8" fill="rgba(15, 23, 42, 0.7)" stroke="rgba(255,255,255,0.1)"/>
+              <text x="15" y="25" fill="#38bdf8" font-size="13" font-weight="bold">力平衡向量剖析</text>
+              
+              <!-- Text formulas -->
+              <text x="15" y="55" fill="#cbd5e1" font-size="12">水平向右分力：</text>
+              <text x="25" y="75" fill="#fbbf24" font-size="12" font-weight="bold">F_x = F cos30° = (√3/2)F</text>
+              
+              <text x="15" y="105" fill="#cbd5e1" font-size="12">鉛直向下分力：</text>
+              <text x="25" y="125" fill="#fbbf24" font-size="12" font-weight="bold">F_y = F sin30° = (1/2)F</text>
+
+              <line x1="15" y1="145" x2="225" y2="145" stroke="#334155" stroke-width="1"/>
+
+              <text x="15" y="165" fill="#a78bfa" font-size="12">地面總作用力向量：</text>
+              <text x="25" y="188" fill="#10b981" font-size="13" font-weight="bold">R = √(N² + f²)</text>
+              <text x="25" y="212" fill="#10b981" font-size="13" font-weight="bold">= √(W² + WF + F²)</text>
+            </g>
+          </svg>
+        </div>
+
+        <!-- Options Container -->
+        <div class="options-container" id="optionsContainer">
+          <button class="option-card" data-option="A">
+            <span class="option-letter">A</span>
+            <span class="option-text">$W + F\sin 30^\circ$</span>
+          </button>
+          <button class="option-card" data-option="B">
+            <span class="option-letter">B</span>
+            <span class="option-text">$F\cos 30^\circ$</span>
+          </button>
+          <button class="option-card" data-option="C">
+            <span class="option-letter">C</span>
+            <span class="option-text">$\sqrt{W^2 + F^2}$</span>
+          </button>
+          <button class="option-card" data-option="D">
+            <span class="option-letter">D</span>
+            <span class="option-text">$\sqrt{\left(W + \frac{1}{2}F\right)^2 + \left(\frac{\sqrt{3}}{2}F\right)^2}$（即 $\sqrt{W^2 + WF + F^2}$）</span>
+          </button>
+          <button class="option-card" data-option="E">
+            <span class="option-letter">E</span>
+            <span class="option-text">$W$</span>
+          </button>
+        </div>
+
+        <!-- Real-time Feedback -->
+        <div class="feedback-box" id="feedbackBox">
+          <div class="feedback-icon" id="feedbackIcon"></div>
+          <div class="feedback-text" id="feedbackText"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Collapsible Solution Card -->
+    <section class="card solution-card collapsed" id="solutionCard">
+      <div class="card-header clickable" id="solutionToggle">
+        <div class="card-icon">💡</div>
+        <div style="flex: 1;">
+          <h2>詳細物理推導與「地面作用力」關鍵概念</h2>
+          <span class="solution-status">點擊展開完整剖析</span>
+        </div>
+        <span class="badge badge-accent">大考經典陷阱破解</span>
+      </div>
+
+      <div class="solution-body">
+        <!-- 步驟 1 -->
+        <div class="step-card">
+          <div class="step-header">
+            <span class="step-badge">核心觀念</span>
+            <h3>名詞解析：「地面對物體的作用力」不是只有正向力！</h3>
+          </div>
+          <p>
+            物理學中，接觸面施予物體的作用力稱為<strong>接觸力（全作用力 $\vec{R}$）</strong>：
+          </p>
+          <ul>
+            <li><strong>垂直接觸面的分量：</strong> 正向支持力 $\vec{N}$。</li>
+            <li><strong>平行接觸面的分量：</strong> 摩擦力 $\vec{f}$（本題為靜摩擦力）。</li>
+            <li><strong>接觸面全作用力：</strong> 為兩垂直分量的向量和，量值滿足勾股定理：
+              $$R = \sqrt{N^2 + f^2}$$
+            </li>
+          </ul>
+          <div style="background: rgba(239, 68, 68, 0.1); border-left: 4px solid #ef4444; padding: 10px 14px; margin: 10px 0; font-size: 0.95rem;">
+            ⚠️ <strong>大考陷阱提醒：</strong> 如果題目問「地面支持力」或「正向力」，答案才是 $N = W + F\sin 30^\circ$；但題目問「<strong>地面對物體之作用力</strong>」，必須將摩擦力一同計入向量合成！
+          </div>
+        </div>
+
+        <!-- 步驟 2 -->
+        <div class="step-card">
+          <div class="step-header">
+            <span class="step-badge">步驟推導</span>
+            <h3>正交分解列平衡方程式</h3>
+          </div>
+          <p>
+            外力 $F$ 與水平夾角為 $30^\circ$ 斜向下推：
+          </p>
+          <ul>
+            <li><strong>水平方向：</strong> 木塊維持靜止，水平合力為零：
+              $$f = F \cos 30^\circ = \frac{\sqrt{3}}{2}F$$
+            </li>
+            <li><strong>鉛直方向：</strong> 木塊鉛直不運動，鉛直合力為零：
+              $$N = W + F \sin 30^\circ = W + \frac{1}{2}F$$
+            </li>
+          </ul>
+          <p>地面作用力量值為：</p>
+          $$R = \sqrt{N^2 + f^2} = \sqrt{\left(W + \frac{1}{2}F\right)^2 + \left(\frac{\sqrt{3}}{2}F\right)^2}$$
+          <p>展開代數式化簡：</p>
+          $$R = \sqrt{\left(W^2 + WF + \frac{1}{4}F^2\right) + \frac{3}{4}F^2} = \sqrt{W^2 + WF + F^2}$$
+          <div style="background: rgba(16, 185, 129, 0.15); border: 1px solid #10b981; border-radius: 8px; padding: 16px; margin: 12px 0; text-align: center;">
+            <span style="font-size: 1.35rem; font-weight: 800; color: #10b981;">
+              地面作用力 $R = \sqrt{\left(W + \frac{1}{2}F\right)^2 + \left(\frac{\sqrt{3}}{2}F\right)^2} = \sqrt{W^2 + WF + F^2}$
+            </span>
+          </div>
+        </div>
+
+        <!-- 步驟 3 -->
+        <div class="step-card">
+          <div class="step-header">
+            <span class="step-badge">妙招秒殺</span>
+            <h3>三力平衡向量封閉三角形法</h3>
+          </div>
+          <p>
+            木塊共受三個力：外力 $\vec{F}$、重力 $\vec{W}$、地面總作用力 $\vec{R}$。<br>
+            由於三力平衡，合力為零，三力必首尾相接構成<strong>封閉三角形</strong>：
+          </p>
+          $$\vec{R} + \vec{F} + \vec{W} = 0 \implies \vec{R} = -(\vec{F} + \vec{W})$$
+          <p>
+            這表示 $\vec{R}$ 的量值恰好等於外力 $\vec{F}$ 與重力 $\vec{W}$ 的向量合力量值！<br>
+            外力 $\vec{F}$（斜向下，與水平夾 $30^\circ$，即與向下夾 $60^\circ$）與重力 $\vec{W}$（鉛直向下）之間的夾角為：
+            $$\phi = 90^\circ - 30^\circ = 60^\circ$$
+          </p>
+          <p>由向量合成餘弦定理直接秒殺：</p>
+          $$R = \sqrt{W^2 + F^2 + 2WF\cos 60^\circ} = \sqrt{W^2 + F^2 + 2WF\left(\frac{1}{2}\right)} = \sqrt{W^2 + WF + F^2}$$
+          <p>故正確答案為 <strong>(D)</strong>。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Navigation Bar -->
+    <div class="bottom-nav">
+      <a href="equil2.html" class="nav-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+        上一題：雙斜面跨滑輪平衡比值
+      </a>
+      <a href="index.html" class="nav-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        回課程總目錄
+      </a>
+      <a href="equil4.html" class="nav-btn primary">
+        下一題：天花板三繩吊球張力
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // KaTeX Rendering
+      if (typeof renderMathInElement === 'function') {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ],
+          throwOnError: false
+        });
+      }
+
+      const correctAnswer = "D";
+      const optionCards = document.querySelectorAll(".option-card");
+      const feedbackBox = document.getElementById("feedbackBox");
+      const feedbackIcon = document.getElementById("feedbackIcon");
+      const feedbackText = document.getElementById("feedbackText");
+      const solutionCard = document.getElementById("solutionCard");
+
+      optionCards.forEach(card => {
+        card.addEventListener("click", function() {
+          const selected = this.getAttribute("data-option");
+
+          optionCards.forEach(c => c.classList.remove("selected", "correct", "wrong"));
+          this.classList.add("selected");
+
+          feedbackBox.classList.remove("correct", "wrong");
+          feedbackBox.classList.add("show");
+
+          if (selected === correctAnswer) {
+            this.classList.add("correct");
+            feedbackBox.classList.add("correct");
+            feedbackIcon.innerHTML = "🎉";
+            feedbackText.innerHTML = "<strong>太厲害了！完全正確！</strong><br>地面作用力包含正向力 $N = W + \\frac{1}{2}F$ 與靜摩擦力 $f = \\frac{\\sqrt{3}}{2}F$，合成得 $R = \\sqrt{N^2+f^2} = \\sqrt{W^2+WF+F^2}$！";
+            solutionCard.classList.remove("collapsed");
+            const tag = solutionCard.querySelector(".solution-status");
+            if (tag) tag.textContent = "點擊收合詳解";
+          } else {
+            this.classList.add("wrong");
+            feedbackBox.classList.add("wrong");
+            feedbackIcon.innerHTML = "💡";
+            if (selected === "A") {
+              feedbackText.innerHTML = "<strong>小心陷阱！</strong> $W + F\\sin 30^\\circ$ 只是「正向支持力 $N$」，題目問的是包含摩擦力在內的「地面總作用力」喔！";
+            } else if (selected === "B") {
+              feedbackText.innerHTML = "<strong>這只是摩擦力！</strong> $F\\cos 30^\\circ$ 是水平靜摩擦力 $f$，不是地面對物體的全部作用力喔！";
+            } else if (selected === "C") {
+              feedbackText.innerHTML = "<strong>漏掉了角度！</strong> 外力 $F$ 與鉛直線夾角是 $60^\\circ$ 而不是直角，不能直接用 $\\sqrt{W^2+F^2}$ 喔！";
+            } else {
+              feedbackText.innerHTML = `<strong>選了 (${selected})，再想想看！</strong> 提示：地面作用力包含垂直的正向力 $N$ 與水平的靜摩擦力 $f$，兩者垂直要如何合成？`;
+            }
+          }
+
+          if (typeof renderMathInElement === 'function') {
+            renderMathInElement(feedbackText, {
+              delimiters: [
+                {left: '$$', right: '$$', display: true},
+                {left: '$', right: '$', display: false}
+              ],
+              throwOnError: false
+            });
+          }
+        });
+      });
+
+      // Solution toggle
+      const solutionToggle = document.getElementById("solutionToggle");
+      solutionToggle.addEventListener("click", function() {
+        solutionCard.classList.toggle("collapsed");
+        const isCollapsed = solutionCard.classList.contains("collapsed");
+        const statusSpan = solutionToggle.querySelector(".solution-status");
+        if (statusSpan) {
+          statusSpan.textContent = isCollapsed ? "點擊展開完整剖析" : "點擊收合詳解";
+        }
+      });
+    });
+  </script>
+</body>
+</html>

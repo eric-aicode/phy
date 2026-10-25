@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>靜力平衡 35：輕桿懸掛重物與幾何相似力三角形 | 高中物理靜力學</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+  <link rel="stylesheet" href="shared.css">
+</head>
+<body>
+  <div class="bg-glow"></div>
+  <div class="bg-grid"></div>
+
+  <div class="container">
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+      <div class="nav-links">
+        <a href="index.html" class="nav-btn primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          回目錄
+        </a>
+        <a href="equil34.html" class="nav-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          上一題 (平衡 34)
+        </a>
+        <a href="equil36.html" class="nav-btn">
+          下一題 (平衡 36)
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+      <div class="badge-wrapper">
+        <span class="badge badge-page">講義 靜力學-30</span>
+        <span class="badge badge-exam">幾何相似力三角形</span>
+        <span class="badge badge-accent">靜力平衡・練習 35 (多選)</span>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+      <h1 class="main-title">靜力平衡 35：<span class="gradient-text">輕桿懸掛重物與幾何相似力三角形</span></h1>
+      <p class="subtitle">長度固定對偶力學・幾何空間三角形與向量力封閉三角形嚴格相似</p>
+    </header>
+
+    <!-- Main Problem Layout -->
+    <div class="problem-layout">
+      <!-- Left Column: Problem & Visualizer -->
+      <div class="problem-card">
+        <h2 class="section-title">
+          <span class="step-num">1</span>
+          題目情境與物理圖解
+        </h2>
+        <div class="problem-text">
+          <p>
+            如圖所示，桿重不計，設鉛直牆上 $AC$ 距離固定 $\overline{AC}=a$，桿長 $\overline{AB}=\ell$。端點 $B$ 掛一重物 $W$。若將 $BC$ 繩縮短則 $AB$ 桿抬高（仰角 $\theta$ 增大），反之若將繩放長則 $AB$ 桿降低。
+          </p>
+          <p>
+            關於桿所受樞紐 $A$ 之力與細繩張力之變化，下列敘述哪些正確？<strong>（多選）</strong>
+          </p>
+        </div>
+
+        <div class="interactive-container">
+          <div style="font-size: 0.88rem; color: var(--text-dim); margin-bottom: 8px; display: flex; justify-content: space-between;">
+            <span>📐 空間幾何形狀與共點力封閉三角形對偶</span>
+            <span style="color: var(--accent-cyan);">△BDE ~ △CAB 相似形定理</span>
+          </div>
+          <svg viewBox="0 0 540 370" class="diagram-svg" style="background: rgba(15, 23, 42, 0.7); border-radius: 8px;">
+            <defs>
+              <marker id="arr-c" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#38bdf8"/>
+              </marker>
+              <marker id="arr-g" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#00e676"/>
+              </marker>
+              <marker id="arr-r" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#f43f5e"/>
+              </marker>
+              <marker id="arr-y" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#fbbf24"/>
+              </marker>
+            </defs>
+
+            <!-- Wall AC -->
+            <line x1="120" y1="40" x2="120" y2="330" stroke="#64748b" stroke-width="5"/>
+            <!-- Wall hatchings -->
+            <line x1="100" y1="60" x2="120" y2="80" stroke="#475569" stroke-width="2"/>
+            <line x1="100" y1="120" x2="120" y2="140" stroke="#475569" stroke-width="2"/>
+            <line x1="100" y1="180" x2="120" y2="200" stroke="#475569" stroke-width="2"/>
+            <line x1="100" y1="240" x2="120" y2="260" stroke="#475569" stroke-width="2"/>
+
+            <!-- Points: A=(120, 260), C=(120, 80) => AC = a -->
+            <!-- B=(360, 180) => rod AB length ell -->
+            <!-- Distance AC label -->
+            <line x1="85" y1="80" x2="85" y2="260" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4 3"/>
+            <text x="60" y="175" fill="#94a3b8" font-size="14" font-weight="bold">a (固定)</text>
+
+            <!-- String BC -->
+            <line x1="120" y1="80" x2="360" y2="180" stroke="#f43f5e" stroke-width="3" stroke-dasharray="6 3"/>
+            <text x="235" y="115" fill="#f43f5e" font-size="14" font-weight="600">繩長 BC (張力 T)</text>
+
+            <!-- Rod AB -->
+            <line x1="120" y1="260" x2="360" y2="180" stroke="#f8fafc" stroke-width="7" stroke-linecap="round"/>
+            <line x1="120" y1="260" x2="360" y2="180" stroke="#38bdf8" stroke-width="3" stroke-linecap="round"/>
+            <text x="210" y="240" fill="#38bdf8" font-size="14" font-weight="bold">桿長 ℓ</text>
+
+            <!-- Angle theta at A -->
+            <line x1="120" y1="260" x2="220" y2="260" stroke="#64748b" stroke-width="1.5" stroke-dasharray="3 3"/>
+            <path d="M 160 260 A 40 40 0 0 0 157 248" fill="none" stroke="#fbbf24" stroke-width="2"/>
+            <text x="170" y="255" fill="#fbbf24" font-size="13">θ</text>
+
+            <!-- Weight hanging from B -->
+            <line x1="360" y1="180" x2="360" y2="270" stroke="#fbbf24" stroke-width="3" marker-end="url(#arr-y)"/>
+            <rect x="345" y="270" width="30" height="30" fill="#1e293b" stroke="#fbbf24" stroke-width="2" rx="4"/>
+            <text x="353" y="291" fill="#fbbf24" font-size="14" font-weight="bold">W</text>
+
+            <!-- Hinge Force N at B along AB pointing outward -->
+            <line x1="360" y1="180" x2="430" y2="157" stroke="#00e676" stroke-width="3" marker-end="url(#arr-g)"/>
+            <text x="435" y="155" fill="#00e676" font-size="14" font-weight="bold">N (桿支撐力)</text>
+
+            <!-- Vector triangle inset on right side -->
+            <g transform="translate(100, 0)">
+              <rect x="330" y="30" width="100" height="135" fill="rgba(30, 41, 59, 0.9)" stroke="rgba(255,255,255,0.2)" rx="6"/>
+              <text x="340" y="48" fill="#38bdf8" font-size="11" font-weight="bold">封閉力向量</text>
+              <!-- Vector W down -->
+              <line x1="410" y1="60" x2="410" y2="140" stroke="#fbbf24" stroke-width="2" marker-end="url(#arr-y)"/>
+              <text x="415" y="105" fill="#fbbf24" font-size="11">W</text>
+              <!-- Vector N up-right -->
+              <line x1="350" y1="140" x2="410" y2="140" stroke="#00e676" stroke-width="2"/>
+              <!-- Vector T up-left -->
+              <line x1="410" y1="60" x2="350" y2="140" stroke="#f43f5e" stroke-width="2"/>
+              <text x="365" y="90" fill="#f43f5e" font-size="11">T</text>
+              <text x="375" y="152" fill="#00e676" font-size="11">N</text>
+            </g>
+
+            <!-- Point Labels -->
+            <text x="100" y="268" fill="#f8fafc" font-size="16" font-weight="bold">A</text>
+            <text x="100" y="85" fill="#f8fafc" font-size="16" font-weight="bold">C</text>
+            <text x="370" y="180" fill="#f8fafc" font-size="16" font-weight="bold">B</text>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Right Column: Interactive Quiz -->
+      <div class="problem-card">
+        <h2 class="section-title">
+          <span class="step-num">2</span>
+          自我檢測與即時核對 (多選題)
+        </h2>
+        <p style="color: var(--text-dim); font-size: 0.95rem; margin-bottom: 16px;">
+          請選出所有正確的敘述（可複選）：
+        </p>
+
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="toggleMultiOption(this, 'A')">
+            <span class="opt-letter">A</span>
+            <span class="opt-text">桿所受樞紐 $A$ 的力為 $\dfrac{\ell W}{a}$</span>
+          </div>
+          <div class="quiz-option" onclick="toggleMultiOption(this, 'B')">
+            <span class="opt-letter">B</span>
+            <span class="opt-text">$\theta$ 愈大，則桿所受 $A$ 的力愈大</span>
+          </div>
+          <div class="quiz-option" onclick="toggleMultiOption(this, 'C')">
+            <span class="opt-letter">C</span>
+            <span class="opt-text">$\theta$ 愈大，則繩上張力愈小</span>
+          </div>
+          <div class="quiz-option" onclick="toggleMultiOption(this, 'D')">
+            <span class="opt-letter">D</span>
+            <span class="opt-text">繩上張力與 $\theta$ 無關</span>
+          </div>
+          <div class="quiz-option" onclick="toggleMultiOption(this, 'E')">
+            <span class="opt-letter">E</span>
+            <span class="opt-text">桿受 $A$ 的力與 $\theta$ 無關</span>
+          </div>
+        </div>
+
+        <div class="quiz-actions">
+          <button class="nav-btn primary" onclick="checkMultiAnswer()">核對答案</button>
+          <button class="nav-btn" onclick="toggleSolution()">查看解析</button>
+        </div>
+
+        <div id="feedback" class="quiz-feedback"></div>
+      </div>
+    </div>
+
+    <!-- Solution Section -->
+    <div id="solution-card" class="solution-card">
+      <h2 class="section-title">
+        <span class="step-num">3</span>
+        完整觀念解析與推導過程
+      </h2>
+      <div class="solution-content">
+        <div class="formula-box">
+          $$\triangle \text{力三角形} \sim \triangle CAB \implies \frac{W}{\overline{AC}} = \frac{N}{\overline{AB}} = \frac{T}{\overline{BC}}$$
+          $$\implies N = W \cdot \frac{\ell}{a} \quad (\text{定值，與 } \theta \text{ 無關})$$
+          $$T = W \cdot \frac{\overline{BC}}{a} \quad (\overline{BC} \text{ 隨 } \theta \text{ 增大而縮短 } \implies T \text{ 變小})$$
+        </div>
+
+        <div class="step-card">
+          <h4>步驟一：輕桿兩力構件與 B 點共點力平衡</h4>
+          <p>
+            桿重不計，且兩端皆為絞鏈樞紐或承受集中外力，因此桿件為標準「兩力構件」，桿內作用力必沿桿身方向（沿 $AB$ 延伸方向對 $B$ 端提供向外推力 $N$）。
+          </p>
+          <p>
+            分析 $B$ 點受力：受到繩索向左上方的張力 $\vec{T}$、重物垂直向下的重力 $\vec{W}$、以及樞紐沿桿身向右上方的支撐力 $\vec{N}$。三力作用於 $B$ 點構成封閉三角形。
+          </p>
+        </div>
+
+        <div class="step-card">
+          <h4>步驟二：利用力向量幾何相似定理</h4>
+          <p>
+            將力向量平移構建封閉三角形 $\triangle BDE$：
+          </p>
+          <ul>
+            <li>$\vec{W}$ 方向垂直向下，平行於鉛直牆面 $\overline{AC}$。</li>
+            <li>$\vec{N}$ 方向沿桿身，平行於輕桿 $\overline{AB}$。</li>
+            <li>$\vec{T}$ 方向沿細繩，平行於細繩 $\overline{BC}$。</li>
+          </ul>
+          <p>
+            因為三力向量分別平行於空間三角形 $\triangle CAB$ 的三邊，故力三角形與空間幾何三角形嚴格相似：
+          </p>
+          $$\frac{W}{\overline{AC}} = \frac{N}{\overline{AB}} = \frac{T}{\overline{BC}}$$
+        </div>
+
+        <div class="step-card">
+          <h4>步驟三：代入幾何固定長度，分析變化趨勢</h4>
+          <ol>
+            <li>
+              <strong>樞紐作用力 $N$</strong>：
+              $$N = \frac{\overline{AB}}{\overline{AC}} \cdot W = \frac{\ell W}{a}$$
+              因為桿長 $\ell$、牆距 $a$ 與重物 $W$ 皆固定不變，因此無論角度 $\theta$ 如何改變，<strong>桿受樞紐 $A$ 的力恆為 $\dfrac{\ell W}{a}$，與 $\theta$ 完全無關</strong>！故 <strong>(A)、(E) 正確，(B) 錯誤</strong>。
+            </li>
+            <li>
+              <strong>細繩張力 $T$</strong>：
+              $$T = \frac{\overline{BC}}{\overline{AC}} \cdot W = \frac{\overline{BC}}{a} \cdot W$$
+              當縮短繩長抬高桿子（$\theta$ 增大）時，端點 $B$ 靠近 $C$ 點，即距離 $\overline{BC}$ 縮短，因此繩上張力 $T$ 隨之<strong>變小</strong>！故 <strong>(C) 正確，(D) 錯誤</strong>。
+            </li>
+          </ol>
+          <p>
+            綜合以上分析，本題正確選項為 <strong>(A)(C)(E)</strong>。
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const selectedOptions = new Set();
+    const correctAnswers = new Set(['A', 'C', 'E']);
+
+    function toggleMultiOption(element, opt) {
+      if (selectedOptions.has(opt)) {
+        selectedOptions.delete(opt);
+        element.classList.remove('selected');
+      } else {
+        selectedOptions.add(opt);
+        element.classList.add('selected');
+      }
+    }
+
+    function checkMultiAnswer() {
+      const feedback = document.getElementById('feedback');
+      if (selectedOptions.size === 0) {
+        feedback.innerHTML = '<span style="color: var(--accent-yellow);">⚠️ 請先點選選項（本題為多選題）！</span>';
+        feedback.className = 'quiz-feedback show';
+        return;
+      }
+
+      const isCorrect = selectedOptions.size === correctAnswers.size &&
+                        [...selectedOptions].every(opt => correctAnswers.has(opt));
+
+      if (isCorrect) {
+        feedback.innerHTML = '🎉 <strong>完全正確！</strong> 正確選出 (A)(C)(E)。力三角形與空間三角形相似，可得 $N = \\frac{\\ell W}{a}$ 為定值與 $\\theta$ 無關，而 $T = W\\frac{\\overline{BC}}{a}$ 隨 $\\overline{BC}$ 縮短而減小！';
+        feedback.className = 'quiz-feedback show correct';
+        document.getElementById('solution-card').classList.add('show');
+      } else {
+        const missing = [...correctAnswers].filter(x => !selectedOptions.has(x));
+        const extra = [...selectedOptions].filter(x => !correctAnswers.has(x));
+        feedback.innerHTML = '❌ <strong>還不完全正確喔！</strong> 提示：利用力三角形與幾何三角形 $\\triangle CAB$ 相似，檢查 $N$ 的式子中是否有 $\\theta$？當桿抬高時，繩長 $\\overline{BC}$ 是變長還是變短？';
+        feedback.className = 'quiz-feedback show incorrect';
+      }
+    }
+
+    function toggleSolution() {
+      const sol = document.getElementById('solution-card');
+      sol.classList.toggle('show');
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      if (window.renderMathInElement) {
+        renderMathInElement(document.body, {
+          delimiters: [
+            { left: "$$", right: "$$", display: true },
+            { left: "$", right: "$", display: false }
+          ]
+        });
+      }
+    });
+  </script>
+</body>
+</html>

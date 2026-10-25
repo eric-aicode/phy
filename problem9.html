@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>範例 9：斜面上物體靜止與等速下滑受力 | 高中物理靜力學</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+  <link rel="stylesheet" href="shared.css">
+</head>
+<body>
+  <div class="bg-glow"></div>
+  <div class="bg-grid"></div>
+
+  <div class="container">
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+      <div class="nav-links">
+        <a href="index.html" class="nav-btn primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          回目錄
+        </a>
+        <a href="problem8.html" class="nav-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          上一題 (範例 8)
+        </a>
+        <a href="problem10.html" class="nav-btn">
+          下一題 (範例 10)
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+      <div class="badge-wrapper">
+        <span class="badge badge-page">講義 靜力學-16</span>
+        <span class="badge badge-accent">斜面接觸力與系統整體法</span>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+      <h1 class="main-title">範例 9：<span class="gradient-text">斜面上物體靜止與等速下滑受力</span></h1>
+      <p class="subtitle">正向力與摩擦力合成向量・作用力反作用力・系統整體法秒殺水平地面摩擦力</p>
+    </header>
+
+    <!-- Problem Showcase Card -->
+    <section class="card problem-card">
+      <div class="card-header">
+        <div class="card-icon">📖</div>
+        <div>
+          <h2>題目內容</h2>
+          <span class="card-tag">基礎觀念精闢經典題</span>
+        </div>
+      </div>
+
+      <div class="problem-body">
+        <div class="problem-part-box" style="margin-bottom: 20px;">
+          <h3 style="color: #60a5fa; margin-bottom: 10px;">情境一：斜面角度 $\theta = 30^\circ$，物體呈現靜止</h3>
+          <p>
+            1. 重量為 <strong>$W$</strong> 的某物體置於 <strong>$\theta = 30^\circ$</strong> 角的斜面上時，物體呈現靜止，則此時：
+          </p>
+          <ul class="condition-list">
+            <li><strong>①</strong> 物體受到的摩擦力為何？</li>
+            <li><strong>②</strong> 斜面對物體的作用力（接觸合力）為何？</li>
+            <li><strong>③</strong> 斜面體受到地面的摩擦力為何？</li>
+          </ul>
+        </div>
+
+        <div class="problem-part-box">
+          <h3 style="color: #38bdf8; margin-bottom: 10px;">情境二：斜面角度 $\theta = 37^\circ$，物體保持等速下滑</h3>
+          <p>
+            2. 重量為 <strong>$W$</strong> 的某物體可於 <strong>$\theta = 37^\circ$</strong> 角的斜面上保持等速下滑。則此時：
+          </p>
+          <ul class="condition-list">
+            <li><strong>①</strong> 物體受到的摩擦力為何？</li>
+            <li><strong>②</strong> 斜面對物體的作用力（接觸合力）為何？</li>
+            <li><strong>③</strong> 斜面體受到地面的摩擦力為何？</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Problem Physical Diagram (SVG) -->
+      <div class="canvas-card">
+        <div class="canvas-title-bar">
+          <h3><span class="dot dot-blue"></span> 斜面隔離體受力分析 vs 系統整體法幾何對照</h3>
+          <span class="view-tag">Force Vector & System FBD</span>
+        </div>
+        <div class="svg-wrapper">
+          <svg viewBox="0 0 760 360" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="arr-p9-red" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                <path d="M0 1L10 5L0 9z" fill="#f87171"/>
+              </marker>
+              <marker id="arr-p9-cyan" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                <path d="M0 1L10 5L0 9z" fill="#38bdf8"/>
+              </marker>
+              <marker id="arr-p9-green" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                <path d="M0 1L10 5L0 9z" fill="#4ade80"/>
+              </marker>
+              <marker id="arr-p9-gold" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                <path d="M0 1L10 5L0 9z" fill="#fbbf24"/>
+              </marker>
+            </defs>
+
+            <!-- LEFT: 隔離體受力 (木塊) -->
+            <g transform="translate(30, 20)">
+              <rect x="0" y="0" width="340" height="315" rx="10" fill="#0f172a" stroke="#1e293b" stroke-width="1.5"/>
+              <text x="20" y="28" fill="#94a3b8" font-size="13" font-weight="600">圖 A：木塊受力與「斜面接觸合力 R」</text>
+
+              <!-- Wedge base -->
+              <polygon points="40,250 280,250 280,110" fill="rgba(30, 41, 59, 0.7)" stroke="#475569" stroke-width="2"/>
+              <!-- Ground -->
+              <line x1="20" y1="250" x2="310" y2="250" stroke="#64748b" stroke-width="3"/>
+              <!-- Angle theta -->
+              <path d="M 90,250 A 50,50 0 0,0 84,225" fill="none" stroke="#fbbf24" stroke-width="2"/>
+              <text x="96" y="240" fill="#fbbf24" font-size="13" font-weight="bold">θ</text>
+
+              <!-- Block on slope (slope angle approx 30 deg: dx=240, dy=140) -->
+              <!-- Slope surface vector: (240, -140) / dist=277.8 -> u=(0.864, -0.504), perp n=(-0.504, -0.864) -->
+              <!-- Block center around (160, 180) -->
+              <g transform="translate(160, 180) rotate(-30.3)">
+                <rect x="-35" y="-30" width="70" height="30" rx="3" fill="#3b82f6" fill-opacity="0.3" stroke="#60a5fa" stroke-width="2"/>
+                <text x="0" y="-10" fill="#ffffff" font-size="12" font-weight="bold" text-anchor="middle">物體 W</text>
+              </g>
+
+              <!-- Center of mass dot -->
+              <circle cx="145" cy="155" r="4" fill="#f87171"/>
+
+              <!-- Force 1: Gravity W straight down -->
+              <line x1="145" y1="155" x2="145" y2="235" stroke="#f87171" stroke-width="2.5" marker-end="url(#arr-p9-red)"/>
+              <text x="152" y="225" fill="#f87171" font-size="12" font-weight="bold">重力 W</text>
+
+              <!-- Force 2: Normal Force N perpendicular up-left (-30 deg from vertical) -->
+              <line x1="145" y1="155" x2="105" y2="85" stroke="#38bdf8" stroke-width="2" marker-end="url(#arr-p9-cyan)"/>
+              <text x="75" y="80" fill="#38bdf8" font-size="12" font-weight="bold">正向力 N</text>
+
+              <!-- Force 3: Friction f along slope up-left -->
+              <line x1="145" y1="155" x2="80" y2="118" stroke="#fbbf24" stroke-width="2" marker-end="url(#arr-p9-gold)"/>
+              <text x="65" y="138" fill="#fbbf24" font-size="12" font-weight="bold">摩擦力 f</text>
+
+              <!-- Vector Sum of N and f = R (Contact Force) straight up! -->
+              <line x1="145" y1="155" x2="145" y2="75" stroke="#4ade80" stroke-width="3" stroke-dasharray="4,3" marker-end="url(#arr-p9-green)"/>
+              <rect x="155" y="80" width="165" height="36" rx="4" fill="rgba(15, 23, 42, 0.9)" stroke="#4ade80" stroke-width="1"/>
+              <text x="162" y="96" fill="#4ade80" font-size="11" font-weight="bold">斜面接觸合力 R</text>
+              <text x="162" y="110" fill="#a7f3d0" font-size="10">R = N + f = W (鉛直向上!)</text>
+            </g>
+
+            <!-- RIGHT: 整體法分析 (斜面體+木塊) -->
+            <g transform="translate(390, 20)">
+              <rect x="0" y="0" width="340" height="315" rx="10" fill="#0f172a" stroke="#1e293b" stroke-width="1.5"/>
+              <text x="20" y="28" fill="#94a3b8" font-size="13" font-weight="600">圖 B：系統整體法（木塊＋斜面體）</text>
+
+              <!-- Boundary enclosing block + wedge -->
+              <rect x="30" y="70" width="270" height="190" rx="14" fill="none" stroke="#818cf8" stroke-width="1.5" stroke-dasharray="6,4"/>
+              <text x="210" y="92" fill="#818cf8" font-size="11" font-weight="bold">整體系統邊界</text>
+
+              <!-- Wedge base inside -->
+              <polygon points="50,250 270,250 270,130" fill="rgba(71, 85, 105, 0.4)" stroke="#64748b" stroke-width="2"/>
+              <!-- Ground -->
+              <line x1="25" y1="250" x2="310" y2="250" stroke="#94a3b8" stroke-width="3"/>
+
+              <!-- Small block -->
+              <rect x="140" y="150" width="40" height="24" rx="2" fill="#3b82f6" opacity="0.6"/>
+
+              <!-- Total gravity straight down -->
+              <circle cx="160" cy="190" r="5" fill="#f87171"/>
+              <line x1="160" y1="190" x2="160" y2="260" stroke="#f87171" stroke-width="2.5" marker-end="url(#arr-p9-red)"/>
+              <text x="170" y="235" fill="#f87171" font-size="12" font-weight="bold">總重 (W + M斜g)</text>
+
+              <!-- Ground normal force straight up -->
+              <line x1="160" y1="270" x2="160" y2="220" stroke="#38bdf8" stroke-width="2.5" marker-end="url(#arr-p9-cyan)"/>
+              <text x="170" y="275" fill="#38bdf8" font-size="12" font-weight="bold">地面正向力 N地</text>
+
+              <!-- Horizontal ground friction = 0 badge -->
+              <g transform="translate(50, 275)">
+                <rect x="0" y="0" width="240" height="32" rx="6" fill="rgba(244, 63, 94, 0.15)" stroke="#f43f5e" stroke-width="1.5"/>
+                <text x="120" y="20" fill="#f43f5e" font-size="12" font-weight="bold" text-anchor="middle">水平外力 = 0  ⟹  地面摩擦力 f地 = 0</text>
+              </g>
+
+              <!-- Explanation note -->
+              <text x="45" y="115" fill="#cbd5e1" font-size="11">物體靜止或等速（a = 0）</text>
+              <text x="45" y="132" fill="#94a3b8" font-size="10.5">系統水平方向動量守恆 / 零外力</text>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Worksheet -->
+    <section class="card challenge-card">
+      <div class="card-header">
+        <div class="card-icon">✍️</div>
+        <div>
+          <h2>學生實戰填答區</h2>
+          <span class="card-tag">請依序完成 6 項子題作答</span>
+        </div>
+      </div>
+
+      <div class="card-body">
+        <div class="worksheet-grid">
+          <!-- Part 1 Section -->
+          <div class="worksheet-panel" style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 12px; border: 1px solid #1e293b;">
+            <h3 style="color: #60a5fa; font-size: 16px; margin-bottom: 14px;">情境一：θ = 30° 靜止</h3>
+
+            <div class="field-group" style="margin-bottom: 14px;">
+              <label for="ans1_1">1-① 物體受到的摩擦力：</label>
+              <select id="ans1_1" class="custom-select">
+                <option value="">-- 請選擇 --</option>
+                <option value="1/2 W">1/2 W (或 0.5 W)</option>
+                <option value="√3/2 W">√3/2 W</option>
+                <option value="W">W</option>
+                <option value="0">0</option>
+              </select>
+            </div>
+
+            <div class="field-group" style="margin-bottom: 14px;">
+              <label for="ans1_2">1-② 斜面對物體的作用力（接觸合力）：</label>
+              <select id="ans1_2" class="custom-select">
+                <option value="">-- 請選擇 --</option>
+                <option value="1/2 W">1/2 W</option>
+                <option value="√3/2 W">√3/2 W (垂直斜面向上)</option>
+                <option value="W 鉛直向上">W (鉛直向上)</option>
+                <option value="0">0</option>
+              </select>
+            </div>
+
+            <div class="field-group">
+              <label for="ans1_3">1-③ 斜面體受到地面的摩擦力：</label>
+              <select id="ans1_3" class="custom-select">
+                <option value="">-- 請選擇 --</option>
+                <option value="1/2 W 向左">1/2 W (向左)</option>
+                <option value="√3/2 W 向右">√3/2 W (向右)</option>
+                <option value="0">0 (無摩擦力)</option>
+                <option value="W 向左">W (向左)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Part 2 Section -->
+          <div class="worksheet-panel" style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 12px; border: 1px solid #1e293b;">
+            <h3 style="color: #38bdf8; font-size: 16px; margin-bottom: 14px;">情境二：θ = 37° 等速下滑</h3>
+
+            <div class="field-group" style="margin-bottom: 14px;">
+              <label for="ans2_1">2-① 物體受到的摩擦力：</label>
+              <select id="ans2_1" class="custom-select">
+                <option value="">-- 請選擇 --</option>
+                <option value="3/5 W">3/5 W (或 0.6 W)</option>
+                <option value="4/5 W">4/5 W</option>
+                <option value="W">W</option>
+                <option value="0">0</option>
+              </select>
+            </div>
+
+            <div class="field-group" style="margin-bottom: 14px;">
+              <label for="ans2_2">2-② 斜面對物體的作用力（接觸合力）：</label>
+              <select id="ans2_2" class="custom-select">
+                <option value="">-- 請選擇 --</option>
+                <option value="3/5 W">3/5 W</option>
+                <option value="4/5 W">4/5 W (垂直斜面向上)</option>
+                <option value="W 鉛直向上">W (鉛直向上)</option>
+                <option value="0">0</option>
+              </select>
+            </div>
+
+            <div class="field-group">
+              <label for="ans2_3">2-③ 斜面體受到地面的摩擦力：</label>
+              <select id="ans2_3" class="custom-select">
+                <option value="">-- 請選擇 --</option>
+                <option value="3/5 W 向左">3/5 W (向左)</option>
+                <option value="4/5 W 向右">4/5 W (向右)</option>
+                <option value="0">0 (無摩擦力)</option>
+                <option value="W 向左">W (向左)</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 12px; margin-top: 20px; flex-wrap: wrap;">
+          <button id="btnCheck" class="action-btn check-btn">
+            <span>核對答案</span>
+          </button>
+          <button id="btnToggleSolution" class="action-btn toggle-btn">
+            <span>顯示完整解析</span>
+          </button>
+        </div>
+
+        <div id="feedbackMessage" class="feedback-box" style="display: none;"></div>
+      </div>
+    </section>
+
+    <!-- Detailed Solution Section (Initially Hidden) -->
+    <section id="solutionSection" class="card solution-card" style="display: none;">
+      <div class="card-header">
+        <div class="card-icon">💡</div>
+        <div>
+          <h2>完整精闢觀念解析與公式推導</h2>
+          <span class="card-tag">名師解題核心技巧</span>
+        </div>
+      </div>
+
+      <div class="solution-body">
+        <!-- Golden Rule Box -->
+        <div class="tip-box" style="background: rgba(34, 197, 94, 0.1); border-left: 4px solid #22c55e; padding: 16px; border-radius: 8px; margin-bottom: 24px;">
+          <h4 style="color: #4ade80; margin-bottom: 6px; font-size: 15px;">⭐ 大考破題黃金心法（秒殺密技）：</h4>
+          <p style="color: #e2e8f0; font-size: 14px; line-height: 1.6; margin: 0;">
+            1. <strong>斜面對物體的「作用力」是指接觸合力 $\vec{R}$</strong>，即正向力 $\vec{N}$ 與摩擦力 $\vec{f}$ 的向量和：$\vec{R} = \vec{N} + \vec{f}$。<br>
+            若物體處於<strong>靜止</strong>或<strong>等速運動</strong>（加速度 $\vec{a} = 0$），物體只受重力 $\vec{W}$ 與接觸力 $\vec{R}$ 兩力平衡，故 $\vec{R} + \vec{W} = 0 \implies \vec{R} = -\vec{W}$，其大小必為 $W$，方向必為<strong>鉛直向上</strong>！<br>
+            2. <strong>地面對斜面體之摩擦力 $\to$ 用「整體法」秒殺</strong>：將物體與斜面體視為一整體，水平方向並無任何外力，加速度 $a_x = 0$，故地面靜摩擦力必恆為 <strong>0</strong>！
+          </p>
+        </div>
+
+        <!-- Part 1 Solution -->
+        <div class="step-card">
+          <div class="step-header">
+            <span class="step-num">Step 1</span>
+            <h3>情境一分析：$\theta = 30^\circ$ 物體靜止</h3>
+          </div>
+          <div class="step-content">
+            <p>物體靜止於傾角 $30^\circ$ 的斜面上，沿斜面方向合力為 0：</p>
+            <p>
+              $$\sum F_{\parallel} = 0 \implies f_s = W \sin 30^\circ = W \times \frac{1}{2} = \frac{1}{2}W$$
+            </p>
+            <p>
+              垂直斜面方向合力為 0：
+              $$N = W \cos 30^\circ = \frac{\sqrt{3}}{2}W$$
+            </p>
+            <p>
+              斜面對物體的作用力即為 $\vec{R} = \vec{N} + \vec{f}_s$：
+              $$R = \sqrt{N^2 + f_s^2} = \sqrt{\left(\frac{\sqrt{3}}{2}W\right)^2 + \left(\frac{1}{2}W\right)^2} = \sqrt{\frac{3+1}{4}}W = W \quad (\text{鉛直向上})$$
+            </p>
+            <p>
+              對斜面體而言，將 (木塊 + 斜面) 視為一體，水平方向系統不受外力，故地面的水平靜摩擦力：
+              $$f_{\text{地}} = 0$$
+            </p>
+          </div>
+        </div>
+
+        <!-- Part 2 Solution -->
+        <div class="step-card">
+          <div class="step-header">
+            <span class="step-num">Step 2</span>
+            <h3>情境二分析：$\theta = 37^\circ$ 物體等速下滑</h3>
+          </div>
+          <div class="step-content">
+            <p>物體等速下滑，表示加速度 $\vec{a} = 0$，處於動態動平衡狀態：</p>
+            <p>
+              沿斜面方向，動摩擦力恰平衡重力沿斜面的分力：
+              $$f_k = W \sin 37^\circ = W \times \frac{3}{5} = \frac{3}{5}W$$
+            </p>
+            <p>
+              垂直斜面方向正向力：
+              $$N = W \cos 37^\circ = \frac{4}{5}W$$
+            </p>
+            <p>
+              斜面對物體的作用力（接觸面的合力）：
+              $$R = \sqrt{N^2 + f_k^2} = \sqrt{\left(\frac{4}{5}W\right)^2 + \left(\frac{3}{5}W\right)^2} = W \quad (\text{鉛直向上})$$
+            </p>
+            <p>
+              同樣利用整體法，木塊等速移動其加速度 $\vec{a}=0$，斜面體靜止 $\vec{a}=0$，整個系統質心無水平加速度，水平外力總和為 0：
+              $$f_{\text{地}} = 0$$
+            </p>
+          </div>
+        </div>
+
+        <!-- Summary Table -->
+        <div class="step-card" style="margin-top: 20px;">
+          <div class="step-header">
+            <span class="step-num">總結</span>
+            <h3>兩情境解答對照表</h3>
+          </div>
+          <div class="step-content">
+            <table style="width: 100%; border-collapse: collapse; margin-top: 10px; text-align: center; color: #cbd5e1; font-size: 14px;">
+              <thead>
+                <tr style="background: rgba(30, 41, 59, 0.8); border-bottom: 2px solid #334155;">
+                  <th style="padding: 10px;">狀態</th>
+                  <th style="padding: 10px;">① 物體摩擦力</th>
+                  <th style="padding: 10px;">② 斜面對物體作用力</th>
+                  <th style="padding: 10px;">③ 斜面體所受地面摩擦力</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="border-bottom: 1px solid #1e293b;">
+                  <td style="padding: 12px; font-weight: bold; color: #60a5fa;">1. $\theta = 30^\circ$ 靜止</td>
+                  <td style="padding: 12px; color: #fbbf24;">$$\frac{1}{2}W$$</td>
+                  <td style="padding: 12px; color: #4ade80;">$$W \text{ (鉛直向上)}$$</td>
+                  <td style="padding: 12px; color: #f87171;">$$0$$</td>
+                </tr>
+                <tr>
+                  <td style="padding: 12px; font-weight: bold; color: #38bdf8;">2. $\theta = 37^\circ$ 等速下滑</td>
+                  <td style="padding: 12px; color: #fbbf24;">$$\frac{3}{5}W$$</td>
+                  <td style="padding: 12px; color: #4ade80;">$$W \text{ (鉛直向上)}$$</td>
+                  <td style="padding: 12px; color: #f87171;">$$0$$</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Navigation -->
+    <div class="bottom-nav">
+      <a href="problem8.html" class="nav-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+        上一題 (範例 8)
+      </a>
+      <a href="index.html" class="nav-btn primary">回到講義首頁</a>
+      <a href="problem10.html" class="nav-btn">
+        下一題 (範例 10)
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+    </div>
+  
+    <!-- Related Practice & Knowledge Consolidation Section -->
+    <section class="card recommendation-card" style="margin-top: 24px; border: 1px solid rgba(0, 229, 255, 0.3); background: rgba(15, 23, 42, 0.75);">
+      <div class="card-header">
+        <div class="card-icon" style="background: rgba(0, 229, 255, 0.15); border-color: rgba(0, 229, 255, 0.35);">🎯</div>
+        <div>
+          <h2>學完本範例，接下來建議練習以下題庫！</h2>
+          <span class="card-tag">循序漸進・概念深耕・題型通關</span>
+        </div>
+      </div>
+      <p style="font-size: 0.95rem; color: var(--text-muted); margin: 6px 0 16px 0; line-height: 1.6;">
+        已為您智能引導與「<strong>斜面等速下滑、全作用力鉛直向上、系統整體法分析斜面與地面作用力</strong>」高度相關的課堂類題與大考題庫，趁熱打鐵進行題型辨析與鞏固練習：
+      </p>
+
+      <div class="rec-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px;">
+        <!-- Card: 摩擦 20 -->
+        <div class="rec-card" style="background: var(--bg-surface-elevated); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 16px; display: flex; flex-direction: column; justify-content: space-between; gap: 10px; transition: all 0.2s ease;">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <span class="badge badge-accent" style="font-size: 0.8rem;">摩擦 20</span>
+              <span style="font-size: 0.75rem; color: #38bdf8; font-weight: 700; background: rgba(56, 189, 248, 0.12); padding: 2px 8px; border-radius: 4px; border: 1px solid rgba(56, 189, 248, 0.25);">🌱 二力平衡本質</span>
+            </div>
+            <h4 style="font-size: 1.02rem; color: #fff; margin-bottom: 6px;">斜面總作用力恆定性分析</h4>
+            <p style="font-size: 0.86rem; color: var(--text-muted); line-height: 1.55;">
+              深入剖析「正向力與摩擦力之向量和＝總接觸面作用力」，二力平衡直接秒殺！
+            </p>
+          </div>
+          <a href="frict20.html" class="nav-btn primary" style="justify-content: center; font-size: 0.88rem; padding: 7px 14px; margin-top: 6px; font-weight: 600;">
+            🚀 前往練習
+          </a>
+        </div>
+        <!-- Card: 摩擦 14 -->
+        <div class="rec-card" style="background: var(--bg-surface-elevated); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 16px; display: flex; flex-direction: column; justify-content: space-between; gap: 10px; transition: all 0.2s ease;">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <span class="badge badge-accent" style="font-size: 0.8rem;">摩擦 14</span>
+              <span style="font-size: 0.75rem; color: #38bdf8; font-weight: 700; background: rgba(56, 189, 248, 0.12); padding: 2px 8px; border-radius: 4px; border: 1px solid rgba(56, 189, 248, 0.25);">⭐ 整體法看斜面</span>
+            </div>
+            <h4 style="font-size: 1.02rem; color: #fff; margin-bottom: 6px;">物體下滑與斜面維持靜止條件</h4>
+            <p style="font-size: 0.86rem; color: var(--text-muted); line-height: 1.55;">
+              滑塊沿斜面下滑時，整體法求底座斜面與地面之間的靜摩擦力是否為零。
+            </p>
+          </div>
+          <a href="frict14.html" class="nav-btn primary" style="justify-content: center; font-size: 0.88rem; padding: 7px 14px; margin-top: 6px; font-weight: 600;">
+            🚀 前往練習
+          </a>
+        </div>
+        <!-- Card: 平衡 43 -->
+        <div class="rec-card" style="background: var(--bg-surface-elevated); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 16px; display: flex; flex-direction: column; justify-content: space-between; gap: 10px; transition: all 0.2s ease;">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <span class="badge badge-accent" style="font-size: 0.8rem;">平衡 43</span>
+              <span style="font-size: 0.75rem; color: #38bdf8; font-weight: 700; background: rgba(56, 189, 248, 0.12); padding: 2px 8px; border-radius: 4px; border: 1px solid rgba(56, 189, 248, 0.25);">🔥 等速下滑系統力</span>
+            </div>
+            <h4 style="font-size: 1.02rem; color: #fff; margin-bottom: 6px;">小童沿木板等速下滑之牆面與地面力變化</h4>
+            <p style="font-size: 0.86rem; color: var(--text-muted); line-height: 1.55;">
+              物體等速運動時加速度為零，系統合外力恆為零，牆面與地面支持力完全保持不變！
+            </p>
+          </div>
+          <a href="equil43.html" class="nav-btn primary" style="justify-content: center; font-size: 0.88rem; padding: 7px 14px; margin-top: 6px; font-weight: 600;">
+            🚀 前往練習
+          </a>
+        </div>
+        <!-- Card: 摩擦 04 -->
+        <div class="rec-card" style="background: var(--bg-surface-elevated); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 16px; display: flex; flex-direction: column; justify-content: space-between; gap: 10px; transition: all 0.2s ease;">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <span class="badge badge-accent" style="font-size: 0.8rem;">摩擦 04</span>
+              <span style="font-size: 0.75rem; color: #38bdf8; font-weight: 700; background: rgba(56, 189, 248, 0.12); padding: 2px 8px; border-radius: 4px; border: 1px solid rgba(56, 189, 248, 0.25);">🏆 91 研究試題</span>
+            </div>
+            <h4 style="font-size: 1.02rem; color: #fff; margin-bottom: 6px;">斜面滑輪系統保持靜止之質量比範圍</h4>
+            <p style="font-size: 0.86rem; color: var(--text-muted); line-height: 1.55;">
+              斜面摩擦力方向隨可能運動趨勢雙向判讀，大考經典雙向滑動臨界極值題。
+            </p>
+          </div>
+          <a href="frict4.html" class="nav-btn primary" style="justify-content: center; font-size: 0.88rem; padding: 7px 14px; margin-top: 6px; font-weight: 600;">
+            🚀 前往練習
+          </a>
+        </div>
+      </div>
+      
+      <div style="margin-top: 18px; text-align: center; border-top: 1px dashed var(--border-subtle); padding-top: 14px;">
+        <a href="index.html" class="nav-btn" style="font-size: 0.88rem;">
+          📚 返回總目錄查看全單元 104 題索引
+        </a>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      if (window.renderMathInElement) {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ],
+          throwOnError: false
+        });
+      }
+
+      const answers = {
+        ans1_1: "1/2 W",
+        ans1_2: "W 鉛直向上",
+        ans1_3: "0",
+        ans2_1: "3/5 W",
+        ans2_2: "W 鉛直向上",
+        ans2_3: "0"
+      };
+
+      const btnCheck = document.getElementById('btnCheck');
+      const btnToggle = document.getElementById('btnToggleSolution');
+      const solutionSection = document.getElementById('solutionSection');
+      const feedback = document.getElementById('feedbackMessage');
+
+      btnCheck.addEventListener('click', function() {
+        let allCorrect = true;
+        let emptyFound = false;
+
+        for (const [id, correctVal] of Object.entries(answers)) {
+          const sel = document.getElementById(id);
+          if (!sel.value) {
+            emptyFound = true;
+            sel.style.borderColor = '#fbbf24';
+          } else if (sel.value === correctVal) {
+            sel.style.borderColor = '#22c55e';
+            sel.style.background = 'rgba(34, 197, 94, 0.1)';
+          } else {
+            sel.style.borderColor = '#ef4444';
+            sel.style.background = 'rgba(239, 68, 68, 0.1)';
+            allCorrect = false;
+          }
+        }
+
+        feedback.style.display = 'block';
+        if (emptyFound) {
+          feedback.className = 'feedback-box warning';
+          feedback.innerHTML = '⚠️ 請先完成所有欄位的選擇後再核對！';
+        } else if (allCorrect) {
+          feedback.className = 'feedback-box success';
+          feedback.innerHTML = '🎉 <strong>完全正確！概念非常清晰！</strong><br>記住：只要加速度為 0，斜面對物體的接觸合力必為 W（鉛直向上），且由整體法可直接得知地面靜摩擦力為 0！';
+          solutionSection.style.display = 'block';
+          btnToggle.querySelector('span').textContent = '收合完整解析';
+        } else {
+          feedback.className = 'feedback-box error';
+          feedback.innerHTML = '❌ <strong>部分答案有誤或需調整！</strong><br>提示：注意「作用力」是指正向力與摩擦力的合力，另外可用「系統整體法」判斷地面摩擦力。點擊下方可查看完整推導！';
+        }
+      });
+
+      btnToggle.addEventListener('click', function() {
+        if (solutionSection.style.display === 'none' || solutionSection.style.display === '') {
+          solutionSection.style.display = 'block';
+          btnToggle.querySelector('span').textContent = '收合完整解析';
+        } else {
+          solutionSection.style.display = 'none';
+          btnToggle.querySelector('span').textContent = '顯示完整解析';
+        }
+      });
+    });
+  </script>
+</body>
+</html>

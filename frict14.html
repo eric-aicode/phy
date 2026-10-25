@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>靜摩擦力 14：下滑物體作用與斜面靜止臨界摩擦 | 高中物理靜力學</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+  <link rel="stylesheet" href="shared.css">
+</head>
+<body>
+  <div class="bg-glow"></div>
+  <div class="bg-grid"></div>
+
+  <div class="container">
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+      <div class="nav-links">
+        <a href="index.html" class="nav-btn primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          回目錄
+        </a>
+        <a href="frict13.html" class="nav-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          上一題 (摩擦 13)
+        </a>
+        <a href="frict15.html" class="nav-btn">
+          下一題 (摩擦 15)
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+      <div class="badge-wrapper">
+        <span class="badge badge-page">講義 靜力學-36</span>
+        <span class="badge badge-exam">斜面反作用力與底面臨界摩擦</span>
+        <span class="badge badge-accent">靜摩擦力・練習 14</span>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+      <h1 class="main-title">靜摩擦力 14：<span class="gradient-text">物體下滑與斜面維持靜止條件</span></h1>
+      <p class="subtitle">4kg 光滑斜面・5kg 物體下滑・正向反作用力水平分量與地面最大靜摩擦力</p>
+    </header>
+
+    <!-- Main Problem Layout -->
+    <div class="problem-layout">
+      <!-- Left Column: Problem & Visualizer -->
+      <div class="problem-card">
+        <h2 class="section-title">
+          <span class="step-num">1</span>
+          題目情境與物理圖解
+        </h2>
+        <div class="problem-text">
+          <p>
+            有一質量 $4\text{ 公斤}$，斜角 $37^\circ$ 的光滑斜面三角形木塊，其上放置質量 $5\text{ 公斤}$ 的物體，如圖所示。
+          </p>
+          <p>
+            若物體沿光滑斜面下滑，欲使木塊保持靜止，則三角形木塊底面與地面間的靜摩擦係數 $\mu_s$ 至少應為多少？（設重力加速度 $g = 10\text{ m/s}^2$）
+          </p>
+        </div>
+
+        <!-- SVG Diagram -->
+        <div class="svg-container">
+          <svg viewBox="0 0 540 300" xmlns="http://www.w3.org/2000/svg">
+            <!-- Ground -->
+            <line x1="50" y1="240" x2="490" y2="240" stroke="#94a3b8" stroke-width="3"/>
+            <path d="M60 240 l-10 12 M90 240 l-10 12 M120 240 l-10 12 M150 240 l-10 12 M180 240 l-10 12 M210 240 l-10 12 M240 240 l-10 12 M270 240 l-10 12 M300 240 l-10 12 M330 240 l-10 12 M360 240 l-10 12 M390 240 l-10 12 M420 240 l-10 12 M450 240 l-10 12" stroke="#64748b" stroke-width="1.5"/>
+
+            <!-- Wedge: Base from (120,240) to (380,240), height at (380,80), incline 37 deg -->
+            <!-- tan(37) ~ 0.75. Width = 260, height ~ 195. Let's make base (140,240) to (380,240), height (380, 240-180=60) -->
+            <polygon points="140,240 380,240 380,60" fill="rgba(30, 41, 59, 0.75)" stroke="#38bdf8" stroke-width="2.5"/>
+            <text x="260" y="190" fill="#38bdf8" font-size="15" font-weight="bold">M = 4 kg</text>
+
+            <!-- Angle 37 deg -->
+            <path d="M 190 240 A 50 50 0 0 0 180 210" fill="none" stroke="#facc15" stroke-width="2"/>
+            <text x="195" y="232" fill="#facc15" font-size="14" font-weight="bold">37°</text>
+
+            <!-- Sliding Block on incline: slope ~ -36.87 deg -->
+            <g transform="translate(250, 157.5) rotate(-36.87)">
+              <rect x="-30" y="-40" width="60" height="40" fill="rgba(239, 68, 68, 0.3)" stroke="#ef4444" stroke-width="2" rx="2"/>
+              <text x="-18" y="-15" fill="#f1f5f9" font-size="14" font-weight="bold">5 kg</text>
+              <!-- Downward acceleration arrow -->
+              <line x1="-35" y1="-20" x2="-75" y2="-20" stroke="#facc15" stroke-width="2.5" marker-end="url(#arrow-yellow-14)"/>
+              <text x="-70" y="-30" fill="#facc15" font-size="13" font-weight="bold">a</text>
+            </g>
+
+            <!-- Normal force reaction on wedge: from contact point (250, 157.5) down-right -->
+            <!-- angle of normal to wedge is +53.13 deg from horizontal, perpendicular to incline -->
+            <line x1="250" y1="157.5" x2="298" y2="221.5" stroke="#00e5ff" stroke-width="2.5" marker-end="url(#arrow-blue-14)"/>
+            <text x="305" y="210" fill="#00e5ff" font-size="13" font-weight="bold">N₁ = 40 N</text>
+
+            <!-- Ground friction force on wedge: pointing left -->
+            <line x1="260" y1="240" x2="190" y2="240" stroke="#00e676" stroke-width="3" marker-end="url(#arrow-green-14)"/>
+            <text x="200" y="265" fill="#00e676" font-size="14" font-weight="bold">f = 24 N</text>
+
+            <defs>
+              <marker id="arrow-yellow-14" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+                <polygon points="0 0, 8 4, 0 8" fill="#facc15"/>
+              </marker>
+              <marker id="arrow-blue-14" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+                <polygon points="0 0, 8 4, 0 8" fill="#00e5ff"/>
+              </marker>
+              <marker id="arrow-green-14" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+                <polygon points="0 0, 8 4, 0 8" fill="#00e676"/>
+              </marker>
+            </defs>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Right Column: Interactive Quiz & Solution -->
+      <div class="interactive-card">
+        <h2 class="section-title">
+          <span class="step-num">2</span>
+          即時作答與力學推導
+        </h2>
+
+        <div class="options-grid" id="options">
+          <button class="option-btn" onclick="checkAnswer('A')">
+            <span class="opt-letter">A</span>
+            <span class="opt-text">4/3</span>
+          </button>
+          <button class="option-btn" onclick="checkAnswer('B')">
+            <span class="opt-letter">B</span>
+            <span class="opt-text">1/4</span>
+          </button>
+          <button class="option-btn" onclick="checkAnswer('C')">
+            <span class="opt-letter">C</span>
+            <span class="opt-text">1/3</span>
+          </button>
+          <button class="option-btn" onclick="checkAnswer('D')">
+            <span class="opt-letter">D</span>
+            <span class="opt-text">3/4</span>
+          </button>
+          <button class="option-btn" onclick="checkAnswer('E')">
+            <span class="opt-letter">E</span>
+            <span class="opt-text">3/5</span>
+          </button>
+        </div>
+
+        <div class="feedback" id="feedback"></div>
+
+        <button class="toggle-btn" id="toggleBtn" onclick="toggleSolution()">
+          📖 查看受力拆解與臨界摩擦係數推導
+        </button>
+
+        <div class="solution-content" id="solution">
+          <h3 style="color: #38bdf8; margin-bottom: 0.75rem;">💡 核心物理觀念詳解</h3>
+          
+          <div class="step-box">
+            <strong>1. 物體受力與斜面正向力：</strong>
+            <p>
+              物體質量 $m = 5\text{ kg}$，重力 $mg = 50\text{ N}$。
+              在光滑斜面上下滑時，物體受到垂直於斜面的正向支撐力：
+              $$N_1 = mg\cos 37^\circ = 50 \times \frac{4}{5} = 40\text{ N}$$
+            </p>
+          </div>
+
+          <div class="step-box">
+            <strong>2. 斜面受到物體之正向反作用力分解：</strong>
+            <p>
+              物體對斜面施加垂直於斜面向下的壓力 $N_1 = 40\text{ N}$。
+              將其分解至水平與鉛直方向：
+              <ul>
+                <li>水平向右推力：
+                  $$F_x = N_1 \sin 37^\circ = mg\cos 37^\circ \sin 37^\circ = 40 \times \frac{3}{5} = 24\text{ N}$$
+                </li>
+                <li>鉛直向下壓力：
+                  $$F_y = N_1 \cos 37^\circ = mg\cos^2 37^\circ = 40 \times \frac{4}{5} = 32\text{ N}$$
+                </li>
+              </ul>
+            </p>
+          </div>
+
+          <div class="step-box">
+            <strong>3. 斜面平衡與地面正向力：</strong>
+            <p>
+              斜面本身質量 $M = 4\text{ kg}$，重力 $Mg = 40\text{ N}$。
+              斜面在鉛直方向受力平衡：
+              $$N_{\text{地}} = Mg + F_y = 40 + 32 = 72\text{ N}$$
+              斜面在水平方向維持靜止，受地面的靜摩擦力 $f$ 平衡：
+              $$f = F_x = 24\text{ N}$$
+            </p>
+          </div>
+
+          <div class="step-box">
+            <strong>4. 臨界靜摩擦係數 $\mu_s$：</strong>
+            <p>
+              木塊不滑動之條件為水平靜摩擦力不超過最大靜摩擦力：
+              $$f \le f_{s,\max} = \mu_s N_{\text{地}}$$
+              $$24 \le \mu_s \times 72 \implies \mu_s \ge \frac{24}{72} = \frac{1}{3}$$
+              故靜摩擦係數至少應為 <strong>$1/3$</strong>，正確答案為 <strong>(C)</strong>。
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const correctAns = 'C';
+
+    function checkAnswer(chosen) {
+      const fb = document.getElementById('feedback');
+      const btns = document.querySelectorAll('.option-btn');
+      
+      btns.forEach(btn => {
+        btn.classList.remove('selected', 'correct', 'wrong');
+        const letter = btn.querySelector('.opt-letter').textContent;
+        if (letter === chosen) {
+          btn.classList.add('selected');
+          if (chosen === correctAns) {
+            btn.classList.add('correct');
+          } else {
+            btn.classList.add('wrong');
+          }
+        }
+        if (letter === correctAns && chosen !== correctAns) {
+          btn.classList.add('correct');
+        }
+      });
+
+      if (chosen === correctAns) {
+        fb.className = 'feedback correct';
+        fb.innerHTML = '🎉 正確！斜面受物體正向反作用力水平分量 24 N，地面正向力為 40+32=72 N，μ_s ≥ 24/72 = 1/3。';
+      } else {
+        fb.className = 'feedback wrong';
+        fb.innerHTML = '❌ 不正確。注意：物體對斜面的反作用力垂直於斜面，水平分力推動斜面，鉛直分力增加地面正向力！';
+      }
+    }
+
+    function toggleSolution() {
+      const sol = document.getElementById('solution');
+      const btn = document.getElementById('toggleBtn');
+      if (sol.classList.contains('show')) {
+        sol.classList.remove('show');
+        btn.textContent = '📖 查看受力拆解與臨界摩擦係數推導';
+      } else {
+        sol.classList.add('show');
+        btn.textContent = '🔼 收起解析';
+        renderMathInElement(sol, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ]
+        });
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+      renderMathInElement(document.body, {
+        delimiters: [
+          {left: '$$', right: '$$', display: true},
+          {left: '$', right: '$', display: false}
+        ]
+      });
+    });
+  </script>
+</body>
+</html>

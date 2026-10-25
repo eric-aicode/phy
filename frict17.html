@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>靜摩擦力 17：小蟲爬折線斜面之極限段數 | 高中物理靜力學</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+  <link rel="stylesheet" href="shared.css">
+</head>
+<body>
+  <div class="bg-glow"></div>
+  <div class="bg-grid"></div>
+
+  <div class="container">
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+      <div class="nav-links">
+        <a href="index.html" class="nav-btn primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          回目錄
+        </a>
+        <a href="frict16.html" class="nav-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          上一題 (摩擦 16)
+        </a>
+        <a href="frict18.html" class="nav-btn">
+          下一題 (摩擦 18)
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+      <div class="badge-wrapper">
+        <span class="badge badge-page">講義 靜力學-37</span>
+        <span class="badge badge-exam">摩擦角與極限爬坡分析</span>
+        <span class="badge badge-accent">靜摩擦力・練習 17</span>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+      <h1 class="main-title">靜摩擦力 17：<span class="gradient-text">小蟲爬折線斜面之極限段數</span></h1>
+      <p class="subtitle">連續 10° 遞增折線斜面・靜摩擦係數 √3・臨界滑動傾角 tanθ = μs 應用</p>
+    </header>
+
+    <!-- Main Problem Layout -->
+    <div class="problem-layout">
+      <!-- Left Column: Problem & Visualizer -->
+      <div class="problem-card">
+        <h2 class="section-title">
+          <span class="step-num">1</span>
+          題目情境與物理圖解
+        </h2>
+        <div class="problem-text">
+          <p>
+            有一小蟲自水平面沿著附圖所示之斜面上爬，已知斜面間的夾角均為 $10^\circ$，靜摩擦係數均為 $\sqrt{3}$，求該小蟲最多可爬至第幾個斜面？
+          </p>
+        </div>
+
+        <!-- SVG Diagram -->
+        <div class="svg-container">
+          <svg viewBox="0 0 540 300" xmlns="http://www.w3.org/2000/svg">
+            <!-- Floor / Ground -->
+            <line x1="50" y1="250" x2="490" y2="250" stroke="#94a3b8" stroke-width="3"/>
+            <path d="M60 250 l-10 12 M90 250 l-10 12 M120 250 l-10 12 M150 250 l-10 12 M180 250 l-10 12 M210 250 l-10 12 M240 250 l-10 12 M270 250 l-10 12 M300 250 l-10 12 M330 250 l-10 12 M360 250 l-10 12 M390 250 l-10 12 M420 250 l-10 12 M450 250 l-10 12" stroke="#64748b" stroke-width="1.5"/>
+
+            <!-- Segments: start at (400, 250), each inclined higher -->
+            <!-- Segment 1: 10 deg, len 70. dx = 70*cos(10)=69, dy = 70*sin(10)=12. Point (331, 238) -->
+            <line x1="400" y1="250" x2="331" y2="238" stroke="#38bdf8" stroke-width="3.5"/>
+            <line x1="400" y1="250" x2="330" y2="250" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="3 3"/>
+            <text x="355" y="232" fill="#38bdf8" font-size="14" font-weight="bold">1</text>
+            <text x="380" y="263" fill="#facc15" font-size="12">10°</text>
+
+            <!-- Segment 2: 20 deg, len 70. dx = 70*cos(20)=65.8, dy = 70*sin(20)=23.9. Point (265, 214) -->
+            <line x1="331" y1="238" x2="265" y2="214" stroke="#38bdf8" stroke-width="3.5"/>
+            <line x1="331" y1="238" x2="265" y2="238" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="3 3"/>
+            <text x="290" y="210" fill="#38bdf8" font-size="14" font-weight="bold">2</text>
+            <text x="310" y="248" fill="#facc15" font-size="12">10°</text>
+
+            <!-- Segment 3: 30 deg, len 70. dx = 60.6, dy = 35. Point (204, 179) -->
+            <line x1="265" y1="214" x2="204" y2="179" stroke="#38bdf8" stroke-width="3.5"/>
+            <line x1="265" y1="214" x2="204" y2="214" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="3 3"/>
+            <text x="225" y="180" fill="#38bdf8" font-size="14" font-weight="bold">3</text>
+            <text x="245" y="224" fill="#facc15" font-size="12">10°</text>
+
+            <!-- Dotted continuation up to segment 6: 60 deg -->
+            <line x1="204" y1="179" x2="155" y2="134" stroke="#00e5ff" stroke-width="3" stroke-dasharray="4 3"/>
+            <line x1="155" y1="134" x2="115" y2="80" stroke="#00e676" stroke-width="3.5"/>
+            <text x="100" y="70" fill="#00e676" font-size="14" font-weight="bold">第 6 個 (θ = 60°)</text>
+
+            <!-- Cute little bug / caterpillar crawling on segment 1 -->
+            <g transform="translate(370, 243)">
+              <ellipse cx="0" cy="0" rx="9" ry="5" fill="#f43f5e"/>
+              <circle cx="7" cy="-2" r="3.5" fill="#f43f5e"/>
+              <line x1="8" y1="-5" x2="12" y2="-9" stroke="#f43f5e" stroke-width="1.5"/>
+              <line x1="9" y1="-5" x2="13" y2="-7" stroke="#f43f5e" stroke-width="1.5"/>
+            </g>
+
+            <!-- Info callout -->
+            <rect x="50" y="30" width="220" height="40" rx="6" fill="#1e293b" stroke="#facc15" stroke-width="1.5"/>
+            <text x="60" y="55" fill="#facc15" font-size="14" font-weight="bold">臨界角：tan θ_max = √3 = 60°</text>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Right Column: Interactive Quiz & Solution -->
+      <div class="interactive-card">
+        <h2 class="section-title">
+          <span class="step-num">2</span>
+          即時作答與物理定律判斷
+        </h2>
+
+        <div class="options-grid" id="options">
+          <button class="option-btn" onclick="checkAnswer('A')">
+            <span class="opt-letter">A</span>
+            <span class="opt-text">第 3 個</span>
+          </button>
+          <button class="option-btn" onclick="checkAnswer('B')">
+            <span class="opt-letter">B</span>
+            <span class="opt-text">第 4 個</span>
+          </button>
+          <button class="option-btn" onclick="checkAnswer('C')">
+            <span class="opt-letter">C</span>
+            <span class="opt-text">第 6 個</span>
+          </button>
+          <button class="option-btn" onclick="checkAnswer('D')">
+            <span class="opt-letter">D</span>
+            <span class="opt-text">第 8 個</span>
+          </button>
+          <button class="option-btn" onclick="checkAnswer('E')">
+            <span class="opt-letter">E</span>
+            <span class="opt-text">第 9 個</span>
+          </button>
+        </div>
+
+        <div class="feedback" id="feedback"></div>
+
+        <button class="toggle-btn" id="toggleBtn" onclick="toggleSolution()">
+          📖 查看臨界靜摩擦角推導
+        </button>
+
+        <div class="solution-content" id="solution">
+          <h3 style="color: #38bdf8; margin-bottom: 0.75rem;">💡 核心物理觀念詳解</h3>
+          
+          <div class="step-box">
+            <strong>1. 斜面不滑動臨界條件：</strong>
+            <p>
+              設斜面相對於水平線的總傾角為 $\theta$。小蟲質量為 $m$：
+              <ul>
+                <li>沿斜面向下的重力分量（下滑力）：$F_{\text{下滑}} = mg\sin\theta$</li>
+                <li>斜面所能提供的最大靜摩擦力：$f_{s,\max} = \mu_s N = \mu_s mg\cos\theta$</li>
+              </ul>
+              小蟲能停在斜面上不致滑落之條件：
+              $$mg\sin\theta \le \mu_s mg\cos\theta \implies \tan\theta \le \mu_s$$
+            </p>
+          </div>
+
+          <div class="step-box">
+            <strong>2. 計算臨界傾斜角 $\theta_{\max}$：</strong>
+            <p>
+              已知靜摩擦係數 $\mu_s = \sqrt{3}$：
+              $$\tan\theta \le \sqrt{3} \implies \theta \le 60^\circ$$
+              因此小蟲能停留的最高斜面傾角為 $60^\circ$。
+            </p>
+          </div>
+
+          <div class="step-box">
+            <strong>3. 計算最多可爬至第幾個斜面：</strong>
+            <p>
+              每一段斜面均比前一段增加 $10^\circ$：
+              第 $n$ 個斜面相對於水平面的傾角為：
+              $$\theta_n = n \times 10^\circ$$
+              代入臨界條件：
+              $$n \times 10^\circ \le 60^\circ \implies n \le 6$$
+              因此小蟲最多可爬至<strong>第 6 個斜面</strong>（此時傾角剛好為 $60^\circ$，恰達滑動臨界；若進入第 7 個斜面則傾角為 $70^\circ > 60^\circ$，必向下打滑）。
+              故正確答案為 <strong>(C) 第 6 個</strong>。
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const correctAns = 'C';
+
+    function checkAnswer(chosen) {
+      const fb = document.getElementById('feedback');
+      const btns = document.querySelectorAll('.option-btn');
+      
+      btns.forEach(btn => {
+        btn.classList.remove('selected', 'correct', 'wrong');
+        const letter = btn.querySelector('.opt-letter').textContent;
+        if (letter === chosen) {
+          btn.classList.add('selected');
+          if (chosen === correctAns) {
+            btn.classList.add('correct');
+          } else {
+            btn.classList.add('wrong');
+          }
+        }
+        if (letter === correctAns && chosen !== correctAns) {
+          btn.classList.add('correct');
+        }
+      });
+
+      if (chosen === correctAns) {
+        fb.className = 'feedback correct';
+        fb.innerHTML = '🎉 正確！臨界摩擦角滿足 tanθ = μs = √3 ⇒ θ = 60°。每段遞增 10°，故最多可爬到第 6 個斜面 (60°/10° = 6)！';
+      } else {
+        fb.className = 'feedback wrong';
+        fb.innerHTML = '❌ 不正確。提示：利用斜面不滑動臨界條件 tanθ ≤ μs = √3，求出最大傾角為 60°！';
+      }
+    }
+
+    function toggleSolution() {
+      const sol = document.getElementById('solution');
+      const btn = document.getElementById('toggleBtn');
+      if (sol.classList.contains('show')) {
+        sol.classList.remove('show');
+        btn.textContent = '📖 查看臨界靜摩擦角推導';
+      } else {
+        sol.classList.add('show');
+        btn.textContent = '🔼 收起解析';
+        renderMathInElement(sol, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ]
+        });
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+      renderMathInElement(document.body, {
+        delimiters: [
+          {left: '$$', right: '$$', display: true},
+          {left: '$', right: '$', display: false}
+        ]
+      });
+    });
+  </script>
+</body>
+</html>

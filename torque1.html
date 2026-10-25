@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>力矩練習 1：正三角形板三力對頂點之合力矩 | 高中物理靜力學</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+  <link rel="stylesheet" href="shared.css">
+</head>
+<body>
+  <div class="bg-glow"></div>
+  <div class="bg-grid"></div>
+
+  <div class="container">
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+      <div class="nav-links">
+        <a href="index.html" class="nav-btn primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          回目錄
+        </a>
+        <a href="exercise12.html" class="nav-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          上一題 (練習 12)
+        </a>
+        <a href="torque2.html" class="nav-btn">
+          下一題 (力矩 2)
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+      <div class="badge-wrapper">
+        <span class="badge badge-page">講義 靜力學-22</span>
+        <span class="badge badge-accent">力矩篇・練習 1</span>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+      <h1 class="main-title">力矩練習 1：<span class="gradient-text">正三角形板三力對頂點之合力矩</span></h1>
+      <p class="subtitle">力臂定義（支點至作用線垂直距離）・通過支點之力矩為零・對稱幾何高</p>
+    </header>
+
+    <!-- Problem Showcase Card -->
+    <section class="card problem-card">
+      <div class="card-header">
+        <div class="card-icon">📖</div>
+        <div>
+          <h2>題目內容</h2>
+          <span class="card-tag">基礎力矩幾何概念題</span>
+        </div>
+      </div>
+
+      <div class="problem-body">
+        <p>
+          如圖所示，大小均為 <strong>$F$</strong> 的三力分別沿邊長 <strong>$a$</strong> 的正三角形板三邊循環作用，則此三力對<strong>任一頂點</strong>之合力矩量值為何？
+        </p>
+
+        <!-- Dynamic Equilateral Triangle SVG Diagram -->
+        <div class="diagram-container" style="text-align: center; margin: 24px 0;">
+          <svg viewBox="0 0 760 330" style="width: 100%; max-width: 740px; background: rgba(15, 23, 42, 0.6); border-radius: 12px; border: 1px solid rgba(255,255,255,0.08);">
+            <defs>
+              <marker id="arrow-f" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#38bdf8"/>
+              </marker>
+              <marker id="arrow-arm" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#fbbf24"/>
+              </marker>
+            </defs>
+
+            <!-- 主圖形區：正三角形 (Side a = 200, Height = 200 * sqrt(3)/2 ≈ 173.2) -->
+            <!-- 頂點 A(260, 60), B(160, 233.2), C(360, 233.2) -->
+            <g transform="translate(60, 20)">
+              <!-- 三角形板面 -->
+              <polygon points="260,50 160,223 360,223" fill="rgba(30, 41, 59, 0.6)" stroke="#94a3b8" stroke-width="2.5"/>
+              
+              <!-- 頂點標籤與高亮頂點 A -->
+              <circle cx="260" cy="50" r="7" fill="#fbbf24"/>
+              <text x="260" y="35" fill="#fbbf24" font-size="16" font-weight="bold" text-anchor="middle">支點 A (任選頂點)</text>
+
+              <circle cx="160" cy="223" r="5" fill="#94a3b8"/>
+              <text x="145" y="240" fill="#94a3b8" font-size="14" font-weight="bold">B</text>
+
+              <circle cx="360" cy="223" r="5" fill="#94a3b8"/>
+              <text x="375" y="240" fill="#94a3b8" font-size="14" font-weight="bold">C</text>
+
+              <!-- 三力作用向量 (大小為 F) -->
+              <!-- 力 1: 沿邊 AB (向 B 方向，經過 A) -->
+              <line x1="260" y1="50" x2="190" y2="171" stroke="#38bdf8" stroke-width="3.5" marker-end="url(#arrow-f)"/>
+              <text x="200" y="105" fill="#38bdf8" font-size="14" font-weight="bold">F₁</text>
+
+              <!-- 力 2: 沿邊 BC (向 C 方向) -->
+              <line x1="160" y1="223" x2="310" y2="223" stroke="#38bdf8" stroke-width="3.5" marker-end="url(#arrow-f)"/>
+              <text x="245" y="245" fill="#38bdf8" font-size="14" font-weight="bold">F₂ = F</text>
+
+              <!-- 力 3: 沿邊 CA (向 A 方向，經過 C 與 A) -->
+              <line x1="360" y1="223" x2="290" y2="102" stroke="#38bdf8" stroke-width="3.5" marker-end="url(#arrow-f)"/>
+              <text x="340" y="150" fill="#38bdf8" font-size="14" font-weight="bold">F₃</text>
+
+              <!-- 邊長標記 a -->
+              <text x="270" y="215" fill="#cbd5e1" font-size="12">邊長 a</text>
+
+              <!-- 頂點 A 到對邊 BC 的力臂 (高 h = √3/2 a) 虛線 -->
+              <line x1="260" y1="50" x2="260" y2="223" stroke="#fbbf24" stroke-width="2" stroke-dasharray="4,4"/>
+              
+              <!-- 垂足直角標記 -->
+              <path d="M 260 211 L 272 211 L 272 223" fill="none" stroke="#fbbf24" stroke-width="1.5"/>
+
+              <!-- 力臂標記 -->
+              <text x="270" y="140" fill="#fbbf24" font-size="13" font-weight="bold">力臂 d = (√3/2) a</text>
+            </g>
+
+            <!-- 右側力矩分析解析牌 -->
+            <g transform="translate(500, 35)">
+              <rect x="0" y="0" width="225" height="260" rx="8" fill="rgba(15, 23, 42, 0.9)" stroke="rgba(255,255,255,0.1)"/>
+              <text x="112" y="26" fill="#38bdf8" font-size="14" font-weight="bold" text-anchor="middle">【以頂點 A 為參考支點】</text>
+
+              <text x="14" y="60" fill="#e2e8f0" font-size="12">1. 作用力 $F_1$（沿 AB）：</text>
+              <text x="24" y="80" fill="#64748b" font-size="12">作用線通過 A $\implies$ 力臂 $d_1 = 0$</text>
+              <text x="24" y="98" fill="#38bdf8" font-size="12" font-weight="bold">力矩 τ₁ = 0</text>
+
+              <text x="14" y="125" fill="#e2e8f0" font-size="12">2. 作用力 $F_3$（沿 CA）：</text>
+              <text x="24" y="145" fill="#64748b" font-size="12">作用線通過 A $\implies$ 力臂 $d_3 = 0$</text>
+              <text x="24" y="163" fill="#38bdf8" font-size="12" font-weight="bold">力矩 τ₃ = 0</text>
+
+              <line x1="10" y1="178" x2="215" y2="178" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+
+              <text x="14" y="200" fill="#e2e8f0" font-size="12">3. 作用力 $F_2$（沿 BC）：</text>
+              <text x="24" y="220" fill="#fbbf24" font-size="12">力臂 $d = h = \frac{\sqrt{3}}{2}a$</text>
+              <text x="24" y="240" fill="#34d399" font-size="13" font-weight="bold">合力矩 τ = (√3/2) Fa</text>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Interactive Answer Area -->
+    <section class="card interactive-card">
+      <div class="card-header">
+        <div class="card-icon">✍️</div>
+        <div>
+          <h2>即時動手作答</h2>
+          <span class="card-tag">請點選你推導出的合力矩量值</span>
+        </div>
+      </div>
+
+      <div class="options-grid" id="optionsGrid">
+        <button class="option-btn" data-opt="A">
+          <span class="option-label">A</span>
+          <span class="option-text">$0$</span>
+        </button>
+        <button class="option-btn" data-opt="B">
+          <span class="option-label">B</span>
+          <span class="option-text">$3Fa$</span>
+        </button>
+        <button class="option-btn" data-opt="C">
+          <span class="option-label">C</span>
+          <span class="option-text">$\frac{\sqrt{3}}{2}Fa$</span>
+        </button>
+        <button class="option-btn" data-opt="D">
+          <span class="option-label">D</span>
+          <span class="option-text">$\sqrt{3}Fa$</span>
+        </button>
+        <button class="option-btn" data-opt="E">
+          <span class="option-label">E</span>
+          <span class="option-text">$2\sqrt{3}Fa$</span>
+        </button>
+      </div>
+
+      <div id="feedbackBox" class="feedback-box hidden">
+        <div class="feedback-icon" id="feedbackIcon"></div>
+        <div class="feedback-text" id="feedbackText"></div>
+      </div>
+    </section>
+
+    <!-- Detailed Solution Area (Hidden by default) -->
+    <section class="card solution-card collapsed" id="solutionCard">
+      <div class="card-header solution-toggle" id="solutionToggle" role="button" tabindex="0">
+        <div class="card-icon">💡</div>
+        <div style="flex-grow: 1;">
+          <h2>精闢詳解與力臂判定步驟</h2>
+          <span class="card-tag solution-status">點擊展開完整剖析</span>
+        </div>
+        <div class="toggle-arrow">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+      </div>
+
+      <div class="solution-content" id="solutionContent">
+        <div class="step-card">
+          <div class="step-badge">核心定義</div>
+          <h3>力矩（Torque）與力臂的物理意義</h3>
+          <p>
+            力矩之大小等於「<strong>作用力大小 $F$ 乘以支點到力之作用線的垂直距離 $d$（即力臂）</strong>」：
+            $$\tau = F \times d$$
+          </p>
+          <ul class="key-points">
+            <li>若<strong>作用力的作用線通過支點</strong>，則其垂直距離（力臂）$d = 0$，此力對該支點所產生的力矩<strong>必為零</strong>（$\tau = 0$）。</li>
+          </ul>
+        </div>
+
+        <div class="step-card">
+          <div class="step-badge">幾何推導</div>
+          <h3>任選一頂點作為參考支點（以頂點 A 為例）</h3>
+          <p>
+            正三角形板邊長為 $a$，內角皆為 $60^\circ$。若選取頂點 A 為支點：
+          </p>
+          <ol class="key-points">
+            <li>
+              <strong>沿邊 $AB$ 作用的力 $F$：</strong>其延長線恰好通過頂點 A，力臂 $d = 0 \implies \tau_1 = 0$。
+            </li>
+            <li>
+              <strong>沿邊 $CA$ 作用的力 $F$：</strong>其延長線亦恰好通過頂點 A，力臂 $d = 0 \implies \tau_2 = 0$。
+            </li>
+            <li>
+              <strong>沿對邊 $BC$ 作用的力 $F$：</strong>其作用線不通過頂點 A。
+              頂點 A 到對邊 $BC$ 的垂直距離即為<strong>正三角形的高 $h$</strong>：
+              $$d = h = a \sin 60^\circ = \frac{\sqrt{3}}{2}a$$
+              因此其產生的力矩為：
+              $$\tau_3 = F \times d = F \times \left(\frac{\sqrt{3}}{2}a\right) = \mathbf{\frac{\sqrt{3}}{2}Fa}$$
+            </li>
+          </ol>
+        </div>
+
+        <div class="step-card">
+          <div class="step-badge">對稱性總結</div>
+          <h3>對頂點 B 或 C 亦完全等價</h3>
+          <p>
+            若改選頂點 B 為支點，則沿 $AB$ 與 $BC$ 之兩力通過 B 點（力矩為 0），僅剩沿 $AC$ 之力提供力矩；<br>
+            若改選頂點 C 為支點，則沿 $BC$ 與 $CA$ 之兩力通過 C 點（力矩為 0），僅剩沿 $AB$ 之力提供力矩。<br>
+            因此，<strong>對正三角形之任一頂點，合力矩量值恆為 $\mathbf{\frac{\sqrt{3}}{2}Fa}$</strong>！
+          </p>
+        </div>
+
+        <div class="final-summary">
+          <div class="summary-badge">結論</div>
+          <p>
+            本題正解為 <strong>(C) $\frac{\sqrt{3}}{2}Fa$</strong>。<br>
+            解力矩題目的第一黃金法則：<strong>善用通過支點的力力矩為零</strong>，可以瞬間將多力問題化簡為單力計算！
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Navigation -->
+    <div class="bottom-nav">
+      <a href="exercise12.html" class="nav-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+        上一題 (練習 12)
+      </a>
+      <a href="index.html" class="nav-btn primary">
+        目錄總覽
+      </a>
+      <a href="torque2.html" class="nav-btn">
+        下一題 (力矩 2)
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // Render KaTeX
+      if (typeof renderMathInElement === 'function') {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ],
+          throwOnError: false
+        });
+      }
+
+      const correctOption = "C";
+      const optionBtns = document.querySelectorAll(".option-btn");
+      const feedbackBox = document.getElementById("feedbackBox");
+      const feedbackIcon = document.getElementById("feedbackIcon");
+      const feedbackText = document.getElementById("feedbackText");
+      const solutionCard = document.getElementById("solutionCard");
+
+      optionBtns.forEach(btn => {
+        btn.addEventListener("click", function() {
+          const selected = this.getAttribute("data-opt");
+          optionBtns.forEach(b => b.classList.remove("selected", "correct", "wrong"));
+
+          feedbackBox.classList.remove("hidden", "correct", "wrong");
+
+          if (selected === correctOption) {
+            this.classList.add("correct");
+            feedbackBox.classList.add("correct");
+            feedbackIcon.innerHTML = "🎉";
+            feedbackText.innerHTML = "<strong>答對了！非常優秀！</strong> 正解為 <strong>(C) $\\frac{\\sqrt{3}}{2}Fa$</strong>！任一頂點皆有兩個力通過（力矩為零），僅剩對邊的力貢獻力矩，力臂為正三角形的高 $h = \\frac{\\sqrt{3}}{2}a$！詳解已自動展開。";
+
+            solutionCard.classList.remove("collapsed");
+            const tag = solutionCard.querySelector(".solution-status");
+            if (tag) tag.textContent = "點擊收合詳解";
+          } else {
+            this.classList.add("wrong");
+            feedbackBox.classList.add("wrong");
+            feedbackIcon.innerHTML = "💡";
+            feedbackText.innerHTML = `<strong>選了 (${selected})，再想想看！</strong> 提示：若以頂點 A 為支點，經過 A 點的兩邊上的力作用線皆通過支點，它們產生的力矩各是多少？`;
+          }
+
+          if (typeof renderMathInElement === 'function') {
+            renderMathInElement(feedbackText, {
+              delimiters: [
+                {left: '$$', right: '$$', display: true},
+                {left: '$', right: '$', display: false}
+              ],
+              throwOnError: false
+            });
+          }
+        });
+      });
+
+      // Solution toggle
+      const solutionToggle = document.getElementById("solutionToggle");
+      solutionToggle.addEventListener("click", function() {
+        solutionCard.classList.toggle("collapsed");
+        const isCollapsed = solutionCard.classList.contains("collapsed");
+        const statusSpan = solutionToggle.querySelector(".solution-status");
+        if (statusSpan) {
+          statusSpan.textContent = isCollapsed ? "點擊展開完整剖析" : "點擊收合詳解";
+        }
+      });
+    });
+  </script>
+</body>
+</html>

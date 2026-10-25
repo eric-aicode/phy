@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>範例 5：容器內雙球接觸正向力與向量三角形 | 高中物理靜力學</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    .method-toggle-container {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin: 16px auto;
+      max-width: 720px;
+    }
+    .method-btn {
+      flex: 1;
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      background: rgba(30, 41, 59, 0.7);
+      color: #94a3b8;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .method-btn:hover {
+      background: rgba(51, 65, 85, 0.9);
+      color: #f8fafc;
+      border-color: rgba(56, 189, 248, 0.4);
+    }
+    .method-btn.active {
+      background: linear-gradient(135deg, rgba(14, 165, 233, 0.35), rgba(59, 130, 246, 0.35));
+      border-color: #38bdf8;
+      color: #ffffff;
+      box-shadow: 0 0 16px rgba(56, 189, 248, 0.3);
+    }
+    .method-content-panel {
+      display: none;
+    }
+    .method-content-panel.active {
+      display: block;
+      animation: fadeIn 0.3s ease;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-glow"></div>
+  <div class="bg-grid"></div>
+
+  <div class="container">
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+      <div class="nav-links">
+        <a href="index.html" class="nav-btn primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          回目錄
+        </a>
+        <a href="problem4.html" class="nav-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          上一題 (範例 4)
+        </a>
+        <a href="problem6.html" class="nav-btn">
+          下一題 (範例 6)
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+      <div class="badge-wrapper">
+        <span class="badge badge-page">講義 靜力學-8</span>
+        <span class="badge badge-accent">雙球正向力與向量封閉三角形</span>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+      <h1 class="main-title">範例 5：<span class="gradient-text">容器內雙球接觸正向力分析</span></h1>
+      <p class="subtitle">圓形幾何連心線角度・隔離體法（A球封閉直角三角形）與整體法超速解</p>
+    </header>
+
+    <!-- Problem Showcase Card -->
+    <section class="card problem-card">
+      <div class="card-header">
+        <div class="card-icon">📖</div>
+        <div>
+          <h2>題目內容</h2>
+          <span class="card-tag">聯考與競賽高頻經典力學題</span>
+        </div>
+      </div>
+
+      <div class="problem-body">
+        <p>
+          如圖所示，A、B 兩球均重 <strong>$W$</strong>，置於底邊寬度為 <strong>$3r$</strong>（$r$ 為 A、B 兩球之半徑）的光滑鉛直圓柱形（或槽狀）容器中。
+        </p>
+        <p>
+          若兩球表面及容器內壁皆光滑無摩擦，試求達靜力平衡時：
+        </p>
+        <ul class="condition-list">
+          <li><strong>(1)</strong> 容器底作用於 B 球之正向力 $N_{\text{底}}$ 為？</li>
+          <li><strong>(2)</strong> 容器壁對 B 球之正向力 $N_2$ 為？</li>
+          <li><strong>(3)</strong> A、B 兩球之間的相互作用正向力 $N_{AB}$ 為？</li>
+        </ul>
+      </div>
+
+      <!-- Problem Physical Diagram (SVG) -->
+      <div class="canvas-card">
+        <div class="canvas-title-bar">
+          <h3><span class="dot dot-blue"></span> 幾何連心線、受力圖與封閉向量三角形</h3>
+          <span class="view-tag">Geometric & Vector Diagram</span>
+        </div>
+        <div class="svg-wrapper">
+          <svg viewBox="0 0 760 380" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="arr-p5-force" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                <path d="M0 1L10 5L0 9z" fill="#ff5252"/>
+              </marker>
+              <marker id="arr-p5-blue" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                <path d="M0 1L10 5L0 9z" fill="#00e5ff"/>
+              </marker>
+              <marker id="arr-p5-yellow" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                <path d="M0 1L10 5L0 9z" fill="#ffd54f"/>
+              </marker>
+              <marker id="arr-p5-green" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                <path d="M0 1L10 5L0 9z" fill="#00e676"/>
+              </marker>
+            </defs>
+
+            <!-- LEFT: Physical Container & Balls -->
+            <!-- Scale: r = 55px. Container width 3r = 165px.
+                 Left wall at X = 70. Right wall at X = 235.
+                 Bottom at Y = 320.
+                 Ball B center: X = 70 + 55 = 125, Y = 320 - 55 = 265.
+                 Ball A center: X = 235 - 55 = 180.
+                 dx = 180 - 125 = 55px = r.
+                 Hypotenuse = 2r = 110px.
+                 dy = sqrt(110^2 - 55^2) = 55 * sqrt(3) ≈ 95.26px.
+                 Ball A center Y = 265 - 95.26 = 169.74px (approx 170).
+            -->
+            <g transform="translate(40, 20)">
+              <rect x="0" y="0" width="370" height="340" rx="10" fill="#0f172a" stroke="#1e293b" stroke-width="1.5"/>
+              <text x="20" y="28" fill="#94a3b8" font-size="13" font-weight="600">雙球容器空間配置圖</text>
+
+              <!-- Container Walls -->
+              <!-- Left wall -->
+              <line x1="70" y1="50" x2="70" y2="310" stroke="#78909c" stroke-width="4"/>
+              <!-- Right wall -->
+              <line x1="235" y1="50" x2="235" y2="310" stroke="#78909c" stroke-width="4"/>
+              <!-- Bottom wall -->
+              <line x1="68" y1="310" x2="237" y2="310" stroke="#78909c" stroke-width="5" stroke-linecap="round"/>
+
+              <!-- Dimension 3r at bottom -->
+              <line x1="70" y1="325" x2="235" y2="325" stroke="#94a3b8" stroke-width="1.5"/>
+              <line x1="70" y1="320" x2="70" y2="330" stroke="#94a3b8" stroke-width="1.5"/>
+              <line x1="235" y1="320" x2="235" y2="330" stroke="#94a3b8" stroke-width="1.5"/>
+              <text x="152" y="337" fill="#94a3b8" font-size="11" font-weight="bold" text-anchor="middle">底邊 3r</text>
+
+              <!-- Ball B (Bottom-Left) -->
+              <circle cx="125" cy="255" r="55" fill="rgba(68, 138, 255, 0.15)" stroke="#448aff" stroke-width="2.5"/>
+              <circle cx="125" cy="255" r="4" fill="#448aff"/>
+              <text x="105" y="260" fill="#90caf9" font-size="16" font-weight="bold">B</text>
+
+              <!-- Ball A (Top-Right) -->
+              <circle cx="180" cy="160" r="55" fill="rgba(255, 171, 0, 0.15)" stroke="#ffd54f" stroke-width="2.5"/>
+              <circle cx="180" cy="160" r="4" fill="#ffd54f"/>
+              <text x="195" y="165" fill="#ffe082" font-size="16" font-weight="bold">A</text>
+
+              <!-- Center line from B(125, 255) to A(180, 160) -->
+              <line x1="125" y1="255" x2="180" y2="160" stroke="#ff4081" stroke-width="2" stroke-dasharray="4,4"/>
+              <text x="142" y="200" fill="#ff4081" font-size="11" font-weight="bold">2r</text>
+
+              <!-- Horizontal dx = r -->
+              <line x1="125" y1="255" x2="180" y2="255" stroke="#64748b" stroke-dasharray="2,2"/>
+              <line x1="180" y1="255" x2="180" y2="160" stroke="#64748b" stroke-dasharray="2,2"/>
+              <text x="152" y="250" fill="#64748b" font-size="10" text-anchor="middle">dx = r</text>
+
+              <!-- 60° Angle arc at B -->
+              <path d="M148,255 A23,23 0 0,0 137,235" fill="none" stroke="#ffd54f" stroke-width="1.8"/>
+              <text x="145" y="240" fill="#ffd54f" font-size="11" font-weight="bold">60°</text>
+
+              <!-- Forces on Ball A -->
+              <!-- Gravity W down from (180, 160) -->
+              <line x1="180" y1="160" x2="180" y2="215" stroke="#ff5252" stroke-width="3" marker-end="url(#arr-p5-force)"/>
+              <text x="188" y="205" fill="#ff5252" font-size="11" font-weight="bold">W</text>
+
+              <!-- Wall force N1 left from right wall (235, 160) to (180, 160) -->
+              <line x1="235" y1="160" x2="195" y2="160" stroke="#00e5ff" stroke-width="3" marker-end="url(#arr-p5-blue)"/>
+              <text x="245" y="165" fill="#00e5ff" font-size="11" font-weight="bold">N₁</text>
+
+              <!-- Reaction NAB from B to A along line -->
+              <line x1="125" y1="255" x2="165" y2="186" stroke="#00e676" stroke-width="3" marker-end="url(#arr-p5-green)"/>
+              <text x="110" y="210" fill="#00e676" font-size="11" font-weight="bold">N_AB</text>
+
+              <!-- Bottom force N_bottom on B -->
+              <line x1="125" y1="335" x2="125" y2="310" stroke="#00e676" stroke-width="3" marker-end="url(#arr-p5-green)"/>
+              <text x="10" y="305" fill="#00e676" font-size="11" font-weight="bold">N_底 = 2W</text>
+
+              <!-- Left wall force N2 on B -->
+              <line x1="45" y1="255" x2="70" y2="255" stroke="#00e5ff" stroke-width="3" marker-end="url(#arr-p5-blue)"/>
+              <text x="25" y="250" fill="#00e5ff" font-size="11" font-weight="bold">N₂</text>
+            </g>
+
+            <!-- RIGHT: Closed Vector Right Triangle for Ball A -->
+            <g transform="translate(440, 20)">
+              <rect x="0" y="0" width="280" height="340" rx="10" fill="#0f172a" stroke="#1e293b" stroke-width="1.5"/>
+              <text x="20" y="28" fill="#00e676" font-size="13" font-weight="600">A 球受力封閉直角三角形</text>
+
+              <!-- Triangle vertices:
+                   Bottom-Right: (210, 260)
+                   Top-Right: (210, 100) -> dy = 160px (W)
+                   Top-Left: (118, 100) -> dx = 160 / tan60 = 92.4px (N1)
+                   Hypotenuse: from (118, 100) to (210, 260) -> length = 160 / sin60 = 184.75px (NAB)
+              -->
+              <!-- Side 1: Gravity W downward from (210, 100) to (210, 260) -->
+              <line x1="210" y1="100" x2="210" y2="252" stroke="#ff5252" stroke-width="4" marker-end="url(#arr-p5-force)"/>
+              <rect x="218" y="165" width="50" height="26" rx="4" fill="rgba(15, 23, 42, 0.9)" stroke="#ff5252" stroke-width="1"/>
+              <text x="243" y="182" fill="#ff5252" font-size="12" font-weight="bold" text-anchor="middle">W</text>
+
+              <!-- Side 2: Normal force N1 to the left from (210, 100) to (118, 100) -->
+              <!-- In closed triangle: N1 points left -->
+              <line x1="210" y1="100" x2="126" y2="100" stroke="#00e5ff" stroke-width="4" marker-end="url(#arr-p5-blue)"/>
+              <rect x="135" y="65" width="70" height="26" rx="4" fill="rgba(15, 23, 42, 0.9)" stroke="#00e5ff" stroke-width="1"/>
+              <text x="170" y="82" fill="#00e5ff" font-size="11" font-weight="bold" text-anchor="middle">N₁</text>
+
+              <!-- Side 3: Reaction force NAB up-right from (210, 260) to (118, 100) in loop -->
+              <!-- Or head to tail: W (down) + N1 (left) + NAB (up-right) = 0 -->
+              <line x1="118" y1="100" x2="204" y2="250" stroke="#00e676" stroke-width="4" marker-end="url(#arr-p5-green)"/>
+              <rect x="100" y="195" width="75" height="26" rx="4" fill="rgba(15, 23, 42, 0.9)" stroke="#00e676" stroke-width="1"/>
+              <text x="137" y="212" fill="#00e676" font-size="11" font-weight="bold" text-anchor="middle">N_AB</text>
+
+              <!-- Right angle at (210, 100) -->
+              <path d="M195,100 L195,115 L210,115" fill="none" stroke="#fff" stroke-width="1.5"/>
+
+              <!-- Angle 30° at bottom (210, 260) -->
+              <path d="M210,230 A30,30 0 0,1 195,235" fill="none" stroke="#ffd54f" stroke-width="1.5"/>
+              <text x="180" y="250" fill="#ffd54f" font-size="11" font-weight="bold">30°</text>
+
+              <!-- Angle 60° at top left (118, 100) -->
+              <path d="M140,100 A25,25 0 0,1 133,122" fill="none" stroke="#ffd54f" stroke-width="1.5"/>
+              <text x="145" y="125" fill="#ffd54f" font-size="11" font-weight="bold">60°</text>
+
+              <!-- Derivation Summary cards with horizontal fraction bars -->
+              <rect x="15" y="268" width="250" height="60" rx="6" fill="rgba(0, 230, 118, 0.1)" stroke="#00e676" stroke-width="1"/>
+              <g transform="translate(25, 290)">
+                <text x="0" y="0" fill="#e2e8f0" font-size="12" font-weight="bold">N_AB = </text>
+                <text x="50" y="-7" fill="#00e676" font-size="11" font-weight="bold" text-anchor="middle">2√3</text>
+                <line x1="38" y1="-3" x2="62" y2="-3" stroke="#00e676" stroke-width="1.5"/>
+                <text x="50" y="9" fill="#00e676" font-size="11" font-weight="bold" text-anchor="middle">3</text>
+                <text x="68" y="0" fill="#e2e8f0" font-size="12" font-weight="bold">W</text>
+              </g>
+              <g transform="translate(25, 316)">
+                <text x="0" y="0" fill="#00e5ff" font-size="12" font-weight="bold">N₁ = N₂ = </text>
+                <text x="75" y="-7" fill="#00e5ff" font-size="11" font-weight="bold" text-anchor="middle">√3</text>
+                <line x1="66" y1="-3" x2="84" y2="-3" stroke="#00e5ff" stroke-width="1.5"/>
+                <text x="75" y="9" fill="#00e5ff" font-size="11" font-weight="bold" text-anchor="middle">3</text>
+                <text x="90" y="0" fill="#00e5ff" font-size="12" font-weight="bold">W</text>
+              </g>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- Student Worksheet Card -->
+    <section class="card worksheet-card">
+      <div class="card-header">
+        <div class="card-icon">✏️</div>
+        <div>
+          <h2>學生自主作答區（3大問題核對）</h2>
+          <span class="card-tag">請選擇或填寫你的答案係數</span>
+        </div>
+      </div>
+
+      <!-- Multiple Choice Cards for Questions -->
+      <div style="display: flex; flex-direction: column; gap: 20px;">
+        <!-- Q1 -->
+        <div class="quiz-item">
+          <label>
+            <span class="q-num">1</span> (1) 容器底作用於 B 球之正向力 $N_{\text{底}}$ 為何？
+          </label>
+          <div class="options-grid">
+            <button class="option-btn" data-qid="1" data-val="W">$W$</button>
+            <button class="option-btn" data-qid="1" data-val="2W">(正確) $2W$</button>
+            <button class="option-btn" data-qid="1" data-val="sqrt3W">$\sqrt{3}W$</button>
+            <button class="option-btn" data-qid="1" data-val="0.5W">$0.5W$</button>
+          </div>
+          <span class="feedback-msg" id="fbQ1"></span>
+        </div>
+
+        <!-- Q2 -->
+        <div class="quiz-item">
+          <label>
+            <span class="q-num">2</span> (2) 容器壁對 B 之正向力 $N_2$ 為何？
+          </label>
+          <div class="options-grid">
+            <button class="option-btn" data-qid="2" data-val="sqrt3_over_3">(正確) $\frac{\sqrt{3}}{3}W$</button>
+            <button class="option-btn" data-qid="2" data-val="sqrt3">$\sqrt{3}W$</button>
+            <button class="option-btn" data-qid="2" data-val="2sqrt3_over_3">$\frac{2\sqrt{3}}{3}W$</button>
+            <button class="option-btn" data-qid="2" data-val="0.5W">$0.5W$</button>
+          </div>
+          <span class="feedback-msg" id="fbQ2"></span>
+        </div>
+
+        <!-- Q3 -->
+        <div class="quiz-item highlight-q">
+          <label>
+            <span class="q-num">3</span> <strong>(3) A、B 兩球之相互作用正向力 $N_{AB}$ 為何？</strong>
+          </label>
+          <div class="options-grid">
+            <button class="option-btn" data-qid="3" data-val="sqrt3_over_3">$\frac{\sqrt{3}}{3}W$</button>
+            <button class="option-btn" data-qid="3" data-val="2sqrt3_over_3">(正確) $\frac{2\sqrt{3}}{3}W$</button>
+            <button class="option-btn" data-qid="3" data-val="2W">$2W$</button>
+            <button class="option-btn" data-qid="3" data-val="sqrt3">$\sqrt{3}W$</button>
+          </div>
+          <span class="feedback-msg" id="fbQ3"></span>
+        </div>
+      </div>
+
+      <div class="worksheet-actions">
+        <button id="btnCheckAnswer" class="btn-primary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          送出並核對答案
+        </button>
+        <button id="btnToggleHint" class="btn-secondary">
+          💡 顯示解題引導提示
+        </button>
+        <button id="btnRevealSolution" class="btn-accent">
+          🔓 解鎖完整圖解詳解
+        </button>
+      </div>
+
+      <!-- Hint Box -->
+      <div id="hintBox" class="hint-box hidden">
+        <h4>💡 名師思考引導：</h4>
+        <ol>
+          <li><strong>幾何角度秒殺</strong>：兩球圓心水平距離 $\Delta x = 3r - r - r = r$。連心線長度為兩半徑和 $r + r = 2r$。在直角三角形中，底邊 $r$，斜邊 $2r$，夾角必為 $\cos\alpha = \frac{r}{2r} = \frac{1}{2} \implies \alpha = 60^\circ$（連心線與水平夾角 $60^\circ$，與鉛直夾角 $30^\circ$）！</li>
+          <li><strong>第 (1) 小題整體法</strong>：將 A 球與 B 球視為一個系統，鉛直方向只有向下總重力 $W + W = 2W$ 以及容器底部的正向力 $N_{\text{底}}$。因此 $N_{\text{底}} = 2W$ 一秒得解！</li>
+          <li><strong>隔離 A 球受力分析</strong>：A 球受三力平衡：鉛直向下重力 $W$、右壁水平向左推力 $N_1$、B 球沿連心線向右上推力 $N_{AB}$。三力組成直角三角形：
+            $$\sin 60^\circ = \frac{W}{N_{AB}} \implies N_{AB} = \frac{W}{\sin 60^\circ} = \frac{2\sqrt{3}}{3}W$$
+            $$\tan 60^\circ = \frac{W}{N_1} \implies N_1 = \frac{W}{\sqrt{3}} = \frac{\sqrt{3}}{3}W$$</li>
+          <li><strong>第 (2) 小題水平平衡</strong>：整個系統水平方向只有左壁推力 $N_2$（向右）與右壁推力 $N_1$（向左），兩者必然大小相等：$N_2 = N_1 = \frac{\sqrt{3}}{3}W$！</li>
+        </ol>
+      </div>
+
+      <!-- Result Banner -->
+      <div id="resultBanner" class="result-banner hidden"></div>
+    </section>
+
+    <!-- Solution Section (Initially Hidden) -->
+    <section id="solutionSection" class="solution-section">
+      <div class="card solution-card">
+        <div class="card-header">
+          <div class="card-icon" style="background: rgba(0, 230, 118, 0.15); border-color: rgba(0, 230, 118, 0.3);">💡</div>
+          <div>
+            <h2>完整圖解解析</h2>
+            <span class="card-tag">幾何關係、整體法與隔離法三力平衡精解</span>
+          </div>
+        </div>
+
+        <!-- Method Switcher Container -->
+        <div class="method-toggle-container">
+          <button class="method-btn active" data-method="method1">
+            <span>🏛️ 解法一：整體法 ＋ A 球向量直角三角形（推薦秒殺）</span>
+          </button>
+          <button class="method-btn" data-method="method2">
+            <span>🎯 解法二：頂球拉密定理 ＋ 底球正交分解聯立法</span>
+          </button>
+        </div>
+
+        <!-- Method 1 Panel -->
+        <div id="method1" class="method-content-panel active">
+          <!-- Step 1 -->
+          <div class="step-card">
+            <div class="step-header">
+              <span class="step-pill s1">幾何先行</span>
+              <h3>雙球圓心幾何與角度確定</h3>
+            </div>
+            <div class="step-content">
+              <p>
+                容器底寬 $3r$，兩球半徑皆為 $r$：<br>
+                • B 球貼左壁，其圓心到左壁距離為 $r$。<br>
+                • A 球貼右壁，其圓心到右壁距離為 $r$。<br>
+                • 因此 A、B 兩球圓心的<strong>水平距離</strong>為：
+              </p>
+              <div class="formula-highlight">
+                $$\Delta x = 3r - r - r = r$$
+              </div>
+              <p>
+                又兩球外切，連心線長度為：
+                $$O_A O_B = r + r = 2r$$
+                設連心線與水平面的夾角為 $\alpha$：
+                $$\cos \alpha = \frac{\Delta x}{O_A O_B} = \frac{r}{2r} = \frac{1}{2} \implies \alpha = \mathbf{60^\circ}$$
+                即連心線與水平夾角為 $60^\circ$（與鉛垂線夾角為 $30^\circ$）。
+              </p>
+            </div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="step-card">
+            <div class="step-header">
+              <span class="step-pill s2">第 (1) 小題</span>
+              <h3>容器底作用於 B 球之正向力 $N_{\text{底}}$（系統整體法）</h3>
+            </div>
+            <div class="step-content">
+              <p>
+                將 A 球與 B 球視為一個共同系統（整體法）：<br>
+                系統在鉛直方向受到的外力僅有：<br>
+                1. 兩球總重力向下：$W_{\text{總}} = W_A + W_B = 2W$<br>
+                2. 容器底部向上的正向力：$N_{\text{底}}$
+              </p>
+              <div class="formula-highlight">
+                $$\Sigma F_y = 0 \implies N_{\text{底}} = W_A + W_B = \mathbf{2W}$$
+              </div>
+              <p style="color: var(--text-dim); font-size: 0.92rem;">
+                （註：A、B 彼此間的正向力為系統內力，在整體法中自動抵消，無需計算！）
+              </p>
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="step-card">
+            <div class="step-header">
+              <span class="step-pill s3">第 (3) 小題</span>
+              <h3>A、B 相互作用力 $N_{AB}$（隔離 A 球與封閉直角三角形）</h3>
+            </div>
+            <div class="step-content">
+              <p>
+                隔離上方 A 球，其受三個共點力達平衡：<br>
+                • 鉛直向下之重力 $W$<br>
+                • 右側容器壁水平向左之正向力 $N_1$<br>
+                • B 球沿連心線方向向右上方之推力 $N_{AB}$（與水平夾 $60^\circ$）
+              </p>
+              <p>
+                三力首尾相接構成<strong>直角三角形</strong>（鉛直邊為 $W$，水平邊為 $N_1$，斜邊為 $N_{AB}$）：
+              </p>
+              <div class="formula-highlight">
+                $$\sin 60^\circ = \frac{W}{N_{AB}} \implies N_{AB} = \frac{W}{\sin 60^\circ} = \frac{W}{\frac{\sqrt{3}}{2}} = \mathbf{\frac{2\sqrt{3}}{3}W}$$
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="step-card">
+            <div class="step-header">
+              <span class="step-pill s4">第 (2) 小題</span>
+              <h3>容器壁對 B 之正向力 $N_2$</h3>
+            </div>
+            <div class="step-content">
+              <p>
+                由 A 球的直角力三角形，水平底邊即為右壁推力 $N_1$：
+              </p>
+              <div class="formula-highlight">
+                $$\tan 60^\circ = \frac{W}{N_1} \implies N_1 = \frac{W}{\tan 60^\circ} = \frac{W}{\sqrt{3}} = \mathbf{\frac{\sqrt{3}}{3}W}$$
+              </div>
+              <p>
+                再對整體 (A + B) 分析水平方向外力平衡：<br>
+                系統水平方向僅受左壁正向力 $N_2$（向右）與右壁正向力 $N_1$（向左）：
+              </p>
+              <div class="formula-highlight">
+                $$\Sigma F_x = 0 \implies N_2 = N_1 = \mathbf{\frac{\sqrt{3}}{3}W}$$
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Method 2 Panel -->
+        <div id="method2" class="method-content-panel">
+          <div class="step-card">
+            <div class="step-header">
+              <span class="step-pill s1">拉密定理</span>
+              <h3>隔離 A 球利用拉密定理（Lami's Theorem）求連心力</h3>
+            </div>
+            <div class="step-content">
+              <p>
+                分析 A 球受三共點力平衡：重力 $W$（向下）、右壁推力 $N_1$（向左）、B 對 A 推力 $N_{AB}$（指向右上，與水平夾 $60^\circ$）。<br>
+                三力之間的夾角分別為：
+              </p>
+              <ul>
+                <li>$W$ 與 $N_1$ 之夾角：$90^\circ$</li>
+                <li>$W$ 與 $N_{AB}$ 之夾角：$180^\circ - 60^\circ = 120^\circ$</li>
+                <li>$N_1$ 與 $N_{AB}$ 之夾角：$90^\circ + 60^\circ = 150^\circ$</li>
+              </ul>
+              <p>由拉密定理列式：</p>
+              <div class="formula-highlight">
+                $$\frac{W}{\sin 150^\circ} = \frac{N_1}{\sin 120^\circ} = \frac{N_{AB}}{\sin 90^\circ}$$
+              </div>
+              <p>
+                代入各特殊角之正弦值 $\sin 150^\circ = \frac{1}{2}$，$\sin 120^\circ = \frac{\sqrt{3}}{2}$，$\sin 90^\circ = 1$：
+              </p>
+              <div class="formula-highlight">
+                $$N_{AB} = \frac{W \cdot \sin 90^\circ}{\sin 150^\circ} = \frac{W \cdot 1}{\frac{1}{2}} = 2W \quad \text{? 慎防夾角對應！}$$
+                $$\text{精確對應：} \frac{W}{\sin 120^\circ} = \frac{N_{AB}}{\sin 90^\circ} \implies N_{AB} = \frac{W}{\frac{\sqrt{3}}{2}} = \mathbf{\frac{2\sqrt{3}}{3}W}$$
+                $$\frac{N_1}{\sin 150^\circ} = \frac{W}{\sin 120^\circ} \implies N_1 = W \cdot \frac{\frac{1}{2}}{\frac{\sqrt{3}}{2}} = \mathbf{\frac{\sqrt{3}}{3}W}$$
+              </div>
+            </div>
+          </div>
+
+          <div class="step-card">
+            <div class="step-header">
+              <span class="step-pill s2">底球正交分解</span>
+              <h3>隔離 B 球正交分解求底面支持力 $N_{\text{底}}$ 與壁力 $N_2$</h3>
+            </div>
+            <div class="step-content">
+              <p>
+                由牛頓第三運動定律，A 球對 B 球的作用力 $N_{BA} = N_{AB} = \frac{2\sqrt{3}}{3}W$，方向斜向左下，與水平夾 $60^\circ$。<br>
+                B 球受 4 個力作用：
+              </p>
+              <ul>
+                <li>水平方向：左壁推力 $N_2$（向右）與 $N_{BA}$ 水平分量（向左）平衡：
+                  $$\Sigma F_x = 0 \implies N_2 = N_{BA} \cos 60^\circ = \left(\frac{2\sqrt{3}}{3}W\right) \cdot \frac{1}{2} = \mathbf{\frac{\sqrt{3}}{3}W}$$
+                </li>
+                <li>鉛直方向：容器底支持力 $N_{\text{底}}$（向上）與 B球自重 $W$ 加上 $N_{BA}$ 鉛直分量（向下）平衡：
+                  $$\Sigma F_y = 0 \implies N_{\text{底}} = W + N_{BA} \sin 60^\circ = W + \left(\frac{2\sqrt{3}}{3}W\right) \cdot \frac{\sqrt{3}}{2} = W + W = \mathbf{2W}$$
+                </li>
+              </ul>
+              <p style="color: var(--accent-green); font-weight: bold;">
+                與整體法結論完全吻合，印證隔離法與整體法的雙向自洽性！
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="summary-box" style="margin-top: 16px;">
+          ✅ <strong>最終標準解答：</strong><br>
+          (1) 容器底對 B 正向力：$N_{\text{底}} = \mathbf{2W}$<br>
+          (2) 容器壁對 B 正向力：$N_2 = \mathbf{\frac{\sqrt{3}}{3}W}$<br>
+          (3) A、B 相互作用正向力：$N_{AB} = \mathbf{\frac{2\sqrt{3}}{3}W}$
+        </div>
+
+        <!-- Teacher Tip -->
+        <div class="teacher-tip">
+          <div class="tip-icon">👨‍🏫</div>
+          <div class="tip-content">
+            <h4>名師解題心法・接觸力問題的兩把寶刀</h4>
+            <p>
+              1. <strong>第一把寶刀（整體法）</strong>：求外部支撐力（例如底面支持力、整體水平壁面力）時，把所有物體「綁在一起」當成一個大質點，內力瞬間消失，省時 80%！<br>
+              2. <strong>第二把寶刀（封閉直角三角形）</strong>：求接觸面的相互作用力時，隔離受力最單純的單一物體（本題為 A 球，只受三力且有兩力垂直），直接畫出 $30^\circ$-$60^\circ$-$90^\circ$ 直角三角形，答案秒出！
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Navigation -->
+    <div class="bottom-nav">
+      <a href="problem4.html" class="nav-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+        上一題 (範例 4)
+      </a>
+      <a href="index.html" class="nav-btn primary">回到講義首頁</a>
+      <a href="problem7.html" class="nav-btn">
+        下一題 (範例 7)
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+    </div>
+  
+    <!-- Related Practice & Knowledge Consolidation Section -->
+    <section class="card recommendation-card" style="margin-top: 24px; border: 1px solid rgba(0, 229, 255, 0.3); background: rgba(15, 23, 42, 0.75);">
+      <div class="card-header">
+        <div class="card-icon" style="background: rgba(0, 229, 255, 0.15); border-color: rgba(0, 229, 255, 0.35);">🎯</div>
+        <div>
+          <h2>學完本範例，接下來建議練習以下題庫！</h2>
+          <span class="card-tag">循序漸進・概念深耕・題型通關</span>
+        </div>
+      </div>
+      <p style="font-size: 0.95rem; color: var(--text-muted); margin: 6px 0 16px 0; line-height: 1.6;">
+        已為您智能引導與「<strong>曲面容器內雙球堆疊、球面接觸法線正向力、整體法與隔離法結合</strong>」高度相關的課堂類題與大考題庫，趁熱打鐵進行題型辨析與鞏固練習：
+      </p>
+
+      <!-- Printable A4 Exam Paper Banner -->
+      <div style="background: linear-gradient(135deg, rgba(2, 132, 199, 0.25), rgba(59, 130, 246, 0.2)); border: 1.5px solid #38bdf8; border-radius: 10px; padding: 14px 20px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+        <div>
+          <h3 style="color: #38bdf8; font-size: 1.05rem; margin-bottom: 4px; display: flex; align-items: center; gap: 8px;">
+            📄 <span>學習路徑專屬【9 題 1 對 1 類題實戰評量卷】已生成！</span>
+          </h3>
+          <p style="color: #cbd5e1; font-size: 0.88rem; margin: 0;">
+            標準 A4 一欄式 3 頁規格・大圖方便畫力向量・充裕計算作答區・支援學生題目卷與教師解析卷一鍵列印。
+          </p>
+        </div>
+        <a href="exam_spheres_a4.html" target="_blank" class="nav-btn primary" style="font-weight: 700; padding: 9px 18px; font-size: 0.92rem; text-decoration: none;">
+          🖨️ 前往 A4 實戰評量卷與解析卷
+        </a>
+      </div>
+
+      <!-- Stage 1 -->
+      <div style="margin: 20px 0 10px; display: flex; align-items: center; gap: 8px;">
+        <span style="background: rgba(56, 189, 248, 0.2); color: #38bdf8; font-weight: 800; font-size: 0.85rem; padding: 4px 10px; border-radius: 6px; border: 1px solid rgba(56, 189, 248, 0.35);">階段一・基礎起步</span>
+        <span style="color: #cbd5e1; font-weight: 700; font-size: 0.95rem;">單球雙面約束模型（三力共點、正向力過球心）</span>
+      </div>
+      <div class="rec-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; margin-bottom: 24px;">
+        <!-- Card: 平衡 05 -->
+        <div class="rec-card" style="background: var(--bg-surface-elevated); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 16px; display: flex; flex-direction: column; justify-content: space-between; gap: 10px; transition: all 0.2s ease;">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <span class="badge badge-accent" style="font-size: 0.8rem;">平衡 05</span>
+              <span style="font-size: 0.75rem; color: #38bdf8; font-weight: 700; background: rgba(56, 189, 248, 0.12); padding: 2px 8px; border-radius: 4px; border: 1px solid rgba(56, 189, 248, 0.25);">第 1 步・起步必練</span>
+            </div>
+            <h4 style="font-size: 1.02rem; color: #fff; margin-bottom: 6px;">雙光滑斜板圓球支持力</h4>
+            <p style="font-size: 0.86rem; color: var(--text-muted); line-height: 1.55;">
+              兩傾斜板夾一光滑圓球，法線接觸正向力分解與三力共點基礎必備練習。
+            </p>
+          </div>
+          <a href="equil5.html" class="nav-btn primary" style="justify-content: center; font-size: 0.88rem; padding: 7px 14px; margin-top: 6px; font-weight: 600;">
+            🚀 前往練習
+          </a>
+        </div>
+        <!-- Card: 平衡 49 -->
+        <div class="rec-card" style="background: var(--bg-surface-elevated); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 16px; display: flex; flex-direction: column; justify-content: space-between; gap: 10px; transition: all 0.2s ease;">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <span class="badge badge-accent" style="font-size: 0.8rem;">平衡 49</span>
+              <span style="font-size: 0.75rem; color: #38bdf8; font-weight: 700; background: rgba(56, 189, 248, 0.12); padding: 2px 8px; border-radius: 4px; border: 1px solid rgba(56, 189, 248, 0.25);">第 2 步・直角進階</span>
+            </div>
+            <h4 style="font-size: 1.02rem; color: #fff; margin-bottom: 6px;">雙斜面夾光滑圓球的受力分析</h4>
+            <p style="font-size: 0.86rem; color: var(--text-muted); line-height: 1.55;">
+              同頂點 30° 與 60° 雙斜面夾球，兩正向力垂直互為直角三角形。
+            </p>
+          </div>
+          <a href="equil49.html" class="nav-btn primary" style="justify-content: center; font-size: 0.88rem; padding: 7px 14px; margin-top: 6px; font-weight: 600;">
+            🚀 前往練習
+          </a>
+        </div>
+        <!-- Card: 平衡 10 -->
+        <div class="rec-card" style="background: var(--bg-surface-elevated); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 16px; display: flex; flex-direction: column; justify-content: space-between; gap: 10px; transition: all 0.2s ease;">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <span class="badge badge-accent" style="font-size: 0.8rem;">平衡 10</span>
+              <span style="font-size: 0.75rem; color: #38bdf8; font-weight: 700; background: rgba(56, 189, 248, 0.12); padding: 2px 8px; border-radius: 4px; border: 1px solid rgba(56, 189, 248, 0.25);">第 3 步・擋板約束</span>
+            </div>
+            <h4 style="font-size: 1.02rem; color: #fff; margin-bottom: 6px;">斜面固定鉛直板擋球受力分析</h4>
+            <p style="font-size: 0.86rem; color: var(--text-muted); line-height: 1.55;">
+              斜面與鉛直擋板共同約束小球，分析斜面正向力與擋板作用力之方向與量值。
+            </p>
+          </div>
+          <a href="equil10.html" class="nav-btn primary" style="justify-content: center; font-size: 0.88rem; padding: 7px 14px; margin-top: 6px; font-weight: 600;">
+            🚀 前往練習
+          </a>
+        </div>
+      </div>
+
+      <!-- Stage 2 -->
+      <div style="margin: 20px 0 10px; display: flex; align-items: center; gap: 8px;">
+        <span style="background: rgba(16, 185, 129, 0.2); color: #10b981; font-weight: 800; font-size: 0.85rem; padding: 4px 10px; border-radius: 6px; border: 1px solid rgba(16, 185, 129, 0.35);">階段二・核心同型</span>
+        <span style="color: #cbd5e1; font-weight: 700; font-size: 0.95rem;">雙球容器與對稱系統（整體法消內力＋隔離法求球間力）</span>
+      </div>
+      <div class="rec-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; margin-bottom: 24px;">
+        <!-- Card: 平衡 17 -->
+        <div class="rec-card" style="background: var(--bg-surface-elevated); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 16px; display: flex; flex-direction: column; justify-content: space-between; gap: 10px; transition: all 0.2s ease;">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <span class="badge badge-accent" style="font-size: 0.8rem;">平衡 17</span>
+              <span style="font-size: 0.75rem; color: #10b981; font-weight: 700; background: rgba(16, 185, 129, 0.12); padding: 2px 8px; border-radius: 4px; border: 1px solid rgba(16, 185, 129, 0.25);">第 4 步・直接姊妹題</span>
+            </div>
+            <h4 style="font-size: 1.02rem; color: #fff; margin-bottom: 6px;">半球形碗內雙球平衡作用力</h4>
+            <p style="font-size: 0.86rem; color: var(--text-muted); line-height: 1.55;">
+              完全相同的雙球模型移入半球碗底，球心連線正三角形，正向力過碗心。
+            </p>
+          </div>
+          <a href="equil17.html" class="nav-btn primary" style="justify-content: center; font-size: 0.88rem; padding: 7px 14px; margin-top: 6px; font-weight: 600;">
+            🚀 前往練習
+          </a>
+        </div>
+        <!-- Card: 平衡 12 -->
+        <div class="rec-card" style="background: var(--bg-surface-elevated); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 16px; display: flex; flex-direction: column; justify-content: space-between; gap: 10px; transition: all 0.2s ease;">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <span class="badge badge-accent" style="font-size: 0.8rem;">平衡 12</span>
+              <span style="font-size: 0.75rem; color: #10b981; font-weight: 700; background: rgba(16, 185, 129, 0.12); padding: 2px 8px; border-radius: 4px; border: 1px solid rgba(16, 185, 129, 0.25);">第 5 步・雙球對稱延伸</span>
+            </div>
+            <h4 style="font-size: 1.02rem; color: #fff; margin-bottom: 6px;">兩繩懸球中夾壓縮彈簧</h4>
+            <p style="font-size: 0.86rem; color: var(--text-muted); line-height: 1.55;">
+              雙球對稱懸掛中夾彈簧，結合隔離體正交分解與整體平衡求解彈簧形變。
+            </p>
+          </div>
+          <a href="equil12.html" class="nav-btn primary" style="justify-content: center; font-size: 0.88rem; padding: 7px 14px; margin-top: 6px; font-weight: 600;">
+            🚀 前往練習
+          </a>
+        </div>
+      </div>
+
+      <!-- Stage 3 -->
+      <div style="margin: 20px 0 10px; display: flex; align-items: center; gap: 8px;">
+        <span style="background: rgba(245, 158, 11, 0.2); color: #fbbf24; font-weight: 800; font-size: 0.85rem; padding: 4px 10px; border-radius: 6px; border: 1px solid rgba(245, 158, 11, 0.35);">階段三・高階挑戰</span>
+        <span style="color: #cbd5e1; font-weight: 700; font-size: 0.95rem;">多球堆疊、拘束力與幾何相似三角形（大考競賽必修）</span>
+      </div>
+      <div class="rec-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px;">
+        <!-- Card: 平衡 18 -->
+        <div class="rec-card" style="background: var(--bg-surface-elevated); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 16px; display: flex; flex-direction: column; justify-content: space-between; gap: 10px; transition: all 0.2s ease;">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <span class="badge badge-accent" style="font-size: 0.8rem;">平衡 18</span>
+              <span style="font-size: 0.75rem; color: #fbbf24; font-weight: 700; background: rgba(245, 158, 11, 0.12); padding: 2px 8px; border-radius: 4px; border: 1px solid rgba(245, 158, 11, 0.25);">第 6 步・三球堆疊進階</span>
+            </div>
+            <h4 style="font-size: 1.02rem; color: #fff; margin-bottom: 6px;">碗內三球堆疊平衡分析</h4>
+            <p style="font-size: 0.86rem; color: var(--text-muted); line-height: 1.55;">
+              由兩球進階至三球對稱堆疊，正三角形幾何中心角與正向力連鎖傳遞。
+            </p>
+          </div>
+          <a href="equil18.html" class="nav-btn primary" style="justify-content: center; font-size: 0.88rem; padding: 7px 14px; margin-top: 6px; font-weight: 600;">
+            🚀 前往練習
+          </a>
+        </div>
+        <!-- Card: 平衡 19 -->
+        <div class="rec-card" style="background: var(--bg-surface-elevated); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 16px; display: flex; flex-direction: column; justify-content: space-between; gap: 10px; transition: all 0.2s ease;">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <span class="badge badge-accent" style="font-size: 0.8rem;">平衡 19</span>
+              <span style="font-size: 0.75rem; color: #fbbf24; font-weight: 700; background: rgba(245, 158, 11, 0.12); padding: 2px 8px; border-radius: 4px; border: 1px solid rgba(245, 158, 11, 0.25);">第 7 步・圓柱鋼繩拘束</span>
+            </div>
+            <h4 style="font-size: 1.02rem; color: #fff; margin-bottom: 6px;">三光滑圓柱堆疊與鋼繩張力</h4>
+            <p style="font-size: 0.86rem; color: var(--text-muted); line-height: 1.55;">
+              圓柱堆疊時由外側鋼繩約束，頂柱 3:4:5 幾何相似三角形秒出答案。
+            </p>
+          </div>
+          <a href="equil19.html" class="nav-btn primary" style="justify-content: center; font-size: 0.88rem; padding: 7px 14px; margin-top: 6px; font-weight: 600;">
+            🚀 前往練習
+          </a>
+        </div>
+        <!-- Card: 平衡 11 -->
+        <div class="rec-card" style="background: var(--bg-surface-elevated); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 16px; display: flex; flex-direction: column; justify-content: space-between; gap: 10px; transition: all 0.2s ease;">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <span class="badge badge-accent" style="font-size: 0.8rem;">平衡 11</span>
+              <span style="font-size: 0.75rem; color: #fbbf24; font-weight: 700; background: rgba(245, 158, 11, 0.12); padding: 2px 8px; border-radius: 4px; border: 1px solid rgba(245, 158, 11, 0.25);">第 8 步・幾何相似大招</span>
+            </div>
+            <h4 style="font-size: 1.02rem; color: #fff; margin-bottom: 6px;">大球表面懸小球正向力</h4>
+            <p style="font-size: 0.86rem; color: var(--text-muted); line-height: 1.55;">
+              球面法線必過大球球心，力的向量三角形與空間幾何三角形嚴格相似。
+            </p>
+          </div>
+          <a href="equil11.html" class="nav-btn primary" style="justify-content: center; font-size: 0.88rem; padding: 7px 14px; margin-top: 6px; font-weight: 600;">
+            🚀 前往練習
+          </a>
+        </div>
+      </div>
+      
+      <div style="margin-top: 18px; text-align: center; border-top: 1px dashed var(--border-subtle); padding-top: 14px;">
+        <a href="index.html" class="nav-btn" style="font-size: 0.88rem;">
+          📚 返回總目錄查看全單元 104 題索引
+        </a>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      if (window.renderMathInElement) {
+        renderMathInElement(document.body, {
+          delimiters: [
+            { left: "$$", right: "$$", display: true },
+            { left: "$", right: "$", display: false }
+          ]
+        });
+      }
+
+      // Choice states for Q1, Q2, Q3
+      const userAnswers = {
+        1: null,
+        2: null,
+        3: null
+      };
+
+      const optionBtns = document.querySelectorAll(".option-btn");
+      optionBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+          const qid = btn.getAttribute("data-qid");
+          const val = btn.getAttribute("data-val");
+
+          // Deselect sibling buttons in same question
+          document.querySelectorAll(`.option-btn[data-qid="${qid}"]`).forEach(b => b.classList.remove("selected"));
+          btn.classList.add("selected");
+          userAnswers[qid] = val;
+        });
+      });
+
+      const btnToggleHint = document.getElementById("btnToggleHint");
+      const hintBox = document.getElementById("hintBox");
+      btnToggleHint.addEventListener("click", () => {
+        hintBox.classList.toggle("hidden");
+        btnToggleHint.textContent = hintBox.classList.contains("hidden") ? "💡 顯示解題引導提示" : "💡 收合解題引導提示";
+      });
+
+      const btnRevealSolution = document.getElementById("btnRevealSolution");
+      const solutionSection = document.getElementById("solutionSection");
+      btnRevealSolution.addEventListener("click", () => {
+        solutionSection.classList.toggle("visible");
+        if (solutionSection.classList.contains("visible")) {
+          btnRevealSolution.textContent = "🔒 隱藏解析";
+          solutionSection.scrollIntoView({ behavior: 'smooth' });
+        } else {
+          btnRevealSolution.textContent = "🔓 解鎖完整圖解詳解";
+        }
+      });
+
+      const btnCheckAnswer = document.getElementById("btnCheckAnswer");
+      const resultBanner = document.getElementById("resultBanner");
+
+      btnCheckAnswer.addEventListener("click", () => {
+        let correctCount = 0;
+        let answeredCount = 0;
+
+        // Q1: 2W
+        const fbQ1 = document.getElementById("fbQ1");
+        if (userAnswers[1]) {
+          answeredCount++;
+          if (userAnswers[1] === "2W") {
+            fbQ1.textContent = "✓ 正確！整體鉛直平衡：N_底 = W_A + W_B = 2W";
+            fbQ1.className = "feedback-msg correct";
+            correctCount++;
+          } else {
+            fbQ1.textContent = "✗ 提示：整體法，容器底必須支撐兩球總重";
+            fbQ1.className = "feedback-msg incorrect";
+          }
+        }
+
+        // Q2: sqrt3_over_3
+        const fbQ2 = document.getElementById("fbQ2");
+        if (userAnswers[2]) {
+          answeredCount++;
+          if (userAnswers[2] === "sqrt3_over_3") {
+            fbQ2.innerHTML = "✓ 正確！$N_2 = N_1 = \\frac{\\sqrt{3}}{3}W$";
+            fbQ2.className = "feedback-msg correct";
+            correctCount++;
+          } else {
+            fbQ2.innerHTML = "✗ 提示：水平合力為零，$N_2 = N_1 = \\frac{W}{\\tan 60^\\circ}$";
+            fbQ2.className = "feedback-msg incorrect";
+          }
+          if (window.renderMathInElement) renderMathInElement(fbQ2);
+        }
+
+        // Q3: 2sqrt3_over_3
+        const fbQ3 = document.getElementById("fbQ3");
+        if (userAnswers[3]) {
+          answeredCount++;
+          if (userAnswers[3] === "2sqrt3_over_3") {
+            fbQ3.innerHTML = "✓ 正確！$N_{AB} = \\frac{W}{\\sin 60^\\circ} = \\frac{2\\sqrt{3}}{3}W$";
+            fbQ3.className = "feedback-msg correct";
+            correctCount++;
+          } else {
+            fbQ3.innerHTML = "✗ 提示：直角三角形斜邊 = $\\frac{W}{\\sin 60^\\circ}$";
+            fbQ3.className = "feedback-msg incorrect";
+          }
+          if (window.renderMathInElement) renderMathInElement(fbQ3);
+        }
+
+        if (answeredCount === 0) {
+          resultBanner.className = "result-banner partial";
+          resultBanner.textContent = "⚠️ 請先選擇至少一個問題的答案！";
+          resultBanner.classList.remove("hidden");
+          return;
+        }
+
+        resultBanner.classList.remove("hidden");
+        if (correctCount === 3) {
+          resultBanner.className = "result-banner success";
+          resultBanner.innerHTML = "🎉 太出色了！3 個問題全部答對！已為您解鎖下方詳解！";
+          solutionSection.classList.add("visible");
+          btnRevealSolution.textContent = "🔒 隱藏解析";
+        } else {
+          resultBanner.className = "result-banner partial";
+          resultBanner.innerHTML = `📝 目前答對 ${correctCount} / ${answeredCount} 題。可參考「💡 顯示提示」或點擊「🔓 解鎖完整圖解詳解」查看推導！`;
+        }
+      });
+
+      // Method Switcher
+      const methodBtns = document.querySelectorAll(".method-btn");
+      const methodPanels = document.querySelectorAll(".method-content-panel");
+      methodBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+          const target = btn.getAttribute("data-method");
+          methodBtns.forEach(b => b.classList.remove("active"));
+          methodPanels.forEach(p => p.classList.remove("active"));
+          btn.classList.add("active");
+          const panel = document.getElementById(target);
+          if (panel) {
+            panel.classList.add("active");
+            if (window.renderMathInElement) {
+              renderMathInElement(panel, {
+                delimiters: [
+                  { left: "$$", right: "$$", display: true },
+                  { left: "$", right: "$", display: false }
+                ]
+              });
+            }
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>練習 5：雙彈簧串聯吊重與平臺交互作用力 | 高中物理靜力學</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+  <link rel="stylesheet" href="shared.css">
+</head>
+<body>
+  <div class="bg-glow"></div>
+  <div class="bg-grid"></div>
+
+  <div class="container">
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+      <div class="nav-links">
+        <a href="index.html" class="nav-btn primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          回目錄
+        </a>
+        <a href="exercise4.html" class="nav-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          上一題 (練習 4)
+        </a>
+        <a href="exercise6.html" class="nav-btn">
+          下一題 (練習 6)
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+      <div class="badge-wrapper">
+        <span class="badge badge-page">講義 靜力學-19</span>
+        <span class="badge badge-accent">彈簧和合力・練習 5</span>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+      <h1 class="main-title">練習 5：<span class="gradient-text">雙彈簧串聯吊重與平臺交互作用力</span></h1>
+      <p class="subtitle">隔離體分析法・系統整體法・兩彈簧伸長量疊加求總長度 $\overline{AB}$</p>
+    </header>
+
+    <!-- Problem Showcase Card -->
+    <section class="card problem-card">
+      <div class="card-header">
+        <div class="card-icon">📖</div>
+        <div>
+          <h2>題目內容</h2>
+          <span class="card-tag">聯考經典串聯彈簧綜合題</span>
+        </div>
+      </div>
+
+      <div class="problem-body">
+        <p>
+          原長均為 <strong>$20\text{ cm}$</strong>，彈力常數 <strong>$k = 2.0\text{ gw/cm}$</strong> 之完全相同的輕彈簧兩條 <strong>a</strong>、<strong>b</strong>（質量不計）。
+        </p>
+        <p>
+          質量均為 <strong>$10\text{ g}$</strong>（即重 <strong>$10\text{ gw}$</strong>）之重物 <strong>m</strong>、<strong>n</strong> 兩個如附圖連接，彈簧 a 之上端固定在 <strong>A</strong>，重物 n 放在水平平臺 <strong>B</strong> 上，則全體保持鉛直靜態平衡。
+        </p>
+        <p>
+          當平臺 B 與重物 n 之間的<strong>交互作用力（支持正向力）為 $5.0\text{ gw}$</strong> 時，<strong>A、B 兩點之間的距離 $\overline{AB}$ 為多少 $\text{cm}$？</strong>
+        </p>
+      </div>
+
+      <!-- Problem Physical Diagram (SVG) -->
+      <div class="canvas-card">
+        <div class="canvas-title-bar">
+          <h3><span class="dot dot-blue"></span> 裝置結構圖與重物隔離受力圖</h3>
+          <span class="view-tag">Apparatus & Free Body Diagrams</span>
+        </div>
+        <div class="svg-wrapper">
+          <svg viewBox="0 0 760 380" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="arr-ex5-red" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                <path d="M0 1L10 5L0 9z" fill="#f87171"/>
+              </marker>
+              <marker id="arr-ex5-cyan" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                <path d="M0 1L10 5L0 9z" fill="#38bdf8"/>
+              </marker>
+              <marker id="arr-ex5-green" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                <path d="M0 1L10 5L0 9z" fill="#4ade80"/>
+              </marker>
+            </defs>
+
+            <!-- LEFT: Apparatus Diagram -->
+            <g transform="translate(40, 20)">
+              <rect x="0" y="0" width="280" height="340" rx="10" fill="#0f172a" stroke="#1e293b" stroke-width="1.5"/>
+              <text x="20" y="28" fill="#94a3b8" font-size="13" font-weight="600">實驗裝置整體圖</text>
+
+              <!-- Ceiling A -->
+              <rect x="50" y="45" width="180" height="10" fill="#334155" stroke="#475569" stroke-width="1.5"/>
+              <circle cx="140" cy="55" r="5" fill="#f43f5e"/>
+              <text x="110" y="52" fill="#f43f5e" font-size="13" font-weight="bold">A 點</text>
+
+              <!-- Spring a (stretched: 15/2 cm = 7.5cm) -->
+              <path d="M 140,55 L 140,70
+                       L 152,78 L 128,90 L 152,102 L 128,114 L 152,126 L 128,138 L 152,150 L 140,158
+                       L 140,165"
+                    fill="none" stroke="#38bdf8" stroke-width="2.5"/>
+              <text x="165" y="115" fill="#38bdf8" font-size="12" font-weight="bold">彈簧 a</text>
+
+              <!-- Mass m (10gw) -->
+              <circle cx="140" cy="180" r="15" fill="#1e293b" stroke="#38bdf8" stroke-width="2.5"/>
+              <text x="140" y="185" fill="#e2e8f0" font-size="12" font-weight="bold" text-anchor="middle">m</text>
+
+              <!-- Spring b (stretched: 5/2 cm = 2.5cm) -->
+              <path d="M 140,195 L 140,205
+                       L 150,212 L 130,222 L 150,232 L 130,242 L 150,252 L 140,258
+                       L 140,265"
+                    fill="none" stroke="#fbbf24" stroke-width="2.5"/>
+              <text x="165" y="235" fill="#fbbf24" font-size="12" font-weight="bold">彈簧 b</text>
+
+              <!-- Mass n (10gw) -->
+              <circle cx="140" cy="280" r="15" fill="#1e293b" stroke="#fbbf24" stroke-width="2.5"/>
+              <text x="140" y="285" fill="#fbbf24" font-size="12" font-weight="bold" text-anchor="middle">n</text>
+
+              <!-- Platform B -->
+              <rect x="40" y="295" width="200" height="15" rx="3" fill="#854d0e" stroke="#ca8a04" stroke-width="2"/>
+              <circle cx="140" cy="295" r="4" fill="#fbbf24"/>
+              <text x="140" y="328" fill="#fef08a" font-size="12" font-weight="bold" text-anchor="middle">平臺 B</text>
+            </g>
+
+            <!-- RIGHT: Step-by-Step FBDs -->
+            <g transform="translate(350, 20)">
+              <rect x="0" y="0" width="380" height="340" rx="10" fill="#0f172a" stroke="#1e293b" stroke-width="1.5"/>
+              <text x="20" y="28" fill="#94a3b8" font-size="13" font-weight="600">隔離體受力分析與伸長量推導</text>
+
+              <!-- Analysis 1: Mass n -->
+              <g transform="translate(25, 45)">
+                <rect x="0" y="0" width="155" height="155" rx="6" fill="rgba(15, 23, 42, 0.8)" stroke="#334155" stroke-width="1"/>
+                <text x="10" y="20" fill="#fbbf24" font-size="11" font-weight="bold">① 隔離重物 n：</text>
+                <circle cx="77" cy="80" r="14" fill="#1e293b" stroke="#fbbf24" stroke-width="2"/>
+                <text x="77" y="85" fill="#fbbf24" font-size="11" text-anchor="middle">n</text>
+
+                <!-- Forces on n: Downward W_n = 10gw -->
+                <line x1="77" y1="94" x2="77" y2="135" stroke="#f87171" stroke-width="2" marker-end="url(#arr-ex5-red)"/>
+                <text x="85" y="125" fill="#f87171" font-size="9.5">W_n = 10gw</text>
+
+                <!-- Upward Spring b force F_b -->
+                <line x1="68" y1="66" x2="68" y2="28" stroke="#38bdf8" stroke-width="2" marker-end="url(#arr-ex5-cyan)"/>
+                <text x="15" y="38" fill="#38bdf8" font-size="9.5">F_b</text>
+
+                <!-- Upward Normal Force N_B = 5gw -->
+                <line x1="86" y1="66" x2="86" y2="35" stroke="#4ade80" stroke-width="2" marker-end="url(#arr-ex5-green)"/>
+                <text x="92" y="45" fill="#4ade80" font-size="9.5">N = 5gw</text>
+
+                <text x="10" y="148" fill="#cbd5e1" font-size="10">F_b = 10 - 5 = 5 gw</text>
+              </g>
+
+              <!-- Analysis 2: System (m + n) -->
+              <g transform="translate(195, 45)">
+                <rect x="0" y="0" width="165" height="155" rx="6" fill="rgba(15, 23, 42, 0.8)" stroke="#334155" stroke-width="1"/>
+                <text x="10" y="20" fill="#38bdf8" font-size="11" font-weight="bold">② 整體法 (m + n)：</text>
+                <rect x="55" y="65" width="55" height="35" rx="4" fill="#1e293b" stroke="#38bdf8" stroke-width="2"/>
+                <text x="82" y="87" fill="#38bdf8" font-size="11" text-anchor="middle">m+n</text>
+
+                <!-- Total downward weight = 20gw -->
+                <line x1="82" y1="100" x2="82" y2="138" stroke="#f87171" stroke-width="2" marker-end="url(#arr-ex5-red)"/>
+                <text x="90" y="130" fill="#f87171" font-size="9.5">總重 20gw</text>
+
+                <!-- Upward Spring a force F_a -->
+                <line x1="72" y1="65" x2="72" y2="28" stroke="#38bdf8" stroke-width="2" marker-end="url(#arr-ex5-cyan)"/>
+                <text x="25" y="38" fill="#38bdf8" font-size="9.5">F_a</text>
+
+                <!-- Upward Normal Force N_B = 5gw -->
+                <line x1="92" y1="65" x2="92" y2="38" stroke="#4ade80" stroke-width="2" marker-end="url(#arr-ex5-green)"/>
+                <text x="98" y="45" fill="#4ade80" font-size="9.5">N=5</text>
+
+                <text x="10" y="148" fill="#cbd5e1" font-size="10">F_a = 20 - 5 = 15 gw</text>
+              </g>
+
+              <!-- Length AB summation card -->
+              <g transform="translate(25, 215)">
+                <rect x="0" y="0" width="335" height="110" rx="6" fill="rgba(15, 23, 42, 0.95)" stroke="#38bdf8" stroke-width="1"/>
+                <text x="12" y="24" fill="#4ade80" font-size="12" font-weight="bold">③ 計算彈簧伸長量與 AB 總距離：</text>
+                <text x="12" y="46" fill="#cbd5e1" font-size="11.5">Δx_a = F_a / k = 15 / 2.0 = 7.5 cm</text>
+                <text x="12" y="66" fill="#cbd5e1" font-size="11.5">Δx_b = F_b / k = 5.0 / 2.0 = 2.5 cm</text>
+                <text x="12" y="92" fill="#fbbf24" font-size="13" font-weight="bold">AB = 20×2 + 7.5 + 2.5 = 40 + 10 = 50 cm</text>
+              </g>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Worksheet -->
+    <section class="card challenge-card">
+      <div class="card-header">
+        <div class="card-icon">✍️</div>
+        <div>
+          <h2>學生實戰填答區</h2>
+          <span class="card-tag">請計算並填入數值</span>
+        </div>
+      </div>
+
+      <div class="card-body">
+        <div style="max-width: 400px; margin-bottom: 20px;">
+          <label for="ans_input" style="display: block; color: #cbd5e1; font-size: 15px; margin-bottom: 8px;">
+            請填寫 A、B 兩點之間的距離 $\overline{AB}$（公分 cm）：
+          </label>
+          <div style="display: flex; gap: 10px; align-items: center;">
+            <input type="number" id="ans_input" class="custom-input" placeholder="例如：45" style="width: 140px; padding: 10px 14px; font-size: 16px; border-radius: 8px; border: 1px solid #334155; background: #0f172a; color: #fff;">
+            <span style="color: #94a3b8; font-size: 15px;">$\text{cm}$</span>
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 12px; margin-top: 10px; flex-wrap: wrap;">
+          <button id="btnCheck" class="action-btn check-btn">
+            <span>核對答案</span>
+          </button>
+          <button id="btnToggleSolution" class="action-btn toggle-btn">
+            <span>顯示完整解析</span>
+          </button>
+        </div>
+
+        <div id="feedbackMessage" class="feedback-box" style="display: none;"></div>
+      </div>
+    </section>
+
+    <!-- Detailed Solution Section (Initially Hidden) -->
+    <section id="solutionSection" class="card solution-card" style="display: none;">
+      <div class="card-header">
+        <div class="card-icon">💡</div>
+        <div>
+          <h2>完整精闢觀念解析與公式推導</h2>
+          <span class="card-tag">名師詳解</span>
+        </div>
+      </div>
+
+      <div class="solution-body">
+        <!-- Step 1 -->
+        <div class="step-card">
+          <div class="step-header">
+            <span class="step-num">Step 1</span>
+            <h3>隔離重物 n，求彈簧 b 之拉力 $F_b$</h3>
+          </div>
+          <div class="step-content">
+            <p>
+              隔離最下方的物體 n，物體 n 處於靜力平衡：
+            </p>
+            <ul style="color: #cbd5e1; font-size: 14.5px; line-height: 1.8;">
+              <li>向下重力：$W_n = 10\text{ gw}$</li>
+              <li>平臺 B 向上的支持正向力：$N = 5.0\text{ gw}$</li>
+              <li>彈簧 b 向上的拉力：$F_b$</li>
+            </ul>
+            <p>
+              由鉛直力平衡：
+              $$\sum F_y = 0 \implies F_b + N = W_n$$
+              $$F_b + 5.0 = 10 \implies F_b = 5.0\text{ gw}$$
+            </p>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="step-card">
+          <div class="step-header">
+            <span class="step-num">Step 2</span>
+            <h3>系統整體法（或隔離 m），求彈簧 a 之拉力 $F_a$</h3>
+          </div>
+          <div class="step-content">
+            <p>
+              將 $(m + n)$ 視為一整體系統，內力（彈簧 b 之張力）相互抵消，系統鉛直受力：
+            </p>
+            <ul style="color: #cbd5e1; font-size: 14.5px; line-height: 1.8;">
+              <li>向下總重力：$W_m + W_n = 10 + 10 = 20\text{ gw}$</li>
+              <li>平臺 B 向上的支持力：$N = 5.0\text{ gw}$</li>
+              <li>彈簧 a 向上的懸吊拉力：$F_a$</li>
+            </ul>
+            <p>
+              由整體鉛直平衡：
+              $$F_a + N = W_{\text{總}} \implies F_a + 5.0 = 20$$
+              $$F_a = 15.0\text{ gw}$$
+            </p>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="step-card">
+          <div class="step-header">
+            <span class="step-num">Step 3</span>
+            <h3>計算彈簧伸長量並求總長度 $\overline{AB}$</h3>
+          </div>
+          <div class="step-content">
+            <p>
+              由虎克定律 $\Delta x = \frac{F}{k}$，已知力常數 $k = 2.0\text{ gw/cm}$：
+            </p>
+            <p>
+              $$\Delta x_a = \frac{F_a}{k} = \frac{15.0\text{ gw}}{2.0\text{ gw/cm}} = 7.5\text{ cm}$$
+              $$\Delta x_b = \frac{F_b}{k} = \frac{5.0\text{ gw}}{2.0\text{ gw/cm}} = 2.5\text{ cm}$$
+            </p>
+            <p>
+              兩重物質量雖計，但質點體積可忽略不計，A、B 兩點間之總距離即為<strong>兩彈簧長度之和</strong>：
+            </p>
+            <p>
+              $$\overline{AB} = L_a + L_b = (L_0 + \Delta x_a) + (L_0 + \Delta x_b)$$
+              $$\overline{AB} = (20 + 7.5) + (20 + 2.5) = 27.5 + 22.5 = 50\text{ cm}$$
+            </p>
+            <p style="color: #4ade80; font-weight: bold; font-size: 16px;">
+              答案：$\overline{AB} = 50\text{ cm}$
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Navigation -->
+    <div class="bottom-nav">
+      <a href="exercise4.html" class="nav-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+        上一題 (練習 4)
+      </a>
+      <a href="index.html" class="nav-btn primary">回到講義首頁</a>
+      <a href="exercise6.html" class="nav-btn">
+        下一題 (練習 6)
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      if (window.renderMathInElement) {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ],
+          throwOnError: false
+        });
+      }
+
+      const inputAns = document.getElementById('ans_input');
+      const btnCheck = document.getElementById('btnCheck');
+      const btnToggle = document.getElementById('btnToggleSolution');
+      const solutionSection = document.getElementById('solutionSection');
+      const feedback = document.getElementById('feedbackMessage');
+
+      btnCheck.addEventListener('click', function() {
+        const val = parseFloat(inputAns.value);
+        feedback.style.display = 'block';
+
+        if (isNaN(val)) {
+          feedback.className = 'feedback-box warning';
+          feedback.innerHTML = '⚠️ 請先輸入您的計算數值再核對！';
+          return;
+        }
+
+        if (Math.abs(val - 50) < 0.1) {
+          feedback.className = 'feedback-box success';
+          feedback.innerHTML = '🎉 <strong>完全正確！AB 距離恰為 50 cm！</strong><br>利用隔離體與系統整體法求出彈簧 a 受力 15gw、彈簧 b 受力 5gw，伸長量分別為 7.5cm 與 2.5cm，總長度 40 + 10 = 50 cm！';
+          solutionSection.style.display = 'block';
+          btnToggle.querySelector('span').textContent = '收合完整解析';
+        } else {
+          feedback.className = 'feedback-box error';
+          feedback.innerHTML = `❌ <strong>答案錯誤（您填寫了 ${val} cm）！</strong><br>提示：原長合計為 40cm，先由 n 受力求出彈簧 b 伸長量，再由 (m+n) 總受力求出彈簧 a 伸長量！`;
+        }
+      });
+
+      btnToggle.addEventListener('click', function() {
+        if (solutionSection.style.display === 'none' || solutionSection.style.display === '') {
+          solutionSection.style.display = 'block';
+          btnToggle.querySelector('span').textContent = '收合完整解析';
+        } else {
+          solutionSection.style.display = 'none';
+          btnToggle.querySelector('span').textContent = '顯示完整解析';
+        }
+      });
+    });
+  </script>
+</body>
+</html>

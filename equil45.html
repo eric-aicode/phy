@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>靜力平衡 45：雙繩懸掛均勻木棒與直角中線定理 | 高中物理靜力學</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+  <link rel="stylesheet" href="shared.css">
+</head>
+<body>
+  <div class="bg-glow"></div>
+  <div class="bg-grid"></div>
+
+  <div class="container">
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+      <div class="nav-links">
+        <a href="index.html" class="nav-btn primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          回目錄
+        </a>
+        <a href="equil44.html" class="nav-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          上一題 (平衡 44)
+        </a>
+        <a href="equil46.html" class="nav-btn">
+          下一題 (平衡 46)
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+      <div class="badge-wrapper">
+        <span class="badge badge-page">講義 靜力學-32</span>
+        <span class="badge badge-exam">直角三角形斜邊中線</span>
+        <span class="badge badge-accent">靜力平衡・練習 45</span>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+      <h1 class="main-title">靜力平衡 45：<span class="gradient-text">雙繩懸掛均勻木棒與直角中線定理</span></h1>
+      <p class="subtitle">繩張力垂直正交分解・直角三角形斜邊中線等於斜邊之一半・巧求木棒傾角</p>
+    </header>
+
+    <!-- Main Problem Layout -->
+    <div class="problem-layout">
+      <!-- Left Column: Problem & Visualizer -->
+      <div class="problem-card">
+        <h2 class="section-title">
+          <span class="step-num">1</span>
+          題目情境與物理圖解
+        </h2>
+        <div class="problem-text">
+          <p>
+            如圖所示，$a$、$b$ 為兩條細繩，分別與水平天花板成 $60^\circ$ 及 $30^\circ$ 之夾角。$AB$ 為質量均勻的木棒，棒重為 $W$。
+          </p>
+          <p>
+            當系統達靜止平衡時，$a$、$b$ 兩繩上之張力分別為 $T_a$ 及 $T_b$，木棒 $AB$ 與水平線所成之夾角為 $\theta$。試求：
+          </p>
+          <ol style="margin: 8px 0 12px 24px; line-height: 1.8;">
+            <li>細繩 $a$ 之張力 $T_a =$ ______</li>
+            <li>細繩 $b$ 之張力 $T_b =$ ______</li>
+            <li>木棒與水平夾角 $\theta =$ ______</li>
+          </ol>
+        </div>
+
+        <div class="interactive-container">
+          <div style="font-size: 0.88rem; color: var(--text-dim); margin-bottom: 8px; display: flex; justify-content: space-between;">
+            <span>📐 三力匯聚與直角斜邊中線等腰幾何</span>
+            <span style="color: var(--accent-cyan);">兩繩互成 90° 直角；重心中線 OM = AM = BM</span>
+          </div>
+          <svg viewBox="0 0 540 370" class="diagram-svg" style="background: rgba(15, 23, 42, 0.7); border-radius: 8px;">
+            <defs>
+              <marker id="arr-c" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#38bdf8"/>
+              </marker>
+              <marker id="arr-g" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#00e676"/>
+              </marker>
+              <marker id="arr-r" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#f43f5e"/>
+              </marker>
+              <marker id="arr-y" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#fbbf24"/>
+              </marker>
+            </defs>
+
+            <!-- Ceiling -->
+            <line x1="60" y1="50" x2="480" y2="50" stroke="#64748b" stroke-width="4"/>
+            <!-- Hatchings -->
+            <line x1="100" y1="50" x2="115" y2="35" stroke="#475569" stroke-width="2"/>
+            <line x1="180" y1="50" x2="195" y2="35" stroke="#475569" stroke-width="2"/>
+            <line x1="260" y1="50" x2="275" y2="35" stroke="#475569" stroke-width="2"/>
+            <line x1="340" y1="50" x2="355" y2="35" stroke="#475569" stroke-width="2"/>
+            <line x1="420" y1="50" x2="435" y2="35" stroke="#475569" stroke-width="2"/>
+
+            <!-- Left ceiling point: C_b = (120, 50) -->
+            <!-- Right ceiling point: C_a = (440, 50) -->
+
+            <!-- String b: from (120, 50) at angle -30 deg down-right to B(280, 240) -->
+            <!-- String a: from (440, 50) at angle -60 deg down-left to A(370, 160) -->
+            <!-- Intersection of string extensions: O
+                 Let's place O=(200, 100) or check:
+                 b makes 30 deg with horizontal, a makes 60 deg.
+                 Notice 30 + 60 = 90 deg, so strings are perpendicular!
+            -->
+            <!-- String b -->
+            <line x1="120" y1="50" x2="300" y2="240" stroke="#c084fc" stroke-width="3"/>
+            <text x="170" y="130" fill="#c084fc" font-size="14" font-weight="bold">繩 b (30°)</text>
+
+            <!-- String a -->
+            <line x1="450" y1="50" x2="390" y2="188" stroke="#00e676" stroke-width="3"/>
+            <text x="430" y="125" fill="#00e676" font-size="14" font-weight="bold">繩 a (60°)</text>
+
+            <!-- Angle marks at ceiling -->
+            <path d="M 170 50 A 50 50 0 0 1 163 75" fill="none" stroke="#c084fc" stroke-width="2"/>
+            <text x="175" y="70" fill="#c084fc" font-size="13">30°</text>
+
+            <path d="M 400 50 A 50 50 0 0 0 425 93" fill="none" stroke="#00e676" stroke-width="2"/>
+            <text x="395" y="80" fill="#00e676" font-size="13">60°</text>
+
+            <!-- Rod AB: from B(300, 240) to A(390, 188) -->
+            <!-- dx = 90, dy = -52. Angle = -30 deg (30 deg above horizontal!) -->
+            <line x1="300" y1="240" x2="390" y2="188" stroke="#f8fafc" stroke-width="8" stroke-linecap="round"/>
+            <line x1="300" y1="240" x2="390" y2="188" stroke="#38bdf8" stroke-width="4" stroke-linecap="round"/>
+
+            <!-- Angle theta of rod with horizontal: at B -->
+            <line x1="300" y1="240" x2="370" y2="240" stroke="#64748b" stroke-width="1.5" stroke-dasharray="3 3"/>
+            <path d="M 340 240 A 40 40 0 0 0 335 220" fill="none" stroke="#fbbf24" stroke-width="2"/>
+            <text x="345" y="235" fill="#fbbf24" font-size="13" font-weight="bold">θ = 30°</text>
+
+            <!-- Midpoint M (Center of gravity) of rod AB: M=(345, 214) -->
+            <circle cx="345" cy="214" r="5" fill="#fbbf24"/>
+            <text x="355" y="222" fill="#fbbf24" font-size="13">M (中點)</text>
+            <line x1="345" y1="214" x2="345" y2="295" stroke="#fbbf24" stroke-width="3" marker-end="url(#arr-y)"/>
+            <text x="355" y="285" fill="#fbbf24" font-size="15" font-weight="bold">W</text>
+
+            <!-- Intersection point of strings: O -->
+            <!-- Line b passes through (120, 50) and (300, 240): dx=180, dy=190 (slope 1.055)
+                 Let's find O where lines intersect:
+            -->
+            <!-- Dashed extensions meeting at O=(355, 127) -->
+            <circle cx="355" cy="127" r="4" fill="#f43f5e"/>
+            <text x="330" y="125" fill="#f43f5e" font-size="13" font-weight="bold">O (三力交點)</text>
+            <line x1="355" y1="127" x2="345" y2="214" stroke="#fbbf24" stroke-width="2" stroke-dasharray="4 3"/>
+
+            <!-- Right-angle mark at O -->
+            <rect x="350" y="125" width="10" height="10" fill="none" stroke="#f8fafc" stroke-width="1.5" transform="rotate(30 355 127)"/>
+
+            <!-- Point Labels -->
+            <text x="402" y="195" fill="#f8fafc" font-size="16" font-weight="bold">A</text>
+            <text x="280" y="255" fill="#f8fafc" font-size="16" font-weight="bold">B</text>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Right Column: Interactive Quiz -->
+      <div class="problem-card">
+        <h2 class="section-title">
+          <span class="step-num">2</span>
+          自我檢測與即時核對
+        </h2>
+        <p style="color: var(--text-dim); font-size: 0.95rem; margin-bottom: 16px;">
+          請依據拉密定理與斜邊中線等腰幾何，選出正確的答案組合：
+        </p>
+
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="selectOption(this, 'A')">
+            <span class="opt-letter">A</span>
+            <span class="opt-text">(1) $\dfrac{1}{2}W$；(2) $\dfrac{\sqrt{3}}{2}W$；(3) $30^\circ$</span>
+          </div>
+          <div class="quiz-option" onclick="selectOption(this, 'B')">
+            <span class="opt-letter">B</span>
+            <span class="opt-text">(1) $\dfrac{\sqrt{3}}{2}W$；(2) $\dfrac{1}{2}W$；(3) $30^\circ$</span>
+          </div>
+          <div class="quiz-option" onclick="selectOption(this, 'C')">
+            <span class="opt-letter">C</span>
+            <span class="opt-text">(1) $\dfrac{\sqrt{3}}{2}W$；(2) $\dfrac{1}{2}W$；(3) $45^\circ$</span>
+          </div>
+          <div class="quiz-option" onclick="selectOption(this, 'D')">
+            <span class="opt-letter">D</span>
+            <span class="opt-text">(1) $\dfrac{1}{2}W$；(2) $\dfrac{\sqrt{3}}{2}W$；(3) $60^\circ$</span>
+          </div>
+          <div class="quiz-option" onclick="selectOption(this, 'E')">
+            <span class="opt-letter">E</span>
+            <span class="opt-text">(1) $\dfrac{\sqrt{3}}{2}W$；(2) $\dfrac{\sqrt{3}}{2}W$；(3) $30^\circ$</span>
+          </div>
+        </div>
+
+        <div class="quiz-actions">
+          <button class="nav-btn primary" onclick="checkAnswer()">核對答案</button>
+          <button class="nav-btn" onclick="toggleSolution()">查看解析</button>
+        </div>
+
+        <div id="feedback" class="quiz-feedback"></div>
+      </div>
+    </div>
+
+    <!-- Solution Section -->
+    <div id="solution-card" class="solution-card">
+      <h2 class="section-title">
+        <span class="step-num">3</span>
+        完整觀念解析與推導過程
+      </h2>
+      <div class="solution-content">
+        <div class="formula-box">
+          $$\text{兩繩夾角 } = 30^\circ + 60^\circ = 90^\circ \implies \vec{T}_a \perp \vec{T}_b$$
+          $$T_a = W \cos 30^\circ = \frac{\sqrt{3}}{2}W, \quad T_b = W \cos 60^\circ = \frac{1}{2}W$$
+          $$\triangle OAB \text{ 為直角三角形，中線 } \overline{OM} = \overline{AM} \implies \theta = 60^\circ - 30^\circ = 30^\circ$$
+        </div>
+
+        <div class="step-card">
+          <h4>步驟一：兩繩夾角為直角，拉密定理求繩張力</h4>
+          <p>
+            細繩 $a$ 與天花板夾 $60^\circ$（與鉛垂線夾 $30^\circ$）；細繩 $b$ 與天花板夾 $30^\circ$（與鉛垂線夾 $60^\circ$）。
+          </p>
+          <p>
+            兩繩作用線方向夾角為 $180^\circ - (60^\circ + 30^\circ) = 90^\circ$，即<strong>兩繩互相垂直</strong>！
+          </p>
+          <p>
+            木棒受三力平衡（$\vec{T}_a + \vec{T}_b + \vec{W} = 0$），三力構成以重力 $W$ 為斜邊的直角三角形：
+          </p>
+          $$T_a = W \sin(60^\circ) = W \cos 30^\circ = \frac{\sqrt{3}}{2}W$$
+          $$T_b = W \sin(30^\circ) = W \cos 60^\circ = \frac{1}{2}W$$
+        </div>
+
+        <div class="step-card">
+          <h4>步驟二：三力共點與直角三角形斜邊中線性質</h4>
+          <p>
+            兩繩作用線交於 $O$ 點，木棒重力作用線必定通過同一交點 $O$。
+          </p>
+          <p>
+            因為木棒質量均勻，重心位於木棒幾何中點 $M$。因此線段 $OM$ 為直角三角形 $\triangle OAB$（$\angle AOB = 90^\circ$）<strong>斜邊 $AB$ 上的中線</strong>！
+          </p>
+          <p>
+            由幾何定理：<strong>直角三角形斜邊中線等於斜邊之一半</strong>：
+          </p>
+          $$\overline{OM} = \overline{AM} = \overline{BM}$$
+        </div>
+
+        <div class="step-card">
+          <h4>步驟三：利用等腰三角形角度求木棒水平夾角 $\theta$</h4>
+          <p>
+            因為 $\overline{OM} = \overline{AM}$，所以 $\triangle OAM$ 為等腰三角形：
+          </p>
+          $$\angle MAO = \angle MOA$$
+          <p>
+            由受力方向分析，中線 $OM$ 沿重力鉛直線，而繩 $a$（$OA$ 線段）與鉛直線夾角為 $30^\circ$，因此：
+          </p>
+          $$\angle MOA = 30^\circ \implies \angle MAO = 30^\circ$$
+          <p>
+            繩 $a$ 與水平夾角為 $60^\circ$，木棒與繩 $a$ 夾角 $\angle MAO = 30^\circ$：
+          </p>
+          $$\theta = 60^\circ - 30^\circ = 30^\circ$$
+          <p>
+            因此，木棒與水平夾角為 <strong>$30^\circ$</strong>。正確選項為 <strong>(B)</strong>。
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let selectedOption = null;
+    const correctAnswer = 'B';
+
+    function selectOption(element, opt) {
+      document.querySelectorAll('.quiz-option').forEach(el => el.classList.remove('selected'));
+      element.classList.add('selected');
+      selectedOption = opt;
+    }
+
+    function checkAnswer() {
+      const feedback = document.getElementById('feedback');
+      if (!selectedOption) {
+        feedback.innerHTML = '<span style="color: var(--accent-yellow);">⚠️ 請先點擊選擇一個選項！</span>';
+        feedback.className = 'quiz-feedback show';
+        return;
+      }
+      if (selectedOption === correctAnswer) {
+        feedback.innerHTML = '🎉 <strong>完全正確！</strong> 兩繩互垂構成直角力三角形，得到 $T_a = \\frac{\\sqrt{3}}{2}W$ 與 $T_b = \\frac{1}{2}W$。再由直角三角形斜邊中線等於斜邊一半，得到等腰三角形 $\\angle MAO = 30^\\circ$，求出 $\\theta = 30^\\circ$！';
+        feedback.className = 'quiz-feedback show correct';
+        document.getElementById('solution-card').classList.add('show');
+      } else {
+        feedback.innerHTML = '❌ <strong>答案不對喔！</strong> 提示：繩 a 與天花板夾 $60^\\circ$（與鉛垂線夾 $30^\\circ$），故 $T_a = W\\cos 30^\\circ = \\frac{\\sqrt{3}}{2}W$。再利用斜邊中線等腰性質求 $\\theta$！';
+        feedback.className = 'quiz-feedback show incorrect';
+      }
+    }
+
+    function toggleSolution() {
+      const sol = document.getElementById('solution-card');
+      sol.classList.toggle('show');
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      if (window.renderMathInElement) {
+        renderMathInElement(document.body, {
+          delimiters: [
+            { left: "$$", right: "$$", display: true },
+            { left: "$", right: "$", display: false }
+          ]
+        });
+      }
+    });
+  </script>
+</body>
+</html>

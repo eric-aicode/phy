@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>範例 4：細繩與彈簧懸吊平衡與向量封閉三角形 | 高中物理靜力學</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+  <link rel="stylesheet" href="shared.css">
+</head>
+<body>
+  <div class="bg-glow"></div>
+  <div class="bg-grid"></div>
+
+  <div class="container">
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+      <div class="nav-links">
+        <a href="index.html" class="nav-btn primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          回目錄
+        </a>
+        <a href="problem3.html" class="nav-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          上一題 (範例 3)
+        </a>
+        <a href="problem5.html" class="nav-btn">
+          下一題 (範例 5)
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+      <div class="badge-wrapper">
+        <span class="badge badge-page">講義 靜力學-8</span>
+        <span class="badge badge-accent">向量封閉直角三角形</span>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+      <h1 class="main-title">範例 4：<span class="gradient-text">細繩與彈簧懸吊平衡</span></h1>
+      <p class="subtitle">共點力平衡幾何化・彈簧虎克定律結合 30°- 60°- 90° 封閉直角三角形圖解</p>
+    </header>
+
+    <!-- Problem Showcase Card -->
+    <section class="card problem-card">
+      <div class="card-header">
+        <div class="card-icon">📖</div>
+        <div>
+          <h2>題目內容</h2>
+          <span class="card-tag">講義經典指標題</span>
+        </div>
+      </div>
+
+      <div class="problem-body">
+        <p>
+          一物重 <strong>$10\text{ kgw}$</strong>，以兩細繩及一輕彈簧吊起平衡如下圖所示。<br>
+          已知：
+        </p>
+        <ul class="condition-list">
+          <li>兩細繩與水平天花板之夾角分別為 <strong>$30^\circ$</strong> 與 <strong>$60^\circ$</strong></li>
+          <li>兩細繩中<strong>較長者長度為 $4.0\text{ cm}$</strong></li>
+          <li>彈簧鉛直懸掛，原長為 <strong>$1.5\text{ cm}$</strong>，力常數 $k = \mathbf{800\text{ kgw/m}}$</li>
+        </ul>
+        <div class="question-goal">
+          試求：較長之細繩上張力為多少 $\text{kgw}$？
+        </div>
+      </div>
+
+      <!-- Problem Physical Diagram (SVG) -->
+      <div class="canvas-card">
+        <div class="canvas-title-bar">
+          <h3><span class="dot dot-blue"></span> 懸吊裝置空間幾何與受力圖</h3>
+          <span class="view-tag">Physical Diagram</span>
+        </div>
+        <div class="svg-wrapper">
+          <svg viewBox="0 0 740 380" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="arr-p4-f" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                <path d="M0 1L10 5L0 9z" fill="#ff5252"/>
+              </marker>
+              <marker id="arr-p4-c" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                <path d="M0 1L10 5L0 9z" fill="#00e5ff"/>
+              </marker>
+              <marker id="arr-p4-y" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                <path d="M0 1L10 5L0 9z" fill="#ffd54f"/>
+              </marker>
+              <marker id="arr-p4-g" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                <path d="M0 1L10 5L0 9z" fill="#00e676"/>
+              </marker>
+            </defs>
+
+            <!-- LEFT: Physical Setup -->
+            <g transform="translate(30, 20)">
+              <!-- Ceiling -->
+              <line x1="20" y1="50" x2="380" y2="50" stroke="#78909c" stroke-width="5" stroke-linecap="round"/>
+              <g stroke="#546e7a" stroke-width="1.5" opacity="0.4">
+                <line x1="30" y1="50" x2="42" y2="38"/><line x1="60" y1="50" x2="72" y2="38"/>
+                <line x1="90" y1="50" x2="102" y2="38"/><line x1="120" y1="50" x2="132" y2="38"/>
+                <line x1="150" y1="50" x2="162" y2="38"/><line x1="180" y1="50" x2="192" y2="38"/>
+                <line x1="210" y1="50" x2="222" y2="38"/><line x1="240" y1="50" x2="252" y2="38"/>
+                <line x1="270" y1="50" x2="282" y2="38"/><line x1="300" y1="50" x2="312" y2="38"/>
+                <line x1="330" y1="50" x2="342" y2="38"/><line x1="360" y1="50" x2="372" y2="38"/>
+              </g>
+
+              <!-- Left Rope: 30° to ceiling. Knot at (240, 170). h = 120px. dx = 120 / tan30 = 207.8px. Attach at 240 - 208 = 32px -->
+              <line x1="32" y1="50" x2="240" y2="170" stroke="#00e5ff" stroke-width="3.5"/>
+              <rect x="65" y="115" width="115" height="24" rx="4" fill="rgba(15, 23, 42, 0.9)" stroke="#00e5ff" stroke-width="1"/>
+              <text x="122" y="131" fill="#00e5ff" font-size="11" font-weight="bold" text-anchor="middle">長繩 4.0 cm (T₁)</text>
+
+              <!-- 30° arc -->
+              <path d="M72,50 A40,40 0 0,1 66,70" fill="none" stroke="#00e5ff" stroke-width="1.8"/>
+              <text x="78" y="70" fill="#00e5ff" font-size="12" font-weight="bold">30°</text>
+
+              <!-- Right Rope: 60° to ceiling. dx = 120 / tan60 = 69.3px. Attach at 240 + 69.3 = 309.3px -->
+              <line x1="309" y1="50" x2="240" y2="170" stroke="#ffd54f" stroke-width="3.5"/>
+              <rect x="270" y="115" width="90" height="24" rx="4" fill="rgba(15, 23, 42, 0.9)" stroke="#ffd54f" stroke-width="1"/>
+              <text x="315" y="131" fill="#ffd54f" font-size="11" font-weight="bold" text-anchor="middle">短繩 (T₂)</text>
+
+              <!-- 60° arc -->
+              <path d="M290,50 A25,25 0 0,0 299,67" fill="none" stroke="#ffd54f" stroke-width="1.8"/>
+              <text x="275" y="75" fill="#ffd54f" font-size="12" font-weight="bold">60°</text>
+
+              <!-- Vertical Spring from (240, 50) to (240, 170) -->
+              <path d="M240,50 L240,60 
+                       L248,68 L232,76 L248,84 L232,92 L248,100 L232,108 L248,116 L232,124 L248,132 L232,140 L248,148 
+                       L240,158 L240,170" 
+                    fill="none" stroke="#00e676" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <rect x="160" y="85" width="70" height="36" rx="4" fill="rgba(15, 23, 42, 0.9)" stroke="#00e676" stroke-width="1"/>
+              <text x="195" y="100" fill="#00e676" font-size="10" font-weight="bold" text-anchor="middle">彈簧 L₀=1.5</text>
+              <text x="195" y="113" fill="#a7f3d0" font-size="9" text-anchor="middle">k=800 kgw/m</text>
+
+              <!-- Knot -->
+              <circle cx="240" cy="170" r="5" fill="#fff" stroke="#ff4081" stroke-width="2"/>
+              <text x="250" y="174" fill="#fff" font-size="11" font-weight="bold">節點</text>
+
+              <!-- Hanging mass -->
+              <line x1="240" y1="170" x2="240" y2="240" stroke="#94a3b8" stroke-width="2"/>
+              <rect x="215" y="240" width="50" height="44" rx="6" fill="#334155" stroke="#64748b" stroke-width="2"/>
+              <text x="240" y="267" fill="#fff" font-size="12" font-weight="bold" text-anchor="middle">10 kgw</text>
+
+              <!-- Gravity arrow -->
+              <line x1="240" y1="284" x2="240" y2="325" stroke="#ff5252" stroke-width="3" marker-end="url(#arr-p4-f)"/>
+              <text x="252" y="315" fill="#ff5252" font-size="11" font-weight="bold">W = 10</text>
+            </g>
+
+            <!-- RIGHT: Vector Closed Triangle -->
+            <g transform="translate(450, 30)">
+              <rect x="0" y="0" width="260" height="300" rx="10" fill="#0f172a" stroke="#1e293b" stroke-width="1.5"/>
+              <text x="20" y="30" fill="#00e5ff" font-size="13" font-weight="600">向量封閉直角三角形</text>
+
+              <!-- Net Downward Force: W_net = 6 kgw, represented by vertical line downward (180px) -->
+              <!-- From (190, 60) down to (190, 240) -->
+              <line x1="190" y1="60" x2="190" y2="232" stroke="#ff5252" stroke-width="3.5" marker-end="url(#arr-p4-f)"/>
+              <rect x="198" y="130" width="55" height="36" rx="4" fill="rgba(15, 23, 42, 0.9)" stroke="#ff5252" stroke-width="1"/>
+              <text x="225" y="146" fill="#ff5252" font-size="10" font-weight="bold" text-anchor="middle">斜邊</text>
+              <text x="225" y="158" fill="#ff8a80" font-size="10" text-anchor="middle">F_net = 6</text>
+
+              <!-- T1 (Long Rope): angle 60° to downward force, length = 6 * cos60 = 3 kgw (90px) -->
+              <!-- From (190, 240) to (112, 105) -->
+              <line x1="190" y1="240" x2="116" y2="112" stroke="#00e5ff" stroke-width="3.5" marker-end="url(#arr-p4-c)"/>
+              <rect x="80" y="165" width="60" height="28" rx="4" fill="rgba(15, 23, 42, 0.9)" stroke="#00e5ff" stroke-width="1"/>
+              <text x="110" y="182" fill="#00e5ff" font-size="11" font-weight="bold" text-anchor="middle">T₁ = 3</text>
+
+              <!-- T2 (Short Rope): perpendicular to T1, length = 6 * sin60 = 3√3 kgw (155.8px) -->
+              <!-- From (112, 105) to (190, 60) -->
+              <line x1="112" y1="105" x2="184" y2="64" stroke="#ffd54f" stroke-width="3.5" marker-end="url(#arr-p4-y)"/>
+              <rect x="110" y="60" width="65" height="24" rx="4" fill="rgba(15, 23, 42, 0.9)" stroke="#ffd54f" stroke-width="1"/>
+              <text x="142" y="76" fill="#ffd54f" font-size="11" font-weight="bold" text-anchor="middle">T₂ = 3√3</text>
+
+              <!-- 90° angle at vertex (112, 105) -->
+              <path d="M120,119 L133,112 L125,98" fill="none" stroke="#fff" stroke-width="1.5"/>
+
+              <!-- 60° angle at bottom vertex (190, 240) -->
+              <path d="M190,205 A35,35 0 0,0 167,200" fill="none" stroke="#00e5ff" stroke-width="1.5"/>
+              <text x="165" y="222" fill="#00e5ff" font-size="11" font-weight="bold">60°</text>
+              <text x="165" y="80" fill="#ffd54f" font-size="11" font-weight="bold">30°</text>
+
+              <rect x="20" y="248" width="220" height="34" rx="4" fill="rgba(0, 229, 255, 0.1)" stroke="#00e5ff" stroke-width="1"/>
+              <text x="130" y="269" fill="#00e5ff" font-size="11" font-weight="bold" text-anchor="middle">T₁ = (W - Fs) × cos 60° = 3 kgw</text>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- Student Worksheet Card -->
+    <section class="card worksheet-card">
+      <div class="card-header">
+        <div class="card-icon">✏️</div>
+        <div>
+          <h2>學生自主作答區（4步運算驗證）</h2>
+          <span class="card-tag">幾何高 ➔ 虎克定律 ➔ 淨向下力 ➔ 封閉三角形張力</span>
+        </div>
+      </div>
+
+      <form id="quizForm" class="quiz-grid" onsubmit="return false;">
+        <div class="quiz-item">
+          <label for="ansH">
+            <span class="q-num">1</span> 節點至天花板鉛直距離 $h$：
+          </label>
+          <div class="input-wrapper">
+            <input type="number" step="0.1" id="ansH" placeholder="例如: 2.0">
+            <span class="unit">cm</span>
+          </div>
+          <span class="feedback-msg" id="fbH"></span>
+        </div>
+
+        <div class="quiz-item">
+          <label for="ansFs">
+            <span class="q-num">2</span> 彈簧向上彈力 $F_s$：
+          </label>
+          <div class="input-wrapper">
+            <input type="number" step="0.1" id="ansFs" placeholder="例如: 4.0">
+            <span class="unit">kgw</span>
+          </div>
+          <span class="feedback-msg" id="fbFs"></span>
+        </div>
+
+        <div class="quiz-item">
+          <label for="ansFnet">
+            <span class="q-num">3</span> 淨向下鉛直外力 $(W - F_s)$：
+          </label>
+          <div class="input-wrapper">
+            <input type="number" step="0.1" id="ansFnet" placeholder="例如: 6.0">
+            <span class="unit">kgw</span>
+          </div>
+          <span class="feedback-msg" id="fbFnet"></span>
+        </div>
+
+        <div class="quiz-item highlight-q">
+          <label for="ansT1">
+            <span class="q-num">4</span> <strong>較長細繩張力 $T_1$ (核心解答)</strong>：
+          </label>
+          <div class="input-wrapper">
+            <input type="number" step="0.1" id="ansT1" placeholder="例如: 3">
+            <span class="unit">kgw</span>
+          </div>
+          <span class="feedback-msg" id="fbT1"></span>
+        </div>
+      </form>
+
+      <div class="worksheet-actions">
+        <button id="btnCheckAnswer" class="btn-primary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          送出並核對答案
+        </button>
+        <button id="btnToggleHint" class="btn-secondary">
+          💡 顯示解題引導提示
+        </button>
+        <button id="btnRevealSolution" class="btn-accent">
+          🔓 解鎖完整圖解詳解
+        </button>
+      </div>
+
+      <!-- Hint Box -->
+      <div id="hintBox" class="hint-box hidden">
+        <h4>💡 名師思考引導：</h4>
+        <ol>
+          <li><strong>幾何直角性</strong>：天花板水平，兩繩仰角分別為 $30^\circ$ 與 $60^\circ$ $\implies$ 兩繩夾角為 $180^\circ - (30^\circ + 60^\circ) = 90^\circ$（互相垂直！）。</li>
+          <li><strong>求節點深度 $h$</strong>：長繩長度 $4.0\text{ cm}$，仰角 $30^\circ$ $\implies$ 鉛直深度 $h = 4.0 \times \sin 30^\circ = 2.0\text{ cm}$。</li>
+          <li><strong>彈簧彈力</strong>：伸長量 $\Delta x = h - L_0 = 2.0 - 1.5 = 0.5\text{ cm} = 0.005\text{ m}$。彈力 $F_s = k \times \Delta x = 800 \times 0.005 = 4\text{ kgw}$。</li>
+          <li><strong>向量三角形</strong>：向上有彈簧 $4\text{ kgw}$，向下有重力 $10\text{ kgw}$，等效為鉛直向下外力 $W - F_s = 6\text{ kgw}$。兩繩張力與 $6\text{ kgw}$ 形成以 $6\text{ kgw}$ 為斜邊的直角三角形！</li>
+        </ol>
+      </div>
+
+      <!-- Result Banner -->
+      <div id="resultBanner" class="result-banner hidden"></div>
+    </section>
+
+    <!-- Solution Section (Initially Hidden) -->
+    <section id="solutionSection" class="solution-section">
+      <div class="card solution-card">
+        <div class="card-header">
+          <div class="card-icon" style="background: rgba(0, 230, 118, 0.15); border-color: rgba(0, 230, 118, 0.3);">💡</div>
+          <div>
+            <h2>完整圖解解析</h2>
+            <span class="card-tag">幾何與向量封閉三角形精解</span>
+          </div>
+        </div>
+
+        <!-- Step 1 -->
+        <div class="step-card">
+          <div class="step-header">
+            <span class="step-pill s1">步驟 1</span>
+            <h3>幾何求解：節點至天花板之鉛直距離 $h$</h3>
+          </div>
+          <div class="step-content">
+            <p>
+              長繩長度 $L_1 = 4.0\text{ cm}$，與天花板夾角為 $30^\circ$。節點的鉛直深度即為長繩的對邊高：
+            </p>
+            <div class="formula-highlight">
+              $$h = L_1 \times \sin 30^\circ = 4.0\text{ cm} \times \frac{1}{2} = \mathbf{2.0\text{ cm}}$$
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="step-card">
+          <div class="step-header">
+            <span class="step-pill s2">步驟 2</span>
+            <h3>虎克定律：求彈簧伸長量與彈力 $F_s$</h3>
+          </div>
+          <div class="step-content">
+            <p>
+              彈簧原長 $L_0 = 1.5\text{ cm}$，現長度拉伸至節點位置 $h = 2.0\text{ cm}$：
+            </p>
+            <div class="formula-highlight">
+              $$\Delta x = h - L_0 = 2.0\text{ cm} - 1.5\text{ cm} = 0.5\text{ cm} = 0.005\text{ m}$$
+              $$F_s = k \times \Delta x = 800\text{ kgw/m} \times 0.005\text{ m} = \mathbf{4.0\text{ kgw}}$$
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="step-card">
+          <div class="step-header">
+            <span class="step-pill s3">步驟 3</span>
+            <h3>鉛直淨外力合成</h3>
+          </div>
+          <div class="step-content">
+            <p>
+              節點處受到向下的物重 $W = 10\text{ kgw}$ 以及彈簧向上的拉力 $F_s = 4.0\text{ kgw}$。兩力共線合成：
+            </p>
+            <div class="formula-highlight">
+              $$F_{\text{net}} = W - F_s = 10\text{ kgw} - 4\text{ kgw} = \mathbf{6.0\text{ kgw}} \quad (\text{向下})$$
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="step-card">
+          <div class="step-header">
+            <span class="step-pill s4">步驟 4</span>
+            <h3>向量封閉直角三角形求解張力 $T_1$</h3>
+          </div>
+          <div class="step-content">
+            <p>
+              兩細繩相互垂直（$30^\circ + 60^\circ = 90^\circ$），因此張力 $\vec{T}_1$、$\vec{T}_2$ 與鉛直外力 $\vec{F}_{\text{net}}$ 首尾相接構成<strong>直角三角形</strong>，其中斜邊長為 $6.0\text{ kgw}$。
+            </p>
+            <p>
+              長繩張力 $\vec{T}_1$ 與鉛垂線的夾角為 $90^\circ - 30^\circ = 60^\circ$：
+            </p>
+            <div class="formula-highlight">
+              $$T_1 = F_{\text{net}} \times \cos 60^\circ = 6.0 \times \frac{1}{2} = \mathbf{3.0\text{ kgw}}$$
+              $$T_2 = F_{\text{net}} \times \sin 60^\circ = 6.0 \times \frac{\sqrt{3}}{2} = 3\sqrt{3}\text{ kgw}$$
+            </div>
+            <div class="summary-box">
+              ✅ <strong>最終標準解答：</strong> 較長之細繩上張力為 <strong>$3\text{ kgw}$</strong>。
+            </div>
+          </div>
+        </div>
+
+        <!-- Teacher Tip -->
+        <div class="teacher-tip">
+          <div class="tip-icon">👨‍🏫</div>
+          <div class="tip-content">
+            <h4>名師解題心法・向量三角形速度之王</h4>
+            <p>
+              只要看到兩條繩子夾角互餘（$30^\circ$-$60^\circ$ 或 $37^\circ$-$53^\circ$），繩子彼此必互相垂直！<br>
+              此時<strong>不需要</strong>列水平與鉛直兩個聯立方程式，直接畫出<strong>以淨向下外力為斜邊</strong>的封閉直角三角形，張力一秒即刻算出！
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+    <!-- Related Practice & Knowledge Consolidation Section -->
+    <section class="card recommendation-card" style="margin-top: 24px; border: 1px solid rgba(0, 229, 255, 0.3); background: rgba(15, 23, 42, 0.75);">
+      <div class="card-header">
+        <div class="card-icon" style="background: rgba(0, 229, 255, 0.15); border-color: rgba(0, 229, 255, 0.35);">🎯</div>
+        <div>
+          <h2>學完本範例，接下來建議練習以下題庫！</h2>
+          <span class="card-tag">循序漸進・概念深耕・題型通關</span>
+        </div>
+      </div>
+      <p style="font-size: 0.95rem; color: var(--text-muted); margin: 6px 0 16px 0; line-height: 1.6;">
+        已為您智能引導與「<strong>細繩與彈簧懸吊質點、封閉向量三角形、拉密定理幾何解法</strong>」高度相關的課堂類題與大考題庫，趁熱打鐵進行題型辨析與鞏固練習：
+      </p>
+
+      <div class="rec-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px;">
+        <!-- Card: 平衡 16 -->
+        <div class="rec-card" style="background: var(--bg-surface-elevated); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 16px; display: flex; flex-direction: column; justify-content: space-between; gap: 10px; transition: all 0.2s ease;">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <span class="badge badge-accent" style="font-size: 0.8rem;">平衡 16</span>
+              <span style="font-size: 0.75rem; color: #38bdf8; font-weight: 700; background: rgba(56, 189, 248, 0.12); padding: 2px 8px; border-radius: 4px; border: 1px solid rgba(56, 189, 248, 0.25);">🔥 動態極值神題</span>
+            </div>
+            <h4 style="font-size: 1.02rem; color: #fff; margin-bottom: 6px;">動態拉起過程懸繩張力變化</h4>
+            <p style="font-size: 0.86rem; color: var(--text-muted); line-height: 1.55;">
+              利用封閉向量三角形在圓周旋轉時的幾何關係，一眼看出何時出現最小張力！
+            </p>
+          </div>
+          <a href="equil16.html" class="nav-btn primary" style="justify-content: center; font-size: 0.88rem; padding: 7px 14px; margin-top: 6px; font-weight: 600;">
+            🚀 前往練習
+          </a>
+        </div>
+        <!-- Card: 平衡 14 -->
+        <div class="rec-card" style="background: var(--bg-surface-elevated); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 16px; display: flex; flex-direction: column; justify-content: space-between; gap: 10px; transition: all 0.2s ease;">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <span class="badge badge-accent" style="font-size: 0.8rem;">平衡 14</span>
+              <span style="font-size: 0.75rem; color: #38bdf8; font-weight: 700; background: rgba(56, 189, 248, 0.12); padding: 2px 8px; border-radius: 4px; border: 1px solid rgba(56, 189, 248, 0.25);">🏆 93 指考真題</span>
+            </div>
+            <h4 style="font-size: 1.02rem; color: #fff; margin-bottom: 6px;">93指考掛畫細繩最短長度</h4>
+            <p style="font-size: 0.86rem; color: var(--text-muted); line-height: 1.55;">
+              掛畫細繩夾角越小張力越大，大考必考的向量對稱分解與材料破壞極限。
+            </p>
+          </div>
+          <a href="equil14.html" class="nav-btn primary" style="justify-content: center; font-size: 0.88rem; padding: 7px 14px; margin-top: 6px; font-weight: 600;">
+            🚀 前往練習
+          </a>
+        </div>
+        <!-- Card: 平衡 08 -->
+        <div class="rec-card" style="background: var(--bg-surface-elevated); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 16px; display: flex; flex-direction: column; justify-content: space-between; gap: 10px; transition: all 0.2s ease;">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <span class="badge badge-accent" style="font-size: 0.8rem;">平衡 08</span>
+              <span style="font-size: 0.75rem; color: #38bdf8; font-weight: 700; background: rgba(56, 189, 248, 0.12); padding: 2px 8px; border-radius: 4px; border: 1px solid rgba(56, 189, 248, 0.25);">⭐ 88 聯考名作</span>
+            </div>
+            <h4 style="font-size: 1.02rem; color: #fff; margin-bottom: 6px;">88聯考對摺細繩分開最大距離</h4>
+            <p style="font-size: 0.86rem; color: var(--text-muted); line-height: 1.55;">
+              細線對折懸吊重物，探討繩子不被拉斷時兩懸掛點的最大分開距離。
+            </p>
+          </div>
+          <a href="equil8.html" class="nav-btn primary" style="justify-content: center; font-size: 0.88rem; padding: 7px 14px; margin-top: 6px; font-weight: 600;">
+            🚀 前往練習
+          </a>
+        </div>
+        <!-- Card: 平衡 41 -->
+        <div class="rec-card" style="background: var(--bg-surface-elevated); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 16px; display: flex; flex-direction: column; justify-content: space-between; gap: 10px; transition: all 0.2s ease;">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <span class="badge badge-accent" style="font-size: 0.8rem;">平衡 41</span>
+              <span style="font-size: 0.75rem; color: #38bdf8; font-weight: 700; background: rgba(56, 189, 248, 0.12); padding: 2px 8px; border-radius: 4px; border: 1px solid rgba(56, 189, 248, 0.25);">🌱 彈簧多解挑戰</span>
+            </div>
+            <h4 style="font-size: 1.02rem; color: #fff; margin-bottom: 6px;">三彈簧 120 度對稱懸吊球體與形變多解</h4>
+            <p style="font-size: 0.86rem; color: var(--text-muted); line-height: 1.55;">
+              三根彈簧呈 120 度對稱配置，探討各彈簧處於伸長或壓縮時的多組平衡解。
+            </p>
+          </div>
+          <a href="equil41.html" class="nav-btn primary" style="justify-content: center; font-size: 0.88rem; padding: 7px 14px; margin-top: 6px; font-weight: 600;">
+            🚀 前往練習
+          </a>
+        </div>
+      </div>
+      
+      <div style="margin-top: 18px; text-align: center; border-top: 1px dashed var(--border-subtle); padding-top: 14px;">
+        <a href="index.html" class="nav-btn" style="font-size: 0.88rem;">
+          📚 返回總目錄查看全單元 104 題索引
+        </a>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      if (window.renderMathInElement) {
+        renderMathInElement(document.body, {
+          delimiters: [
+            { left: "$$", right: "$$", display: true },
+            { left: "$", right: "$", display: false }
+          ]
+        });
+      }
+
+      const btnToggleHint = document.getElementById("btnToggleHint");
+      const hintBox = document.getElementById("hintBox");
+      btnToggleHint.addEventListener("click", () => {
+        hintBox.classList.toggle("hidden");
+        btnToggleHint.textContent = hintBox.classList.contains("hidden") ? "💡 顯示解題引導提示" : "💡 收合解題引導提示";
+      });
+
+      const btnRevealSolution = document.getElementById("btnRevealSolution");
+      const solutionSection = document.getElementById("solutionSection");
+      btnRevealSolution.addEventListener("click", () => {
+        solutionSection.classList.toggle("visible");
+        if (solutionSection.classList.contains("visible")) {
+          btnRevealSolution.textContent = "🔒 隱藏解析";
+          solutionSection.scrollIntoView({ behavior: 'smooth' });
+        } else {
+          btnRevealSolution.textContent = "🔓 解鎖完整圖解詳解";
+        }
+      });
+
+      const btnCheckAnswer = document.getElementById("btnCheckAnswer");
+      const resultBanner = document.getElementById("resultBanner");
+
+      btnCheckAnswer.addEventListener("click", () => {
+        let correctCount = 0;
+        let filledCount = 0;
+
+        // H: 2.0
+        const vH = parseFloat(document.getElementById("ansH").value);
+        const fbH = document.getElementById("fbH");
+        if (!isNaN(vH)) {
+          filledCount++;
+          if (Math.abs(vH - 2.0) <= 0.1) {
+            fbH.textContent = "✓ 正確！h = 4 * sin30° = 2.0 cm";
+            fbH.className = "feedback-msg correct";
+            correctCount++;
+          } else {
+            fbH.textContent = "✗ 提示：長繩 4cm，仰角 30° => 對邊高 h = 4*sin30°";
+            fbH.className = "feedback-msg incorrect";
+          }
+        }
+
+        // Fs: 4.0
+        const vFs = parseFloat(document.getElementById("ansFs").value);
+        const fbFs = document.getElementById("fbFs");
+        if (!isNaN(vFs)) {
+          filledCount++;
+          if (Math.abs(vFs - 4.0) <= 0.1) {
+            fbFs.textContent = "✓ 正確！Fs = 800 * 0.005m = 4 kgw";
+            fbFs.className = "feedback-msg correct";
+            correctCount++;
+          } else {
+            fbFs.textContent = "✗ 提示：伸長量 = 2.0 - 1.5 = 0.5cm = 0.005m";
+            fbFs.className = "feedback-msg incorrect";
+          }
+        }
+
+        // Fnet: 6.0
+        const vFnet = parseFloat(document.getElementById("ansFnet").value);
+        const fbFnet = document.getElementById("fbFnet");
+        if (!isNaN(vFnet)) {
+          filledCount++;
+          if (Math.abs(vFnet - 6.0) <= 0.1) {
+            fbFnet.textContent = "✓ 正確！Fnet = 10 - 4 = 6 kgw";
+            fbFnet.className = "feedback-msg correct";
+            correctCount++;
+          } else {
+            fbFnet.textContent = "✗ 提示：淨向下力 = 重力 10 - 彈簧 4";
+            fbFnet.className = "feedback-msg incorrect";
+          }
+        }
+
+        // T1: 3.0
+        const vT1 = parseFloat(document.getElementById("ansT1").value);
+        const fbT1 = document.getElementById("fbT1");
+        if (!isNaN(vT1)) {
+          filledCount++;
+          if (Math.abs(vT1 - 3.0) <= 0.1) {
+            fbT1.textContent = "✓ 正確！T1 = 6 * cos60° = 3 kgw";
+            fbT1.className = "feedback-msg correct";
+            correctCount++;
+          } else {
+            fbT1.textContent = "✗ 提示：T1 = 6 * cos60° = 3 kgw";
+            fbT1.className = "feedback-msg incorrect";
+          }
+        }
+
+        if (filledCount === 0) {
+          resultBanner.className = "result-banner partial";
+          resultBanner.textContent = "⚠️ 請先填寫至少一項數值以進行核對！";
+          resultBanner.classList.remove("hidden");
+          return;
+        }
+
+        resultBanner.classList.remove("hidden");
+        if (correctCount === 4 || Math.abs(vT1 - 3.0) <= 0.1) {
+          resultBanner.className = "result-banner success";
+          resultBanner.innerHTML = "🎉 太棒了！核心答案完全正確！長繩張力為 3 kgw！已為您解鎖下方詳解！";
+          solutionSection.classList.add("visible");
+          btnRevealSolution.textContent = "🔒 隱藏解析";
+        } else {
+          resultBanner.className = "result-banner partial";
+          resultBanner.innerHTML = `📝 目前答對 ${correctCount} / ${filledCount} 項。請參考「💡 顯示提示」或點擊「🔓 解鎖完整圖解詳解」查看推導！`;
+        }
+      });
+    });
+  </script>
+</body>
+</html>

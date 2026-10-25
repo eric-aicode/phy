@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>靜力平衡 2：雙斜面跨滑輪雙物體平衡比值 | 高中物理靜力學</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+  <link rel="stylesheet" href="shared.css">
+</head>
+<body>
+  <div class="bg-glow"></div>
+  <div class="bg-grid"></div>
+
+  <div class="container">
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+      <div class="nav-links">
+        <a href="index.html" class="nav-btn primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          回目錄
+        </a>
+        <a href="equil1.html" class="nav-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          上一題 (平衡 1)
+        </a>
+        <a href="equil3.html" class="nav-btn">
+          下一題 (平衡 3)
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+      <div class="badge-wrapper">
+        <span class="badge badge-page">講義 靜力學-24</span>
+        <span class="badge badge-exam">跨滑輪系統</span>
+        <span class="badge badge-accent">靜力平衡・練習 2</span>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+      <h1 class="main-title">靜力平衡 2：<span class="gradient-text">雙斜面跨滑輪平衡比值推導</span></h1>
+      <p class="subtitle">同繩張力等值傳遞・兩側下滑力等效對抗・三角函數反比關係精解</p>
+    </header>
+
+    <!-- Problem Showcase Card -->
+    <section class="card problem-card">
+      <div class="card-header">
+        <div class="card-icon">📖</div>
+        <div>
+          <h2>題目內容</h2>
+          <span class="card-tag">聯考與競賽常考題</span>
+        </div>
+      </div>
+
+      <div class="problem-body">
+        <p>
+          如下圖所示，重量各為 <strong>$W_1$</strong>、<strong>$W_2$</strong> 的兩物體，置於光滑雙斜面的兩側，兩斜面的斜角各為 <strong>$\theta_1$</strong>、<strong>$\theta_2$</strong>。以一跨過頂端輕滑輪之輕繩連接兩物體達成靜力平衡時，則重量比值 <strong>$\dfrac{W_1}{W_2}$</strong> 為何？
+        </p>
+
+        <!-- Diagram Mode Toggle Bar -->
+        <div class="diagram-toggle-container">
+          <div class="diagram-toggle-title">
+            <span class="dot dot-blue"></span>
+            <span id="diagramModeLabel">📐 原始題圖模式（未提供額外提示與公式）</span>
+          </div>
+          <div class="diagram-toggle-btns">
+            <button type="button" class="diag-btn active" id="btnModeRaw" onclick="setDiagramMode('raw')">📐 原始題圖</button>
+            <button type="button" class="diag-btn" id="btnModeHint" onclick="setDiagramMode('hint')">💡 受力與思路圖</button>
+          </div>
+        </div>
+
+        <!-- Dynamic Double Incline SVG Diagram -->
+        <div class="diagram-container" style="text-align: center; margin: 16px 0 24px 0;">
+          <svg viewBox="0 0 760 340" style="width: 100%; max-width: 740px; background: rgba(15, 23, 42, 0.6); border-radius: 12px; border: 1px solid rgba(255,255,255,0.08);">
+            <defs>
+              <marker id="arr-sky" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#38bdf8"/>
+              </marker>
+              <marker id="arr-rose" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#f43f5e"/>
+              </marker>
+              <marker id="arr-emerald" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#10b981"/>
+              </marker>
+            </defs>
+
+            <!-- Ground Base at y = 280 -->
+            <line x1="60" y1="280" x2="700" y2="280" stroke="#475569" stroke-width="2"/>
+
+            <!-- Double Incline Wedge -->
+            <polygon points="100,280 350,100 680,280" fill="rgba(51, 65, 85, 0.45)" stroke="#64748b" stroke-width="2.5"/>
+
+            <!-- Angle theta1 arc at left corner (100, 280) -->
+            <path d="M 150 280 A 50 50 0 0 0 142 250" fill="none" stroke="#fbbf24" stroke-width="2"/>
+            <text x="160" y="272" fill="#fbbf24" font-size="14" font-weight="bold">θ₁</text>
+
+            <!-- Angle theta2 arc at right corner (680, 280) -->
+            <path d="M 620 280 A 60 60 0 0 1 630 253" fill="none" stroke="#fbbf24" stroke-width="2"/>
+            <text x="600" y="272" fill="#fbbf24" font-size="14" font-weight="bold">θ₂</text>
+
+            <!-- Pulley at Apex (350, 100) -->
+            <circle cx="350" cy="95" r="14" fill="#334155" stroke="#94a3b8" stroke-width="2.5"/>
+            <circle cx="350" cy="95" r="4" fill="#f8fafc"/>
+
+            <!-- String from Left Block to Pulley, and Pulley to Right Block -->
+            <line x1="339" y1="86" x2="235" y2="161" stroke="#f8fafc" stroke-width="2.5"/>
+            <line x1="361" y1="86" x2="505" y2="165" stroke="#f8fafc" stroke-width="2.5"/>
+
+            <!-- Block 1 -->
+            <g transform="translate(215, 175) rotate(-35.7)">
+              <rect x="-24" y="-30" width="48" height="30" rx="3" fill="rgba(56, 189, 248, 0.3)" stroke="#38bdf8" stroke-width="2.5"/>
+              <text x="-12" y="-10" fill="#38bdf8" font-size="13" font-weight="bold">W₁</text>
+
+              <!-- Normal force N1: Hint Layer Only -->
+              <g class="fbd-hint-layer" style="display: none;">
+                <line x1="0" y1="-30" x2="0" y2="-80" stroke="#10b981" stroke-width="2.5" marker-end="url(#arr-emerald)"/>
+                <text x="8" y="-65" fill="#10b981" font-size="12" font-weight="bold">N₁</text>
+              </g>
+            </g>
+
+            <!-- Gravity W1 straight down -->
+            <line x1="215" y1="175" x2="215" y2="255" stroke="#f43f5e" stroke-width="2.5" marker-end="url(#arr-rose)"/>
+            <text x="223" y="240" fill="#f43f5e" font-size="13" font-weight="bold">W₁</text>
+
+            <!-- Block 2 -->
+            <g transform="translate(525, 175) rotate(28.6)">
+              <rect x="-24" y="-30" width="48" height="30" rx="3" fill="rgba(168, 85, 247, 0.3)" stroke="#c084fc" stroke-width="2.5"/>
+              <text x="-12" y="-10" fill="#c084fc" font-size="13" font-weight="bold">W₂</text>
+
+              <!-- Normal force N2: Hint Layer Only -->
+              <g class="fbd-hint-layer" style="display: none;">
+                <line x1="0" y1="-30" x2="0" y2="-80" stroke="#10b981" stroke-width="2.5" marker-end="url(#arr-emerald)"/>
+                <text x="8" y="-65" fill="#10b981" font-size="12" font-weight="bold">N₂</text>
+              </g>
+            </g>
+
+            <!-- Gravity W2 straight down -->
+            <line x1="525" y1="175" x2="525" y2="255" stroke="#f43f5e" stroke-width="2.5" marker-end="url(#arr-rose)"/>
+            <text x="533" y="240" fill="#f43f5e" font-size="13" font-weight="bold">W₂</text>
+
+            <!-- Hint Layer: Tensions, Component forces, and Formula Banner -->
+            <g class="fbd-hint-layer" style="display: none;">
+              <!-- Tension arrow T on left -->
+              <line x1="250" y1="150" x2="280" y2="128" stroke="#38bdf8" stroke-width="2.5" marker-end="url(#arr-sky)"/>
+              <text x="272" y="120" fill="#38bdf8" font-size="13" font-weight="bold">T</text>
+              <text x="140" y="215" fill="#38bdf8" font-size="12" font-weight="bold">下滑力：W₁·sinθ₁</text>
+
+              <!-- Tension arrow T on right -->
+              <line x1="480" y1="151" x2="445" y2="132" stroke="#38bdf8" stroke-width="2.5" marker-end="url(#arr-sky)"/>
+              <text x="440" y="120" fill="#38bdf8" font-size="13" font-weight="bold">T</text>
+              <text x="545" y="215" fill="#c084fc" font-size="12" font-weight="bold">下滑力：W₂·sinθ₂</text>
+
+              <!-- Balance Relation Banner in SVG -->
+              <rect x="230" y="295" width="300" height="34" rx="6" fill="rgba(15, 23, 42, 0.9)" stroke="#38bdf8" stroke-width="1.5"/>
+              <text x="380" y="318" fill="#38bdf8" font-size="13" font-weight="bold" text-anchor="middle">平衡關鍵：T = W₁·sinθ₁ = W₂·sinθ₂</text>
+            </g>
+          </svg>
+        </div>
+
+        <!-- Options Container -->
+        <div class="options-container" id="optionsContainer">
+          <button class="option-card" data-option="A">
+            <span class="option-letter">A</span>
+            <span class="option-text">$\dfrac{\sin\theta_1}{\sin\theta_2}$</span>
+          </button>
+          <button class="option-card" data-option="B">
+            <span class="option-letter">B</span>
+            <span class="option-text">$\dfrac{\sin\theta_2}{\sin\theta_1}$</span>
+          </button>
+          <button class="option-card" data-option="C">
+            <span class="option-letter">C</span>
+            <span class="option-text">$\dfrac{\cos\theta_1}{\cos\theta_2}$</span>
+          </button>
+          <button class="option-card" data-option="D">
+            <span class="option-letter">D</span>
+            <span class="option-text">$\dfrac{\cos\theta_2}{\cos\theta_1}$</span>
+          </button>
+          <button class="option-card" data-option="E">
+            <span class="option-letter">E</span>
+            <span class="option-text">$\dfrac{\tan\theta_1}{\tan\theta_2}$</span>
+          </button>
+        </div>
+
+        <!-- Real-time Feedback -->
+        <div class="feedback-box" id="feedbackBox">
+          <div class="feedback-icon" id="feedbackIcon"></div>
+          <div class="feedback-text" id="feedbackText"></div>
+        </div>
+
+        <!-- Student Action Buttons: View Solution & Hint -->
+        <div style="margin-top: 24px; padding-top: 18px; border-top: 1px solid rgba(255, 255, 255, 0.08); display: flex; gap: 12px; flex-wrap: wrap; align-items: center;">
+          <button type="button" class="nav-btn primary" onclick="toggleSolutionCard(true)" style="padding: 10px 20px; font-size: 0.95rem; font-weight: 700; border-radius: 8px;">
+            📝 查看完整試卷計算過程與解析
+          </button>
+          <button type="button" class="nav-btn" onclick="setDiagramMode('hint')" style="padding: 10px 18px; font-size: 0.95rem; font-weight: 600; border-radius: 8px;">
+            💡 切換受力與思路圖
+          </button>
+          <span style="font-size: 0.85rem; color: var(--text-dim);">可先自行於紙上作答，卡關隨時點擊查看！</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Collapsible Solution Card -->
+    <section class="card solution-card collapsed" id="solutionCard">
+      <div class="card-header clickable" id="solutionToggle">
+        <div class="card-icon">💡</div>
+        <div style="flex: 1;">
+          <h2>詳細解題過程與試卷作答示範</h2>
+          <span class="solution-status" id="solutionStatusText">點擊展開完整詳解 ▼</span>
+        </div>
+        <span class="badge badge-accent">標準推導詳解</span>
+      </div>
+
+      <div class="solution-body">
+        <!-- 📝 試卷標準作答範本（大考手寫規範・得分示範） -->
+        <div class="exam-solution-box">
+          <div class="exam-solution-header">
+            <div class="exam-solution-title">
+              <span>📝 試卷標準作答範本</span>
+              <span class="exam-tag">大考手寫規範・標準書寫示範</span>
+            </div>
+            <span style="font-size: 0.85rem; color: var(--text-dim);">步驟嚴謹・列式完整・得分不漏</span>
+          </div>
+
+          <div class="exam-step-item">
+            <span class="exam-step-num">(1)</span> <strong>取兩物體各自為隔離體，建立平行斜面之靜力平衡：</strong>
+            <p style="margin: 4px 0 6px 0; color: #cbd5e1;">
+              輕繩跨過無摩擦輕滑輪，全繩張力等大，設為 $T$。<br>
+              雙斜面皆光滑（無摩擦力），分別列出沿斜面方向之平衡方程式：
+            </p>
+            $$\begin{cases}
+              \text{物體 } W_1: & T = W_1 \sin\theta_1 \quad \cdots\cdots\text{①} \\
+              \text{物體 } W_2: & T = W_2 \sin\theta_2 \quad \cdots\cdots\text{②}
+            \end{cases}$$
+          </div>
+
+          <div class="exam-step-item" style="margin-top: 14px;">
+            <span class="exam-step-num">(2)</span> <strong>聯立消去張力 $T$，求解重量比值：</strong>
+            <p style="margin: 4px 0 6px 0; color: #cbd5e1;">
+              由 ①、② 兩式可得：
+            </p>
+            $$W_1 \sin\theta_1 = W_2 \sin\theta_2 \implies \frac{W_1}{W_2} = \frac{\sin\theta_2}{\sin\theta_1}$$
+            <div class="exam-answer-line">
+              答：重量比值 $\dfrac{W_1}{W_2} =$ <strong>$\dfrac{\sin\theta_2}{\sin\theta_1}$</strong>，本題應選 <strong>(B)</strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- 步驟 1 -->
+        <div class="step-card">
+          <div class="step-header">
+            <span class="step-badge">觀念深究 1</span>
+            <h3>輕繩與無摩擦滑輪的力學傳遞特性</h3>
+          </div>
+          <p>
+            題目設定為「輕繩」且「滑輪無摩擦」，這意味著：
+          </p>
+          <ul>
+            <li>整條輕繩在每一處的<strong>張力大小皆相等</strong>，記為 $T$。</li>
+            <li>因此左側物體受到的沿斜面向上拉力為 $T$，右側物體受到的沿斜面向上拉力亦為同一個 $T$！</li>
+          </ul>
+        </div>
+
+        <!-- 步驟 2 -->
+        <div class="step-card">
+          <div class="step-header">
+            <span class="step-badge">分析 2</span>
+            <h3>分別隔離兩物體，列出沿斜面方向的平衡方程式</h3>
+          </div>
+          <p>
+            兩斜面皆為<strong>光滑斜面</strong>（無摩擦力），物體在垂直斜面方向由斜面正向力平衡（$N_1 = W_1\cos\theta_1$、$N_2 = W_2\cos\theta_2$），因此只需關注<strong>平行斜面方向</strong>的力平衡：
+          </p>
+          <ul>
+            <li><strong>對物體 $W_1$：</strong> 沿斜面向下的重力分力與沿斜面向上的繩張力平衡：
+              $$T = W_1 \sin\theta_1$$
+            </li>
+            <li><strong>對物體 $W_2$：</strong> 沿斜面向下的重力分力與沿斜面向上的繩張力平衡：
+              $$T = W_2 \sin\theta_2$$
+            </li>
+          </ul>
+        </div>
+
+        <!-- 步驟 3 -->
+        <div class="step-card">
+          <div class="step-header">
+            <span class="step-badge">分析 3</span>
+            <h3>聯立求解重量比值</h3>
+          </div>
+          <p>
+            由上述兩式消除共同的繩張力 $T$：
+          </p>
+          $$W_1 \sin\theta_1 = W_2 \sin\theta_2$$
+          <p>兩邊同除以 $W_2 \sin\theta_1$：</p>
+          <div style="background: rgba(16, 185, 129, 0.15); border: 1px solid #10b981; border-radius: 8px; padding: 16px; margin: 12px 0; text-align: center;">
+            <span style="font-size: 1.35rem; font-weight: 800; color: #10b981;">
+              $$\frac{W_1}{W_2} = \frac{\sin\theta_2}{\sin\theta_1}$$
+            </span>
+          </div>
+          <p>
+            <strong>極限與直覺檢驗：</strong><br>
+            若 $\theta_1 > \theta_2$（左邊斜面較陡峭），則 $\sin\theta_1 > \sin\theta_2$。<br>
+            較陡的斜面上物體下滑趨勢較大，因此只需較輕的重量即可抗衡較平緩斜面上的較重物體，即 $W_1 < W_2$。<br>
+            比值 $\frac{W_1}{W_2} = \frac{\sin\theta_2}{\sin\theta_1} < 1$，完全符合物理直覺！
+          </p>
+          <p>正確答案為 <strong>(B)</strong>。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Navigation Bar -->
+    <div class="bottom-nav">
+      <a href="equil1.html" class="nav-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+        上一題：光滑斜面受力方向與正向力
+      </a>
+      <a href="index.html" class="nav-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        回課程總目錄
+      </a>
+      <a href="equil3.html" class="nav-btn primary">
+        下一題：斜向推力與地面全作用力
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // KaTeX Rendering
+      if (typeof renderMathInElement === 'function') {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ],
+          throwOnError: false
+        });
+      }
+
+      const correctAnswer = "B";
+      const optionCards = document.querySelectorAll(".option-card");
+      const feedbackBox = document.getElementById("feedbackBox");
+      const feedbackIcon = document.getElementById("feedbackIcon");
+      const feedbackText = document.getElementById("feedbackText");
+      const solutionCard = document.getElementById("solutionCard");
+
+      optionCards.forEach(card => {
+        card.addEventListener("click", function() {
+          const selected = this.getAttribute("data-option");
+
+          optionCards.forEach(c => c.classList.remove("selected", "correct", "wrong"));
+          this.classList.add("selected");
+
+          feedbackBox.classList.remove("correct", "wrong");
+          feedbackBox.classList.add("show");
+
+          if (selected === correctAnswer) {
+            this.classList.add("correct");
+            feedbackBox.classList.add("correct");
+            feedbackIcon.innerHTML = "🎉";
+            feedbackText.innerHTML = "<strong>太優秀了！完全正確！</strong><br>兩端由同繩相繫，張力相等：$W_1\\sin\\theta_1 = W_2\\sin\\theta_2$，故比值為反比關係 $\\frac{W_1}{W_2} = \\frac{\\sin\\theta_2}{\\sin\\theta_1}$！";
+            toggleSolutionCard(true);
+          } else {
+            this.classList.add("wrong");
+            feedbackBox.classList.add("wrong");
+            feedbackIcon.innerHTML = "💡";
+            if (selected === "A") {
+              feedbackText.innerHTML = "<strong>小心正反比陷阱！</strong> $W_1\\sin\\theta_1 = W_2\\sin\\theta_2$，移項時分子分母要交叉，是 $\\frac{\\sin\\theta_2}{\\sin\\theta_1}$ 喔！";
+            } else if (selected === "C" || selected === "D") {
+              feedbackText.innerHTML = "<strong>三角函數搞錯囉！</strong> 沿斜面向下的重力分力是 $\\sin\\theta$，不是 $\\cos\\theta$（$\\cos\\theta$ 是垂直斜面的分力）！";
+            } else {
+              feedbackText.innerHTML = `<strong>選了 (${selected})，再仔細想想！</strong> 提示：列出兩物體沿斜面的平衡力 $T = W_1\\sin\\theta_1$ 與 $T = W_2\\sin\\theta_2$。`;
+            }
+          }
+
+          if (typeof renderMathInElement === 'function') {
+            renderMathInElement(feedbackText, {
+              delimiters: [
+                {left: '$$', right: '$$', display: true},
+                {left: '$', right: '$', display: false}
+              ],
+              throwOnError: false
+            });
+          }
+        });
+      });
+
+      // Solution toggle on header click
+      const solutionToggle = document.getElementById("solutionToggle");
+      if (solutionToggle) {
+        solutionToggle.addEventListener("click", function() {
+          toggleSolutionCard();
+        });
+      }
+    });
+
+    // Toggle Solution Card (can be called by button or header)
+    function toggleSolutionCard(forceOpen) {
+      const card = document.getElementById("solutionCard");
+      const statusSpan = document.getElementById("solutionStatusText");
+      if (!card) return;
+
+      if (forceOpen === true) {
+        card.classList.remove("collapsed");
+        if (statusSpan) statusSpan.textContent = "點擊收合詳解 ▲";
+        setTimeout(() => {
+          card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 80);
+      } else {
+        card.classList.toggle("collapsed");
+        const isCollapsed = card.classList.contains("collapsed");
+        if (statusSpan) {
+          statusSpan.textContent = isCollapsed ? "點擊展開完整詳解 ▼" : "點擊收合詳解 ▲";
+        }
+      }
+    }
+
+    // Diagram Mode Switcher
+    function setDiagramMode(mode) {
+      const btnRaw = document.getElementById('btnModeRaw');
+      const btnHint = document.getElementById('btnModeHint');
+      const label = document.getElementById('diagramModeLabel');
+      const hintLayers = document.querySelectorAll('.fbd-hint-layer');
+
+      if (mode === 'raw') {
+        btnRaw.classList.add('active');
+        btnHint.classList.remove('active');
+        label.textContent = '📐 原始題圖模式（未提供額外提示與公式）';
+        hintLayers.forEach(el => el.style.display = 'none');
+      } else {
+        btnRaw.classList.remove('active');
+        btnHint.classList.add('active');
+        label.textContent = '💡 受力與思路圖模式（已展示受力分解與平衡提示）';
+        hintLayers.forEach(el => el.style.display = 'inline');
+      }
+    }
+  </script>
+</body>
+</html>

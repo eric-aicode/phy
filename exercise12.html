@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>練習 12：繩索應力應變與極限強度綜合題 | 高中物理靜力學</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    .sub-section-card {
+      background: rgba(30, 41, 59, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 10px;
+      padding: 18px 20px;
+      margin-bottom: 20px;
+    }
+    .sub-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #38bdf8;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .sub-badge {
+      font-size: 0.75rem;
+      padding: 2px 8px;
+      border-radius: 4px;
+      background: rgba(56, 189, 248, 0.2);
+      color: #38bdf8;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+    }
+    .rope-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      font-size: 14px;
+    }
+    .rope-table th, .rope-table td {
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 10px 14px;
+      text-align: center;
+    }
+    .rope-table th {
+      background: rgba(15, 23, 42, 0.8);
+      color: #38bdf8;
+      font-weight: 700;
+    }
+    .rope-table tr:hover {
+      background: rgba(51, 65, 85, 0.3);
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-glow"></div>
+  <div class="bg-grid"></div>
+
+  <div class="container">
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+      <div class="nav-links">
+        <a href="index.html" class="nav-btn primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          回目錄
+        </a>
+        <a href="exercise11.html" class="nav-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          上一題 (練習 11)
+        </a>
+        <a href="torque1.html" class="nav-btn">
+          下一題 (力矩 1)
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+      <div class="badge-wrapper">
+        <span class="badge badge-page">講義 靜力學-20~21</span>
+        <span class="badge badge-exam">104 學測</span>
+        <span class="badge badge-accent">材料力學・練習 12</span>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+      <h1 class="main-title">練習 12：<span class="gradient-text">繩索應力應變與極限強度綜合題</span></h1>
+      <p class="subtitle">104 學測經典題組・虎克定律微觀應力-應變模型・材料彈性與衝擊防護力學</p>
+    </header>
+
+    <!-- Problem Showcase Card -->
+    <section class="card problem-card">
+      <div class="card-header">
+        <div class="card-icon">📖</div>
+        <div>
+          <h2>題目情境背景</h2>
+          <span class="card-tag">104 年大學學測物理試題題組</span>
+        </div>
+      </div>
+
+      <div class="problem-body">
+        <p>
+          一些常見的繩索在拉力作用的情況下，與彈簧類似。當達成靜力平衡時，其伸長量 $x$ 會隨著拉力的量值 $F$ 而改變。若以 $L$ 與 $A$ 分別代表繩索未受拉力時的長度與橫截面積，並令繩索單位長度的伸長量 $S = x/L$（應變）、單位面積所受的拉力 $T = F/A$（應力），則 $T$ 對 $S$ 的曲線大致如圖所示。
+        </p>
+        <p>
+          當 $T$ 不超過線性上限 $T_1$ 時，因 $L$ 與 $A$ 為定值，故拉力 $F$ 與伸長量 $x$ 成正比，即 $F = kx$，式中 $k$ 為力常數。當繩索受到拉力而未斷裂時，$T$ 的最大值稱為<strong>極限強度</strong>，以 $T_m$ 表示。下表之力常數 $k$ 是各類繩索在相同粗細與長度下測得的相對值，而 $k_0$ 則為尼龍繩的力常數；至於 $T_m$ 則僅與材質有關，而與繩索的粗細與長度無關；在表中 $\text{MPa}$ 代表 $10^6\text{ 牛頓/平方公尺}$。試依據上述文字與相關圖表，回答 (1)～(3) 題。
+        </p>
+
+        <!-- Data Table & Stress-Strain Curve SVG -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 20px 0; align-items: center;" class="responsive-grid">
+          <!-- Table -->
+          <div>
+            <table class="rope-table">
+              <thead>
+                <tr>
+                  <th>繩索名稱</th>
+                  <th>力常數 $k$ (相對值)</th>
+                  <th>極限強度 $T_m\text{ (MPa)}$</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="font-weight: bold; color: #38bdf8;">尼龍繩</td>
+                  <td>$k_0$ (最軟)</td>
+                  <td>$620$</td>
+                </tr>
+                <tr>
+                  <td style="font-weight: bold;">棉繩</td>
+                  <td>$2k_0$</td>
+                  <td>$230$</td>
+                </tr>
+                <tr>
+                  <td style="font-weight: bold; color: #fbbf24;">蜘蛛絲</td>
+                  <td>$3k_0$</td>
+                  <td>$1000$</td>
+                </tr>
+                <tr>
+                  <td style="font-weight: bold;">鋼索</td>
+                  <td>$52k_0$</td>
+                  <td>$1330$</td>
+                </tr>
+                <tr style="background: rgba(52, 211, 153, 0.1);">
+                  <td style="font-weight: bold; color: #34d399;">碳纖維繩</td>
+                  <td>$77k_0$ (最硬)</td>
+                  <td style="color: #34d399; font-weight: bold;">$3430$ (最高)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Stress-Strain SVG Diagram -->
+          <div class="diagram-container" style="text-align: center;">
+            <svg viewBox="0 0 340 240" style="width: 100%; max-width: 320px; background: rgba(15, 23, 42, 0.6); border-radius: 10px; border: 1px solid rgba(255,255,255,0.08);">
+              <defs>
+                <marker id="arrow-ts" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                  <path d="M 0 1 L 10 5 L 0 9 z" fill="#94a3b8"/>
+                </marker>
+              </defs>
+
+              <!-- Axes: Origin at (45, 195) -->
+              <line x1="45" y1="195" x2="310" y2="195" stroke="#94a3b8" stroke-width="2" marker-end="url(#arrow-ts)"/>
+              <text x="305" y="215" fill="#94a3b8" font-size="12" font-weight="bold">S = x / L</text>
+
+              <line x1="45" y1="195" x2="45" y2="25" stroke="#94a3b8" stroke-width="2" marker-end="url(#arrow-ts)"/>
+              <text x="25" y="30" fill="#94a3b8" font-size="12" font-weight="bold">T = F / A</text>
+
+              <text x="32" y="210" fill="#64748b" font-size="12">0</text>
+
+              <!-- Linear range line: (45, 195) -> (120, 115) -->
+              <line x1="45" y1="195" x2="120" y2="115" stroke="#38bdf8" stroke-width="3"/>
+              
+              <!-- Non-linear / plastic range curve: (120, 115) -> peak (230, 65) -> fracture (260, 90) -->
+              <path d="M 120 115 Q 170 65 230 65 Q 248 65 260 90" fill="none" stroke="#fbbf24" stroke-width="2.5"/>
+
+              <!-- T1 線性上限 -->
+              <line x1="40" y1="115" x2="120" y2="115" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="3,3"/>
+              <text x="38" y="118" fill="#38bdf8" font-size="11" text-anchor="end">線性上限 T₁</text>
+              <circle cx="120" cy="115" r="3.5" fill="#38bdf8"/>
+
+              <!-- Tm 極限強度 (最高點) -->
+              <line x1="40" y1="65" x2="230" y2="65" stroke="#f43f5e" stroke-width="1.5" stroke-dasharray="3,3"/>
+              <text x="38" y="68" fill="#f43f5e" font-size="11" text-anchor="end">極限強度 T_m</text>
+              <circle cx="230" cy="65" r="4" fill="#f43f5e"/>
+
+              <!-- 斷裂點 -->
+              <line x1="256" y1="85" x2="264" y2="95" stroke="#f43f5e" stroke-width="2"/>
+              <line x1="264" y1="85" x2="256" y2="95" stroke="#f43f5e" stroke-width="2"/>
+              <text x="270" y="93" fill="#64748b" font-size="10">斷裂</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sub Problem 1 -->
+    <section class="card interactive-card">
+      <div class="sub-section-card">
+        <div class="sub-title">
+          <span class="sub-badge">第 (1) 小題</span>
+          <span>最大懸吊載重能力比較</span>
+        </div>
+        <p style="color: #cbd5e1; margin-bottom: 14px;">
+          依據表的資料，如果繩索的<strong>粗細與長度都相同</strong>，則使用下列何種繩索，<strong>可懸吊的物體重量最大</strong>？
+        </p>
+
+        <div class="options-grid" id="q1Grid">
+          <button class="option-btn" data-q="1" data-opt="A"><span class="option-label">A</span><span class="option-text">棉繩</span></button>
+          <button class="option-btn" data-q="1" data-opt="B"><span class="option-label">B</span><span class="option-text">尼龍繩</span></button>
+          <button class="option-btn" data-q="1" data-opt="C"><span class="option-label">C</span><span class="option-text">碳纖維繩</span></button>
+          <button class="option-btn" data-q="1" data-opt="D"><span class="option-label">D</span><span class="option-text">鋼索</span></button>
+          <button class="option-btn" data-q="1" data-opt="E"><span class="option-label">E</span><span class="option-text">蜘蛛絲</span></button>
+        </div>
+        <div id="q1Feedback" class="feedback-box hidden" style="margin-top: 12px;"></div>
+      </div>
+
+      <!-- Sub Problem 2 -->
+      <div class="sub-section-card">
+        <div class="sub-title">
+          <span class="sub-badge">第 (2) 小題</span>
+          <span>登山攀岩失足衝擊緩衝保護</span>
+        </div>
+        <p style="color: #cbd5e1; margin-bottom: 14px;">
+          登山者在攀岩時常靠釘牢在岩壁的登山繩支撐體重。萬一失足滑落，拉直後繩子向上拉力使人減速。<strong>減速時間越短，衝擊拉力越大，人越容易受傷</strong>。若繩索長短粗細相同且未超線性上限，登山者選用何種繩索<strong>最可能減輕傷害</strong>？
+        </p>
+
+        <div class="options-grid" id="q2Grid">
+          <button class="option-btn" data-q="2" data-opt="A"><span class="option-label">A</span><span class="option-text">棉繩</span></button>
+          <button class="option-btn" data-q="2" data-opt="B"><span class="option-label">B</span><span class="option-text">尼龍繩</span></button>
+          <button class="option-btn" data-q="2" data-opt="C"><span class="option-label">C</span><span class="option-text">碳纖維繩</span></button>
+          <button class="option-btn" data-q="2" data-opt="D"><span class="option-label">D</span><span class="option-text">鋼索</span></button>
+          <button class="option-btn" data-q="2" data-opt="E"><span class="option-label">E</span><span class="option-text">蜘蛛絲</span></button>
+        </div>
+        <div id="q2Feedback" class="feedback-box hidden" style="margin-top: 12px;"></div>
+      </div>
+
+      <!-- Sub Problem 3 -->
+      <div class="sub-section-card">
+        <div class="sub-title">
+          <span class="sub-badge">第 (3) 小題</span>
+          <span>蜘蛛人極限張力最小截面積計算</span>
+        </div>
+        <p style="color: #cbd5e1; margin-bottom: 14px;">
+          假設電影中的蜘蛛人使用表中的<strong>蜘蛛絲</strong>（極限強度 $T_m = 1000\text{ MPa}$），希望能支撐 <strong>$5000\text{ N}$</strong> 的張力而不斷裂，則該蜘蛛絲的<strong>最小截面積約為多少 $\text{m}^2$</strong>？
+        </p>
+
+        <div class="options-grid" id="q3Grid">
+          <button class="option-btn" data-q="3" data-opt="A"><span class="option-label">A</span><span class="option-text">$2 \times 10^{-3}\text{ m}^2$</span></button>
+          <button class="option-btn" data-q="3" data-opt="B"><span class="option-label">B</span><span class="option-text">$2 \times 10^{-4}\text{ m}^2$</span></button>
+          <button class="option-btn" data-q="3" data-opt="C"><span class="option-label">C</span><span class="option-text">$5 \times 10^{-4}\text{ m}^2$</span></button>
+          <button class="option-btn" data-q="3" data-opt="D"><span class="option-label">D</span><span class="option-text">$2 \times 10^{-5}\text{ m}^2$</span></button>
+          <button class="option-btn" data-q="3" data-opt="E"><span class="option-label">E</span><span class="option-text">$5 \times 10^{-6}\text{ m}^2$</span></button>
+        </div>
+        <div id="q3Feedback" class="feedback-box hidden" style="margin-top: 12px;"></div>
+      </div>
+    </section>
+
+    <!-- Detailed Solution Area (Hidden by default) -->
+    <section class="card solution-card collapsed" id="solutionCard">
+      <div class="card-header solution-toggle" id="solutionToggle" role="button" tabindex="0">
+        <div class="card-icon">💡</div>
+        <div style="flex-grow: 1;">
+          <h2>精闢詳解與 3 小題完整剖析</h2>
+          <span class="card-tag solution-status">點擊展開完整剖析</span>
+        </div>
+        <div class="toggle-arrow">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+      </div>
+
+      <div class="solution-content" id="solutionContent">
+        <div class="step-card">
+          <div class="step-badge">第 (1) 題解析</div>
+          <h3>最大懸吊載重看「極限強度 $T_m$」</h3>
+          <p>
+            由題意定義，拉力 $F = T \cdot A$。當繩索承受最大拉力而不斷裂時，$F_{\max} = T_m \cdot A$。
+          </p>
+          <p>
+            題目已知<strong>繩索粗細相同（截面積 $A$ 相同）</strong>，因此可承受的最大拉力正比於極限強度 $T_m$：
+            $$F_{\max} \propto T_m$$
+          </p>
+          <p>
+            由表格可知：<strong>碳纖維繩</strong>之極限強度高達 $3430\text{ MPa}$，為所有材料中最高，故可懸吊之物體重量最大！<br>
+            故正解選 <strong>(C) 碳纖維繩</strong>。
+          </p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-badge">第 (2) 題解析</div>
+          <h3>緩衝減震防護看「力常數 $k$」</h3>
+          <p>
+            登山者失足下墜，動能需透過登山繩拉伸作功來吸收轉換為彈性位能：
+          </p>
+          <ul class="key-points">
+            <li>依衝量-動量定理或功-能定理：若要使人體受到的最大衝擊拉力 $F$ 越小，繩索必須具有<strong>更長的伸長距離 $\Delta x$</strong> 與<strong>更長的減速煞停時間 $\Delta t$</strong>。</li>
+            <li>由虎克定律 $F = kx \implies x = F / k$：在相同的受力下，<strong>彈力常數 $k$ 越小（越柔軟富有彈性）的繩索，伸長量越大，緩衝制動時間越長，衝擊峰值越小！</strong></li>
+          </ul>
+          <p>
+            查表可知：<strong>尼龍繩的力常數為 $k_0$（所有材料中最小、最有彈性延展性）</strong>，能發揮最佳的緩衝吸震效果，大幅降低登山者受傷風險！登山動力繩（Dynamic Rope）正是以尼龍為主原料！<br>
+            故正解選 <strong>(B) 尼龍繩</strong>。
+          </p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-badge">第 (3) 題解析</div>
+          <h3>蜘蛛絲最小截面積定量計算</h3>
+          <p>
+            已知蜘蛛絲之極限強度為：
+            $$T_m = 1000\text{ MPa} = 1000 \times 10^6\text{ N/m}^2 = 10^9\text{ N/m}^2$$
+          </p>
+          <p>
+            欲承受最大張力 $F = 5000\text{ N}$ 而不斷裂：
+            $$T = \frac{F}{A} \le T_m \implies A \ge \frac{F}{T_m}$$
+            $$A_{\min} = \frac{5000\text{ N}}{10^9\text{ N/m}^2} = 5000 \times 10^{-9} = \mathbf{5 \times 10^{-6}\text{ m}^2}$$
+          </p>
+          <p>
+            故正解選 <strong>(E) $5 \times 10^{-6}\text{ m}^2$</strong>。
+          </p>
+        </div>
+
+        <div class="final-summary">
+          <div class="summary-badge">題組結論總結</div>
+          <p>
+            本題組全套正解為：<strong>(1) (C)；(2) (B)；(3) (E)</strong>。<br>
+            這道 104 學測試題是材料力學與生活情境整合的絕佳範例：懸吊要硬要強（看極限強度 $T_m$），防摔救命要軟要彈（看小力常數 $k$）！
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Navigation -->
+    <div class="bottom-nav">
+      <a href="exercise11.html" class="nav-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+        上一題 (練習 11)
+      </a>
+      <a href="index.html" class="nav-btn primary">
+        目錄總覽
+      </a>
+      <a href="torque1.html" class="nav-btn">
+        下一題 (力矩 1)
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // Render KaTeX
+      if (typeof renderMathInElement === 'function') {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ],
+          throwOnError: false
+        });
+      }
+
+      const answers = { 1: "C", 2: "B", 3: "E" };
+      const hints = {
+        1: { correct: "答對了！極限強度 $T_m$ 最大的是碳纖維繩（3430 MPa），抗拉能力最強！", wrong: "吊重看的是極限強度 $T_m$ 喔！看看表中哪種材質的 $T_m$ 數值最高？" },
+        2: { correct: "答對了！尼龍繩力常數 $k_0$ 最小，延展性最高，能延長制動時間降低衝擊力！", wrong: "要減輕衝擊傷害需要緩衝時間長，因此繩子必須容易拉長（彈力常數 $k$ 越小越好）！" },
+        3: { correct: "太棒了！計算完全正確！$A = 5000 / 10^9 = 5 \\times 10^{-6}\\text{ m}^2$！", wrong: "請注意單位換算：$1000\\text{ MPa} = 10^9\\text{ N/m}^2$，$A = F / T_m = 5000 / 10^9$！" }
+      };
+
+      const solutionCard = document.getElementById("solutionCard");
+
+      [1, 2, 3].forEach(qNum => {
+        const btns = document.querySelectorAll(`button[data-q="${qNum}"]`);
+        const fb = document.getElementById(`q${qNum}Feedback`);
+
+        btns.forEach(btn => {
+          btn.addEventListener("click", function() {
+            const selected = this.getAttribute("data-opt");
+            btns.forEach(b => b.classList.remove("selected", "correct", "wrong"));
+
+            fb.classList.remove("hidden", "correct", "wrong");
+
+            if (selected === answers[qNum]) {
+              this.classList.add("correct");
+              fb.classList.add("correct");
+              fb.innerHTML = `<strong>🎉 正確！</strong> ${hints[qNum].correct}`;
+            } else {
+              this.classList.add("wrong");
+              fb.classList.add("wrong");
+              fb.innerHTML = `<strong>💡 選了 (${selected})，再想想看！</strong> ${hints[qNum].wrong}`;
+            }
+
+            if (typeof renderMathInElement === 'function') {
+              renderMathInElement(fb, {
+                delimiters: [
+                  {left: '$$', right: '$$', display: true},
+                  {left: '$', right: '$', display: false}
+                ],
+                throwOnError: false
+              });
+            }
+
+            // If all 3 correct, auto open solution
+            const c1 = document.querySelector(`button[data-q="1"].correct`);
+            const c2 = document.querySelector(`button[data-q="2"].correct`);
+            const c3 = document.querySelector(`button[data-q="3"].correct`);
+            if (c1 && c2 && c3) {
+              solutionCard.classList.remove("collapsed");
+              const tag = solutionCard.querySelector(".solution-status");
+              if (tag) tag.textContent = "點擊收合詳解";
+            }
+          });
+        });
+      });
+
+      // Solution toggle
+      const solutionToggle = document.getElementById("solutionToggle");
+      solutionToggle.addEventListener("click", function() {
+        solutionCard.classList.toggle("collapsed");
+        const isCollapsed = solutionCard.classList.contains("collapsed");
+        const statusSpan = solutionToggle.querySelector(".solution-status");
+        if (statusSpan) {
+          statusSpan.textContent = isCollapsed ? "點擊展開完整剖析" : "點擊收合詳解";
+        }
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>靜力平衡 16：動態拉起過程繩張力極值變化 | 高中物理靜力學</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+  <link rel="stylesheet" href="shared.css">
+</head>
+<body>
+  <div class="bg-glow"></div>
+  <div class="bg-grid"></div>
+
+  <div class="container">
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+      <div class="nav-links">
+        <a href="index.html" class="nav-btn primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          回目錄
+        </a>
+        <a href="equil15.html" class="nav-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          上一題 (平衡 15)
+        </a>
+        <a href="equil17.html" class="nav-btn">
+          下一題 (平衡 17)
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+      <div class="badge-wrapper">
+        <span class="badge badge-page">講義 靜力學-26</span>
+        <span class="badge badge-exam">動態平衡極值分析</span>
+        <span class="badge badge-accent">靜力平衡・練習 16</span>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+      <h1 class="main-title">靜力平衡 16：<span class="gradient-text">動態拉起過程懸繩張力變化</span></h1>
+      <p class="subtitle">拉密定律（正弦定理）・固定方向外力・力向量旋轉與垂直極小值幾何法</p>
+    </header>
+
+    <!-- Problem Showcase Card -->
+    <section class="card problem-card">
+      <div class="card-header">
+        <div class="card-icon">📖</div>
+        <div>
+          <h2>題目內容</h2>
+          <span class="card-tag">經典動態平衡題型</span>
+        </div>
+      </div>
+
+      <div class="problem-body">
+        <p>
+          如圖所示，用一個樞紐、一根懸線吊住重量為 $W$ 之物體。今在繩子中點 $Q$ 處用另一根繩子施力 $F$（其方向與水平方向夾角為 $\theta$，且 $\theta$ 固定不為零）。<br>
+          將物體在逐漸拉起的過程中發現：若 $\theta$ 保持不變，但線段 $PQ$ 與鉛垂線的夾角 $\phi$ 會逐漸變大。<br>
+          請問：在夾角 $\phi$ 由小逐漸變大的同時，<strong>線段 $PQ$ 的張力 $T$ 變化情形</strong>為何？
+        </p>
+
+        <!-- SVG Diagram -->
+        <div class="diagram-wrapper">
+          <svg viewBox="0 0 760 380" class="physics-svg" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="arrow-blue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#38bdf8"/>
+              </marker>
+              <marker id="arrow-red" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#f43f5e"/>
+              </marker>
+              <marker id="arrow-green" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#10b981"/>
+              </marker>
+              <marker id="arrow-amber" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#f59e0b"/>
+              </marker>
+              <pattern id="diag-hatch" width="8" height="8" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse">
+                <line x1="0" y1="0" x2="0" y2="8" stroke="rgba(255,255,255,0.2)" stroke-width="1.2"/>
+              </pattern>
+            </defs>
+
+            <!-- Ceiling / Support -->
+            <rect x="50" y="25" width="340" height="14" fill="url(#diag-hatch)" stroke="#64748b" stroke-width="1.5"/>
+            <line x1="50" y1="39" x2="390" y2="39" stroke="#94a3b8" stroke-width="2"/>
+
+            <!-- Pivot P at (320, 39) -->
+            <circle cx="320" cy="39" r="6" fill="#e2e8f0" stroke="#0ea5e9" stroke-width="2"/>
+            <text x="320" y="20" fill="#94a3b8" font-size="14" font-weight="700" text-anchor="middle">樞紐 P</text>
+
+            <!-- Vertical dash reference from P -->
+            <line x1="320" y1="39" x2="320" y2="300" stroke="#64748b" stroke-dasharray="4,4" stroke-width="1.5"/>
+
+            <!-- String PQ: P(320, 39) to Q(250, 160) -->
+            <line x1="320" y1="39" x2="250" y2="160" stroke="#38bdf8" stroke-width="3"/>
+
+            <!-- Angle phi at P with vertical -->
+            <path d="M 320 85 A 46 46 0 0 1 300 80" fill="none" stroke="#f59e0b" stroke-width="2"/>
+            <text x="305" y="105" fill="#f59e0b" font-size="14" font-weight="700">ϕ</text>
+
+            <!-- Midpoint Q -->
+            <circle cx="250" cy="160" r="5" fill="#f8fafc"/>
+            <text x="268" y="155" fill="#ffffff" font-size="15" font-weight="800">Q</text>
+
+            <!-- String from Q down to weight W: vertical down from (250, 160) to (250, 240) -->
+            <line x1="250" y1="160" x2="250" y2="240" stroke="#cbd5e1" stroke-width="2.5"/>
+            <!-- Block W -->
+            <rect x="225" y="240" width="50" height="45" rx="5" fill="rgba(244, 63, 94, 0.25)" stroke="#f43f5e" stroke-width="2"/>
+            <text x="250" y="268" fill="#ffffff" font-size="14" font-weight="800" text-anchor="middle">W</text>
+
+            <!-- Pull Force F applied at Q: direction angle theta with horizontal -->
+            <!-- Q is (250, 160). Vector up-left: dx = -100*cos(theta), dy = -100*sin(theta). E.g. theta = 30 deg: dx = -100, dy = -57 -->
+            <line x1="250" y1="160" x2="135" y2="105" stroke="#10b981" stroke-width="3" marker-end="url(#arrow-green)"/>
+            <text x="145" y="90" fill="#10b981" font-size="14" font-weight="800">拉力 F</text>
+
+            <!-- Horizontal dash reference from Q -->
+            <line x1="250" y1="160" x2="160" y2="160" stroke="#64748b" stroke-dasharray="3,3" stroke-width="1.5"/>
+            <!-- Angle theta at Q with horizontal -->
+            <path d="M 215 160 A 35 35 0 0 1 222 146" fill="none" stroke="#f59e0b" stroke-width="2"/>
+            <text x="205" y="150" fill="#f59e0b" font-size="13" font-weight="700">θ</text>
+
+            <!-- Right: Dynamic Vector Triangle & Circle Analysis -->
+            <g transform="translate(430, 25)">
+              <rect x="0" y="0" width="305" height="330" rx="12" fill="rgba(15, 23, 42, 0.75)" stroke="#334155" stroke-width="1.5"/>
+              <text x="152" y="28" fill="#38bdf8" font-size="15" font-weight="700" text-anchor="middle">動態向量三角形幾何剖析</text>
+
+              <!-- Gravity W: fixed vector straight down from (170, 55) to (170, 220) -->
+              <line x1="170" y1="55" x2="170" y2="220" stroke="#f43f5e" stroke-width="3" marker-end="url(#arrow-red)"/>
+              <text x="180" y="145" fill="#f43f5e" font-size="14" font-weight="700">W (固定鉛直)</text>
+
+              <!-- Line of action of F: from base (170, 220), heading up-right/up-left.
+                   Since F is applied to Q, in vector triangle:
+                   W + F + T = 0  =>  W + F = -T  or  T + F + W = 0
+                   Start from top (170, 55): Vector T goes down-left along angle phi.
+                   Then F connects back from T's tip to (170, 220).
+                   Let's draw F direction line passing through (170, 220):
+                   Angle of F with horizontal is theta, so line angle is fixed!
+              -->
+              <line x1="50" y1="280" x2="260" y2="175" stroke="#10b981" stroke-dasharray="3,3" stroke-width="1.8"/>
+              <text x="75" y="260" fill="#10b981" font-size="12" font-weight="600">F 作用線 (方向固定)</text>
+
+              <!-- Tension vectors for different phi:
+                   From top O(170, 55):
+                   1. Small phi: T1 to line (long)
+                   2. Perpendicular: T_min (shortest distance to line)
+                   3. Large phi: T2 to line (long again)
+              -->
+              <!-- T1 -->
+              <line x1="170" y1="55" x2="115" y2="248" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="2,2"/>
+              <text x="120" y="170" fill="#94a3b8" font-size="11">T(初)</text>
+
+              <!-- T_min: perpendicular to line of F -->
+              <line x1="170" y1="55" x2="152" y2="229" stroke="#38bdf8" stroke-width="3" marker-end="url(#arrow-blue)"/>
+              <text x="120" y="125" fill="#38bdf8" font-size="13" font-weight="800">T_min ⊥ F</text>
+
+              <!-- Right angle mark at (152, 229) -->
+              <rect x="145" y="218" width="10" height="10" fill="none" stroke="#f59e0b" stroke-width="1.2" transform="rotate(26, 152, 229)"/>
+
+              <!-- T2 -->
+              <line x1="170" y1="55" x2="210" y2="200" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="2,2"/>
+              <text x="200" y="130" fill="#94a3b8" font-size="11">T(後)</text>
+
+              <!-- Summary Card Inside -->
+              <rect x="15" y="270" width="275" height="48" rx="6" fill="rgba(56, 189, 248, 0.12)" stroke="rgba(56, 189, 248, 0.25)" stroke-width="1"/>
+              <text x="152" y="290" fill="#f8fafc" font-size="12" font-weight="600" text-anchor="middle">垂線段最短：當 T 垂直於 F 時最小</text>
+              <text x="152" y="308" fill="#38bdf8" font-size="12" font-weight="700" text-anchor="middle">過程走勢：先變小，後變大！</text>
+            </g>
+          </svg>
+        </div>
+
+        <p class="question-prompt">
+          當線段 $PQ$ 與鉛直夾角 $\phi$ 逐漸增大時，線段 $PQ$ 的張力 $T$ 變化情形為何？
+        </p>
+
+        <!-- Options Container -->
+        <div class="options-container">
+          <div class="option-card" data-option="A">
+            <span class="option-label">A</span>
+            <div class="option-content">
+              <span class="katex-text">逐漸變小</span>
+            </div>
+          </div>
+
+          <div class="option-card" data-option="B">
+            <span class="option-label">B</span>
+            <div class="option-content">
+              <span class="katex-text">逐漸變大</span>
+            </div>
+          </div>
+
+          <div class="option-card" data-option="C">
+            <span class="option-label">C</span>
+            <div class="option-content">
+              <span class="katex-text">保持不變</span>
+            </div>
+          </div>
+
+          <div class="option-card" data-option="D">
+            <span class="option-label">D</span>
+            <div class="option-content">
+              <span class="katex-text">先變小再變大</span>
+            </div>
+          </div>
+
+          <div class="option-card" data-option="E">
+            <span class="option-label">E</span>
+            <div class="option-content">
+              <span class="katex-text">先變大再變小</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Feedback Alert Box -->
+        <div class="feedback-box" id="feedbackBox">
+          <div class="feedback-icon" id="feedbackIcon"></div>
+          <div class="feedback-text" id="feedbackText"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Collapsible Solution Card -->
+    <section class="card solution-card collapsed" id="solutionCard">
+      <div class="card-header toggle-header" id="solutionToggle">
+        <div class="card-icon">💡</div>
+        <div>
+          <h2>核心解析與詳細推導</h2>
+          <span class="card-tag">點擊展開 / 收合完整解析</span>
+        </div>
+        <span class="solution-status">點擊展開完整剖析</span>
+      </div>
+
+      <div class="solution-content">
+        <div class="solution-step">
+          <span class="step-num">方法一</span>
+          <h3>拉密定律（正弦定理）代數解析</h3>
+          <p>
+            對節點 $Q$ 進行受力分析，共受三個共點力作用並維持靜力平衡：
+          </p>
+          <ul>
+            <li><strong>物體重力 $W$</strong>：鉛直向下。</li>
+            <li><strong>外施力 $F$</strong>：方向與水平夾角 $\theta$ 保持固定。</li>
+            <li><strong>懸線張力 $T$</strong>：沿 $QP$ 方向，與鉛直線夾角為 $\phi$。</li>
+          </ul>
+          <p>
+            由拉密定律（正弦定理）：
+            $$\frac{T}{\sin(90^\circ + \theta)} = \frac{W}{\sin[180^\circ - (90^\circ + \theta - \phi)]} = \frac{W}{\sin(90^\circ - \theta + \phi)}$$
+            利用三角函數化簡：
+            $$T = \frac{W \cos\theta}{\cos(\theta - \phi)}$$
+          </p>
+          <div class="calc-box">
+            <div class="calc-title">分析夾角 $\phi$ 逐漸增大時分母的變化：</div>
+            <ul>
+              <li>當 $\phi < \theta$ 時：隨著 $\phi$ 增大，$(\theta - \phi)$ 逐漸減小趨向 $0$，因此分母 $\cos(\theta - \phi)$ <strong>逐漸增大</strong>，張力 $T$ <strong>逐漸變小</strong>。</li>
+              <li>當 $\phi = \theta$ 時：$\cos(0^\circ) = 1$ 達到極大值，張力 $T$ 達到<strong>最小值 $T_{\min} = W\cos\theta$</strong>。</li>
+              <li>當 $\phi > \theta$ 時：隨著 $\phi$ 繼續增大，$|\theta - \phi|$ 變大，分母 $\cos(\theta - \phi)$ <strong>逐漸變小</strong>，張力 $T$ <strong>逐漸變大</strong>。</li>
+            </ul>
+            <p>
+              因此張力 $T$ 的全過程變化為：<strong>先變小再變大</strong>。
+            </p>
+          </div>
+        </div>
+
+        <div class="solution-step">
+          <span class="step-num">方法二</span>
+          <h3>向量封閉三角形幾何動態速解</h3>
+          <p>
+            將 $Q$ 點的三個平衡力向量首尾相接構成封閉三角形：
+          </p>
+          <ul>
+            <li><strong>重力向量 $\vec{W}$</strong>：大小固定、方向鉛直向下固定，可視為基準線段。</li>
+            <li><strong>外力 $\vec{F}$</strong>：其作用線方向固定（與水平成 $\theta$ 固定），可由 $\vec{W}$ 底端畫出一條固定方向的射線。</li>
+            <li><strong>張力 $\vec{T}$</strong>：由 $\vec{W}$ 頂端連向 $\vec{F}$ 的作用線，構成閉合三角形。</li>
+          </ul>
+          <p>
+            幾何定理：「<strong>點到直線以垂線段最短</strong>」。<br>
+            當線段 $PQ$ 與鉛直夾角 $\phi$ 逐漸增大時，向量 $\vec{T}$ 繞起點旋轉：
+            當 $\vec{T} \perp \vec{F}$ 時長度達到最短（極小值）。<br>
+            故在旋轉掃過的過程中，$\vec{T}$ 的長度必然呈現<strong>先減小後增大</strong>！
+          </p>
+          <div class="conclusion-box">
+            <strong>結論：</strong> 本題正確答案為 <strong>(D) 先變小再變大</strong>。
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Navigation Footer -->
+    <footer class="footer-nav">
+      <a href="equil15.html" class="nav-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+        上一題 (平衡 15)
+      </a>
+      <a href="index.html" class="nav-btn primary">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        單元總覽
+      </a>
+      <a href="equil17.html" class="nav-btn">
+        下一題 (平衡 17)
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+    </footer>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // KaTeX Auto-render
+      if (typeof renderMathInElement === 'function') {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ],
+          throwOnError: false
+        });
+      }
+
+      // Quiz Interaction
+      const correctAnswer = "D";
+      const optionCards = document.querySelectorAll(".option-card");
+      const feedbackBox = document.getElementById("feedbackBox");
+      const feedbackIcon = document.getElementById("feedbackIcon");
+      const feedbackText = document.getElementById("feedbackText");
+      const solutionCard = document.getElementById("solutionCard");
+
+      optionCards.forEach(card => {
+        card.addEventListener("click", function() {
+          const selected = this.getAttribute("data-option");
+
+          optionCards.forEach(c => c.classList.remove("selected", "correct", "wrong"));
+          this.classList.add("selected");
+
+          feedbackBox.classList.remove("correct", "wrong");
+          feedbackBox.classList.add("show");
+
+          if (selected === correctAnswer) {
+            this.classList.add("correct");
+            feedbackBox.classList.add("correct");
+            feedbackIcon.innerHTML = "🎉";
+            feedbackText.innerHTML = "<strong>太厲害了！直擊物理精髓！</strong><br>由拉密定律 $T = \\frac{W\\cos\\theta}{\\cos(\\theta-\\phi)}$ 或向量封閉三角形幾何垂直最短性，當 $\\phi = \\theta$（即 $\\vec{T} \\perp \\vec{F}$）時張力最小，故為<strong>先變小再變大</strong>！";
+            solutionCard.classList.remove("collapsed");
+            const tag = solutionCard.querySelector(".solution-status");
+            if (tag) tag.textContent = "點擊收合詳解";
+          } else {
+            this.classList.add("wrong");
+            feedbackBox.classList.add("wrong");
+            feedbackIcon.innerHTML = "💡";
+            if (selected === "A") {
+              feedbackText.innerHTML = "<strong>只看了一半喔！</strong> 在 $\\phi < \\theta$ 時確實變小，但越過 $\\phi = \\theta$ 垂足後，繩長向量又會重新伸長喔！";
+            } else if (selected === "E") {
+              feedbackText.innerHTML = "<strong>走勢反過來囉！</strong> 垂線段長度是『最短』而非最長，所以是先變小達到極小值後再變大喔！";
+            } else {
+              feedbackText.innerHTML = `<strong>選了 (${selected})，再想想看！</strong> 提示：利用拉密定律或幾何封閉三角形，外力 $F$ 的作用線方向固定，點到直線以垂線段長度最短！`;
+            }
+          }
+
+          if (typeof renderMathInElement === 'function') {
+            renderMathInElement(feedbackText, {
+              delimiters: [
+                {left: '$$', right: '$$', display: true},
+                {left: '$', right: '$', display: false}
+              ],
+              throwOnError: false
+            });
+          }
+        });
+      });
+
+      // Solution toggle
+      const solutionToggle = document.getElementById("solutionToggle");
+      solutionToggle.addEventListener("click", function() {
+        solutionCard.classList.toggle("collapsed");
+        const isCollapsed = solutionCard.classList.contains("collapsed");
+        const statusSpan = solutionToggle.querySelector(".solution-status");
+        if (statusSpan) {
+          statusSpan.textContent = isCollapsed ? "點擊展開完整剖析" : "點擊收合詳解";
+        }
+      });
+    });
+  </script>
+</body>
+</html>

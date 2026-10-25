@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>靜力平衡 41：三彈簧 120 度對稱懸吊球體與形變多解 | 高中物理靜力學</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+  <link rel="stylesheet" href="shared.css">
+</head>
+<body>
+  <div class="bg-glow"></div>
+  <div class="bg-grid"></div>
+
+  <div class="container">
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+      <div class="nav-links">
+        <a href="index.html" class="nav-btn primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          回目錄
+        </a>
+        <a href="equil40.html" class="nav-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          上一題 (平衡 40)
+        </a>
+        <a href="equil42.html" class="nav-btn">
+          下一題 (平衡 42)
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+      <div class="badge-wrapper">
+        <span class="badge badge-page">講義 靜力學-31</span>
+        <span class="badge badge-exam">彈簧拉推形變多解</span>
+        <span class="badge badge-accent">靜力平衡・練習 41 (多選)</span>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+      <h1 class="main-title">靜力平衡 41：<span class="gradient-text">三彈簧 120 度對稱懸吊球體與形變多解</span></h1>
+      <p class="subtitle">彈簧兼具伸長拉力與壓縮推力特性・鉛直合力分解・全面討論三種形變組合</p>
+    </header>
+
+    <!-- Main Problem Layout -->
+    <div class="problem-layout">
+      <!-- Left Column: Problem & Visualizer -->
+      <div class="problem-card">
+        <h2 class="section-title">
+          <span class="step-num">1</span>
+          題目情境與物理圖解
+        </h2>
+        <div class="problem-text">
+          <p>
+            如圖所示，三根相同彈簧一端各自固定於壁面或地面，另一端相連於重量為 $W$ 的小球。當小球處於靜止平衡時，相鄰彈簧間的夾角均為 $120^\circ$（彈簧 1、2 在上方對稱分佈，彈簧 3 位於正下方）。
+          </p>
+          <p>
+            已知彈簧 1、2 對小球的作用力大小均為 $F$。因為題目未限定彈簧為「伸長」或「壓縮」，則彈簧 3 對小球的作用力可能為何？<strong>（多選）</strong>
+          </p>
+        </div>
+
+        <div class="interactive-container">
+          <div style="font-size: 0.88rem; color: var(--text-dim); margin-bottom: 8px; display: flex; justify-content: space-between;">
+            <span>📐 120° 對稱彈簧分佈與力學正交分解</span>
+            <span style="color: var(--accent-cyan);">彈簧 1、2 鉛直合力 = 2F cos 60° = F</span>
+          </div>
+          <svg viewBox="0 0 540 370" class="diagram-svg" style="background: rgba(15, 23, 42, 0.7); border-radius: 8px;">
+            <defs>
+              <marker id="arr-c" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#38bdf8"/>
+              </marker>
+              <marker id="arr-g" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#00e676"/>
+              </marker>
+              <marker id="arr-r" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#f43f5e"/>
+              </marker>
+              <marker id="arr-y" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#fbbf24"/>
+              </marker>
+            </defs>
+
+            <!-- Ceiling -->
+            <line x1="80" y1="40" x2="460" y2="40" stroke="#64748b" stroke-width="4"/>
+            <!-- Floor -->
+            <line x1="220" y1="330" x2="320" y2="330" stroke="#64748b" stroke-width="4"/>
+
+            <!-- Ball position at center: (270, 180) -->
+            <!-- Spring 1: from ceiling (150, 40) to ball (270, 180)
+                 angle: dx = 120, dy = 140. With 120 deg between 1 and 2, each makes 30 deg with horizontal, 60 deg with vertical -->
+            <!-- Coiled spring 1 -->
+            <path d="M 150 40 L 170 60 L 155 75 L 185 95 L 170 110 L 200 130 L 185 145 L 215 165 L 270 180" fill="none" stroke="#38bdf8" stroke-width="3" stroke-linecap="round"/>
+            <text x="135" y="110" fill="#38bdf8" font-size="14" font-weight="bold">彈簧 1 (F)</text>
+
+            <!-- Coiled spring 2: from ceiling (390, 40) to ball (270, 180) -->
+            <path d="M 390 40 L 370 60 L 385 75 L 355 95 L 370 110 L 340 130 L 355 145 L 325 165 L 270 180" fill="none" stroke="#38bdf8" stroke-width="3" stroke-linecap="round"/>
+            <text x="370" y="110" fill="#38bdf8" font-size="14" font-weight="bold">彈簧 2 (F)</text>
+
+            <!-- Coiled spring 3: vertical from floor (270, 330) to ball (270, 180) -->
+            <path d="M 270 330 L 260 310 L 280 295 L 260 280 L 280 265 L 260 250 L 280 235 L 260 220 L 270 180" fill="none" stroke="#c084fc" stroke-width="3.5" stroke-linecap="round"/>
+            <text x="290" y="275" fill="#c084fc" font-size="14" font-weight="bold">彈簧 3 (F₃)</text>
+
+            <!-- Ball -->
+            <circle cx="270" cy="180" r="14" fill="#fbbf24" stroke="#d97706" stroke-width="2.5"/>
+            <text x="264" y="185" fill="#0f172a" font-size="13" font-weight="bold">m</text>
+
+            <!-- Gravity W pointing down -->
+            <line x1="270" y1="180" x2="270" y2="130" stroke="#64748b" stroke-width="1.5" stroke-dasharray="3 3"/>
+            <!-- Angle 120 deg indications -->
+            <path d="M 235 155 A 40 40 0 0 1 305 155" fill="none" stroke="#fbbf24" stroke-width="2"/>
+            <text x="255" y="145" fill="#fbbf24" font-size="13" font-weight="bold">120°</text>
+
+            <!-- Angles 60 deg with vertical -->
+            <text x="225" y="130" fill="#94a3b8" font-size="12">60°</text>
+            <text x="295" y="130" fill="#94a3b8" font-size="12">60°</text>
+
+            <!-- Three cases panel on left -->
+            <g transform="translate(20, 200)">
+              <rect x="0" y="0" width="180" height="150" fill="rgba(30, 41, 59, 0.9)" stroke="rgba(255,255,255,0.15)" rx="6"/>
+              <text x="12" y="22" fill="#38bdf8" font-size="12" font-weight="bold">三種物理形變情境</text>
+              <text x="12" y="48" fill="#e2e8f0" font-size="11">① 1、2伸長，3壓縮：</text>
+              <text x="24" y="66" fill="#00e676" font-size="12" font-weight="bold">F₃ = W - F</text>
+              <text x="12" y="88" fill="#e2e8f0" font-size="11">② 1、2、3皆伸長：</text>
+              <text x="24" y="106" fill="#00e676" font-size="12" font-weight="bold">F₃ = F - W</text>
+              <text x="12" y="128" fill="#e2e8f0" font-size="11">③ 1、2、3皆壓縮：</text>
+              <text x="24" y="144" fill="#00e676" font-size="12" font-weight="bold">F₃ = F + W</text>
+            </g>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Right Column: Interactive Quiz -->
+      <div class="problem-card">
+        <h2 class="section-title">
+          <span class="step-num">2</span>
+          自我檢測與即時核對 (多選題)
+        </h2>
+        <p style="color: var(--text-dim); font-size: 0.95rem; margin-bottom: 16px;">
+          請考慮彈簧可能處於「伸長」或「壓縮」之所有物理情況，選出所有可能的作用力值：
+        </p>
+
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="toggleMultiOption(this, 'A')">
+            <span class="opt-letter">A</span>
+            <span class="opt-text">$F - W$</span>
+          </div>
+          <div class="quiz-option" onclick="toggleMultiOption(this, 'B')">
+            <span class="opt-letter">B</span>
+            <span class="opt-text">$F + W$</span>
+          </div>
+          <div class="quiz-option" onclick="toggleMultiOption(this, 'C')">
+            <span class="opt-letter">C</span>
+            <span class="opt-text">$W - F$</span>
+          </div>
+          <div class="quiz-option" onclick="toggleMultiOption(this, 'D')">
+            <span class="opt-letter">D</span>
+            <span class="opt-text">$2F - W$</span>
+          </div>
+          <div class="quiz-option" onclick="toggleMultiOption(this, 'E')">
+            <span class="opt-letter">E</span>
+            <span class="opt-text">$2F + W$</span>
+          </div>
+        </div>
+
+        <div class="quiz-actions">
+          <button class="nav-btn primary" onclick="checkMultiAnswer()">核對答案</button>
+          <button class="nav-btn" onclick="toggleSolution()">查看解析</button>
+        </div>
+
+        <div id="feedback" class="quiz-feedback"></div>
+      </div>
+    </div>
+
+    <!-- Solution Section -->
+    <div id="solution-card" class="solution-card">
+      <h2 class="section-title">
+        <span class="step-num">3</span>
+        完整觀念解析與推導過程
+      </h2>
+      <div class="solution-content">
+        <div class="formula-box">
+          $$\text{彈簧 1、2 與鉛垂線各夾 } 60^\circ \implies F_{\text{1,2 鉛直合力}} = 2F \cos 60^\circ = 2F \cdot \frac{1}{2} = F$$
+          $$\sum F_y = 0 \implies F_3 \text{ 量值可能為 } |F - W| \text{ 或 } F + W$$
+        </div>
+
+        <div class="step-card">
+          <h4>步驟一：彈簧 1、2 之鉛直方向合力合成</h4>
+          <p>
+            相鄰三彈簧夾角皆為 $120^\circ$，由對稱性可知，上方彈簧 1 與彈簧 2 分別與鉛垂線夾 $60^\circ$ 角。
+          </p>
+          <p>
+            兩彈簧在水平方向分力大小相等、方向相反（$F\sin 60^\circ = F\sin 60^\circ$），自動互相抵消。
+          </p>
+          <p>
+            在鉛直方向上，若兩彈簧同時伸長（向上拉球）或同時壓縮（向下推球），其鉛直合力大小為：
+          </p>
+          $$F_{\text{鉛直}} = 2F \cos 60^\circ = 2F \times \frac{1}{2} = F$$
+        </div>
+
+        <div class="step-card">
+          <h4>步驟二：分情況討論彈簧的形變狀態</h4>
+          <ol>
+            <li>
+              <strong>情況一：若彈簧 1、2 皆伸長（提供向上拉力 $F$），且彈簧 3 縮短（提供向上支撐推力 $F_3$）</strong>：
+              <p>
+                小球受向上合力 $F_3 + F$，向下受重力 $W$：
+              </p>
+              $$F_3 + F = W \implies F_3 = W - F$$
+              此情況發生在 $W > F$ 時，對應選項 <strong>(C)</strong>。
+            </li>
+            <li>
+              <strong>情況二：若三根彈簧皆伸長（彈簧 1、2 向上拉，彈簧 3 向下拉）</strong>：
+              <p>
+                小球受向上拉力 $F$，向下受重力 $W$ 及彈簧 3 的向下拉力 $F_3$：
+              </p>
+              $$W + F_3 = F \implies F_3 = F - W$$
+              此情況發生在 $F > W$ 時，對應選項 <strong>(A)</strong>。
+            </li>
+            <li>
+              <strong>情況三：若三根彈簧皆縮短（彈簧 1、2 向下推，彈簧 3 向上推）</strong>：
+              <p>
+                小球受向下推力 $F$ 與向下重力 $W$，彈簧 3 必須向上提供支撐力 $F_3$：
+              </p>
+              $$F_3 = F + W$$
+              對應選項 <strong>(B)</strong>。
+            </li>
+          </ol>
+        </div>
+
+        <div class="step-card">
+          <h4>步驟三：結論與選項整合</h4>
+          <p>
+            因為彈簧能拉亦能推，依據彈簧不同之伸長或壓縮狀態，彈簧 3 對小球的作用力可能為 $F - W$、$W - F$ 或 $F + W$。
+          </p>
+          <p>
+            因此，本題正確選項為 <strong>(A)(B)(C)</strong>。
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const selectedOptions = new Set();
+    const correctAnswers = new Set(['A', 'B', 'C']);
+
+    function toggleMultiOption(element, opt) {
+      if (selectedOptions.has(opt)) {
+        selectedOptions.delete(opt);
+        element.classList.remove('selected');
+      } else {
+        selectedOptions.add(opt);
+        element.classList.add('selected');
+      }
+    }
+
+    function checkMultiAnswer() {
+      const feedback = document.getElementById('feedback');
+      if (selectedOptions.size === 0) {
+        feedback.innerHTML = '<span style="color: var(--accent-yellow);">⚠️ 請先點選選項（本題為多選題）！</span>';
+        feedback.className = 'quiz-feedback show';
+        return;
+      }
+
+      const isCorrect = selectedOptions.size === correctAnswers.size &&
+                        [...selectedOptions].every(opt => correctAnswers.has(opt));
+
+      if (isCorrect) {
+        feedback.innerHTML = '🎉 <strong>完全正確！</strong> 正確選出 (A)(B)(C)。上方兩彈簧鉛直合力為 $2F\\cos 60^\\circ = F$，配合彈簧可伸長亦可壓縮，完整推演出 $F - W$、$W - F$ 與 $F + W$ 三種可能！';
+        feedback.className = 'quiz-feedback show correct';
+        document.getElementById('solution-card').classList.add('show');
+      } else {
+        feedback.innerHTML = '❌ <strong>還不完全正確喔！</strong> 提示：彈簧既能「伸長（拉）」也能「壓縮（推）」。分別討論：(1) 1、2伸長3壓縮；(2) 1、2、3皆伸長；(3) 1、2、3皆壓縮，共有三種可能結果！';
+        feedback.className = 'quiz-feedback show incorrect';
+      }
+    }
+
+    function toggleSolution() {
+      const sol = document.getElementById('solution-card');
+      sol.classList.toggle('show');
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      if (window.renderMathInElement) {
+        renderMathInElement(document.body, {
+          delimiters: [
+            { left: "$$", right: "$$", display: true },
+            { left: "$", right: "$", display: false }
+          ]
+        });
+      }
+    });
+  </script>
+</body>
+</html>

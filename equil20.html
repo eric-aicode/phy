@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>靜力平衡 20：雙物體輕繩彈簧系統與水平拉力平衡 | 高中物理靜力學</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+  <link rel="stylesheet" href="shared.css">
+</head>
+<body>
+  <div class="bg-glow"></div>
+  <div class="bg-grid"></div>
+
+  <div class="container">
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+      <div class="nav-links">
+        <a href="index.html" class="nav-btn primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          回目錄
+        </a>
+        <a href="equil19.html" class="nav-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          上一題 (平衡 19)
+        </a>
+        <a href="equil21.html" class="nav-btn">
+          下一題 (平衡 21)
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+      <div class="badge-wrapper">
+        <span class="badge badge-page">講義 靜力學-27</span>
+        <span class="badge badge-exam">整體法與隔離法聯立</span>
+        <span class="badge badge-accent">靜力平衡・練習 20</span>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+      <h1 class="main-title">靜力平衡 20：<span class="gradient-text">雙物體繩簧系統與水平拉力</span></h1>
+      <p class="subtitle">整體法求彈簧彈力與外力・隔離法求繩子傾角・正切比值推導 45° 特徵角</p>
+    </header>
+
+    <!-- Problem Showcase Card -->
+    <section class="card problem-card">
+      <div class="card-header">
+        <div class="card-icon">📖</div>
+        <div>
+          <h2>題目內容</h2>
+          <span class="card-tag">聯考與分科測驗經典力學模型</span>
+        </div>
+      </div>
+
+      <div class="problem-body">
+        <p>
+          如圖所示，重量分別為 $W$、$3W$ 的小物體 $A$、$B$ 以輕繩連接後，頂端連接一輕彈簧；於 $B$ 點施一水平拉力 $S$，使得彈簧與鉛直線夾角維持為 $37^\circ$。則：<br>
+          (1) 輕彈簧上之恢復力為若干？<br>
+          (2) $AB$ 間的繩子與鉛直線之夾角 $\theta$ 為多少？
+        </p>
+
+        <!-- SVG Diagram -->
+        <div class="diagram-wrapper">
+          <svg viewBox="0 0 760 380" class="physics-svg" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="arrow-blue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#38bdf8"/>
+              </marker>
+              <marker id="arrow-red" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#f43f5e"/>
+              </marker>
+              <marker id="arrow-green" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#10b981"/>
+              </marker>
+              <marker id="arrow-amber" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#f59e0b"/>
+              </marker>
+              <pattern id="diag-hatch" width="8" height="8" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse">
+                <line x1="0" y1="0" x2="0" y2="8" stroke="rgba(255,255,255,0.2)" stroke-width="1.2"/>
+              </pattern>
+            </defs>
+
+            <!-- Ceiling: y = 30 -->
+            <rect x="80" y="18" width="220" height="12" fill="url(#diag-hatch)" stroke="#64748b" stroke-width="1.5"/>
+            <line x1="80" y1="30" x2="300" y2="30" stroke="#94a3b8" stroke-width="2"/>
+
+            <!-- Suspension point O at (140, 30) -->
+            <circle cx="140" cy="30" r="4.5" fill="#f8fafc"/>
+            <text x="140" y="16" fill="#94a3b8" font-size="12" font-weight="600" text-anchor="middle">固定點 O</text>
+
+            <!-- Vertical reference from O -->
+            <line x1="140" y1="30" x2="140" y2="160" stroke="#64748b" stroke-dasharray="4,4" stroke-width="1.5"/>
+
+            <!-- Spring: from O(140, 30) to A(212, 126).
+                 Length = 120 px. Angle = 37 deg to vertical (dx = 120*sin37 = 72, dy = 120*cos37 = 96).
+            -->
+            <!-- Angle 37 deg at O -->
+            <path d="M 140 70 A 40 40 0 0 0 164 62" fill="none" stroke="#f59e0b" stroke-width="2"/>
+            <text x="156" y="80" fill="#f59e0b" font-size="13" font-weight="700">37°</text>
+
+            <!-- Draw spring zigzag -->
+            <!-- Rotated group for spring -->
+            <g transform="translate(140, 30) rotate(37)">
+              <line x1="0" y1="0" x2="0" y2="15" stroke="#22d3ee" stroke-width="2.5"/>
+              <path d="M 0 15 L 8 22 L -8 32 L 8 42 L -8 52 L 8 62 L -8 72 L 8 82 L -8 92 L 8 102 L 0 110 L 0 120" 
+                    fill="none" stroke="#22d3ee" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </g>
+            <text x="160" y="95" fill="#22d3ee" font-size="13" font-weight="700">彈簧 (恢復力 F)</text>
+
+            <!-- Object A: at (212, 126) -->
+            <circle cx="212" cy="126" r="14" fill="#38bdf8" stroke="#ffffff" stroke-width="2"/>
+            <text x="212" y="131" fill="#0f172a" font-size="13" font-weight="800" text-anchor="middle">A</text>
+            <text x="175" y="145" fill="#38bdf8" font-size="13" font-weight="700">重 W</text>
+
+            <!-- Vertical dash line from A -->
+            <line x1="212" y1="126" x2="212" y2="280" stroke="#64748b" stroke-dasharray="3,3" stroke-width="1.2"/>
+
+            <!-- String AB: from A(212, 126) to B(282, 196).
+                 dx = 70, dy = 70. Angle = 45 deg to vertical!
+            -->
+            <line x1="212" y1="126" x2="282" y2="196" stroke="#f8fafc" stroke-width="2.5"/>
+
+            <!-- Angle theta at A -->
+            <path d="M 212 166 A 40 40 0 0 0 240 154" fill="none" stroke="#f59e0b" stroke-width="2"/>
+            <text x="228" y="178" fill="#f59e0b" font-size="13" font-weight="700">θ (45°)</text>
+
+            <!-- Object B: at (282, 196) -->
+            <circle cx="282" cy="196" r="18" fill="#f43f5e" stroke="#ffffff" stroke-width="2"/>
+            <text x="282" y="202" fill="#ffffff" font-size="14" font-weight="800" text-anchor="middle">B</text>
+            <text x="245" y="225" fill="#f43f5e" font-size="13" font-weight="700">重 3W</text>
+
+            <!-- Horizontal Force S at B: horizontally to the right -->
+            <line x1="300" y1="196" x2="385" y2="196" stroke="#10b981" stroke-width="3.5" marker-end="url(#arrow-green)"/>
+            <text x="390" y="200" fill="#10b981" font-size="14" font-weight="800">拉力 S</text>
+
+            <!-- Right Box: Free Body Diagrams & Equations -->
+            <g transform="translate(440, 20)">
+              <rect x="0" y="0" width="300" height="345" rx="12" fill="rgba(15, 23, 42, 0.75)" stroke="#334155" stroke-width="1.5"/>
+              <text x="150" y="26" fill="#38bdf8" font-size="15" font-weight="700" text-anchor="middle">兩階段解題推導</text>
+
+              <!-- Box 1: Overall System (A+B) -->
+              <rect x="15" y="40" width="270" height="135" rx="6" fill="rgba(30, 41, 59, 0.6)" stroke="#475569" stroke-width="1"/>
+              <text x="25" y="62" fill="#f59e0b" font-size="13" font-weight="700">(1) 整體系統（A + B）：總重 4W</text>
+              <text x="35" y="85" fill="#cbd5e1" font-size="12">鉛直平衡：F·cos 37° = W + 3W = 4W</text>
+              <text x="35" y="108" fill="#38bdf8" font-size="13" font-family="'Fira Code', monospace">F·(4/5) = 4W  ⇒  F = 5W</text>
+              <text x="35" y="132" fill="#cbd5e1" font-size="12">水平平衡求外力 S：</text>
+              <text x="35" y="154" fill="#10b981" font-size="13" font-family="'Fira Code', monospace">S = F·sin 37° = 5W·(3/5) = 3W</text>
+
+              <!-- Box 2: Object B -->
+              <rect x="15" y="188" width="270" height="142" rx="6" fill="rgba(30, 41, 59, 0.6)" stroke="#475569" stroke-width="1"/>
+              <text x="25" y="210" fill="#f43f5e" font-size="13" font-weight="700">(2) 隔離 B 物體：自重 3W，外力 S</text>
+              <text x="35" y="233" fill="#cbd5e1" font-size="12">鉛直分量：T·cos θ = 3W</text>
+              <text x="35" y="255" fill="#cbd5e1" font-size="12">水平分量：T·sin θ = S = 3W</text>
+              <text x="35" y="280" fill="#f43f5e" font-size="13" font-family="'Fira Code', monospace">tan θ = (3W) / (3W) = 1</text>
+              <text x="35" y="306" fill="#f43f5e" font-size="15" font-weight="800">⇒ θ = 45°</text>
+            </g>
+          </svg>
+        </div>
+
+        <p class="question-prompt">
+          依據平衡受力推導，彈簧恢復力 $F$ 與繩子夾角 $\theta$ 分別為何？
+        </p>
+
+        <!-- Options Container -->
+        <div class="options-container">
+          <div class="option-card" data-option="A">
+            <span class="option-label">A</span>
+            <div class="option-content">
+              <span class="katex-text">(1) $5W$；(2) $45^\circ$</span>
+            </div>
+          </div>
+
+          <div class="option-card" data-option="B">
+            <span class="option-label">B</span>
+            <div class="option-content">
+              <span class="katex-text">(1) $4W$；(2) $37^\circ$</span>
+            </div>
+          </div>
+
+          <div class="option-card" data-option="C">
+            <span class="option-label">C</span>
+            <div class="option-content">
+              <span class="katex-text">(1) $5W$；(2) $53^\circ$</span>
+            </div>
+          </div>
+
+          <div class="option-card" data-option="D">
+            <span class="option-label">D</span>
+            <div class="option-content">
+              <span class="katex-text">(1) $\frac{5}{3}W$；(2) $45^\circ$</span>
+            </div>
+          </div>
+
+          <div class="option-card" data-option="E">
+            <span class="option-label">E</span>
+            <div class="option-content">
+              <span class="katex-text">(1) $3W$；(2) $30^\circ$</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Feedback Alert Box -->
+        <div class="feedback-box" id="feedbackBox">
+          <div class="feedback-icon" id="feedbackIcon"></div>
+          <div class="feedback-text" id="feedbackText"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Collapsible Solution Card -->
+    <section class="card solution-card collapsed" id="solutionCard">
+      <div class="card-header toggle-header" id="solutionToggle">
+        <div class="card-icon">💡</div>
+        <div>
+          <h2>核心解析與詳細推導</h2>
+          <span class="card-tag">點擊展開 / 收合完整解析</span>
+        </div>
+        <span class="solution-status">點擊展開完整剖析</span>
+      </div>
+
+      <div class="solution-content">
+        <div class="solution-step">
+          <span class="step-num">步驟 1</span>
+          <h3>以 (A + B) 整體為系統求彈簧力與外力 S</h3>
+          <p>
+            將 $A$、$B$ 兩物體及中間連接之輕繩視為一整體系統：
+          </p>
+          <ul>
+            <li><strong>系統總重力</strong>：$W + 3W = 4W$（鉛直向下）。</li>
+            <li><strong>彈簧恢復力 $F$</strong>：沿彈簧斜向左上方，與鉛垂直線夾角為 $37^\circ$。</li>
+            <li><strong>外施水平拉力 $S$</strong>：於 $B$ 點水平向右。</li>
+          </ul>
+          <p>
+            列系統鉛直方向平衡：
+            $$F \cos 37^\circ = 4W \implies F \times \frac{4}{5} = 4W \implies F = 5W$$
+            列系統水平方向平衡：
+            $$S = F \sin 37^\circ = 5W \times \frac{3}{5} = 3W$$
+          </p>
+        </div>
+
+        <div class="solution-step">
+          <span class="step-num">步驟 2</span>
+          <h3>隔離 B 物體求繩傾角 $\theta$</h3>
+          <p>
+            隔離 $B$ 物體進行受力分析，共受三個力作用：
+          </p>
+          <ul>
+            <li>自重 $3W$（鉛直向下）。</li>
+            <li>水平拉力 $S = 3W$（水平向右）。</li>
+            <li>$AB$ 段輕繩張力 $T$（斜向左上方，與鉛垂線夾角為 $\theta$）。</li>
+          </ul>
+          <p>
+            列 $B$ 物體之正交平衡：
+            $$\begin{cases}
+              T \cos\theta = 3W & \text{（鉛直平衡）} \\
+              T \sin\theta = S = 3W & \text{（水平平衡）}
+            \end{cases}$$
+            兩式相除：
+            $$\tan\theta = \frac{T\sin\theta}{T\cos\theta} = \frac{3W}{3W} = 1$$
+            解得：
+            $$\theta = 45^\circ$$
+          </p>
+          <div class="conclusion-box">
+            <strong>結論：</strong> 本題正確答案為 <strong>(A) (1) $5W$；(2) $45^\circ$</strong>。
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Navigation Footer -->
+    <footer class="footer-nav">
+      <a href="equil19.html" class="nav-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+        上一題 (平衡 19)
+      </a>
+      <a href="index.html" class="nav-btn primary">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        單元總覽
+      </a>
+      <a href="equil21.html" class="nav-btn">
+        下一題 (平衡 21)
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+    </footer>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // KaTeX Auto-render
+      if (typeof renderMathInElement === 'function') {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ],
+          throwOnError: false
+        });
+      }
+
+      // Quiz Interaction
+      const correctAnswer = "A";
+      const optionCards = document.querySelectorAll(".option-card");
+      const feedbackBox = document.getElementById("feedbackBox");
+      const feedbackIcon = document.getElementById("feedbackIcon");
+      const feedbackText = document.getElementById("feedbackText");
+      const solutionCard = document.getElementById("solutionCard");
+
+      optionCards.forEach(card => {
+        card.addEventListener("click", function() {
+          const selected = this.getAttribute("data-option");
+
+          optionCards.forEach(c => c.classList.remove("selected", "correct", "wrong"));
+          this.classList.add("selected");
+
+          feedbackBox.classList.remove("correct", "wrong");
+          feedbackBox.classList.add("show");
+
+          if (selected === correctAnswer) {
+            this.classList.add("correct");
+            feedbackBox.classList.add("correct");
+            feedbackIcon.innerHTML = "🎉";
+            feedbackText.innerHTML = "<strong>太厲害了！完全正確！</strong><br>1. 整體法 $F\\cos 37^\\circ = 4W \\implies F = 5W$，外力 $S = 5W\\sin 37^\\circ = 3W$。<br>2. 隔離 B 物體 $\\tan\\theta = \\frac{S}{3W} = \\frac{3W}{3W} = 1 \\implies \\theta = 45^\\circ$！";
+            solutionCard.classList.remove("collapsed");
+            const tag = solutionCard.querySelector(".solution-status");
+            if (tag) tag.textContent = "點擊收合詳解";
+          } else {
+            this.classList.add("wrong");
+            feedbackBox.classList.add("wrong");
+            feedbackIcon.innerHTML = "💡";
+            if (selected === "B") {
+              feedbackText.innerHTML = "<strong>小心彈簧張力漏除了 cos 37°！</strong> 彈簧提供向上支撐，$F\\cos 37^\\circ = 4W \\implies F = 5W$ 喔！";
+            } else if (selected === "C") {
+              feedbackText.innerHTML = "<strong>注意 B 物體的水平力與垂直力相等！</strong> $S=3W$ 且 $W_B=3W$，所以 $\\tan\\theta = 1$，對應夾角為 $45^\\circ$ 喔！";
+            } else {
+              feedbackText.innerHTML = `<strong>選了 (${selected})，再想想看！</strong> 提示：先看整體 (A+B) 解出彈簧力 F 與外力 S，再隔離 B 列水平與鉛直平衡！`;
+            }
+          }
+
+          if (typeof renderMathInElement === 'function') {
+            renderMathInElement(feedbackText, {
+              delimiters: [
+                {left: '$$', right: '$$', display: true},
+                {left: '$', right: '$', display: false}
+              ],
+              throwOnError: false
+            });
+          }
+        });
+      });
+
+      // Solution toggle
+      const solutionToggle = document.getElementById("solutionToggle");
+      solutionToggle.addEventListener("click", function() {
+        solutionCard.classList.toggle("collapsed");
+        const isCollapsed = solutionCard.classList.contains("collapsed");
+        const statusSpan = solutionToggle.querySelector(".solution-status");
+        if (statusSpan) {
+          statusSpan.textContent = isCollapsed ? "點擊展開完整剖析" : "點擊收合詳解";
+        }
+      });
+    });
+  </script>
+</body>
+</html>

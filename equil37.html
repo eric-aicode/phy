@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>靜力平衡 37：均勻棒斜跨粗糙地面與光滑斜面 | 高中物理靜力學</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+  <link rel="stylesheet" href="shared.css">
+</head>
+<body>
+  <div class="bg-glow"></div>
+  <div class="bg-grid"></div>
+
+  <div class="container">
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+      <div class="nav-links">
+        <a href="index.html" class="nav-btn primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          回目錄
+        </a>
+        <a href="equil36.html" class="nav-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          上一題 (平衡 36)
+        </a>
+        <a href="equil38.html" class="nav-btn">
+          下一題 (平衡 38)
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+      <div class="badge-wrapper">
+        <span class="badge badge-page">講義 靜力學-30</span>
+        <span class="badge badge-exam">地面綜合作用力</span>
+        <span class="badge badge-accent">靜力平衡・練習 37</span>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+      <h1 class="main-title">靜力平衡 37：<span class="gradient-text">均勻棒斜跨粗糙地面與光滑斜面</span></h1>
+      <p class="subtitle">光滑斜面法向反力分解・轉軸力矩求正向力・正交合成全地面反作用力</p>
+    </header>
+
+    <!-- Main Problem Layout -->
+    <div class="problem-layout">
+      <!-- Left Column: Problem & Visualizer -->
+      <div class="problem-card">
+        <h2 class="section-title">
+          <span class="step-num">1</span>
+          題目情境與物理圖解
+        </h2>
+        <div class="problem-text">
+          <p>
+            如圖所示，一重量為 $W$、長度為 $L$ 的均勻棒，底端置於粗糙水平地面上，頂端置於傾角為 $60^\circ$ 的光滑固定斜面上。
+          </p>
+          <p>
+            若平衡時此棒與水平地面成 $30^\circ$ 仰角，則<strong>粗糙地面對棒的作用力</strong>量值為何？
+          </p>
+        </div>
+
+        <div class="interactive-container">
+          <div style="font-size: 0.88rem; color: var(--text-dim); margin-bottom: 8px; display: flex; justify-content: space-between;">
+            <span>📐 斜面正向力與地面正向力、摩擦力向量分解</span>
+            <span style="color: var(--accent-cyan);">斜面正向力 N₂ 垂直於 60° 斜面</span>
+          </div>
+          <svg viewBox="0 0 540 370" class="diagram-svg" style="background: rgba(15, 23, 42, 0.7); border-radius: 8px;">
+            <defs>
+              <marker id="arr-c" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#38bdf8"/>
+              </marker>
+              <marker id="arr-g" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#00e676"/>
+              </marker>
+              <marker id="arr-r" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#f43f5e"/>
+              </marker>
+              <marker id="arr-y" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#fbbf24"/>
+              </marker>
+            </defs>
+
+            <!-- Ground line -->
+            <line x1="40" y1="300" x2="480" y2="300" stroke="#64748b" stroke-width="4"/>
+            <!-- Ground hatching under A -->
+            <line x1="80" y1="300" x2="65" y2="315" stroke="#475569" stroke-width="2"/>
+            <line x1="110" y1="300" x2="95" y2="315" stroke="#475569" stroke-width="2"/>
+            <line x1="140" y1="300" x2="125" y2="315" stroke="#475569" stroke-width="2"/>
+
+            <!-- Incline 60 deg wedge: Base at (380, 300), Angle 60 deg up-left -->
+            <!-- Wedge top at (290, 144) -->
+            <polygon points="450,300 280,110 280,300" fill="rgba(71, 85, 105, 0.3)" stroke="#64748b" stroke-width="3"/>
+            <!-- Incline line from (450, 300) to (280, 110) -->
+            <line x1="450" y1="300" x2="280" y2="110" stroke="#94a3b8" stroke-width="4"/>
+            <!-- 60 deg angle mark -->
+            <path d="M 410 300 A 40 40 0 0 1 430 265" fill="none" stroke="#fbbf24" stroke-width="2"/>
+            <text x="390" y="285" fill="#fbbf24" font-size="13" font-weight="bold">60°</text>
+
+            <!-- Uniform rod: from A=(100, 300) to B=(340, 161) -->
+            <!-- Length = 280, angle with ground = 30 deg -->
+            <!-- 300 - 280*sin(30) = 160. 100 + 280*cos(30) = 342. -->
+            <line x1="100" y1="300" x2="340" y2="161" stroke="#f8fafc" stroke-width="8" stroke-linecap="round"/>
+            <line x1="100" y1="300" x2="340" y2="161" stroke="#38bdf8" stroke-width="4" stroke-linecap="round"/>
+
+            <!-- 30 deg angle at ground -->
+            <path d="M 140 300 A 40 40 0 0 0 135 280" fill="none" stroke="#fbbf24" stroke-width="2"/>
+            <text x="145" y="293" fill="#fbbf24" font-size="13" font-weight="bold">30°</text>
+
+            <!-- Center of gravity: (220, 230.5) -->
+            <circle cx="220" cy="230.5" r="5" fill="#fbbf24"/>
+            <line x1="220" y1="230.5" x2="220" y2="300" stroke="#fbbf24" stroke-width="3" marker-end="url(#arr-y)"/>
+            <text x="230" y="280" fill="#fbbf24" font-size="13" font-weight="bold">W</text>
+
+            <!-- Normal force at top B from incline: perpendicular to 60 deg incline -->
+            <!-- Incline is along dx=-170, dy=-190 (slope = -190/(-170) -> 60 deg)
+                 Normal points up-left: angle is 150 deg (30 deg above negative horizontal) -->
+            <line x1="340" y1="161" x2="270" y2="121" stroke="#00e676" stroke-width="3.5" marker-end="url(#arr-g)"/>
+            <text x="230" y="115" fill="#00e676" font-size="13" font-weight="bold">N₂ = W/2</text>
+
+            <!-- Components of N2 -->
+            <line x1="340" y1="161" x2="279" y2="161" stroke="#00e676" stroke-width="1.5" stroke-dasharray="3 3"/>
+            <line x1="279" y1="161" x2="279" y2="126" stroke="#00e676" stroke-width="1.5" stroke-dasharray="3 3"/>
+            <text x="285" y="176" fill="#00e676" font-size="11">N₂cos30°</text>
+            <text x="235" y="145" fill="#00e676" font-size="11">N₂sin30°</text>
+
+            <!-- Ground forces at A -->
+            <!-- Normal force N1 pointing UP -->
+            <line x1="100" y1="300" x2="100" y2="230" stroke="#38bdf8" stroke-width="3" marker-end="url(#arr-c)"/>
+            <text x="65" y="240" fill="#38bdf8" font-size="13" font-weight="bold">N₁ = 3W/4</text>
+            <!-- Friction f pointing RIGHT -->
+            <line x1="100" y1="300" x2="160" y2="300" stroke="#f43f5e" stroke-width="3" marker-end="url(#arr-r)"/>
+            <text x="120" y="325" fill="#f43f5e" font-size="13" font-weight="bold">f = √3W/4</text>
+
+            <!-- Resultant ground force F pointing up-right -->
+            <line x1="100" y1="300" x2="160" y2="230" stroke="#c084fc" stroke-width="3.5" marker-end="url(#arr-c)"/>
+            <text x="155" y="220" fill="#c084fc" font-size="14" font-weight="bold">F = √3W/2</text>
+
+            <!-- Point Labels -->
+            <text x="80" y="320" fill="#f8fafc" font-size="16" font-weight="bold">A (支點)</text>
+            <text x="350" y="165" fill="#f8fafc" font-size="16" font-weight="bold">B</text>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Right Column: Interactive Quiz -->
+      <div class="problem-card">
+        <h2 class="section-title">
+          <span class="step-num">2</span>
+          自我檢測與即時核對
+        </h2>
+        <p style="color: var(--text-dim); font-size: 0.95rem; margin-bottom: 16px;">
+          請依據轉軸力矩與地面受力正交合成，選出正確答案：
+        </p>
+
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="selectOption(this, 'A')">
+            <span class="opt-letter">A</span>
+            <span class="opt-text">$\dfrac{1}{2}W$</span>
+          </div>
+          <div class="quiz-option" onclick="selectOption(this, 'B')">
+            <span class="opt-letter">B</span>
+            <span class="opt-text">$\dfrac{\sqrt{3}}{4}W$</span>
+          </div>
+          <div class="quiz-option" onclick="selectOption(this, 'C')">
+            <span class="opt-letter">C</span>
+            <span class="opt-text">$\dfrac{3}{4}W$</span>
+          </div>
+          <div class="quiz-option" onclick="selectOption(this, 'D')">
+            <span class="opt-letter">D</span>
+            <span class="opt-text">$\dfrac{\sqrt{3}}{2}W$</span>
+          </div>
+          <div class="quiz-option" onclick="selectOption(this, 'E')">
+            <span class="opt-letter">E</span>
+            <span class="opt-text">$W$</span>
+          </div>
+        </div>
+
+        <div class="quiz-actions">
+          <button class="nav-btn primary" onclick="checkAnswer()">核對答案</button>
+          <button class="nav-btn" onclick="toggleSolution()">查看解析</button>
+        </div>
+
+        <div id="feedback" class="quiz-feedback"></div>
+      </div>
+    </div>
+
+    <!-- Solution Section -->
+    <div id="solution-card" class="solution-card">
+      <h2 class="section-title">
+        <span class="step-num">3</span>
+        完整觀念解析與推導過程
+      </h2>
+      <div class="solution-content">
+        <div class="formula-box">
+          $$\sum \tau_A = 0 \implies (N_2 \sin 60^\circ) \cdot L = W \cdot \left(\frac{L}{2}\cos 30^\circ\right) \implies N_2 = \frac{1}{2}W$$
+          $$\sum F_x = 0 \implies f = N_2 \cos 30^\circ = \frac{\sqrt{3}}{4}W$$
+          $$\sum F_y = 0 \implies N_1 + N_2 \sin 30^\circ = W \implies N_1 = \frac{3}{4}W$$
+          $$F_{\text{地面}} = \sqrt{N_1^2 + f^2} = \frac{\sqrt{3}}{2}W$$
+        </div>
+
+        <div class="step-card">
+          <h4>步驟一：判斷光滑斜面正向力的幾何方向</h4>
+          <p>
+            頂端與光滑斜面接觸，因為完全沒有摩擦力，所以斜面對棒的作用力 $N_2$ 必定<strong>垂直於 $60^\circ$ 斜面</strong>（向左上方推）。
+          </p>
+          <p>
+            由幾何法線關係，斜面與水平夾 $60^\circ$，其法線與鉛直線夾 $60^\circ$，即與水平面夾 $30^\circ$。
+          </p>
+        </div>
+
+        <div class="step-card">
+          <h4>步驟二：以底端接觸點為轉軸，求斜面正向力 $N_2$</h4>
+          <p>
+            以棒與地面接觸端點 $A$ 為支點：
+          </p>
+          <ul>
+            <li>棒身與水平夾 $30^\circ$，正向力 $N_2$ 與水平夾 $30^\circ$（向左上），故 $N_2$ 與棒身的夾角為 $180^\circ - (30^\circ + 30^\circ) = 120^\circ$。</li>
+            <li>逆時針力矩：$N_2 \sin(120^\circ) \cdot L = N_2 \sin 60^\circ \cdot L$。</li>
+            <li>均勻棒重力 $W$ 的順時針力矩：$W \cdot \left(\frac{L}{2}\cos 30^\circ\right)$。</li>
+          </ul>
+          $$\begin{aligned}
+          (N_2 \sin 60^\circ) \cdot L &= W \cdot \left(\frac{L}{2}\cos 30^\circ\right) \\
+          N_2 \cdot \frac{\sqrt{3}}{2} \cdot L &= \frac{1}{2} W L \cdot \frac{\sqrt{3}}{2} \\
+          \implies N_2 &= \frac{1}{2}W
+          \end{aligned}$$
+        </div>
+
+        <div class="step-card">
+          <h4>步驟三：正交分解平衡，合成地面總作用力</h4>
+          <p>
+            粗糙地面對棒的作用力包含鉛直向上的正向力 $N_1$ 與水平向右的靜摩擦力 $f$：
+          </p>
+          <ol>
+            <li>
+              <strong>水平方向合力為 0</strong>：
+              $$f = N_2 \cos 30^\circ = \left(\frac{1}{2}W\right) \cdot \frac{\sqrt{3}}{2} = \frac{\sqrt{3}}{4}W$$
+            </li>
+            <li>
+              <strong>鉛直方向合力為 0</strong>：
+              $$N_1 + N_2 \sin 30^\circ = W \implies N_1 = W - \left(\frac{1}{2}W\right)\cdot \frac{1}{2} = W - \frac{1}{4}W = \frac{3}{4}W$$
+            </li>
+            <li>
+              <strong>地面作用力之量值（正向力與摩擦力向量和）</strong>：
+              $$F_{\text{地面}} = \sqrt{N_1^2 + f^2} = \sqrt{\left(\frac{3}{4}W\right)^2 + \left(\frac{\sqrt{3}}{4}W\right)^2} = \sqrt{\frac{9}{16}W^2 + \frac{3}{16}W^2} = \sqrt{\frac{12}{16}}W = \frac{\sqrt{3}}{2}W$$
+            </li>
+          </ol>
+          <p>
+            因此，地面對棒的作用力大小為 $\dfrac{\sqrt{3}}{2}W$，正確選項為 <strong>(D)</strong>。
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let selectedOption = null;
+    const correctAnswer = 'D';
+
+    function selectOption(element, opt) {
+      document.querySelectorAll('.quiz-option').forEach(el => el.classList.remove('selected'));
+      element.classList.add('selected');
+      selectedOption = opt;
+    }
+
+    function checkAnswer() {
+      const feedback = document.getElementById('feedback');
+      if (!selectedOption) {
+        feedback.innerHTML = '<span style="color: var(--accent-yellow);">⚠️ 請先點擊選擇一個選項！</span>';
+        feedback.className = 'quiz-feedback show';
+        return;
+      }
+      if (selectedOption === correctAnswer) {
+        feedback.innerHTML = '🎉 <strong>完全正確！</strong> 對轉軸列力矩解得 $N_2 = \\frac{1}{2}W$，再分別正交分解得 $f = \\frac{\\sqrt{3}}{4}W$ 與 $N_1 = \\frac{3}{4}W$，畢氏定理合成即為 $\\frac{\\sqrt{3}}{2}W$！';
+        feedback.className = 'quiz-feedback show correct';
+        document.getElementById('solution-card').classList.add('show');
+      } else {
+        feedback.innerHTML = '❌ <strong>答案不對喔！</strong> 提示：題目問的是「地面對棒的作用力」，必須將正向力 $N_1$ 與摩擦力 $f$ 兩者以向量正交合成 $\\sqrt{N_1^2 + f^2}$！';
+        feedback.className = 'quiz-feedback show incorrect';
+      }
+    }
+
+    function toggleSolution() {
+      const sol = document.getElementById('solution-card');
+      sol.classList.toggle('show');
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      if (window.renderMathInElement) {
+        renderMathInElement(document.body, {
+          delimiters: [
+            { left: "$$", right: "$$", display: true },
+            { left: "$", right: "$", display: false }
+          ]
+        });
+      }
+    });
+  </script>
+</body>
+</html>

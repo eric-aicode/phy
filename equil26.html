@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>靜力平衡 26：均質木棒天花板樞紐與水平繫繩 | 高中物理靜力學</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+  <link rel="stylesheet" href="shared.css">
+</head>
+<body>
+  <div class="bg-glow"></div>
+  <div class="bg-grid"></div>
+
+  <div class="container">
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+      <div class="nav-links">
+        <a href="index.html" class="nav-btn primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          回目錄
+        </a>
+        <a href="equil25.html" class="nav-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          上一題 (平衡 25)
+        </a>
+        <a href="equil27.html" class="nav-btn">
+          下一題 (平衡 27)
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+      <div class="badge-wrapper">
+        <span class="badge badge-page">講義 靜力學-28</span>
+        <span class="badge badge-exam">天花板樞紐平衡</span>
+        <span class="badge badge-accent">靜力平衡・練習 26</span>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+      <h1 class="main-title">靜力平衡 26：<span class="gradient-text">均質木棒水平繫繩與樞紐作用力</span></h1>
+      <p class="subtitle">力矩平衡求繩張力・正交平衡求樞紐力・比值綜合求解</p>
+    </header>
+
+    <!-- Problem Showcase Card -->
+    <section class="card problem-card">
+      <div class="card-header">
+        <div class="card-icon">📖</div>
+        <div>
+          <h2>題目內容</h2>
+          <span class="card-tag">重心與力矩力臂分解</span>
+        </div>
+      </div>
+
+      <div class="problem-body">
+        <p>
+          一均質木棒重 $W$，一端以樞紐接於天花板，一端以輕繩水平繫於牆壁上，如圖所示。若木棒與天花板夾 $37^\circ$ 角，則<strong>樞紐作用於木棒之力與繩上張力之比值</strong>為多少？
+        </p>
+
+        <!-- SVG Diagram -->
+        <div class="svg-container">
+          <svg viewBox="0 0 520 280" width="100%" height="280" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <!-- Arrow marker blue -->
+              <marker id="arrow-blue" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 9 5 L 0 9 z" fill="#3b82f6"/>
+              </marker>
+              <!-- Arrow marker amber -->
+              <marker id="arrow-amber" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 9 5 L 0 9 z" fill="#f59e0b"/>
+              </marker>
+              <!-- Arrow marker emerald -->
+              <marker id="arrow-emerald" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 9 5 L 0 9 z" fill="#10b981"/>
+              </marker>
+              <!-- Ceiling & wall pattern -->
+              <pattern id="hatch-ceiling" width="12" height="12" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse">
+                <line x1="0" y1="0" x2="0" y2="12" stroke="#64748b" stroke-width="1.5" />
+              </pattern>
+            </defs>
+
+            <!-- Background subtle rect -->
+            <rect width="100%" height="100%" fill="none" />
+
+            <!-- Ceiling & Right Wall Structure -->
+            <!-- Ceiling fill -->
+            <rect x="70" y="20" width="410" height="25" fill="url(#hatch-ceiling)" opacity="0.3" />
+            <line x1="70" y1="45" x2="480" y2="45" stroke="#94a3b8" stroke-width="3" />
+
+            <!-- Right Wall fill -->
+            <rect x="450" y="45" width="30" height="200" fill="url(#hatch-ceiling)" opacity="0.3" />
+            <line x1="450" y1="45" x2="450" y2="245" stroke="#94a3b8" stroke-width="3" />
+
+            <!-- Ceiling hinge support -->
+            <rect x="110" y="30" width="30" height="15" fill="#334155" rx="2" />
+            <circle cx="125" cy="45" r="7" fill="#64748b" stroke="#e2e8f0" stroke-width="2" />
+
+            <!-- The uniform rod: length projection dx = 200, dy = 150 (37 deg) -->
+            <!-- Rod axis from (125, 45) to (325, 195) -->
+            <line x1="125" y1="45" x2="325" y2="195" stroke="#94a3b8" stroke-width="10" stroke-linecap="round" />
+            <line x1="125" y1="45" x2="325" y2="195" stroke="#38bdf8" stroke-width="4" stroke-linecap="round" />
+
+            <!-- Pivot dot at (125, 45) -->
+            <circle cx="125" cy="45" r="4" fill="#38bdf8" />
+            <text x="100" y="65" fill="#94a3b8" font-size="13" font-family="'Fira Code', monospace" font-weight="600">樞紐 O</text>
+
+            <!-- Angle 37 deg arc at ceiling -->
+            <path d="M 175 45 A 50 50 0 0 1 165 75" fill="none" stroke="#f59e0b" stroke-width="2" stroke-dasharray="3,2" />
+            <text x="175" y="72" fill="#f59e0b" font-size="14" font-weight="bold">37°</text>
+
+            <!-- Horizontal rope: from (325, 195) to wall (450, 195) -->
+            <line x1="325" y1="195" x2="450" y2="195" stroke="#f59e0b" stroke-width="2.5" />
+            <!-- Small wall anchor bracket -->
+            <rect x="445" y="190" width="5" height="10" fill="#cbd5e1" />
+
+            <!-- Midpoint Center of Mass (225, 120) -->
+            <circle cx="225" cy="120" r="5" fill="#10b981" />
+            <!-- Gravity vector W downward -->
+            <line x1="225" y1="120" x2="225" y2="200" stroke="#10b981" stroke-width="2.5" marker-end="url(#arrow-emerald)" />
+            <text x="235" y="170" fill="#10b981" font-size="15" font-weight="bold">W</text>
+            <text x="210" y="112" fill="#6ee7b7" font-size="12">重心 (L/2)</text>
+
+            <!-- Tension force arrow T on rod at (325, 195) pointing right -->
+            <line x1="325" y1="195" x2="400" y2="195" stroke="#f59e0b" stroke-width="3" marker-end="url(#arrow-amber)" />
+            <text x="360" y="185" fill="#f59e0b" font-size="15" font-weight="bold">T</text>
+
+            <!-- Hinge Force Components & Resultant F at O -->
+            <!-- Fx pointing left (opposing T) -->
+            <line x1="125" y1="45" x2="65" y2="45" stroke="#3b82f6" stroke-width="2" stroke-dasharray="3,2" marker-end="url(#arrow-blue)" />
+            <text x="50" y="38" fill="#3b82f6" font-size="12">F_x</text>
+            <!-- Fy pointing up (or downward on ceiling, but ceiling acts UP on rod) -->
+            <line x1="125" y1="45" x2="125" y2="0" stroke="#3b82f6" stroke-width="2" stroke-dasharray="3,2" />
+            <!-- Resultant F vector from (125, 45) pointing down-left? Wait: Fy is UP (+y in physical, -y in svg) -->
+            <line x1="125" y1="45" x2="70" y2="15" stroke="#818cf8" stroke-width="2.5" marker-end="url(#arrow-blue)" />
+            <text x="55" y="15" fill="#a5b4fc" font-size="14" font-weight="bold">F</text>
+
+            <!-- Dimension / lever arm guides -->
+            <line x1="125" y1="45" x2="125" y2="245" stroke="#64748b" stroke-width="1" stroke-dasharray="4,4" opacity="0.4" />
+            <line x1="225" y1="120" x2="225" y2="245" stroke="#64748b" stroke-width="1" stroke-dasharray="4,4" opacity="0.4" />
+            <line x1="325" y1="195" x2="325" y2="245" stroke="#64748b" stroke-width="1" stroke-dasharray="4,4" opacity="0.4" />
+
+            <!-- Horizontal arms at bottom -->
+            <line x1="125" y1="235" x2="225" y2="235" stroke="#94a3b8" stroke-width="1.5" />
+            <text x="145" y="230" fill="#94a3b8" font-size="11">½L cos37°</text>
+
+            <!-- Vertical arm for T on the left/right -->
+            <line x1="125" y1="45" x2="125" y2="195" stroke="#f59e0b" stroke-width="1" stroke-dasharray="3,3" opacity="0.5" />
+            <line x1="325" y1="195" x2="125" y2="195" stroke="#f59e0b" stroke-width="1" stroke-dasharray="3,3" opacity="0.5" />
+            <text x="130" y="130" fill="#f59e0b" font-size="11">L sin37°</text>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Options Grid -->
+    <section class="card quiz-card">
+      <div class="card-header">
+        <div class="card-icon">🎯</div>
+        <div>
+          <h2>選擇題挑戰</h2>
+          <span class="card-tag">點擊選項立即作答檢驗</span>
+        </div>
+      </div>
+
+      <div class="options-grid">
+        <div class="option-card" data-option="A">
+          <div class="option-indicator">A</div>
+          <div class="option-content">
+            <span class="math-opt">$\frac{\sqrt{13}}{2}$</span>
+          </div>
+        </div>
+
+        <div class="option-card" data-option="B">
+          <div class="option-indicator">B</div>
+          <div class="option-content">
+            <span class="math-opt">$\frac{\sqrt{13}}{3}$</span>
+          </div>
+        </div>
+
+        <div class="option-card" data-option="C">
+          <div class="option-indicator">C</div>
+          <div class="option-content">
+            <span class="math-opt">$\sqrt{13}$</span>
+          </div>
+        </div>
+
+        <div class="option-card" data-option="D">
+          <div class="option-indicator">D</div>
+          <div class="option-content">
+            <span class="math-opt">$\frac{3}{2}$</span>
+          </div>
+        </div>
+
+        <div class="option-card" data-option="E">
+          <div class="option-indicator">E</div>
+          <div class="option-content">
+            <span class="math-opt">$\frac{5}{2}$</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feedback Banner -->
+      <div class="feedback-box" id="feedbackBox">
+        <div class="feedback-icon" id="feedbackIcon"></div>
+        <div class="feedback-text" id="feedbackText"></div>
+      </div>
+    </section>
+
+    <!-- Collapsible Solution Card -->
+    <section class="card solution-card collapsed" id="solutionCard">
+      <div class="card-header solution-toggle" id="solutionToggle">
+        <div class="card-icon">💡</div>
+        <div class="solution-header-content">
+          <h2>精闢解析與推導步驟</h2>
+          <span class="solution-status">點擊展開完整剖析</span>
+        </div>
+        <div class="toggle-arrow">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+      </div>
+
+      <div class="solution-body">
+        <div class="step-card">
+          <div class="step-num">Step 1</div>
+          <div class="step-text">
+            <h4>受力分析與力臂分解</h4>
+            <p>設均質木棒之長度為 $L$，因為是均質棒，重心位於中央 $\frac{L}{2}$ 處。</p>
+            <ul>
+              <li><strong>重力 $W$</strong>：鉛直向下作用於棒中點，距天花板樞紐水平距離為 $d_W = \frac{L}{2}\cos 37^\circ$。</li>
+              <li><strong>繩張力 $T$</strong>：水平向右作用於棒端，相對於樞紐的垂直距離（力臂）為 $d_T = L\sin 37^\circ$。</li>
+              <li><strong>樞紐作用力 $\vec{F}$</strong>：設水平分力為 $F_x$（向左），鉛直分力為 $F_y$（向上）。</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">Step 2</div>
+          <div class="step-text">
+            <h4>對樞紐取力矩平衡求繩張力 $T$</h4>
+            <p>以天花板樞紐 $O$ 為轉軸，樞紐力 $\vec{F}$ 力臂為零，不產生力矩：</p>
+            $$\sum \tau_O = 0 \implies \tau_{\text{順}} = \tau_{\text{逆}}$$
+            $$W \cdot \left(\frac{L}{2}\cos 37^\circ\right) = T \cdot \left(L\sin 37^\circ\right)$$
+            <p>代入三角函數數值 $\cos 37^\circ = \frac{4}{5}$、$\sin 37^\circ = \frac{3}{5}$：</p>
+            $$W \cdot \frac{L}{2} \cdot \frac{4}{5} = T \cdot L \cdot \frac{3}{5}$$
+            $$\frac{2}{5} W = \frac{3}{5} T \implies T = \frac{2}{3}W$$
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">Step 3</div>
+          <div class="step-text">
+            <h4>正交力平衡求樞紐作用力 $F$</h4>
+            <p>木棒處於靜止平衡，水平與鉛直合力均必須為零：</p>
+            <ul>
+              <li><strong>水平合力為零</strong>：$F_x = T = \frac{2}{3}W$（向左）</li>
+              <li><strong>鉛直合力為零</strong>：$F_y = W$（向上）</li>
+            </ul>
+            <p>樞紐作用力大小 $F$ 由商高定理合成：</p>
+            $$F = \sqrt{F_x^2 + F_y^2} = \sqrt{\left(\frac{2}{3}W\right)^2 + W^2} = \sqrt{\frac{4}{9} + 1}\,W = \frac{\sqrt{13}}{3}W$$
+          </div>
+        </div>
+
+        <div class="step-card highlight-step">
+          <div class="step-num">Step 4</div>
+          <div class="step-text">
+            <h4>計算樞紐力與張力之比值</h4>
+            <p>題目所求為「樞紐作用力 $F$」與「繩上張力 $T$」之比值：</p>
+            $$\frac{F}{T} = \frac{\frac{\sqrt{13}}{3}W}{\frac{2}{3}W} = \frac{\frac{\sqrt{13}}{3}}{\frac{2}{3}} = \frac{\sqrt{13}}{2}$$
+            <p class="final-ans-box">
+              故正確答案為 <strong>(A) $\dfrac{\sqrt{13}}{2}$</strong>。
+            </p>
+          </div>
+        </div>
+
+        <!-- Caution note -->
+        <div class="key-point-box">
+          <div class="key-point-title">⚡ 關鍵概念警示：</div>
+          <p>
+            很多同學常誤將求出的樞紐作用力大小 $F = \frac{\sqrt{13}}{3}W$ 當成答案而錯選 <strong>(B)</strong>！請務必仔細審題，題目問的是<strong>「樞紐力與繩張力之比值 $\frac{F}{T}$」</strong>，而非單純的樞紐力大小。
+          </p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // Auto-render KaTeX
+      if (typeof renderMathInElement === 'function') {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ],
+          throwOnError: false
+        });
+      }
+
+      // Quiz Interaction
+      const correctAnswer = "A";
+      const optionCards = document.querySelectorAll(".option-card");
+      const feedbackBox = document.getElementById("feedbackBox");
+      const feedbackIcon = document.getElementById("feedbackIcon");
+      const feedbackText = document.getElementById("feedbackText");
+      const solutionCard = document.getElementById("solutionCard");
+
+      optionCards.forEach(card => {
+        card.addEventListener("click", function() {
+          const selected = this.getAttribute("data-option");
+
+          optionCards.forEach(c => c.classList.remove("selected", "correct", "wrong"));
+          this.classList.add("selected");
+
+          feedbackBox.classList.remove("correct", "wrong");
+          feedbackBox.classList.add("show");
+
+          if (selected === correctAnswer) {
+            this.classList.add("correct");
+            feedbackBox.classList.add("correct");
+            feedbackIcon.innerHTML = "🎉";
+            feedbackText.innerHTML = "<strong>命中真理！完全正確！</strong><br>力矩平衡解得 $T = \\frac{2}{3}W$，正交合成樞紐力 $F = \\frac{\\sqrt{13}}{3}W$。<br>比值 $\\frac{F}{T} = \\frac{\\sqrt{13}/3}{2/3} = \\frac{\\sqrt{13}}{2}$！";
+            solutionCard.classList.remove("collapsed");
+            const tag = solutionCard.querySelector(".solution-status");
+            if (tag) tag.textContent = "點擊收合詳解";
+          } else {
+            this.classList.add("wrong");
+            feedbackBox.classList.add("wrong");
+            feedbackIcon.innerHTML = "💡";
+            if (selected === "B") {
+              feedbackText.innerHTML = "<strong>小心陷阱！$\\frac{\\sqrt{13}}{3}W$ 是樞紐力 $F$，但題目問的是與繩張力之比值 $\\frac{F}{T}$ 喔！</strong>";
+            } else {
+              feedbackText.innerHTML = `<strong>選了 (${selected})，再想想看！</strong> 提示：先由力矩平衡求出 $T = \\frac{2}{3}W$，再求樞紐力 $F = \\sqrt{F_x^2 + F_y^2} = \\frac{\\sqrt{13}}{3}W$，求二者比值！`;
+            }
+          }
+
+          if (typeof renderMathInElement === 'function') {
+            renderMathInElement(feedbackText, {
+              delimiters: [
+                {left: '$$', right: '$$', display: true},
+                {left: '$', right: '$', display: false}
+              ],
+              throwOnError: false
+            });
+          }
+        });
+      });
+
+      // Solution toggle
+      const solutionToggle = document.getElementById("solutionToggle");
+      solutionToggle.addEventListener("click", function() {
+        solutionCard.classList.toggle("collapsed");
+        const isCollapsed = solutionCard.classList.contains("collapsed");
+        const statusSpan = solutionToggle.querySelector(".solution-status");
+        if (statusSpan) {
+          statusSpan.textContent = isCollapsed ? "點擊展開完整剖析" : "點擊收合詳解";
+        }
+      });
+    });
+  </script>
+</body>
+</html>

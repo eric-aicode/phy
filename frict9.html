@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>靜摩擦力 09：跨越平台與斜面繩子自滑之摩擦係數 | 高中物理靜力學</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+  <link rel="stylesheet" href="shared.css">
+</head>
+<body>
+  <div class="bg-glow"></div>
+  <div class="bg-grid"></div>
+
+  <div class="container">
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+      <div class="nav-links">
+        <a href="index.html" class="nav-btn primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          回目錄
+        </a>
+        <a href="frict8.html" class="nav-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          上一題 (摩擦 08)
+        </a>
+        <a href="frict10.html" class="nav-btn">
+          下一題 (摩擦 10)
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+      <div class="badge-wrapper">
+        <span class="badge badge-page">講義 靜力學-35</span>
+        <span class="badge badge-exam">柔性繩分段平衡臨界</span>
+        <span class="badge badge-accent">靜摩擦力・練習 09</span>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+      <h1 class="main-title">靜摩擦力 09：<span class="gradient-text">跨越平台與斜面繩子自滑之摩擦係數</span></h1>
+      <p class="subtitle">均勻柔性繩分段受力・平台水平摩擦與斜面摩擦綜效・臨界滑動方程式</p>
+    </header>
+
+    <!-- Main Problem Layout -->
+    <div class="problem-layout">
+      <!-- Left Column: Problem & Visualizer -->
+      <div class="problem-card">
+        <h2 class="section-title">
+          <span class="step-num">1</span>
+          題目情境與物理圖解
+        </h2>
+        <div class="problem-text">
+          <p>
+            如附圖所示，一均勻的繩子跨置於水平平臺與傾角 $37^\circ$ 的斜面交界處。當其總長度的 $\frac{1}{3}$ 停於水平平臺上（其餘 $\frac{2}{3}$ 垂於斜面上）時，繩子恰可向下滑動。設平臺與斜面的摩擦係數均相同為 $\mu$，則此摩擦係數為多少？
+          </p>
+        </div>
+
+        <div class="diagram-container">
+          <div class="diagram-header">
+            <span class="diagram-tag">柔性均勻繩分段受力模型</span>
+            <span class="diagram-hint">下滑動力 (2/3 mg sin37°) = 平台摩擦 (1/3 μmg) + 斜面摩擦 (2/3 μmg cos37°)</span>
+          </div>
+          <svg class="interactive-diagram" viewBox="0 0 540 360" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="arrowRed" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+                <path d="M0,0 L0,6 L9,3 z" fill="#ef4444" />
+              </marker>
+              <marker id="arrowGreen" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+                <path d="M0,0 L0,6 L9,3 z" fill="#10b981" />
+              </marker>
+              <linearGradient id="hillGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#334155"/>
+                <stop offset="100%" stop-color="#0f172a"/>
+              </linearGradient>
+            </defs>
+
+            <!-- Ground reference line -->
+            <line x1="40" y1="300" x2="500" y2="300" stroke="#64748b" stroke-width="2.5"/>
+            <path d="M50,300 l-10,12 M80,300 l-10,12 M110,300 l-10,12 M140,300 l-10,12 M170,300 l-10,12 M200,300 l-10,12 M230,300 l-10,12 M260,300 l-10,12 M290,300 l-10,12 M320,300 l-10,12 M350,300 l-10,12 M380,300 l-10,12 M410,300 l-10,12 M440,300 l-10,12 M470,300 l-10,12" stroke="#475569" stroke-width="1.5"/>
+
+            <!-- Platform & Incline: -->
+            <!-- Horizontal platform from x=50 to 190 at y=130 -->
+            <!-- Incline from (190, 130) to (416, 300) [dx = 226, dy = 170, tan ~ 170/226 = 0.752 => 37°] -->
+            <polygon points="50,130 190,130 416,300 50,300" fill="url(#hillGrad)" stroke="#64748b" stroke-width="2.5"/>
+            <line x1="50" y1="130" x2="190" y2="130" stroke="#94a3b8" stroke-width="3.5"/>
+            <line x1="190" y1="130" x2="416" y2="300" stroke="#94a3b8" stroke-width="3.5"/>
+
+            <!-- Angle 37° arc at bottom -->
+            <path d="M360,300 A70,70 0 0,1 374,268" fill="none" stroke="#38bdf8" stroke-width="2"/>
+            <text x="330" y="290" fill="#38bdf8" font-size="14" font-weight="bold">37°</text>
+
+            <!-- Rope on Platform: 1/3 length (say 90px): from (100, 126) to (190, 126) -->
+            <!-- Rope on Incline: 2/3 length (180px): along slope from (190, 126) to (190 + 180*cos(37°), 126 + 180*sin(37°)) = (334, 234) -->
+            <line x1="100" y1="126" x2="190" y2="126" stroke="#fbbf24" stroke-width="7" stroke-linecap="round"/>
+            <line x1="190" y1="126" x2="334" y2="234" stroke="#fbbf24" stroke-width="7" stroke-linecap="round"/>
+
+            <!-- Rope Section Labels -->
+            <text x="145" y="110" fill="#fbbf24" font-size="14" font-weight="bold" text-anchor="middle">1/3 繩長 (平臺上)</text>
+            <text x="300" y="165" fill="#fbbf24" font-size="14" font-weight="bold">2/3 繩長 (斜面上)</text>
+
+            <!-- Downward drive force on incline -->
+            <!-- Vector along slope (dx = 60*cos37 = 48, dy = 60*sin37 = 36) from (262, 180) to (310, 216) -->
+            <line x1="262" y1="180" x2="320" y2="224" stroke="#ef4444" stroke-width="3.5" marker-end="url(#arrowRed)"/>
+            <text x="325" y="240" fill="#ef4444" font-size="13" font-weight="bold">下滑力 = 2/5 mg</text>
+
+            <!-- Friction on incline (pointing up slope) -->
+            <line x1="262" y1="180" x2="215" y2="145" stroke="#10b981" stroke-width="3" marker-end="url(#arrowGreen)"/>
+            <text x="200" y="165" fill="#10b981" font-size="12" font-weight="bold">f₁ = 8/15 μmg</text>
+
+            <!-- Friction on platform (pointing left) -->
+            <line x1="145" y1="126" x2="90" y2="126" stroke="#10b981" stroke-width="3" marker-end="url(#arrowGreen)"/>
+            <text x="70" y="145" fill="#10b981" font-size="12" font-weight="bold">f₂ = 1/3 μmg</text>
+
+            <!-- Summary callout -->
+            <rect x="150" y="315" width="260" height="32" rx="6" fill="#1e293b" stroke="#334155" stroke-width="1.5"/>
+            <text x="280" y="336" fill="#38bdf8" font-size="13" font-weight="bold" text-anchor="middle">臨界條件：2/5 = (13/15) μ  ⟹  μ = 6/13</text>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Right Column: Interactive Quiz -->
+      <div class="quiz-card">
+        <h2 class="section-title">
+          <span class="step-num">2</span>
+          自我檢測與觀念選擇
+        </h2>
+        
+        <div class="question-box">
+          <p class="question-stem">
+            由繩子下滑分力恰等於全繩受到的總最大靜摩擦力，平臺與斜面對繩子的靜摩擦係數 $\mu$ 為何？
+          </p>
+
+          <div class="options-list">
+            <label class="option-item" onclick="selectOption(0)">
+              <input type="radio" name="opt" value="0">
+              <span class="opt-letter">A</span>
+              <span class="opt-content">$\dfrac{6}{13}$</span>
+            </label>
+            <label class="option-item" onclick="selectOption(1)">
+              <input type="radio" name="opt" value="1">
+              <span class="opt-letter">B</span>
+              <span class="opt-content">$\dfrac{12}{17}$</span>
+            </label>
+            <label class="option-item" onclick="selectOption(2)">
+              <input type="radio" name="opt" value="2">
+              <span class="opt-letter">C</span>
+              <span class="opt-content">$\dfrac{2}{5}$</span>
+            </label>
+            <label class="option-item" onclick="selectOption(3)">
+              <input type="radio" name="opt" value="3">
+              <span class="opt-letter">D</span>
+              <span class="opt-content">$\dfrac{3}{5}$</span>
+            </label>
+            <label class="option-item" onclick="selectOption(4)">
+              <input type="radio" name="opt" value="4">
+              <span class="opt-letter">E</span>
+              <span class="opt-content">$\dfrac{4}{5}$</span>
+            </label>
+          </div>
+
+          <div class="quiz-actions">
+            <button class="btn btn-primary" onclick="checkAnswer()">確認答案</button>
+            <button class="btn btn-secondary" onclick="toggleSolution()">查看完整詳解</button>
+          </div>
+
+          <div id="feedback" class="feedback-box"></div>
+        </div>
+
+        <!-- Detailed Solution (Collapsible) -->
+        <div id="solutionBox" class="solution-card">
+          <h3 class="solution-title">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            詳盡解析與物理思維
+          </h3>
+          <div class="solution-content">
+            <div class="step-card">
+              <h4>步驟一：分析繩子各段質量與重力下滑力</h4>
+              <p>設整條均勻繩子總質量為 $m$：</p>
+              <ul>
+                <li>在水平平臺上的繩子長度為 $\frac{1}{3}$，質量為 $m_{\text{平}} = \frac{1}{3}m$。</li>
+                <li>在 $37^\circ$ 斜面上的繩子長度為 $\frac{2}{3}$，質量為 $m_{\text{斜}} = \frac{2}{3}m$。</li>
+                <li>推動繩子沿斜面向下滑動的外力，來自斜面段重力沿斜面的分力：
+                  $$F_{\text{下}} = m_{\text{斜}} g \sin 37^\circ = \left(\frac{2}{3}mg\right) \times \frac{3}{5} = \frac{2}{5}mg$$
+                </li>
+              </ul>
+            </div>
+
+            <div class="step-card">
+              <h4>步驟二：分析兩接觸面的最大靜摩擦力</h4>
+              <p>繩子受到的阻力由平臺段與斜面段兩部分組成：</p>
+              <ul>
+                <li><strong>斜面段最大靜摩擦力：</strong>
+                  正向力 $N_1 = m_{\text{斜}} g \cos 37^\circ = \left(\frac{2}{3}mg\right) \times \frac{4}{5} = \frac{8}{15}mg$。
+                  $$f_1 = \mu N_1 = \frac{8}{15}\mu mg$$
+                </li>
+                <li><strong>平臺段最大靜摩擦力：</strong>
+                  正向力 $N_2 = m_{\text{平}} g = \frac{1}{3}mg$。
+                  $$f_2 = \mu N_2 = \frac{1}{3}\mu mg = \frac{5}{15}\mu mg$$
+                </li>
+                <li><strong>全繩總最大靜摩擦阻力：</strong>
+                  $$f_{\text{總}} = f_1 + f_2 = \left(\frac{8}{15} + \frac{5}{15}\right)\mu mg = \frac{13}{15}\mu mg$$
+                </li>
+              </ul>
+            </div>
+
+            <div class="step-card">
+              <h4>步驟三：由恰可下滑的臨界條件求解 $\mu$</h4>
+              <p>當繩子「恰可下滑」時，下滑推力恰好克服總最大靜摩擦力：</p>
+              $$F_{\text{下}} = f_{\text{總}}$$
+              $$\frac{2}{5}mg = \frac{13}{15}\mu mg$$
+              <p>等式兩邊消去 $mg$ 並同乘以 $15$：</p>
+              $$6 = 13\mu \implies \mu = \frac{6}{13}$$
+            </div>
+
+            <div class="highlight-summary">
+              <strong>名師核心點撥：</strong><br>
+              均勻連續體分段時，千萬注意兩段的正向力不同：平臺上正向力為 $mg/3$，斜面上正向力為 $(2/3)mg\cos 37^\circ$。分別計算兩段摩擦力並相加，即可建立嚴格的臨界平衡方程。答案選 <strong>(A)</strong>。
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const correctOpt = 0;
+
+    function selectOption(idx) {
+      const items = document.querySelectorAll('.option-item');
+      items.forEach((item, i) => {
+        const radio = item.querySelector('input');
+        if (i === idx) {
+          item.classList.add('selected');
+          radio.checked = true;
+        } else {
+          item.classList.remove('selected');
+          radio.checked = false;
+        }
+      });
+    }
+
+    function checkAnswer() {
+      const selected = document.querySelector('input[name="opt"]:checked');
+      const feedback = document.getElementById('feedback');
+      if (!selected) {
+        feedback.innerHTML = '<span style="color:#f59e0b;">請先點選一個選項！</span>';
+        return;
+      }
+      const val = parseInt(selected.value);
+      if (val === correctOpt) {
+        feedback.innerHTML = '<span style="color:#10b981; font-weight:bold;">🎉 答對了！2/5 = (13/15)μ 成功解得摩擦係數為 6/13 (A)！</span>';
+      } else {
+        feedback.innerHTML = '<span style="color:#ef4444; font-weight:bold;">❌ 答案不正確，請注意斜面正向力需乘以 cos 37° = 4/5，再與平臺摩擦力相加。</span>';
+      }
+    }
+
+    function toggleSolution() {
+      const sol = document.getElementById('solutionBox');
+      sol.classList.toggle('show');
+      if (sol.classList.contains('show')) {
+        renderMathInElement(sol, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ],
+          throwOnError: false
+        });
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderMathInElement(document.body, {
+        delimiters: [
+          {left: '$$', right: '$$', display: true},
+          {left: '$', right: '$', display: false}
+        ],
+        throwOnError: false
+      });
+    });
+  </script>
+</body>
+</html>

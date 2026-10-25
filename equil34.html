@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>靜力平衡 34：梯子防滑拉繩極限與猴子攀爬距離 | 高中物理靜力學</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+  <link rel="stylesheet" href="shared.css">
+</head>
+<body>
+  <div class="bg-glow"></div>
+  <div class="bg-grid"></div>
+
+  <div class="container">
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+      <div class="nav-links">
+        <a href="index.html" class="nav-btn primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          回目錄
+        </a>
+        <a href="equil33.html" class="nav-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          上一題 (平衡 33)
+        </a>
+        <a href="equil35.html" class="nav-btn">
+          下一題 (平衡 35)
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+      <div class="badge-wrapper">
+        <span class="badge badge-page">講義 靜力學-30</span>
+        <span class="badge badge-exam">拉力極限安全範圍</span>
+        <span class="badge badge-accent">靜力平衡・練習 34</span>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+      <h1 class="main-title">靜力平衡 34：<span class="gradient-text">梯子防滑拉繩極限與猴子攀爬距離</span></h1>
+      <p class="subtitle">底端繫繩防滑・以底端為轉軸消除地面力・水平力平衡對應牆面正向力與繩張力</p>
+    </header>
+
+    <!-- Main Problem Layout -->
+    <div class="problem-layout">
+      <!-- Left Column: Problem & Visualizer -->
+      <div class="problem-card">
+        <h2 class="section-title">
+          <span class="step-num">1</span>
+          題目情境與物理圖解
+        </h2>
+        <div class="problem-text">
+          <p>
+            一梯子底端 $A$ 立於光滑地面，頂端 $C$ 斜靠在光滑垂直牆上，如圖所示。梯子底端以一水平細繩 $AB$ 綁住，細繩另一端固定在牆角 $B$ 點，細繩所能承受之最大張力極限為 $11\text{ kgw}$。
+          </p>
+          <p>
+            設梯子長度為 $L$、重量為 $12\text{ kgw}$，梯身與地面夾角為 $53^\circ$。一隻重量為 $10\text{ kgw}$ 的猴子爬上梯子，試求：
+          </p>
+          <ol style="margin: 8px 0 12px 24px; line-height: 1.8;">
+            <li>當猴子爬至離底端 $A$ 點 $\frac{L}{3}$ 處時，細繩的張力為多少 $\text{kgw}$？</li>
+            <li>猴子沿梯子向上爬，離 $A$ 點最遠可達多少距離時，細繩仍不致斷裂？</li>
+          </ol>
+        </div>
+
+        <div class="interactive-container">
+          <div style="font-size: 0.88rem; color: var(--text-dim); margin-bottom: 8px; display: flex; justify-content: space-between;">
+            <span>📐 物理力學架構與轉軸受力圖解</span>
+            <span style="color: var(--accent-cyan);">轉軸設在底端 A 點（力臂最簡化）</span>
+          </div>
+          <svg viewBox="0 0 540 380" class="diagram-svg" style="background: rgba(15, 23, 42, 0.7); border-radius: 8px;">
+            <defs>
+              <marker id="arrow-cyan" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#38bdf8"/>
+              </marker>
+              <marker id="arrow-green" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#00e676"/>
+              </marker>
+              <marker id="arrow-rose" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#f43f5e"/>
+              </marker>
+              <marker id="arrow-amber" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#fbbf24"/>
+              </marker>
+            </defs>
+
+            <!-- Ground and Wall -->
+            <line x1="40" y1="320" x2="480" y2="320" stroke="#64748b" stroke-width="4"/>
+            <line x1="400" y1="60" x2="400" y2="320" stroke="#64748b" stroke-width="4"/>
+
+            <!-- Wall hatching -->
+            <line x1="400" y1="80" x2="420" y2="70" stroke="#475569" stroke-width="2"/>
+            <line x1="400" y1="130" x2="420" y2="120" stroke="#475569" stroke-width="2"/>
+            <line x1="400" y1="180" x2="420" y2="170" stroke="#475569" stroke-width="2"/>
+            <line x1="400" y1="230" x2="420" y2="220" stroke="#475569" stroke-width="2"/>
+            <line x1="400" y1="280" x2="420" y2="270" stroke="#475569" stroke-width="2"/>
+
+            <!-- Ladder: A=(160, 320), C=(400, 90) -->
+            <!-- Length along x = 240, along y = 230 -->
+            <line x1="160" y1="320" x2="400" y2="90" stroke="#f8fafc" stroke-width="8" stroke-linecap="round"/>
+            <line x1="160" y1="320" x2="400" y2="90" stroke="#94a3b8" stroke-width="4" stroke-linecap="round"/>
+
+            <!-- String AB along ground -->
+            <line x1="160" y1="320" x2="400" y2="320" stroke="#f43f5e" stroke-width="3" stroke-dasharray="6 3"/>
+            <text x="270" y="340" fill="#f43f5e" font-size="14" font-weight="700">細繩 AB (張力 T)</text>
+
+            <!-- Angle 53 deg -->
+            <path d="M 205 320 A 45 45 0 0 0 193 288" fill="none" stroke="#fbbf24" stroke-width="2.5"/>
+            <text x="210" y="305" fill="#fbbf24" font-size="14" font-weight="700">53°</text>
+
+            <!-- Ladder Center of Gravity: (280, 205) -->
+            <circle cx="280" cy="205" r="5" fill="#38bdf8"/>
+            <line x1="280" y1="205" x2="280" y2="280" stroke="#38bdf8" stroke-width="3" marker-end="url(#arrow-cyan)"/>
+            <text x="288" y="255" fill="#38bdf8" font-size="13" font-weight="600">梯重 W = 12 kgw</text>
+
+            <!-- Monkey Position at L/3 or x: (240, 243) -->
+            <circle cx="240" cy="243" r="7" fill="#fbbf24"/>
+            <line x1="240" y1="243" x2="240" y2="310" stroke="#fbbf24" stroke-width="3" marker-end="url(#arrow-amber)"/>
+            <text x="145" y="275" fill="#fbbf24" font-size="13" font-weight="600">猴重 = 10 kgw</text>
+            <text x="190" y="225" fill="#fbbf24" font-size="13" font-style="italic">🐒 猴子位置</text>
+
+            <!-- Wall Normal force at C: NC pointing left -->
+            <line x1="400" y1="90" x2="330" y2="90" stroke="#00e676" stroke-width="3.5" marker-end="url(#arrow-green)"/>
+            <text x="325" y="80" fill="#00e676" font-size="14" font-weight="700">光滑牆正向力 N_C</text>
+
+            <!-- Normal force at ground A -->
+            <line x1="160" y1="320" x2="160" y2="250" stroke="#38bdf8" stroke-width="2.5" marker-end="url(#arrow-cyan)"/>
+            <text x="110" y="265" fill="#38bdf8" font-size="13">地面 N_A</text>
+
+            <!-- Tension on Ladder A pointing right -->
+            <line x1="160" y1="320" x2="215" y2="320" stroke="#f43f5e" stroke-width="3" marker-end="url(#arrow-rose)"/>
+            <text x="175" y="312" fill="#f43f5e" font-size="12" font-weight="700">T</text>
+
+            <!-- Vertex Labels -->
+            <text x="140" y="338" fill="#f8fafc" font-size="16" font-weight="bold">A</text>
+            <text x="408" y="338" fill="#f8fafc" font-size="16" font-weight="bold">B</text>
+            <text x="408" y="95" fill="#f8fafc" font-size="16" font-weight="bold">C</text>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Right Column: Interactive Quiz -->
+      <div class="problem-card">
+        <h2 class="section-title">
+          <span class="step-num">2</span>
+          自我檢測與即時核對
+        </h2>
+        <p style="color: var(--text-dim); font-size: 0.95rem; margin-bottom: 16px;">
+          請依據力矩平衡與合力平衡方程式，選出正確的答案組合：
+        </p>
+
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="selectOption(this, 'A')">
+            <span class="opt-letter">A</span>
+            <span class="opt-text">(1) $6\text{ kgw}$；(2) $\frac{4}{5}L$</span>
+          </div>
+          <div class="quiz-option" onclick="selectOption(this, 'B')">
+            <span class="opt-letter">B</span>
+            <span class="opt-text">(1) $7\text{ kgw}$；(2) $\frac{13}{15}L$</span>
+          </div>
+          <div class="quiz-option" onclick="selectOption(this, 'C')">
+            <span class="opt-letter">C</span>
+            <span class="opt-text">(1) $7\text{ kgw}$；(2) $\frac{4}{5}L$</span>
+          </div>
+          <div class="quiz-option" onclick="selectOption(this, 'D')">
+            <span class="opt-letter">D</span>
+            <span class="opt-text">(1) $8\text{ kgw}$；(2) $\frac{13}{15}L$</span>
+          </div>
+          <div class="quiz-option" onclick="selectOption(this, 'E')">
+            <span class="opt-letter">E</span>
+            <span class="opt-text">(1) $9\text{ kgw}$；(2) $\frac{14}{15}L$</span>
+          </div>
+        </div>
+
+        <div class="quiz-actions">
+          <button class="nav-btn primary" onclick="checkAnswer()">核對答案</button>
+          <button class="nav-btn" onclick="toggleSolution()">查看解析</button>
+        </div>
+
+        <div id="feedback" class="quiz-feedback"></div>
+      </div>
+    </div>
+
+    <!-- Solution Section -->
+    <div id="solution-card" class="solution-card">
+      <h2 class="section-title">
+        <span class="step-num">3</span>
+        完整觀念解析與推導過程
+      </h2>
+      <div class="solution-content">
+        <div class="formula-box">
+          $$\sum \tau_A = 0 \implies N_C \cdot L\sin 53^\circ = W_{\text{梯}} \cdot \left(\frac{L}{2}\cos 53^\circ\right) + W_{\text{猴}} \cdot (x\cos 53^\circ)$$
+          $$\sum F_x = 0 \implies T = N_C$$
+        </div>
+
+        <div class="step-card">
+          <h4>步驟一：選取最佳轉軸，消去未知的地面作用力</h4>
+          <p>
+            梯子底端 $A$ 同時承受地面的鉛直正向力 $N_A$ 與水平細繩的拉力 $T$。若直接選 $A$ 點為轉軸，則 $N_A$ 與 $T$ 的力臂皆為 0，力矩方程式中完全不出現 $N_A$ 與 $T$，能以最精簡的一道方程式直接解出牆壁正向力 $N_C$。
+          </p>
+        </div>
+
+        <div class="step-card">
+          <h4>步驟二：解答小題 (1) —— 猴子位於 $x = \frac{L}{3}$ 處</h4>
+          <p>
+            由轉軸 $A$ 處的順時針力矩等於逆時針力矩：
+          </p>
+          $$\begin{aligned}
+          N_C \cdot L \sin 53^\circ &= 12 \cdot \left(\frac{L}{2}\cos 53^\circ\right) + 10 \cdot \left(\frac{L}{3}\cos 53^\circ\right) \\
+          N_C \cdot L \cdot \frac{4}{5} &= 6L \cdot \frac{3}{5} + \frac{10}{3}L \cdot \frac{3}{5} \\
+          \frac{4}{5} N_C \cdot L &= \frac{18}{5} L + 2L = \frac{28}{5} L \\
+          \implies N_C &= \frac{28}{4} = 7\text{ kgw}
+          \end{aligned}$$
+          <p>
+            由梯子的水平合力平衡 $\sum F_x = 0$：
+          </p>
+          $$T = N_C = 7\text{ kgw}$$
+        </div>
+
+        <div class="step-card">
+          <h4>步驟三：解答小題 (2) —— 細繩極限張力 $T = 11\text{ kgw}$</h4>
+          <p>
+            細繩所能承受的最大張力為 $11\text{ kgw}$，當細繩即將斷裂時，張力 $T = 11\text{ kgw}$，此時牆壁正向力 $N_C = T = 11\text{ kgw}$。設此時猴子離 $A$ 點的距離為 $x$：
+          </p>
+          $$\begin{aligned}
+          11 \cdot L \sin 53^\circ &= 12 \cdot \left(\frac{L}{2}\cos 53^\circ\right) + 10 \cdot (x\cos 53^\circ) \\
+          11 \cdot L \cdot \frac{4}{5} &= 6L \cdot \frac{3}{5} + 10x \cdot \frac{3}{5} \\
+          \frac{44}{5} L &= \frac{18}{5} L + 6x \\
+          6x &= \frac{44 - 18}{5} L = \frac{26}{5} L \\
+          \implies x &= \frac{26}{30} L = \frac{13}{15} L
+          \end{aligned}$$
+          <p>
+            因此，猴子最多能攀爬至離底端 $\frac{13}{15}L$ 處，細繩仍不致斷裂。正確選項為 <strong>(B)</strong>。
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let selectedOption = null;
+    const correctAnswer = 'B';
+
+    function selectOption(element, opt) {
+      document.querySelectorAll('.quiz-option').forEach(el => el.classList.remove('selected'));
+      element.classList.add('selected');
+      selectedOption = opt;
+    }
+
+    function checkAnswer() {
+      const feedback = document.getElementById('feedback');
+      if (!selectedOption) {
+        feedback.innerHTML = '<span style="color: var(--accent-yellow);">⚠️ 請先點擊選擇一個選項！</span>';
+        feedback.className = 'quiz-feedback show';
+        return;
+      }
+      if (selectedOption === correctAnswer) {
+        feedback.innerHTML = '🎉 <strong>完全正確！</strong> 對轉軸 A 列力矩消除地面力，再利用水平合力平衡 $T = N_C$，即可流暢求出 $T=7\\text{ kgw}$ 與最大極限距離 $\\frac{13}{15}L$！';
+        feedback.className = 'quiz-feedback show correct';
+        document.getElementById('solution-card').classList.add('show');
+      } else {
+        feedback.innerHTML = '❌ <strong>答案不對喔！</strong> 提示：以底端 A 為支點，注意牆面力臂為 $L\\sin 53^\\circ$，梯重力臂為 $\\frac{L}{2}\\cos 53^\\circ$。算算看 $T=7\\text{ kgw}$ 及極限 $x$ 為何？';
+        feedback.className = 'quiz-feedback show incorrect';
+      }
+    }
+
+    function toggleSolution() {
+      const sol = document.getElementById('solution-card');
+      sol.classList.toggle('show');
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      if (window.renderMathInElement) {
+        renderMathInElement(document.body, {
+          delimiters: [
+            { left: "$$", right: "$$", display: true },
+            { left: "$", right: "$", display: false }
+          ]
+        });
+      }
+    });
+  </script>
+</body>
+</html>

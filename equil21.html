@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>靜力平衡 21：均勻平板小孩行走蹺起臨界分析 | 高中物理靜力學</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+  <link rel="stylesheet" href="shared.css">
+</head>
+<body>
+  <div class="bg-glow"></div>
+  <div class="bg-grid"></div>
+
+  <div class="container">
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+      <div class="nav-links">
+        <a href="index.html" class="nav-btn primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          回目錄
+        </a>
+        <a href="equil20.html" class="nav-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          上一題 (平衡 20)
+        </a>
+        <a href="equil22.html" class="nav-btn">
+          下一題 (平衡 22)
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+      <div class="badge-wrapper">
+        <span class="badge badge-page">講義 靜力學-27</span>
+        <span class="badge badge-exam">轉動平衡臨界點</span>
+        <span class="badge badge-accent">靜力平衡・練習 21</span>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+      <h1 class="main-title">靜力平衡 21：<span class="gradient-text">均勻平板小孩行走蹺起臨界問題</span></h1>
+      <p class="subtitle">支腳脫離臨界正向力 N=0・以支撐點為轉軸列力矩平衡・兩階段位置反推</p>
+    </header>
+
+    <!-- Problem Showcase Card -->
+    <section class="card problem-card">
+      <div class="card-header">
+        <div class="card-icon">📖</div>
+        <div>
+          <h2>題目內容</h2>
+          <span class="card-tag">力矩與轉動平衡經典題</span>
+        </div>
+      </div>
+
+      <div class="problem-body">
+        <p>
+          如圖所示，一長度為 $15\text{ m}$、重量為 $400\text{ N}$ 的均勻平板，水平靜止於相距 $8\text{ m}$ 之兩對稱支柱 $A$、$B$ 上。有一重 $640\text{ N}$ 之小孩從 $A$ 點開始向右走，試求：<br>
+          (1) 此小孩可自 $B$ 點再向外走多遠，平板恰好開始蹺起？<br>
+          (2) 若欲使此小孩能一直安全走至平板最右端端點而平板恰欲蹺起，則支柱 $B$ 應移至距離右端端點多少 $\text{m}$ 處？
+        </p>
+
+        <!-- SVG Diagram -->
+        <div class="diagram-wrapper">
+          <svg viewBox="0 0 760 380" class="physics-svg" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="arrow-blue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#38bdf8"/>
+              </marker>
+              <marker id="arrow-red" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#f43f5e"/>
+              </marker>
+              <pattern id="diag-hatch" width="8" height="8" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse">
+                <line x1="0" y1="0" x2="0" y2="8" stroke="rgba(255,255,255,0.2)" stroke-width="1.2"/>
+              </pattern>
+            </defs>
+
+            <!-- Ground: y = 290 -->
+            <rect x="30" y="290" width="410" height="15" fill="url(#diag-hatch)" stroke="#64748b" stroke-width="1.5"/>
+            <line x1="20" y1="290" x2="450" y2="290" stroke="#94a3b8" stroke-width="2"/>
+
+            <!-- Board: length = 15m -> 360 px (scale 24 px/m).
+                 Center of board is at x = 230.
+                 Left end: 230 - 180 = 50.
+                 Right end: 230 + 180 = 410.
+                 y = 220, thickness = 14.
+            -->
+            <rect x="50" y="220" width="360" height="16" rx="4" fill="rgba(56, 189, 248, 0.25)" stroke="#38bdf8" stroke-width="2"/>
+            <text x="230" y="212" fill="#38bdf8" font-size="12" font-weight="700" text-anchor="middle">均勻平板長 15m (重 400N)</text>
+
+            <!-- Center of Mass G: at x = 230, y = 228 -->
+            <circle cx="230" cy="228" r="4.5" fill="#f43f5e"/>
+            <text x="230" y="248" fill="#f43f5e" font-size="12" font-weight="700" text-anchor="middle">重心 G</text>
+            <line x1="230" y1="228" x2="230" y2="280" stroke="#f43f5e" stroke-width="2.5" marker-end="url(#arrow-red)"/>
+            <text x="240" y="275" fill="#f43f5e" font-size="11" font-weight="700">W=400N</text>
+
+            <!-- Supports A and B: distance = 8m -> 8 * 24 = 192 px.
+                 Symmetric about G(230):
+                 A: 230 - 96 = 134.
+                 B: 230 + 96 = 326.
+            -->
+            <!-- Support A -->
+            <polygon points="134,236 120,290 148,290" fill="rgba(30, 41, 59, 0.8)" stroke="#94a3b8" stroke-width="1.8"/>
+            <circle cx="134" cy="236" r="3.5" fill="#e2e8f0"/>
+            <text x="134" y="315" fill="#e2e8f0" font-size="14" font-weight="800" text-anchor="middle">A</text>
+            <text x="134" y="212" fill="#94a3b8" font-size="11" text-anchor="middle">N_A=0 (臨界)</text>
+
+            <!-- Support B -->
+            <polygon points="326,236 312,290 340,290" fill="rgba(30, 41, 59, 0.8)" stroke="#f59e0b" stroke-width="2"/>
+            <circle cx="326" cy="236" r="4" fill="#f59e0b"/>
+            <text x="326" y="315" fill="#f59e0b" font-size="14" font-weight="800" text-anchor="middle">B (轉軸)</text>
+
+            <!-- Dimensions:
+                 From G to B = 4m (96 px)
+                 From G to A = 4m (96 px)
+            -->
+            <line x1="134" y1="200" x2="326" y2="200" stroke="#64748b" stroke-width="1.2"/>
+            <text x="230" y="195" fill="#cbd5e1" font-size="11" text-anchor="middle">A、B 間距 8m (兩側各 4m)</text>
+
+            <!-- Child walking beyond B: at x = 326 + 60 = 386 px (2.5m = 60 px) -->
+            <!-- Draw stick figure for child -->
+            <g transform="translate(386, 170)">
+              <!-- Head -->
+              <circle cx="0" cy="0" r="9" fill="#fed7aa" stroke="#f97316" stroke-width="1.5"/>
+              <!-- Body -->
+              <line x1="0" y1="9" x2="0" y2="30" stroke="#f97316" stroke-width="2.5"/>
+              <!-- Arms -->
+              <line x1="-8" y1="18" x2="8" y2="18" stroke="#f97316" stroke-width="2"/>
+              <!-- Legs -->
+              <line x1="0" y1="30" x2="-8" y2="50" stroke="#f97316" stroke-width="2"/>
+              <line x1="0" y1="30" x2="8" y2="50" stroke="#f97316" stroke-width="2"/>
+              <!-- Gravity of child -->
+              <line x1="0" y1="35" x2="0" y2="70" stroke="#f43f5e" stroke-width="2.5" marker-end="url(#arrow-red)"/>
+              <text x="12" y="65" fill="#f43f5e" font-size="11" font-weight="700">640N</text>
+            </g>
+            <text x="386" y="155" fill="#f97316" font-size="12" font-weight="700" text-anchor="middle">小孩 640N</text>
+
+            <!-- Dimension x beyond B -->
+            <line x1="326" y1="185" x2="386" y2="185" stroke="#f59e0b" stroke-width="1.5"/>
+            <text x="356" y="178" fill="#f59e0b" font-size="12" font-weight="800" text-anchor="middle">x = 2.5m</text>
+
+            <!-- Right Box: Torque Balance Derivation -->
+            <g transform="translate(450, 20)">
+              <rect x="0" y="0" width="290" height="345" rx="12" fill="rgba(15, 23, 42, 0.75)" stroke="#334155" stroke-width="1.5"/>
+              <text x="145" y="26" fill="#38bdf8" font-size="15" font-weight="700" text-anchor="middle">力矩平衡推導剖析</text>
+
+              <!-- Box 1: Part 1 -->
+              <rect x="15" y="40" width="260" height="135" rx="6" fill="rgba(30, 41, 59, 0.6)" stroke="#475569" stroke-width="1"/>
+              <text x="25" y="62" fill="#38bdf8" font-size="13" font-weight="700">(1) 求向外走極限距離 x：</text>
+              <text x="35" y="85" fill="#cbd5e1" font-size="12">恰蹺起臨界：N_A = 0，以 B 為轉軸</text>
+              <text x="35" y="105" fill="#cbd5e1" font-size="12">逆力矩 (板重) = 順力矩 (小孩)</text>
+              <text x="35" y="128" fill="#38bdf8" font-size="13" font-family="'Fira Code', monospace">400 × 4 = 640 × x</text>
+              <text x="35" y="152" fill="#38bdf8" font-size="14" font-weight="800">⇒ x = 1600 / 640 = 2.5 m</text>
+
+              <!-- Box 2: Part 2 -->
+              <rect x="15" y="190" width="260" height="140" rx="6" fill="rgba(30, 41, 59, 0.6)" stroke="#475569" stroke-width="1"/>
+              <text x="25" y="212" fill="#f59e0b" font-size="13" font-weight="700">(2) 小孩至最右端，求 B 距端點 y：</text>
+              <text x="35" y="235" fill="#cbd5e1" font-size="12">小孩在端點：力臂 = y</text>
+              <text x="35" y="255" fill="#cbd5e1" font-size="12">板重心距端點 7.5m：力臂 = 7.5 - y</text>
+              <text x="35" y="278" fill="#f59e0b" font-size="13" font-family="'Fira Code', monospace">400 × (7.5 - y) = 640 × y</text>
+              <text x="35" y="300" fill="#f59e0b" font-size="13" font-family="'Fira Code', monospace">3000 = 1040 y</text>
+              <text x="35" y="322" fill="#f59e0b" font-size="14" font-weight="800">⇒ y = 3000 / 1040 ≈ 2.88 m</text>
+            </g>
+          </svg>
+        </div>
+
+        <p class="question-prompt">
+          依據力矩平衡推導，兩小題之數值分別為何？
+        </p>
+
+        <!-- Options Container -->
+        <div class="options-container">
+          <div class="option-card" data-option="A">
+            <span class="option-label">A</span>
+            <div class="option-content">
+              <span class="katex-text">(1) $3.5\text{ m}$；(2) $3.3\text{ m}$</span>
+            </div>
+          </div>
+
+          <div class="option-card" data-option="B">
+            <span class="option-label">B</span>
+            <div class="option-content">
+              <span class="katex-text">(1) $3.0\text{ m}$；(2) $3.0\text{ m}$</span>
+            </div>
+          </div>
+
+          <div class="option-card" data-option="C">
+            <span class="option-label">C</span>
+            <div class="option-content">
+              <span class="katex-text">(1) $2.5\text{ m}$；(2) $2.88\text{ m}$</span>
+            </div>
+          </div>
+
+          <div class="option-card" data-option="D">
+            <span class="option-label">D</span>
+            <div class="option-content">
+              <span class="katex-text">(1) $2.0\text{ m}$；(2) $2.5\text{ m}$</span>
+            </div>
+          </div>
+
+          <div class="option-card" data-option="E">
+            <span class="option-label">E</span>
+            <div class="option-content">
+              <span class="katex-text">(1) $1.5\text{ m}$；(2) $2.0\text{ m}$</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Feedback Alert Box -->
+        <div class="feedback-box" id="feedbackBox">
+          <div class="feedback-icon" id="feedbackIcon"></div>
+          <div class="feedback-text" id="feedbackText"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Collapsible Solution Card -->
+    <section class="card solution-card collapsed" id="solutionCard">
+      <div class="card-header toggle-header" id="solutionToggle">
+        <div class="card-icon">💡</div>
+        <div>
+          <h2>核心解析與詳細推導</h2>
+          <span class="card-tag">點擊展開 / 收合完整解析</span>
+        </div>
+        <span class="solution-status">點擊展開完整剖析</span>
+      </div>
+
+      <div class="solution-content">
+        <div class="solution-step">
+          <span class="step-num">幾何與受力背景</span>
+          <h3>均勻平板重心位置與支撐配置</h3>
+          <p>
+            均勻平板長度 $L = 15\text{ m}$，板重 $W_{\text{板}} = 400\text{ N}$。<br>
+            板之重心 $G$ 位於中點，距離左右兩端各為 $7.5\text{ m}$。<br>
+            兩支柱 $A$、$B$ 對稱相距 $8\text{ m}$，因此重心 $G$ 到支柱 $A$ 與支柱 $B$ 的距離均為 $4\text{ m}$。
+          </p>
+        </div>
+
+        <div class="solution-step">
+          <span class="step-num">第 (1) 小題</span>
+          <h3>小孩向右走出 B 點外之極限距離 $x$</h3>
+          <p>
+            當小孩向右越過 $B$ 點時，對 $B$ 點產生順時針力矩。<br>
+            當小孩越走越遠，支柱 $A$ 的正向力逐漸減小；在<strong>恰蹺起的臨界瞬間</strong>，$A$ 支柱脫離接觸：
+            $$N_A = 0$$
+            選取支柱 $B$ 為轉軸，列力矩平衡方程式（逆時針力矩 = 順時針力矩）：
+            $$\tau_{\text{逆}} = \tau_{\text{順}}$$
+            $$W_{\text{板}} \times \overline{GB} = W_{\text{孩}} \times x$$
+            代入已知數據：
+            $$400 \times 4 = 640 \times x \implies 1600 = 640 x$$
+            解得：
+            $$x = \frac{1600}{640} = 2.5\text{ m}$$
+          </p>
+        </div>
+
+        <div class="solution-step">
+          <span class="step-num">第 (2) 小題</span>
+          <h3>小孩行至最右端端點時 B 支柱的新位置 $y$</h3>
+          <p>
+            現在小孩已經站在平板的最右端端點（小孩重 $640\text{ N}$）。<br>
+            設支柱 $B$ 移至距右端端點為 $y$ 處：
+          </p>
+          <ul>
+            <li>小孩相對於支柱 $B$ 的力臂為：$y$。</li>
+            <li>平板重心 $G$ 距離右端端點為 $7.5\text{ m}$，因此相對於支柱 $B$ 的力臂為：$7.5 - y$。</li>
+          </ul>
+          <p>
+            在恰蹺起的臨界狀態，以新支柱 $B$ 為轉軸列力矩平衡：
+            $$400 \times (7.5 - y) = 640 \times y$$
+            展開化簡：
+            $$3000 - 400y = 640y \implies 1040y = 3000$$
+            解得：
+            $$y = \frac{3000}{1040} = \frac{75}{26} \approx 2.88\text{ m}$$
+          </p>
+          <div class="conclusion-box">
+            <strong>結論：</strong> 本題正確答案為 <strong>(C) (1) $2.5\text{ m}$；(2) $2.88\text{ m}$</strong>。
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Navigation Footer -->
+    <footer class="footer-nav">
+      <a href="equil20.html" class="nav-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+        上一題 (平衡 20)
+      </a>
+      <a href="index.html" class="nav-btn primary">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        單元總覽
+      </a>
+      <a href="equil22.html" class="nav-btn">
+        下一題 (平衡 22)
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+    </footer>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // KaTeX Auto-render
+      if (typeof renderMathInElement === 'function') {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ],
+          throwOnError: false
+        });
+      }
+
+      // Quiz Interaction
+      const correctAnswer = "C";
+      const optionCards = document.querySelectorAll(".option-card");
+      const feedbackBox = document.getElementById("feedbackBox");
+      const feedbackIcon = document.getElementById("feedbackIcon");
+      const feedbackText = document.getElementById("feedbackText");
+      const solutionCard = document.getElementById("solutionCard");
+
+      optionCards.forEach(card => {
+        card.addEventListener("click", function() {
+          const selected = this.getAttribute("data-option");
+
+          optionCards.forEach(c => c.classList.remove("selected", "correct", "wrong"));
+          this.classList.add("selected");
+
+          feedbackBox.classList.remove("correct", "wrong");
+          feedbackBox.classList.add("show");
+
+          if (selected === correctAnswer) {
+            this.classList.add("correct");
+            feedbackBox.classList.add("correct");
+            feedbackIcon.innerHTML = "🎉";
+            feedbackText.innerHTML = "<strong>命中真理！完全正確！</strong><br>1. 以 B 為轉軸：$400 \\times 4 = 640 \\times x \\implies x = 2.5\\text{ m}$。<br>2. 小孩在端點：$400(7.5-y) = 640y \\implies 1040y = 3000 \\implies y \\approx 2.88\\text{ m}$！";
+            solutionCard.classList.remove("collapsed");
+            const tag = solutionCard.querySelector(".solution-status");
+            if (tag) tag.textContent = "點擊收合詳解";
+          } else {
+            this.classList.add("wrong");
+            feedbackBox.classList.add("wrong");
+            feedbackIcon.innerHTML = "💡";
+            if (selected === "A") {
+              feedbackText.innerHTML = "<strong>注意平板右端剩餘長度！</strong> B 點距板端是 $7.5 - 4 = 3.5\\text{ m}$，但小孩走到 2.5m 就已經達到蹺起極限囉！";
+            } else {
+              feedbackText.innerHTML = `<strong>選了 (${selected})，再想想看！</strong> 提示：恰蹺起時 A 點支腳正向力 $N_A = 0$，直接以 B 為轉軸列出逆力矩 = 順力矩！`;
+            }
+          }
+
+          if (typeof renderMathInElement === 'function') {
+            renderMathInElement(feedbackText, {
+              delimiters: [
+                {left: '$$', right: '$$', display: true},
+                {left: '$', right: '$', display: false}
+              ],
+              throwOnError: false
+            });
+          }
+        });
+      });
+
+      // Solution toggle
+      const solutionToggle = document.getElementById("solutionToggle");
+      solutionToggle.addEventListener("click", function() {
+        solutionCard.classList.toggle("collapsed");
+        const isCollapsed = solutionCard.classList.contains("collapsed");
+        const statusSpan = solutionToggle.querySelector(".solution-status");
+        if (statusSpan) {
+          statusSpan.textContent = isCollapsed ? "點擊展開完整剖析" : "點擊收合詳解";
+        }
+      });
+    });
+  </script>
+</body>
+</html>

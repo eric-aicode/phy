@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>力矩練習 4：98指考圓輪推上階梯臨界力矩 | 高中物理靜力學</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    .sub-question {
+      background: rgba(30, 41, 59, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    .sub-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #38bdf8;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .option-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 12px;
+      margin-top: 14px;
+    }
+    .option-btn {
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 10px;
+      padding: 14px 16px;
+      color: #e2e8f0;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 0.95rem;
+      text-align: left;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    .option-btn:hover {
+      background: rgba(56, 189, 248, 0.1);
+      border-color: #38bdf8;
+      transform: translateY(-2px);
+    }
+    .option-btn.correct {
+      background: rgba(16, 185, 129, 0.2);
+      border-color: #10b981;
+      color: #a7f3d0;
+    }
+    .option-btn.wrong {
+      background: rgba(239, 68, 68, 0.2);
+      border-color: #ef4444;
+      color: #fca5a5;
+    }
+    .opt-label {
+      font-weight: 800;
+      color: #38bdf8;
+      background: rgba(56, 189, 248, 0.15);
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .callout-box {
+      border-left: 4px solid #38bdf8;
+      background: rgba(56, 189, 248, 0.08);
+      padding: 12px 16px;
+      border-radius: 0 8px 8px 0;
+      margin: 12px 0;
+      font-size: 0.92rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-glow"></div>
+  <div class="bg-grid"></div>
+
+  <div class="container">
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+      <div class="nav-links">
+        <a href="index.html" class="nav-btn primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          回目錄
+        </a>
+        <a href="torque3.html" class="nav-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          上一題 (力矩 3)
+        </a>
+        <a href="torque5.html" class="nav-btn">
+          下一題 (力矩 5)
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+      <div class="badge-wrapper">
+        <span class="badge badge-page">講義 靜力學-22</span>
+        <span class="badge badge-exam">98 指考計算題</span>
+        <span class="badge badge-accent">力矩篇・練習 4</span>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+      <h1 class="main-title">力矩練習 4：<span class="gradient-text">98指考圓輪推上階梯臨界力矩</span></h1>
+      <p class="subtitle">受力圖分析・分力方程式・以階梯接觸點為支點求臨界最小水平外力</p>
+    </header>
+
+    <!-- Problem Showcase Card -->
+    <section class="card problem-card">
+      <div class="card-header">
+        <div class="card-icon">📖</div>
+        <div>
+          <h2>題目內容</h2>
+          <span class="card-tag">98 年大學指考物理計算題</span>
+        </div>
+      </div>
+
+      <div class="problem-body">
+        <p>
+          有一半徑為 <strong>$R$</strong>、重為 <strong>$W$</strong>、材質均勻的光滑輪子，與高 <strong>$h$</strong> 的階梯接觸，靜置於水平地面上。今在輪子中心處施一水平力 <strong>$F$</strong>，使其爬上階梯，若輪子不變形，回答下列問題：
+        </p>
+
+        <!-- Dynamic Wheel & Step SVG Diagram -->
+        <div class="diagram-container" style="text-align: center; margin: 24px 0;">
+          <svg viewBox="0 0 760 360" style="width: 100%; max-width: 740px; background: rgba(15, 23, 42, 0.6); border-radius: 12px; border: 1px solid rgba(255,255,255,0.08);">
+            <defs>
+              <marker id="arr-sky" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#38bdf8"/>
+              </marker>
+              <marker id="arr-rose" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#f43f5e"/>
+              </marker>
+              <marker id="arr-emerald" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#10b981"/>
+              </marker>
+              <marker id="arr-amber" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#fbbf24"/>
+              </marker>
+            </defs>
+
+            <!-- Ground & Step -->
+            <!-- Ground at y = 300 -->
+            <!-- Step at x = 390 to 650, y = 240 (h = 60 px) -->
+            <!-- Wheel center O at (300, 180), R = 120 px -->
+            <!-- Ground contact at (300, 300) -->
+            <!-- Step corner contact: (x - 300)^2 + (240 - 180)^2 = 120^2 -->
+            <!-- (x - 300)^2 + 3600 = 14400 => (x - 300)^2 = 10800 => x - 300 = 103.92 => x ≈ 404 -->
+            <!-- Let's adjust exact geometry: R = 120. Step height h = 40. -->
+            <!-- Center at (280, 180). Ground at y = 300 (R = 120). -->
+            <!-- Step top at y = 300 - 40 = 260. -->
+            <!-- (x - 280)^2 + (260 - 180)^2 = 120^2 => (x - 280)^2 + 6400 = 14400 => (x - 280)^2 = 8000 => x - 280 ≈ 89.44 => x = 369.44 -->
+            
+            <!-- Ground Base -->
+            <rect x="60" y="300" width="310" height="35" fill="rgba(51, 65, 85, 0.4)"/>
+            <line x1="40" y1="300" x2="370" y2="300" stroke="#64748b" stroke-width="3"/>
+            <!-- Hatch marks on ground -->
+            <g stroke="#475569" stroke-width="1.5">
+              <line x1="80" y1="300" x2="70" y2="315"/>
+              <line x1="120" y1="300" x2="110" y2="315"/>
+              <line x1="160" y1="300" x2="150" y2="315"/>
+              <line x1="200" y1="300" x2="190" y2="315"/>
+              <line x1="240" y1="300" x2="230" y2="315"/>
+              <line x1="280" y1="300" x2="270" y2="315"/>
+              <line x1="320" y1="300" x2="310" y2="315"/>
+            </g>
+
+            <!-- Step -->
+            <path d="M 370 300 L 370 250 L 680 250 L 680 335 L 370 335" fill="rgba(71, 85, 105, 0.5)" stroke="#94a3b8" stroke-width="2"/>
+            <line x1="370" y1="250" x2="680" y2="250" stroke="#94a3b8" stroke-width="3"/>
+            <!-- Step height h dimension -->
+            <line x1="640" y1="250" x2="640" y2="300" stroke="#fbbf24" stroke-width="1.5"/>
+            <line x1="635" y1="250" x2="645" y2="250" stroke="#fbbf24" stroke-width="1.5"/>
+            <line x1="635" y1="300" x2="645" y2="300" stroke="#fbbf24" stroke-width="1.5"/>
+            <text x="652" y="278" fill="#fbbf24" font-size="14" font-weight="bold">h</text>
+
+            <!-- Wheel: Center (270, 180), R = 120 -->
+            <!-- Step contact point A: (270 + sqrt(120^2 - (120-50)^2))? If h = 50, y = 250: -->
+            <!-- delta_y = 250 - 180 = 70. delta_x = sqrt(120^2 - 70^2) = sqrt(14400 - 4900) = sqrt(9500) ≈ 97.47 -->
+            <!-- So contact point A is at (270 + 97.5, 250) = (367.5, 250) -->
+            <circle cx="270" cy="180" r="120" fill="rgba(56, 189, 248, 0.08)" stroke="#38bdf8" stroke-width="3"/>
+
+            <!-- Center point O -->
+            <circle cx="270" cy="180" r="5" fill="#f8fafc"/>
+            <text x="250" y="175" fill="#f8fafc" font-size="14" font-weight="bold">O</text>
+
+            <!-- Contact Point A (Step Corner) -->
+            <circle cx="367.5" cy="250" r="6" fill="#fbbf24" stroke="#0f172a" stroke-width="2"/>
+            <text x="380" y="248" fill="#fbbf24" font-size="15" font-weight="bold">A (支點)</text>
+
+            <!-- Geometric Reference Triangle: Center O to A -->
+            <!-- Radius line OA -->
+            <line x1="270" y1="180" x2="367.5" y2="250" stroke="#fbbf24" stroke-width="2" stroke-dasharray="4,4"/>
+            <text x="310" y="205" fill="#fbbf24" font-size="12">R</text>
+
+            <!-- Vertical drop from O to height of A: length = R - h = 70 -->
+            <line x1="270" y1="180" x2="270" y2="250" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="3,3"/>
+            <line x1="270" y1="250" x2="367.5" y2="250" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="3,3"/>
+            
+            <!-- Dimension labels for lever arms -->
+            <!-- Horizontal distance = sqrt(R^2 - (R-h)^2) = sqrt(h(2R-h)) -->
+            <line x1="270" y1="130" x2="367.5" y2="130" stroke="#a78bfa" stroke-width="1.5"/>
+            <line x1="270" y1="125" x2="270" y2="135" stroke="#a78bfa" stroke-width="1.5"/>
+            <line x1="367.5" y1="125" x2="367.5" y2="135" stroke="#a78bfa" stroke-width="1.5"/>
+            <line x1="367.5" y1="130" x2="367.5" y2="250" stroke="#a78bfa" stroke-width="1" stroke-dasharray="2,3"/>
+            <text x="280" y="122" fill="#a78bfa" font-size="11" font-weight="bold">力臂 d_W = √[h(2R-h)]</text>
+
+            <!-- Vertical distance = R - h -->
+            <line x1="165" y1="180" x2="165" y2="250" stroke="#38bdf8" stroke-width="1.5"/>
+            <line x1="160" y1="180" x2="170" y2="180" stroke="#38bdf8" stroke-width="1.5"/>
+            <line x1="160" y1="250" x2="170" y2="250" stroke="#38bdf8" stroke-width="1.5"/>
+            <line x1="165" y1="180" x2="270" y2="180" stroke="#38bdf8" stroke-width="1" stroke-dasharray="2,3"/>
+            <text x="100" y="220" fill="#38bdf8" font-size="11" font-weight="bold">力臂 d_F = R - h</text>
+
+            <!-- FORCES -->
+            <!-- 1. Horizontal force F at center O -->
+            <line x1="270" y1="180" x2="350" y2="180" stroke="#38bdf8" stroke-width="3" marker-end="url(#arr-sky)"/>
+            <text x="355" y="175" fill="#38bdf8" font-size="14" font-weight="bold">F</text>
+
+            <!-- 2. Weight W at center O pointing straight down -->
+            <line x1="270" y1="180" x2="270" y2="260" stroke="#f43f5e" stroke-width="3" marker-end="url(#arr-rose)"/>
+            <text x="278" y="245" fill="#f43f5e" font-size="14" font-weight="bold">W</text>
+
+            <!-- 3. Ground normal force N at (270, 300) pointing up -->
+            <line x1="270" y1="300" x2="270" y2="265" stroke="#10b981" stroke-width="2.5" marker-end="url(#arr-emerald)"/>
+            <text x="278" y="285" fill="#10b981" font-size="13" font-weight="bold">N</text>
+
+            <!-- 4. Step normal force N' at A pointing along AO -->
+            <!-- Vector from A(367.5, 250) towards O(270, 180): dx = -97.5, dy = -70 -->
+            <!-- Normalized: (-0.8125, -0.5833). Length 50 => dx = -40.6, dy = -29.2 -->
+            <line x1="367.5" y1="250" x2="320" y2="216" stroke="#fbbf24" stroke-width="3" marker-end="url(#arr-amber)"/>
+            <text x="345" y="220" fill="#fbbf24" font-size="14" font-weight="bold">N'</text>
+
+            <!-- Angle theta at contact point or center -->
+            <path d="M 335 250 A 30 30 0 0 1 340 230" fill="none" stroke="#e2e8f0" stroke-width="1.5"/>
+            <text x="345" y="242" fill="#e2e8f0" font-size="11">θ</text>
+          </svg>
+        </div>
+
+        <!-- Interactive 3-Part Steps -->
+        <!-- Part 1 -->
+        <div class="sub-question" id="part1">
+          <div class="sub-title">
+            <span class="opt-label">1</span>
+            問題 (1)：尚未脫離地面時，輪子共受到哪些力的作用？
+          </div>
+          <p style="font-size: 0.95rem; color: #cbd5e1;">請選擇完整的受力組合：</p>
+          <div class="option-grid">
+            <button class="option-btn" data-part="1" data-correct="false" data-opt="A">
+              <span class="opt-label">A</span>
+              <span>受 2 個力：外力 $F$ 與重力 $W$</span>
+            </button>
+            <button class="option-btn" data-part="1" data-correct="false" data-opt="B">
+              <span class="opt-label">B</span>
+              <span>受 3 個力：外力 $F$、重力 $W$、階梯支持力 $N'$</span>
+            </button>
+            <button class="option-btn" data-part="1" data-correct="true" data-opt="C">
+              <span class="opt-label">C</span>
+              <span>受 4 個力：外力 $F$、重力 $W$、地面正向力 $N$、階梯角支持力 $N'$</span>
+            </button>
+            <button class="option-btn" data-part="1" data-correct="false" data-opt="D">
+              <span class="opt-label">D</span>
+              <span>受 5 個力：外力 $F$、重力 $W$、地面正向力 $N$、階梯支持力 $N'$ 及地面靜摩擦力 $f$（光滑輪子地面無摩擦）</span>
+            </button>
+          </div>
+          <div class="feedback-msg" id="msg1" style="display:none; margin-top:12px; font-size:0.92rem;"></div>
+        </div>
+
+        <!-- Part 2 -->
+        <div class="sub-question" id="part2">
+          <div class="sub-title">
+            <span class="opt-label">2</span>
+            問題 (2)：若設階梯支持力 $N'$ 與水平夾角為 $\theta$，水平與垂直分力的平衡方程式為何？
+          </div>
+          <div class="callout-box">
+            幾何關係提示：階梯角 $A$ 與圓心 $O$ 連線長為 $R$，垂直高差為 $R-h$。故 $\sin\theta = \frac{R-h}{R}$，$\cos\theta = \frac{\sqrt{h(2R-h)}}{R}$。
+          </div>
+          <div class="option-grid">
+            <button class="option-btn" data-part="2" data-correct="true" data-opt="A">
+              <span class="opt-label">A</span>
+              <span>水平：$N'\cos\theta = F$，垂直：$N + N'\sin\theta = W$</span>
+            </button>
+            <button class="option-btn" data-part="2" data-correct="false" data-opt="B">
+              <span class="opt-label">B</span>
+              <span>水平：$N'\sin\theta = F$，垂直：$N + N'\cos\theta = W$</span>
+            </button>
+            <button class="option-btn" data-part="2" data-correct="false" data-opt="C">
+              <span class="opt-label">C</span>
+              <span>水平：$N' = F$，垂直：$N = W$</span>
+            </button>
+            <button class="option-btn" data-part="2" data-correct="false" data-opt="D">
+              <span class="opt-label">D</span>
+              <span>水平：$N'\cos\theta + F = 0$，垂直：$N'\sin\theta = W + N$</span>
+            </button>
+          </div>
+          <div class="feedback-msg" id="msg2" style="display:none; margin-top:12px; font-size:0.92rem;"></div>
+        </div>
+
+        <!-- Part 3 -->
+        <div class="sub-question" id="part3">
+          <div class="sub-title">
+            <span class="opt-label">3</span>
+            問題 (3)：以接觸點 A 為支點，在圓心處最少需施力多少才能使輪子脫離地面？
+          </div>
+          <p style="font-size: 0.95rem; color: #cbd5e1;">臨界脫離時地面支持力 $N = 0$，力矩平衡條件：</p>
+          <div class="option-grid">
+            <button class="option-btn" data-part="3" data-correct="false" data-opt="A">
+              <span class="opt-label">A</span>
+              <span>$F_{\min} = W \frac{R-h}{\sqrt{h(2R-h)}}$</span>
+            </button>
+            <button class="option-btn" data-part="3" data-correct="true" data-opt="B">
+              <span class="opt-label">B</span>
+              <span>$F_{\min} = W \frac{\sqrt{h(2R-h)}}{R-h}$</span>
+            </button>
+            <button class="option-btn" data-part="3" data-correct="false" data-opt="C">
+              <span class="opt-label">C</span>
+              <span>$F_{\min} = W \frac{h}{R}$</span>
+            </button>
+            <button class="option-btn" data-part="3" data-correct="false" data-opt="D">
+              <span class="opt-label">D</span>
+              <span>$F_{\min} = W \frac{R}{\sqrt{h(2R-h)}}$</span>
+            </button>
+          </div>
+          <div class="feedback-msg" id="msg3" style="display:none; margin-top:12px; font-size:0.92rem;"></div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Collapsible Full Solution Section -->
+    <section class="card solution-card collapsed" id="solutionCard">
+      <div class="card-header clickable" id="solutionToggle">
+        <div class="card-icon">💡</div>
+        <div style="flex: 1;">
+          <h2>98 指考完整標準詳解與物理幾何剖析</h2>
+          <span class="solution-status">點擊展開完整剖析</span>
+        </div>
+        <span class="badge badge-accent">大考中心評分標準</span>
+      </div>
+
+      <div class="solution-body">
+        <!-- 步驟 1 -->
+        <div class="step-card">
+          <div class="step-header">
+            <span class="step-badge">第 (1) 小題</span>
+            <h3>受力分析與力圖繪製</h3>
+          </div>
+          <p>
+            輪子處於剛受水平力 $F$ 但尚未脫離地面的靜態平衡狀態時，輪子受到 <strong>4 個力</strong> 的作用：
+          </p>
+          <ol style="margin-left: 20px; line-height: 1.8;">
+            <li><strong>水平外力 $F$</strong>：作用於輪心 $O$，方向水平向右。</li>
+            <li><strong>重力 $W$</strong>：作用於輪心 $O$（均勻圓輪質心在幾何中心），方向鉛直向下。</li>
+            <li><strong>地面的正向力 $N$</strong>：作用於輪底與地面接觸點，方向鉛直向上。</li>
+            <li><strong>階梯尖端對輪子的正向力 $N'$</strong>：作用於階梯角 $A$，因為光滑接觸，抗力必沿接觸面的法線方向（即通過輪心 $O$ 的連心線 $AO$ 方向），斜向左上方，與水平面夾角為 $\theta$。</li>
+          </ol>
+          <div class="callout-box">
+            <strong>注意：</strong> 題目特別聲明「材質均勻的光滑輪子」，因此地面與階梯接觸面均無摩擦力，切勿多畫靜摩擦力！
+          </div>
+        </div>
+
+        <!-- 步驟 2 -->
+        <div class="step-card">
+          <div class="step-header">
+            <span class="step-badge">第 (2) 小題</span>
+            <h3>列出水平與垂直分力的平衡方程式</h3>
+          </div>
+          <p>
+            根據幾何關係，連接圓心 $O$ 與階梯接觸點 $A$（長度為半徑 $R$）：
+          </p>
+          <ul>
+            <li>階梯高度為 $h$，圓心離地高度為 $R$，故 $O$ 與 $A$ 之鉛直高差為 $R - h$。</li>
+            <li>由直角三角形勾股定理，$O$ 與 $A$ 之水平距離為：
+              $$\Delta x = \sqrt{R^2 - (R - h)^2} = \sqrt{R^2 - (R^2 - 2Rh + h^2)} = \sqrt{2Rh - h^2} = \sqrt{h(2R - h)}$$
+            </li>
+            <li>設連線 $AO$ 與水平夾角為 $\theta$，則：
+              $$\sin\theta = \frac{R - h}{R}, \quad \cos\theta = \frac{\sqrt{h(2R - h)}}{R}$$
+            </li>
+          </ul>
+          <p>因輪子處於靜態平衡，合力為零（$\Sigma F_x = 0$ 且 $\Sigma F_y = 0$）：</p>
+          <ul>
+            <li><strong>水平方向平衡方程式：</strong>
+              $$N' \cos\theta = F \implies N' \cdot \frac{\sqrt{h(2R - h)}}{R} = F$$
+            </li>
+            <li><strong>垂直方向平衡方程式：</strong>
+              $$N + N' \sin\theta = W \implies N + N' \cdot \frac{R - h}{R} = W$$
+            </li>
+          </ul>
+        </div>
+
+        <!-- 步驟 3 -->
+        <div class="step-card">
+          <div class="step-header">
+            <span class="step-badge">第 (3) 小題</span>
+            <h3>選取接觸點 A 為支點，求臨界脫離地面的最小推力</h3>
+          </div>
+          <p>
+            <strong>巧妙選取支點：</strong> 選取階梯接觸點 <strong>A</strong> 為支點。<br>
+            好處是階梯抗力 $N'$ 通過接觸點 $A$，其力臂為 $0$，力矩為 $0$！
+          </p>
+          <p>
+            當水平推力 $F$ 逐漸加大，輪子即將滾上階梯並<strong>剛脫離地面</strong>的臨界瞬間：<br>
+            地面的正向力減小至 <strong>$N = 0$</strong>！
+          </p>
+          <p>計算對支點 $A$ 的力矩：</p>
+          <ul>
+            <li><strong>水平力 $F$ 的力臂：</strong> $A$ 點到力 $F$ 作用線的垂直距離為 $d_F = R - h$。<br>
+              所產生的順時鐘力矩為：
+              $$\tau_F = F \cdot (R - h)$$
+            </li>
+            <li><strong>重力 $W$ 的力臂：</strong> $A$ 點到重力 $W$ 作用線的垂直距離為水平距離 $d_W = \sqrt{h(2R - h)}$。<br>
+              所產生的逆時鐘力矩為：
+              $$\tau_W = W \cdot \sqrt{h(2R - h)}$$
+            </li>
+          </ul>
+          <p>輪子要能翻過階梯脫離地面，外力順時鐘力矩必須大於或等於重力逆時鐘力矩：</p>
+          $$\tau_F \ge \tau_W \implies F(R - h) \ge W\sqrt{h(2R - h)}$$
+          <p>解出外力 $F$：</p>
+          <div style="background: rgba(16, 185, 129, 0.15); border: 1px solid #10b981; border-radius: 8px; padding: 16px; margin: 12px 0; text-align: center;">
+            <span style="font-size: 1.3rem; font-weight: 800; color: #10b981;">
+              $$F_{\min} = W \frac{\sqrt{h(2R - h)}}{R - h} = W \cot\theta$$
+            </span>
+          </div>
+          <p style="font-size: 0.95rem; color: #94a3b8;">
+            <strong>物理直覺檢驗：</strong><br>
+            當 $h \to 0$ 時，$\sqrt{h(2R-h)} \to 0$，$F_{\min} \to 0$（沒有階梯不需要推力）；<br>
+            當 $h \to R$ 時，分母 $R - h \to 0$，$F_{\min} \to \infty$（外力水平通過階梯高度時力臂為零，光靠水平力無法推上等於半徑高的直角階梯），完全符合物理規律！
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Navigation Bar -->
+    <div class="bottom-nav">
+      <a href="torque3.html" class="nav-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+        上一題：87聯考雙質點細桿
+      </a>
+      <a href="index.html" class="nav-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        回課程總目錄
+      </a>
+      <a href="torque5.html" class="nav-btn primary">
+        下一題：任意角度平衡支點
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // KaTeX Rendering
+      if (typeof renderMathInElement === 'function') {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ],
+          throwOnError: false
+        });
+      }
+
+      // Track correct answers for parts
+      const completed = { 1: false, 2: false, 3: false };
+      const solutionCard = document.getElementById("solutionCard");
+
+      // Handle Option Clicks for all parts
+      document.querySelectorAll(".option-btn").forEach(btn => {
+        btn.addEventListener("click", function() {
+          const part = this.getAttribute("data-part");
+          const isCorrect = this.getAttribute("data-correct") === "true";
+          const opt = this.getAttribute("data-opt");
+          const msgDiv = document.getElementById("msg" + part);
+
+          // Reset siblings
+          const siblings = document.querySelectorAll(`.option-btn[data-part="${part}"]`);
+          siblings.forEach(s => s.classList.remove("correct", "wrong"));
+
+          msgDiv.style.display = "block";
+
+          if (isCorrect) {
+            this.classList.add("correct");
+            completed[part] = true;
+            if (part === "1") {
+              msgDiv.innerHTML = "<span style='color:#10b981;'><strong>答對了！</strong> 輪子受水平推力 $F$、重力 $W$、地面正向力 $N$ 與階梯正向力 $N'$，共 4 個力。</span>";
+            } else if (part === "2") {
+              msgDiv.innerHTML = "<span style='color:#10b981;'><strong>太棒了！</strong> 水平向左抗力為 $N'\\cos\\theta = F$，鉛直向上支持力合為 $N + N'\\sin\\theta = W$。</span>";
+            } else if (part === "3") {
+              msgDiv.innerHTML = "<span style='color:#10b981;'><strong>完全正確！</strong> 脫離時 $N=0$，順時鐘力矩 $F(R-h) = W\\sqrt{h(2R-h)}$，解出 $F_{\\min} = W\\frac{\\sqrt{h(2R-h)}}{R-h}$！</span>";
+            }
+          } else {
+            this.classList.add("wrong");
+            if (part === "1") {
+              msgDiv.innerHTML = "<span style='color:#f87171;'><strong>再想想看！</strong> 注意：尚未脫離地面時地面仍有支撐力 $N$；且輪子光滑，接觸面無摩擦力喔！</span>";
+            } else if (part === "2") {
+              msgDiv.innerHTML = "<span style='color:#f87171;'><strong>方向要注意！</strong> $\\theta$ 是與水平夾角，故水平分力是 $\\cos\\theta$，鉛直分力是 $\\sin\\theta$ 喔！</span>";
+            } else if (part === "3") {
+              msgDiv.innerHTML = "<span style='color:#f87171;'><strong>力臂搞混囉！</strong> 水平力 $F$ 的垂直力臂是 $R-h$，重力 $W$ 的水平力臂是 $\\sqrt{h(2R-h)}$ 喔！</span>";
+            }
+          }
+
+          if (typeof renderMathInElement === 'function') {
+            renderMathInElement(msgDiv, {
+              delimiters: [
+                {left: '$$', right: '$$', display: true},
+                {left: '$', right: '$', display: false}
+              ],
+              throwOnError: false
+            });
+          }
+
+          // If all 3 are completed or part 3 is correct, expand solution
+          if (completed[3]) {
+            solutionCard.classList.remove("collapsed");
+            const statusSpan = document.querySelector("#solutionToggle .solution-status");
+            if (statusSpan) statusSpan.textContent = "點擊收合詳解";
+          }
+        });
+      });
+
+      // Solution toggle manual
+      const solutionToggle = document.getElementById("solutionToggle");
+      solutionToggle.addEventListener("click", function() {
+        solutionCard.classList.toggle("collapsed");
+        const isCollapsed = solutionCard.classList.contains("collapsed");
+        const statusSpan = solutionToggle.querySelector(".solution-status");
+        if (statusSpan) {
+          statusSpan.textContent = isCollapsed ? "點擊展開完整剖析" : "點擊收合詳解";
+        }
+      });
+    });
+  </script>
+</body>
+</html>

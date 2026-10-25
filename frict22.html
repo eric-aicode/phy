@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>靜摩擦力 22：【109指考】鑷子夾玻璃小球臨界摩擦係數 | 高中物理靜力學</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+  <link rel="stylesheet" href="shared.css">
+</head>
+<body>
+  <div class="bg-glow"></div>
+  <div class="bg-grid"></div>
+
+  <div class="container">
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+      <div class="nav-links">
+        <a href="index.html" class="nav-btn primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          回目錄
+        </a>
+        <a href="frict21.html" class="nav-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          上一題 (摩擦 21)
+        </a>
+        <a href="frict23.html" class="nav-btn">
+          下一題 (摩擦 23)
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+      <div class="badge-wrapper">
+        <span class="badge badge-page">講義 靜力學-38</span>
+        <span class="badge badge-exam">109 指考大題</span>
+        <span class="badge badge-accent">靜摩擦力・練習 22</span>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+      <h1 class="main-title">靜摩擦力 22：<span class="gradient-text">鑷子夾球受力分析與臨界摩擦</span></h1>
+      <p class="subtitle">【109指考】諾貝爾獎情境・V 字形夾持幾何角度・法向推力與最大靜摩擦力鉛直平衡</p>
+    </header>
+
+    <!-- Main Problem Layout -->
+    <div class="problem-layout">
+      <!-- Left Column: Problem & Visualizer -->
+      <div class="problem-card">
+        <h2 class="section-title">
+          <span class="step-num">1</span>
+          題目情境與物理圖解
+        </h2>
+        <div class="problem-text">
+          <p>
+            獲得 2018 年諾貝爾物理學獎的科學家對雷射領域做出的重要貢獻，包括了光學鑷子在物理學上的應用，本題將探討傳統鑷子的原理：
+          </p>
+          <p>
+            用兩邊長各為 $L$、末端重合成 V 字形的鑷子，去夾半徑為 $R$、質量為 $m$ 的玻璃小球。夾小球時，鑷子在鉛直面上，若每邊對小球施力量值為 $F$，恰可將小球夾起，鑷子與小球的接觸點如圖所示。設重力加速度為 $g$：
+          </p>
+          <ul>
+            <li>(1) 試畫出小球所受各外力的力圖（需標示各外力的名稱）。</li>
+            <li>(2) 計算出鑷子與小球之間的靜摩擦係數 $\mu$ 至少為若干？</li>
+          </ul>
+        </div>
+
+        <!-- SVG Diagram -->
+        <div class="svg-container">
+          <svg viewBox="0 0 540 340" xmlns="http://www.w3.org/2000/svg">
+            <!-- Central Vertical dashed symmetry axis -->
+            <line x1="270" y1="20" x2="270" y2="320" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4 3"/>
+
+            <!-- Tweezers V-shape: vertex at (270, 30) -->
+            <!-- Half angle theta approx 15 deg.
+                 Left arm: from (270, 30) to (210, 260) -> length ~ 238
+                 Right arm: from (270, 30) to (330, 260)
+            -->
+            <line x1="270" y1="30" x2="210" y2="260" stroke="#94a3b8" stroke-width="4" stroke-linecap="round"/>
+            <line x1="270" y1="30" x2="330" y2="260" stroke="#94a3b8" stroke-width="4" stroke-linecap="round"/>
+
+            <!-- Sphere: center on symmetry axis at (270, 230), radius R = 50 -->
+            <circle cx="270" cy="230" r="50" fill="rgba(56, 189, 248, 0.25)" stroke="#38bdf8" stroke-width="2.5"/>
+            <circle cx="270" cy="230" r="4" fill="#fbbf24"/>
+            <text x="275" y="225" fill="#fbbf24" font-size="13">球心</text>
+
+            <!-- Angle theta at top vertex -->
+            <path d="M 260 70 A 40 40 0 0 1 280 70" fill="none" stroke="#facc15" stroke-width="1.5"/>
+            <text x="250" y="85" fill="#facc15" font-size="12">θ</text>
+            <text x="276" y="85" fill="#facc15" font-size="12">θ</text>
+
+            <!-- Contact points at perpendicular normal:
+                 Angle of left normal from sphere center is 15 deg above horizontal (165 deg).
+                 Left contact: cx + R*cos(165) = 270 - 48.3 = 221.7, cy - R*sin(165) = 230 - 12.9 = 217.1
+                 Right contact: cx + 48.3 = 318.3, cy = 217.1
+            -->
+            <circle cx="222" cy="217" r="4.5" fill="#ef4444"/>
+            <circle cx="318" cy="217" r="4.5" fill="#ef4444"/>
+
+            <!-- Normal force F on ball: pointing into center (270, 230) -->
+            <line x1="180" y1="206" x2="220" y2="216.5" stroke="#ef4444" stroke-width="2.5" marker-end="url(#arrow-red-22)"/>
+            <text x="165" y="200" fill="#ef4444" font-size="13" font-weight="bold">F (正向力)</text>
+
+            <line x1="360" y1="206" x2="320" y2="216.5" stroke="#ef4444" stroke-width="2.5" marker-end="url(#arrow-red-22)"/>
+            <text x="365" y="200" fill="#ef4444" font-size="13" font-weight="bold">F (正向力)</text>
+
+            <!-- Friction force fs(max): along the tweezer arm UPWARDS -->
+            <line x1="222" y1="217" x2="236" y2="165" stroke="#00e676" stroke-width="3" marker-end="url(#arrow-green-22)"/>
+            <text x="175" y="160" fill="#00e676" font-size="12" font-weight="bold">fs (靜摩擦力)</text>
+
+            <line x1="318" y1="217" x2="304" y2="165" stroke="#00e676" stroke-width="3" marker-end="url(#arrow-green-22)"/>
+            <text x="320" y="160" fill="#00e676" font-size="12" font-weight="bold">fs (靜摩擦力)</text>
+
+            <!-- Gravity mg: from (270, 230) pointing DOWN -->
+            <line x1="270" y1="230" x2="270" y2="305" stroke="#a855f7" stroke-width="3" marker-end="url(#arrow-purple-22)"/>
+            <text x="278" y="300" fill="#a855f7" font-size="14" font-weight="bold">mg (重力)</text>
+
+            <!-- Dimensions L and R labels -->
+            <text x="220" y="130" fill="#94a3b8" font-size="13">L</text>
+            <text x="315" y="130" fill="#94a3b8" font-size="13">L</text>
+            <line x1="270" y1="230" x2="318" y2="217" stroke="#facc15" stroke-width="1.5" stroke-dasharray="3 2"/>
+            <text x="290" y="222" fill="#facc15" font-size="12">R</text>
+
+            <defs>
+              <marker id="arrow-red-22" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+                <polygon points="0 0, 8 4, 0 8" fill="#ef4444"/>
+              </marker>
+              <marker id="arrow-green-22" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+                <polygon points="0 0, 8 4, 0 8" fill="#00e676"/>
+              </marker>
+              <marker id="arrow-purple-22" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+                <polygon points="0 0, 8 4, 0 8" fill="#a855f7"/>
+              </marker>
+            </defs>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Right Column: Interactive Quiz & Solution -->
+      <div class="interactive-card">
+        <h2 class="section-title">
+          <span class="step-num">2</span>
+          第 (2) 小題：靜摩擦係數 $\mu$ 解析
+        </h2>
+
+        <div class="options-grid" id="options">
+          <button class="option-btn" onclick="checkAnswer('A')">
+            <span class="opt-letter">A</span>
+            <span class="opt-text">$\mu \ge \dfrac{\sqrt{R^2+L^2}\cdot mg}{2FL} + \dfrac{R}{L}$</span>
+          </button>
+          <button class="option-btn" onclick="checkAnswer('B')">
+            <span class="opt-letter">B</span>
+            <span class="opt-text">$\mu \ge \dfrac{mg}{2F}$</span>
+          </button>
+          <button class="option-btn" onclick="checkAnswer('C')">
+            <span class="opt-letter">C</span>
+            <span class="opt-text">$\mu \ge \dfrac{L \cdot mg}{2FR}$</span>
+          </button>
+          <button class="option-btn" onclick="checkAnswer('D')">
+            <span class="opt-letter">D</span>
+            <span class="opt-text">$\mu \ge \dfrac{\sqrt{R^2+L^2}\cdot mg}{FL} - \dfrac{R}{L}$</span>
+          </button>
+        </div>
+
+        <div class="feedback" id="feedback"></div>
+
+        <button class="toggle-btn" id="toggleBtn" onclick="toggleSolution()">
+          📖 查看完整兩小題官方指考詳解
+        </button>
+
+        <div class="solution-content" id="solution">
+          <h3 style="color: #38bdf8; margin-bottom: 0.75rem;">💡 核心物理觀念詳解</h3>
+          
+          <div class="step-box">
+            <strong>(1) 小球受力圖（共受 5 個力）：</strong>
+            <p>
+              <ul>
+                <li><strong>重力 $mg$：</strong>作用於球心，方向鉛直向下。</li>
+                <li><strong>兩側正向力 $F$：</strong>由兩側鑷子臂垂直壓向接觸面，方向指向球心。</li>
+                <li><strong>兩側最大靜摩擦力 $f_s$：</strong>沿鑷子臂切線向上（阻止小球向下掉落）。</li>
+              </ul>
+            </p>
+          </div>
+
+          <div class="step-box">
+            <strong>(2) 幾何角度關係：</strong>
+            <p>
+              設鑷子單邊與鉛直中心線的夾角為 $\theta$。
+              由鑷子頂點、接觸點、球心形成的直角三角形：
+              $$\tan\theta = \frac{R}{L}$$
+              $$\sin\theta = \frac{R}{\sqrt{R^2 + L^2}}, \quad \cos\theta = \frac{L}{\sqrt{R^2 + L^2}}$$
+            </p>
+          </div>
+
+          <div class="step-box">
+            <strong>(3) 鉛直合力平衡方程式：</strong>
+            <p>
+              將所有力投影至鉛直方向：
+              <ul>
+                <li>鉛直向上的分力：兩側靜摩擦力的向上分量 $2 f_s \cos\theta$</li>
+                <li>鉛直向下的分力：小球重力 $mg$ 加上兩側正向力的向下分量 $2 F \sin\theta$</li>
+              </ul>
+              達滑動臨界平衡時：
+              $$2 f_s \cos\theta = mg + 2F\sin\theta$$
+              由於 $f_s \le f_{s,\max} = \mu N = \mu F$，欲恰能夾住：
+              $$2(\mu F)\cos\theta \ge mg + 2F\sin\theta$$
+              兩邊同除以 $2F\cos\theta$：
+              $$\mu \ge \frac{mg}{2F\cos\theta} + \frac{\sin\theta}{\cos\theta}$$
+              代入三角函數 $\cos\theta = \dfrac{L}{\sqrt{R^2+L^2}}$ 與 $\dfrac{\sin\theta}{\cos\theta} = \dfrac{R}{L}$：
+              $$\mu \ge \frac{\sqrt{R^2+L^2}\cdot mg}{2FL} + \frac{R}{L}$$
+              故正確答案為 <strong>(A)</strong>。
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const correctAns = 'A';
+
+    function checkAnswer(chosen) {
+      const fb = document.getElementById('feedback');
+      const btns = document.querySelectorAll('.option-btn');
+      
+      btns.forEach(btn => {
+        btn.classList.remove('selected', 'correct', 'wrong');
+        const letter = btn.querySelector('.opt-letter').textContent;
+        if (letter === chosen) {
+          btn.classList.add('selected');
+          if (chosen === correctAns) {
+            btn.classList.add('correct');
+          } else {
+            btn.classList.add('wrong');
+          }
+        }
+        if (letter === correctAns && chosen !== correctAns) {
+          btn.classList.add('correct');
+        }
+      });
+
+      if (chosen === correctAns) {
+        fb.className = 'feedback correct';
+        fb.innerHTML = '🎉 正確！鉛直力平衡 2μF cosθ = mg + 2F sinθ，解出 μ ≥ [√(R²+L²)·mg / (2FL)] + (R/L)！';
+      } else {
+        fb.className = 'feedback wrong';
+        fb.innerHTML = '❌ 不正確。注意：鑷子正向力 F 朝向球心，具有向下擠壓的分量 2F sinθ，靜摩擦力必須同時支撐重力與此分量！';
+      }
+    }
+
+    function toggleSolution() {
+      const sol = document.getElementById('solution');
+      const btn = document.getElementById('toggleBtn');
+      if (sol.classList.contains('show')) {
+        sol.classList.remove('show');
+        btn.textContent = '📖 查看完整兩小題官方指考詳解';
+      } else {
+        sol.classList.add('show');
+        btn.textContent = '🔼 收起解析';
+        renderMathInElement(sol, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ]
+        });
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+      renderMathInElement(document.body, {
+        delimiters: [
+          {left: '$$', right: '$$', display: true},
+          {left: '$', right: '$', display: false}
+        ]
+      });
+    });
+  </script>
+</body>
+</html>

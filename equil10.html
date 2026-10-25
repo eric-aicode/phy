@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>靜力平衡 10：斜面固定鉛直板擋球受力敘述分析 | 高中物理靜力學</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    .method-toggle-container {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin: 16px auto;
+      max-width: 720px;
+    }
+    .method-btn {
+      flex: 1;
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      background: rgba(30, 41, 59, 0.7);
+      color: #94a3b8;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .method-btn:hover {
+      background: rgba(51, 65, 85, 0.9);
+      color: #f8fafc;
+      border-color: rgba(56, 189, 248, 0.4);
+    }
+    .method-btn.active {
+      background: linear-gradient(135deg, rgba(14, 165, 233, 0.35), rgba(59, 130, 246, 0.35));
+      border-color: #38bdf8;
+      color: #ffffff;
+      box-shadow: 0 0 16px rgba(56, 189, 248, 0.3);
+    }
+    .method-content-panel {
+      display: none;
+    }
+    .method-content-panel.active {
+      display: block;
+      animation: fadeIn 0.3s ease;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-glow"></div>
+  <div class="bg-grid"></div>
+
+  <div class="container">
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+      <div class="nav-links">
+        <a href="index.html" class="nav-btn primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          回目錄
+        </a>
+        <a href="equil9.html" class="nav-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          上一題 (平衡 9)
+        </a>
+        <a href="equil11.html" class="nav-btn">
+          下一題 (平衡 11)
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+      <div class="badge-wrapper">
+        <span class="badge badge-page">講義 靜力學-25</span>
+        <span class="badge badge-exam">觀念概念題</span>
+        <span class="badge badge-accent">靜力平衡・練習 10</span>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+      <h1 class="main-title">靜力平衡 10：<span class="gradient-text">斜面與鉛直板夾球受力分析</span></h1>
+      <p class="subtitle">角度變動與分力極限探討・正向力函數單調性・向量直角三角形與大考防陷阱</p>
+    </header>
+
+    <!-- Problem Showcase Card -->
+    <section class="card problem-card">
+      <div class="card-header">
+        <div class="card-icon">📖</div>
+        <div>
+          <h2>題目內容</h2>
+          <span class="card-tag">多視角受力邏輯題</span>
+        </div>
+      </div>
+
+      <div class="problem-body">
+        <p>
+          小球放在固定的斜面上，如下圖所示，用一鉛直板擋住，所有接觸處均光滑無摩擦，球的重量為 <strong>$W$</strong>，斜面傾角為 <strong>$\alpha$</strong>，則下列敘述<strong>何者錯誤</strong>？
+        </p>
+
+        <!-- Dynamic Incline & Vertical Board SVG Diagram -->
+        <div class="diagram-container" style="text-align: center; margin: 24px 0;">
+          <svg viewBox="0 0 760 350" style="width: 100%; max-width: 740px; background: rgba(15, 23, 42, 0.6); border-radius: 12px; border: 1px solid rgba(255,255,255,0.08);">
+            <defs>
+              <marker id="arr-rose" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#f43f5e"/>
+              </marker>
+              <marker id="arr-sky" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#38bdf8"/>
+              </marker>
+              <marker id="arr-emerald" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#10b981"/>
+              </marker>
+              <marker id="arr-amber" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#fbbf24"/>
+              </marker>
+            </defs>
+
+            <!-- LEFT: Physical System -->
+            <!-- Ground Base at y = 300 -->
+            <line x1="40" y1="300" x2="440" y2="300" stroke="#475569" stroke-width="2"/>
+
+            <!-- Incline: Apex at (160, 300), Angle alpha = 35°. Rises to right (420, 118) -->
+            <polygon points="160,300 420,300 420,118" fill="rgba(51, 65, 85, 0.45)" stroke="#64748b" stroke-width="2"/>
+
+            <!-- Angle alpha arc at (160, 300) -->
+            <path d="M 220 300 A 60 60 0 0 0 210 265" fill="none" stroke="#fbbf24" stroke-width="2"/>
+            <text x="230" y="290" fill="#fbbf24" font-size="14" font-weight="bold">α</text>
+
+            <!-- Vertical Board at x = 160: from y = 300 up to y = 80 -->
+            <rect x="148" y="80" width="12" height="220" fill="rgba(148, 163, 184, 0.4)" stroke="#94a3b8" stroke-width="2"/>
+            <text x="95" y="150" fill="#94a3b8" font-size="13" font-weight="bold">鉛直板</text>
+
+            <!-- Sphere wedged between Vertical Board and Incline -->
+            <circle cx="220" cy="180" r="60" fill="rgba(56, 189, 248, 0.12)" stroke="#38bdf8" stroke-width="3"/>
+            <circle cx="220" cy="180" r="5" fill="#f8fafc"/>
+            <text x="210" y="170" fill="#f8fafc" font-size="14" font-weight="bold">O</text>
+
+            <!-- Force 1: Gravity W straight down -->
+            <line x1="220" y1="180" x2="220" y2="275" stroke="#f43f5e" stroke-width="3.5" marker-end="url(#arr-rose)"/>
+            <text x="230" y="265" fill="#f43f5e" font-size="15" font-weight="bold">W</text>
+
+            <!-- Force 2: Normal Force from Vertical Board N2 (horizontal to right) -->
+            <circle cx="160" cy="180" r="4" fill="#fbbf24"/>
+            <line x1="160" y1="180" x2="290" y2="180" stroke="#fbbf24" stroke-width="3.5" marker-end="url(#arr-amber)"/>
+            <text x="298" y="175" fill="#fbbf24" font-size="14" font-weight="bold">N₂ (擋板支持力)</text>
+
+            <!-- Force 3: Normal Force from Incline N1 (perpendicular to incline, pointing up-left) -->
+            <line x1="254" y1="229" x2="155" y2="87" stroke="#10b981" stroke-width="3.5" marker-end="url(#arr-emerald)"/>
+            <text x="135" y="80" fill="#10b981" font-size="14" font-weight="bold">N₁ (斜面支持力)</text>
+
+            <!-- RIGHT: Closed Vector Right Triangle -->
+            <g transform="translate(470, 30)">
+              <rect x="0" y="0" width="265" height="290" rx="10" fill="rgba(15, 23, 42, 0.85)" stroke="rgba(255,255,255,0.12)"/>
+              <text x="20" y="28" fill="#38bdf8" font-size="13" font-weight="bold">共點力封閉直角三角形</text>
+
+              <!-- Vector 1: W downwards from (80, 55) to (80, 185), length = 130 -->
+              <line x1="80" y1="55" x2="80" y2="178" stroke="#f43f5e" stroke-width="3.5" marker-end="url(#arr-rose)"/>
+              <text x="50" y="125" fill="#f43f5e" font-size="13" font-weight="bold">W</text>
+
+              <!-- Vector 2: N2 horizontal to the right from (80, 185) to (171, 185), length = 130 * tan(35°) ≈ 91 -->
+              <line x1="80" y1="185" x2="163" y2="185" stroke="#fbbf24" stroke-width="3.5" marker-end="url(#arr-amber)"/>
+              <text x="115" y="208" fill="#fbbf24" font-size="13" font-weight="bold">N₂</text>
+
+              <!-- Vector 3: N1 up-left from (171, 185) back to (80, 55) -->
+              <line x1="171" y1="185" x2="86" y2="62" stroke="#10b981" stroke-width="3.5" marker-end="url(#arr-emerald)"/>
+              <text x="140" y="115" fill="#10b981" font-size="13" font-weight="bold">N₁</text>
+
+              <!-- Right angle at (80, 185) -->
+              <path d="M 80 170 L 95 170 L 95 185" fill="none" stroke="#cbd5e1" stroke-width="1.5"/>
+
+              <!-- Angle alpha at top (80, 55) -->
+              <path d="M 80 90 A 35 35 0 0 1 100 80" fill="none" stroke="#fbbf24" stroke-width="1.8"/>
+              <text x="88" y="105" fill="#fbbf24" font-size="12" font-weight="bold">α</text>
+
+              <!-- Derivation Box with Horizontal Fraction Bars -->
+              <rect x="15" y="222" width="235" height="56" rx="6" fill="rgba(30, 41, 59, 0.7)" stroke="rgba(56, 189, 248, 0.25)"/>
+              <g transform="translate(25, 242)">
+                <text x="0" y="0" fill="#10b981" font-size="11" font-weight="bold">N₁ = </text>
+                <text x="40" y="-6" fill="#f43f5e" font-size="11" text-anchor="middle">W</text>
+                <line x1="28" y1="-2" x2="52" y2="-2" stroke="#cbd5e1" stroke-width="1.2"/>
+                <text x="40" y="10" fill="#cbd5e1" font-size="10" text-anchor="middle">cos α</text>
+                <text x="65" y="0" fill="#10b981" font-size="11">&gt; W 恆成立</text>
+              </g>
+              <g transform="translate(25, 268)">
+                <text x="0" y="0" fill="#fbbf24" font-size="11" font-weight="bold">N₂ = W tan α （隨 α 增大）</text>
+              </g>
+            </g>
+          </svg>
+        </div>
+
+        <!-- Options Container -->
+        <div class="options-container" id="optionsContainer">
+          <button class="option-card" data-option="A">
+            <span class="option-letter">A</span>
+            <span class="option-text">斜面對小球的作用力一定大於 $W$</span>
+          </button>
+          <button class="option-card" data-option="B">
+            <span class="option-letter">B</span>
+            <span class="option-text">擋板對小球的作用力一定大於 $W$</span>
+          </button>
+          <button class="option-card" data-option="C">
+            <span class="option-letter">C</span>
+            <span class="option-text">當斜角 $\alpha$ 增加時，斜面對小球的作用力變大</span>
+          </button>
+          <button class="option-card" data-option="D">
+            <span class="option-letter">D</span>
+            <span class="option-text">當斜角 $\alpha$ 增加時，擋板對小球的作用力變大</span>
+          </button>
+          <button class="option-card" data-option="E">
+            <span class="option-letter">E</span>
+            <span class="option-text">斜面對小球的作用力方向必與斜面垂直</span>
+          </button>
+        </div>
+
+        <!-- Real-time Feedback -->
+        <div class="feedback-box" id="feedbackBox">
+          <div class="feedback-icon" id="feedbackIcon"></div>
+          <div class="feedback-text" id="feedbackText"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Collapsible Solution Card -->
+    <section class="card solution-card collapsed" id="solutionCard">
+      <div class="card-header clickable" id="solutionToggle">
+        <div class="card-icon">💡</div>
+        <div style="flex: 1;">
+          <h2>逐項詳細剖析與函數單調性證明</h2>
+          <span class="solution-status">點擊展開完整剖析</span>
+        </div>
+        <span class="badge badge-accent">講義標準詳解</span>
+      </div>
+
+      <div class="solution-body">
+        <!-- Method Toggle Buttons -->
+        <div class="method-toggle-container">
+          <button class="method-btn active" data-method="sol-m1">
+            <span>📐 解法一：向量封閉直角三角形法（幾何邊角秒殺）</span>
+          </button>
+          <button class="method-btn" data-method="sol-m2">
+            <span>🏛️ 解法二：正交分解與極限函數單調性分析</span>
+          </button>
+        </div>
+
+        <!-- Panel 1: Vector Triangle -->
+        <div id="sol-m1" class="method-content-panel active">
+          <div class="step-card">
+            <div class="step-header">
+              <span class="step-badge">幾何邊角</span>
+              <h3>利用封閉直角力三角形秒解五大選項</h3>
+            </div>
+            <p>
+              將小球所受三力首尾相接：鉛直向下重力 $\vec{W}$、水平向右擋板推力 $\vec{N}_2$、向左上方斜面正向力 $\vec{N}_1$。因 $\vec{W} \perp \vec{N}_2$，構成標準直角三角形：
+            </p>
+            <ul>
+              <li><strong>斜邊為 $N_1$</strong>，鄰邊為 $W$，頂角為 $\alpha$：
+                $$\cos\alpha = \frac{W}{N_1} \implies N_1 = \frac{W}{\cos\alpha} = W\sec\alpha$$
+                在 $0^\circ < \alpha < 90^\circ$ 區間內，$\cos\alpha < 1$，故直角三角形的斜邊 $N_1$ 必大於股長 $W$（$N_1 > W$ 恆成立，選項 A 正確）。
+              </li>
+              <li><strong>對邊為 $N_2$</strong>，鄰邊為 $W$：
+                $$\tan\alpha = \frac{N_2}{W} \implies N_2 = W\tan\alpha$$
+                當 $\alpha < 45^\circ$ 時，$\tan\alpha < 1 \implies N_2 < W$；只有在 $\alpha > 45^\circ$ 時才有 $N_2 > W$。故選項 (B) 宣稱「一定大於 $W$」顯屬錯誤！
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Panel 2: Orthogonal & Monotonicity -->
+        <div id="sol-m2" class="method-content-panel">
+          <div class="step-card">
+            <div class="step-header">
+              <span class="step-badge">正交分解</span>
+              <h3>水平鉛直獨立方程與函數單調性</h3>
+            </div>
+            <p>
+              取水平向右為 $+x$，鉛直向上為 $+y$：
+            </p>
+            <ul>
+              <li><strong>鉛直方向平衡：</strong>
+                $$\Sigma F_y = 0 \implies N_1 \cos\alpha = W \implies N_1 = \frac{W}{\cos\alpha}$$
+              </li>
+              <li><strong>水平方向平衡：</strong>
+                $$\Sigma F_x = 0 \implies N_2 = N_1 \sin\alpha = \left(\frac{W}{\cos\alpha}\right)\sin\alpha = W\tan\alpha$$
+              </li>
+            </ul>
+            <p><strong>單調性分析（當傾角 $\alpha$ 增大時）：</strong></p>
+            <ol style="line-height: 1.8; margin-left: 20px;">
+              <li>$\alpha \uparrow \implies \cos\alpha \downarrow \implies N_1 = \frac{W}{\cos\alpha} \uparrow$（斜面正向力必然增大，選項 C 正確）。</li>
+              <li>$\alpha \uparrow \implies \tan\alpha \uparrow \implies N_2 = W\tan\alpha \uparrow$（擋板抗力必然增大，選項 D 正確）。</li>
+              <li>接觸面光滑無摩擦，正向力方向恆沿法線垂直斜面（選項 E 正確）。</li>
+            </ol>
+          </div>
+        </div>
+
+        <div style="background: rgba(16, 185, 129, 0.15); border: 1px solid #10b981; border-radius: 8px; padding: 16px; margin: 12px 0; text-align: center;">
+          <span style="font-size: 1.35rem; font-weight: 800; color: #10b981;">
+            本題要求選出錯誤敘述，正確答案為 (B)
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Navigation Bar -->
+    <div class="bottom-nav">
+      <a href="equil9.html" class="nav-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+        上一題：光滑鉛直壁懸球繩張力
+      </a>
+      <a href="index.html" class="nav-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        回課程總目錄
+      </a>
+      <a href="equil11.html" class="nav-btn primary">
+        下一題：大球面輕繩懸小球支持力
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      if (typeof renderMathInElement === 'function') {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ],
+          throwOnError: false
+        });
+      }
+
+      const correctAnswer = "B";
+      const optionCards = document.querySelectorAll(".option-card");
+      const feedbackBox = document.getElementById("feedbackBox");
+      const feedbackIcon = document.getElementById("feedbackIcon");
+      const feedbackText = document.getElementById("feedbackText");
+      const solutionCard = document.getElementById("solutionCard");
+
+      optionCards.forEach(card => {
+        card.addEventListener("click", function() {
+          const selected = this.getAttribute("data-option");
+
+          optionCards.forEach(c => c.classList.remove("selected", "correct", "wrong"));
+          this.classList.add("selected");
+
+          feedbackBox.classList.remove("correct", "wrong");
+          feedbackBox.classList.add("show");
+
+          if (selected === correctAnswer) {
+            this.classList.add("correct");
+            feedbackBox.classList.add("correct");
+            feedbackIcon.innerHTML = "🎉";
+            feedbackText.innerHTML = "<strong>太優秀了！完全正確！</strong><br>擋板作用力為 $N_2 = W\\tan\\alpha$。<br>當 $\\alpha < 45^\\circ$ 時，$\\tan\\alpha < 1 \\implies N_2 < W$，故 (B) 說『一定大於 W』是錯誤的！";
+            solutionCard.classList.remove("collapsed");
+            const tag = solutionCard.querySelector(".solution-status");
+            if (tag) tag.textContent = "點擊收合詳解";
+          } else {
+            this.classList.add("wrong");
+            feedbackBox.classList.add("wrong");
+            feedbackIcon.innerHTML = "💡";
+            if (selected === "A") {
+              feedbackText.innerHTML = "<strong>(A) 是正確的喔！</strong> $N_1 = \\frac{W}{\\cos\\alpha}$，因為 $\\cos\\alpha < 1$，所以斜面支持力必大於 $W$。請選出『錯誤』的敘述！";
+            } else if (selected === "C" || selected === "D") {
+              feedbackText.innerHTML = "<strong>這是正確敘述！</strong> 角度 $\\alpha$ 越大，斜面越陡峭，球受到的擠壓力必然越大。請選出『錯誤』的敘述！";
+            } else if (selected === "E") {
+              feedbackText.innerHTML = "<strong>(E) 是正向力的基本定義！</strong> 光滑表面無摩擦力，接觸力必垂直於接觸面。請選出『錯誤』的敘述！";
+            } else {
+              feedbackText.innerHTML = `<strong>選了 (${selected})，再想想看！</strong> 題目要選出『錯誤』的選項喔！試著分析擋板作用力 $N_2 = W\\tan\\alpha$ 在 $\\alpha < 45^\\circ$ 時的大小。`;
+            }
+          }
+
+          if (typeof renderMathInElement === 'function') {
+            renderMathInElement(feedbackText, {
+              delimiters: [
+                {left: '$$', right: '$$', display: true},
+                {left: '$', right: '$', display: false}
+              ],
+              throwOnError: false
+            });
+          }
+        });
+      });
+
+      // Solution toggle
+      const solutionToggle = document.getElementById("solutionToggle");
+      solutionToggle.addEventListener("click", function() {
+        solutionCard.classList.toggle("collapsed");
+        const isCollapsed = solutionCard.classList.contains("collapsed");
+        const statusSpan = solutionToggle.querySelector(".solution-status");
+        if (statusSpan) {
+          statusSpan.textContent = isCollapsed ? "點擊展開完整剖析" : "點擊收合詳解";
+        }
+      });
+
+      // Method switcher
+      const methodBtns = document.querySelectorAll(".method-btn");
+      const methodPanels = document.querySelectorAll(".method-content-panel");
+      methodBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+          const target = btn.dataset.method;
+          methodBtns.forEach(b => b.classList.remove("active"));
+          methodPanels.forEach(p => p.classList.remove("active"));
+          btn.classList.add("active");
+          const panel = document.getElementById(target);
+          if (panel) {
+            panel.classList.add("active");
+            if (typeof renderMathInElement === 'function') {
+              renderMathInElement(panel, {
+                delimiters: [
+                  {left: '$$', right: '$$', display: true},
+                  {left: '$', right: '$', display: false}
+                ],
+                throwOnError: false
+              });
+            }
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

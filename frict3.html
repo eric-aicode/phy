@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>靜摩擦力 03：疊合楔形木塊與桌面摩擦力 | 高中物理靜力學</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+  <link rel="stylesheet" href="shared.css">
+</head>
+<body>
+  <div class="bg-glow"></div>
+  <div class="bg-grid"></div>
+
+  <div class="container">
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+      <div class="nav-links">
+        <a href="index.html" class="nav-btn primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          回目錄
+        </a>
+        <a href="frict2.html" class="nav-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          上一題 (摩擦 02)
+        </a>
+        <a href="frict4.html" class="nav-btn">
+          下一題 (摩擦 04)
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+      <div class="badge-wrapper">
+        <span class="badge badge-page">講義 靜力學-34</span>
+        <span class="badge badge-exam">系統整體法・內力與外力</span>
+        <span class="badge badge-accent">靜摩擦力・練習 03</span>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+      <h1 class="main-title">靜摩擦力 03：<span class="gradient-text">疊合楔形木塊與桌面間摩擦力分析</span></h1>
+      <p class="subtitle">系統整體法妙解・內力互相抵消・水平方向無外力則地面摩擦力必為零</p>
+    </header>
+
+    <!-- Main Problem Layout -->
+    <div class="problem-layout">
+      <!-- Left Column: Problem & Visualizer -->
+      <div class="problem-card">
+        <h2 class="section-title">
+          <span class="step-num">1</span>
+          題目情境與物理圖解
+        </h2>
+        <div class="problem-text">
+          <p>
+            水平桌面上有 $A$、$B$ 兩塊楔形木塊堆疊在一起，呈靜止狀態。已知 $A$、$B$ 兩楔形木塊的重量分別為 $w$ 及 $3w$，斜面傾角為 $30^\circ$，如圖所示。則地面（桌面）與木塊 $B$ 間的摩擦力為多少？
+          </p>
+        </div>
+
+        <div class="diagram-container">
+          <div class="diagram-header">
+            <span class="diagram-tag">整體隔離分析模型</span>
+            <span class="diagram-hint">A 與 B 間之作用力為內力，整體水平方向不受任何外力</span>
+          </div>
+          <svg class="interactive-diagram" viewBox="0 0 540 350" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="arrowRed" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+                <path d="M0,0 L0,6 L9,3 z" fill="#ef4444" />
+              </marker>
+              <marker id="arrowGreen" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+                <path d="M0,0 L0,6 L9,3 z" fill="#10b981" />
+              </marker>
+              <linearGradient id="blockB" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.8"/>
+                <stop offset="100%" stop-color="#1e3a8a" stop-opacity="0.9"/>
+              </linearGradient>
+              <linearGradient id="blockA" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.8"/>
+                <stop offset="100%" stop-color="#b45309" stop-opacity="0.9"/>
+              </linearGradient>
+            </defs>
+
+            <!-- Table surface -->
+            <line x1="50" y1="280" x2="490" y2="280" stroke="#64748b" stroke-width="3"/>
+            <!-- Hatch marks -->
+            <path d="M60,280 l-10,12 M90,280 l-10,12 M120,280 l-10,12 M150,280 l-10,12 M180,280 l-10,12 M210,280 l-10,12 M240,280 l-10,12 M270,280 l-10,12 M300,280 l-10,12 M330,280 l-10,12 M360,280 l-10,12 M390,280 l-10,12 M420,280 l-10,12 M450,280 l-10,12 M480,280 l-10,12" stroke="#475569" stroke-width="1.5"/>
+
+            <!-- Combined Rectangular Prism: Left at x=140, Right at x=400, Bottom at y=280, Top at y=130 -->
+            <!-- Block B: Lower-left triangle + base? In the handout: B is lower wedge, A is upper wedge forming rectangle! -->
+            <!-- Let bottom be (150, 280) to (390, 280). Height = 138.5 (since 240 * tan(30°) = 138.5) -->
+            <!-- Incline line from (150, 280) up-right to (390, 141.5) with 30° angle! -->
+            <!-- Block B: (150, 280), (390, 280), (390, 141.5) -> wait, wedge B on left or right? -->
+            <!-- In P.34: B is the tall wedge on the left, A is upper right wedge! -->
+            <!-- Look at P.34: Left vertical wall, right slope. Vertical wall at left x=160, base on bottom y=280. -->
+            <!-- Diagonal line goes from (160, 140) down-right to (380, 280)! Angle with base is 30°! -->
+            <!-- Wait, angle 30° is at bottom right: (380, 280), (160, 280), (160, 153)? -->
+            <!-- Then B is (160, 280) to (380, 280) to (160, 153)! -->
+            <!-- And A is on top: (160, 153) to (380, 280) to (380, 153)? -->
+            <!-- Yes! Top is horizontal, forming a rectangle together! -->
+
+            <!-- Wedge B (lower wedge) -->
+            <polygon points="160,280 380,280 160,153" fill="url(#blockB)" stroke="#93c5fd" stroke-width="2"/>
+            <text x="210" y="240" fill="#ffffff" font-size="18" font-weight="bold">B (3w)</text>
+
+            <!-- Wedge A (upper wedge) -->
+            <polygon points="160,153 380,280 380,153" fill="url(#blockA)" stroke="#fcd34d" stroke-width="2"/>
+            <text x="320" y="200" fill="#ffffff" font-size="18" font-weight="bold">A (w)</text>
+
+            <!-- 30° Angle arc at (380, 280) -->
+            <path d="M330,280 A50,50 0 0,1 337,255" fill="none" stroke="#fcd34d" stroke-width="2"/>
+            <text x="310" y="272" fill="#fcd34d" font-size="13" font-weight="bold">30°</text>
+
+            <!-- System overall forces -->
+            <!-- Total weight downward from (270, 216) -->
+            <line x1="270" y1="216" x2="270" y2="310" stroke="#ef4444" stroke-width="3.5" marker-end="url(#arrowRed)"/>
+            <text x="280" y="305" fill="#ef4444" font-size="14" font-weight="bold">4w (總重)</text>
+
+            <!-- Ground Normal N upward from (270, 280) -->
+            <line x1="270" y1="280" x2="270" y2="100" stroke="#10b981" stroke-width="3" marker-end="url(#arrowGreen)"/>
+            <text x="280" y="115" fill="#10b981" font-size="14" font-weight="bold">N = 4w</text>
+
+            <!-- Horizontal friction indicator -->
+            <text x="160" y="325" fill="#38bdf8" font-size="15" font-weight="bold">水平合力 ΣFx = 0  ⟹  地面摩擦力 f = 0</text>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Right Column: Interactive Quiz -->
+      <div class="quiz-card">
+        <h2 class="section-title">
+          <span class="step-num">2</span>
+          自我檢測與觀念選擇
+        </h2>
+        
+        <div class="question-box">
+          <p class="question-stem">
+            由系統整體平衡條件（$\sum F_x = 0$），水平桌面與木塊 $B$ 之間的摩擦力大小為多少？
+          </p>
+
+          <div class="options-list">
+            <label class="option-item" onclick="selectOption(0)">
+              <input type="radio" name="opt" value="0">
+              <span class="opt-letter">A</span>
+              <span class="opt-content">$\dfrac{\sqrt{3}}{2}w$</span>
+            </label>
+            <label class="option-item" onclick="selectOption(1)">
+              <input type="radio" name="opt" value="1">
+              <span class="opt-letter">B</span>
+              <span class="opt-content">$4w$</span>
+            </label>
+            <label class="option-item" onclick="selectOption(2)">
+              <input type="radio" name="opt" value="2">
+              <span class="opt-letter">C</span>
+              <span class="opt-content">$2\sqrt{3}w$</span>
+            </label>
+            <label class="option-item" onclick="selectOption(3)">
+              <input type="radio" name="opt" value="3">
+              <span class="opt-letter">D</span>
+              <span class="opt-content">$2w$</span>
+            </label>
+            <label class="option-item" onclick="selectOption(4)">
+              <input type="radio" name="opt" value="4">
+              <span class="opt-letter">E</span>
+              <span class="opt-content">$0$</span>
+            </label>
+          </div>
+
+          <div class="quiz-actions">
+            <button class="btn btn-primary" onclick="checkAnswer()">確認答案</button>
+            <button class="btn btn-secondary" onclick="toggleSolution()">查看完整詳解</button>
+          </div>
+
+          <div id="feedback" class="feedback-box"></div>
+        </div>
+
+        <!-- Detailed Solution (Collapsible) -->
+        <div id="solutionBox" class="solution-card">
+          <h3 class="solution-title">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            詳盡解析與物理思維
+          </h3>
+          <div class="solution-content">
+            <div class="step-card">
+              <h4>步驟一：採用「系統整體法」解題</h4>
+              <p>
+                將木塊 $A$ 與木塊 $B$ 視為一體（即系統 $(A+B)$）：
+              </p>
+              <ul>
+                <li>整體系統受到鉛直向下的總重力：$W_{\text{總}} = w + 3w = 4w$。</li>
+                <li>水平地面對系統提供鉛直向上的正向力：$N = 4w$。</li>
+                <li>檢視水平方向：整個系統<strong>沒有受到任何水平方向的外力作用</strong>！</li>
+              </ul>
+            </div>
+
+            <div class="step-card">
+              <h4>步驟二：由水平靜力平衡條件求解</h4>
+              <p>
+                因為系統整體保持靜止，由牛頓第一運動定律（$\sum F_x = 0$）：
+              </p>
+              $$\sum F_x = 0 \implies f_{\text{地}} = 0$$
+              <p>
+                因此，地面與木塊 $B$ 之間完全<strong>不需要提供任何靜摩擦力</strong>，摩擦力大小為 $0$。
+              </p>
+            </div>
+
+            <div class="step-card">
+              <h4>步驟三：常見迷思——斜面上的力會傳到地面嗎？</h4>
+              <p>
+                許多同學會嘗試把 $A$ 物體沿斜面的下滑趨勢分解出水平分量，誤以為這個水平分量會推動 $B$，從而推論地面需要摩擦力來平衡它。
+              </p>
+              <p>
+                <strong>正確理解：</strong><br>
+                $A$ 對 $B$ 的正向力與摩擦力，和 $B$ 對 $A$ 的正向力與摩擦力，屬於作用力與反作用力（<strong>內力</strong>）。在以 $(A+B)$ 為整體的系統中，內力完全抵消。只要整體在水平方向沒有外力，地面摩擦力必定為零！
+              </p>
+            </div>
+
+            <div class="highlight-summary">
+              <strong>名師核心點撥：</strong><br>
+              「求地面摩擦力，先看整體外力！」<br>
+              無論內部物體如何堆疊傾斜，只要整體處於靜止且無水平外力推拉，地面摩擦力絕對為 $0$！正確答案為 <strong>(E)</strong>。
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const correctOpt = 4;
+
+    function selectOption(idx) {
+      const items = document.querySelectorAll('.option-item');
+      items.forEach((item, i) => {
+        const radio = item.querySelector('input');
+        if (i === idx) {
+          item.classList.add('selected');
+          radio.checked = true;
+        } else {
+          item.classList.remove('selected');
+          radio.checked = false;
+        }
+      });
+    }
+
+    function checkAnswer() {
+      const selected = document.querySelector('input[name="opt"]:checked');
+      const feedback = document.getElementById('feedback');
+      if (!selected) {
+        feedback.innerHTML = '<span style="color:#f59e0b;">請先點選一個選項！</span>';
+        return;
+      }
+      const val = parseInt(selected.value);
+      if (val === correctOpt) {
+        feedback.innerHTML = '<span style="color:#10b981; font-weight:bold;">🎉 答對了！整體水平方向不受外力，地面摩擦力必為 0 (E)！</span>';
+      } else {
+        feedback.innerHTML = '<span style="color:#ef4444; font-weight:bold;">❌ 觀念陷阱！A 與 B 之間的推力屬於內力，請用系統整體法看水平外力！</span>';
+      }
+    }
+
+    function toggleSolution() {
+      const sol = document.getElementById('solutionBox');
+      sol.classList.toggle('show');
+      if (sol.classList.contains('show')) {
+        renderMathInElement(sol, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ],
+          throwOnError: false
+        });
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderMathInElement(document.body, {
+        delimiters: [
+          {left: '$$', right: '$$', display: true},
+          {left: '$', right: '$', display: false}
+        ],
+        throwOnError: false
+      });
+    });
+  </script>
+</body>
+</html>

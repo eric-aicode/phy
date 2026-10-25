@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>靜力平衡 9：光滑鉛直壁懸球繩張力公式推導 | 高中物理靜力學</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+  <link rel="stylesheet" href="shared.css">
+</head>
+<body>
+  <div class="bg-glow"></div>
+  <div class="bg-grid"></div>
+
+  <div class="container">
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+      <div class="nav-links">
+        <a href="index.html" class="nav-btn primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          回目錄
+        </a>
+        <a href="equil8.html" class="nav-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          上一題 (平衡 8)
+        </a>
+        <a href="equil10.html" class="nav-btn">
+          下一題 (平衡 10)
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+      <div class="badge-wrapper">
+        <span class="badge badge-page">講義 靜力學-25</span>
+        <span class="badge badge-exam">牆面懸球經典</span>
+        <span class="badge badge-accent">靜力平衡・練習 9</span>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+      <h1 class="main-title">靜力平衡 9：<span class="gradient-text">光滑鉛直壁懸球繩張力</span></h1>
+      <p class="subtitle">三力共點平衡條件・光滑牆面無摩擦正向力・直角封閉三角形推導</p>
+    </header>
+
+    <!-- Problem Showcase Card -->
+    <section class="card problem-card">
+      <div class="card-header">
+        <div class="card-icon">📖</div>
+        <div>
+          <h2>題目內容</h2>
+          <span class="card-tag">聯考與段考經典題型</span>
+        </div>
+      </div>
+
+      <div class="problem-body">
+        <p>
+          如下圖所示，物體（圓球）的重量是 <strong>$W$</strong>，以輕繩懸於光滑的鉛直壁上。已知繩與鉛直壁的夾角是 <strong>$\theta$</strong>，則繩之張力量值為？
+        </p>
+
+        <!-- Dynamic Wall-hanging Ball SVG Diagram -->
+        <div class="diagram-container" style="text-align: center; margin: 24px 0;">
+          <svg viewBox="0 0 760 350" style="width: 100%; max-width: 740px; background: rgba(15, 23, 42, 0.6); border-radius: 12px; border: 1px solid rgba(255,255,255,0.08);">
+            <defs>
+              <marker id="arr-rose" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#f43f5e"/>
+              </marker>
+              <marker id="arr-sky" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#38bdf8"/>
+              </marker>
+              <marker id="arr-emerald" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#10b981"/>
+              </marker>
+            </defs>
+
+            <!-- Vertical Wall on Right side: x = 500 -->
+            <rect x="500" y="30" width="40" height="290" fill="rgba(51, 65, 85, 0.4)"/>
+            <line x1="500" y1="20" x2="500" y2="330" stroke="#94a3b8" stroke-width="3"/>
+            <!-- Hatch marks on Wall (right of x = 500) -->
+            <g stroke="#475569" stroke-width="1.5">
+              <line x1="500" y1="40" x2="520" y2="25"/>
+              <line x1="500" y1="80" x2="520" y2="65"/>
+              <line x1="500" y1="120" x2="520" y2="105"/>
+              <line x1="500" y1="160" x2="520" y2="145"/>
+              <line x1="500" y1="200" x2="520" y2="185"/>
+              <line x1="500" y1="240" x2="520" y2="225"/>
+              <line x1="500" y1="280" x2="520" y2="265"/>
+              <line x1="500" y1="320" x2="520" y2="305"/>
+            </g>
+            <text x="510" y="342" fill="#64748b" font-size="12">光滑鉛直壁</text>
+
+            <!-- Sphere wedged against wall: Radius R = 70 px. Contact with wall at x = 500. -->
+            <!-- Center of sphere at (500 - 70, 210) = (430, 210) -->
+            <circle cx="430" cy="210" r="70" fill="rgba(56, 189, 248, 0.12)" stroke="#38bdf8" stroke-width="3"/>
+
+            <!-- Wall pin / String anchor on wall at (500, 50) -->
+            <circle cx="500" cy="50" r="5" fill="#f8fafc"/>
+            <text x="515" y="55" fill="#f8fafc" font-size="14" font-weight="bold">釘點 A</text>
+
+            <!-- String from (500, 50) to Sphere: -->
+            <!-- String line of action passes through center (430, 210)! -->
+            <!-- dx = 430 - 500 = -70. dy = 210 - 50 = 160. -->
+            <!-- Angle with vertical: tan(theta) = 70 / 160 = 0.4375 => theta ≈ 23.6° -->
+            <!-- String line -->
+            <line x1="500" y1="50" x2="430" y2="210" stroke="#f8fafc" stroke-width="2.5"/>
+
+            <!-- Angle theta indicator at Wall Pin (500, 50) -->
+            <line x1="500" y1="50" x2="500" y2="130" stroke="#64748b" stroke-width="1.5" stroke-dasharray="3,3"/>
+            <path d="M 500 100 A 50 50 0 0 1 478 95" fill="none" stroke="#fbbf24" stroke-width="2"/>
+            <text x="475" y="115" fill="#fbbf24" font-size="14" font-weight="bold">θ</text>
+
+            <!-- Center point O -->
+            <circle cx="430" cy="210" r="5" fill="#fbbf24"/>
+            <text x="415" y="200" fill="#fbbf24" font-size="14" font-weight="bold">O</text>
+
+            <!-- Tension Vector T along string from Center (430, 210) towards (500, 50) -->
+            <line x1="430" y1="210" x2="472" y2="114" stroke="#38bdf8" stroke-width="3.5" marker-end="url(#arr-sky)"/>
+            <text x="480" y="145" fill="#38bdf8" font-size="14" font-weight="bold">T (繩張力)</text>
+
+            <!-- Gravity Vector W from Center (430, 210) straight down -->
+            <line x1="430" y1="210" x2="430" y2="305" stroke="#f43f5e" stroke-width="3.5" marker-end="url(#arr-rose)"/>
+            <text x="440" y="295" fill="#f43f5e" font-size="15" font-weight="bold">W (重力)</text>
+
+            <!-- Normal Force N from Wall contact (500, 210) horizontal to left -->
+            <circle cx="500" cy="210" r="4" fill="#10b981"/>
+            <line x1="500" y1="210" x2="350" y2="210" stroke="#10b981" stroke-width="3" marker-end="url(#arr-emerald)"/>
+            <text x="340" y="200" fill="#10b981" font-size="14" font-weight="bold">N (牆正向力)</text>
+
+            <!-- Right Vector Triangle Panel on Left Side -->
+            <g transform="translate(60, 60)">
+              <rect x="0" y="0" width="220" height="220" rx="8" fill="rgba(15, 23, 42, 0.75)" stroke="rgba(255,255,255,0.1)"/>
+              <text x="15" y="25" fill="#38bdf8" font-size="13" font-weight="bold">三力平衡封閉直角三角形</text>
+
+              <!-- Vector Right Triangle: W (down), N (horizontal left), T (hypotenuse back up-right) -->
+              <!-- Top vertex at (160, 50) -->
+              <!-- Bottom vertex at (160, 160) -> vector W downward -->
+              <line x1="160" y1="50" x2="160" y2="160" stroke="#f43f5e" stroke-width="3" marker-end="url(#arr-rose)"/>
+              <text x="168" y="110" fill="#f43f5e" font-size="13" font-weight="bold">W</text>
+
+              <!-- Horizontal vector N pointing left from (160, 160) to (80, 160) -->
+              <line x1="160" y1="160" x2="80" y2="160" stroke="#10b981" stroke-width="3" marker-end="url(#arr-emerald)"/>
+              <text x="115" y="180" fill="#10b981" font-size="13" font-weight="bold">N</text>
+
+              <!-- Hypotenuse T from (80, 160) to (160, 50) -->
+              <line x1="80" y1="160" x2="160" y2="50" stroke="#38bdf8" stroke-width="3" marker-end="url(#arr-sky)"/>
+              <text x="100" y="95" fill="#38bdf8" font-size="13" font-weight="bold">T</text>
+
+              <!-- Angle theta at top vertex between W and T -->
+              <path d="M 160 85 A 35 35 0 0 1 140 76" fill="none" stroke="#fbbf24" stroke-width="1.8"/>
+              <text x="142" y="96" fill="#fbbf24" font-size="12" font-weight="bold">θ</text>
+
+              <text x="15" y="205" fill="#10b981" font-size="13" font-weight="bold">cosθ = W / T  ➔  T = W secθ</text>
+            </g>
+          </svg>
+        </div>
+
+        <!-- Options Container -->
+        <div class="options-container" id="optionsContainer">
+          <button class="option-card" data-option="A">
+            <span class="option-letter">A</span>
+            <span class="option-text">$W\sin\theta$</span>
+          </button>
+          <button class="option-card" data-option="B">
+            <span class="option-letter">B</span>
+            <span class="option-text">$W\cos\theta$</span>
+          </button>
+          <button class="option-card" data-option="C">
+            <span class="option-letter">C</span>
+            <span class="option-text">$W\sec\theta$（即 $\dfrac{W}{\cos\theta}$）</span>
+          </button>
+          <button class="option-card" data-option="D">
+            <span class="option-letter">D</span>
+            <span class="option-text">$W\csc\theta$</span>
+          </button>
+        </div>
+
+        <!-- Real-time Feedback -->
+        <div class="feedback-box" id="feedbackBox">
+          <div class="feedback-icon" id="feedbackIcon"></div>
+          <div class="feedback-text" id="feedbackText"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Collapsible Solution Card -->
+    <section class="card solution-card collapsed" id="solutionCard">
+      <div class="card-header clickable" id="solutionToggle">
+        <div class="card-icon">💡</div>
+        <div style="flex: 1;">
+          <h2>詳細物理推導與三角函數定義解析</h2>
+          <span class="solution-status">點擊展開完整剖析</span>
+        </div>
+        <span class="badge badge-accent">講義標準詳解</span>
+      </div>
+
+      <div class="solution-body">
+        <!-- 步驟 1 -->
+        <div class="step-card">
+          <div class="step-header">
+            <span class="step-badge">受力分析</span>
+            <h3>共點力受力圖與光滑牆面特徵</h3>
+          </div>
+          <p>
+            小球處於靜止平衡狀態，共受到三個力的作用：
+          </p>
+          <ul>
+            <li><strong>重力 $W$：</strong> 作用於球心，方向鉛直向下。</li>
+            <li><strong>牆面正向力 $N$：</strong> 因鉛直牆面光滑無摩擦力，牆面作用力完全垂直於牆面，方向水平向左，作用線通過球心。</li>
+            <li><strong>輕繩張力 $T$：</strong> 沿繩子斜向右上方拉，作用線亦必通過球心（滿足三力平衡共點力定理）。</li>
+          </ul>
+        </div>
+
+        <!-- 步驟 2 -->
+        <div class="step-card">
+          <div class="step-header">
+            <span class="step-badge">推導方法</span>
+            <h3>正交分解法 vs 封閉直角三角形法</h3>
+          </div>
+          <p>
+            <strong>方法一：正交分解法</strong>
+          </p>
+          <p>
+            繩子與鉛直方向夾角為 $\theta$，將繩張力 $T$ 分解為水平與鉛直分量：
+          </p>
+          <ul>
+            <li><strong>鉛直方向平衡：</strong>
+              $$\Sigma F_y = 0 \implies T \cos\theta = W \implies T = \frac{W}{\cos\theta} = W \sec\theta$$
+            </li>
+            <li><strong>水平方向平衡：</strong>
+              $$\Sigma F_x = 0 \implies T \sin\theta = N \implies N = W \tan\theta$$
+            </li>
+          </ul>
+          <p>
+            <strong>方法二：封閉直角向量三角形法</strong>
+          </p>
+          <p>
+            三力平衡必構成首尾相連的封閉三角形。因為重力 $W$（鉛直）與正向力 $N$（水平）互相垂直，故構成<strong>以 $T$ 為斜邊的直角三角形</strong>：
+          </p>
+          $$\cos\theta = \frac{\text{鄰邊}}{\text{斜邊}} = \frac{W}{T} \implies T = \frac{W}{\cos\theta} = W \sec\theta$$
+          <div style="background: rgba(16, 185, 129, 0.15); border: 1px solid #10b981; border-radius: 8px; padding: 16px; margin: 12px 0; text-align: center;">
+            <span style="font-size: 1.35rem; font-weight: 800; color: #10b981;">
+              繩之張力 $T = W \sec\theta = \dfrac{W}{\cos\theta}$
+            </span>
+          </div>
+          <p>故正確答案為 <strong>(C)</strong>。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Navigation Bar -->
+    <div class="bottom-nav">
+      <a href="equil8.html" class="nav-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+        上一題：88聯考對摺細繩拉開
+      </a>
+      <a href="index.html" class="nav-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        回課程總目錄
+      </a>
+      <a href="equil10.html" class="nav-btn primary">
+        下一題：斜面固定鉛直板擋球
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // KaTeX Rendering
+      if (typeof renderMathInElement === 'function') {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ],
+          throwOnError: false
+        });
+      }
+
+      const correctAnswer = "C";
+      const optionCards = document.querySelectorAll(".option-card");
+      const feedbackBox = document.getElementById("feedbackBox");
+      const feedbackIcon = document.getElementById("feedbackIcon");
+      const feedbackText = document.getElementById("feedbackText");
+      const solutionCard = document.getElementById("solutionCard");
+
+      optionCards.forEach(card => {
+        card.addEventListener("click", function() {
+          const selected = this.getAttribute("data-option");
+
+          optionCards.forEach(c => c.classList.remove("selected", "correct", "wrong"));
+          this.classList.add("selected");
+
+          feedbackBox.classList.remove("correct", "wrong");
+          feedbackBox.classList.add("show");
+
+          if (selected === correctAnswer) {
+            this.classList.add("correct");
+            feedbackBox.classList.add("correct");
+            feedbackIcon.innerHTML = "🎉";
+            feedbackText.innerHTML = "<strong>太優秀了！完全正確！</strong><br>鉛直方向只有繩張力向上分力平衡重力：$T\\cos\\theta = W$，故張力必為 $T = \\frac{W}{\\cos\\theta} = W\\sec\\theta$！";
+            solutionCard.classList.remove("collapsed");
+            const tag = solutionCard.querySelector(".solution-status");
+            if (tag) tag.textContent = "點擊收合詳解";
+          } else {
+            this.classList.add("wrong");
+            feedbackBox.classList.add("wrong");
+            feedbackIcon.innerHTML = "💡";
+            if (selected === "B") {
+              feedbackText.innerHTML = "<strong>小心乘除反了！</strong> 是 $T\\cos\\theta = W$，移項後張力是除以 $\\cos\\theta$，不是乘上 $\\cos\\theta$ 喔（斜邊 $T$ 必然大於鄰邊 $W$）！";
+            } else if (selected === "A") {
+              feedbackText.innerHTML = "<strong>看錯三角函數囉！</strong> 夾角 $\\theta$ 是與鉛直方向夾角，鉛直分力是 $\\cos\\theta$，水平分力才是 $\\sin\\theta$ 喔！";
+            } else {
+              feedbackText.innerHTML = `<strong>選了 (${selected})，再想想看！</strong> 提示：鉛直方向平衡方程式為 $T\\cos\\theta = W$，試著解出 $T$！`;
+            }
+          }
+
+          if (typeof renderMathInElement === 'function') {
+            renderMathInElement(feedbackText, {
+              delimiters: [
+                {left: '$$', right: '$$', display: true},
+                {left: '$', right: '$', display: false}
+              ],
+              throwOnError: false
+            });
+          }
+        });
+      });
+
+      // Solution toggle
+      const solutionToggle = document.getElementById("solutionToggle");
+      solutionToggle.addEventListener("click", function() {
+        solutionCard.classList.toggle("collapsed");
+        const isCollapsed = solutionCard.classList.contains("collapsed");
+        const statusSpan = solutionToggle.querySelector(".solution-status");
+        if (statusSpan) {
+          statusSpan.textContent = isCollapsed ? "點擊展開完整剖析" : "點擊收合詳解";
+        }
+      });
+    });
+  </script>
+</body>
+</html>

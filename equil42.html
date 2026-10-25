@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>靜力平衡 42：均勻木棒斜置光滑半球碗之邊緣力矩 | 高中物理靜力學</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+  <link rel="stylesheet" href="shared.css">
+</head>
+<body>
+  <div class="bg-glow"></div>
+  <div class="bg-grid"></div>
+
+  <div class="container">
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+      <div class="nav-links">
+        <a href="index.html" class="nav-btn primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          回目錄
+        </a>
+        <a href="equil41.html" class="nav-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          上一題 (平衡 41)
+        </a>
+        <a href="equil43.html" class="nav-btn">
+          下一題 (平衡 43)
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+      <div class="badge-wrapper">
+        <span class="badge badge-page">講義 靜力學-31</span>
+        <span class="badge badge-exam">圓周弦長力臂幾何</span>
+        <span class="badge badge-accent">靜力平衡・練習 42</span>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+      <h1 class="main-title">靜力平衡 42：<span class="gradient-text">均勻木棒斜置光滑半球碗之邊緣力矩</span></h1>
+      <p class="subtitle">直徑圓周角直角性質・弦長 2R cos θ・以碗內接觸點為轉軸消去角度求解</p>
+    </header>
+
+    <!-- Main Problem Layout -->
+    <div class="problem-layout">
+      <!-- Left Column: Problem & Visualizer -->
+      <div class="problem-card">
+        <h2 class="section-title">
+          <span class="step-num">1</span>
+          題目情境與物理圖解
+        </h2>
+        <div class="problem-text">
+          <p>
+            如圖所示，長為 $\ell$、重量為 $W$ 之均勻且光滑木棒，靜止斜放在一半徑為 $R$ 之半球形光滑碗內而成平衡，且滿足幾何條件 $R < \frac{\ell}{2} < 2R$。
+          </p>
+          <p>
+            若 $\theta$ 角為平衡時木棒與水平面所成之夾角，而 $P$ 為平衡時<strong>碗邊緣對木棒所施之作用力</strong>，則作用力 $P$ 之量值為何？
+          </p>
+        </div>
+
+        <div class="interactive-container">
+          <div style="font-size: 0.88rem; color: var(--text-dim); margin-bottom: 8px; display: flex; justify-content: space-between;">
+            <span>📐 半球碗直徑幾何與轉軸受力圖解</span>
+            <span style="color: var(--accent-cyan);">弦長 AB = 2R cos θ；碗邊作用力 P 垂直於木棒</span>
+          </div>
+          <svg viewBox="0 0 540 370" class="diagram-svg" style="background: rgba(15, 23, 42, 0.7); border-radius: 8px;">
+            <defs>
+              <marker id="arr-c" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#38bdf8"/>
+              </marker>
+              <marker id="arr-g" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#00e676"/>
+              </marker>
+              <marker id="arr-r" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#f43f5e"/>
+              </marker>
+              <marker id="arr-y" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#fbbf24"/>
+              </marker>
+            </defs>
+
+            <!-- Table Top / Ground -->
+            <line x1="40" y1="120" x2="160" y2="120" stroke="#64748b" stroke-width="4"/>
+            <line x1="400" y1="120" x2="500" y2="120" stroke="#64748b" stroke-width="4"/>
+
+            <!-- Hemispherical Bowl: Center O=(280, 120), Radius R=120 -->
+            <!-- Diameter from (160, 120) to (400, 120), 2R = 240 -->
+            <path d="M 160 120 A 120 120 0 0 0 400 120" fill="rgba(56, 189, 248, 0.08)" stroke="#38bdf8" stroke-width="4"/>
+            <line x1="160" y1="120" x2="400" y2="120" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4 3"/>
+
+            <!-- Center O -->
+            <circle cx="280" cy="120" r="4" fill="#38bdf8"/>
+            <text x="275" y="110" fill="#38bdf8" font-size="13">O (球心)</text>
+
+            <!-- Bowl Edge B at (400, 120) -->
+            <!-- Angle theta = 25 deg.
+                 Chord AB passes through B=(400, 120).
+                 Length of chord AB = 2R * cos(theta) = 240 * cos(25) = 240 * 0.9063 = 217.5.
+                 Slope angle is 25 deg:
+                 A is down-left from B:
+                 dx = -217.5 * cos(25) = -197.1 => x_A = 400 - 197.1 = 202.9.
+                 dy = 217.5 * sin(25) = 91.9 => y_A = 120 + 91.9 = 211.9.
+                 Let's check distance to O(280, 120):
+                 (202.9 - 280)^2 + (211.9 - 120)^2 = (-77.1)^2 + (91.9)^2 = 5944 + 8445 = 14389.
+                 R^2 = 120^2 = 14400. EXACT! Point A lies perfectly on the circular bowl!
+            -->
+
+            <!-- Rod extending beyond B: total length ell = 320.
+                 From A(203, 212) along 25 deg:
+                 Top end: x = 203 + 320*cos(25) = 203 + 290 = 493.
+                 y = 212 - 320*sin(25) = 212 - 135 = 77.
+            -->
+            <line x1="203" y1="212" x2="493" y2="77" stroke="#f8fafc" stroke-width="8" stroke-linecap="round"/>
+            <line x1="203" y1="212" x2="493" y2="77" stroke="#fbbf24" stroke-width="4" stroke-linecap="round"/>
+
+            <!-- Points A and B -->
+            <circle cx="203" cy="212" r="6" fill="#38bdf8"/>
+            <text x="180" y="235" fill="#38bdf8" font-size="15" font-weight="bold">A (轉軸)</text>
+
+            <circle cx="400" cy="120" r="5" fill="#00e676"/>
+            <text x="395" y="105" fill="#00e676" font-size="15" font-weight="bold">B (碗邊)</text>
+
+            <!-- Angle theta at B with horizontal -->
+            <line x1="400" y1="120" x2="470" y2="120" stroke="#64748b" stroke-width="1.5" stroke-dasharray="3 3"/>
+            <path d="M 440 120 A 40 40 0 0 0 436 103" fill="none" stroke="#fbbf24" stroke-width="2"/>
+            <text x="445" y="112" fill="#fbbf24" font-size="13" font-weight="bold">θ</text>
+
+            <!-- Normal force P from bowl rim at B: perpendicular to rod pointing up-left -->
+            <!-- Slope of rod is -tan(25) = -0.466. Normal has slope 1/tan(25) = 2.144 (pointing up-left)
+                 dx = -60*sin(25) = -25.3, dy = -60*cos(25) = -54.4 -->
+            <line x1="400" y1="120" x2="365" y2="45" stroke="#00e676" stroke-width="3.5" marker-end="url(#arr-g)"/>
+            <text x="330" y="40" fill="#00e676" font-size="15" font-weight="bold">P (碗邊作用力)</text>
+
+            <!-- Right angle at B between rod and force P -->
+            <rect x="390" y="110" width="10" height="10" fill="none" stroke="#f8fafc" stroke-width="1.5" transform="rotate(25 400 120)"/>
+
+            <!-- Center of gravity of rod: distance ell/2 = 160 from A.
+                 C = (203 + 160*cos(25), 212 - 160*sin(25)) = (203 + 145, 212 - 68) = (348, 144) -->
+            <circle cx="348" cy="144" r="5" fill="#f43f5e"/>
+            <line x1="348" y1="144" x2="348" y2="225" stroke="#f43f5e" stroke-width="3" marker-end="url(#arr-r)"/>
+            <text x="358" y="210" fill="#f43f5e" font-size="14" font-weight="bold">W (棒重)</text>
+
+            <!-- Force at A from bowl floor: normal force along AO towards center O -->
+            <line x1="203" y1="212" x2="250" y2="155" stroke="#38bdf8" stroke-width="2.5" marker-end="url(#arr-c)"/>
+            <text x="210" y="160" fill="#38bdf8" font-size="12">N_A (過球心 O)</text>
+
+            <!-- Diameter triangle dashed line to other rim end (160, 120) -->
+            <line x1="160" y1="120" x2="203" y2="212" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="3 3"/>
+            <text x="135" y="180" fill="#94a3b8" font-size="11">直徑所對圓周角為 90°</text>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Right Column: Interactive Quiz -->
+      <div class="problem-card">
+        <h2 class="section-title">
+          <span class="step-num">2</span>
+          自我檢測與即時核對
+        </h2>
+        <p style="color: var(--text-dim); font-size: 0.95rem; margin-bottom: 16px;">
+          請依據轉軸 $A$ 之力矩平衡方程式，選出正確的碗邊作用力 $P$：
+        </p>
+
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="selectOption(this, 'A')">
+            <span class="opt-letter">A</span>
+            <span class="opt-text">$\dfrac{\ell}{R}W$</span>
+          </div>
+          <div class="quiz-option" onclick="selectOption(this, 'B')">
+            <span class="opt-letter">B</span>
+            <span class="opt-text">$\dfrac{\ell}{2R}W$</span>
+          </div>
+          <div class="quiz-option" onclick="selectOption(this, 'C')">
+            <span class="opt-letter">C</span>
+            <span class="opt-text">$\dfrac{2\ell}{R}W$</span>
+          </div>
+          <div class="quiz-option" onclick="selectOption(this, 'D')">
+            <span class="opt-letter">D</span>
+            <span class="opt-text">$\dfrac{\ell}{4R}W$</span>
+          </div>
+          <div class="quiz-option" onclick="selectOption(this, 'E')">
+            <span class="opt-letter">E</span>
+            <span class="opt-text">$\dfrac{4\ell}{R}W$</span>
+          </div>
+        </div>
+
+        <div class="quiz-actions">
+          <button class="nav-btn primary" onclick="checkAnswer()">核對答案</button>
+          <button class="nav-btn" onclick="toggleSolution()">查看解析</button>
+        </div>
+
+        <div id="feedback" class="quiz-feedback"></div>
+      </div>
+    </div>
+
+    <!-- Solution Section -->
+    <div id="solution-card" class="solution-card">
+      <h2 class="section-title">
+        <span class="step-num">3</span>
+        完整觀念解析與推導過程
+      </h2>
+      <div class="solution-content">
+        <div class="formula-box">
+          $$\text{圓周角性質：弦長 } \overline{AB} = 2R \cos\theta$$
+          $$\sum \tau_A = 0 \implies P \cdot (2R\cos\theta) = W \cdot \left(\frac{\ell}{2}\cos\theta\right)$$
+          $$\implies P = \frac{\ell W}{4R}$$
+        </div>
+
+        <div class="step-card">
+          <h4>步驟一：圓周角幾何性質求解弦長 $\overline{AB}$</h4>
+          <p>
+            碗口水平寬度為半球碗之直徑 $2R$。
+          </p>
+          <p>
+            木棒底端 $A$ 靠於碗壁內表面，碗邊接觸點為 $B$。以直徑兩端點與圓周上任意一點 $A$ 連線，由國中幾何「直徑所對的圓周角為 $90^\circ$」之定理：
+          </p>
+          $$\overline{AB} = (\text{直徑}) \cdot \cos\theta = 2R \cos\theta$$
+          <p>
+            因為木棒表面光滑，碗邊緣 $B$ 施加於木棒的作用力 $P$ 必定<strong>垂直於木棒</strong>。
+          </p>
+          <p>
+            因此，力 $P$ 對底端 $A$ 的力臂就是弦長 $\overline{AB} = 2R \cos\theta$！
+          </p>
+        </div>
+
+        <div class="step-card">
+          <h4>步驟二：以底端 A 為轉軸列力矩平衡</h4>
+          <p>
+            選取木棒底端 $A$ 為轉軸，碗底對 $A$ 點的正向力 $N_A$ 通過轉軸，其力矩為零：
+          </p>
+          <ul>
+            <li>碗邊作用力 $P$ 產生逆時針力矩：
+              $$\tau_P = P \cdot \overline{AB} = P \cdot (2R\cos\theta)$$
+            </li>
+            <li>均勻木棒重力 $W$ 作用於木棒幾何中心（距 $A$ 點 $\frac{\ell}{2}$ 處），產生順時針力矩：
+              $$\tau_W = W \cdot \left(\frac{\ell}{2}\cos\theta\right)$$
+            </li>
+          </ul>
+        </div>
+
+        <div class="step-card">
+          <h4>步驟三：兩側消去角度項，獲得超簡潔解</h4>
+          <p>
+            由轉動平衡條件 $\sum \tau_A = 0$：
+          </p>
+          $$P \cdot (2R\cos\theta) = W \cdot \left(\frac{\ell}{2}\cos\theta\right)$$
+          <p>
+            因為木棒呈傾斜平衡（$\theta \neq 90^\circ$），等號兩側直接除以公因式 $\cos\theta$：
+          </p>
+          $$2R \cdot P = \frac{\ell}{2} W \implies P = \frac{\ell}{4R} W$$
+          <p>
+            結果與傾斜平衡的角度 $\theta$ 完全無關！正確選項為 <strong>(D)</strong>。
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let selectedOption = null;
+    const correctAnswer = 'D';
+
+    function selectOption(element, opt) {
+      document.querySelectorAll('.quiz-option').forEach(el => el.classList.remove('selected'));
+      element.classList.add('selected');
+      selectedOption = opt;
+    }
+
+    function checkAnswer() {
+      const feedback = document.getElementById('feedback');
+      if (!selectedOption) {
+        feedback.innerHTML = '<span style="color: var(--accent-yellow);">⚠️ 請先點擊選擇一個選項！</span>';
+        feedback.className = 'quiz-feedback show';
+        return;
+      }
+      if (selectedOption === correctAnswer) {
+        feedback.innerHTML = '🎉 <strong>完全正確！</strong> 直徑圓周角定理得出 $\\overline{AB} = 2R\\cos\\theta$。以 A 為轉軸，力矩式 $P(2R\\cos\\theta) = W(\\frac{\\ell}{2}\\cos\\theta)$ 兩側直接消去 $\\cos\\theta$，得到 $P = \\frac{\\ell}{4R}W$！';
+        feedback.className = 'quiz-feedback show correct';
+        document.getElementById('solution-card').classList.add('show');
+      } else {
+        feedback.innerHTML = '❌ <strong>答案不對喔！</strong> 提示：直徑所對圓周角為直角，弦長 $\\overline{AB} = 2R\\cos\\theta$。注意力矩式中 $P \\times 2R = W \\times \\frac{\\ell}{2}$，移項後分母是多少？';
+        feedback.className = 'quiz-feedback show incorrect';
+      }
+    }
+
+    function toggleSolution() {
+      const sol = document.getElementById('solution-card');
+      sol.classList.toggle('show');
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      if (window.renderMathInElement) {
+        renderMathInElement(document.body, {
+          delimiters: [
+            { left: "$$", right: "$$", display: true },
+            { left: "$", right: "$", display: false }
+          ]
+        });
+      }
+    });
+  </script>
+</body>
+</html>

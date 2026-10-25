@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>練習 11：套裝雙彈簧 F-x 特性圖與彈力常數 | 高中物理靜力學</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+  <link rel="stylesheet" href="shared.css">
+</head>
+<body>
+  <div class="bg-glow"></div>
+  <div class="bg-grid"></div>
+
+  <div class="container">
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+      <div class="nav-links">
+        <a href="index.html" class="nav-btn primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          回目錄
+        </a>
+        <a href="exercise10.html" class="nav-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          上一題 (練習 10)
+        </a>
+        <a href="exercise12.html" class="nav-btn">
+          下一題 (練習 12)
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+      <div class="badge-wrapper">
+        <span class="badge badge-page">講義 靜力學-20</span>
+        <span class="badge badge-accent">虎克定律・練習 11</span>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+      <h1 class="main-title">練習 11：<span class="gradient-text">套裝雙彈簧 F-x 特性圖與彈力常數</span></h1>
+      <p class="subtitle">分段壓縮物理模型・實驗折線圖物理意義判讀・並聯彈簧等效剛度</p>
+    </header>
+
+    <!-- Problem Showcase Card -->
+    <section class="card problem-card">
+      <div class="card-header">
+        <div class="card-icon">📖</div>
+        <div>
+          <h2>題目內容</h2>
+          <span class="card-tag">經典實驗圖形判讀題</span>
+        </div>
+      </div>
+
+      <div class="problem-body">
+        <p>
+          一根大彈簧內套一根小彈簧，大彈簧比小彈簧長 <strong>$0.2\text{ m}$</strong>，它們的一端固定於地面，另一端自由，如圖(A)所示。當施加外力壓縮此組合彈簧時，測得外力 $F$ 和壓縮距離 $x$ 之間的關係如圖(B)所示。則小彈簧之彈力常數為多少 $\text{N/m}$？
+        </p>
+
+        <!-- Dynamic Nested Spring & F-x Graph SVG Diagram -->
+        <div class="diagram-container" style="text-align: center; margin: 24px 0;">
+          <svg viewBox="0 0 760 340" style="width: 100%; max-width: 740px; background: rgba(15, 23, 42, 0.6); border-radius: 12px; border: 1px solid rgba(255,255,255,0.08);">
+            <defs>
+              <marker id="arrow-axis" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#94a3b8"/>
+              </marker>
+              <marker id="arrow-push" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#f43f5e"/>
+              </marker>
+            </defs>
+
+            <!-- 圖 (A) 套裝彈簧機械示意圖 (Left: x=40 ~ 340) -->
+            <g transform="translate(40, 20)">
+              <rect x="0" y="0" width="280" height="295" rx="10" fill="rgba(30, 41, 59, 0.5)" stroke="rgba(255,255,255,0.06)"/>
+              <text x="140" y="28" fill="#38bdf8" font-size="14" font-weight="bold" text-anchor="middle">圖 (A) 套裝組合彈簧</text>
+
+              <!-- 固定基座 (地面) -->
+              <rect x="50" y="240" width="180" height="12" fill="#475569" stroke="#94a3b8" stroke-width="1.5"/>
+              <line x1="40" y1="252" x2="240" y2="252" stroke="#64748b" stroke-width="2"/>
+
+              <!-- 外側大彈簧 (原長較長，從 y=80 到 y=240, 寬 60) -->
+              <path d="M 110 240 Q 170 230 170 220 Q 110 210 110 200 Q 170 190 170 180 Q 110 170 110 160 Q 170 150 170 140 Q 110 130 110 120 Q 170 110 170 100 Q 110 90 140 80" fill="none" stroke="#38bdf8" stroke-width="3"/>
+              
+              <!-- 內側小彈簧 (原長較短，從 y=140 到 y=240, 寬 30) -->
+              <path d="M 125 240 Q 155 233 155 225 Q 125 218 125 210 Q 155 203 155 195 Q 125 188 125 180 Q 155 173 155 165 Q 125 158 125 150 Q 155 145 140 140" fill="none" stroke="#fbbf24" stroke-width="2.5"/>
+
+              <!-- 頂端高低差標記 0.2 m -->
+              <line x1="80" y1="80" x2="140" y2="80" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="3,3"/>
+              <line x1="80" y1="140" x2="140" y2="140" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="3,3"/>
+              <line x1="85" y1="80" x2="85" y2="140" stroke="#fbbf24" stroke-width="2"/>
+              <polyline points="81,87 85,80 89,87" fill="none" stroke="#fbbf24" stroke-width="2"/>
+              <polyline points="81,133 85,140 89,133" fill="none" stroke="#fbbf24" stroke-width="2"/>
+              <text x="75" y="115" fill="#fbbf24" font-size="12" font-weight="bold" text-anchor="end">0.2 m</text>
+
+              <!-- 標籤說明 -->
+              <text x="180" y="90" fill="#38bdf8" font-size="13" font-weight="bold">大彈簧 (長)</text>
+              <text x="175" y="150" fill="#fbbf24" font-size="13" font-weight="bold">小彈簧 (短)</text>
+
+              <!-- 施力 F 箭頭向下 -->
+              <line x1="140" y1="40" x2="140" y2="72" stroke="#f43f5e" stroke-width="3" marker-end="url(#arrow-push)"/>
+              <text x="155" y="55" fill="#f43f5e" font-size="13" font-weight="bold">外力 F</text>
+            </g>
+
+            <!-- 圖 (B) F-x 實驗折線圖 (Right: x=360 ~ 720) -->
+            <g transform="translate(360, 20)">
+              <rect x="0" y="0" width="360" height="295" rx="10" fill="rgba(30, 41, 59, 0.5)" stroke="rgba(255,255,255,0.06)"/>
+              <text x="180" y="28" fill="#38bdf8" font-size="14" font-weight="bold" text-anchor="middle">圖 (B) 外力 F 與壓縮量 x 關係圖</text>
+
+              <!-- 坐標軸: 原點在 (50, 240) -->
+              <!-- x 軸: 50 -> 320 -->
+              <line x1="50" y1="240" x2="330" y2="240" stroke="#94a3b8" stroke-width="2" marker-end="url(#arrow-axis)"/>
+              <text x="325" y="262" fill="#94a3b8" font-size="13" font-weight="bold">x (m)</text>
+
+              <!-- y 軸: 240 -> 40 -->
+              <line x1="50" y1="240" x2="50" y2="45" stroke="#94a3b8" stroke-width="2" marker-end="url(#arrow-axis)"/>
+              <text x="35" y="50" fill="#94a3b8" font-size="13" font-weight="bold">F (N)</text>
+
+              <!-- 刻度標示 -->
+              <!-- x 刻度: 0 (50), 0.1 (120), 0.2 (190), 0.3 (260) -->
+              <line x1="120" y1="240" x2="120" y2="245" stroke="#94a3b8" stroke-width="1.5"/>
+              <text x="120" y="260" fill="#94a3b8" font-size="12" text-anchor="middle">0.1</text>
+
+              <line x1="190" y1="240" x2="190" y2="245" stroke="#94a3b8" stroke-width="1.5"/>
+              <text x="190" y="260" fill="#38bdf8" font-size="12" font-weight="bold" text-anchor="middle">0.2</text>
+
+              <line x1="260" y1="240" x2="260" y2="245" stroke="#94a3b8" stroke-width="1.5"/>
+              <text x="260" y="260" fill="#fbbf24" font-size="12" font-weight="bold" text-anchor="middle">0.3</text>
+
+              <!-- y 刻度: 0(240), 10(208), 20(176), 30(144), 40(112), 50(80) -->
+              <!-- 20 N: y = 240 - 20*3.2 = 176 -->
+              <line x1="45" y1="176" x2="50" y2="176" stroke="#94a3b8" stroke-width="1.5"/>
+              <text x="38" y="180" fill="#38bdf8" font-size="12" font-weight="bold" text-anchor="end">20</text>
+
+              <!-- 50 N: y = 240 - 50*3.2 = 80 -->
+              <line x1="45" y1="80" x2="50" y2="80" stroke="#94a3b8" stroke-width="1.5"/>
+              <text x="38" y="85" fill="#fbbf24" font-size="12" font-weight="bold" text-anchor="end">50</text>
+
+              <!-- 第一段輔助虛線 (0.2, 20) -->
+              <line x1="190" y1="240" x2="190" y2="176" stroke="#38bdf8" stroke-width="1" stroke-dasharray="3,3"/>
+              <line x1="50" y1="176" x2="190" y2="176" stroke="#38bdf8" stroke-width="1" stroke-dasharray="3,3"/>
+
+              <!-- 第二段輔助虛線 (0.3, 50) -->
+              <line x1="260" y1="240" x2="260" y2="80" stroke="#fbbf24" stroke-width="1" stroke-dasharray="3,3"/>
+              <line x1="50" y1="80" x2="260" y2="80" stroke="#fbbf24" stroke-width="1" stroke-dasharray="3,3"/>
+
+              <!-- 實驗曲線段 1: 從 (50, 240) 到 (190, 176) [僅大彈簧壓縮] -->
+              <line x1="50" y1="240" x2="190" y2="176" stroke="#38bdf8" stroke-width="3.5"/>
+              <!-- 實驗曲線段 2: 從 (190, 176) 到 (260, 80) [大+小彈簧並聯] -->
+              <line x1="190" y1="176" x2="260" y2="80" stroke="#34d399" stroke-width="4"/>
+
+              <!-- 數據特徵點 -->
+              <circle cx="190" cy="176" r="5" fill="#38bdf8"/>
+              <text x="145" y="160" fill="#38bdf8" font-size="12" font-weight="bold">(0.2, 20)</text>
+
+              <circle cx="260" cy="80" r="5" fill="#34d399"/>
+              <text x="215" y="70" fill="#34d399" font-size="12" font-weight="bold">(0.3, 50)</text>
+
+              <!-- 區域說明標籤 -->
+              <rect x="70" y="200" width="105" height="22" rx="4" fill="rgba(56, 189, 248, 0.15)"/>
+              <text x="122" y="215" fill="#38bdf8" font-size="11" text-anchor="middle">僅大彈簧受壓</text>
+
+              <rect x="230" y="125" width="115" height="22" rx="4" fill="rgba(52, 211, 153, 0.15)"/>
+              <text x="287" y="140" fill="#34d399" font-size="11" text-anchor="middle">大小彈簧同時受壓</text>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Interactive Answer Area -->
+    <section class="card interactive-card">
+      <div class="card-header">
+        <div class="card-icon">✍️</div>
+        <div>
+          <h2>即時動手作答</h2>
+          <span class="card-tag">請點選或填寫數值</span>
+        </div>
+      </div>
+
+      <div class="options-grid" id="optionsGrid">
+        <button class="option-btn" data-val="100">
+          <span class="option-label">A</span>
+          <span class="option-text">$100\text{ N/m}$</span>
+        </button>
+        <button class="option-btn" data-val="150">
+          <span class="option-label">B</span>
+          <span class="option-text">$150\text{ N/m}$</span>
+        </button>
+        <button class="option-btn" data-val="200">
+          <span class="option-label">C</span>
+          <span class="option-text">$200\text{ N/m}$</span>
+        </button>
+        <button class="option-btn" data-val="300">
+          <span class="option-label">D</span>
+          <span class="option-text">$300\text{ N/m}$</span>
+        </button>
+      </div>
+
+      <!-- Quick Numeric Input -->
+      <div style="margin-top: 18px; display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap;">
+        <span style="color: #94a3b8; font-size: 14px;">或直接輸入數值：</span>
+        <input type="number" id="customInput" placeholder="請填寫數字" style="padding: 10px 16px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); background: rgba(30,41,59,0.8); color: #fff; font-size: 16px; width: 140px; text-align: center;">
+        <span style="color: #cbd5e1; font-weight: bold;">N/m</span>
+        <button id="submitInputBtn" class="nav-btn primary" style="cursor: pointer; padding: 10px 20px;">送出檢查</button>
+      </div>
+
+      <div id="feedbackBox" class="feedback-box hidden">
+        <div class="feedback-icon" id="feedbackIcon"></div>
+        <div class="feedback-text" id="feedbackText"></div>
+      </div>
+    </section>
+
+    <!-- Detailed Solution Area (Hidden by default) -->
+    <section class="card solution-card collapsed" id="solutionCard">
+      <div class="card-header solution-toggle" id="solutionToggle" role="button" tabindex="0">
+        <div class="card-icon">💡</div>
+        <div style="flex-grow: 1;">
+          <h2>精闢詳解與分段分析步驟</h2>
+          <span class="card-tag solution-status">點擊展開完整剖析</span>
+        </div>
+        <div class="toggle-arrow">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+      </div>
+
+      <div class="solution-content" id="solutionContent">
+        <div class="step-card">
+          <div class="step-badge">第一階段</div>
+          <h3>壓縮距離 $0 \le x \le 0.2\text{ m}$：僅大彈簧受力</h3>
+          <p>
+            因為大彈簧比小彈簧長 $0.2\text{ m}$，所以前 $0.2\text{ m}$ 的壓縮過程中，<strong>小彈簧尚未接觸到受壓面板</strong>，只有大彈簧承受外力。
+          </p>
+          <p>
+            由圖 (B) 讀取數據：當壓縮量 $x = 0.2\text{ m}$ 時，外力 $F = 20\text{ N}$：
+            $$F = k_{\text{大}} \cdot x_1 \implies 20 = k_{\text{大}} \times 0.2$$
+            $$\mathbf{k_{\text{大}} = \frac{20}{0.2} = 100\text{ N/m}}$$
+          </p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-badge">第二階段</div>
+          <h3>壓縮距離 $x = 0.3\text{ m}$：兩彈簧同時受力（並聯）</h3>
+          <p>
+            當整體壓縮距離達到 $x = 0.3\text{ m}$ 時：
+          </p>
+          <ul class="key-points">
+            <li><strong>大彈簧的壓縮量：</strong>$x_{\text{大}} = 0.3\text{ m}$。</li>
+            <li><strong>小彈簧的壓縮量：</strong>$x_{\text{小}} = 0.3 - 0.2 = 0.1\text{ m}$。</li>
+            <li><strong>總外力：</strong>由圖 (B) 查得此時 $F_{\text{總}} = 50\text{ N}$。</li>
+          </ul>
+          <p>
+            依力的合成原理，總外力等於兩彈簧的彈力之和：
+            $$F_{\text{總}} = F_{\text{大}} + F_{\text{小}}$$
+            $$50 = (k_{\text{大}} \times x_{\text{大}}) + (k_{\text{小}} \times x_{\text{小}})$$
+            $$50 = (100 \times 0.3) + (k_{\text{小}} \times 0.1)$$
+            $$50 = 30 + 0.1 k_{\text{小}}$$
+            $$0.1 k_{\text{小}} = 20 \implies \mathbf{k_{\text{小}} = \frac{20}{0.1} = 200\text{ N/m}}$$
+          </p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-badge">斜率速算法</div>
+          <h3>圖形斜率直接秒殺法</h3>
+          <p>
+            在 $F$-$x$ 關係圖中，直線段的<strong>斜率就是系統的等效彈力常數 $k_{\text{eff}}$</strong>：
+          </p>
+          <ul class="key-points">
+            <li>第一段斜率：$k_1 = \frac{20 - 0}{0.2 - 0} = 100\text{ N/m} = k_{\text{大}}$</li>
+            <li>第二段斜率（並聯狀態）：$k_2 = \frac{50 - 20}{0.3 - 0.2} = \frac{30}{0.1} = 300\text{ N/m} = k_{\text{大}} + k_{\text{小}}$</li>
+            <li>因此小彈簧的彈力常數為：
+              $$k_{\text{小}} = k_2 - k_{\text{大}} = 300 - 100 = \mathbf{200\text{ N/m}}$$
+            </li>
+          </ul>
+        </div>
+
+        <div class="final-summary">
+          <div class="summary-badge">結論</div>
+          <p>
+            小彈簧之彈力常數為 <strong>$200\text{ N/m}$</strong>（選項 C）。<br>
+            利用「斜率 = 彈力常數」的概念，看第二段斜率增加的量 $\Delta k = \frac{30\text{ N}}{0.1\text{ m}} = 200\text{ N/m}$，就是小彈簧貢獻的力常數，心算 5 秒即可秒殺！
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Navigation -->
+    <div class="bottom-nav">
+      <a href="exercise10.html" class="nav-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+        上一題 (練習 10)
+      </a>
+      <a href="index.html" class="nav-btn primary">
+        目錄總覽
+      </a>
+      <a href="exercise12.html" class="nav-btn">
+        下一題 (練習 12)
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // Render KaTeX
+      if (typeof renderMathInElement === 'function') {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ],
+          throwOnError: false
+        });
+      }
+
+      const correctVal = 200;
+      const optionBtns = document.querySelectorAll(".option-btn");
+      const customInput = document.getElementById("customInput");
+      const submitInputBtn = document.getElementById("submitInputBtn");
+      const feedbackBox = document.getElementById("feedbackBox");
+      const feedbackIcon = document.getElementById("feedbackIcon");
+      const feedbackText = document.getElementById("feedbackText");
+      const solutionCard = document.getElementById("solutionCard");
+
+      function checkAnswer(val) {
+        optionBtns.forEach(b => b.classList.remove("selected", "correct", "wrong"));
+        feedbackBox.classList.remove("hidden", "correct", "wrong");
+
+        if (Math.abs(val - correctVal) < 0.1) {
+          optionBtns.forEach(b => {
+            if (parseFloat(b.getAttribute("data-val")) === correctVal) {
+              b.classList.add("correct");
+            }
+          });
+          feedbackBox.classList.add("correct");
+          feedbackIcon.innerHTML = "🎉";
+          feedbackText.innerHTML = "<strong>答對了！太強了！</strong> 小彈簧之彈力常數正為 <strong>$200\\text{ N/m}$</strong>！第二段斜率 $300\\text{ N/m}$ 減去大彈簧的 $100\\text{ N/m}$ 即為正解。詳解已自動為您展開。";
+
+          solutionCard.classList.remove("collapsed");
+          const tag = solutionCard.querySelector(".solution-status");
+          if (tag) tag.textContent = "點擊收合詳解";
+        } else {
+          optionBtns.forEach(b => {
+            if (parseFloat(b.getAttribute("data-val")) === val) {
+              b.classList.add("wrong");
+            }
+          });
+          feedbackBox.classList.add("wrong");
+          feedbackIcon.innerHTML = "💡";
+          if (val === 100) {
+            feedbackText.innerHTML = "<strong>$100\\text{ N/m}$ 是大彈簧的彈力常數喔！</strong> 題目要問的是「小彈簧」的彈力常數，請再看第二段壓縮量。";
+          } else if (val === 300) {
+            feedbackText.innerHTML = "<strong>$300\\text{ N/m}$ 是兩彈簧並聯的總常數！</strong> 小彈簧需要扣除大彈簧的 $100\\text{ N/m}$ 喔！";
+          } else {
+            feedbackText.innerHTML = `<strong>答案 ${val} N/m 不正確喔！</strong> 提示：可以利用第二段直線斜率 $\\Delta F / \\Delta x = (50 - 20) / (0.3 - 0.2)$ 求得兩彈簧並聯常數！`;
+          }
+        }
+
+        if (typeof renderMathInElement === 'function') {
+          renderMathInElement(feedbackText, {
+            delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false}
+            ],
+            throwOnError: false
+          });
+        }
+      }
+
+      optionBtns.forEach(btn => {
+        btn.addEventListener("click", function() {
+          const val = parseFloat(this.getAttribute("data-val"));
+          customInput.value = val;
+          checkAnswer(val);
+        });
+      });
+
+      submitInputBtn.addEventListener("click", function() {
+        const val = parseFloat(customInput.value);
+        if (isNaN(val)) {
+          alert("請輸入數值！");
+          return;
+        }
+        checkAnswer(val);
+      });
+
+      customInput.addEventListener("keydown", function(e) {
+        if (e.key === "Enter") {
+          submitInputBtn.click();
+        }
+      });
+
+      // Solution toggle
+      const solutionToggle = document.getElementById("solutionToggle");
+      solutionToggle.addEventListener("click", function() {
+        solutionCard.classList.toggle("collapsed");
+        const isCollapsed = solutionCard.classList.contains("collapsed");
+        const statusSpan = solutionToggle.querySelector(".solution-status");
+        if (statusSpan) {
+          statusSpan.textContent = isCollapsed ? "點擊展開完整剖析" : "點擊收合詳解";
+        }
+      });
+    });
+  </script>
+</body>
+</html>

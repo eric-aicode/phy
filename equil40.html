@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>靜力平衡 40：粗糙雙壁面斜倚梯子受力方向分析 | 高中物理靜力學</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+  <link rel="stylesheet" href="shared.css">
+</head>
+<body>
+  <div class="bg-glow"></div>
+  <div class="bg-grid"></div>
+
+  <div class="container">
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+      <div class="nav-links">
+        <a href="index.html" class="nav-btn primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          回目錄
+        </a>
+        <a href="equil39.html" class="nav-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          上一題 (平衡 39)
+        </a>
+        <a href="equil41.html" class="nav-btn">
+          下一題 (平衡 41)
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+      <div class="badge-wrapper">
+        <span class="badge badge-page">講義 靜力學-31</span>
+        <span class="badge badge-exam">三力匯聚與摩擦阻力</span>
+        <span class="badge badge-accent">靜力平衡・練習 40</span>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+      <h1 class="main-title">靜力平衡 40：<span class="gradient-text">粗糙雙壁面斜倚梯子受力方向分析</span></h1>
+      <p class="subtitle">三力不平行必交於一點・摩擦力反抗相對運動趨勢・作用力方向定性判斷</p>
+    </header>
+
+    <!-- Main Problem Layout -->
+    <div class="problem-layout">
+      <!-- Left Column: Problem & Visualizer -->
+      <div class="problem-card">
+        <h2 class="section-title">
+          <span class="step-num">1</span>
+          題目情境與物理圖解
+        </h2>
+        <div class="problem-text">
+          <p>
+            重 $W$ 的梯子 $PQ$ 斜倚於均為<strong>粗糙</strong>的地板和垂直牆壁之間。設 $X$、$Y$ 分別表示牆壁和地板作用於梯子的<strong>合力</strong>（包含正向力與靜摩擦力之向量和）。
+          </p>
+          <p>
+            則下列各圖中，哪一個圖所繪製的受力方向是正確且符合物理平衡條件的？
+          </p>
+        </div>
+
+        <div class="interactive-container">
+          <div style="font-size: 0.88rem; color: var(--text-dim); margin-bottom: 8px; display: flex; justify-content: space-between;">
+            <span>📐 各選項受力示意圖對照</span>
+            <span style="color: var(--accent-cyan);">三力共點且牆摩擦力向上</span>
+          </div>
+          <svg viewBox="0 0 540 370" class="diagram-svg" style="background: rgba(15, 23, 42, 0.7); border-radius: 8px;">
+            <defs>
+              <marker id="arr-c" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#38bdf8"/>
+              </marker>
+              <marker id="arr-g" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#00e676"/>
+              </marker>
+              <marker id="arr-r" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#f43f5e"/>
+              </marker>
+              <marker id="arr-y" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#fbbf24"/>
+              </marker>
+            </defs>
+
+            <!-- Ground and Wall -->
+            <line x1="60" y1="300" x2="480" y2="300" stroke="#64748b" stroke-width="4"/>
+            <line x1="380" y1="50" x2="380" y2="300" stroke="#64748b" stroke-width="4"/>
+
+            <!-- Wall hatchings -->
+            <line x1="380" y1="70" x2="395" y2="60" stroke="#475569" stroke-width="2"/>
+            <line x1="380" y1="120" x2="395" y2="110" stroke="#475569" stroke-width="2"/>
+            <line x1="380" y1="170" x2="395" y2="160" stroke="#475569" stroke-width="2"/>
+            <line x1="380" y1="220" x2="395" y2="210" stroke="#475569" stroke-width="2"/>
+            <line x1="380" y1="270" x2="395" y2="260" stroke="#475569" stroke-width="2"/>
+
+            <!-- Ladder: P=(160, 300), Q=(380, 90) -->
+            <line x1="160" y1="300" x2="380" y2="90" stroke="#f8fafc" stroke-width="8" stroke-linecap="round"/>
+            <line x1="160" y1="300" x2="380" y2="90" stroke="#38bdf8" stroke-width="4" stroke-linecap="round"/>
+
+            <!-- Gravity W at midpoint (270, 195) -->
+            <circle cx="270" cy="195" r="5" fill="#fbbf24"/>
+            <line x1="270" y1="195" x2="270" y2="275" stroke="#fbbf24" stroke-width="3" marker-end="url(#arr-y)"/>
+            <text x="280" y="250" fill="#fbbf24" font-size="14" font-weight="bold">W</text>
+            <!-- Vertical extension of W up to intersection point K=(270, 60) -->
+            <line x1="270" y1="60" x2="270" y2="195" stroke="#fbbf24" stroke-width="1.5" stroke-dasharray="4 3"/>
+
+            <!-- Force X from wall at Q(380, 90) pointing up-left towards K(270, 60) -->
+            <!-- Vector: dx = -110, dy = -30. Length = 114 -->
+            <line x1="380" y1="90" x2="270" y2="60" stroke="#00e676" stroke-width="2.5" stroke-dasharray="4 3"/>
+            <line x1="380" y1="90" x2="300" y2="68" stroke="#00e676" stroke-width="3.5" marker-end="url(#arr-g)"/>
+            <text x="315" y="55" fill="#00e676" font-size="15" font-weight="bold">X (牆面力)</text>
+
+            <!-- Force Y from ground at P(160, 300) pointing up-right towards K(270, 60) -->
+            <!-- Vector: dx = 110, dy = -240 -->
+            <line x1="160" y1="300" x2="270" y2="60" stroke="#c084fc" stroke-width="2.5" stroke-dasharray="4 3"/>
+            <line x1="160" y1="300" x2="200" y2="213" stroke="#c084fc" stroke-width="3.5" marker-end="url(#arr-c)"/>
+            <text x="210" y="220" fill="#c084fc" font-size="15" font-weight="bold">Y (地面力)</text>
+
+            <!-- Intersection Point K -->
+            <circle cx="270" cy="60" r="5" fill="#f43f5e"/>
+            <text x="250" y="50" fill="#f43f5e" font-size="13" font-weight="bold">三力匯聚點</text>
+
+            <!-- Component breakouts -->
+            <g transform="translate(415, 120)">
+              <rect x="0" y="0" width="115" height="110" fill="rgba(30, 41, 59, 0.85)" stroke="rgba(255,255,255,0.15)" rx="6"/>
+              <text x="10" y="20" fill="#38bdf8" font-size="11" font-weight="bold">牆面力 X 拆解</text>
+              <text x="10" y="42" fill="#00e676" font-size="11">← N_牆 (垂直牆)</text>
+              <text x="10" y="64" fill="#00e676" font-size="11">↑ f_牆 (抗下滑)</text>
+              <text x="10" y="90" fill="#fbbf24" font-size="11" font-weight="bold">⇒ X 必向左上！</text>
+            </g>
+
+            <!-- Labels -->
+            <text x="135" y="320" fill="#f8fafc" font-size="16" font-weight="bold">P</text>
+            <text x="390" y="95" fill="#f8fafc" font-size="16" font-weight="bold">Q</text>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Right Column: Interactive Quiz -->
+      <div class="problem-card">
+        <h2 class="section-title">
+          <span class="step-num">2</span>
+          自我檢測與即時核對
+        </h2>
+        <p style="color: var(--text-dim); font-size: 0.95rem; margin-bottom: 16px;">
+          請依據三力匯聚與摩擦力阻礙相對運動方向，選出正確的示意圖：
+        </p>
+
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="selectOption(this, 'A')">
+            <span class="opt-letter">A</span>
+            <span class="opt-text">圖 (A)：$X$ 向下，$Y$ 向左（不共點）</span>
+          </div>
+          <div class="quiz-option" onclick="selectOption(this, 'B')">
+            <span class="opt-letter">B</span>
+            <span class="opt-text">圖 (B)：$X$ 向左下，$Y$ 向右上（$X$ 鉛直分量向下）</span>
+          </div>
+          <div class="quiz-option" onclick="selectOption(this, 'C')">
+            <span class="opt-letter">C</span>
+            <span class="opt-text">圖 (C)：$X$ 向左上，$Y$ 向右上（三力共點且牆摩擦力向上）</span>
+          </div>
+          <div class="quiz-option" onclick="selectOption(this, 'D')">
+            <span class="opt-letter">D</span>
+            <span class="opt-text">圖 (D)：$X$ 水平向左，$Y$ 鉛直向上（忽略兩處摩擦力）</span>
+          </div>
+          <div class="quiz-option" onclick="selectOption(this, 'E')">
+            <span class="opt-letter">E</span>
+            <span class="opt-text">圖 (E)：$X$ 沿牆向上，$Y$ 沿地向右（兩者無垂直正向力）</span>
+          </div>
+        </div>
+
+        <div class="quiz-actions">
+          <button class="nav-btn primary" onclick="checkAnswer()">核對答案</button>
+          <button class="nav-btn" onclick="toggleSolution()">查看解析</button>
+        </div>
+
+        <div id="feedback" class="quiz-feedback"></div>
+      </div>
+    </div>
+
+    <!-- Solution Section -->
+    <div id="solution-card" class="solution-card">
+      <h2 class="section-title">
+        <span class="step-num">3</span>
+        完整觀念解析與推導過程
+      </h2>
+      <div class="solution-content">
+        <div class="formula-box">
+          $$\text{剛體受三力平衡且不平行 } \implies \vec{W}、\vec{X}、\vec{Y} \text{ 作用線延長線必共點}$$
+          $$\vec{X} = \vec{N}_{\text{牆}} (\leftarrow) + \vec{f}_{\text{牆}} (\uparrow) \implies \vec{X} \text{ 必定指向左上方}$$
+        </div>
+
+        <div class="step-card">
+          <h4>步驟一：三力匯聚原理排除 (A)、(D)、(E)</h4>
+          <p>
+            梯子處於靜止平衡狀態，受重力 $W$、牆壁力 $X$、地面力 $Y$ 三力作用。
+          </p>
+          <p>
+            由力矩平衡原理，若剛體受三個共平面力平衡且三力互不平行，則這<strong>三個力的作用線延長線必定相交於同一點</strong>（否則選任一力的交點為軸，第三力將產生淨力矩，無法達成 $\sum \tau = 0$）。
+          </p>
+          <p>
+            在圖 (A)、(D)、(E) 中，三力延長線皆無法交於同一點，不可能維持轉動平衡，故立即排除。
+          </p>
+        </div>
+
+        <div class="step-card">
+          <h4>步驟二：分析牆面對梯子摩擦力的物理方向排除 (B)</h4>
+          <p>
+            若梯子有滑動傾向，頂端 $Q$ 勢必<strong>沿著牆面往下滑動</strong>。
+          </p>
+          <p>
+            因為牆面為粗糙表面，靜摩擦力的本質是反抗相對滑動趨勢，因此粗糙垂直牆面施於梯子的靜摩擦力 $f_{\text{牆}}$ 必定<strong>鉛直向上</strong>！
+          </p>
+          <p>
+            同時，垂直牆面給梯子的正向力 $N_{\text{牆}}$ 必定垂直於牆壁指向右下方或水平向左（水平向左支撐頂端）。
+          </p>
+          <p>
+            將水平向左的正向力與向上抗下滑的靜摩擦力向量合成，牆面合力 $\vec{X} = \vec{N}_{\text{牆}} + \vec{f}_{\text{牆}}$ 必定<strong>指向左上方</strong>！
+          </p>
+          <p>
+            在圖 (B) 中，$\vec{X}$ 竟指向左下方，代表牆面對梯子施加向下的摩擦力（加速其下滑），顯然違反摩擦力的物理定律，故 (B) 錯誤。
+          </p>
+        </div>
+
+        <div class="step-card">
+          <h4>步驟三：檢驗圖 (C) 的完整自洽性</h4>
+          <p>
+            在圖 (C) 中：
+          </p>
+          <ul>
+            <li>頂端牆壁作用力 $\vec{X}$ 指向左上方（水平向左抵抗傾倒，垂直向上防止下滑）。</li>
+            <li>底端地面作用力 $\vec{Y}$ 指向右上方（垂直向上支撐重力，水平向右抵抗外滑）。</li>
+            <li>重力 $\vec{W}$ 在梯子中點鉛直向下。</li>
+            <li>三力作用線向梯子右上方延伸，完美相交於同一點！</li>
+          </ul>
+          <p>
+            無論從合力為零（$\sum \vec{F} = 0$）或合力矩為零（$\sum \vec{\tau} = 0$）的角度檢驗，圖 (C) 皆完全正確自洽。正確選項為 <strong>(C)</strong>。
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let selectedOption = null;
+    const correctAnswer = 'C';
+
+    function selectOption(element, opt) {
+      document.querySelectorAll('.quiz-option').forEach(el => el.classList.remove('selected'));
+      element.classList.add('selected');
+      selectedOption = opt;
+    }
+
+    function checkAnswer() {
+      const feedback = document.getElementById('feedback');
+      if (!selectedOption) {
+        feedback.innerHTML = '<span style="color: var(--accent-yellow);">⚠️ 請先點擊選擇一個選項！</span>';
+        feedback.className = 'quiz-feedback show';
+        return;
+      }
+      if (selectedOption === correctAnswer) {
+        feedback.innerHTML = '🎉 <strong>完全正確！</strong> 三力不平行必交於同一點，且粗糙垂直牆面的摩擦力必須向上阻止梯子下滑，因此牆面合力 X 必指向左上方，正確為 (C)！';
+        feedback.className = 'quiz-feedback show correct';
+        document.getElementById('solution-card').classList.add('show');
+      } else {
+        feedback.innerHTML = '❌ <strong>答案不對喔！</strong> 提示：想想看如果梯子滑動，Q 點會往哪裡滑？所以牆壁摩擦力方向是向上還是向下？牆面合力 X 應該偏向左上還是左下？';
+        feedback.className = 'quiz-feedback show incorrect';
+      }
+    }
+
+    function toggleSolution() {
+      const sol = document.getElementById('solution-card');
+      sol.classList.toggle('show');
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      if (window.renderMathInElement) {
+        renderMathInElement(document.body, {
+          delimiters: [
+            { left: "$$", right: "$$", display: true },
+            { left: "$", right: "$", display: false }
+          ]
+        });
+      }
+    });
+  </script>
+</body>
+</html>

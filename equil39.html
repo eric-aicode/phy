@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>靜力平衡 39：直角三角板懸掛平衡與質量比 | 高中物理靜力學</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+  <link rel="stylesheet" href="shared.css">
+</head>
+<body>
+  <div class="bg-glow"></div>
+  <div class="bg-grid"></div>
+
+  <div class="container">
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+      <div class="nav-links">
+        <a href="index.html" class="nav-btn primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          回目錄
+        </a>
+        <a href="equil38.html" class="nav-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          上一題 (平衡 38)
+        </a>
+        <a href="equil40.html" class="nav-btn">
+          下一題 (平衡 40)
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+      <div class="badge-wrapper">
+        <span class="badge badge-page">講義 靜力學-31</span>
+        <span class="badge badge-exam">懸掛力矩比值</span>
+        <span class="badge badge-accent">靜力平衡・練習 39</span>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+      <h1 class="main-title">靜力平衡 39：<span class="gradient-text">直角三角板懸掛平衡與質量比</span></h1>
+      <p class="subtitle">懸掛鉛垂線過支點・底邊水平幾何力臂關係・力矩反比求質量比</p>
+    </header>
+
+    <!-- Main Problem Layout -->
+    <div class="problem-layout">
+      <!-- Left Column: Problem & Visualizer -->
+      <div class="problem-card">
+        <h2 class="section-title">
+          <span class="step-num">1</span>
+          題目情境與物理圖解
+        </h2>
+        <div class="problem-text">
+          <p>
+            如圖所示，質量不計的直角三角形板 $ABC$（$\angle A=90^\circ$、$\angle B=60^\circ$、$\angle C=30^\circ$）自頂點 $A$ 點以細繩懸起。
+          </p>
+          <p>
+            在 $B$、$C$ 兩端點各掛上質量為 $m_1$、$m_2$ 的物體後，底邊 $\overline{BC}$ 恰呈水平靜止，則質量比值 $m_1 : m_2$ 為何？
+          </p>
+        </div>
+
+        <div class="interactive-container">
+          <div style="font-size: 0.88rem; color: var(--text-dim); margin-bottom: 8px; display: flex; justify-content: space-between;">
+            <span>📐 幾何三角高與水平力臂關係</span>
+            <span style="color: var(--accent-cyan);">AD 鉛直線垂直於水平底邊 BC</span>
+          </div>
+          <svg viewBox="0 0 540 370" class="diagram-svg" style="background: rgba(15, 23, 42, 0.7); border-radius: 8px;">
+            <defs>
+              <marker id="arr-c" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#38bdf8"/>
+              </marker>
+              <marker id="arr-g" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#00e676"/>
+              </marker>
+              <marker id="arr-r" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#f43f5e"/>
+              </marker>
+              <marker id="arr-y" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#fbbf24"/>
+              </marker>
+            </defs>
+
+            <!-- Suspension String at A=(200, 70) -->
+            <line x1="200" y1="20" x2="200" y2="70" stroke="#f8fafc" stroke-width="3"/>
+            <circle cx="200" cy="20" r="3" fill="#94a3b8"/>
+
+            <!-- Triangle ABC:
+                 A = (200, 70)
+                 BC is horizontal at y = 230.
+                 AD is vertical: D = (200, 230), height h = 160.
+                 In triangle ABD: angle B = 60 deg, angle BAD = 30 deg.
+                 BD = h / tan(60) = 160 / √3 ≈ 92.4.
+                 B = (200 - 92.4, 230) = (107.6, 230).
+                 In triangle ACD: angle C = 30 deg, angle CAD = 60 deg.
+                 CD = h / tan(30) = 160 * √3 ≈ 277.1.
+                 C = (200 + 277.1, 230) = (477.1, 230).
+                 Notice: angle A = 30 + 60 = 90 deg! Perfect right triangle!
+            -->
+            <!-- Plate fill -->
+            <polygon points="200,70 108,230 477,230" fill="rgba(56, 189, 248, 0.12)" stroke="#38bdf8" stroke-width="3"/>
+
+            <!-- Altitude AD (vertical dashed line) -->
+            <line x1="200" y1="70" x2="200" y2="230" stroke="#f43f5e" stroke-width="2.5" stroke-dasharray="5 4"/>
+            <text x="206" y="150" fill="#f43f5e" font-size="13" font-weight="bold">鉛垂線 AD</text>
+
+            <!-- Right angle at A -->
+            <rect x="195" y="75" width="10" height="10" fill="none" stroke="#fbbf24" stroke-width="1.5" transform="rotate(30 200 70)"/>
+
+            <!-- Right angle at D -->
+            <rect x="190" y="220" width="10" height="10" fill="none" stroke="#f8fafc" stroke-width="1.5"/>
+
+            <!-- Angles at B and C -->
+            <path d="M 138 230 A 30 30 0 0 0 123 204" fill="none" stroke="#fbbf24" stroke-width="2"/>
+            <text x="135" y="215" fill="#fbbf24" font-size="13" font-weight="bold">60°</text>
+
+            <path d="M 437 230 A 40 40 0 0 1 445 212" fill="none" stroke="#fbbf24" stroke-width="2"/>
+            <text x="415" y="222" fill="#fbbf24" font-size="13" font-weight="bold">30°</text>
+
+            <!-- Masses hanging at B and C -->
+            <!-- Mass m1 at B -->
+            <line x1="108" y1="230" x2="108" y2="280" stroke="#94a3b8" stroke-width="2"/>
+            <rect x="88" y="280" width="40" height="35" fill="#1e293b" stroke="#00e676" stroke-width="2" rx="4"/>
+            <text x="96" y="303" fill="#00e676" font-size="14" font-weight="bold">m₁</text>
+            <line x1="108" y1="315" x2="108" y2="355" stroke="#00e676" stroke-width="2.5" marker-end="url(#arr-g)"/>
+            <text x="115" y="348" fill="#00e676" font-size="12">m₁g</text>
+
+            <!-- Mass m2 at C -->
+            <line x1="477" y1="230" x2="477" y2="280" stroke="#94a3b8" stroke-width="2"/>
+            <rect x="457" y="280" width="40" height="35" fill="#1e293b" stroke="#c084fc" stroke-width="2" rx="4"/>
+            <text x="465" y="303" fill="#c084fc" font-size="14" font-weight="bold">m₂</text>
+            <line x1="477" y1="315" x2="477" y2="355" stroke="#c084fc" stroke-width="2.5" marker-end="url(#arr-c)"/>
+            <text x="430" y="348" fill="#c084fc" font-size="12">m₂g</text>
+
+            <!-- Horizontal Distance BD and CD labels -->
+            <line x1="108" y1="245" x2="200" y2="245" stroke="#94a3b8" stroke-width="1.5"/>
+            <text x="125" y="260" fill="#94a3b8" font-size="12">BD = h/√3</text>
+
+            <line x1="200" y1="245" x2="477" y2="245" stroke="#94a3b8" stroke-width="1.5"/>
+            <text x="310" y="260" fill="#94a3b8" font-size="12">CD = √3 h</text>
+
+            <!-- Vertex Labels -->
+            <text x="195" y="60" fill="#f8fafc" font-size="16" font-weight="bold">A (支點)</text>
+            <text x="85" y="235" fill="#f8fafc" font-size="16" font-weight="bold">B</text>
+            <text x="485" y="235" fill="#f8fafc" font-size="16" font-weight="bold">C</text>
+            <text x="195" y="222" fill="#f8fafc" font-size="14" font-weight="bold">D</text>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Right Column: Interactive Quiz -->
+      <div class="problem-card">
+        <h2 class="section-title">
+          <span class="step-num">2</span>
+          自我檢測與即時核對
+        </h2>
+        <p style="color: var(--text-dim); font-size: 0.95rem; margin-bottom: 16px;">
+          請依據轉軸力矩平衡與幾何力臂關係，選出正確的質量比值：
+        </p>
+
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="selectOption(this, 'A')">
+            <span class="opt-letter">A</span>
+            <span class="opt-text">$\dfrac{1}{3}$</span>
+          </div>
+          <div class="quiz-option" onclick="selectOption(this, 'B')">
+            <span class="opt-letter">B</span>
+            <span class="opt-text">$\dfrac{2}{3}$</span>
+          </div>
+          <div class="quiz-option" onclick="selectOption(this, 'C')">
+            <span class="opt-letter">C</span>
+            <span class="opt-text">$3$</span>
+          </div>
+          <div class="quiz-option" onclick="selectOption(this, 'D')">
+            <span class="opt-letter">D</span>
+            <span class="opt-text">$\dfrac{3}{2}$</span>
+          </div>
+          <div class="quiz-option" onclick="selectOption(this, 'E')">
+            <span class="opt-letter">E</span>
+            <span class="opt-text">$\dfrac{4}{3}$</span>
+          </div>
+        </div>
+
+        <div class="quiz-actions">
+          <button class="nav-btn primary" onclick="checkAnswer()">核對答案</button>
+          <button class="nav-btn" onclick="toggleSolution()">查看解析</button>
+        </div>
+
+        <div id="feedback" class="quiz-feedback"></div>
+      </div>
+    </div>
+
+    <!-- Solution Section -->
+    <div id="solution-card" class="solution-card">
+      <h2 class="section-title">
+        <span class="step-num">3</span>
+        完整觀念解析與推導過程
+      </h2>
+      <div class="solution-content">
+        <div class="formula-box">
+          $$\overline{BD} = \frac{\overline{AD}}{\tan 60^\circ} = \frac{h}{\sqrt{3}}, \quad \overline{CD} = \frac{\overline{AD}}{\tan 30^\circ} = \sqrt{3}h$$
+          $$\sum \tau_A = 0 \implies m_1 g \cdot \overline{BD} = m_2 g \cdot \overline{CD}$$
+          $$\implies \frac{m_1}{m_2} = \frac{\overline{CD}}{\overline{BD}} = \frac{\sqrt{3}h}{h/\sqrt{3}} = 3$$
+        </div>
+
+        <div class="step-card">
+          <h4>步驟一：懸掛系統之轉軸與力臂幾何分析</h4>
+          <p>
+            三角板由頂點 $A$ 懸掛，故懸繩拉力通過 $A$ 點。以 $A$ 為轉軸，懸繩拉力對 $A$ 的力矩為 0。
+          </p>
+          <p>
+            平衡時，底邊 $\overline{BC}$ 呈水平靜止。因此通過懸掛點 $A$ 的鉛垂線必定垂直於 $\overline{BC}$，設垂足為 $D$，令高 $\overline{AD} = h$。
+          </p>
+          <p>
+            因為重物 $m_1$ 與 $m_2$ 產生的重力皆為鉛直向下，故對轉軸 $A$ 而言：
+          </p>
+          <ul>
+            <li>$m_1 g$ 的力臂即為水平線段 $\overline{BD}$。</li>
+            <li>$m_2 g$ 的力臂即為水平線段 $\overline{CD}$。</li>
+          </ul>
+        </div>
+
+        <div class="step-card">
+          <h4>步驟二：利用三角比求兩側力臂長度</h4>
+          <p>
+            在直角三角形 $\triangle ABD$ 中，$\angle B = 60^\circ$：
+          </p>
+          $$\overline{BD} = \frac{\overline{AD}}{\tan 60^\circ} = \frac{h}{\sqrt{3}}$$
+          <p>
+            在直角三角形 $\triangle ACD$ 中，$\angle C = 30^\circ$：
+          </p>
+          $$\overline{CD} = \frac{\overline{AD}}{\tan 30^\circ} = \frac{h}{1/\sqrt{3}} = \sqrt{3}h$$
+        </div>
+
+        <div class="step-card">
+          <h4>步驟三：列出合力矩為零方程式求解比值</h4>
+          <p>
+            以 $A$ 點為支點，逆時針力矩等於順時針力矩：
+          </p>
+          $$m_1 g \cdot \overline{BD} = m_2 g \cdot \overline{CD}$$
+          <p>
+            兩側消去重力加速度 $g$ 並整理：
+          </p>
+          $$\frac{m_1}{m_2} = \frac{\overline{CD}}{\overline{BD}} = \frac{\sqrt{3}h}{\dfrac{h}{\sqrt{3}}} = (\sqrt{3})^2 = 3$$
+          <p>
+            因此，質量比值 $m_1 : m_2 = 3$，正確選項為 <strong>(C)</strong>。
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let selectedOption = null;
+    const correctAnswer = 'C';
+
+    function selectOption(element, opt) {
+      document.querySelectorAll('.quiz-option').forEach(el => el.classList.remove('selected'));
+      element.classList.add('selected');
+      selectedOption = opt;
+    }
+
+    function checkAnswer() {
+      const feedback = document.getElementById('feedback');
+      if (!selectedOption) {
+        feedback.innerHTML = '<span style="color: var(--accent-yellow);">⚠️ 請先點擊選擇一個選項！</span>';
+        feedback.className = 'quiz-feedback show';
+        return;
+      }
+      if (selectedOption === correctAnswer) {
+        feedback.innerHTML = '🎉 <strong>完全正確！</strong> 底邊水平時，力臂比為 $\\overline{BD} : \\overline{CD} = \\frac{1}{\\sqrt{3}} : \\sqrt{3} = 1 : 3$。質量與力臂成反比，因此 $m_1 : m_2 = 3$！';
+        feedback.className = 'quiz-feedback show correct';
+        document.getElementById('solution-card').classList.add('show');
+      } else {
+        feedback.innerHTML = '❌ <strong>答案不對喔！</strong> 提示：以頂點 A 為轉軸，鉛直線 AD 垂直底邊 BC。力矩平衡時 $m_1 \\cdot \\overline{BD} = m_2 \\cdot \\overline{CD}$，質量與力臂成反比！';
+        feedback.className = 'quiz-feedback show incorrect';
+      }
+    }
+
+    function toggleSolution() {
+      const sol = document.getElementById('solution-card');
+      sol.classList.toggle('show');
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      if (window.renderMathInElement) {
+        renderMathInElement(document.body, {
+          delimiters: [
+            { left: "$$", right: "$$", display: true },
+            { left: "$", right: "$", display: false }
+          ]
+        });
+      }
+    });
+  </script>
+</body>
+</html>

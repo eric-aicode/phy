@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>靜摩擦力 08：繩結共點力傳遞與實際靜摩擦力判斷 | 高中物理靜力學</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+  <link rel="stylesheet" href="shared.css">
+</head>
+<body>
+  <div class="bg-glow"></div>
+  <div class="bg-grid"></div>
+
+  <div class="container">
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+      <div class="nav-links">
+        <a href="index.html" class="nav-btn primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          回目錄
+        </a>
+        <a href="frict7.html" class="nav-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          上一題 (摩擦 07)
+        </a>
+        <a href="frict9.html" class="nav-btn">
+          下一題 (摩擦 09)
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+      <div class="badge-wrapper">
+        <span class="badge badge-page">講義 靜力學-35</span>
+        <span class="badge badge-exam">繩結平衡・被動摩擦力判定</span>
+        <span class="badge badge-accent">靜摩擦力・練習 08</span>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+      <h1 class="main-title">靜摩擦力 08：<span class="gradient-text">繩結共點力傳遞與實際靜摩擦力判斷</span></h1>
+      <p class="subtitle">三力繩結節點分解・最大靜摩擦力上限防線・靜止時摩擦力等於外力</p>
+    </header>
+
+    <!-- Main Problem Layout -->
+    <div class="problem-layout">
+      <!-- Left Column: Problem & Visualizer -->
+      <div class="problem-card">
+        <h2 class="section-title">
+          <span class="step-num">1</span>
+          題目情境與物理圖解
+        </h2>
+        <div class="problem-text">
+          <p>
+            重量 $10\text{ kgw}$ 的木塊 $A$ 置於水平桌面，接觸面的最大靜摩擦係數為 $0.40$。當懸掛重物 $W$ 為 $3\text{ kgw}$ 時，作用於木塊 $A$ 的摩擦力為多少 $\text{kgw}$？
+          </p>
+        </div>
+
+        <div class="diagram-container">
+          <div class="diagram-header">
+            <span class="diagram-tag">繩結三力平衡與桌面摩擦模型</span>
+            <span class="diagram-hint">TA = W = 3 kgw &lt; fs,max = 4 kgw，物體未動，靜摩擦力恰等於拉力 3 kgw</span>
+          </div>
+          <svg class="interactive-diagram" viewBox="0 0 540 360" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="arrowRed" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+                <path d="M0,0 L0,6 L9,3 z" fill="#ef4444" />
+              </marker>
+              <marker id="arrowCyan" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+                <path d="M0,0 L0,6 L9,3 z" fill="#06b6d4" />
+              </marker>
+              <marker id="arrowGreen" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+                <path d="M0,0 L0,6 L9,3 z" fill="#10b981" />
+              </marker>
+            </defs>
+
+            <!-- Table on left -->
+            <line x1="40" y1="210" x2="280" y2="210" stroke="#64748b" stroke-width="3"/>
+            <line x1="280" y1="210" x2="280" y2="330" stroke="#64748b" stroke-width="3"/>
+            <path d="M50,210 l-10,12 M80,210 l-10,12 M110,210 l-10,12 M140,210 l-10,12 M170,210 l-10,12 M200,210 l-10,12 M230,210 l-10,12 M260,210 l-10,12" stroke="#475569" stroke-width="1.5"/>
+
+            <!-- Wall on right -->
+            <line x1="460" y1="70" x2="460" y2="250" stroke="#64748b" stroke-width="3"/>
+            <path d="M460,80 l12,-8 M460,110 l12,-8 M460,140 l12,-8 M460,170 l12,-8 M460,200 l12,-8 M460,230 l12,-8" stroke="#475569" stroke-width="1.5"/>
+
+            <!-- Block A on table (width 80, height 45): x=150 to 230, y=165 to 210 -->
+            <rect x="150" y="165" width="80" height="45" rx="4" fill="#3b82f6" stroke="#93c5fd" stroke-width="2"/>
+            <text x="190" y="192" fill="#ffffff" font-size="15" font-weight="bold" text-anchor="middle">A (10 kgw)</text>
+
+            <!-- Node O at (360, 187) -->
+            <!-- String 1: Horizontal from block A right side (230, 187) to Node O (360, 187) -->
+            <line x1="230" y1="187" x2="360" y2="187" stroke="#fcd34d" stroke-width="2.5"/>
+
+            <!-- String 2: 45° line from Node O (360, 187) to Wall at (460, 87) -->
+            <line x1="360" y1="187" x2="460" y2="87" stroke="#fcd34d" stroke-width="2.5"/>
+
+            <!-- String 3: Vertical from Node O (360, 187) to hanging weight W (360, 260) -->
+            <line x1="360" y1="187" x2="360" y2="260" stroke="#fcd34d" stroke-width="2.5"/>
+
+            <!-- Node O dot -->
+            <circle cx="360" cy="187" r="5" fill="#f59e0b"/>
+            <text x="345" y="175" fill="#f59e0b" font-size="16" font-weight="bold">O</text>
+
+            <!-- Angle 45° at wall / string -->
+            <path d="M460,120 A33,33 0 0,1 437,110" fill="none" stroke="#38bdf8" stroke-width="2"/>
+            <text x="425" y="135" fill="#38bdf8" font-size="13" font-weight="bold">45°</text>
+
+            <!-- Weight W (3 kgw) -->
+            <rect x="340" y="260" width="40" height="40" rx="4" fill="#f59e0b" stroke="#fcd34d" stroke-width="2"/>
+            <text x="360" y="285" fill="#ffffff" font-size="13" font-weight="bold" text-anchor="middle">W</text>
+            <line x1="360" y1="300" x2="360" y2="345" stroke="#ef4444" stroke-width="2.5" marker-end="url(#arrowRed)"/>
+            <text x="370" y="340" fill="#ef4444" font-size="12" font-weight="bold">3 kgw</text>
+
+            <!-- Forces on block A -->
+            <!-- Tension T_A pulling RIGHT: 3 kgw -->
+            <line x1="230" y1="187" x2="280" y2="187" stroke="#06b6d4" stroke-width="3" marker-end="url(#arrowCyan)"/>
+            <text x="240" y="175" fill="#06b6d4" font-size="13" font-weight="bold">T = 3 kgw</text>
+
+            <!-- Static friction fs pointing LEFT: 3 kgw -->
+            <line x1="150" y1="210" x2="95" y2="210" stroke="#10b981" stroke-width="3" marker-end="url(#arrowGreen)"/>
+            <text x="80" y="200" fill="#10b981" font-size="13" font-weight="bold">fs = 3 kgw</text>
+
+            <!-- Max static friction callout banner -->
+            <rect x="70" y="280" width="240" height="42" rx="6" fill="#1e293b" stroke="#334155" stroke-width="1.5"/>
+            <text x="190" y="298" fill="#94a3b8" font-size="11" text-anchor="middle">極限防線：fs,max = 0.40 × 10 = 4 kgw</text>
+            <text x="190" y="315" fill="#10b981" font-size="12" font-weight="bold" text-anchor="middle">未達上限 ⟹ 實際摩擦力 fs = 3 kgw</text>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Right Column: Interactive Quiz -->
+      <div class="quiz-card">
+        <h2 class="section-title">
+          <span class="step-num">2</span>
+          自我檢測與觀念選擇
+        </h2>
+        
+        <div class="question-box">
+          <p class="question-stem">
+            當懸掛重物 $W = 3\text{ kgw}$ 時，水平桌面作用於木塊 $A$ 的實際靜摩擦力大小為多少 $\text{kgw}$？
+          </p>
+
+          <div class="options-list">
+            <label class="option-item" onclick="selectOption(0)">
+              <input type="radio" name="opt" value="0">
+              <span class="opt-letter">A</span>
+              <span class="opt-content">$10\text{ kgw}$</span>
+            </label>
+            <label class="option-item" onclick="selectOption(1)">
+              <input type="radio" name="opt" value="1">
+              <span class="opt-letter">B</span>
+              <span class="opt-content">$4\text{ kgw}$</span>
+            </label>
+            <label class="option-item" onclick="selectOption(2)">
+              <input type="radio" name="opt" value="2">
+              <span class="opt-letter">C</span>
+              <span class="opt-content">$3\text{ kgw}$</span>
+            </label>
+            <label class="option-item" onclick="selectOption(3)">
+              <input type="radio" name="opt" value="3">
+              <span class="opt-letter">D</span>
+              <span class="opt-content">$2\text{ kgw}$</span>
+            </label>
+          </div>
+
+          <div class="quiz-actions">
+            <button class="btn btn-primary" onclick="checkAnswer()">確認答案</button>
+            <button class="btn btn-secondary" onclick="toggleSolution()">查看完整詳解</button>
+          </div>
+
+          <div id="feedback" class="feedback-box"></div>
+        </div>
+
+        <!-- Detailed Solution (Collapsible) -->
+        <div id="solutionBox" class="solution-card">
+          <h3 class="solution-title">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            詳盡解析與物理思維
+          </h3>
+          <div class="solution-content">
+            <div class="step-card">
+              <h4>步驟一：分析繩結 $O$ 點的平衡張力</h4>
+              <p>節點 $O$ 受到三條繩子的張力，處於靜止平衡：</p>
+              <ul>
+                <li>下方細繩拉力：等於重物重量 $W = 3\text{ kgw}$（鉛直向下）。</li>
+                <li>右上細繩拉力：與牆面夾角為 $45^\circ$，其水平向右分量為 $T_B \sin 45^\circ$，鉛直向上分量為 $T_B \cos 45^\circ$。</li>
+                <li>由鉛直方向平衡：$T_B \cos 45^\circ = W = 3\text{ kgw}$。</li>
+                <li>由水平方向平衡，拉住木塊 $A$ 的水平繩張力為：
+                  $$T_A = T_B \sin 45^\circ = 3 \times \frac{\sin 45^\circ}{\cos 45^\circ} = 3\text{ kgw}$$
+                </li>
+              </ul>
+            </div>
+
+            <div class="step-card">
+              <h4>步驟二：計算木塊 $A$ 的「最大靜摩擦力上限」</h4>
+              <p>木塊重量 $10\text{ kgw}$，垂直正向力 $N = 10\text{ kgw}$：</p>
+              $$f_{s,\max} = \mu_s N = 0.40 \times 10 = 4.0\text{ kgw}$$
+              <p>
+                這代表木塊 $A$ 必須受到大於 $4.0\text{ kgw}$ 的水平外力拉扯，才會開始產生相對滑動！
+              </p>
+            </div>
+
+            <div class="step-card">
+              <h4>步驟三：判斷運動狀態與實際摩擦力</h4>
+              <p>
+                比對當前水平拉力與極限防線：
+              </p>
+              $$T_A = 3\text{ kgw} < f_{s,\max} = 4\text{ kgw}$$
+              <p>
+                水平外力根本沒有達到滑動門檻，木塊 $A$ <strong>維持完全靜止</strong>！<br>
+                由水平靜力平衡條件（$\sum F_x = 0$）：
+              </p>
+              $$f_s = T_A = 3\text{ kgw}$$
+            </div>
+
+            <div class="highlight-summary">
+              <strong>名師核心點撥：</strong><br>
+              這是段考最典型的「送分陷阱題」！看到摩擦係數 $0.40$ 與重量 $10\text{ kgw}$，許多同學不假思索直接計算 $0.40 \times 10 = 4\text{ kgw}$ 選 (B)，那就掉進陷阱了！請務必記住：<strong>未滑動前，摩擦力大小完全等於拉力大小</strong>。因此答案選 <strong>(C)</strong>。
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const correctOpt = 2;
+
+    function selectOption(idx) {
+      const items = document.querySelectorAll('.option-item');
+      items.forEach((item, i) => {
+        const radio = item.querySelector('input');
+        if (i === idx) {
+          item.classList.add('selected');
+          radio.checked = true;
+        } else {
+          item.classList.remove('selected');
+          radio.checked = false;
+        }
+      });
+    }
+
+    function checkAnswer() {
+      const selected = document.querySelector('input[name="opt"]:checked');
+      const feedback = document.getElementById('feedback');
+      if (!selected) {
+        feedback.innerHTML = '<span style="color:#f59e0b;">請先點選一個選項！</span>';
+        return;
+      }
+      const val = parseInt(selected.value);
+      if (val === correctOpt) {
+        feedback.innerHTML = '<span style="color:#10b981; font-weight:bold;">🎉 答對了！拉力 3 kgw 未達上限 4 kgw，靜摩擦力精確等於 3 kgw (C)！</span>';
+      } else if (val === 1) {
+        feedback.innerHTML = '<span style="color:#ef4444; font-weight:bold;">❌ 掉入經典陷阱！4 kgw 是「最大靜摩擦力極限」，當前實際摩擦力只等於拉力 3 kgw！</span>';
+      } else {
+        feedback.innerHTML = '<span style="color:#ef4444; font-weight:bold;">❌ 答案不正確，請先求節點拉力 TA = 3 kgw，再比對靜止時受力平衡。</span>';
+      }
+    }
+
+    function toggleSolution() {
+      const sol = document.getElementById('solutionBox');
+      sol.classList.toggle('show');
+      if (sol.classList.contains('show')) {
+        renderMathInElement(sol, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ],
+          throwOnError: false
+        });
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderMathInElement(document.body, {
+        delimiters: [
+          {left: '$$', right: '$$', display: true},
+          {left: '$', right: '$', display: false}
+        ],
+        throwOnError: false
+      });
+    });
+  </script>
+</body>
+</html>

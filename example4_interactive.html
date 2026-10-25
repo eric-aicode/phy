@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>物理靜力學教學：向量封閉三角形圖解 | 範例 4</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <!-- KaTeX for beautiful math typography -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="bg-glow"></div>
+  <div class="bg-grid"></div>
+
+  <div class="container">
+    <!-- Top Navigation -->
+    <nav style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding: 12px 18px; background: rgba(20, 27, 45, 0.8); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 14px;">
+      <div style="display: flex; gap: 10px; align-items: center;">
+        <a href="index.html" style="display: inline-flex; align-items: center; gap: 6px; color: #00e5ff; text-decoration: none; font-size: 0.88rem; font-weight: 600; padding: 6px 14px; background: rgba(0, 229, 255, 0.08); border: 1px solid rgba(0, 229, 255, 0.3); border-radius: 8px;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          回題庫目錄
+        </a>
+        <a href="problem4.html" style="display: inline-flex; align-items: center; gap: 6px; color: #94a3b8; text-decoration: none; font-size: 0.88rem; font-weight: 500; padding: 6px 14px; background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 8px;">
+          返回範例 4 解題頁
+        </a>
+      </div>
+      <div style="display: flex; gap: 8px; align-items: center;">
+        <span class="badge badge-accent">動態力學實驗室</span>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+      <div class="badge-wrapper">
+        <span class="badge">高中物理・力學篇</span>
+        <span class="badge badge-accent">第三章 靜力學</span>
+      </div>
+      <h1 class="main-title">懸吊平衡與<span class="gradient-text">向量封閉三角形</span>圖解</h1>
+      <p class="subtitle">將共點力轉化為幾何首尾相連封閉三角形，輕鬆看穿力學平衡！</p>
+      <div style="margin-top: 16px;">
+        <a href="practice.html" class="action-btn accent-btn" style="display: inline-flex; text-decoration: none; align-items: center; gap: 8px;">
+          <span>🎯</span> 進入【實戰挑戰題】(解答先遮蔽・親自動筆算)
+        </a>
+      </div>
+    </header>
+
+    <!-- Question Card -->
+    <section class="card question-card">
+      <div class="card-header">
+        <div class="card-icon">📌</div>
+        <div>
+          <h2>範例 4 原題呈現</h2>
+          <span class="card-tag">力平衡經典考題</span>
+        </div>
+      </div>
+      <div class="question-content">
+        <p class="problem-text">
+          一物重 <strong>10 kgw</strong>，以細繩及彈簧吊起平衡如下圖所示。設彈簧原長 <strong>1.5 cm</strong>，力常數為 <strong>800 kgw/m</strong>，細繩較長者長度為 <strong>4 cm</strong>，則較長之細繩上張力為 <span class="blank-box">3</span> <strong>kgw</strong>。
+        </p>
+        <div class="given-tags">
+          <span class="given-tag">物重 $W = 10\text{ kgw}$</span>
+          <span class="given-tag">彈簧原長 $L_0 = 1.5\text{ cm}$</span>
+          <span class="given-tag">彈簧常數 $k = 800\text{ kgw/m}$</span>
+          <span class="given-tag">長繩 $L_1 = 4\text{ cm}$（仰角 $30^\circ$）</span>
+          <span class="given-tag">短繩仰角 $60^\circ$</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Interactive Playground -->
+    <section class="interactive-stage">
+      <div class="controls-toolbar">
+        <div class="mode-toggles">
+          <button id="btnModePhysical" class="tool-btn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16M12 4v16m-8-4l8 4 8-4"/></svg>
+            實體裝置與受力
+          </button>
+          <button id="btnModeVector" class="tool-btn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 22 21 2 21"/></svg>
+            向量首尾封閉三角形
+          </button>
+          <button id="btnModeCompare" class="tool-btn active">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="8" height="18" rx="1"/><rect x="13" y="3" width="8" height="18" rx="1"/></svg>
+            雙圖同步對照
+          </button>
+        </div>
+
+        <div class="action-buttons">
+          <button id="btnCombineForces" class="action-btn">
+            <span class="icon">⚡</span> 合併鉛直力 (10 - 4 = 6 kgw)
+          </button>
+          <button id="btnAnimateMorph" class="action-btn accent-btn">
+            <span class="icon">✨</span> 動態組裝封閉三角形
+          </button>
+        </div>
+      </div>
+
+      <!-- Visualization Canvas Area -->
+      <div class="viewports-container" id="viewportsContainer">
+        <!-- Physical Space Canvas -->
+        <div class="canvas-card" id="cardPhysical">
+          <div class="canvas-title-bar">
+            <h3><span class="dot dot-blue"></span> 實體空間：幾何尺寸與節點受力</h3>
+            <span class="view-tag">Physical Space</span>
+          </div>
+          <div class="svg-wrapper">
+            <svg id="svgPhysical" viewBox="0 0 600 480" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <marker id="arrow-w" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                  <path d="M0 1L10 5L0 9z" fill="#ff5252"/>
+                </marker>
+                <marker id="arrow-fs" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                  <path d="M0 1L10 5L0 9z" fill="#00e676"/>
+                </marker>
+                <marker id="arrow-t1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                  <path d="M0 1L10 5L0 9z" fill="#448aff"/>
+                </marker>
+                <marker id="arrow-t2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                  <path d="M0 1L10 5L0 9z" fill="#ffab00"/>
+                </marker>
+                <marker id="arrow-fnet" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                  <path d="M0 1L10 5L0 9z" fill="#ff4081"/>
+                </marker>
+              </defs>
+
+              <!-- Ceiling Hatch -->
+              <line x1="60" y1="70" x2="540" y2="70" stroke="#78909c" stroke-width="6" stroke-linecap="round"/>
+              <g stroke="#546e7a" stroke-width="2" opacity="0.4">
+                <line x1="80" y1="70" x2="95" y2="52"/><line x1="120" y1="70" x2="135" y2="52"/>
+                <line x1="160" y1="70" x2="175" y2="52"/><line x1="200" y1="70" x2="215" y2="52"/>
+                <line x1="240" y1="70" x2="255" y2="52"/><line x1="280" y1="70" x2="295" y2="52"/>
+                <line x1="320" y1="70" x2="335" y2="52"/><line x1="360" y1="70" x2="375" y2="52"/>
+                <line x1="400" y1="70" x2="415" y2="52"/><line x1="440" y1="70" x2="455" y2="52"/>
+                <line x1="480" y1="70" x2="495" y2="52"/><line x1="520" y1="70" x2="535" y2="52"/>
+              </g>
+
+              <!-- Geometry Triangle Reference Lines (Ceiling & Ropes) -->
+              <!-- Knot at (320, 200). Ceiling at Y=70. Height h = 130px.
+                   Left attachment: (320 - 130*√3, 70) ≈ (95, 70).
+                   Right attachment: (320 + 130/√3, 70) ≈ (395, 70).
+              -->
+              <g id="geoRopes">
+                <!-- Left rope (L1 = 4cm) -->
+                <line x1="95" y1="70" x2="320" y2="200" stroke="#90caf9" stroke-width="3" id="physLineT1"/>
+                <!-- Right rope (L2) -->
+                <line x1="395" y1="70" x2="320" y2="200" stroke="#ffe082" stroke-width="3" id="physLineT2"/>
+              </g>
+
+              <!-- Spring: from (320, 70) to (320, 200) -->
+              <g id="springGraphic">
+                <path d="M320,70 L320,85 
+                         L332,94 L308,103 L332,112 L308,121 L332,130 L308,139 L332,148 L308,157 L332,166 L308,175 
+                         L320,185 L320,200" 
+                      fill="none" stroke="#69f0ae" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <!-- Boxed label for Spring to prevent collision -->
+                <rect x="338" y="105" width="145" height="42" rx="6" fill="rgba(15, 23, 42, 0.85)" stroke="#69f0ae" stroke-width="1.2"/>
+                <text x="345" y="123" fill="#69f0ae" font-size="12" font-weight="700">彈簧現長 h = 2.0 cm</text>
+                <text x="345" y="139" fill="#a7f3d0" font-size="11">(Δx = 0.5 cm, Fs = 4 kgw)</text>
+              </g>
+
+              <!-- Geometry Angle Arcs & Labels -->
+              <!-- Ceiling angle 30° at left -->
+              <path d="M145,70 A50,50 0 0,1 138,95" fill="none" stroke="#64b5f6" stroke-width="2"/>
+              <text x="148" y="92" fill="#64b5f6" font-size="13" font-weight="bold">30°</text>
+
+              <!-- Ceiling angle 60° at right -->
+              <path d="M365,70 A30,30 0 0,0 375,96" fill="none" stroke="#ffd54f" stroke-width="2"/>
+              <text x="375" y="88" fill="#ffd54f" font-size="13" font-weight="bold">60°</text>
+
+              <!-- 90° angle marker between ropes at knot -->
+              <g transform="translate(320, 200)">
+                <path d="M-13,-7.5 L-6,-20 L7,-12" fill="none" stroke="#ffeb3b" stroke-width="2"/>
+                <text x="-42" y="-12" fill="#ffeb3b" font-size="13" font-weight="bold">90°</text>
+              </g>
+
+              <!-- Length label for L1 -->
+              <rect x="110" y="145" width="125" height="26" rx="5" fill="rgba(15, 23, 42, 0.85)" stroke="#64b5f6" stroke-width="1"/>
+              <text x="118" y="162" fill="#90caf9" font-size="12" font-weight="bold">較長繩 L₁ = 4 cm</text>
+
+              <!-- Hanging Object from Knot -->
+              <line x1="320" y1="200" x2="320" y2="350" stroke="#b0bec5" stroke-width="2.5"/>
+              <rect x="290" y="350" width="60" height="55" rx="6" fill="#37474f" stroke="#78909c" stroke-width="2.5"/>
+              <text x="320" y="383" fill="#eceff1" font-size="14" font-weight="bold" text-anchor="middle">10 kgw</text>
+
+              <!-- The Central Knot (Point of Equilibrium) -->
+              <circle cx="320" cy="200" r="6" fill="#fff" stroke="#ff4081" stroke-width="3"/>
+              <text x="280" y="210" fill="#fff" font-size="13" font-weight="bold">節點</text>
+
+              <!-- FORCE VECTORS LAYER (Originated at (320, 200)) -->
+              <!-- 1. Gravity W = 10 kgw (down) -->
+              <g id="vecGravity">
+                <line x1="320" y1="200" x2="320" y2="340" stroke="#ff5252" stroke-width="4.5" marker-end="url(#arrow-w)"/>
+                <text x="328" y="335" fill="#ff5252" font-size="14" font-weight="bold">W = 10 kgw ↓</text>
+              </g>
+
+              <!-- 2. Spring Force Fs = 4 kgw (up) -->
+              <g id="vecSpring">
+                <line x1="320" y1="200" x2="320" y2="148" stroke="#00e676" stroke-width="4.5" marker-end="url(#arrow-fs)"/>
+                <text x="210" y="148" fill="#00e676" font-size="14" font-weight="bold">Fs = 4 kgw ↑</text>
+              </g>
+
+              <!-- Combined Vertical Force (Hidden by default, toggled via JS) -->
+              <g id="vecCombinedVertical" opacity="0">
+                <line x1="320" y1="200" x2="320" y2="284" stroke="#ff4081" stroke-width="5.5" stroke-dasharray="6 3" marker-end="url(#arrow-fnet)"/>
+                <rect x="330" y="260" width="165" height="28" rx="5" fill="#1e1e24" stroke="#ff4081" stroke-width="1.2"/>
+                <text x="338" y="278" fill="#ff4081" font-size="13" font-weight="bold">等效鉛直力 10-4 = 6 kgw ↓</text>
+              </g>
+
+              <!-- 3. Tension T1 (along left rope) -->
+              <g id="vecT1">
+                <line x1="320" y1="200" x2="255" y2="162.5" stroke="#448aff" stroke-width="4.5" marker-end="url(#arrow-t1)"/>
+                <text x="215" y="185" fill="#82b1ff" font-size="14" font-weight="bold">T₁ = ?</text>
+              </g>
+
+              <!-- 4. Tension T2 (along right rope) -->
+              <g id="vecT2">
+                <line x1="320" y1="200" x2="385" y2="87.5" stroke="#ffab00" stroke-width="4.5" marker-end="url(#arrow-t2)"/>
+                <text x="395" y="105" fill="#ffd740" font-size="14" font-weight="bold">T₂</text>
+              </g>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Vector Triangle Canvas -->
+        <div class="canvas-card" id="cardVector">
+          <div class="canvas-title-bar">
+            <h3><span class="dot dot-purple"></span> 向量空間：首尾相連封閉直角三角形</h3>
+            <span class="view-tag">Vector Space (&Sigma;F = 0)</span>
+          </div>
+          <div class="svg-wrapper">
+            <svg id="svgVector" viewBox="0 0 600 480" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <marker id="varr-down" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                  <path d="M0 1L10 5L0 9z" fill="#ff4081"/>
+                </marker>
+                <marker id="varr-t2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                  <path d="M0 1L10 5L0 9z" fill="#ffab00"/>
+                </marker>
+                <marker id="varr-t1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                  <path d="M0 1L10 5L0 9z" fill="#448aff"/>
+                </marker>
+              </defs>
+
+              <!-- Grid reference lines -->
+              <line x1="80" y1="240" x2="520" y2="240" stroke="#37474f" stroke-width="1" stroke-dasharray="4 4"/>
+              <line x1="230" y1="50" x2="230" y2="430" stroke="#37474f" stroke-width="1" stroke-dasharray="4 4"/>
+
+              <!-- Vector Polygon Group -->
+              <g id="triangleGroup">
+                <!-- 1. Vertical Net Downward Vector: (230, 90) -> (230, 390) -->
+                <g class="vector-element" id="vElemNetDown">
+                  <line x1="230" y1="90" x2="230" y2="385" stroke="#ff4081" stroke-width="5" marker-end="url(#varr-down)"/>
+                  <rect x="65" y="215" width="150" height="50" rx="6" fill="#1e1e24" stroke="#ff4081" stroke-width="1.5"/>
+                  <text x="140" y="235" fill="#ff4081" font-size="14" font-weight="bold" text-anchor="middle">鉛直向下合力</text>
+                  <text x="140" y="254" fill="#ff80ab" font-size="13" font-family="'Fira Code', monospace" text-anchor="middle">10 - 4 = 6 kgw</text>
+                  <text x="140" y="278" fill="#f48fb1" font-size="11" text-anchor="middle">(斜邊 Hypotenuse)</text>
+                </g>
+
+                <!-- 2. Tension T2 Vector: (230, 390) -> (360, 165) -->
+                <g class="vector-element" id="vElemT2">
+                  <line x1="230" y1="390" x2="357" y2="170" stroke="#ffab00" stroke-width="5" marker-end="url(#varr-t2)"/>
+                  <rect x="330" y="280" width="145" height="42" rx="6" fill="#1e1e24" stroke="#ffab00" stroke-width="1.5"/>
+                  <text x="402" y="300" fill="#ffd740" font-size="14" font-weight="bold" text-anchor="middle">短繩張力 T₂</text>
+                  <text x="402" y="316" fill="#ffe57f" font-size="12" font-family="'Fira Code', monospace" text-anchor="middle">6 × sin 60° = 3√3</text>
+                </g>
+
+                <!-- 3. Tension T1 Vector: (360, 165) -> (230, 90) -->
+                <g class="vector-element" id="vElemT1">
+                  <line x1="360" y1="165" x2="235" y2="93" stroke="#448aff" stroke-width="6" marker-end="url(#varr-t1)"/>
+                  <!-- Highlight badge for answer -->
+                  <rect x="290" y="85" width="180" height="52" rx="8" fill="#1a237e" stroke="#448aff" stroke-width="2"/>
+                  <text x="380" y="108" fill="#82b1ff" font-size="14" font-weight="bold" text-anchor="middle">較長繩張力 T₁ (所求)</text>
+                  <text x="380" y="128" fill="#00e676" font-size="16" font-weight="900" font-family="'Fira Code', monospace" text-anchor="middle">6 × cos 60° = 3 kgw</text>
+                </g>
+
+                <!-- Right-angle indicator at (360, 165) -->
+                <g transform="translate(360, 165) rotate(120)">
+                  <path d="M0,0 L-18,0 L-18,-18 L0,-18 Z" fill="rgba(255, 235, 59, 0.2)" stroke="#ffeb3b" stroke-width="2"/>
+                </g>
+                <text x="382" y="172" fill="#ffeb3b" font-size="13" font-weight="bold">90° 垂直</text>
+
+                <!-- Angle 60° at top vertex (230, 90) -->
+                <path d="M230,140 A50,50 0 0,0 262,108" fill="none" stroke="#82b1ff" stroke-width="2.5"/>
+                <text x="242" y="135" fill="#82b1ff" font-size="14" font-weight="bold">60°</text>
+
+                <!-- Angle 30° at bottom vertex (230, 390) -->
+                <path d="M230,340 A50,50 0 0,1 256,346" fill="none" stroke="#ffd740" stroke-width="2.5"/>
+                <text x="238" y="360" fill="#ffd740" font-size="14" font-weight="bold">30°</text>
+
+                <!-- Start / End Closed Point Indicator -->
+                <circle cx="230" cy="90" r="7" fill="#00e676" stroke="#fff" stroke-width="2"/>
+                <text x="230" y="73" fill="#00e676" font-size="13" font-weight="bold" text-anchor="middle">首尾封閉起終點 (合力 = 0)</text>
+              </g>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Summary Formula Bar -->
+      <div class="formula-banner">
+        <div class="formula-item">
+          <span class="label">幾何下垂深度</span>
+          <span class="math-render">$h = 4 \times \sin 30^\circ = \mathbf{2.0\text{ cm}}$</span>
+        </div>
+        <div class="divider"></div>
+        <div class="formula-item">
+          <span class="label">彈力 (向上)</span>
+          <span class="math-render">$F_s = 800 \times 0.005 = \mathbf{4\text{ kgw}}$</span>
+        </div>
+        <div class="divider"></div>
+        <div class="formula-item">
+          <span class="label">淨向下外力</span>
+          <span class="math-render">$W - F_s = 10 - 4 = \mathbf{6\text{ kgw}}$</span>
+        </div>
+        <div class="divider"></div>
+        <div class="formula-item highlight-item">
+          <span class="label">秒殺長繩張力 T₁</span>
+          <span class="math-render math-ans">$T_1 = 6 \times \cos 60^\circ = \mathbf{3\text{ kgw}}$</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Deep Dive Step-by-Step Explanation Cards -->
+    <section class="explanation-section">
+      <h2 class="section-title">四步推導：為什麼能用「封閉直角三角形」秒解？</h2>
+
+      <div class="steps-grid">
+        <!-- Step 1 -->
+        <div class="step-card">
+          <div class="step-number">01</div>
+          <h3>空間幾何分析</h3>
+          <p>
+            天花板與兩條細繩形成一個三角形。左繩與水平夾 $30^\circ$，右繩與水平夾 $60^\circ$：
+          </p>
+          <div class="equation-box">
+            兩繩夾角 $= 180^\circ - 30^\circ - 60^\circ = \mathbf{90^\circ}$
+          </div>
+          <p>
+            兩繩互相垂直！「較長者長度為 4 cm」必為對應較大角（$60^\circ$）之左繩。因此節點到天花板的鉛直距離（即高 $h$）：
+          </p>
+          <div class="equation-box highlight">
+            $h = 4 \times \sin 30^\circ = \mathbf{2.0\text{ cm}}$
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="step-card">
+          <div class="step-number">02</div>
+          <h3>虎克定律求彈力</h3>
+          <p>
+            彈簧由天花板鉛直懸掛至節點，原長 $1.5\text{ cm}$，現長即為幾何深度 $h = 2.0\text{ cm}$：
+          </p>
+          <div class="equation-box">
+            伸長量 $\Delta x = 2.0 - 1.5 = 0.5\text{ cm} = \mathbf{0.005\text{ m}}$
+          </div>
+          <p>
+            根據虎克定律 $F_s = k \cdot \Delta x$：
+          </p>
+          <div class="equation-box highlight">
+            $F_s = 800\text{ kgw/m} \times 0.005\text{ m} = \mathbf{4\text{ kgw}}\;(\uparrow)$
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="step-card">
+          <div class="step-number">03</div>
+          <h3>簡化：合併鉛直同軸力</h3>
+          <p>
+            節點一共受到 4 個力作用：物重 $W$、彈簧力 $F_s$、左繩張力 $T_1$、右繩張力 $T_2$。
+          </p>
+          <p>
+            其中物重向下 $10\text{ kgw}$ 與彈簧力向上 $4\text{ kgw}$ 都在同一直線上，可直接純量相減：
+          </p>
+          <div class="equation-box highlight">
+            等效鉛直向下外力 $= 10 - 4 = \mathbf{6\text{ kgw}}\;(\downarrow)$
+          </div>
+          <p>
+            換言之，<strong>$T_1$ 與 $T_2$ 兩股張力只需平衡這 $6\text{ kgw}$ 的淨重！</strong>
+          </p>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="step-card featured">
+          <div class="step-number">04</div>
+          <h3>首尾相接・封閉直角三角形</h3>
+          <p>
+            因靜力平衡 $\sum \vec{F} = \vec{0}$，受力向量首尾相連必閉合：
+          </p>
+          <ul>
+            <li>鉛直邊長度 $= \mathbf{6\text{ kgw}}$（斜邊）</li>
+            <li>因為 $T_1 \perp T_2$，此三角形必為<strong>直角三角形</strong>！</li>
+            <li>$T_1$ 方向與水平夾 $30^\circ$，因此與鉛直線夾角為 $90^\circ - 30^\circ = \mathbf{60^\circ}$。</li>
+          </ul>
+          <div class="equation-box answer-box">
+            $T_1 = 6 \times \cos 60^\circ = 6 \times \frac{1}{2} = \mathbf{3\text{ kgw}}$
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Comparison Section: 傳統分量法 vs 封閉三角形法 -->
+    <section class="card comparison-section">
+      <div class="card-header">
+        <div class="card-icon">⚡</div>
+        <div>
+          <h2>解法對比：為什麼「向量封閉三角形」更勝一籌？</h2>
+          <span class="card-tag">解題速度與直覺比較</span>
+        </div>
+      </div>
+      <div class="comparison-grid">
+        <div class="comp-col">
+          <h4 class="comp-bad">❌ 傳統正交分解法（較耗時）</h4>
+          <ol>
+            <li>建立 X-Y 直角坐標系</li>
+            <li>列 $\sum F_x = 0 \implies T_1 \cos 30^\circ = T_2 \cos 60^\circ$</li>
+            <li>列 $\sum F_y = 0 \implies T_1 \sin 30^\circ + T_2 \sin 60^\circ + 4 = 10$</li>
+            <li>解二元一次聯立方程式，代入根號 $\frac{\sqrt{3}}{2}$ 反覆通分計算</li>
+            <li><strong>耗時約 2~3 分鐘，容易算錯根號計算</strong></li>
+          </ol>
+        </div>
+        <div class="comp-col highlight-col">
+          <h4 class="comp-good">✅ 向量封閉三角形法（秒殺神技）</h4>
+          <ol>
+            <li>發現兩繩夾角 $90^\circ$，必為直角三角形</li>
+            <li>合併鉛直力 $10 - 4 = 6\text{ kgw}$（即直角三角形斜邊）</li>
+            <li>長繩對應視角 $60^\circ$ 夾角</li>
+            <li>直接取餘弦：$T_1 = 6 \times \cos 60^\circ = \mathbf{3\text{ kgw}}$</li>
+            <li><strong>不需解聯立方程式，5 秒內心算即得答案！</strong></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>© 高中物理學測・指考專題教材 | 靜力平衡視覺化教學輔助系統</p>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

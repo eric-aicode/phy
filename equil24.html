@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>靜力平衡 24：不均勻木桿分別提起與總重求解 | 高中物理靜力學</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+  <link rel="stylesheet" href="shared.css">
+</head>
+<body>
+  <div class="bg-glow"></div>
+  <div class="bg-grid"></div>
+
+  <div class="container">
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+      <div class="nav-links">
+        <a href="index.html" class="nav-btn primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          回目錄
+        </a>
+        <a href="equil23.html" class="nav-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          上一題 (平衡 23)
+        </a>
+        <a href="equil25.html" class="nav-btn">
+          下一題 (平衡 25)
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+      <div class="badge-wrapper">
+        <span class="badge badge-page">講義 靜力學-28</span>
+        <span class="badge badge-exam">力矩相加恆等式</span>
+        <span class="badge badge-accent">靜力平衡・練習 24</span>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+      <h1 class="main-title">靜力平衡 24：<span class="gradient-text">不均勻木桿分別提起與總重求解</span></h1>
+      <p class="subtitle">端點分別為轉軸之力矩方程・槓桿力臂定理・兩端抬升力之和恆等於物重</p>
+    </header>
+
+    <!-- Problem Showcase Card -->
+    <section class="card problem-card">
+      <div class="card-header">
+        <div class="card-icon">📖</div>
+        <div>
+          <h2>題目內容</h2>
+          <span class="card-tag">重心與力矩經典模型</span>
+        </div>
+      </div>
+
+      <div class="problem-body">
+        <p>
+          水平地面上置一不均勻的木桿 $AB$，長度為 $4\text{ m}$。若欲將 $A$ 端鉛直提起，至少需施力 $10\text{ kgw}$；若欲將 $B$ 端鉛直提起，至少需施力 $16\text{ kgw}$。則此木桿的重量約為若干 $\text{kgw}$？
+        </p>
+
+        <!-- SVG Diagram: Side-by-side comparison of lifting A and lifting B -->
+        <div class="diagram-wrapper">
+          <svg viewBox="0 0 760 340" class="physics-svg" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="arrow-blue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#38bdf8"/>
+              </marker>
+              <marker id="arrow-red" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#f43f5e"/>
+              </marker>
+              <marker id="arrow-green" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#10b981"/>
+              </marker>
+              <pattern id="diag-hatch" width="8" height="8" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse">
+                <line x1="0" y1="0" x2="0" y2="8" stroke="rgba(255,255,255,0.2)" stroke-width="1.2"/>
+              </pattern>
+            </defs>
+
+            <!-- Case 1 (Left): Lifting A端 (B is pivot) -->
+            <g transform="translate(20, 10)">
+              <!-- Ground -->
+              <rect x="10" y="220" width="320" height="12" fill="url(#diag-hatch)" stroke="#64748b" stroke-width="1.5"/>
+              <line x1="0" y1="220" x2="340" y2="220" stroke="#94a3b8" stroke-width="2"/>
+
+              <text x="170" y="30" fill="#38bdf8" font-size="14" font-weight="700" text-anchor="middle">情況一：提起 A 端（以 B 為支點）</text>
+
+              <!-- Rod tilted: B at (290, 220), A at (70, 130). dx = 220, dy = -90. -->
+              <line x1="70" y1="130" x2="290" y2="220" stroke="#cbd5e1" stroke-width="7" stroke-linecap="round"/>
+
+              <!-- Point A -->
+              <circle cx="70" cy="130" r="5" fill="#38bdf8"/>
+              <text x="50" y="130" fill="#38bdf8" font-size="15" font-weight="800">A</text>
+
+              <!-- Point B (Pivot) -->
+              <circle cx="290" cy="220" r="5" fill="#f59e0b"/>
+              <text x="305" y="225" fill="#f59e0b" font-size="15" font-weight="800">B</text>
+
+              <!-- Force F_A = 10 kgw upwards -->
+              <line x1="70" y1="130" x2="70" y2="55" stroke="#38bdf8" stroke-width="3" marker-end="url(#arrow-blue)"/>
+              <text x="78" y="70" fill="#38bdf8" font-size="13" font-weight="800">F_A = 10 kgw</text>
+
+              <!-- Center of Mass G: closer to B. Let distance from B be x.
+                   Suppose x/L = 10/26 ~ 0.385.
+                   G at: x = 290 - 220*0.385 = 205. y = 220 - 90*0.385 = 185.
+              -->
+              <circle cx="205" cy="185" r="4.5" fill="#f43f5e"/>
+              <line x1="205" y1="185" x2="205" y2="250" stroke="#f43f5e" stroke-width="2.5" marker-end="url(#arrow-red)"/>
+              <text x="215" y="245" fill="#f43f5e" font-size="13" font-weight="700">W (重力)</text>
+
+              <!-- Equation 1 below -->
+              <rect x="25" y="245" width="290" height="40" rx="6" fill="rgba(30, 41, 59, 0.7)" stroke="#475569" stroke-width="1"/>
+              <text x="170" y="270" fill="#cbd5e1" font-size="13" font-family="'Fira Code', monospace" text-anchor="middle">10 × 4 = W × x  ⇒  W·x = 40</text>
+            </g>
+
+            <!-- Case 2 (Right): Lifting B端 (A is pivot) -->
+            <g transform="translate(390, 10)">
+              <!-- Ground -->
+              <rect x="10" y="220" width="320" height="12" fill="url(#diag-hatch)" stroke="#64748b" stroke-width="1.5"/>
+              <line x1="0" y1="220" x2="340" y2="220" stroke="#94a3b8" stroke-width="2"/>
+
+              <text x="170" y="30" fill="#10b981" font-size="14" font-weight="700" text-anchor="middle">情況二：提起 B 端（以 A 為支點）</text>
+
+              <!-- Rod tilted: A at (50, 220), B at (270, 130). dx = 220, dy = -90. -->
+              <line x1="50" y1="220" x2="270" y2="130" stroke="#cbd5e1" stroke-width="7" stroke-linecap="round"/>
+
+              <!-- Point A (Pivot) -->
+              <circle cx="50" cy="220" r="5" fill="#f59e0b"/>
+              <text x="35" y="225" fill="#f59e0b" font-size="15" font-weight="800">A</text>
+
+              <!-- Point B -->
+              <circle cx="270" cy="130" r="5" fill="#10b981"/>
+              <text x="285" y="130" fill="#10b981" font-size="15" font-weight="800">B</text>
+
+              <!-- Force F_B = 16 kgw upwards -->
+              <line x1="270" y1="130" x2="270" y2="55" stroke="#10b981" stroke-width="3" marker-end="url(#arrow-green)"/>
+              <text x="278" y="70" fill="#10b981" font-size="13" font-weight="800">F_B = 16 kgw</text>
+
+              <!-- Center of Mass G: distance from A is (4 - x) = 4 * (16/26) ~ 2.46.
+                   G at: x = 50 + 220*(1 - 0.385) = 185. y = 220 - 90*(1 - 0.385) = 165.
+              -->
+              <circle cx="185" cy="165" r="4.5" fill="#f43f5e"/>
+              <line x1="185" y1="165" x2="185" y2="230" stroke="#f43f5e" stroke-width="2.5" marker-end="url(#arrow-red)"/>
+              <text x="195" y="225" fill="#f43f5e" font-size="13" font-weight="700">W (重力)</text>
+
+              <!-- Equation 2 below -->
+              <rect x="20" y="245" width="300" height="40" rx="6" fill="rgba(30, 41, 59, 0.7)" stroke="#475569" stroke-width="1"/>
+              <text x="170" y="270" fill="#cbd5e1" font-size="13" font-family="'Fira Code', monospace" text-anchor="middle">16 × 4 = W(4 - x) = 4W - 40</text>
+            </g>
+
+            <!-- Bottom summary banner -->
+            <rect x="180" y="300" width="400" height="30" rx="6" fill="rgba(16, 185, 129, 0.15)" stroke="rgba(16, 185, 129, 0.3)" stroke-width="1"/>
+            <text x="380" y="320" fill="#34d399" font-size="13" font-weight="800" text-anchor="middle">⚡ 秒殺定理：W = F_A + F_B = 10 + 16 = 26 kgw</text>
+          </svg>
+        </div>
+
+        <p class="question-prompt">
+          依據力矩平衡方程式推導，此木桿的總重量約為多少 $\text{kgw}$？
+        </p>
+
+        <!-- Options Container -->
+        <div class="options-container">
+          <div class="option-card" data-option="A">
+            <span class="option-label">A</span>
+            <div class="option-content">
+              <span class="katex-text">$26\text{ kgw}$</span>
+            </div>
+          </div>
+
+          <div class="option-card" data-option="B">
+            <span class="option-label">B</span>
+            <div class="option-content">
+              <span class="katex-text">$13\text{ kgw}$</span>
+            </div>
+          </div>
+
+          <div class="option-card" data-option="C">
+            <span class="option-label">C</span>
+            <div class="option-content">
+              <span class="katex-text">$\sqrt{160}\text{ kgw}$</span>
+            </div>
+          </div>
+
+          <div class="option-card" data-option="D">
+            <span class="option-label">D</span>
+            <div class="option-content">
+              <span class="katex-text">$\sqrt{80}\text{ kgw}$</span>
+            </div>
+          </div>
+
+          <div class="option-card" data-option="E">
+            <span class="option-label">E</span>
+            <div class="option-content">
+              <span class="katex-text">$20\text{ kgw}$</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Feedback Alert Box -->
+        <div class="feedback-box" id="feedbackBox">
+          <div class="feedback-icon" id="feedbackIcon"></div>
+          <div class="feedback-text" id="feedbackText"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Collapsible Solution Card -->
+    <section class="card solution-card collapsed" id="solutionCard">
+      <div class="card-header toggle-header" id="solutionToggle">
+        <div class="card-icon">💡</div>
+        <div>
+          <h2>核心解析與詳細推導</h2>
+          <span class="card-tag">點擊展開 / 收合完整解析</span>
+        </div>
+        <span class="solution-status">點擊展開完整剖析</span>
+      </div>
+
+      <div class="solution-content">
+        <div class="solution-step">
+          <span class="step-num">方法一</span>
+          <h3>正規力矩平衡方程聯立法</h3>
+          <p>
+            設木桿總長 $L = 4\text{ m}$，總重為 $W$。<br>
+            設重心距 $B$ 點之距離為 $x$，則重心距 $A$ 點之距離為 $4 - x$。
+          </p>
+          <ul>
+            <li><strong>情況一（提起 A 端）</strong>：$B$ 端著地為轉軸，此時傾角設為 $\alpha$：
+              $$F_A \cdot (4 \cos\alpha) = W \cdot (x \cos\alpha)$$
+              力臂中的 $\cos\alpha$ 相消：
+              $$10 \times 4 = W \cdot x \implies W x = 40 \quad \cdots (1)$$
+            </li>
+            <li><strong>情況二（提起 B 端）</strong>：$A$ 端著地為轉軸，傾角設為 $\beta$：
+              $$F_B \cdot (4 \cos\beta) = W \cdot ((4 - x) \cos\beta)$$
+              力臂中的 $\cos\beta$ 相消：
+              $$16 \times 4 = W(4 - x) = 4W - Wx \quad \cdots (2)$$
+            </li>
+          </ul>
+          <p>
+            將 $(1)$ 式代入 $(2)$ 式：
+            $$64 = 4W - 40 \implies 4W = 104 \implies W = 26\text{ kgw}$$
+          </p>
+        </div>
+
+        <div class="solution-step">
+          <span class="step-num">方法二</span>
+          <h3>物理本質秒殺法：兩端提起力之和恆等於總重</h3>
+          <p>
+            根據槓桿原理，由兩端分別提起時所需的力分別為：
+            $$F_A = W \cdot \frac{x}{L}, \quad F_B = W \cdot \frac{L - x}{L}$$
+            將兩式直接相加：
+            $$F_A + F_B = W \left(\frac{x}{L} + \frac{L - x}{L}\right) = W \left(\frac{L}{L}\right) = W$$
+            因此，<strong>無論木桿質量如何不均勻分布，兩端分別鉛直提起的力相加，必定恆等於物體的總重力</strong>！
+            $$W = F_A + F_B = 10 + 16 = 26\text{ kgw}$$
+          </p>
+          <div class="conclusion-box">
+            <strong>結論：</strong> 本題正確答案為 <strong>(A) $26\text{ kgw}$</strong>。
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Navigation Footer -->
+    <footer class="footer-nav">
+      <a href="equil23.html" class="nav-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+        上一題 (平衡 23)
+      </a>
+      <a href="index.html" class="nav-btn primary">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        單元總覽
+      </a>
+      <a href="equil25.html" class="nav-btn">
+        下一題 (平衡 25)
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+    </footer>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // KaTeX Auto-render
+      if (typeof renderMathInElement === 'function') {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ],
+          throwOnError: false
+        });
+      }
+
+      // Quiz Interaction
+      const correctAnswer = "A";
+      const optionCards = document.querySelectorAll(".option-card");
+      const feedbackBox = document.getElementById("feedbackBox");
+      const feedbackIcon = document.getElementById("feedbackIcon");
+      const feedbackText = document.getElementById("feedbackText");
+      const solutionCard = document.getElementById("solutionCard");
+
+      optionCards.forEach(card => {
+        card.addEventListener("click", function() {
+          const selected = this.getAttribute("data-option");
+
+          optionCards.forEach(c => c.classList.remove("selected", "correct", "wrong"));
+          this.classList.add("selected");
+
+          feedbackBox.classList.remove("correct", "wrong");
+          feedbackBox.classList.add("show");
+
+          if (selected === correctAnswer) {
+            this.classList.add("correct");
+            feedbackBox.classList.add("correct");
+            feedbackIcon.innerHTML = "🎉";
+            feedbackText.innerHTML = "<strong>命中真理！完全正確！</strong><br>利用力矩恆等相加：$F_A + F_B = W \\left(\\frac{x}{L} + \\frac{L-x}{L}\\right) = W$。<br>因此直接相加：$W = 10 + 16 = 26\\text{ kgw}$！";
+            solutionCard.classList.remove("collapsed");
+            const tag = solutionCard.querySelector(".solution-status");
+            if (tag) tag.textContent = "點擊收合詳解";
+          } else {
+            this.classList.add("wrong");
+            feedbackBox.classList.add("wrong");
+            feedbackIcon.innerHTML = "💡";
+            if (selected === "B") {
+              feedbackText.innerHTML = "<strong>不小心除以 2 了嗎？</strong> 兩次提起是獨立施力，$F_A + F_B = W$，不需要再除以 2 喔！";
+            } else if (selected === "C" || selected === "D") {
+              feedbackText.innerHTML = "<strong>不要平方開根號喔！</strong> 重力與提力方向皆為鉛直，屬於同方向的一維代數相加！";
+            } else {
+              feedbackText.innerHTML = `<strong>選了 (${selected})，再想想看！</strong> 提示：分別以 A、B 端為支點列力矩平衡，觀察兩方程式相加後的結果！`;
+            }
+          }
+
+          if (typeof renderMathInElement === 'function') {
+            renderMathInElement(feedbackText, {
+              delimiters: [
+                {left: '$$', right: '$$', display: true},
+                {left: '$', right: '$', display: false}
+              ],
+              throwOnError: false
+            });
+          }
+        });
+      });
+
+      // Solution toggle
+      const solutionToggle = document.getElementById("solutionToggle");
+      solutionToggle.addEventListener("click", function() {
+        solutionCard.classList.toggle("collapsed");
+        const isCollapsed = solutionCard.classList.contains("collapsed");
+        const statusSpan = solutionToggle.querySelector(".solution-status");
+        if (statusSpan) {
+          statusSpan.textContent = isCollapsed ? "點擊展開完整剖析" : "點擊收合詳解";
+        }
+      });
+    });
+  </script>
+</body>
+</html>

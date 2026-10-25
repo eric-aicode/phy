@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>練習 2：雙彈簧水平並聯位移與外力 | 高中物理靜力學</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+  <link rel="stylesheet" href="shared.css">
+</head>
+<body>
+  <div class="bg-glow"></div>
+  <div class="bg-grid"></div>
+
+  <div class="container">
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+      <div class="nav-links">
+        <a href="index.html" class="nav-btn primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          回目錄
+        </a>
+        <a href="exercise1.html" class="nav-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          上一題 (練習 1)
+        </a>
+        <a href="exercise3.html" class="nav-btn">
+          下一題 (練習 3)
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+      <div class="badge-wrapper">
+        <span class="badge badge-page">講義 靜力學-18</span>
+        <span class="badge badge-accent">彈簧和合力・練習 2</span>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+      <h1 class="main-title">練習 2：<span class="gradient-text">雙彈簧水平並聯推移所需外力</span></h1>
+      <p class="subtitle">拉伸與壓縮雙彈簧恢復力方向分析・等效並聯彈簧模型 $k = k_1 + k_2$ 秒殺</p>
+    </header>
+
+    <!-- Problem Showcase Card -->
+    <section class="card problem-card">
+      <div class="card-header">
+        <div class="card-icon">📖</div>
+        <div>
+          <h2>題目內容</h2>
+          <span class="card-tag">聯考經典並聯彈簧題</span>
+        </div>
+      </div>
+
+      <div class="problem-body">
+        <p>
+          如圖所示，水平光滑地面上有一物體，兩端分別連接兩彈簧，力常數分別為 <strong>$k_1 = 2\text{ kgw/cm}$</strong>，<strong>$k_2 = 4\text{ kgw/cm}$</strong>，兩彈簧另一端分別固定於兩側豎直牆壁上。
+        </p>
+        <p>
+          今施一水平外力將物體<strong>向右平移 $3\text{ cm}$</strong> 並保持靜止，則<strong>所需之水平外力為多少 $\text{kgw}$？</strong>
+        </p>
+        <ul class="condition-list">
+          <li><strong>(A)</strong> $6\text{ kgw}$</li>
+          <li><strong>(B)</strong> $8\text{ kgw}$</li>
+          <li><strong>(C)</strong> $12\text{ kgw}$</li>
+          <li><strong>(D)</strong> $18\text{ kgw}$</li>
+        </ul>
+      </div>
+
+      <!-- Problem Physical Diagram (SVG) -->
+      <div class="canvas-card">
+        <div class="canvas-title-bar">
+          <h3><span class="dot dot-blue"></span> 彈簧形變受力圖與等效並聯分析</h3>
+          <span class="view-tag">Spring Deformation & Equivalent Parallel FBD</span>
+        </div>
+        <div class="svg-wrapper">
+          <svg viewBox="0 0 760 360" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="arr-ex2-red" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                <path d="M0 1L10 5L0 9z" fill="#f87171"/>
+              </marker>
+              <marker id="arr-ex2-cyan" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                <path d="M0 1L10 5L0 9z" fill="#38bdf8"/>
+              </marker>
+              <marker id="arr-ex2-gold" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                <path d="M0 1L10 5L0 9z" fill="#fbbf24"/>
+              </marker>
+            </defs>
+
+            <!-- LEFT: Physical Setup with Deformation -->
+            <g transform="translate(30, 20)">
+              <rect x="0" y="0" width="340" height="315" rx="10" fill="#0f172a" stroke="#1e293b" stroke-width="1.5"/>
+              <text x="20" y="28" fill="#94a3b8" font-size="13" font-weight="600">物理裝置與形變分析（右移 3 cm）</text>
+
+              <!-- Left Wall -->
+              <line x1="40" y1="70" x2="40" y2="240" stroke="#64748b" stroke-width="5"/>
+              <g stroke="#475569" stroke-width="1.5" opacity="0.4">
+                <line x1="40" y1="80" x2="28" y2="90"/><line x1="40" y1="110" x2="28" y2="120"/>
+                <line x1="40" y1="140" x2="28" y2="150"/><line x1="40" y1="170" x2="28" y2="180"/>
+                <line x1="40" y1="200" x2="28" y2="210"/><line x1="40" y1="230" x2="28" y2="240"/>
+              </g>
+
+              <!-- Right Wall -->
+              <line x1="300" y1="70" x2="300" y2="240" stroke="#64748b" stroke-width="5"/>
+              <g stroke="#475569" stroke-width="1.5" opacity="0.4">
+                <line x1="300" y1="80" x2="312" y2="90"/><line x1="300" y1="110" x2="312" y2="120"/>
+                <line x1="300" y1="140" x2="312" y2="150"/><line x1="300" y1="170" x2="312" y2="180"/>
+                <line x1="300" y1="200" x2="312" y2="210"/><line x1="300" y1="230" x2="312" y2="240"/>
+              </g>
+
+              <!-- Smooth Ground -->
+              <line x1="30" y1="210" x2="310" y2="210" stroke="#334155" stroke-width="3"/>
+
+              <!-- Original position dashed center line at x=170 -->
+              <line x1="170" y1="110" x2="170" y2="210" stroke="#64748b" stroke-width="1.5" stroke-dasharray="3,3"/>
+              <text x="170" y="105" fill="#64748b" font-size="10" text-anchor="middle">原平衡點</text>
+
+              <!-- Shifted position: object centered at x=200 (shifted right by 30px ~ 3cm) -->
+              <!-- Spring 1 (stretched: from x=40 to 180, width 140) -->
+              <path d="M 40,160 
+                       L 55,160
+                       L 65,150 L 75,170 L 85,150 L 95,170 L 105,150 L 115,170 L 125,150 L 135,170 L 145,150 L 155,170 L 165,150 L 175,160
+                       L 180,160"
+                    fill="none" stroke="#38bdf8" stroke-width="2.5"/>
+              <text x="110" y="140" fill="#38bdf8" font-size="11" font-weight="bold" text-anchor="middle">彈簧 1 (拉伸 3cm)</text>
+
+              <!-- Object: circle/sphere at (200, 160) -->
+              <circle cx="200" cy="160" r="18" fill="#1e293b" stroke="#fbbf24" stroke-width="2.5"/>
+              <text x="200" y="165" fill="#fbbf24" font-size="12" font-weight="bold" text-anchor="middle">m</text>
+
+              <!-- Spring 2 (compressed: from x=218 to 300, width 82) -->
+              <path d="M 218,160 
+                       L 226,160
+                       L 233,148 L 240,172 L 247,148 L 254,172 L 261,148 L 268,172 L 275,148 L 282,172 L 289,148 L 294,160
+                       L 300,160"
+                    fill="none" stroke="#f87171" stroke-width="2.5"/>
+              <text x="260" y="140" fill="#f87171" font-size="11" font-weight="bold" text-anchor="middle">彈簧 2 (壓縮 3cm)</text>
+
+              <!-- Displacement arrow at bottom -->
+              <line x1="170" y1="195" x2="200" y2="195" stroke="#fbbf24" stroke-width="2" marker-end="url(#arr-ex2-gold)"/>
+              <text x="185" y="225" fill="#fbbf24" font-size="11" font-weight="bold" text-anchor="middle">Δx = 3 cm</text>
+
+              <!-- Applied Force F pointing right -->
+              <line x1="200" y1="160" x2="275" y2="160" stroke="#4ade80" stroke-width="3" marker-end="url(#arr-ex2-gold)"/>
+              <text x="240" y="180" fill="#4ade80" font-size="12" font-weight="bold">外力 F</text>
+            </g>
+
+            <!-- RIGHT: Free Body Diagram of Forces on Object -->
+            <g transform="translate(390, 20)">
+              <rect x="0" y="0" width="340" height="315" rx="10" fill="#0f172a" stroke="#1e293b" stroke-width="1.5"/>
+              <text x="20" y="28" fill="#94a3b8" font-size="13" font-weight="600">物體水平受力隔離體圖</text>
+
+              <!-- Central Block -->
+              <circle cx="160" cy="150" r="22" fill="#1e293b" stroke="#fbbf24" stroke-width="3"/>
+              <text x="160" y="155" fill="#fbbf24" font-size="13" font-weight="bold" text-anchor="middle">物體</text>
+
+              <!-- Force 1 from Spring 1: pulled to left -->
+              <line x1="138" y1="135" x2="50" y2="135" stroke="#38bdf8" stroke-width="3" marker-end="url(#arr-ex2-cyan)"/>
+              <text x="45" y="125" fill="#38bdf8" font-size="12" font-weight="bold">F₁ = k₁ Δx = 6 kgw (向左)</text>
+
+              <!-- Force 2 from Spring 2: pushed to left -->
+              <line x1="138" y1="165" x2="30" y2="165" stroke="#f87171" stroke-width="3" marker-end="url(#arr-ex2-red)"/>
+              <text x="30" y="185" fill="#f87171" font-size="12" font-weight="bold">F₂ = k₂ Δx = 12 kgw (向左)</text>
+
+              <!-- External Force F to right -->
+              <line x1="182" y1="150" x2="285" y2="150" stroke="#4ade80" stroke-width="3.5" marker-end="url(#arr-ex2-gold)"/>
+              <text x="210" y="140" fill="#4ade80" font-size="13" font-weight="bold">外力 F = 18 kgw</text>
+
+              <!-- Parallel Equivalence Card -->
+              <g transform="translate(20, 215)">
+                <rect x="0" y="0" width="300" height="85" rx="6" fill="rgba(15, 23, 42, 0.9)" stroke="#334155" stroke-width="1"/>
+                <text x="12" y="24" fill="#fbbf24" font-size="12" font-weight="bold">💡 等效並聯彈簧模型：</text>
+                <text x="12" y="44" fill="#cbd5e1" font-size="11.5">兩彈簧形變量同為 Δx，恢復力方向皆向左！</text>
+                <text x="12" y="62" fill="#4ade80" font-size="12" font-weight="bold">k_等效 = k₁ + k₂ = 2 + 4 = 6 kgw/cm</text>
+                <text x="12" y="78" fill="#e2e8f0" font-size="11">所需外力 F = k_等效 · Δx = 6 × 3 = 18 kgw</text>
+              </g>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Worksheet -->
+    <section class="card challenge-card">
+      <div class="card-header">
+        <div class="card-icon">✍️</div>
+        <div>
+          <h2>學生實戰單選作答區</h2>
+          <span class="card-tag">請選擇正確選項</span>
+        </div>
+      </div>
+
+      <div class="card-body">
+        <div class="option-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin-bottom: 20px;">
+          <button class="choice-btn" data-choice="A">
+            <span class="choice-label">A</span>
+            <span class="choice-text">$6\text{ kgw}$</span>
+          </button>
+          <button class="choice-btn" data-choice="B">
+            <span class="choice-label">B</span>
+            <span class="choice-text">$8\text{ kgw}$</span>
+          </button>
+          <button class="choice-btn" data-choice="C">
+            <span class="choice-label">C</span>
+            <span class="choice-text">$12\text{ kgw}$</span>
+          </button>
+          <button class="choice-btn" data-choice="D">
+            <span class="choice-label">D</span>
+            <span class="choice-text">$18\text{ kgw}$</span>
+          </button>
+        </div>
+
+        <div style="display: flex; gap: 12px; margin-top: 10px; flex-wrap: wrap;">
+          <button id="btnCheck" class="action-btn check-btn">
+            <span>核對答案</span>
+          </button>
+          <button id="btnToggleSolution" class="action-btn toggle-btn">
+            <span>顯示完整解析</span>
+          </button>
+        </div>
+
+        <div id="feedbackMessage" class="feedback-box" style="display: none;"></div>
+      </div>
+    </section>
+
+    <!-- Detailed Solution Section (Initially Hidden) -->
+    <section id="solutionSection" class="card solution-card" style="display: none;">
+      <div class="card-header">
+        <div class="card-icon">💡</div>
+        <div>
+          <h2>完整精闢觀念解析與公式推導</h2>
+          <span class="card-tag">名師詳解</span>
+        </div>
+      </div>
+
+      <div class="solution-body">
+        <!-- Step 1 -->
+        <div class="step-card">
+          <div class="step-header">
+            <span class="step-num">Step 1</span>
+            <h3>兩側彈簧形變與受力方向分析</h3>
+          </div>
+          <div class="step-content">
+            <p>
+              將物體向右位移 $\Delta x = 3\text{ cm}$：
+            </p>
+            <ul style="color: #cbd5e1; font-size: 14.5px; line-height: 1.8; margin-bottom: 12px;">
+              <li>
+                <strong>左側彈簧 1</strong>：原長被<strong>拉長 $3\text{ cm}$</strong>，產生<strong>向左</strong>的拉力：
+                $$F_1 = k_1 \cdot \Delta x = 2\text{ kgw/cm} \times 3\text{ cm} = 6\text{ kgw} \quad (\leftarrow)$$
+              </li>
+              <li>
+                <strong>右側彈簧 2</strong>：原長被<strong>壓縮 $3\text{ cm}$</strong>，產生<strong>向左</strong>的推力：
+                $$F_2 = k_2 \cdot \Delta x = 4\text{ kgw/cm} \times 3\text{ cm} = 12\text{ kgw} \quad (\leftarrow)$$
+              </li>
+            </ul>
+            <p style="color: #fbbf24; font-weight: 600;">
+              重點提示：拉伸彈簧的拉力與壓縮彈簧的推力，方向完全一致（皆向左），共同抵抗物體的右移！
+            </p>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="step-card">
+          <div class="step-header">
+            <span class="step-num">Step 2</span>
+            <h3>水平合力為零求外力 $F$</h3>
+          </div>
+          <div class="step-content">
+            <p>
+              物體維持平衡時，水平方向所受外力與兩彈簧恢復力總和平衡：
+              $$\sum F_x = 0 \implies F = F_1 + F_2$$
+              $$F = 6\text{ kgw} + 12\text{ kgw} = 18\text{ kgw} \quad (\rightarrow)$$
+            </p>
+          </div>
+        </div>
+
+        <!-- Step 3: Parallel Equivalent Tip -->
+        <div class="step-card" style="background: rgba(34, 197, 94, 0.08); border-color: rgba(34, 197, 94, 0.3);">
+          <div class="step-header">
+            <span class="step-num" style="background: #22c55e;">秒殺法</span>
+            <h3 style="color: #4ade80;">等效並聯彈簧模型（大考速解心法）</h3>
+          </div>
+          <div class="step-content">
+            <p>
+              當物體夾於兩彈簧之間，物體位移時<strong>兩彈簧之形變量必然相同</strong>（一邊拉長 $\Delta x$，另一邊等量壓縮 $\Delta x$），且<strong>兩彈簧之恢復力同向相加</strong>。<br>
+              這符合彈簧「並聯」之定義：
+              $$k_{\text{等效}} = k_1 + k_2 = 2 + 4 = 6\text{ kgw/cm}$$
+              故所需外力：
+              $$F = k_{\text{等效}} \cdot \Delta x = 6\text{ kgw/cm} \times 3\text{ cm} = 18\text{ kgw}$$
+            </p>
+            <p style="color: #4ade80; font-weight: bold;">
+              故本題正確選項為 (D)。
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Navigation -->
+    <div class="bottom-nav">
+      <a href="exercise1.html" class="nav-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+        上一題 (練習 1)
+      </a>
+      <a href="index.html" class="nav-btn primary">回到講義首頁</a>
+      <a href="exercise3.html" class="nav-btn">
+        下一題 (練習 3)
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      if (window.renderMathInElement) {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ],
+          throwOnError: false
+        });
+      }
+
+      let selectedChoice = null;
+      const buttons = document.querySelectorAll('.choice-btn');
+      buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          buttons.forEach(b => b.classList.remove('selected'));
+          btn.classList.add('selected');
+          selectedChoice = btn.getAttribute('data-choice');
+        });
+      });
+
+      const btnCheck = document.getElementById('btnCheck');
+      const btnToggle = document.getElementById('btnToggleSolution');
+      const solutionSection = document.getElementById('solutionSection');
+      const feedback = document.getElementById('feedbackMessage');
+
+      btnCheck.addEventListener('click', function() {
+        feedback.style.display = 'block';
+        if (!selectedChoice) {
+          feedback.className = 'feedback-box warning';
+          feedback.innerHTML = '⚠️ 請先點選一個選項再核對！';
+          return;
+        }
+
+        if (selectedChoice === 'D') {
+          feedback.className = 'feedback-box success';
+          feedback.innerHTML = '🎉 <strong>完全正確！答案為 (D) 18 kgw！</strong><br>精準看出左彈簧拉長（拉力向左 6kgw）、右彈簧壓縮（推力向左 12kgw），合力為 18kgw，為標準的等效並聯模型！';
+          solutionSection.style.display = 'block';
+          btnToggle.querySelector('span').textContent = '收合完整解析';
+        } else {
+          feedback.className = 'feedback-box error';
+          feedback.innerHTML = `❌ <strong>答案錯誤（您選擇了 ${selectedChoice}）！</strong><br>提示：注意右邊彈簧被壓縮時，產生的抗力也是向左推物體，兩彈簧的力不是相消而是「同向相加」！`;
+        }
+      });
+
+      btnToggle.addEventListener('click', function() {
+        if (solutionSection.style.display === 'none' || solutionSection.style.display === '') {
+          solutionSection.style.display = 'block';
+          btnToggle.querySelector('span').textContent = '收合完整解析';
+        } else {
+          solutionSection.style.display = 'none';
+          btnToggle.querySelector('span').textContent = '顯示完整解析';
+        }
+      });
+    });
+  </script>
+</body>
+</html>

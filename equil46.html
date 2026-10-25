@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>靜力平衡 46：輪軸互換力臂與幾何平均物重 | 高中物理靜力學</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+  <link rel="stylesheet" href="shared.css">
+</head>
+<body>
+  <div class="bg-glow"></div>
+  <div class="bg-grid"></div>
+
+  <div class="container">
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+      <div class="nav-links">
+        <a href="index.html" class="nav-btn primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          回目錄
+        </a>
+        <a href="equil45.html" class="nav-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          上一題 (平衡 45)
+        </a>
+        <a href="equil47.html" class="nav-btn">
+          下一題 (平衡 47)
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+      <div class="badge-wrapper">
+        <span class="badge badge-page">講義 靜力學-32</span>
+        <span class="badge badge-exam">輪軸力矩幾何平均</span>
+        <span class="badge badge-accent">靜力平衡・練習 46</span>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+      <h1 class="main-title">靜力平衡 46：<span class="gradient-text">輪軸互換力臂與幾何平均物重</span></h1>
+      <p class="subtitle">輪施力軸掛重 vs 軸施力輪掛重・半徑比值代換・幾何平均完美消去半徑</p>
+    </header>
+
+    <!-- Main Problem Layout -->
+    <div class="problem-layout">
+      <!-- Left Column: Problem & Visualizer -->
+      <div class="problem-card">
+        <h2 class="section-title">
+          <span class="step-num">1</span>
+          題目情境與物理圖解
+        </h2>
+        <div class="problem-text">
+          <p>
+            如圖所示，利用一輪軸提升重物，輪與軸上各繞以繩線。
+          </p>
+          <p>
+            當重物懸掛於<strong>內軸</strong>時，於<strong>外輪</strong>施力至少需 $F_1$ 方可將重物拉起；反之，當重物改懸掛於<strong>外輪</strong>時，於<strong>內軸</strong>施力至少需 $F_2$ 方可將重物拉起。
+          </p>
+          <p>
+            若不計一切阻力與繩重，則該重物的重量 $W$ 為多少？
+          </p>
+        </div>
+
+        <div class="interactive-container">
+          <div style="font-size: 0.88rem; color: var(--text-dim); margin-bottom: 8px; display: flex; justify-content: space-between;">
+            <span>📐 兩種輪軸配置之正視圖與力矩對比</span>
+            <span style="color: var(--accent-cyan);">F₁ / W = r / R 且 W / F₂ = r / R</span>
+          </div>
+          <svg viewBox="0 0 540 370" class="diagram-svg" style="background: rgba(15, 23, 42, 0.7); border-radius: 8px;">
+            <defs>
+              <marker id="arr-c" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#38bdf8"/>
+              </marker>
+              <marker id="arr-g" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#00e676"/>
+              </marker>
+              <marker id="arr-r" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#f43f5e"/>
+              </marker>
+              <marker id="arr-y" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#fbbf24"/>
+              </marker>
+            </defs>
+
+            <!-- Case 1 (Left): Wheel Force F1, Axle Weight W -->
+            <g transform="translate(40, 20)">
+              <rect x="0" y="0" width="210" height="320" fill="rgba(30, 41, 59, 0.6)" stroke="rgba(255,255,255,0.1)" rx="8"/>
+              <text x="35" y="30" fill="#38bdf8" font-size="14" font-weight="bold">配置 (一)：重物繞軸</text>
+
+              <!-- Wheel R=65, Axle r=30, center=(105, 120) -->
+              <circle cx="105" cy="120" r="65" fill="rgba(56, 189, 248, 0.15)" stroke="#38bdf8" stroke-width="2.5"/>
+              <circle cx="105" cy="120" r="30" fill="rgba(244, 63, 94, 0.2)" stroke="#f43f5e" stroke-width="2.5"/>
+              <circle cx="105" cy="120" r="4" fill="#f8fafc"/>
+
+              <!-- Radius R and r lines -->
+              <line x1="105" y1="120" x2="170" y2="120" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="3 2"/>
+              <text x="125" y="115" fill="#38bdf8" font-size="11">R</text>
+
+              <line x1="105" y1="120" x2="105" y2="90" stroke="#f43f5e" stroke-width="1.5" stroke-dasharray="3 2"/>
+              <text x="110" y="105" fill="#f43f5e" font-size="11">r</text>
+
+              <!-- Weight W hanging from Axle (x=75, left side) -->
+              <line x1="75" y1="120" x2="75" y2="210" stroke="#94a3b8" stroke-width="2"/>
+              <rect x="55" y="210" width="40" height="35" fill="#1e293b" stroke="#fbbf24" stroke-width="2" rx="4"/>
+              <text x="68" y="233" fill="#fbbf24" font-size="14" font-weight="bold">W</text>
+              <line x1="75" y1="245" x2="75" y2="280" stroke="#fbbf24" stroke-width="2.5" marker-end="url(#arr-y)"/>
+
+              <!-- Force F1 pulled down from Wheel (x=170, right side) -->
+              <line x1="170" y1="120" x2="170" y2="230" stroke="#00e676" stroke-width="3" marker-end="url(#arr-g)"/>
+              <text x="155" y="260" fill="#00e676" font-size="14" font-weight="bold">F₁ (拉力)</text>
+
+              <!-- Torque equation note -->
+              <text x="35" y="305" fill="#94a3b8" font-size="12">F₁ · R = W · r</text>
+            </g>
+
+            <!-- Case 2 (Right): Wheel Weight W, Axle Force F2 -->
+            <g transform="translate(290, 20)">
+              <rect x="0" y="0" width="210" height="320" fill="rgba(30, 41, 59, 0.6)" stroke="rgba(255,255,255,0.1)" rx="8"/>
+              <text x="35" y="30" fill="#fbbf24" font-size="14" font-weight="bold">配置 (二)：重物繞輪</text>
+
+              <!-- Wheel R=65, Axle r=30, center=(105, 120) -->
+              <circle cx="105" cy="120" r="65" fill="rgba(56, 189, 248, 0.15)" stroke="#38bdf8" stroke-width="2.5"/>
+              <circle cx="105" cy="120" r="30" fill="rgba(244, 63, 94, 0.2)" stroke="#f43f5e" stroke-width="2.5"/>
+              <circle cx="105" cy="120" r="4" fill="#f8fafc"/>
+
+              <!-- Force F2 pulled down from Axle (x=75, left side) -->
+              <line x1="75" y1="120" x2="75" y2="230" stroke="#00e676" stroke-width="3" marker-end="url(#arr-g)"/>
+              <text x="60" y="260" fill="#00e676" font-size="14" font-weight="bold">F₂ (拉力)</text>
+
+              <!-- Weight W hanging from Wheel (x=170, right side) -->
+              <line x1="170" y1="120" x2="170" y2="210" stroke="#94a3b8" stroke-width="2"/>
+              <rect x="150" y="210" width="40" height="35" fill="#1e293b" stroke="#fbbf24" stroke-width="2" rx="4"/>
+              <text x="163" y="233" fill="#fbbf24" font-size="14" font-weight="bold">W</text>
+              <line x1="170" y1="245" x2="170" y2="280" stroke="#fbbf24" stroke-width="2.5" marker-end="url(#arr-y)"/>
+
+              <!-- Torque equation note -->
+              <text x="35" y="305" fill="#94a3b8" font-size="12">F₂ · r = W · R</text>
+            </g>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Right Column: Interactive Quiz -->
+      <div class="problem-card">
+        <h2 class="section-title">
+          <span class="step-num">2</span>
+          自我檢測與即時核對
+        </h2>
+        <p style="color: var(--text-dim); font-size: 0.95rem; margin-bottom: 16px;">
+          請依據兩次力矩平衡方程式與半徑比消去法，選出重物重量 $W$：
+        </p>
+
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="selectOption(this, 'A')">
+            <span class="opt-letter">A</span>
+            <span class="opt-text">$\sqrt{F_1 F_2}$</span>
+          </div>
+          <div class="quiz-option" onclick="selectOption(this, 'B')">
+            <span class="opt-letter">B</span>
+            <span class="opt-text">$F_1 + F_2$</span>
+          </div>
+          <div class="quiz-option" onclick="selectOption(this, 'C')">
+            <span class="opt-letter">C</span>
+            <span class="opt-text">$\dfrac{F_1 + F_2}{2}$</span>
+          </div>
+          <div class="quiz-option" onclick="selectOption(this, 'D')">
+            <span class="opt-letter">D</span>
+            <span class="opt-text">$\sqrt{\dfrac{F_1 F_2}{2}}$</span>
+          </div>
+          <div class="quiz-option" onclick="selectOption(this, 'E')">
+            <span class="opt-letter">E</span>
+            <span class="opt-text">$F_1 - F_2$</span>
+          </div>
+        </div>
+
+        <div class="quiz-actions">
+          <button class="nav-btn primary" onclick="checkAnswer()">核對答案</button>
+          <button class="nav-btn" onclick="toggleSolution()">查看解析</button>
+        </div>
+
+        <div id="feedback" class="quiz-feedback"></div>
+      </div>
+    </div>
+
+    <!-- Solution Section -->
+    <div id="solution-card" class="solution-card">
+      <h2 class="section-title">
+        <span class="step-num">3</span>
+        完整觀念解析與推導過程
+      </h2>
+      <div class="solution-content">
+        <div class="formula-box">
+          $$\text{情況 (一)：} F_1 \cdot R = W \cdot r \implies \frac{F_1}{W} = \frac{r}{R}$$
+          $$\text{情況 (二)：} F_2 \cdot r = W \cdot R \implies \frac{W}{F_2} = \frac{r}{R}$$
+          $$\frac{F_1}{W} = \frac{W}{F_2} \implies W^2 = F_1 F_2 \implies W = \sqrt{F_1 F_2}$$
+        </div>
+
+        <div class="step-card">
+          <h4>步驟一：分析情況 (一) —— 重物繞軸、繞輪施力（省力模式）</h4>
+          <p>
+            設輪軸之外輪半徑為 $R$、內軸半徑為 $r$。
+          </p>
+          <p>
+            當重物掛在半徑較小的軸上，而在半徑較大的輪上施加向下的拉力 $F_1$ 時，此為典型之「省力機械」：
+          </p>
+          $$F_1 \cdot R = W \cdot r \implies \frac{F_1}{W} = \frac{r}{R} \quad \cdots (1)$$
+        </div>
+
+        <div class="step-card">
+          <h4>步驟二：分析情況 (二) —— 重物繞輪、繞軸施力（費力模式）</h4>
+          <p>
+            當將繩索互換，改將重物掛在外輪上，而在內軸上施加拉力 $F_2$ 時，施力力臂 $r$ 小於阻力力臂 $R$：
+          </p>
+          $$F_2 \cdot r = W \cdot R \implies \frac{W}{F_2} = \frac{r}{R} \quad \cdots (2)$$
+        </div>
+
+        <div class="step-card">
+          <h4>步驟三：聯立消去未知半徑比，獲取幾何平均數</h4>
+          <p>
+            由 (1) 式與 (2) 式，兩者皆等於輪軸之幾何半徑比 $\dfrac{r}{R}$：
+          </p>
+          $$\frac{F_1}{W} = \frac{W}{F_2}$$
+          <p>
+            交叉相乘：
+          </p>
+          $$W^2 = F_1 \cdot F_2 \implies W = \sqrt{F_1 F_2}$$
+          <p>
+            由此可知，重物的重量恰為兩次施力大小的<strong>幾何平均數</strong>！正確選項為 <strong>(A)</strong>。
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let selectedOption = null;
+    const correctAnswer = 'A';
+
+    function selectOption(element, opt) {
+      document.querySelectorAll('.quiz-option').forEach(el => el.classList.remove('selected'));
+      element.classList.add('selected');
+      selectedOption = opt;
+    }
+
+    function checkAnswer() {
+      const feedback = document.getElementById('feedback');
+      if (!selectedOption) {
+        feedback.innerHTML = '<span style="color: var(--accent-yellow);">⚠️ 請先點擊選擇一個選項！</span>';
+        feedback.className = 'quiz-feedback show';
+        return;
+      }
+      if (selectedOption === correctAnswer) {
+        feedback.innerHTML = '🎉 <strong>完全正確！</strong> 由兩次力矩平衡 $\\frac{F_1}{W} = \\frac{r}{R}$ 與 $\\frac{W}{F_2} = \\frac{r}{R}$，立即消去半徑比得到 $W = \\sqrt{F_1 F_2}$ 幾何平均！';
+        feedback.className = 'quiz-feedback show correct';
+        document.getElementById('solution-card').classList.add('show');
+      } else {
+        feedback.innerHTML = '❌ <strong>答案不對喔！</strong> 提示：分別寫出兩種情況的力矩式：$F_1 R = W r$ 與 $F_2 r = W R$。兩式相乘或求比值即可消去 R 與 r！';
+        feedback.className = 'quiz-feedback show incorrect';
+      }
+    }
+
+    function toggleSolution() {
+      const sol = document.getElementById('solution-card');
+      sol.classList.toggle('show');
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      if (window.renderMathInElement) {
+        renderMathInElement(document.body, {
+          delimiters: [
+            { left: "$$", right: "$$", display: true },
+            { left: "$", right: "$", display: false }
+          ]
+        });
+      }
+    });
+  </script>
+</body>
+</html>

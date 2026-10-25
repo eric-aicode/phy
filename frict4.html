@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>靜摩擦力 04：斜面滑輪系統保持靜止之質量比範圍 (91研究試題) | 高中物理靜力學</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+  <link rel="stylesheet" href="shared.css">
+</head>
+<body>
+  <div class="bg-glow"></div>
+  <div class="bg-grid"></div>
+
+  <div class="container">
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+      <div class="nav-links">
+        <a href="index.html" class="nav-btn primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          回目錄
+        </a>
+        <a href="frict3.html" class="nav-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          上一題 (摩擦 03)
+        </a>
+        <a href="frict5.html" class="nav-btn">
+          下一題 (摩擦 05)
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+      <div class="badge-wrapper">
+        <span class="badge badge-page">講義 靜力學-34</span>
+        <span class="badge badge-exam">91年研究試題・雙向滑動臨界</span>
+        <span class="badge badge-accent">靜摩擦力・練習 04</span>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+      <h1 class="main-title">靜摩擦力 04：<span class="gradient-text">斜面滑輪系統保持靜止之質量比範圍</span></h1>
+      <p class="subtitle">【91研究試題】上滑趨勢與下滑趨勢・最大靜摩擦力雙向極限・質量比不等式範圍</p>
+    </header>
+
+    <!-- Main Problem Layout -->
+    <div class="problem-layout">
+      <!-- Left Column: Problem & Visualizer -->
+      <div class="problem-card">
+        <h2 class="section-title">
+          <span class="step-num">1</span>
+          題目情境與物理圖解
+        </h2>
+        <div class="problem-text">
+          <p>
+            如圖所示，在傾斜角為 $\theta$ 的固定斜面上，將質量為 $m$ 的甲物體，以質量可以不計的細繩，繞過無摩擦之滑輪後，與質量為 $M$ 的乙物體連接。若斜面與甲物體間的靜摩擦係數為 $\mu$，而甲與乙均保持靜止不動，則可確定其質量比 $M/m$ 必為下列何者？
+          </p>
+        </div>
+
+        <div class="diagram-container">
+          <div class="diagram-header">
+            <span class="diagram-tag">斜面滑輪受力極限模型</span>
+            <span class="diagram-hint">靜摩擦力方向取決於滑動趨勢：向上滑動 fs 朝下，向下滑動 fs 朝上</span>
+          </div>
+          <svg class="interactive-diagram" viewBox="0 0 540 350" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="arrowRed" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+                <path d="M0,0 L0,6 L9,3 z" fill="#ef4444" />
+              </marker>
+              <marker id="arrowCyan" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+                <path d="M0,0 L0,6 L9,3 z" fill="#06b6d4" />
+              </marker>
+              <marker id="arrowGreen" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+                <path d="M0,0 L0,6 L9,3 z" fill="#10b981" />
+              </marker>
+            </defs>
+
+            <!-- Incline wedge -->
+            <!-- Bottom from (60, 280) to (440, 280). Angle theta ~ 30°. Peak at (440, 60) -->
+            <polygon points="60,280 440,280 440,80" fill="#1e293b" stroke="#475569" stroke-width="2.5"/>
+            <!-- Incline line -->
+            <line x1="60" y1="280" x2="440" y2="80" stroke="#94a3b8" stroke-width="3"/>
+
+            <!-- Angle theta arc -->
+            <path d="M120,280 A60,60 0 0,0 114,251" fill="none" stroke="#38bdf8" stroke-width="2"/>
+            <text x="135" y="272" fill="#38bdf8" font-size="14" font-weight="bold">θ</text>
+
+            <!-- Pulley at apex (440, 80) -->
+            <circle cx="440" cy="74" r="14" fill="#64748b" stroke="#cbd5e1" stroke-width="2"/>
+            <circle cx="440" cy="74" r="4" fill="#0f172a"/>
+
+            <!-- Block m (甲) on incline: slope dx=380, dy=-200 (tan = 200/380 = 0.526, angle ~ 27.76°) -->
+            <!-- Position on slope around middle: x = 240, y = 185.2 -->
+            <!-- Rotated block m -->
+            <g transform="translate(240, 185.2) rotate(-27.76)">
+              <rect x="-35" y="-30" width="70" height="30" rx="3" fill="#3b82f6" stroke="#93c5fd" stroke-width="2"/>
+              <text x="0" y="-10" fill="#ffffff" font-size="14" font-weight="bold" text-anchor="middle">甲 (m)</text>
+              <!-- Gravity components -->
+              <line x1="0" y1="-15" x2="-55" y2="-15" stroke="#ef4444" stroke-width="2.5" marker-end="url(#arrowRed)"/>
+              <text x="-70" y="-20" fill="#ef4444" font-size="11" font-weight="bold">mg sinθ</text>
+              <!-- Friction dual direction arrow -->
+              <line x1="0" y1="5" x2="45" y2="5" stroke="#10b981" stroke-width="2.5" stroke-dasharray="3,2"/>
+              <line x1="0" y1="5" x2="-45" y2="5" stroke="#10b981" stroke-width="2.5" stroke-dasharray="3,2"/>
+              <text x="0" y="22" fill="#10b981" font-size="11" font-weight="bold" text-anchor="middle">± fs (摩擦力)</text>
+            </g>
+
+            <!-- String from block m to pulley -->
+            <!-- From block center (240, 170) to pulley tangent (433, 62) -->
+            <line x1="240" y1="171" x2="440" y2="60" stroke="#fcd34d" stroke-width="2.5"/>
+
+            <!-- String from pulley down to hanging block M (乙) -->
+            <line x1="454" y1="74" x2="454" y2="180" stroke="#fcd34d" stroke-width="2.5"/>
+
+            <!-- Hanging Block M (乙) -->
+            <rect x="434" y="180" width="40" height="45" rx="4" fill="#f59e0b" stroke="#fcd34d" stroke-width="2"/>
+            <text x="454" y="208" fill="#ffffff" font-size="14" font-weight="bold" text-anchor="middle">乙 (M)</text>
+
+            <!-- Force on M: Gravity Mg and Tension T -->
+            <line x1="454" y1="225" x2="454" y2="280" stroke="#ef4444" stroke-width="3" marker-end="url(#arrowRed)"/>
+            <text x="465" y="270" fill="#ef4444" font-size="13" font-weight="bold">Mg</text>
+
+            <line x1="454" y1="180" x2="454" y2="125" stroke="#06b6d4" stroke-width="3" marker-end="url(#arrowCyan)"/>
+            <text x="465" y="145" fill="#06b6d4" font-size="13" font-weight="bold">T = Mg</text>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Right Column: Interactive Quiz -->
+      <div class="quiz-card">
+        <h2 class="section-title">
+          <span class="step-num">2</span>
+          自我檢測與觀念選擇
+        </h2>
+        
+        <div class="question-box">
+          <p class="question-stem">
+            由上滑臨界與下滑臨界之雙向最大靜摩擦力條件，欲使整個系統維持靜止不動，質量比 $M/m$ 的取值範圍必為何者？
+          </p>
+
+          <div class="options-list">
+            <label class="option-item" onclick="selectOption(0)">
+              <input type="radio" name="opt" value="0">
+              <span class="opt-letter">A</span>
+              <span class="opt-content">$\dfrac{M}{m} = (\sin\theta + \mu\cos\theta)$</span>
+            </label>
+            <label class="option-item" onclick="selectOption(1)">
+              <input type="radio" name="opt" value="1">
+              <span class="opt-letter">B</span>
+              <span class="opt-content">$\dfrac{M}{m} = (\sin\theta - \mu\cos\theta)$</span>
+            </label>
+            <label class="option-item" onclick="selectOption(2)">
+              <input type="radio" name="opt" value="2">
+              <span class="opt-letter">C</span>
+              <span class="opt-content">$\dfrac{M}{m} = (\cos\theta + \mu\sin\theta)$</span>
+            </label>
+            <label class="option-item" onclick="selectOption(3)">
+              <input type="radio" name="opt" value="3">
+              <span class="opt-letter">D</span>
+              <span class="opt-content">$(\cos\theta - \mu\sin\theta) \le \dfrac{M}{m} \le (\cos\theta + \mu\sin\theta)$</span>
+            </label>
+            <label class="option-item" onclick="selectOption(4)">
+              <input type="radio" name="opt" value="4">
+              <span class="opt-letter">E</span>
+              <span class="opt-content">$(\sin\theta - \mu\cos\theta) \le \dfrac{M}{m} \le (\sin\theta + \mu\cos\theta)$</span>
+            </label>
+          </div>
+
+          <div class="quiz-actions">
+            <button class="btn btn-primary" onclick="checkAnswer()">確認答案</button>
+            <button class="btn btn-secondary" onclick="toggleSolution()">查看完整詳解</button>
+          </div>
+
+          <div id="feedback" class="feedback-box"></div>
+        </div>
+
+        <!-- Detailed Solution (Collapsible) -->
+        <div id="solutionBox" class="solution-card">
+          <h3 class="solution-title">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            詳盡解析與物理思維
+          </h3>
+          <div class="solution-content">
+            <div class="step-card">
+              <h4>步驟一：分析乙物體受力與繩張力</h4>
+              <p>
+                乙物體（質量 $M$）鉛直懸掛且靜止，所受細繩向上張力等於其重力：
+              </p>
+              $$T = Mg$$
+            </div>
+
+            <div class="step-card">
+              <h4>步驟二：分析甲物體受力與正向力</h4>
+              <p>甲物體（質量 $m$）位於傾角 $\theta$ 的粗糙斜面上：</p>
+              <ul>
+                <li>垂直斜面方向平衡：正向力 $N = mg\cos\theta$。</li>
+                <li>最大靜摩擦力上限：$f_{s,\max} = \mu N = \mu mg\cos\theta$。</li>
+                <li>沿斜面向下的重力分量：$mg\sin\theta$。</li>
+              </ul>
+            </div>
+
+            <div class="step-card">
+              <h4>步驟三：分析雙向極限平衡條件</h4>
+              <p><strong>情況一：甲物體恰有向上滑動的趨勢（乙質量過大）</strong></p>
+              <p>此時最大靜摩擦力沿斜面<strong>向下</strong>阻礙運動：</p>
+              $$T \le mg\sin\theta + f_{s,\max} = mg\sin\theta + \mu mg\cos\theta$$
+              $$Mg \le mg(\sin\theta + \mu\cos\theta) \implies \frac{M}{m} \le \sin\theta + \mu\cos\theta$$
+
+              <p><strong>情況二：甲物體恰有向下滑動的趨勢（乙質量過小）</strong></p>
+              <p>此時最大靜摩擦力沿斜面<strong>向上</strong>阻礙下滑：</p>
+              $$T + f_{s,\max} \ge mg\sin\theta \implies T \ge mg\sin\theta - f_{s,\max}$$
+              $$Mg \ge mg(\sin\theta - \mu\cos\theta) \implies \frac{M}{m} \ge \sin\theta - \mu\cos\theta$$
+            </div>
+
+            <div class="step-card">
+              <h4>步驟四：整合為質量比不等式範圍</h4>
+              <p>綜合上述兩種極限情況，系統保持靜止平衡的充要條件為：</p>
+              $$(\sin\theta - \mu\cos\theta) \le \frac{M}{m} \le (\sin\theta + \mu\cos\theta)$$
+            </div>
+
+            <div class="highlight-summary">
+              <strong>名師核心點撥：</strong><br>
+              摩擦力是「被動力」，方向永遠與「相對滑動趨勢」相反！本題甲既可能被拉著往上滑，也可能自己往下掉，因此存在雙向的臨界極限，質量比必然呈現一個上下限閉區間。正確答案為 <strong>(E)</strong>。
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const correctOpt = 4;
+
+    function selectOption(idx) {
+      const items = document.querySelectorAll('.option-item');
+      items.forEach((item, i) => {
+        const radio = item.querySelector('input');
+        if (i === idx) {
+          item.classList.add('selected');
+          radio.checked = true;
+        } else {
+          item.classList.remove('selected');
+          radio.checked = false;
+        }
+      });
+    }
+
+    function checkAnswer() {
+      const selected = document.querySelector('input[name="opt"]:checked');
+      const feedback = document.getElementById('feedback');
+      if (!selected) {
+        feedback.innerHTML = '<span style="color:#f59e0b;">請先點選一個選項！</span>';
+        return;
+      }
+      const val = parseInt(selected.value);
+      if (val === correctOpt) {
+        feedback.innerHTML = '<span style="color:#10b981; font-weight:bold;">🎉 答對了！恭喜精準掌握雙向臨界摩擦力，不等式範圍為 (E)！</span>';
+      } else {
+        feedback.innerHTML = '<span style="color:#ef4444; font-weight:bold;">❌ 觀念陷阱！系統維持靜止是一個範圍，需考慮向上滑動與向下滑動兩種臨界情況。</span>';
+      }
+    }
+
+    function toggleSolution() {
+      const sol = document.getElementById('solutionBox');
+      sol.classList.toggle('show');
+      if (sol.classList.contains('show')) {
+        renderMathInElement(sol, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ],
+          throwOnError: false
+        });
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderMathInElement(document.body, {
+        delimiters: [
+          {left: '$$', right: '$$', display: true},
+          {left: '$', right: '$', display: false}
+        ],
+        throwOnError: false
+      });
+    });
+  </script>
+</body>
+</html>

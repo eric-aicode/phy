@@ -1,0 +1,1568 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>靜力平衡・圓球接觸與堆疊 9 步學習路徑【類題實戰評量卷】</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Noto+Serif+TC:wght@600;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+  <style>
+    /* CSS Reset & General Styling */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+      background: #f1f5f9;
+      color: #0f172a;
+      line-height: 1.5;
+      padding: 20px 10px;
+    }
+
+    /* Screen Action Bar (Floating toolbar) */
+    .screen-toolbar {
+      max-width: 210mm;
+      margin: 0 auto 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #ffffff;
+      padding: 12px 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+      border: 1px solid #cbd5e1;
+      position: sticky;
+      top: 10px;
+      z-index: 1000;
+    }
+    .toolbar-title {
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: #1e293b;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-group {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .action-btn {
+      padding: 7px 14px;
+      border-radius: 6px;
+      font-size: 0.86rem;
+      font-weight: 700;
+      cursor: pointer;
+      border: 1px solid #94a3b8;
+      background: #f8fafc;
+      color: #334155;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      text-decoration: none;
+    }
+    .action-btn:hover {
+      background: #e2e8f0;
+      color: #0f172a;
+    }
+    .action-btn.primary {
+      background: #0284c7;
+      color: #ffffff;
+      border-color: #0284c7;
+    }
+    .action-btn.primary:hover {
+      background: #0369a1;
+    }
+    .action-btn.secondary {
+      background: #475569;
+      color: #ffffff;
+      border-color: #475569;
+    }
+    .action-btn.secondary:hover {
+      background: #334155;
+    }
+
+    /* A4 Paper Sheet Container (Exact 210mm x 297mm) */
+    .a4-page {
+      width: 210mm;
+      height: 297mm;
+      max-height: 297mm;
+      margin: 0 auto 30px;
+      background: #ffffff;
+      padding: 10mm 13mm 8mm 13mm;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      box-sizing: border-box;
+      overflow: hidden;
+      page-break-after: always;
+      break-after: page;
+    }
+    .a4-page:last-of-type {
+      margin-bottom: 25px;
+    }
+
+    /* Exam Header (Page 1) */
+    .exam-header {
+      text-align: center;
+      border-bottom: 2px solid #000;
+      padding-bottom: 3px;
+      margin-bottom: 5px;
+    }
+    .exam-title-main {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 1.25rem;
+      font-weight: 900;
+      letter-spacing: 1.5px;
+      color: #000;
+      line-height: 1.3;
+    }
+    .exam-subtitle {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #333;
+      margin-top: 2px;
+    }
+
+    /* Compact Header (Page 2 & 3) */
+    .exam-header-compact {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid #000;
+      padding-bottom: 3px;
+      margin-bottom: 6px;
+      font-size: 0.84rem;
+      font-weight: 700;
+      color: #1e293b;
+    }
+    .exam-header-compact .title {
+      font-family: 'Noto Serif TC', serif;
+      font-weight: 900;
+    }
+
+    /* Student Info Table */
+    .student-info-bar {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1.3fr 1.6fr 1.1fr;
+      border: 1px solid #000;
+      margin-bottom: 6px;
+      font-size: 0.82rem;
+    }
+    .info-cell {
+      padding: 3px 8px;
+      border-right: 1px solid #000;
+      display: flex;
+      align-items: center;
+    }
+    .info-cell:last-child {
+      border-right: none;
+    }
+    .info-cell strong {
+      margin-right: 4px;
+    }
+
+    /* Stage Header Banner */
+    .stage-banner {
+      background: #0f172a;
+      color: #fff;
+      font-weight: 900;
+      font-size: 0.82rem;
+      padding: 3px 8px;
+      margin-bottom: 6px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-radius: 2px;
+    }
+    .stage-badge {
+      background: #fff;
+      color: #0f172a;
+      font-size: 0.72rem;
+      padding: 1px 6px;
+      border-radius: 2px;
+      font-weight: bold;
+    }
+
+    /* Problems Container: Exactly 3 Questions Per Page */
+    .problems-container {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      flex: 1;
+    }
+
+    /* Problem Card (Single Column Flow, Spacious, with Dedicated Workspace) */
+    .problem-box {
+      border: 1.5px solid #1e293b;
+      border-radius: 4px;
+      background: #fff;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      overflow: hidden;
+    }
+    .problem-meta {
+      background: #f1f5f9;
+      border-bottom: 1px solid #cbd5e1;
+      padding: 3px 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.82rem;
+      font-weight: bold;
+      color: #1e293b;
+    }
+    .problem-body {
+      padding: 7px 10px 6px 10px;
+      display: grid;
+      grid-template-columns: 1fr 240px;
+      gap: 12px;
+      flex: 1;
+      align-items: stretch;
+    }
+    .problem-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .problem-text {
+      font-size: 0.85rem;
+      line-height: 1.48;
+      color: #000;
+    }
+    .problem-text p {
+      margin-bottom: 4px;
+    }
+    .problem-text ol {
+      margin-left: 18px;
+      margin-bottom: 2px;
+      padding-left: 0;
+    }
+    .problem-text li {
+      margin-bottom: 2px;
+    }
+
+    /* Dedicated Calculation Workspace */
+    .calc-workspace {
+      flex: 1;
+      margin-top: 6px;
+      display: flex;
+      flex-direction: column;
+      border: 1px dashed #94a3b8;
+      border-radius: 4px;
+      background: #fafafa;
+      padding: 4px 8px;
+      min-height: 100px;
+    }
+    .calc-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #64748b;
+      margin-bottom: 2px;
+      user-select: none;
+    }
+    .calc-area {
+      flex: 1;
+    }
+
+    /* Right Column: Large SVG Diagram for Drawing Forces */
+    .problem-diag-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .problem-diag-bw {
+      width: 236px;
+      height: 186px;
+      border: 1.5px solid #475569;
+      border-radius: 4px;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2px;
+    }
+    .problem-diag-bw svg {
+      width: 100%;
+      height: 100%;
+    }
+    .diag-caption {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #475569;
+      margin-top: 3px;
+      text-align: center;
+    }
+
+    /* Page Footer */
+    .page-footer {
+      margin-top: auto;
+      text-align: center;
+      font-size: 0.76rem;
+      color: #475569;
+      border-top: 1px solid #94a3b8;
+      padding-top: 3px;
+    }
+
+    /* Detailed Solutions Section (Printable or Viewable) */
+    .solution-section {
+      width: 210mm;
+      margin: 0 auto 30px;
+      background: #fff;
+      padding: 10mm 14mm;
+      border: 2px solid #0284c7;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      box-sizing: border-box;
+    }
+    .solution-header {
+      text-align: center;
+      border-bottom: 2px solid #0284c7;
+      padding-bottom: 8px;
+      margin-bottom: 14px;
+    }
+    .sol-card {
+      border: 1.5px solid #cbd5e1;
+      border-radius: 6px;
+      padding: 8px 12px;
+      margin-bottom: 12px;
+      background: #ffffff;
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+    .sol-card h4 {
+      font-size: 0.95rem;
+      color: #0369a1;
+      border-bottom: 1px solid #e2e8f0;
+      padding-bottom: 4px;
+      margin-bottom: 6px;
+      display: flex;
+      justify-content: space-between;
+    }
+    .sol-grid {
+      display: grid;
+      grid-template-columns: 245px 1fr;
+      gap: 12px;
+      align-items: center;
+    }
+    .sol-diagram-box {
+      border: 1px solid #cbd5e1;
+      border-radius: 4px;
+      background: #f8fafc;
+      padding: 4px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .sol-diagram-box svg {
+      width: 100%;
+      height: 148px;
+    }
+    .sol-diag-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #0369a1;
+      margin-top: 2px;
+      text-align: center;
+    }
+    .sol-calc-content {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      font-size: 0.86rem;
+      line-height: 1.48;
+    }
+    .sol-step-item strong {
+      color: #0369a1;
+    }
+    .sol-answer-box {
+      background: #f0fdf4;
+      border: 1px solid #86efac;
+      border-radius: 4px;
+      padding: 3px 8px;
+      margin-top: 4px;
+      font-weight: 700;
+      font-size: 0.86rem;
+      color: #166534;
+    }
+
+    /* Print Specific Media Query */
+    @media print {
+      @page {
+        size: A4 portrait;
+        margin: 0;
+      }
+      body {
+        background: #fff;
+        padding: 0;
+      }
+      .screen-toolbar {
+        display: none !important;
+      }
+      .no-print {
+        display: none !important;
+      }
+
+      /* Mode 1: Exam Only (Default) */
+      body.mode-print-exam .a4-page {
+        display: flex !important;
+      }
+      body.mode-print-exam .solution-section {
+        display: none !important;
+      }
+
+      /* Mode 2: Solutions Only */
+      body.mode-print-solutions .a4-page {
+        display: none !important;
+      }
+      body.mode-print-solutions .solution-section {
+        display: block !important;
+        box-shadow: none;
+        border: none;
+        padding: 10mm 14mm;
+        width: 100%;
+      }
+
+      /* Mode 3: Print All */
+      body.mode-print-all .a4-page {
+        display: flex !important;
+      }
+      body.mode-print-all .solution-section {
+        display: block !important;
+        box-shadow: none;
+        border: none;
+        padding: 10mm 14mm;
+        page-break-before: always;
+        break-before: page;
+        width: 100%;
+      }
+
+      .a4-page {
+        margin: 0;
+        box-shadow: none;
+        width: 210mm;
+        height: 297mm;
+        max-height: 297mm;
+        padding: 9mm 12mm 7mm 12mm;
+        overflow: hidden;
+        page-break-after: always;
+        break-after: page;
+      }
+      .a4-page:last-of-type {
+        page-break-after: always;
+        break-after: page;
+      }
+      body.mode-print-exam .a4-page:last-of-type {
+        page-break-after: auto;
+        break-after: auto;
+      }
+    }
+  </style>
+</head>
+<body class="mode-print-exam">
+
+  <!-- Screen Floating Toolbar -->
+  <aside class="screen-toolbar no-print">
+    <div class="toolbar-title">
+      📄 <strong>靜力平衡 9 步學習路徑【類題實戰評量卷】</strong>
+    </div>
+    <div class="btn-group">
+      <button class="action-btn primary" onclick="printMode('exam')">
+        🖨️ 列印題目卷（學生用・3頁）
+      </button>
+      <button class="action-btn secondary" onclick="printMode('solutions')">
+        📖 列印解析卷（解答用）
+      </button>
+      <button class="action-btn" onclick="printMode('all')">
+        📑 列印全卷（題目+解析）
+      </button>
+      <button class="action-btn" onclick="toggleSolutions()">
+        👁️ 網頁顯示/隱藏解析
+      </button>
+      <a href="index.html" class="action-btn">
+        回講義目錄
+      </a>
+    </div>
+  </aside>
+
+
+  <!-- ==================== PAGE 1 / 3: STAGE 1 (Problems 1, 2, 3) ==================== -->
+  <main class="a4-page">
+    <header class="exam-header">
+      <h1 class="exam-title-main">普通高中物理科 靜力平衡 學習路徑 類題實戰評量卷</h1>
+      <p class="exam-subtitle">單元：共點力平衡・接觸面法向力・拉密定理與幾何相似力三角形（全卷 9 題・滿分 100 分）</p>
+    </header>
+
+    <div class="student-info-bar">
+      <div class="info-cell"><strong>班級：</strong><span>__________</span></div>
+      <div class="info-cell"><strong>座號：</strong><span>____</span></div>
+      <div class="info-cell"><strong>姓名：</strong><span>________</span></div>
+      <div class="info-cell"><strong>測驗日期：</strong><span>___月___日</span></div>
+      <div class="info-cell" style="background:#f8fafc; font-weight:bold;"><strong>得分：</strong><span></span></div>
+    </div>
+
+    <!-- Stage 1 Banner -->
+    <div class="stage-banner">
+      <span>階段一・起步奠基：單球約束模型（基礎精熟・正交法線與夾角）</span>
+      <span class="stage-badge">階段 1</span>
+    </div>
+
+    <div class="problems-container">
+      <!-- Problem 1 -->
+      <article class="problem-box">
+        <div class="problem-meta">
+          <span>第 1 題（對應【平衡 05】・10 分）</span>
+          <span>考點：雙斜板夾球・正交法線</span>
+        </div>
+        <div class="problem-body">
+          <div class="problem-left">
+            <div class="problem-text">
+              <p>
+                重量為 $W$ 的光滑圓球夾在底緣相碰之固定光滑斜板間。已知<strong>甲板傾角 $37^\circ$</strong>，<strong>乙板傾角 $53^\circ$</strong>（兩板夾角為直角 $90^\circ$）。達靜力平衡時：
+              </p>
+              <ol>
+                <li>甲斜板對圓球之支持力 $N_1$ 為何？</li>
+                <li>乙斜板對圓球之支持力 $N_2$ 為何？</li>
+              </ol>
+            </div>
+            <div class="calc-workspace">
+              <div class="calc-label">【計算過程與答案作答區】</div>
+              <div class="calc-area"></div>
+            </div>
+          </div>
+          <div class="problem-diag-col">
+            <div class="problem-diag-bw">
+              <svg viewBox="0 0 180 145" xmlns="http://www.w3.org/2000/svg">
+                <line x1="15" y1="125" x2="165" y2="125" stroke="#000" stroke-width="1.5"/>
+                <line x1="90" y1="125" x2="34" y2="83" stroke="#000" stroke-width="2.5"/>
+                <line x1="90" y1="125" x2="135" y2="65" stroke="#000" stroke-width="2.5"/>
+                <circle cx="84.4" cy="85.8" r="28" fill="#fff" stroke="#000" stroke-width="1.8"/>
+                <circle cx="84.4" cy="85.8" r="2.5" fill="#000"/>
+                <text x="84.4" y="89.5" font-size="10" font-family="'Noto Sans TC'" font-weight="bold" text-anchor="middle">W</text>
+                <path d="M 65 125 A 25 25 0 0 0 70 110" fill="none" stroke="#000" stroke-width="1"/>
+                <text x="50" y="118" font-size="8.5" font-family="sans-serif">37°</text>
+                <path d="M 115 125 A 25 25 0 0 1 105 105" fill="none" stroke="#000" stroke-width="1"/>
+                <text x="110" y="118" font-size="8.5" font-family="sans-serif">53°</text>
+                <text x="25" y="78" font-size="9" font-family="'Noto Sans TC'" font-weight="bold">甲板</text>
+                <text x="138" y="60" font-size="9" font-family="'Noto Sans TC'" font-weight="bold">乙板</text>
+              </svg>
+            </div>
+            <div class="diag-caption">【受力作圖區】請於圖上標示受力向量</div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Problem 2 -->
+      <article class="problem-box">
+        <div class="problem-meta">
+          <span>第 2 題（對應【平衡 49】・10 分）</span>
+          <span>考點：同起點雙斜面夾球・拉密定理</span>
+        </div>
+        <div class="problem-body">
+          <div class="problem-left">
+            <div class="problem-text">
+              <p>
+                重為 $W$ 之光滑圓球置於同起點出發之斜面 $A$ 與 $B$ 之間。已知<strong>斜面 $A$ 仰角 $30^\circ$</strong>，<strong>斜面 $B$ 仰角 $60^\circ$</strong>（夾角 $30^\circ$）。達靜力平衡時：
+              </p>
+              <ol>
+                <li>斜面 $A$ 作用於球之法向力 $N_A$ 為何？</li>
+                <li>斜面 $B$ 作用於球之法向力 $N_B$ 為何？</li>
+              </ol>
+            </div>
+            <div class="calc-workspace">
+              <div class="calc-label">【計算過程與答案作答區】</div>
+              <div class="calc-area"></div>
+            </div>
+          </div>
+          <div class="problem-diag-col">
+            <div class="problem-diag-bw">
+              <svg viewBox="0 0 180 145" xmlns="http://www.w3.org/2000/svg">
+                <line x1="15" y1="125" x2="165" y2="125" stroke="#000" stroke-width="1.5"/>
+                <line x1="30" y1="125" x2="155" y2="53" stroke="#000" stroke-width="2"/>
+                <line x1="30" y1="125" x2="93" y2="16" stroke="#000" stroke-width="2"/>
+                <circle cx="90.1" cy="64.9" r="22" fill="#fff" stroke="#000" stroke-width="1.8"/>
+                <circle cx="90.1" cy="64.9" r="2.5" fill="#000"/>
+                <text x="90.1" y="68.5" font-size="9" font-family="'Noto Sans TC'" font-weight="bold" text-anchor="middle">W</text>
+                <path d="M 75 125 A 45 45 0 0 0 69 102.5" fill="none" stroke="#000" stroke-width="1"/>
+                <text x="76" y="118" font-size="8" font-family="sans-serif">30°</text>
+                <path d="M 95 125 A 65 65 0 0 0 62.5 68.7" fill="none" stroke="#000" stroke-width="1"/>
+                <text x="42" y="95" font-size="8" font-family="sans-serif">60°</text>
+                <text x="145" y="45" font-size="9" font-family="'Noto Sans TC'" font-weight="bold">斜面 A</text>
+                <text x="95" y="15" font-size="9" font-family="'Noto Sans TC'" font-weight="bold">斜面 B</text>
+              </svg>
+            </div>
+            <div class="diag-caption">【受力作圖區】請於圖上標示受力向量</div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Problem 3 -->
+      <article class="problem-box">
+        <div class="problem-meta">
+          <span>第 3 題（對應【平衡 10】・10 分）</span>
+          <span>考點：斜面擋板約束・直角力三角形</span>
+        </div>
+        <div class="problem-body">
+          <div class="problem-left">
+            <div class="problem-text">
+              <p>
+                重 $W = 60\text{ N}$ 的均勻光滑球置於傾角 $\alpha = 37^\circ$ 的固定光滑斜面上，球前有固定光滑鉛直擋板。達靜力平衡時：
+              </p>
+              <ol>
+                <li>斜面對球的正向支持力 $N_1$ 為多少 $\text{N}$？</li>
+                <li>鉛直擋板對球的正向推力 $N_2$ 為多少 $\text{N}$？</li>
+              </ol>
+            </div>
+            <div class="calc-workspace">
+              <div class="calc-label">【計算過程與答案作答區】</div>
+              <div class="calc-area"></div>
+            </div>
+          </div>
+          <div class="problem-diag-col">
+            <div class="problem-diag-bw">
+              <svg viewBox="0 0 180 145" xmlns="http://www.w3.org/2000/svg">
+                <line x1="15" y1="125" x2="165" y2="125" stroke="#000" stroke-width="1.5"/>
+                <polygon points="50,125 155,125 155,46.25" fill="none" stroke="#000" stroke-width="1.8"/>
+                <rect x="44" y="25" width="6" height="100" fill="#e2e8f0" stroke="#000" stroke-width="1.5"/>
+                <text x="16" y="60" font-size="8.5" font-family="'Noto Sans TC'">鉛直板</text>
+                <circle cx="76" cy="73" r="26" fill="#fff" stroke="#000" stroke-width="1.8"/>
+                <circle cx="76" cy="73" r="2.5" fill="#000"/>
+                <text x="76" y="77" font-size="9" font-family="'Noto Sans TC'" font-weight="bold" text-anchor="middle">W</text>
+                <path d="M 80 125 A 30 30 0 0 0 74 107" fill="none" stroke="#000" stroke-width="1"/>
+                <text x="82" y="119" font-size="8.5" font-family="sans-serif">α=37°</text>
+              </svg>
+            </div>
+            <div class="diag-caption">【受力作圖區】請於圖上標示受力向量</div>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <footer class="page-footer">
+      普通高中物理科 靜力平衡 學習路徑 類題實戰評量卷 —— 第 1 頁 / 共 3 頁
+    </footer>
+  </main>
+
+
+  <!-- ==================== PAGE 2 / 3: STAGE 2 (Problems 4, 5, 6) ==================== -->
+  <main class="a4-page">
+    <header class="exam-header-compact">
+      <span class="title">普通高中物理科 靜力平衡 學習路徑 類題實戰評量卷（續頁）</span>
+      <span>階段二・核心進階</span>
+    </header>
+
+    <!-- Stage 2 Banner -->
+    <div class="stage-banner">
+      <span>階段二・核心同型：雙球容器系統（核心考驗・正向力、系統隔離與虎克定律）</span>
+      <span class="stage-badge">階段 2</span>
+    </div>
+
+    <div class="problems-container">
+      <!-- Problem 4 -->
+      <article class="problem-box">
+        <div class="problem-meta">
+          <span>第 4 題（對應【範例 05】・12 分）</span>
+          <span>考點：底寬 3r 容器雙球・整體與隔離法</span>
+        </div>
+        <div class="problem-body">
+          <div class="problem-left">
+            <div class="problem-text">
+              <p>
+                底寬 $3r$ 的平底鉛直槽中置入兩半徑皆為 $r$ 的光滑球。已知<strong>上球重 $W_A = 2W$</strong>，<strong>下球重 $W_B = W$</strong>。平衡時：
+              </p>
+              <ol>
+                <li>容器底部對 B 球之正向力 $N_{\text{底}}$ 為何？</li>
+                <li>兩球間之接觸推力 $N_{AB}$ 為何？</li>
+                <li>左壁對 B 球的正向力 $N_2$ 為何？</li>
+              </ol>
+            </div>
+            <div class="calc-workspace">
+              <div class="calc-label">【計算過程與答案作答區】</div>
+              <div class="calc-area"></div>
+            </div>
+          </div>
+          <div class="problem-diag-col">
+            <div class="problem-diag-bw">
+              <svg viewBox="0 0 180 145" xmlns="http://www.w3.org/2000/svg">
+                <line x1="45" y1="15" x2="45" y2="125" stroke="#000" stroke-width="2.5"/>
+                <line x1="135" y1="15" x2="135" y2="125" stroke="#000" stroke-width="2.5"/>
+                <line x1="40" y1="125" x2="140" y2="125" stroke="#000" stroke-width="3"/>
+                <text x="90" y="138" font-size="8.5" font-family="'Noto Sans TC'" text-anchor="middle">底寬 3r</text>
+                <circle cx="75" cy="95" r="30" fill="#fff" stroke="#000" stroke-width="1.8"/>
+                <circle cx="75" cy="95" r="2.5" fill="#000"/>
+                <text x="75" y="99" font-size="9.5" font-family="'Noto Sans TC'" font-weight="bold" text-anchor="middle">B(W)</text>
+                <circle cx="105" cy="43" r="30" fill="#fff" stroke="#000" stroke-width="1.8"/>
+                <circle cx="105" cy="43" r="2.5" fill="#000"/>
+                <text x="105" y="47" font-size="9.5" font-family="'Noto Sans TC'" font-weight="bold" text-anchor="middle">A(2W)</text>
+                <line x1="75" y1="95" x2="105" y2="43" stroke="#000" stroke-dasharray="2,2" stroke-width="1"/>
+              </svg>
+            </div>
+            <div class="diag-caption">【受力作圖區】請於圖上標示受力向量</div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Problem 5 -->
+      <article class="problem-box">
+        <div class="problem-meta">
+          <span>第 5 題（對應【平衡 17】・12 分）</span>
+          <span>考點：凹碗雙球・正三角形幾何關係</span>
+        </div>
+        <div class="problem-body">
+          <div class="problem-left">
+            <div class="problem-text">
+              <p>
+                半球凹碗（半徑 $R$）內置兩重皆為 $W$、半徑皆為 $r$ 的相同小球。平衡時兩小球圓心與碗心恰構成一<strong>正三角形</strong>。試求：
+              </p>
+              <ol>
+                <li>半徑比值 $\dfrac{R}{r}$ 為何？</li>
+                <li>兩小球間之相互推力 $N_{AB}$ 為何？</li>
+              </ol>
+            </div>
+            <div class="calc-workspace">
+              <div class="calc-label">【計算過程與答案作答區】</div>
+              <div class="calc-area"></div>
+            </div>
+          </div>
+          <div class="problem-diag-col">
+            <div class="problem-diag-bw">
+              <svg viewBox="0 0 180 145" xmlns="http://www.w3.org/2000/svg">
+                <path d="M 14 72 A 84 84 0 0 0 166 72" fill="none" stroke="#000" stroke-width="2.5"/>
+                <circle cx="90" cy="36" r="2.5" fill="#000"/>
+                <text x="90" y="28" font-size="8.5" font-family="'Noto Sans TC'" font-weight="bold" text-anchor="middle">碗心 O</text>
+                <circle cx="62" cy="84.5" r="28" fill="#fff" stroke="#000" stroke-width="1.8"/>
+                <circle cx="118" cy="84.5" r="28" fill="#fff" stroke="#000" stroke-width="1.8"/>
+                <circle cx="62" cy="84.5" r="2" fill="#000"/>
+                <circle cx="118" cy="84.5" r="2" fill="#000"/>
+                <text x="62" y="88.5" font-size="9.5" font-family="'Noto Sans TC'" font-weight="bold" text-anchor="middle">W</text>
+                <text x="118" y="88.5" font-size="9.5" font-family="'Noto Sans TC'" font-weight="bold" text-anchor="middle">W</text>
+                <polygon points="90,36 62,84.5 118,84.5" fill="none" stroke="#000" stroke-dasharray="2,2" stroke-width="1"/>
+              </svg>
+            </div>
+            <div class="diag-caption">【受力作圖區】請於圖上標示受力向量</div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Problem 6 -->
+      <article class="problem-box">
+        <div class="problem-meta">
+          <span>第 6 題（對應【平衡 12】・10 分）</span>
+          <span>考點：雙懸繩夾水平壓縮彈簧・虎克定律</span>
+        </div>
+        <div class="problem-body">
+          <div class="problem-left">
+            <div class="problem-text">
+              <p>
+                兩長度同為 $L$ 之輕繩懸於點 $O$，下端繫重量同為 $W$ 的兩相同小球，兩球間夾彈力常數為 $k$ 之輕彈簧。平衡時兩繩夾角為 <strong>$90^\circ$ 直角</strong>。試求：
+              </p>
+              <ol>
+                <li>懸繩之張力 $T$ 為何？</li>
+                <li>此時彈簧被壓縮的長度 $x$ 為何？</li>
+              </ol>
+            </div>
+            <div class="calc-workspace">
+              <div class="calc-label">【計算過程與答案作答區】</div>
+              <div class="calc-area"></div>
+            </div>
+          </div>
+          <div class="problem-diag-col">
+            <div class="problem-diag-bw">
+              <svg viewBox="0 0 180 145" xmlns="http://www.w3.org/2000/svg">
+                <line x1="60" y1="20" x2="120" y2="20" stroke="#000" stroke-width="2"/>
+                <circle cx="90" cy="20" r="2.5" fill="#000"/>
+                <text x="90" y="13" font-size="8.5" font-family="'Noto Sans TC'" text-anchor="middle">O</text>
+                <line x1="90" y1="20" x2="34" y2="76" stroke="#000" stroke-width="1.8"/>
+                <line x1="90" y1="20" x2="146" y2="76" stroke="#000" stroke-width="1.8"/>
+                <path d="M 73 37 A 24 24 0 0 1 107 37" fill="none" stroke="#000" stroke-width="1"/>
+                <text x="90" y="46" font-size="8" font-family="sans-serif" text-anchor="middle">90°</text>
+                <path d="M 47 76 L 56 71 L 65 81 L 75 71 L 85 81 L 95 71 L 105 81 L 115 71 L 124 81 L 133 76" fill="none" stroke="#000" stroke-width="1.5"/>
+                <circle cx="34" cy="76" r="13" fill="#fff" stroke="#000" stroke-width="1.8"/>
+                <circle cx="146" cy="76" r="13" fill="#fff" stroke="#000" stroke-width="1.8"/>
+                <circle cx="34" cy="76" r="2" fill="#000"/>
+                <circle cx="146" cy="76" r="2" fill="#000"/>
+                <text x="34" y="80" font-size="8.5" font-family="'Noto Sans TC'" font-weight="bold" text-anchor="middle">W</text>
+                <text x="146" y="80" font-size="8.5" font-family="'Noto Sans TC'" font-weight="bold" text-anchor="middle">W</text>
+                <text x="90" y="93" font-size="8" font-family="'Noto Sans TC'" text-anchor="middle">彈簧 k</text>
+              </svg>
+            </div>
+            <div class="diag-caption">【受力作圖區】請於圖上標示受力向量</div>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <footer class="page-footer">
+      普通高中物理科 靜力平衡 學習路徑 類題實戰評量卷 —— 第 2 頁 / 共 3 頁
+    </footer>
+  </main>
+
+
+  <!-- ==================== PAGE 3 / 3: STAGE 3 (Problems 7, 8, 9) ==================== -->
+  <main class="a4-page">
+    <header class="exam-header-compact">
+      <span class="title">普通高中物理科 靜力平衡 學習路徑 類題實戰評量卷（續頁）</span>
+      <span>階段三・高階突破</span>
+    </header>
+
+    <!-- Stage 3 Banner -->
+    <div class="stage-banner">
+      <span>階段三・高階突破：多球堆疊與幾何相似（高階挑戰・對稱約束與力幾何相似）</span>
+      <span class="stage-badge">階段 3</span>
+    </div>
+
+    <div class="problems-container">
+      <!-- Problem 7 -->
+      <article class="problem-box">
+        <div class="problem-meta">
+          <span>第 7 題（對應【平衡 18】・12 分）</span>
+          <span>考點：底寬 4r 槽三球堆疊・壁面推力</span>
+        </div>
+        <div class="problem-body">
+          <div class="problem-left">
+            <div class="problem-text">
+              <p>
+                寬度為 $4r$ 的平底鉛直槽中置入三顆半徑皆為 $r$、重量皆為 $W$ 的相同小球，底層兩顆、頂層一顆對稱堆疊。系統靜力平衡時：
+              </p>
+              <ol>
+                <li>頂球作用於每一底球之正向力 $N$ 為何？</li>
+                <li>槽底作用於每一底球之支持力 $N_{\text{底}}$ 為何？</li>
+                <li>槽壁作用於底球之水平力 $N_{\text{壁}}$ 為何？</li>
+              </ol>
+            </div>
+            <div class="calc-workspace">
+              <div class="calc-label">【計算過程與答案作答區】</div>
+              <div class="calc-area"></div>
+            </div>
+          </div>
+          <div class="problem-diag-col">
+            <div class="problem-diag-bw">
+              <svg viewBox="0 0 180 145" xmlns="http://www.w3.org/2000/svg">
+                <line x1="42" y1="20" x2="42" y2="125" stroke="#000" stroke-width="2.5"/>
+                <line x1="138" y1="20" x2="138" y2="125" stroke="#000" stroke-width="2.5"/>
+                <line x1="36" y1="125" x2="144" y2="125" stroke="#000" stroke-width="3"/>
+                <text x="90" y="138" font-size="8.5" font-family="'Noto Sans TC'" text-anchor="middle">底寬 4r</text>
+                <circle cx="66" cy="101" r="24" fill="#fff" stroke="#000" stroke-width="1.8"/>
+                <circle cx="66" cy="101" r="2" fill="#000"/>
+                <circle cx="114" cy="101" r="24" fill="#fff" stroke="#000" stroke-width="1.8"/>
+                <circle cx="114" cy="101" r="2" fill="#000"/>
+                <circle cx="90" cy="59.4" r="24" fill="#fff" stroke="#000" stroke-width="1.8"/>
+                <circle cx="90" cy="59.4" r="2" fill="#000"/>
+                <text x="66" y="104.5" font-size="9" font-family="'Noto Sans TC'" font-weight="bold" text-anchor="middle">W</text>
+                <text x="114" y="104.5" font-size="9" font-family="'Noto Sans TC'" font-weight="bold" text-anchor="middle">W</text>
+                <text x="90" y="63" font-size="9" font-family="'Noto Sans TC'" font-weight="bold" text-anchor="middle">W</text>
+                <polygon points="90,59.4 66,101 114,101" fill="none" stroke="#000" stroke-dasharray="2,2" stroke-width="1"/>
+              </svg>
+            </div>
+            <div class="diag-caption">【受力作圖區】請於圖上標示受力向量</div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Problem 8 -->
+      <article class="problem-box">
+        <div class="problem-meta">
+          <span>第 8 題（對應【平衡 19】・12 分）</span>
+          <span>考點：品字三柱・鋼繩張力拘束</span>
+        </div>
+        <div class="problem-body">
+          <div class="problem-left">
+            <div class="problem-text">
+              <p>
+                三根半徑 $R$、質量 $M$ 的相同光滑圓柱橫放於地面堆成「品」字形。以不可伸長之輕水平鋼繩將底層兩柱軸心相連防止滾開。試求：
+              </p>
+              <ol>
+                <li>頂層圓柱對底層圓柱之推力 $N_1$ 為何？</li>
+                <li>水平鋼繩所受之拉力張力 $T$ 為何？</li>
+              </ol>
+            </div>
+            <div class="calc-workspace">
+              <div class="calc-label">【計算過程與答案作答區】</div>
+              <div class="calc-area"></div>
+            </div>
+          </div>
+          <div class="problem-diag-col">
+            <div class="problem-diag-bw">
+              <svg viewBox="0 0 180 145" xmlns="http://www.w3.org/2000/svg">
+                <line x1="10" y1="125" x2="170" y2="125" stroke="#000" stroke-width="1.8"/>
+                <circle cx="64" cy="99" r="26" fill="#fff" stroke="#000" stroke-width="1.8"/>
+                <circle cx="116" cy="99" r="26" fill="#fff" stroke="#000" stroke-width="1.8"/>
+                <circle cx="90" cy="54" r="26" fill="#fff" stroke="#000" stroke-width="1.8"/>
+                <circle cx="64" cy="99" r="2" fill="#000"/>
+                <circle cx="116" cy="99" r="2" fill="#000"/>
+                <circle cx="90" cy="54" r="2" fill="#000"/>
+                <text x="90" y="58" font-size="9" font-family="'Noto Sans TC'" font-weight="bold" text-anchor="middle">M</text>
+                <text x="64" y="103" font-size="9" font-family="'Noto Sans TC'" font-weight="bold" text-anchor="middle">M</text>
+                <text x="116" y="103" font-size="9" font-family="'Noto Sans TC'" font-weight="bold" text-anchor="middle">M</text>
+                <polygon points="90,54 64,99 116,99" fill="none" stroke="#000" stroke-dasharray="2,2" stroke-width="1"/>
+                <line x1="64" y1="99" x2="116" y2="99" stroke="#000" stroke-width="2.5"/>
+                <text x="90" y="93" font-size="8" font-family="'Noto Sans TC'" font-weight="bold" text-anchor="middle">鋼繩 T</text>
+              </svg>
+            </div>
+            <div class="diag-caption">【受力作圖區】請於圖上標示受力向量</div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Problem 9 -->
+      <article class="problem-box">
+        <div class="problem-meta">
+          <span>第 9 題（對應【平衡 11】・12 分）</span>
+          <span>考點：球面懸小球・相似三角形法</span>
+        </div>
+        <div class="problem-body">
+          <div class="problem-left">
+            <div class="problem-text">
+              <p>
+                光滑大球半徑 $R$，球心正上方高 $2R$ 處天花板 $A$ 點以長 $L = \sqrt{3}R$ 之輕繩懸掛重 $W$ 的小球，小球靜止倚靠在大球面上。試求：
+              </p>
+              <ol>
+                <li>懸繩之拉力張力 $T$ 為何？</li>
+                <li>大球表面作用於小球之支持力 $N$ 為何？</li>
+              </ol>
+            </div>
+            <div class="calc-workspace">
+              <div class="calc-label">【計算過程與答案作答區】</div>
+              <div class="calc-area"></div>
+            </div>
+          </div>
+          <div class="problem-diag-col">
+            <div class="problem-diag-bw">
+              <svg viewBox="0 0 180 145" xmlns="http://www.w3.org/2000/svg">
+                <line x1="65" y1="19" x2="115" y2="19" stroke="#000" stroke-width="2"/>
+                <circle cx="90" cy="19" r="2.5" fill="#000"/>
+                <text x="90" y="13" font-size="8.5" font-family="'Noto Sans TC'" text-anchor="middle">A</text>
+                <path d="M 42 115 A 48 48 0 0 1 138 115" fill="none" stroke="#000" stroke-width="2"/>
+                <circle cx="90" cy="115" r="2.5" fill="#000"/>
+                <text x="90" y="127" font-size="8.5" font-family="'Noto Sans TC'" text-anchor="middle">O</text>
+                <line x1="90" y1="19" x2="90" y2="115" stroke="#000" stroke-dasharray="2,2" stroke-width="1"/>
+                <line x1="90" y1="115" x2="136.8" y2="88" stroke="#000" stroke-dasharray="2,2" stroke-width="1"/>
+                <line x1="90" y1="19" x2="133.4" y2="83.0" stroke="#000" stroke-width="1.8"/>
+                <circle cx="136.8" cy="88" r="6" fill="#fff" stroke="#000" stroke-width="1.8"/>
+                <circle cx="136.8" cy="88" r="1.5" fill="#000"/>
+                <circle cx="131.6" cy="91" r="1.5" fill="#000"/>
+                <text x="146" y="91.5" font-size="8.5" font-family="'Noto Sans TC'" font-weight="bold">P(W)</text>
+                <text x="118" y="48" font-size="8" font-family="'Noto Sans TC'">L=√3R</text>
+                <text x="105" y="112" font-size="8" font-family="'Noto Sans TC'">R</text>
+              </svg>
+            </div>
+            <div class="diag-caption">【受力作圖區】請於圖上標示受力向量</div>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <footer class="page-footer">
+      普通高中物理科 靜力平衡 學習路徑 類題實戰評量卷 —— 第 3 頁 / 共 3 頁（全卷完，請務必仔細檢查）
+    </footer>
+  </main>
+
+
+  <!-- ==================== DETAILED SOLUTIONS & GRADING REFERENCE (解析卷) ==================== -->
+  <section class="solution-section" id="solutionSection" style="display: none;">
+    <div class="solution-header">
+      <h2 style="font-family:'Noto Serif TC',serif; font-size:1.35rem; color:#0369a1; font-weight:900;">
+        靜力平衡 9 步學習路徑【類題實戰評量卷・圖解力向量詳細解析】
+      </h2>
+      <p style="font-size:0.86rem; color:#64748b; margin-top:4px;">
+        ※ 以清晰受力隔離圖與閉合力向量三角形取代冗長文字・直擊角度判定與向量比值
+      </p>
+    </div>
+
+    <!-- Sol 1 -->
+    <div class="sol-card">
+      <h4>
+        <span>【第 1 題 解析】（雙光滑斜板圓球支持力）</span>
+        <span>配分：各 5 分，共 10 分</span>
+      </h4>
+      <div class="sol-grid">
+        <div class="sol-diagram-box">
+          <svg viewBox="0 0 240 145" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="arr1-b" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#0284c7"/></marker>
+              <marker id="arr1-r" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#dc2626"/></marker>
+            </defs>
+            <!-- Left: Sphere FBD -->
+            <g transform="translate(60, 68)">
+              <circle cx="0" cy="0" r="28" fill="#fff" stroke="#64748b" stroke-width="1.5" stroke-dasharray="3,3"/>
+              <circle cx="0" cy="0" r="2.5" fill="#000"/>
+              <line x1="0" y1="0" x2="26" y2="-34" stroke="#0284c7" stroke-width="2.2" marker-end="url(#arr1-b)"/>
+              <text x="30" y="-35" font-size="9.5" font-weight="bold" fill="#0284c7">N₁</text>
+              <line x1="0" y1="0" x2="-32" y2="-24" stroke="#0284c7" stroke-width="2.2" marker-end="url(#arr1-b)"/>
+              <text x="-48" y="-24" font-size="9.5" font-weight="bold" fill="#0284c7">N₂</text>
+              <line x1="0" y1="0" x2="0" y2="46" stroke="#dc2626" stroke-width="2.2" marker-end="url(#arr1-r)"/>
+              <text x="5" y="46" font-size="9.5" font-weight="bold" fill="#dc2626">W</text>
+              <line x1="0" y1="-42" x2="0" y2="0" stroke="#94a3b8" stroke-dasharray="2,2" stroke-width="1"/>
+              <path d="M 0 -22 A 22 22 0 0 1 13 -18" fill="none" stroke="#000" stroke-width="1"/>
+              <text x="6" y="-25" font-size="8">37°</text>
+              <path d="M 0 -20 A 20 20 0 0 0 -16 -12" fill="none" stroke="#000" stroke-width="1"/>
+              <text x="-24" y="-15" font-size="8">53°</text>
+            </g>
+            <line x1="120" y1="12" x2="120" y2="132" stroke="#cbd5e1" stroke-dasharray="2,2" stroke-width="1"/>
+            <!-- Right: Vector Triangle -->
+            <g transform="translate(185, 22)">
+              <line x1="0" y1="0" x2="0" y2="92" stroke="#dc2626" stroke-width="2.5"/>
+              <text x="5" y="50" font-size="9.5" font-weight="bold" fill="#dc2626">W(斜邊)</text>
+              <line x1="0" y1="92" x2="-44" y2="59" stroke="#0284c7" stroke-width="2.5"/>
+              <text x="-48" y="82" font-size="9.5" font-weight="bold" fill="#0284c7">N₂</text>
+              <line x1="-44" y1="59" x2="0" y2="0" stroke="#0284c7" stroke-width="2.5"/>
+              <text x="-36" y="25" font-size="9.5" font-weight="bold" fill="#0284c7">N₁</text>
+              <path d="M -39 52.5 L -33 57 L -37.5 63" fill="none" stroke="#000" stroke-width="1"/>
+              <path d="M 0 24 A 24 24 0 0 1 -11.5 15.5" fill="none" stroke="#000" stroke-width="1"/>
+              <text x="-16" y="30" font-size="8.5">37°</text>
+              <text x="-36" y="110" font-size="8.5" font-weight="bold" fill="#0369a1">直角力三角形</text>
+            </g>
+          </svg>
+          <div class="sol-diag-label">【受力隔離圖與直角向量三角形】</div>
+        </div>
+        <div class="sol-calc-content">
+          <div class="sol-step-item">
+            <strong>❶ 幾何正交性：</strong> 兩斜板夾角 $37^\circ + 53^\circ = 90^\circ$（相互垂直），故兩法向支持力 $\vec{N}_1 \perp \vec{N}_2$。
+          </div>
+          <div class="sol-step-item">
+            <strong>❷ 直角三角形邊角比：</strong> 由圖可見，三力構成以重力 $W$ 為斜邊的標準 $3:4:5$ 直角三角形（$\vec{N}_1$ 與鉛垂夾 $37^\circ$）：
+          </div>
+          $$N_1 = W \cos 37^\circ = \mathbf{\frac{4}{5}W}$$
+          $$N_2 = W \sin 37^\circ = \mathbf{\frac{3}{5}W}$$
+          <div class="sol-answer-box">
+            <strong>【標準答案】：</strong> (1) $N_1 = \dfrac{4}{5}W$； (2) $N_2 = \dfrac{3}{5}W$
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sol 2 -->
+    <div class="sol-card">
+      <h4>
+        <span>【第 2 題 解析】（雙斜面夾光滑圓球受力）</span>
+        <span>配分：各 5 分，共 10 分</span>
+      </h4>
+      <div class="sol-grid">
+        <div class="sol-diagram-box">
+          <svg viewBox="0 0 240 145" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="arr2-b" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#0284c7"/></marker>
+              <marker id="arr2-r" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#dc2626"/></marker>
+            </defs>
+            <!-- Left: FBD -->
+            <g transform="translate(60, 68)">
+              <circle cx="0" cy="0" r="26" fill="#fff" stroke="#64748b" stroke-width="1.5" stroke-dasharray="3,3"/>
+              <circle cx="0" cy="0" r="2.5" fill="#000"/>
+              <line x1="0" y1="0" x2="-22" y2="-38" stroke="#0284c7" stroke-width="2.2" marker-end="url(#arr2-b)"/>
+              <text x="-40" y="-36" font-size="9.5" font-weight="bold" fill="#0284c7">N_A</text>
+              <line x1="0" y1="0" x2="32" y2="18" stroke="#0284c7" stroke-width="2.2" marker-end="url(#arr2-b)"/>
+              <text x="36" y="24" font-size="9.5" font-weight="bold" fill="#0284c7">N_B</text>
+              <line x1="0" y1="0" x2="0" y2="44" stroke="#dc2626" stroke-width="2.2" marker-end="url(#arr2-r)"/>
+              <text x="5" y="44" font-size="9.5" font-weight="bold" fill="#dc2626">W</text>
+              <path d="M 0 20 A 20 20 0 0 0 17 10" fill="none" stroke="#000" stroke-width="1"/>
+              <text x="8" y="26" font-size="8">60°</text>
+            </g>
+            <line x1="120" y1="12" x2="120" y2="132" stroke="#cbd5e1" stroke-dasharray="2,2" stroke-width="1"/>
+            <!-- Right: Closed Vector Triangle -->
+            <g transform="translate(150, 22)">
+              <line x1="0" y1="0" x2="0" y2="65" stroke="#dc2626" stroke-width="2.5"/>
+              <text x="-18" y="36" font-size="9.5" font-weight="bold" fill="#dc2626">W</text>
+              <line x1="0" y1="65" x2="56.3" y2="97.5" stroke="#0284c7" stroke-width="2.5"/>
+              <text x="28" y="93" font-size="9.5" font-weight="bold" fill="#0284c7">N_B</text>
+              <line x1="56.3" y1="97.5" x2="0" y2="0" stroke="#0284c7" stroke-width="2.5"/>
+              <text x="34" y="45" font-size="9.5" font-weight="bold" fill="#0284c7">N_A</text>
+              <path d="M 0 50 A 15 15 0 0 1 13 57.5" fill="none" stroke="#000" stroke-width="1"/>
+              <text x="14" y="66" font-size="8">120°</text>
+              <text x="-6" y="112" font-size="8.5" font-weight="bold" fill="#0369a1">等腰鈍角力三角形</text>
+            </g>
+          </svg>
+          <div class="sol-diag-label">【受力隔離圖與 120° 等腰力三角形】</div>
+        </div>
+        <div class="sol-calc-content">
+          <div class="sol-step-item">
+            <strong>❶ 夾角幾何：</strong> $\vec{N}_A$ 與鉛垂夾 $30^\circ$；$\vec{N}_B$ 與鉛垂向下夾 $60^\circ$。
+          </div>
+          <div class="sol-step-item">
+            <strong>❷ 等腰三角形秒解：</strong> 由閉合力三角形可知，頂角為 $180^\circ - 60^\circ = 120^\circ$，兩底角皆為 $30^\circ$（等腰三角形）：
+          </div>
+          $$N_B = \mathbf{W}$$
+          $$N_A = 2 \cdot W \cos 30^\circ = 2W \cdot \frac{\sqrt{3}}{2} = \mathbf{\sqrt{3}W}$$
+          <div class="sol-answer-box">
+            <strong>【標準答案】：</strong> (1) $N_A = \sqrt{3}W$； (2) $N_B = W$
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sol 3 -->
+    <div class="sol-card">
+      <h4>
+        <span>【第 3 題 解析】（斜面固定鉛直板擋球）</span>
+        <span>配分：各 5 分，共 10 分</span>
+      </h4>
+      <div class="sol-grid">
+        <div class="sol-diagram-box">
+          <svg viewBox="0 0 240 145" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="arr3-b" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#0284c7"/></marker>
+              <marker id="arr3-r" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#dc2626"/></marker>
+            </defs>
+            <g transform="translate(60, 68)">
+              <circle cx="0" cy="0" r="26" fill="#fff" stroke="#64748b" stroke-width="1.5" stroke-dasharray="3,3"/>
+              <circle cx="0" cy="0" r="2.5" fill="#000"/>
+              <line x1="0" y1="0" x2="-26" y2="-34" stroke="#0284c7" stroke-width="2.2" marker-end="url(#arr3-b)"/>
+              <text x="-44" y="-32" font-size="9.5" font-weight="bold" fill="#0284c7">N₁</text>
+              <line x1="0" y1="0" x2="38" y2="0" stroke="#0284c7" stroke-width="2.2" marker-end="url(#arr3-b)"/>
+              <text x="40" y="3" font-size="9.5" font-weight="bold" fill="#0284c7">N₂</text>
+              <line x1="0" y1="0" x2="0" y2="44" stroke="#dc2626" stroke-width="2.2" marker-end="url(#arr3-r)"/>
+              <text x="5" y="44" font-size="9.5" font-weight="bold" fill="#dc2626">W</text>
+              <line x1="0" y1="-40" x2="0" y2="0" stroke="#94a3b8" stroke-dasharray="2,2" stroke-width="1"/>
+              <path d="M 0 -22 A 22 22 0 0 0 -13 -18" fill="none" stroke="#000" stroke-width="1"/>
+              <text x="-22" y="-25" font-size="8">37°</text>
+            </g>
+            <line x1="120" y1="12" x2="120" y2="132" stroke="#cbd5e1" stroke-dasharray="2,2" stroke-width="1"/>
+            <!-- Right: Closed Right Triangle -->
+            <g transform="translate(160, 22)">
+              <line x1="0" y1="0" x2="0" y2="80" stroke="#dc2626" stroke-width="2.5"/>
+              <text x="-26" y="44" font-size="9.5" font-weight="bold" fill="#dc2626">W=60</text>
+              <line x1="0" y1="80" x2="60" y2="80" stroke="#0284c7" stroke-width="2.5"/>
+              <text x="22" y="96" font-size="9.5" font-weight="bold" fill="#0284c7">N₂</text>
+              <line x1="60" y1="80" x2="0" y2="0" stroke="#0284c7" stroke-width="2.5"/>
+              <text x="36" y="38" font-size="9.5" font-weight="bold" fill="#0284c7">N₁</text>
+              <path d="M 0 72 L 8 72 L 8 80" fill="none" stroke="#000" stroke-width="1"/>
+              <path d="M 0 24 A 24 24 0 0 1 14.4 19.2" fill="none" stroke="#000" stroke-width="1"/>
+              <text x="6" y="32" font-size="8.5">37°</text>
+              <text x="0" y="112" font-size="8.5" font-weight="bold" fill="#0369a1">直角力三角形</text>
+            </g>
+          </svg>
+          <div class="sol-diag-label">【受力隔離圖與直角力三角形】</div>
+        </div>
+        <div class="sol-calc-content">
+          <div class="sol-step-item">
+            <strong>❶ 受力方向：</strong> 鉛直擋板推力 $\vec{N}_2$ 水平向右，斜面支持力 $\vec{N}_1$ 垂直斜面向左上方（與鉛垂夾 $37^\circ$）。
+          </div>
+          <div class="sol-step-item">
+            <strong>❷ 三角比秒算：</strong> 直角力三角形中，$W$ 為鄰邊、$\vec{N}_2$ 為對邊、$\vec{N}_1$ 為斜邊：
+          </div>
+          $$N_1 = \frac{W}{\cos 37^\circ} = \frac{60}{\frac{4}{5}} = \mathbf{75\text{ N}}$$
+          $$N_2 = W \tan 37^\circ = 60 \cdot \frac{3}{4} = \mathbf{45\text{ N}}$$
+          <div class="sol-answer-box">
+            <strong>【標準答案】：</strong> (1) $N_1 = 75\text{ N}$； (2) $N_2 = 45\text{ N}$
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sol 4 -->
+    <div class="sol-card">
+      <h4>
+        <span>【第 4 題 解析】（底寬 3r 槽內雙球系統）</span>
+        <span>配分：各 4 分，共 12 分</span>
+      </h4>
+      <div class="sol-grid">
+        <div class="sol-diagram-box">
+          <svg viewBox="0 0 240 145" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="arr4-b" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#0284c7"/></marker>
+              <marker id="arr4-r" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#dc2626"/></marker>
+            </defs>
+            <!-- Left: Line of Centers Geometry -->
+            <g transform="translate(60, 20)">
+              <line x1="0" y1="0" x2="35" y2="60.6" stroke="#475569" stroke-width="2"/>
+              <line x1="0" y1="0" x2="0" y2="60.6" stroke="#94a3b8" stroke-dasharray="2,2" stroke-width="1.2"/>
+              <line x1="0" y1="60.6" x2="35" y2="60.6" stroke="#94a3b8" stroke-dasharray="2,2" stroke-width="1.2"/>
+              <text x="18" y="73" font-size="8.5" fill="#475569">Δx = r</text>
+              <text x="22" y="32" font-size="8.5" fill="#0284c7" font-weight="bold">2r</text>
+              <path d="M 0 20 A 20 20 0 0 1 10 17.3" fill="none" stroke="#000" stroke-width="1"/>
+              <text x="4" y="28" font-size="8">30°</text>
+              <text x="-25" y="100" font-size="8.5" font-weight="bold" fill="#0369a1">連心線角 θ=30°</text>
+            </g>
+            <line x1="120" y1="12" x2="120" y2="132" stroke="#cbd5e1" stroke-dasharray="2,2" stroke-width="1"/>
+            <!-- Right: Upper Sphere A Force Triangle -->
+            <g transform="translate(180, 22)">
+              <line x1="0" y1="0" x2="0" y2="75" stroke="#dc2626" stroke-width="2.5"/>
+              <text x="-32" y="42" font-size="9" font-weight="bold" fill="#dc2626">W_A=2W</text>
+              <line x1="0" y1="75" x2="-43.3" y2="75" stroke="#0284c7" stroke-width="2.5"/>
+              <text x="-32" y="90" font-size="9" font-weight="bold" fill="#0284c7">N_壁</text>
+              <line x1="-43.3" y1="75" x2="0" y2="0" stroke="#0284c7" stroke-width="2.5"/>
+              <text x="-40" y="34" font-size="9" font-weight="bold" fill="#0284c7">N_AB</text>
+              <path d="M 0 22 A 22 22 0 0 1 -11 19" fill="none" stroke="#000" stroke-width="1"/>
+              <text x="-16" y="28" font-size="8">30°</text>
+              <text x="-45" y="112" font-size="8.5" font-weight="bold" fill="#0369a1">上球 A 力三角形</text>
+            </g>
+          </svg>
+          <div class="sol-diag-label">【連心線幾何角與上球隔離力三角形】</div>
+        </div>
+        <div class="sol-calc-content">
+          <div class="sol-step-item">
+            <strong>❶ 整體鉛直平衡：</strong> $N_{\text{底}} = W_A + W_B = 2W + W = \mathbf{3W}$。
+          </div>
+          <div class="sol-step-item">
+            <strong>❷ 連心線幾何角：</strong> $\sin\theta = \frac{3r - 2r}{2r} = \frac{1}{2} \implies \theta = 30^\circ$（與鉛直夾角）。
+          </div>
+          <div class="sol-step-item">
+            <strong>❸ 隔離球 A 與球 B：</strong>
+          </div>
+          $$N_{AB} \cos 30^\circ = W_A = 2W \implies N_{AB} = \mathbf{\frac{4\sqrt{3}}{3}W}$$
+          $$N_2 = N_{AB} \sin 30^\circ = \left(\frac{4\sqrt{3}}{3}W\right) \cdot \frac{1}{2} = \mathbf{\frac{2\sqrt{3}}{3}W}$$
+          <div class="sol-answer-box">
+            <strong>【標準答案】：</strong> (1) $N_{\text{底}} = 3W$； (2) $N_{AB} = \dfrac{4\sqrt{3}}{3}W$； (3) $N_2 = \dfrac{2\sqrt{3}}{3}W$
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sol 5 -->
+    <div class="sol-card">
+      <h4>
+        <span>【第 5 題 解析】（凹碗內雙小球正三角形平衡）</span>
+        <span>配分：各 6 分，共 12 分</span>
+      </h4>
+      <div class="sol-grid">
+        <div class="sol-diagram-box">
+          <svg viewBox="0 0 240 145" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="arr5-b" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#0284c7"/></marker>
+              <marker id="arr5-r" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#dc2626"/></marker>
+            </defs>
+            <!-- Left: Equilateral triangle -->
+            <g transform="translate(60, 20)">
+              <polygon points="0,0 -28,48.5 28,48.5" fill="none" stroke="#0284c7" stroke-width="2"/>
+              <text x="-4" y="-4" font-size="9" font-weight="bold">O</text>
+              <text x="-40" y="52" font-size="8.5">O₁</text>
+              <text x="32" y="52" font-size="8.5">O₂</text>
+              <text x="-32" y="24" font-size="8" fill="#475569">R-r</text>
+              <text x="-5" y="62" font-size="8" fill="#475569">2r</text>
+              <text x="-40" y="98" font-size="8.5" font-weight="bold" fill="#0369a1">正三角形 R-r=2r</text>
+            </g>
+            <line x1="120" y1="12" x2="120" y2="132" stroke="#cbd5e1" stroke-dasharray="2,2" stroke-width="1"/>
+            <!-- Right: Left Sphere Force Triangle -->
+            <g transform="translate(160, 22)">
+              <line x1="0" y1="0" x2="0" y2="75" stroke="#dc2626" stroke-width="2.5"/>
+              <text x="-18" y="42" font-size="9.5" font-weight="bold" fill="#dc2626">W</text>
+              <line x1="0" y1="75" x2="43.3" y2="75" stroke="#0284c7" stroke-width="2.5"/>
+              <text x="14" y="90" font-size="9.5" font-weight="bold" fill="#0284c7">N_AB</text>
+              <line x1="43.3" y1="75" x2="0" y2="0" stroke="#0284c7" stroke-width="2.5"/>
+              <text x="26" y="36" font-size="9.5" font-weight="bold" fill="#0284c7">N</text>
+              <path d="M 0 20 A 20 20 0 0 1 10 17.3" fill="none" stroke="#000" stroke-width="1"/>
+              <text x="4" y="26" font-size="8">30°</text>
+              <text x="-10" y="112" font-size="8.5" font-weight="bold" fill="#0369a1">左球 30°-60°-90° 力圖</text>
+            </g>
+          </svg>
+          <div class="sol-diag-label">【球心幾何正三角形與左球受力圖】</div>
+        </div>
+        <div class="sol-calc-content">
+          <div class="sol-step-item">
+            <strong>❶ 正三角形邊長：</strong> $R - r = 2r \implies R = 3r \implies \mathbf{\dfrac{R}{r} = 3}$。
+          </div>
+          <div class="sol-step-item">
+            <strong>❷ 碗壁支持力夾角：</strong> 通過碗心 $O$，與鉛垂夾角為 $60^\circ / 2 = 30^\circ$。
+          </div>
+          <div class="sol-step-item">
+            <strong>❸ 隔離左球水平與鉛直平衡：</strong>
+          </div>
+          $$N \cos 30^\circ = W \implies N = \frac{2}{\sqrt{3}}W$$
+          $$N_{AB} = N \sin 30^\circ = \left(\frac{2}{\sqrt{3}}W\right) \cdot \frac{1}{2} = \mathbf{\frac{\sqrt{3}}{3}W}$$
+          <div class="sol-answer-box">
+            <strong>【標準答案】：</strong> (1) $\dfrac{R}{r} = 3$； (2) $N_{AB} = \dfrac{\sqrt{3}}{3}W$
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sol 6 -->
+    <div class="sol-card">
+      <h4>
+        <span>【第 6 題 解析】（雙懸繩夾水平壓縮彈簧）</span>
+        <span>配分：各 5 分，共 10 分</span>
+      </h4>
+      <div class="sol-grid">
+        <div class="sol-diagram-box">
+          <svg viewBox="0 0 240 145" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="arr6-b" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#0284c7"/></marker>
+              <marker id="arr6-r" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#dc2626"/></marker>
+            </defs>
+            <!-- Left: FBD of left ball -->
+            <g transform="translate(60, 68)">
+              <circle cx="0" cy="0" r="14" fill="#fff" stroke="#64748b" stroke-width="1.5"/>
+              <circle cx="0" cy="0" r="2" fill="#000"/>
+              <line x1="0" y1="0" x2="28" y2="-28" stroke="#0284c7" stroke-width="2.2" marker-end="url(#arr6-b)"/>
+              <text x="32" y="-28" font-size="9.5" font-weight="bold" fill="#0284c7">T</text>
+              <line x1="0" y1="0" x2="-35" y2="0" stroke="#0284c7" stroke-width="2.2" marker-end="url(#arr6-b)"/>
+              <text x="-48" y="14" font-size="9" font-weight="bold" fill="#0284c7">Fs=kx</text>
+              <line x1="0" y1="0" x2="0" y2="40" stroke="#dc2626" stroke-width="2.2" marker-end="url(#arr6-r)"/>
+              <text x="5" y="42" font-size="9.5" font-weight="bold" fill="#dc2626">W</text>
+              <line x1="0" y1="-35" x2="0" y2="0" stroke="#94a3b8" stroke-dasharray="2,2" stroke-width="1"/>
+              <path d="M 0 -18 A 18 18 0 0 1 12.7 -12.7" fill="none" stroke="#000" stroke-width="1"/>
+              <text x="6" y="-20" font-size="8">45°</text>
+            </g>
+            <line x1="120" y1="12" x2="120" y2="132" stroke="#cbd5e1" stroke-dasharray="2,2" stroke-width="1"/>
+            <!-- Right: 45-45-90 Triangle -->
+            <g transform="translate(180, 22)">
+              <line x1="0" y1="0" x2="0" y2="65" stroke="#dc2626" stroke-width="2.5"/>
+              <text x="-18" y="36" font-size="9.5" font-weight="bold" fill="#dc2626">W</text>
+              <line x1="0" y1="65" x2="-65" y2="65" stroke="#0284c7" stroke-width="2.5"/>
+              <text x="-48" y="80" font-size="9.5" font-weight="bold" fill="#0284c7">Fs=kx</text>
+              <line x1="-65" y1="65" x2="0" y2="0" stroke="#0284c7" stroke-width="2.5"/>
+              <text x="-48" y="28" font-size="9.5" font-weight="bold" fill="#0284c7">T</text>
+              <path d="M 0 57 L -8 57 L -8 65" fill="none" stroke="#000" stroke-width="1"/>
+              <path d="M 0 20 A 20 20 0 0 1 -14.1 14.1" fill="none" stroke="#000" stroke-width="1"/>
+              <text x="-15" y="24" font-size="8">45°</text>
+              <text x="-55" y="110" font-size="8.5" font-weight="bold" fill="#0369a1">45°-45°-90° 等腰直角力圖</text>
+            </g>
+          </svg>
+          <div class="sol-diag-label">【左球受力圖與等腰直角力三角形】</div>
+        </div>
+        <div class="sol-calc-content">
+          <div class="sol-step-item">
+            <strong>❶ 繩角對稱性：</strong> 兩繩夾角 $90^\circ \implies$ 各繩與鉛垂夾角皆為 $45^\circ$。
+          </div>
+          <div class="sol-step-item">
+            <strong>❷ 直角三角形邊比 $1:1:\sqrt{2}$ 秒解：</strong>
+          </div>
+          $$T \cos 45^\circ = W \implies T = \frac{W}{\frac{\sqrt{2}}{2}} = \mathbf{\sqrt{2}W}$$
+          $$kx = T \sin 45^\circ = W \implies \mathbf{x = \frac{W}{k}}$$
+          <div class="sol-answer-box">
+            <strong>【標準答案】：</strong> (1) $T = \sqrt{2}W$； (2) $x = \dfrac{W}{k}$
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sol 7 -->
+    <div class="sol-card">
+      <h4>
+        <span>【第 7 題 解析】（底寬 4r 槽內品字三球堆疊）</span>
+        <span>配分：各 4 分，共 12 分</span>
+      </h4>
+      <div class="sol-grid">
+        <div class="sol-diagram-box">
+          <svg viewBox="0 0 240 145" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="arr7-b" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#0284c7"/></marker>
+              <marker id="arr7-r" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#dc2626"/></marker>
+            </defs>
+            <!-- Top Ball Symmetrical Force Diagram -->
+            <g transform="translate(60, 58)">
+              <circle cx="0" cy="0" r="18" fill="#fff" stroke="#64748b" stroke-width="1.5"/>
+              <circle cx="0" cy="0" r="2" fill="#000"/>
+              <line x1="0" y1="0" x2="0" y2="40" stroke="#dc2626" stroke-width="2.2" marker-end="url(#arr7-r)"/>
+              <text x="5" y="40" font-size="9" font-weight="bold" fill="#dc2626">W</text>
+              <line x1="0" y1="0" x2="-20" y2="-34.6" stroke="#0284c7" stroke-width="2.2" marker-end="url(#arr7-b)"/>
+              <text x="-34" y="-32" font-size="9" font-weight="bold" fill="#0284c7">N</text>
+              <line x1="0" y1="0" x2="20" y2="-34.6" stroke="#0284c7" stroke-width="2.2" marker-end="url(#arr7-b)"/>
+              <text x="24" y="-32" font-size="9" font-weight="bold" fill="#0284c7">N</text>
+              <line x1="0" y1="-38" x2="0" y2="0" stroke="#94a3b8" stroke-dasharray="2,2" stroke-width="1"/>
+              <text x="-12" y="-22" font-size="7.5">30°</text>
+              <text x="5" y="-22" font-size="7.5">30°</text>
+              <text x="-35" y="60" font-size="8.5" font-weight="bold" fill="#0369a1">頂球對稱平衡</text>
+            </g>
+            <line x1="120" y1="12" x2="120" y2="132" stroke="#cbd5e1" stroke-dasharray="2,2" stroke-width="1"/>
+            <!-- Bottom Left Ball Balance -->
+            <g transform="translate(180, 58)">
+              <circle cx="0" cy="0" r="18" fill="#fff" stroke="#64748b" stroke-width="1.5"/>
+              <circle cx="0" cy="0" r="2" fill="#000"/>
+              <line x1="0" y1="0" x2="-18" y2="31" stroke="#0284c7" stroke-width="2.2" marker-end="url(#arr7-b)"/>
+              <text x="-32" y="32" font-size="8.5" font-weight="bold" fill="#0284c7">N</text>
+              <line x1="0" y1="0" x2="32" y2="0" stroke="#0284c7" stroke-width="2.2" marker-end="url(#arr7-b)"/>
+              <text x="28" y="-5" font-size="8.5" font-weight="bold" fill="#0284c7">N_壁</text>
+              <line x1="0" y1="0" x2="0" y2="-36" stroke="#0284c7" stroke-width="2.2" marker-end="url(#arr7-b)"/>
+              <text x="4" y="-36" font-size="8.5" font-weight="bold" fill="#0284c7">N_底</text>
+              <text x="-30" y="60" font-size="8.5" font-weight="bold" fill="#0369a1">底球水平平衡</text>
+            </g>
+          </svg>
+          <div class="sol-diag-label">【頂球對稱力圖與底球隔離受力圖】</div>
+        </div>
+        <div class="sol-calc-content">
+          <div class="sol-step-item">
+            <strong>❶ 頂球鉛直對稱平衡：</strong> $2N \cos 30^\circ = W \implies N = \mathbf{\frac{\sqrt{3}}{3}W}$。
+          </div>
+          <div class="sol-step-item">
+            <strong>❷ 整體鉛直平衡：</strong> 槽底支持兩底球承擔全重 $3W \implies 2N_{\text{底}} = 3W \implies N_{\text{底}} = \mathbf{\frac{3}{2}W}$。
+          </div>
+          <div class="sol-step-item">
+            <strong>❸ 底球水平平衡：</strong>
+          </div>
+          $$N_{\text{壁}} = N \sin 30^\circ = \left(\frac{\sqrt{3}}{3}W\right) \cdot \frac{1}{2} = \mathbf{\frac{\sqrt{3}}{6}W}$$
+          <div class="sol-answer-box">
+            <strong>【標準答案】：</strong> (1) $N = \dfrac{\sqrt{3}}{3}W$； (2) $N_{\text{底}} = \dfrac{3}{2}W$； (3) $N_{\text{壁}} = \dfrac{\sqrt{3}}{6}W$
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sol 8 -->
+    <div class="sol-card">
+      <h4>
+        <span>【第 8 題 解析】（品字三圓柱鋼繩拉力拘束）</span>
+        <span>配分：各 6 分，共 12 分</span>
+      </h4>
+      <div class="sol-grid">
+        <div class="sol-diagram-box">
+          <svg viewBox="0 0 240 145" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="arr8-b" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#0284c7"/></marker>
+              <marker id="arr8-r" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#dc2626"/></marker>
+            </defs>
+            <!-- Left: Top Cylinder Balance -->
+            <g transform="translate(60, 58)">
+              <circle cx="0" cy="0" r="18" fill="#fff" stroke="#64748b" stroke-width="1.5"/>
+              <circle cx="0" cy="0" r="2" fill="#000"/>
+              <line x1="0" y1="0" x2="0" y2="40" stroke="#dc2626" stroke-width="2.2" marker-end="url(#arr8-r)"/>
+              <text x="5" y="40" font-size="9" font-weight="bold" fill="#dc2626">Mg</text>
+              <line x1="0" y1="0" x2="-20" y2="-34.6" stroke="#0284c7" stroke-width="2.2" marker-end="url(#arr8-b)"/>
+              <text x="-34" y="-32" font-size="9" font-weight="bold" fill="#0284c7">N₁</text>
+              <line x1="0" y1="0" x2="20" y2="-34.6" stroke="#0284c7" stroke-width="2.2" marker-end="url(#arr8-b)"/>
+              <text x="24" y="-32" font-size="9" font-weight="bold" fill="#0284c7">N₁</text>
+              <text x="-35" y="60" font-size="8.5" font-weight="bold" fill="#0369a1">頂柱 2N₁cos30°=Mg</text>
+            </g>
+            <line x1="120" y1="12" x2="120" y2="132" stroke="#cbd5e1" stroke-dasharray="2,2" stroke-width="1"/>
+            <!-- Bottom Left Cylinder Horizontal Balance -->
+            <g transform="translate(180, 58)">
+              <circle cx="0" cy="0" r="18" fill="#fff" stroke="#64748b" stroke-width="1.5"/>
+              <circle cx="0" cy="0" r="2" fill="#000"/>
+              <line x1="0" y1="0" x2="-18" y2="31" stroke="#0284c7" stroke-width="2.2" marker-end="url(#arr8-b)"/>
+              <text x="-34" y="32" font-size="8.5" font-weight="bold" fill="#0284c7">N₁</text>
+              <line x1="0" y1="0" x2="35" y2="0" stroke="#0284c7" stroke-width="2.2" marker-end="url(#arr8-b)"/>
+              <text x="24" y="-5" font-size="8.5" font-weight="bold" fill="#0284c7">繩 T</text>
+              <line x1="-30" y1="0" x2="0" y2="0" stroke="#94a3b8" stroke-dasharray="2,2" stroke-width="1"/>
+              <path d="M -15 0 A 15 15 0 0 0 -7.5 13" fill="none" stroke="#000" stroke-width="1"/>
+              <text x="-22" y="10" font-size="7.5">60°</text>
+              <text x="-32" y="60" font-size="8.5" font-weight="bold" fill="#0369a1">底柱水平 T=N₁cos60°</text>
+            </g>
+          </svg>
+          <div class="sol-diag-label">【頂柱對稱平衡與底柱水平拉力圖】</div>
+        </div>
+        <div class="sol-calc-content">
+          <div class="sol-step-item">
+            <strong>❶ 頂柱連心線夾角：</strong> 圓心正三角形 $\implies$ 連心線與鉛垂夾 $30^\circ$（與水平夾 $60^\circ$）。
+          </div>
+          <div class="sol-step-item">
+            <strong>❷ 頂柱鉛直平衡：</strong>
+          </div>
+          $$2N_1 \cos 30^\circ = Mg \implies N_1 = \frac{Mg}{2 \cdot \frac{\sqrt{3}}{2}} = \mathbf{\frac{\sqrt{3}}{3}Mg}$$
+          <div class="sol-step-item">
+            <strong>❸ 底柱水平平衡（光滑地面僅鋼繩受力）：</strong>
+          </div>
+          $$T = N_1 \cos 60^\circ = \left(\frac{\sqrt{3}}{3}Mg\right) \cdot \frac{1}{2} = \mathbf{\frac{\sqrt{3}}{6}Mg}$$
+          <div class="sol-answer-box">
+            <strong>【標準答案】：</strong> (1) $N_1 = \dfrac{\sqrt{3}}{3}Mg$； (2) $T = \dfrac{\sqrt{3}}{6}Mg$
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sol 9 -->
+    <div class="sol-card">
+      <h4>
+        <span>【第 9 題 解析】（球面外懸小球・力與幾何相似三角形）</span>
+        <span>配分：各 6 分，共 12 分</span>
+      </h4>
+      <div class="sol-grid">
+        <div class="sol-diagram-box">
+          <svg viewBox="0 0 240 145" xmlns="http://www.w3.org/2000/svg">
+            <!-- Left: Geometry Triangle APO -->
+            <g transform="translate(60, 20)">
+              <polygon points="0,0 0,80 34.6,60" fill="none" stroke="#0284c7" stroke-width="2"/>
+              <text x="-12" y="2" font-size="9" font-weight="bold">A</text>
+              <text x="-12" y="84" font-size="9" font-weight="bold">O</text>
+              <text x="38" y="64" font-size="9" font-weight="bold">P</text>
+              <text x="-32" y="44" font-size="8.5" fill="#475569">AO=2R</text>
+              <text x="24" y="34" font-size="8.5" fill="#0284c7">L=√3R</text>
+              <text x="12" y="78" font-size="8.5" fill="#475569">R</text>
+              <path d="M 28 56.5 L 31.5 50.5 L 38 54" fill="none" stroke="#000" stroke-width="1"/>
+              <text x="-40" y="105" font-size="8.5" font-weight="bold" fill="#0369a1">幾何 ΔAPO 恰為直角</text>
+            </g>
+            <line x1="120" y1="12" x2="120" y2="132" stroke="#cbd5e1" stroke-dasharray="2,2" stroke-width="1"/>
+            <!-- Right: Vector Closed Triangle -->
+            <g transform="translate(180, 20)">
+              <line x1="0" y1="0" x2="0" y2="80" stroke="#dc2626" stroke-width="2.5"/>
+              <text x="-18" y="44" font-size="9" font-weight="bold" fill="#dc2626">W ↔ 2R</text>
+              <line x1="0" y1="80" x2="34.6" y2="60" stroke="#0284c7" stroke-width="2.5"/>
+              <text x="14" y="84" font-size="9" font-weight="bold" fill="#0284c7">N ↔ R</text>
+              <line x1="34.6" y1="60" x2="0" y2="0" stroke="#0284c7" stroke-width="2.5"/>
+              <text x="22" y="30" font-size="9" font-weight="bold" fill="#0284c7">T ↔ √3R</text>
+              <text x="-32" y="105" font-size="8.5" font-weight="bold" fill="#0369a1">力向量與幾何嚴格相似</text>
+            </g>
+          </svg>
+          <div class="sol-diag-label">【幾何三角形 ΔAPO 與相似力向量三角形】</div>
+        </div>
+        <div class="sol-calc-content">
+          <div class="sol-step-item">
+            <strong>❶ 幾何勾股直角判定：</strong> $(\sqrt{3}R)^2 + R^2 = 4R^2 = (2R)^2 \implies \angle APO = 90^\circ$。
+          </div>
+          <div class="sol-step-item">
+            <strong>❷ 力與邊長嚴格相似對應：</strong>
+          </div>
+          $$\frac{T}{\overline{AP}} = \frac{N}{\overline{OP}} = \frac{W}{\overline{AO}} \implies \frac{T}{\sqrt{3}R} = \frac{N}{R} = \frac{W}{2R}$$
+          <div class="sol-step-item">
+            <strong>❸ 比例秒得：</strong>
+          </div>
+          $$T = \mathbf{\frac{\sqrt{3}}{2}W}, \quad N = \mathbf{\frac{1}{2}W}$$
+          <div class="sol-answer-box">
+            <strong>【標準答案】：</strong> (1) $T = \dfrac{\sqrt{3}}{2}W$； (2) $N = \dfrac{1}{2}W$
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      renderAllMath();
+    });
+
+    function renderAllMath() {
+      if (window.renderMathInElement) {
+        renderMathInElement(document.body, {
+          delimiters: [
+            { left: "$$", right: "$$", display: true },
+            { left: "$", right: "$", display: false }
+          ],
+          throwOnError: false
+        });
+      }
+    }
+
+    function toggleSolutions() {
+      const solSection = document.getElementById("solutionSection");
+      if (solSection.style.display === "none" || solSection.style.display === "") {
+        solSection.style.display = "block";
+        renderAllMath();
+        solSection.scrollIntoView({ behavior: "smooth" });
+      } else {
+        solSection.style.display = "none";
+      }
+    }
+
+    function printMode(mode) {
+      document.body.classList.remove('mode-print-exam', 'mode-print-solutions', 'mode-print-all');
+      
+      if (mode === 'exam') {
+        document.body.classList.add('mode-print-exam');
+      } else if (mode === 'solutions') {
+        document.body.classList.add('mode-print-solutions');
+        const solSection = document.getElementById("solutionSection");
+        solSection.style.display = "block";
+        renderAllMath();
+      } else if (mode === 'all') {
+        document.body.classList.add('mode-print-all');
+        const solSection = document.getElementById("solutionSection");
+        solSection.style.display = "block";
+        renderAllMath();
+      }
+      
+      // Short delay to ensure KaTeX has completely typeset before print dialog appears
+      setTimeout(() => {
+        window.print();
+      }, 200);
+    }
+  </script>
+</body>
+</html>

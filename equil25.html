@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>靜力平衡 25：水平輕棒懸重與牆壁樞紐作用力 | 高中物理靜力學</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+  <link rel="stylesheet" href="shared.css">
+</head>
+<body>
+  <div class="bg-glow"></div>
+  <div class="bg-grid"></div>
+
+  <div class="container">
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+      <div class="nav-links">
+        <a href="index.html" class="nav-btn primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          回目錄
+        </a>
+        <a href="equil24.html" class="nav-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          上一題 (平衡 24)
+        </a>
+        <a href="equil26.html" class="nav-btn">
+          下一題 (平衡 26)
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+      <div class="badge-wrapper">
+        <span class="badge badge-page">講義 靜力學-28</span>
+        <span class="badge badge-exam">樞紐正交反作用力</span>
+        <span class="badge badge-accent">靜力平衡・練習 25</span>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+      <h1 class="main-title">靜力平衡 25：<span class="gradient-text">水平輕棒懸重與樞紐作用力</span></h1>
+      <p class="subtitle">力矩平衡求懸繩張力・正交力平衡求樞紐水平與垂直分力・商高定理合成合力</p>
+    </header>
+
+    <!-- Problem Showcase Card -->
+    <section class="card problem-card">
+      <div class="card-header">
+        <div class="card-icon">📖</div>
+        <div>
+          <h2>題目內容</h2>
+          <span class="card-tag">聯考經典懸臂梁與樞紐模型</span>
+        </div>
+      </div>
+
+      <div class="problem-body">
+        <p>
+          如圖所示，一木棒長 $L$（重量可忽略不計），在距離牆壁 $\frac{2}{3}L$ 處懸掛一重量為 $W$ 之物體。木棒一端以一樞紐固定於鉛直牆上，另一端用細繩以與水平夾角 $30^\circ$ 懸於牆上使其維持水平平衡。則牆上樞紐作用於棒的作用力大小為：
+        </p>
+
+        <!-- SVG Diagram -->
+        <div class="diagram-wrapper">
+          <svg viewBox="0 0 760 360" class="physics-svg" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="arrow-blue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#38bdf8"/>
+              </marker>
+              <marker id="arrow-red" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#f43f5e"/>
+              </marker>
+              <marker id="arrow-green" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#10b981"/>
+              </marker>
+              <marker id="arrow-purple" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#c084fc"/>
+              </marker>
+              <pattern id="diag-hatch" width="8" height="8" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse">
+                <line x1="0" y1="0" x2="0" y2="8" stroke="rgba(255,255,255,0.2)" stroke-width="1.2"/>
+              </pattern>
+            </defs>
+
+            <!-- Vertical Wall on Left: x = 90 -->
+            <rect x="65" y="25" width="25" height="300" fill="url(#diag-hatch)" stroke="#64748b" stroke-width="1.5"/>
+            <line x1="90" y1="20" x2="90" y2="330" stroke="#94a3b8" stroke-width="2.5"/>
+
+            <!-- Pivot A at (90, 220) -->
+            <circle cx="90" cy="220" r="7" fill="#f59e0b" stroke="#ffffff" stroke-width="2"/>
+            <text x="60" y="225" fill="#f59e0b" font-size="15" font-weight="800">A</text>
+
+            <!-- Horizontal Rod AB: from A(90, 220) to B(390, 220). Length L = 300 px. -->
+            <line x1="90" y1="220" x2="390" y2="220" stroke="#cbd5e1" stroke-width="8" stroke-linecap="round"/>
+            <text x="395" y="235" fill="#e2e8f0" font-size="14" font-weight="700">B</text>
+
+            <!-- String from B(390, 220) to Wall C(90, 46.8).
+                 tan 30 = dy / dx = 173.2 / 300 ~ 0.577.
+                 C is at y = 220 - 173.2 = 46.8.
+            -->
+            <line x1="390" y1="220" x2="90" y2="47" stroke="#38bdf8" stroke-width="3"/>
+            <circle cx="90" cy="47" r="4.5" fill="#38bdf8"/>
+            <text x="75" y="45" fill="#38bdf8" font-size="13" font-weight="700">C</text>
+
+            <!-- Angle 30 deg at B -->
+            <path d="M 330 220 A 60 60 0 0 1 340 191" fill="none" stroke="#f59e0b" stroke-width="2"/>
+            <text x="315" y="205" fill="#f59e0b" font-size="13" font-weight="700">30°</text>
+
+            <!-- Hanging Weight W: at distance 2/3 L = 200 px from A -> x = 290 -->
+            <circle cx="290" cy="220" r="4" fill="#f8fafc"/>
+            <line x1="290" y1="220" x2="290" y2="280" stroke="#cbd5e1" stroke-width="2"/>
+            <rect x="270" y="280" width="40" height="35" rx="4" fill="rgba(244, 63, 94, 0.25)" stroke="#f43f5e" stroke-width="2"/>
+            <text x="290" y="303" fill="#ffffff" font-size="14" font-weight="800" text-anchor="middle">W</text>
+
+            <!-- Distance Dimension (2/3 L) -->
+            <line x1="90" y1="245" x2="290" y2="245" stroke="#94a3b8" stroke-width="1.2"/>
+            <line x1="90" y1="240" x2="90" y2="250" stroke="#94a3b8" stroke-width="1.2"/>
+            <line x1="290" y1="240" x2="290" y2="250" stroke="#94a3b8" stroke-width="1.2"/>
+            <text x="190" y="260" fill="#cbd5e1" font-size="12" font-style="italic" text-anchor="middle">2/3 L</text>
+
+            <!-- String Tension Force Vector T at B -->
+            <line x1="390" y1="220" x2="270" y2="151" stroke="#38bdf8" stroke-width="3" marker-end="url(#arrow-blue)"/>
+            <text x="295" y="145" fill="#38bdf8" font-size="14" font-weight="800">T = (4/3)W</text>
+
+            <!-- Pivot Force Components at A:
+                 F_x to the right: F_x = 2*sqrt(3)/3 W ~ 1.155 W
+                 F_y upwards: F_y = 1/3 W ~ 0.333 W
+            -->
+            <line x1="90" y1="220" x2="160" y2="220" stroke="#10b981" stroke-width="2.5" marker-end="url(#arrow-green)"/>
+            <text x="135" y="210" fill="#10b981" font-size="12" font-weight="700">F_x</text>
+
+            <line x1="90" y1="220" x2="90" y2="170" stroke="#10b981" stroke-width="2.5" marker-end="url(#arrow-green)"/>
+            <text x="98" y="180" fill="#10b981" font-size="12" font-weight="700">F_y</text>
+
+            <!-- Total Pivot Force F diagonal up-right -->
+            <line x1="90" y1="220" x2="160" y2="170" stroke="#c084fc" stroke-width="3.5" marker-end="url(#arrow-purple)"/>
+            <text x="165" y="165" fill="#c084fc" font-size="14" font-weight="800">F (樞紐合力)</text>
+
+            <!-- Right Box: Free Body Diagram & Calculation -->
+            <g transform="translate(440, 20)">
+              <rect x="0" y="0" width="300" height="325" rx="12" fill="rgba(15, 23, 42, 0.75)" stroke="#334155" stroke-width="1.5"/>
+              <text x="150" y="26" fill="#38bdf8" font-size="15" font-weight="700" text-anchor="middle">力矩與力平衡推導</text>
+
+              <!-- Step 1 -->
+              <rect x="15" y="40" width="270" height="80" rx="6" fill="rgba(30, 41, 59, 0.6)" stroke="#475569" stroke-width="1"/>
+              <text x="25" y="60" fill="#38bdf8" font-size="13" font-weight="700">1. 以 A 為轉軸列力矩平衡：</text>
+              <text x="35" y="80" fill="#cbd5e1" font-size="12">T·sin 30°·L = W·(2/3 L)</text>
+              <text x="35" y="102" fill="#38bdf8" font-size="13" font-family="'Fira Code', monospace">T·(1/2) = (2/3)W  ⇒  T = (4/3)W</text>
+
+              <!-- Step 2 -->
+              <rect x="15" y="130" width="270" height="85" rx="6" fill="rgba(30, 41, 59, 0.6)" stroke="#475569" stroke-width="1"/>
+              <text x="25" y="150" fill="#10b981" font-size="13" font-weight="700">2. 正交力平衡求樞紐分力：</text>
+              <text x="35" y="172" fill="#cbd5e1" font-size="12">水平：F_x = T·cos 30° = (2√3/3)W</text>
+              <text x="35" y="195" fill="#cbd5e1" font-size="12">鉛直：F_y = W - T·sin 30° = (1/3)W</text>
+
+              <!-- Step 3 -->
+              <rect x="15" y="225" width="270" height="85" rx="6" fill="rgba(192, 132, 252, 0.12)" stroke="rgba(192, 132, 252, 0.3)" stroke-width="1"/>
+              <text x="25" y="245" fill="#c084fc" font-size="13" font-weight="700">3. 合成樞紐總作用力 F：</text>
+              <text x="35" y="268" fill="#f8fafc" font-size="13" font-family="'Fira Code', monospace">F = √(F_x² + F_y²)</text>
+              <text x="35" y="292" fill="#c084fc" font-size="15" font-weight="800">F = √(12/9 + 1/9) W = (√13/3)W</text>
+            </g>
+          </svg>
+        </div>
+
+        <p class="question-prompt">
+          依據力矩與合力平衡推導，牆上樞紐作用於棒之力為多少？
+        </p>
+
+        <!-- Options Container -->
+        <div class="options-container">
+          <div class="option-card" data-option="A">
+            <span class="option-label">A</span>
+            <div class="option-content">
+              <span class="katex-text">$\frac{1}{2}W$</span>
+            </div>
+          </div>
+
+          <div class="option-card" data-option="B">
+            <span class="option-label">B</span>
+            <div class="option-content">
+              <span class="katex-text">$\frac{4}{3}W$</span>
+            </div>
+          </div>
+
+          <div class="option-card" data-option="C">
+            <span class="option-label">C</span>
+            <div class="option-content">
+              <span class="katex-text">$\frac{3}{4}W$</span>
+            </div>
+          </div>
+
+          <div class="option-card" data-option="D">
+            <span class="option-label">D</span>
+            <div class="option-content">
+              <span class="katex-text">$\frac{\sqrt{13}}{3}W$</span>
+            </div>
+          </div>
+
+          <div class="option-card" data-option="E">
+            <span class="option-label">E</span>
+            <div class="option-content">
+              <span class="katex-text">$\frac{\sqrt{2}}{5}W$</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Feedback Alert Box -->
+        <div class="feedback-box" id="feedbackBox">
+          <div class="feedback-icon" id="feedbackIcon"></div>
+          <div class="feedback-text" id="feedbackText"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Collapsible Solution Card -->
+    <section class="card solution-card collapsed" id="solutionCard">
+      <div class="card-header toggle-header" id="solutionToggle">
+        <div class="card-icon">💡</div>
+        <div>
+          <h2>核心解析與詳細推導</h2>
+          <span class="card-tag">點擊展開 / 收合完整解析</span>
+        </div>
+        <span class="solution-status">點擊展開完整剖析</span>
+      </div>
+
+      <div class="solution-content">
+        <div class="solution-step">
+          <span class="step-num">步驟 1</span>
+          <h3>以樞紐 A 為轉軸列力矩平衡求繩張力 T</h3>
+          <p>
+            木棒維持水平，長度為 $L$，重力忽略不計。<br>
+            懸掛物體重 $W$，作用點距離樞紐 $A$ 為 $\frac{2}{3}L$。<br>
+            細繩在 $B$ 端以與水平成 $30^\circ$ 夾角斜向上拉，張力為 $T$。<br>
+            以 $A$ 點為轉軸，此時樞紐作用力之力臂為零：
+            $$\tau_{\text{逆}} = \tau_{\text{順}}$$
+            $$T \sin 30^\circ \cdot L = W \cdot \left(\frac{2}{3}L\right)$$
+            代入 $\sin 30^\circ = \frac{1}{2}$：
+            $$T \cdot \frac{1}{2} = \frac{2}{3}W \implies T = \frac{4}{3}W$$
+          </p>
+        </div>
+
+        <div class="solution-step">
+          <span class="step-num">步驟 2</span>
+          <h3>由水平與鉛直合力為零求樞紐分力</h3>
+          <p>
+            設牆上樞紐對木棒之作用力為 $\vec{F}$，其水平分量為 $F_x$（向右），鉛直分量為 $F_y$（向上）：
+          </p>
+          <ul>
+            <li><strong>水平合力為零</strong>：
+              $$F_x = T \cos 30^\circ = \left(\frac{4}{3}W\right) \cdot \frac{\sqrt{3}}{2} = \frac{2\sqrt{3}}{3}W$$
+            </li>
+            <li><strong>鉛直合力為零</strong>：
+              $$F_y + T \sin 30^\circ = W \implies F_y + \left(\frac{4}{3}W\right)\cdot \frac{1}{2} = W$$
+              $$F_y + \frac{2}{3}W = W \implies F_y = \frac{1}{3}W$$
+            </li>
+          </ul>
+        </div>
+
+        <div class="solution-step">
+          <span class="step-num">步驟 3</span>
+          <h3>合成樞紐總作用力 F</h3>
+          <p>
+            由商高定理合成正交分力：
+            $$F = \sqrt{F_x^2 + F_y^2} = \sqrt{\left(\frac{2\sqrt{3}}{3}W\right)^2 + \left(\frac{1}{3}W\right)^2}$$
+            $$F = \sqrt{\frac{12}{9}W^2 + \frac{1}{9}W^2} = \sqrt{\frac{13}{9}}W = \frac{\sqrt{13}}{3}W$$
+          </p>
+          <div class="conclusion-box">
+            <strong>結論：</strong> 本題正確答案為 <strong>(D) $\frac{\sqrt{13}}{3}W$</strong>。
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Navigation Footer -->
+    <footer class="footer-nav">
+      <a href="equil24.html" class="nav-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+        上一題 (平衡 24)
+      </a>
+      <a href="index.html" class="nav-btn primary">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        單元總覽
+      </a>
+      <a href="equil26.html" class="nav-btn">
+        下一題 (平衡 26)
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+    </footer>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // KaTeX Auto-render
+      if (typeof renderMathInElement === 'function') {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ],
+          throwOnError: false
+        });
+      }
+
+      // Quiz Interaction
+      const correctAnswer = "D";
+      const optionCards = document.querySelectorAll(".option-card");
+      const feedbackBox = document.getElementById("feedbackBox");
+      const feedbackIcon = document.getElementById("feedbackIcon");
+      const feedbackText = document.getElementById("feedbackText");
+      const solutionCard = document.getElementById("solutionCard");
+
+      optionCards.forEach(card => {
+        card.addEventListener("click", function() {
+          const selected = this.getAttribute("data-option");
+
+          optionCards.forEach(c => c.classList.remove("selected", "correct", "wrong"));
+          this.classList.add("selected");
+
+          feedbackBox.classList.remove("correct", "wrong");
+          feedbackBox.classList.add("show");
+
+          if (selected === correctAnswer) {
+            this.classList.add("correct");
+            feedbackBox.classList.add("correct");
+            feedbackIcon.innerHTML = "🎉";
+            feedbackText.innerHTML = "<strong>命中真理！完全正確！</strong><br>以樞紐為轉軸：$T\\sin 30^\\circ \\cdot L = W \\cdot \\frac{2}{3}L \\implies T = \\frac{4}{3}W$。<br>分力 $F_x = \\frac{2\\sqrt{3}}{3}W,\\; F_y = \\frac{1}{3}W \\implies F = \\sqrt{F_x^2+F_y^2} = \\frac{\\sqrt{13}}{3}W$！";
+            solutionCard.classList.remove("collapsed");
+            const tag = solutionCard.querySelector(".solution-status");
+            if (tag) tag.textContent = "點擊收合詳解";
+          } else {
+            this.classList.add("wrong");
+            feedbackBox.classList.add("wrong");
+            feedbackIcon.innerHTML = "💡";
+            if (selected === "B") {
+              feedbackText.innerHTML = "<strong>小心！$\\frac{4}{3}W$ 是繩子張力 $T$，不是樞紐作用力喔！</strong> 樞紐力還需合成正交分力！";
+            } else {
+              feedbackText.innerHTML = `<strong>選了 (${selected})，再想想看！</strong> 提示：先以樞紐為轉軸求繩張力 $T$，再由 $\\Sigma F_x = 0$ 和 $\\Sigma F_y = 0$ 解出樞紐的兩分力，最後用商高定理合成！`;
+            }
+          }
+
+          if (typeof renderMathInElement === 'function') {
+            renderMathInElement(feedbackText, {
+              delimiters: [
+                {left: '$$', right: '$$', display: true},
+                {left: '$', right: '$', display: false}
+              ],
+              throwOnError: false
+            });
+          }
+        });
+      });
+
+      // Solution toggle
+      const solutionToggle = document.getElementById("solutionToggle");
+      solutionToggle.addEventListener("click", function() {
+        solutionCard.classList.toggle("collapsed");
+        const isCollapsed = solutionCard.classList.contains("collapsed");
+        const statusSpan = solutionToggle.querySelector(".solution-status");
+        if (statusSpan) {
+          statusSpan.textContent = isCollapsed ? "點擊展開完整剖析" : "點擊收合詳解";
+        }
+      });
+    });
+  </script>
+</body>
+</html>

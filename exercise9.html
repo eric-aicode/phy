@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>練習 9：逆風航行帆船前進推力分解 | 高中物理靜力學</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+  <link rel="stylesheet" href="shared.css">
+</head>
+<body>
+  <div class="bg-glow"></div>
+  <div class="bg-grid"></div>
+
+  <div class="container">
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+      <div class="nav-links">
+        <a href="index.html" class="nav-btn primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          回目錄
+        </a>
+        <a href="exercise8.html" class="nav-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          上一題 (練習 8)
+        </a>
+        <a href="exercise10.html" class="nav-btn">
+          下一題 (練習 10)
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+      <div class="badge-wrapper">
+        <span class="badge badge-page">講義 靜力學-19</span>
+        <span class="badge badge-accent">向量正交投影・練習 9</span>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+      <h1 class="main-title">練習 9：<span class="gradient-text">逆風航行帆船前進推力分解</span></h1>
+      <p class="subtitle">帆面幾何角度分析・垂直正向風力在船頭軸向的有效分力投影</p>
+    </header>
+
+    <!-- Problem Showcase Card -->
+    <section class="card problem-card">
+      <div class="card-header">
+        <div class="card-icon">📖</div>
+        <div>
+          <h2>題目內容</h2>
+          <span class="card-tag">經典物理素養力學題</span>
+        </div>
+      </div>
+
+      <div class="problem-body">
+        <p>
+          附圖為帆船在靜止水面上<strong>逆風航行</strong>的示意圖。已知風向和船身前進方向夾角為 <strong>$135^\circ$</strong>，帆面的方向可以自由調整。圖中帆面和風向夾成 <strong>$15^\circ$</strong>，風對船帆的作用力係<strong>垂直於帆面</strong>，若其量值為 <strong>$F$</strong>，則使船順著船頭方向前進的力大小為何？
+        </p>
+
+        <!-- Dynamic Sailboat Wind Projection SVG Diagram -->
+        <div class="diagram-container" style="text-align: center; margin: 24px 0;">
+          <svg viewBox="0 0 760 360" style="width: 100%; max-width: 740px; background: rgba(15, 23, 42, 0.6); border-radius: 12px; border: 1px solid rgba(255,255,255,0.08);">
+            <defs>
+              <marker id="arrow-wind" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#38bdf8"/>
+              </marker>
+              <marker id="arrow-heading" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#fbbf24"/>
+              </marker>
+              <marker id="arrow-force" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#f43f5e"/>
+              </marker>
+              <marker id="arrow-fwd" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#34d399"/>
+              </marker>
+            </defs>
+
+            <!-- 幾何作圖區 (中心在 x=300, y=210) -->
+            <g transform="translate(300, 210)">
+              <!-- 水平與垂直參考線 -->
+              <line x1="-180" y1="0" x2="180" y2="0" stroke="rgba(255,255,255,0.1)" stroke-width="1" stroke-dasharray="4,4"/>
+              <line x1="0" y1="-180" x2="0" y2="100" stroke="rgba(255,255,255,0.1)" stroke-width="1" stroke-dasharray="4,4"/>
+
+              <!-- 風向基準線：垂直向下吹 -->
+              <line x1="80" y1="-160" x2="80" y2="-20" stroke="#38bdf8" stroke-width="3" marker-end="url(#arrow-wind)"/>
+              <text x="90" y="-100" fill="#38bdf8" font-size="14" font-weight="bold">風向 (垂直向下)</text>
+
+              <!-- 風向通過船中心的平行線 (虛線) -->
+              <line x1="0" y1="-160" x2="0" y2="60" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="4,4"/>
+
+              <!-- 船頭前進方向：與風向(向下)夾 135°，即朝向左上方 (-135° from down = 45° from up) -->
+              <!-- dx = 170 * cos(135° from down) = -170 * sin(45°) ≈ -120, dy = -170 * cos(45°) ≈ -120 -->
+              <line x1="0" y1="0" x2="-120" y2="-120" stroke="#fbbf24" stroke-width="3.5" marker-end="url(#arrow-heading)"/>
+              <text x="-155" y="-130" fill="#fbbf24" font-size="14" font-weight="bold">船頭方向</text>
+
+              <!-- 船身幾何線 (船底) -->
+              <line x1="0" y1="0" x2="85" y2="85" stroke="#fbbf24" stroke-width="2" stroke-dasharray="3,3"/>
+              
+              <!-- 角度 135° 標記 (船頭與風向夾角) -->
+              <path d="M 0 -70 A 70 70 0 0 0 -50 -50" fill="none" stroke="#fbbf24" stroke-width="1.5"/>
+              <text x="-35" y="-65" fill="#fbbf24" font-size="12">45°</text>
+              <text x="-25" y="-15" fill="#e2e8f0" font-size="12">135°</text>
+
+              <!-- 帆面：與風向 (鉛直線) 夾 15° -->
+              <!-- 帆面角度為 15°，延伸線 -->
+              <!-- dx = 130 * sin(15°) ≈ 33.6, dy = 130 * cos(15°) ≈ 125.6 -->
+              <line x1="-34" y1="-126" x2="34" y2="126" stroke="#94a3b8" stroke-width="4.5"/>
+              <text x="42" y="110" fill="#94a3b8" font-size="14" font-weight="bold">帆面</text>
+
+              <!-- 帆面與風向夾 15° 弧線 -->
+              <path d="M 0 -50 A 50 50 0 0 1 -13 -48" fill="none" stroke="#94a3b8" stroke-width="1.5"/>
+              <text x="-8" y="-40" fill="#94a3b8" font-size="11">15°</text>
+
+              <!-- 風對帆面的垂直作用力 F (垂直帆面) -->
+              <!-- 帆面傾角是與鉛直夾 15°，法線與鉛直夾 90° - 15° = 75°，或與水平夾 15° -->
+              <!-- 法線向量指向上方偏左：dx = -120 * cos(15°) ≈ -115.9, dy = -120 * sin(15°) ≈ -31.1 -->
+              <!-- 旋轉90度：法線方向向量 ( -cos(15°), -sin(15°) ) -->
+              <line x1="0" y1="0" x2="-116" y2="-31" stroke="#f43f5e" stroke-width="3.5" marker-end="url(#arrow-force)"/>
+              <text x="-165" y="-18" fill="#f43f5e" font-size="14" font-weight="bold">風力 F (垂直帆面)</text>
+
+              <!-- 直角標記在原點 -->
+              <path d="M -15 -4 L -11 11 L 4 15" fill="none" stroke="#f43f5e" stroke-width="1.5"/>
+
+              <!-- 船頭方向與風力 F 的夾角 30° 弧線 -->
+              <path d="M -70 -70 A 100 100 0 0 1 -96 -26" fill="none" stroke="#34d399" stroke-width="2"/>
+              <text x="-95" y="-65" fill="#34d399" font-size="13" font-weight="bold">30°</text>
+
+              <!-- 風力在船頭方向上的投影分量 (使船前進的力) -->
+              <!-- 投影大小 = F * cos(30°) = F * sin(60°) ? Wait! Let's check: 船頭是 (-120, -120) 即 135°。
+                   風力 F 是 (-116, -31) 即 195° (或與水平夾 15°)。
+                   夾角 = 195° - 135° = 60°！
+                   所以 cos(60°) = sin(30°) = 0.5！
+                   有效分量長度 = 120 * cos(60°) = 60。
+                   方向朝船頭 (-42.4, -42.4) -->
+              <line x1="0" y1="0" x2="-43" y2="-43" stroke="#34d399" stroke-width="5" marker-end="url(#arrow-fwd)"/>
+              <!-- 垂直輔助投影虛線 -->
+              <line x1="-116" y1="-31" x2="-43" y2="-43" stroke="#34d399" stroke-width="1.5" stroke-dasharray="3,3"/>
+              <text x="-75" y="-20" fill="#34d399" font-size="13" font-weight="bold">F_前進 = F sin30° = F/2</text>
+            </g>
+
+            <!-- 右側幾何角度解析速覽牌 -->
+            <g transform="translate(540, 35)">
+              <rect x="0" y="0" width="195" height="290" rx="8" fill="rgba(15, 23, 42, 0.9)" stroke="rgba(255,255,255,0.1)"/>
+              <text x="97" y="26" fill="#38bdf8" font-size="14" font-weight="bold" text-anchor="middle">【幾何角度剖析】</text>
+
+              <text x="14" y="58" fill="#e2e8f0" font-size="12">1. 船頭與逆風向上夾角：</text>
+              <text x="14" y="76" fill="#fbbf24" font-size="13" font-weight="bold">180° - 135° = 45°</text>
+
+              <text x="14" y="106" fill="#e2e8f0" font-size="12">2. 帆面與垂直風向夾角：</text>
+              <text x="14" y="124" fill="#94a3b8" font-size="13" font-weight="bold">θ₁ = 15°</text>
+
+              <text x="14" y="154" fill="#e2e8f0" font-size="12">3. 風力 F 垂直於帆面：</text>
+              <text x="14" y="172" fill="#f43f5e" font-size="12">F 與垂直風向夾角為</text>
+              <text x="14" y="190" fill="#f43f5e" font-size="13" font-weight="bold">90° - 15° = 75°</text>
+
+              <line x1="10" y1="202" x2="185" y2="202" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+
+              <text x="14" y="224" fill="#34d399" font-size="12">4. F 與船頭方向夾角：</text>
+              <text x="14" y="244" fill="#34d399" font-size="13" font-weight="bold">75° - 45° = 30°（與橫向夾）</text>
+              <text x="14" y="262" fill="#34d399" font-size="12">即與船頭軸線夾 60°</text>
+              <text x="14" y="280" fill="#34d399" font-size="13" font-weight="bold">F cos60° = F sin30° = F/2</text>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Interactive Answer Area -->
+    <section class="card interactive-card">
+      <div class="card-header">
+        <div class="card-icon">✍️</div>
+        <div>
+          <h2>即時動手作答</h2>
+          <span class="card-tag">請點選使船前進的力大小</span>
+        </div>
+      </div>
+
+      <div class="options-grid" id="optionsGrid">
+        <button class="option-btn" data-opt="A">
+          <span class="option-label">A</span>
+          <span class="option-text">$F \sin 15^\circ$</span>
+        </button>
+        <button class="option-btn" data-opt="B">
+          <span class="option-label">B</span>
+          <span class="option-text">$F \cos 15^\circ$</span>
+        </button>
+        <button class="option-btn" data-opt="C">
+          <span class="option-label">C</span>
+          <span class="option-text">$F \sin 30^\circ$（即 $\frac{1}{2}F$）</span>
+        </button>
+        <button class="option-btn" data-opt="D">
+          <span class="option-label">D</span>
+          <span class="option-text">$F \cos 30^\circ$（即 $\frac{\sqrt{3}}{2}F$）</span>
+        </button>
+      </div>
+
+      <div id="feedbackBox" class="feedback-box hidden">
+        <div class="feedback-icon" id="feedbackIcon"></div>
+        <div class="feedback-text" id="feedbackText"></div>
+      </div>
+    </section>
+
+    <!-- Detailed Solution Area (Hidden by default) -->
+    <section class="card solution-card collapsed" id="solutionCard">
+      <div class="card-header solution-toggle" id="solutionToggle" role="button" tabindex="0">
+        <div class="card-icon">💡</div>
+        <div style="flex-grow: 1;">
+          <h2>精闢詳解與幾何圖解步驟</h2>
+          <span class="card-tag solution-status">點擊展開完整剖析</span>
+        </div>
+        <div class="toggle-arrow">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+      </div>
+
+      <div class="solution-content" id="solutionContent">
+        <div class="step-card">
+          <div class="step-badge">步驟一</div>
+          <h3>理解逆風航行的前進推力來源</h3>
+          <p>
+            帆船之所以能逆風前進（俗稱「之字形搶風航行」），靠的是：
+          </p>
+          <ul class="key-points">
+            <li>風吹擊在傾斜的帆面上，產生<strong>垂直於帆面</strong>的正向推力 $F$。</li>
+            <li>由於帆面相對於船頭呈特定傾斜角度，此正向推力 $F$ 分解後，會有一個<strong>沿船頭向前</strong>的分力 $F_{\text{前進}}$！</li>
+            <li>船隻的水下龍骨會抵銷大部分的橫向漂移力，使船隻順利沿著船頭前進。</li>
+          </ul>
+        </div>
+
+        <div class="step-card">
+          <div class="step-badge">步驟二</div>
+          <h3>嚴謹幾何角度推導（兩種對等視角）</h3>
+          <p>
+            如圖所示，以水平線與垂直線為參考基準：
+          </p>
+          <ol class="key-points">
+            <li>
+              <strong>船身軸線與風向上游延長線的夾角：</strong>
+              $$180^\circ - 135^\circ = 45^\circ$$
+            </li>
+            <li>
+              <strong>帆面與風向的夾角：</strong>
+              題給為 $15^\circ$。
+            </li>
+            <li>
+              <strong>風力 $\vec{F}$ 的方向：</strong>
+              風力 $\vec{F}$ 垂直於帆面。帆面與風向夾 $15^\circ$，故其垂直法線 $\vec{F}$ 與風向的垂直橫軸夾角為 $15^\circ$，與風向鉛直線夾角為 $90^\circ - 15^\circ = 75^\circ$。
+            </li>
+            <li>
+              <strong>推力 $\vec{F}$ 與船身軸線（船頭方向）的夾角 $\alpha$：</strong>
+              $$\alpha = 75^\circ - 45^\circ = 30^\circ \quad (\text{推力 }\vec{F}\text{ 與垂直於船身的橫向軸夾角})$$
+              或者，推力 $\vec{F}$ 與船頭前進方向的夾角為：
+              $$90^\circ - 30^\circ = 60^\circ$$
+            </li>
+          </ol>
+        </div>
+
+        <div class="step-card">
+          <div class="step-badge">步驟三</div>
+          <h3>正交投影計算前進分力</h3>
+          <p>
+            使船隻順著船頭方向前進的有效推力，即為 $\vec{F}$ 在船身軸線上的正交投影分量：
+            $$F_{\text{前進}} = F \cos 60^\circ = F \sin 30^\circ = \mathbf{\frac{1}{2}F}$$
+          </p>
+          <p>
+            （與講義解答篇完全一致：$F_{\text{前進}} = F \sin 30^\circ = F / 2$）。
+          </p>
+        </div>
+
+        <div class="final-summary">
+          <div class="summary-badge">結論</div>
+          <p>
+            本題正解為 <strong>(C) $F \sin 30^\circ$（即 $\frac{1}{2}F$）</strong>。<br>
+            這道題是將幾何角度互餘關係與向量正交投影結合的極佳範例，看懂推力與帆面垂直、以及與船身夾角的轉換，即可一眼秒殺！
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Navigation -->
+    <div class="bottom-nav">
+      <a href="exercise8.html" class="nav-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+        上一題 (練習 8)
+      </a>
+      <a href="index.html" class="nav-btn primary">
+        目錄總覽
+      </a>
+      <a href="exercise10.html" class="nav-btn">
+        下一題 (練習 10)
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // Render KaTeX
+      if (typeof renderMathInElement === 'function') {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ],
+          throwOnError: false
+        });
+      }
+
+      const correctOption = "C";
+      const optionBtns = document.querySelectorAll(".option-btn");
+      const feedbackBox = document.getElementById("feedbackBox");
+      const feedbackIcon = document.getElementById("feedbackIcon");
+      const feedbackText = document.getElementById("feedbackText");
+      const solutionCard = document.getElementById("solutionCard");
+
+      optionBtns.forEach(btn => {
+        btn.addEventListener("click", function() {
+          const selected = this.getAttribute("data-opt");
+          optionBtns.forEach(b => b.classList.remove("selected", "correct", "wrong"));
+
+          feedbackBox.classList.remove("hidden", "correct", "wrong");
+
+          if (selected === correctOption) {
+            this.classList.add("correct");
+            feedbackBox.classList.add("correct");
+            feedbackIcon.innerHTML = "🎉";
+            feedbackText.innerHTML = "<strong>恭喜答對！太優秀了！</strong> 正解正是 <strong>(C) $F \\sin 30^\\circ = \\frac{1}{2}F$</strong>！風力與船身夾角正好是 $60^\\circ$，沿船頭前進分力為 $F \\cos 60^\\circ = F \\sin 30^\\circ$！詳解已自動展開。";
+
+            solutionCard.classList.remove("collapsed");
+            const tag = solutionCard.querySelector(".solution-status");
+            if (tag) tag.textContent = "點擊收合詳解";
+          } else {
+            this.classList.add("wrong");
+            feedbackBox.classList.add("wrong");
+            feedbackIcon.innerHTML = "💡";
+            feedbackText.innerHTML = `<strong>選了 (${selected})，再仔細確認一下幾何角度喔！</strong> 提示：風力 $F$ 是垂直帆面，帆面與風向夾 $15^\\circ$，船身與風向夾 $135^\\circ$，仔細算算風力 $F$ 與船頭前進方向的夾角是多少度？`;
+          }
+
+          if (typeof renderMathInElement === 'function') {
+            renderMathInElement(feedbackText, {
+              delimiters: [
+                {left: '$$', right: '$$', display: true},
+                {left: '$', right: '$', display: false}
+              ],
+              throwOnError: false
+            });
+          }
+        });
+      });
+
+      // Solution toggle
+      const solutionToggle = document.getElementById("solutionToggle");
+      solutionToggle.addEventListener("click", function() {
+        solutionCard.classList.toggle("collapsed");
+        const isCollapsed = solutionCard.classList.contains("collapsed");
+        const statusSpan = solutionToggle.querySelector(".solution-status");
+        if (statusSpan) {
+          statusSpan.textContent = isCollapsed ? "點擊展開完整剖析" : "點擊收合詳解";
+        }
+      });
+    });
+  </script>
+</body>
+</html>

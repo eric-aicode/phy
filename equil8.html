@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>靜力平衡 8：88聯考對摺細繩張開不扯斷最大距離 | 高中物理靜力學</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+  <link rel="stylesheet" href="shared.css">
+</head>
+<body>
+  <div class="bg-glow"></div>
+  <div class="bg-grid"></div>
+
+  <div class="container">
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+      <div class="nav-links">
+        <a href="index.html" class="nav-btn primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          回目錄
+        </a>
+        <a href="equil6.html" class="nav-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          上一題 (平衡 6)
+        </a>
+        <a href="equil9.html" class="nav-btn">
+          下一題 (平衡 9)
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+      <div class="badge-wrapper">
+        <span class="badge badge-page">講義 靜力學-25</span>
+        <span class="badge badge-exam">88 聯考</span>
+        <span class="badge badge-accent">靜力平衡・練習 8</span>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+      <h1 class="main-title">靜力平衡 8：<span class="gradient-text">88聯考對摺細繩張開最大距離</span></h1>
+      <p class="subtitle">繩索臨界極限張力・對稱夾角投影平衡・張角過大張力遽增物理本質</p>
+    </header>
+
+    <!-- Problem Showcase Card -->
+    <section class="card problem-card">
+      <div class="card-header">
+        <div class="card-icon">📖</div>
+        <div>
+          <h2>題目內容</h2>
+          <span class="card-tag">88 年大學聯考物理試題</span>
+        </div>
+      </div>
+
+      <div class="problem-body">
+        <p>
+          一條 <strong>$100\text{ cm}$</strong> 長的細繩，在其下端繫上重量大於 <strong>$30\text{ N}$</strong> 的重物會將其扯斷。今將細繩對摺，並在摺邊處掛上 <strong>$30\text{ N}$</strong> 的重物，而用雙手拉住細繩之兩端，慢慢往左、右兩邊張開。欲使細繩不被扯斷，則細繩之兩端最多可被拉開至相距多少 $\text{cm}$？
+        </p>
+
+        <!-- Dynamic Folded String V-shape SVG Diagram -->
+        <div class="diagram-container" style="text-align: center; margin: 24px 0;">
+          <svg viewBox="0 0 760 350" style="width: 100%; max-width: 740px; background: rgba(15, 23, 42, 0.6); border-radius: 12px; border: 1px solid rgba(255,255,255,0.08);">
+            <defs>
+              <marker id="arr-rose" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#f43f5e"/>
+              </marker>
+              <marker id="arr-sky" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#38bdf8"/>
+              </marker>
+              <marker id="arr-amber" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#fbbf24"/>
+              </marker>
+            </defs>
+
+            <!-- Coordinate Setup -->
+            <!-- Hand Left at (220, 80), Hand Right at (480, 80). Distance x = 260 px ≈ 50*sqrt(3) -->
+            <!-- Central Fold Bottom at (350, 80 + 150) = (350, 230) -->
+            <!-- Half-length L = 50 cm. Angle with vertical theta = 60°. -->
+            <!-- dx = 50*sin(60°) = 43.3 cm. Distance x = 2*dx = 86.6 cm = 50*sqrt(3) cm! -->
+            <!-- In SVG pixels: scale 1 cm = 3 px. -->
+            <!-- L = 50 cm = 150 px. -->
+            <!-- dy = 150*cos(60°) = 75 px. dx = 150*sin(60°) = 129.9 px ≈ 130 px. -->
+            <!-- Center x = 360. Fold bottom at (360, 205). -->
+            <!-- Left hand at (360 - 130, 205 - 75) = (230, 130). -->
+            <!-- Right hand at (360 + 130, 205 - 75) = (490, 130). -->
+            <!-- Total span x = 260 px. -->
+
+            <!-- Hands / Pulling Points -->
+            <!-- Left Hand -->
+            <circle cx="230" cy="130" r="7" fill="#38bdf8" stroke="#f8fafc" stroke-width="2"/>
+            <text x="175" y="125" fill="#38bdf8" font-size="13" font-weight="bold">左手拉端</text>
+            <!-- Pulling arrow left-up -->
+            <line x1="230" y1="130" x2="180" y2="100" stroke="#38bdf8" stroke-width="2.5" marker-end="url(#arr-sky)"/>
+
+            <!-- Right Hand -->
+            <circle cx="490" cy="130" r="7" fill="#38bdf8" stroke="#f8fafc" stroke-width="2"/>
+            <text x="505" y="125" fill="#38bdf8" font-size="13" font-weight="bold">右手拉端</text>
+            <!-- Pulling arrow right-up -->
+            <line x1="490" y1="130" x2="540" y2="100" stroke="#38bdf8" stroke-width="2.5" marker-end="url(#arr-sky)"/>
+
+            <!-- Dimension: Total distance x between hands -->
+            <line x1="230" y1="75" x2="490" y2="75" stroke="#fbbf24" stroke-width="2"/>
+            <line x1="230" y1="68" x2="230" y2="82" stroke="#fbbf24" stroke-width="2"/>
+            <line x1="490" y1="68" x2="490" y2="82" stroke="#fbbf24" stroke-width="2"/>
+            <line x1="230" y1="75" x2="230" y2="120" stroke="#fbbf24" stroke-width="1" stroke-dasharray="2,3"/>
+            <line x1="490" y1="75" x2="490" y2="120" stroke="#fbbf24" stroke-width="1" stroke-dasharray="2,3"/>
+            <text x="330" y="68" fill="#fbbf24" font-size="14" font-weight="bold">所求距離 x</text>
+
+            <!-- Vertical Center Line (dashed) -->
+            <line x1="360" y1="90" x2="360" y2="280" stroke="#64748b" stroke-width="1.5" stroke-dasharray="4,4"/>
+
+            <!-- Left String Half: (230, 130) to (360, 205) -->
+            <line x1="230" y1="130" x2="360" y2="205" stroke="#f8fafc" stroke-width="3"/>
+            <text x="270" y="185" fill="#cbd5e1" font-size="12">半長 50 cm</text>
+            <!-- Tension arrow T_left -->
+            <line x1="360" y1="205" x2="295" y2="167" stroke="#38bdf8" stroke-width="3" marker-end="url(#arr-sky)"/>
+            <text x="300" y="155" fill="#38bdf8" font-size="12" font-weight="bold">T = 30 N</text>
+
+            <!-- Right String Half: (490, 130) to (360, 205) -->
+            <line x1="490" y1="130" x2="360" y2="205" stroke="#f8fafc" stroke-width="3"/>
+            <text x="420" y="185" fill="#cbd5e1" font-size="12">半長 50 cm</text>
+            <!-- Tension arrow T_right -->
+            <line x1="360" y1="205" x2="425" y2="167" stroke="#38bdf8" stroke-width="3" marker-end="url(#arr-sky)"/>
+            <text x="405" y="155" fill="#38bdf8" font-size="12" font-weight="bold">T = 30 N</text>
+
+            <!-- Angle theta arcs at Bottom Fold (with vertical) -->
+            <!-- Left theta = 60° -->
+            <path d="M 360 165 A 40 40 0 0 0 326 185" fill="none" stroke="#fbbf24" stroke-width="1.8"/>
+            <text x="335" y="160" fill="#fbbf24" font-size="12" font-weight="bold">θ = 60°</text>
+            <!-- Right theta = 60° -->
+            <path d="M 360 165 A 40 40 0 0 1 394 185" fill="none" stroke="#fbbf24" stroke-width="1.8"/>
+            <text x="375" y="160" fill="#fbbf24" font-size="12" font-weight="bold">60°</text>
+
+            <!-- Bottom Fold Knot at (360, 205) -->
+            <circle cx="360" cy="205" r="5" fill="#fbbf24"/>
+
+            <!-- Hanging Mass at (360, 255) -->
+            <line x1="360" y1="205" x2="360" y2="245" stroke="#f8fafc" stroke-width="2"/>
+            <rect x="340" y="245" width="40" height="40" rx="4" fill="rgba(244, 63, 94, 0.3)" stroke="#f43f5e" stroke-width="2.5"/>
+            <text x="345" y="270" fill="#f43f5e" font-size="13" font-weight="bold">30 N</text>
+            <!-- Weight arrow downward -->
+            <line x1="360" y1="285" x2="360" y2="330" stroke="#f43f5e" stroke-width="3" marker-end="url(#arr-rose)"/>
+            <text x="370" y="320" fill="#f43f5e" font-size="13" font-weight="bold">W = 30 N</text>
+
+            <!-- Vector Diagram / Analysis Panel on Right -->
+            <g transform="translate(560, 110)">
+              <rect x="0" y="0" width="180" height="210" rx="8" fill="rgba(15, 23, 42, 0.75)" stroke="rgba(255,255,255,0.1)"/>
+              <text x="12" y="25" fill="#38bdf8" font-size="12" font-weight="bold">臨界平衡向量分析</text>
+
+              <text x="12" y="55" fill="#cbd5e1" font-size="11">鉛直合力平衡：</text>
+              <text x="12" y="75" fill="#fbbf24" font-size="11" font-weight="bold">2T cosθ = W</text>
+              <text x="12" y="95" fill="#fbbf24" font-size="11" font-weight="bold">2 × 30 cosθ = 30</text>
+              <text x="12" y="115" fill="#10b981" font-size="11" font-weight="bold">cosθ = 1/2 ➔ θ = 60°</text>
+
+              <line x1="12" y1="130" x2="168" y2="130" stroke="#334155" stroke-width="1"/>
+
+              <text x="12" y="150" fill="#cbd5e1" font-size="11">兩手水平最大距離：</text>
+              <text x="12" y="170" fill="#fbbf24" font-size="11" font-weight="bold">x = 2 × 50 sin60°</text>
+              <text x="12" y="195" fill="#10b981" font-size="13" font-weight="bold">= 50√3 cm</text>
+            </g>
+          </svg>
+        </div>
+
+        <!-- Options Container -->
+        <div class="options-container" id="optionsContainer">
+          <button class="option-card" data-option="A">
+            <span class="option-letter">A</span>
+            <span class="option-text">$50\text{ cm}$</span>
+          </button>
+          <button class="option-card" data-option="B">
+            <span class="option-letter">B</span>
+            <span class="option-text">$50\sqrt{2}\text{ cm}$</span>
+          </button>
+          <button class="option-card" data-option="C">
+            <span class="option-letter">C</span>
+            <span class="option-text">$50\sqrt{3}\text{ cm}$</span>
+          </button>
+          <button class="option-card" data-option="D">
+            <span class="option-letter">D</span>
+            <span class="option-text">$100\text{ cm}$</span>
+          </button>
+          <button class="option-card" data-option="E">
+            <span class="option-letter">E</span>
+            <span class="option-text">$60\text{ cm}$</span>
+          </button>
+        </div>
+
+        <!-- Real-time Feedback -->
+        <div class="feedback-box" id="feedbackBox">
+          <div class="feedback-icon" id="feedbackIcon"></div>
+          <div class="feedback-text" id="feedbackText"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Collapsible Solution Card -->
+    <section class="card solution-card collapsed" id="solutionCard">
+      <div class="card-header clickable" id="solutionToggle">
+        <div class="card-icon">💡</div>
+        <div style="flex: 1;">
+          <h2>88 聯考完整推導與「張力隨張角遽增」物理本質</h2>
+          <span class="solution-status">點擊展開完整剖析</span>
+        </div>
+        <span class="badge badge-accent">大考中心經典詳解</span>
+      </div>
+
+      <div class="solution-body">
+        <!-- 步驟 1 -->
+        <div class="step-card">
+          <div class="step-header">
+            <span class="step-badge">觀念 1</span>
+            <h3>由題目條件獲取「臨界張力」與幾何長度</h3>
+          </div>
+          <p>
+            題目指出：「一條 $100\text{ cm}$ 長的細繩，掛大於 $30\text{ N}$ 的重物會將其扯斷」：
+          </p>
+          <ul>
+            <li>這說明該細繩能承受的<strong>最大極限張力</strong>為：$T_{\max} = 30\text{ N}$。</li>
+            <li>今將細繩對摺，則每半段繩子的長度均為：
+              $$L_0 = \frac{100}{2} = 50\text{ cm}$$
+            </li>
+            <li>掛上的重物為 $W = 30\text{ N}$。</li>
+          </ul>
+        </div>
+
+        <!-- 步驟 2 -->
+        <div class="step-card">
+          <div class="step-header">
+            <span class="step-badge">觀念 2</span>
+            <h3>由鉛直平衡求極限張角 $\theta$</h3>
+          </div>
+          <p>
+            設兩手往外拉開時，兩側對稱細繩與鉛垂線的夾角皆為 $\theta$。<br>
+            懸掛重物處達鉛直平衡，兩側繩張力向上分量的合力必須等於重物重量：
+          </p>
+          $$\Sigma F_y = 0 \implies 2 T \cos\theta = W$$
+          <p>
+            當細繩達到即將斷裂的臨界狀態時，張力達到最大值 $T = 30\text{ N}$，代入已知重物 $W = 30\text{ N}$：
+          </p>
+          $$2 \times 30 \cos\theta = 30 \implies \cos\theta = \frac{30}{60} = \frac{1}{2}$$
+          <p>因此臨界夾角為：</p>
+          $$\theta = 60^\circ$$
+          <p>（這意味著兩繩之間的總夾角 $2\theta = 120^\circ$，此時兩繩張力與重力大小皆相等，各為 $30\text{ N}$！）</p>
+        </div>
+
+        <!-- 步驟 3 -->
+        <div class="step-card">
+          <div class="step-header">
+            <span class="step-badge">觀念 3</span>
+            <h3>計算雙手拉開的最大水平距離</h3>
+          </div>
+          <p>
+            由幾何關係，每一邊細繩水平展開的投影距離為：
+          </p>
+          $$\Delta x = L_0 \sin\theta = 50 \sin 60^\circ = 50 \times \frac{\sqrt{3}}{2} = 25\sqrt{3}\text{ cm}$$
+          <p>
+            兩手端點之間的總水平距離為兩倍的水平投影：
+          </p>
+          $$x = 2 \Delta x = 2 \times 50 \sin 60^\circ = 50\sqrt{3}\text{ cm} \approx 86.6\text{ cm}$$
+          <div style="background: rgba(16, 185, 129, 0.15); border: 1px solid #10b981; border-radius: 8px; padding: 16px; margin: 12px 0; text-align: center;">
+            <span style="font-size: 1.35rem; font-weight: 800; color: #10b981;">
+              雙手拉開最大距離 $x = 50\sqrt{3}\text{ cm}$
+            </span>
+          </div>
+          <p>
+            <strong>生活物理警示：</strong><br>
+            當雙手拉得越開，夾角 $\theta \to 90^\circ$，$\cos\theta \to 0$。<br>
+            由 $T = \frac{W}{2\cos\theta}$ 可知繩中張力將趨近於無限大！這就是為什麼曬衣繩或拔河繩無論拉得多緊都永遠無法完全拉成水平線的原因！
+          </p>
+          <p>故正確答案為 <strong>(C)</strong>。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Navigation Bar -->
+    <div class="bottom-nav">
+      <a href="equil6.html" class="nav-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+        上一題：雙端水平懸掛彈簧吊重
+      </a>
+      <a href="index.html" class="nav-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        回課程總目錄
+      </a>
+      <a href="equil9.html" class="nav-btn primary">
+        下一題：光滑鉛直壁懸球繩張力
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // KaTeX Rendering
+      if (typeof renderMathInElement === 'function') {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ],
+          throwOnError: false
+        });
+      }
+
+      const correctAnswer = "C";
+      const optionCards = document.querySelectorAll(".option-card");
+      const feedbackBox = document.getElementById("feedbackBox");
+      const feedbackIcon = document.getElementById("feedbackIcon");
+      const feedbackText = document.getElementById("feedbackText");
+      const solutionCard = document.getElementById("solutionCard");
+
+      optionCards.forEach(card => {
+        card.addEventListener("click", function() {
+          const selected = this.getAttribute("data-option");
+
+          optionCards.forEach(c => c.classList.remove("selected", "correct", "wrong"));
+          this.classList.add("selected");
+
+          feedbackBox.classList.remove("correct", "wrong");
+          feedbackBox.classList.add("show");
+
+          if (selected === correctAnswer) {
+            this.classList.add("correct");
+            feedbackBox.classList.add("correct");
+            feedbackIcon.innerHTML = "🎉";
+            feedbackText.innerHTML = "<strong>太厲害了！完全正確！</strong><br>由鉛直平衡 $2T\\cos\\theta = W$，得 $2(30)\\cos\\theta = 30 \\implies \\theta = 60^\\circ$。<br>兩端相距 $x = 2 \\times 50\\sin 60^\\circ = 50\\sqrt{3}\\text{ cm}$！";
+            solutionCard.classList.remove("collapsed");
+            const tag = solutionCard.querySelector(".solution-status");
+            if (tag) tag.textContent = "點擊收合詳解";
+          } else {
+            this.classList.add("wrong");
+            feedbackBox.classList.add("wrong");
+            feedbackIcon.innerHTML = "💡";
+            if (selected === "A") {
+              feedbackText.innerHTML = "<strong>這是單邊長度！</strong> 每半段原長是 50 cm，兩端張開的距離需要乘上 $2\\sin\\theta$ 喔！";
+            } else if (selected === "B") {
+              feedbackText.innerHTML = "<strong>算錯角度囉！</strong> $\\cos\\theta = 1/2$，角度是 $60^\\circ$ 不是 $45^\\circ$ 喔！";
+            } else if (selected === "D") {
+              feedbackText.innerHTML = "<strong>小心繩索斷裂！</strong> 若拉到 100 cm 繩子完全拉直成水平線，張力會變成無限大，早就扯斷囉！";
+            } else {
+              feedbackText.innerHTML = `<strong>選了 (${selected})，再仔細算算！</strong> 提示：列出鉛直受力平衡 $2T\\cos\\theta = W$，求出 $\\theta$ 吧！`;
+            }
+          }
+
+          if (typeof renderMathInElement === 'function') {
+            renderMathInElement(feedbackText, {
+              delimiters: [
+                {left: '$$', right: '$$', display: true},
+                {left: '$', right: '$', display: false}
+              ],
+              throwOnError: false
+            });
+          }
+        });
+      });
+
+      // Solution toggle
+      const solutionToggle = document.getElementById("solutionToggle");
+      solutionToggle.addEventListener("click", function() {
+        solutionCard.classList.toggle("collapsed");
+        const isCollapsed = solutionCard.classList.contains("collapsed");
+        const statusSpan = solutionToggle.querySelector(".solution-status");
+        if (statusSpan) {
+          statusSpan.textContent = isCollapsed ? "點擊展開完整剖析" : "點擊收合詳解";
+        }
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>靜摩擦力 10：等加速滑動與動摩擦係數計算 | 高中物理靜力學</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+  <link rel="stylesheet" href="shared.css">
+</head>
+<body>
+  <div class="bg-glow"></div>
+  <div class="bg-grid"></div>
+
+  <div class="container">
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+      <div class="nav-links">
+        <a href="index.html" class="nav-btn primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          回目錄
+        </a>
+        <a href="frict9.html" class="nav-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          上一題 (摩擦 09)
+        </a>
+        <a href="frict11.html" class="nav-btn">
+          下一題 (摩擦 11)
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+      <div class="badge-wrapper">
+        <span class="badge badge-page">講義 靜力學-35</span>
+        <span class="badge badge-exam">等加速度運動學與動摩擦</span>
+        <span class="badge badge-accent">靜摩擦力・練習 10</span>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+      <h1 class="main-title">靜摩擦力 10：<span class="gradient-text">等加速滑動與動摩擦係數計算</span></h1>
+      <p class="subtitle">位移時間求解加速度・牛頓第二定律合力關係・動摩擦係數反推求解</p>
+    </header>
+
+    <!-- Main Problem Layout -->
+    <div class="problem-layout">
+      <!-- Left Column: Problem & Visualizer -->
+      <div class="problem-card">
+        <h2 class="section-title">
+          <span class="step-num">1</span>
+          題目情境與物理圖解
+        </h2>
+        <div class="problem-text">
+          <p>
+            在水平桌面上，質量為 $2.0\text{ kg}$ 的靜止木塊，受 $3\text{ N}$ 之水平拉力作用，在 $4.0\text{ 秒}$ 內移動了 $8.0\text{ m}$。假設重力加速度 $g = 10\text{ m/s}^2$，則木塊與桌面間之動摩擦係數 $\mu_k$ 為多少？
+          </p>
+        </div>
+
+        <div class="diagram-container">
+          <div class="diagram-header">
+            <span class="diagram-tag">動力滑行力學模型</span>
+            <span class="diagram-hint">s = 1/2 a t² ⟹ a = 1.0 m/s²，F - fk = ma ⟹ fk = 1.0 N</span>
+          </div>
+          <svg class="interactive-diagram" viewBox="0 0 540 340" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="arrowRed" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+                <path d="M0,0 L0,6 L9,3 z" fill="#ef4444" />
+              </marker>
+              <marker id="arrowCyan" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+                <path d="M0,0 L0,6 L9,3 z" fill="#06b6d4" />
+              </marker>
+              <marker id="arrowGreen" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+                <path d="M0,0 L0,6 L9,3 z" fill="#10b981" />
+              </marker>
+            </defs>
+
+            <!-- Table ground -->
+            <line x1="40" y1="240" x2="500" y2="240" stroke="#64748b" stroke-width="3"/>
+            <path d="M50,240 l-10,12 M80,240 l-10,12 M110,240 l-10,12 M140,240 l-10,12 M170,240 l-10,12 M200,240 l-10,12 M230,240 l-10,12 M260,240 l-10,12 M290,240 l-10,12 M320,240 l-10,12 M350,240 l-10,12 M380,240 l-10,12 M410,240 l-10,12 M440,240 l-10,12 M470,240 l-10,12" stroke="#475569" stroke-width="1.5"/>
+
+            <!-- Initial position dashed block at x=90 -->
+            <rect x="90" y="170" width="90" height="70" rx="4" fill="none" stroke="#64748b" stroke-dasharray="4,4" stroke-width="2"/>
+            <text x="135" y="210" fill="#64748b" font-size="12" font-weight="bold" text-anchor="middle">t = 0 (靜止)</text>
+
+            <!-- Final position block at x=310 (moved s = 8m) -->
+            <rect x="310" y="170" width="90" height="70" rx="4" fill="#1e293b" stroke="#38bdf8" stroke-width="2.5"/>
+            <text x="355" y="210" fill="#f8fafc" font-size="16" font-weight="bold" text-anchor="middle">2.0 kg</text>
+
+            <!-- Displacement arrow below table -->
+            <line x1="135" y1="275" x2="355" y2="275" stroke="#38bdf8" stroke-width="2" marker-end="url(#arrowCyan)"/>
+            <circle cx="135" cy="275" r="3" fill="#38bdf8"/>
+            <text x="245" y="295" fill="#38bdf8" font-size="13" font-weight="bold" text-anchor="middle">位移 s = 8.0 m (t = 4.0 s)</text>
+
+            <!-- Force F = 3 N pulling RIGHT -->
+            <line x1="400" y1="205" x2="480" y2="205" stroke="#ef4444" stroke-width="3.5" marker-end="url(#arrowRed)"/>
+            <text x="440" y="195" fill="#ef4444" font-size="14" font-weight="bold">F = 3 N</text>
+
+            <!-- Kinetic friction fk = 1 N pointing LEFT -->
+            <line x1="310" y1="240" x2="250" y2="240" stroke="#10b981" stroke-width="3" marker-end="url(#arrowGreen)"/>
+            <text x="250" y="230" fill="#10b981" font-size="13" font-weight="bold">fk = 1 N</text>
+
+            <!-- Acceleration arrow -->
+            <line x1="330" y1="140" x2="380" y2="140" stroke="#fbbf24" stroke-width="2.5" marker-end="url(#arrowCyan)"/>
+            <text x="355" y="130" fill="#fbbf24" font-size="13" font-weight="bold" text-anchor="middle">a = 1.0 m/s²</text>
+
+            <!-- Gravity & Normal -->
+            <line x1="355" y1="240" x2="355" y2="100" stroke="#64748b" stroke-dasharray="3,3" stroke-width="1.5"/>
+            <text x="365" y="110" fill="#94a3b8" font-size="11">N = 20 N</text>
+            <text x="365" y="160" fill="#94a3b8" font-size="11">mg = 20 N</text>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Right Column: Interactive Quiz -->
+      <div class="quiz-card">
+        <h2 class="section-title">
+          <span class="step-num">2</span>
+          自我檢測與觀念選擇
+        </h2>
+        
+        <div class="question-box">
+          <p class="question-stem">
+            由運動學公式求出木塊加速度後，再由牛頓第二定律推導，木塊與桌面間之動摩擦係數 $\mu_k$ 為何？
+          </p>
+
+          <div class="options-list">
+            <label class="option-item" onclick="selectOption(0)">
+              <input type="radio" name="opt" value="0">
+              <span class="opt-letter">A</span>
+              <span class="opt-content">$0.20$</span>
+            </label>
+            <label class="option-item" onclick="selectOption(1)">
+              <input type="radio" name="opt" value="1">
+              <span class="opt-letter">B</span>
+              <span class="opt-content">$0.10$</span>
+            </label>
+            <label class="option-item" onclick="selectOption(2)">
+              <input type="radio" name="opt" value="2">
+              <span class="opt-letter">C</span>
+              <span class="opt-content">$0.05$</span>
+            </label>
+            <label class="option-item" onclick="selectOption(3)">
+              <input type="radio" name="opt" value="3">
+              <span class="opt-letter">D</span>
+              <span class="opt-content">$0.02$</span>
+            </label>
+            <label class="option-item" onclick="selectOption(4)">
+              <input type="radio" name="opt" value="4">
+              <span class="opt-letter">E</span>
+              <span class="opt-content">$0.01$</span>
+            </label>
+          </div>
+
+          <div class="quiz-actions">
+            <button class="btn btn-primary" onclick="checkAnswer()">確認答案</button>
+            <button class="btn btn-secondary" onclick="toggleSolution()">查看完整詳解</button>
+          </div>
+
+          <div id="feedback" class="feedback-box"></div>
+        </div>
+
+        <!-- Detailed Solution (Collapsible) -->
+        <div id="solutionBox" class="solution-card">
+          <h3 class="solution-title">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            詳盡解析與物理思維
+          </h3>
+          <div class="solution-content">
+            <div class="step-card">
+              <h4>步驟一：由運動學計算等加速度</h4>
+              <p>木塊初速度 $v_0 = 0$，在時間 $t = 4.0\text{ s}$ 內移動距離 $s = 8.0\text{ m}$：</p>
+              $$s = v_0 t + \frac{1}{2} a t^2$$
+              $$8.0 = 0 + \frac{1}{2} a (4.0)^2 = 8a \implies a = 1.0\text{ m/s}^2$$
+            </div>
+
+            <div class="step-card">
+              <h4>步驟二：由牛頓第二定律分析受力</h4>
+              <p>木塊在水平方向受到水平拉力 $F = 3\text{ N}$ 與動摩擦力 $f_k$：</p>
+              $$F_{\text{合}} = F - f_k = ma$$
+              $$3 - f_k = 2.0 \times 1.0 = 2.0\text{ N}$$
+              $$f_k = 3 - 2 = 1.0\text{ N}$$
+            </div>
+
+            <div class="step-card">
+              <h4>步驟三：計算動摩擦係數 $\mu_k$</h4>
+              <p>木塊在鉛直方向平衡，正向力 $N = mg = 2.0 \times 10 = 20\text{ N}$：</p>
+              $$f_k = \mu_k N$$
+              $$1.0 = \mu_k \times 20 \implies \mu_k = \frac{1.0}{20} = 0.05$$
+            </div>
+
+            <div class="highlight-summary">
+              <strong>名師核心點撥：</strong><br>
+              本題是「運動學＋牛頓第二定律＋動摩擦力」的跨章節經典整合題！解題關鍵在於先由運動軌跡求出加速度 $a = 1.0\text{ m/s}^2$，再求合力 $ma = 2\text{ N}$，進而反推動摩擦力為 $1\text{ N}$，最後除以正向力 $20\text{ N}$ 得到 $\mu_k = 0.05$。答案為 <strong>(C)</strong>。
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const correctOpt = 2;
+
+    function selectOption(idx) {
+      const items = document.querySelectorAll('.option-item');
+      items.forEach((item, i) => {
+        const radio = item.querySelector('input');
+        if (i === idx) {
+          item.classList.add('selected');
+          radio.checked = true;
+        } else {
+          item.classList.remove('selected');
+          radio.checked = false;
+        }
+      });
+    }
+
+    function checkAnswer() {
+      const selected = document.querySelector('input[name="opt"]:checked');
+      const feedback = document.getElementById('feedback');
+      if (!selected) {
+        feedback.innerHTML = '<span style="color:#f59e0b;">請先點選一個選項！</span>';
+        return;
+      }
+      const val = parseInt(selected.value);
+      if (val === correctOpt) {
+        feedback.innerHTML = '<span style="color:#10b981; font-weight:bold;">🎉 答對了！加速度 a=1 m/s²，合力 2N，成功求得動摩擦係數 0.05 (C)！</span>';
+      } else {
+        feedback.innerHTML = '<span style="color:#ef4444; font-weight:bold;">❌ 答案不正確，請注意拉力 3N 不等於摩擦力，合力產生加速度 ma = 2N！</span>';
+      }
+    }
+
+    function toggleSolution() {
+      const sol = document.getElementById('solutionBox');
+      sol.classList.toggle('show');
+      if (sol.classList.contains('show')) {
+        renderMathInElement(sol, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ],
+          throwOnError: false
+        });
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderMathInElement(document.body, {
+        delimiters: [
+          {left: '$$', right: '$$', display: true},
+          {left: '$', right: '$', display: false}
+        ],
+        throwOnError: false
+      });
+    });
+  </script>
+</body>
+</html>

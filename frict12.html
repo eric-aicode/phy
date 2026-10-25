@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>靜摩擦力 12：楔形木塊地面摩擦力分析 | 高中物理靜力學</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+  <link rel="stylesheet" href="shared.css">
+</head>
+<body>
+  <div class="bg-glow"></div>
+  <div class="bg-grid"></div>
+
+  <div class="container">
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+      <div class="nav-links">
+        <a href="index.html" class="nav-btn primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          回目錄
+        </a>
+        <a href="frict11.html" class="nav-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          上一題 (摩擦 11)
+        </a>
+        <a href="frict13.html" class="nav-btn">
+          下一題 (摩擦 13)
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+      <div class="badge-wrapper">
+        <span class="badge badge-page">講義 靜力學-36</span>
+        <span class="badge badge-exam">質點系統與動態反作用力</span>
+        <span class="badge badge-accent">靜摩擦力・練習 12</span>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+      <h1 class="main-title">靜摩擦力 12：<span class="gradient-text">楔形木塊地面摩擦力判斷</span></h1>
+      <p class="subtitle">靜止・等速下滑・等加速下滑三大情境系統質心水平加速度與地面約束分析</p>
+    </header>
+
+    <!-- Main Problem Layout -->
+    <div class="problem-layout">
+      <!-- Left Column: Problem & Visualizer -->
+      <div class="problem-card">
+        <h2 class="section-title">
+          <span class="step-num">1</span>
+          題目情境與物理圖解
+        </h2>
+        <div class="problem-text">
+          <p>
+            將一三角形（楔形）木塊置於粗糙水平地面，再將一方形物體放置於三角形木塊之斜面上，如圖所示。
+          </p>
+          <p>
+            試判斷下列三種假設情況下三角形木塊受到地面的摩擦力是否為零：
+          </p>
+          <ul>
+            <li><strong>情況甲：</strong>物體靜止於斜面；</li>
+            <li><strong>情況乙：</strong>物體沿斜面等速下滑；</li>
+            <li><strong>情況丙：</strong>物體沿斜面等加速下滑。</li>
+          </ul>
+          <p>（三種情況中三角形木塊均維持靜止）</p>
+        </div>
+
+        <!-- SVG Diagram -->
+        <div class="svg-container">
+          <svg viewBox="0 0 540 300" xmlns="http://www.w3.org/2000/svg">
+            <!-- Floor -->
+            <line x1="40" y1="240" x2="500" y2="240" stroke="#94a3b8" stroke-width="3"/>
+            <path d="M50 240 l-10 12 M80 240 l-10 12 M110 240 l-10 12 M140 240 l-10 12 M170 240 l-10 12 M200 240 l-10 12 M230 240 l-10 12 M260 240 l-10 12 M290 240 l-10 12 M320 240 l-10 12 M350 240 l-10 12 M380 240 l-10 12 M410 240 l-10 12 M440 240 l-10 12 M470 240 l-10 12" stroke="#64748b" stroke-width="1.5"/>
+
+            <!-- Wedge: Base from x=120 to x=400, right height at x=400 y=70 -->
+            <polygon points="120,240 400,240 400,70" fill="rgba(30, 41, 59, 0.75)" stroke="#38bdf8" stroke-width="2.5"/>
+            <!-- Incline Angle theta: angle at (120,240), approx 31 deg -->
+            <path d="M 170 240 A 50 50 0 0 0 162 215" fill="none" stroke="#facc15" stroke-width="2"/>
+            <text x="180" y="232" fill="#facc15" font-size="14" font-weight="bold">θ</text>
+
+            <!-- Block on Incline: angle ~ 31 deg. center on incline at (260, 155) -->
+            <g transform="translate(260, 155) rotate(-31.3)">
+              <rect x="-35" y="-45" width="70" height="45" fill="rgba(56, 189, 248, 0.25)" stroke="#38bdf8" stroke-width="2.5" rx="3"/>
+              <text x="-5" y="-18" fill="#f1f5f9" font-size="14" font-weight="bold">m</text>
+              <!-- Sliding acceleration arrow -->
+              <line x1="-45" y1="-22" x2="-80" y2="-22" stroke="#ef4444" stroke-width="2" marker-end="url(#arrow-red-12)" stroke-dasharray="3 2"/>
+              <text x="-75" y="-30" fill="#ef4444" font-size="13" font-weight="bold">v, a</text>
+            </g>
+
+            <!-- Annotation labels for conditions -->
+            <rect x="50" y="30" width="130" height="28" rx="6" fill="#1e293b" stroke="#00e676" stroke-width="1.5"/>
+            <text x="60" y="49" fill="#00e676" font-size="13" font-weight="bold">甲. 靜止：f = 0</text>
+
+            <rect x="200" y="30" width="130" height="28" rx="6" fill="#1e293b" stroke="#00e5ff" stroke-width="1.5"/>
+            <text x="210" y="49" fill="#00e5ff" font-size="13" font-weight="bold">乙. 等速：f = 0</text>
+
+            <rect x="350" y="30" width="145" height="28" rx="6" fill="#1e293b" stroke="#f43f5e" stroke-width="1.5"/>
+            <text x="360" y="49" fill="#f43f5e" font-size="13" font-weight="bold">丙. 等加速：f ≠ 0</text>
+
+            <!-- Ground friction vector in Case 丙 -->
+            <line x1="280" y1="240" x2="210" y2="240" stroke="#f43f5e" stroke-width="3" marker-end="url(#arrow-ground-f)"/>
+            <text x="220" y="265" fill="#f43f5e" font-size="13" font-weight="bold">f (地面約束力)</text>
+
+            <defs>
+              <marker id="arrow-red-12" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+                <polygon points="0 0, 8 4, 0 8" fill="#ef4444"/>
+              </marker>
+              <marker id="arrow-ground-f" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+                <polygon points="0 0, 8 4, 0 8" fill="#f43f5e"/>
+              </marker>
+            </defs>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Right Column: Interactive Quiz & Solution -->
+      <div class="interactive-card">
+        <h2 class="section-title">
+          <span class="step-num">2</span>
+          即時作答與物理定律判斷
+        </h2>
+
+        <div class="options-grid" id="options">
+          <button class="option-btn" onclick="checkAnswer('A')">
+            <span class="opt-letter">A</span>
+            <span class="opt-text">三種情況均為零</span>
+          </button>
+          <button class="option-btn" onclick="checkAnswer('B')">
+            <span class="opt-letter">B</span>
+            <span class="opt-text">甲為零、乙丙不為零</span>
+          </button>
+          <button class="option-btn" onclick="checkAnswer('C')">
+            <span class="opt-letter">C</span>
+            <span class="opt-text">甲乙為零、丙不為零</span>
+          </button>
+          <button class="option-btn" onclick="checkAnswer('D')">
+            <span class="opt-letter">D</span>
+            <span class="opt-text">甲丙為零、乙不為零</span>
+          </button>
+          <button class="option-btn" onclick="checkAnswer('E')">
+            <span class="opt-letter">E</span>
+            <span class="opt-text">三種情況均不為零</span>
+          </button>
+        </div>
+
+        <div class="feedback" id="feedback"></div>
+
+        <button class="toggle-btn" id="toggleBtn" onclick="toggleSolution()">
+          📖 查看系統質心運動與摩擦力解析
+        </button>
+
+        <div class="solution-content" id="solution">
+          <h3 style="color: #38bdf8; margin-bottom: 0.75rem;">💡 核心物理觀念詳解（系統整體法）</h3>
+          
+          <div class="step-box">
+            <strong>1. 系統整體分析原理：</strong>
+            <p>
+              將「方形物體 $m$」與「三角形木塊 $M$」視為一個完整系統。系統所受的水平外力只有<strong>地面施於三角形木塊的靜摩擦力 $f$</strong>。
+              根據牛頓第二定律（質心運動定理）：
+              $$\sum F_x = M a_{Mx} + m a_{mx} = f$$
+              因為三角形木塊維持靜止，故 $a_{Mx} = 0$。因此：
+              $$f = m a_{mx}$$
+              即<strong>地面摩擦力完全取決於物體 $m$ 在水平方向是否有加速度分量 $a_{mx}$！</strong>
+            </p>
+          </div>
+
+          <div class="step-box">
+            <strong>2. 情況甲：物體靜止於斜面</strong>
+            <p>
+              物體處於平衡狀態，其加速度為零：
+              $$a_{mx} = 0 \implies f = 0$$
+              地面摩擦力為零。
+            </p>
+          </div>
+
+          <div class="step-box">
+            <strong>3. 情況乙：物體沿斜面等速下滑</strong>
+            <p>
+              等速度運動時速度大小及方向皆不變，加速度為零：
+              $$\vec{a}_m = 0 \implies a_{mx} = 0 \implies f = 0$$
+              地面摩擦力亦為零。
+            </p>
+          </div>
+
+          <div class="step-box">
+            <strong>4. 情況丙：物體沿斜面等加速下滑</strong>
+            <p>
+              物體沿斜面向下具有加速度 $a > 0$，其水平分量為：
+              $$a_{mx} = a\cos\theta \ne 0 \quad (\text{向左下或右下})$$
+              此時系統質心具有水平加速度，故地面必須提供水平方向的靜摩擦力 $f \ne 0$。
+            </p>
+            <p>
+              <strong>結論：</strong>情況甲、乙為零；情況丙不為零。故選 <strong>(C)</strong>。
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const correctAns = 'C';
+
+    function checkAnswer(chosen) {
+      const fb = document.getElementById('feedback');
+      const btns = document.querySelectorAll('.option-btn');
+      
+      btns.forEach(btn => {
+        btn.classList.remove('selected', 'correct', 'wrong');
+        const letter = btn.querySelector('.opt-letter').textContent;
+        if (letter === chosen) {
+          btn.classList.add('selected');
+          if (chosen === correctAns) {
+            btn.classList.add('correct');
+          } else {
+            btn.classList.add('wrong');
+          }
+        }
+        if (letter === correctAns && chosen !== correctAns) {
+          btn.classList.add('correct');
+        }
+      });
+
+      if (chosen === correctAns) {
+        fb.className = 'feedback correct';
+        fb.innerHTML = '🎉 正確！以系統法觀察質心水平加速度：甲(靜止 a=0)與乙(等速 a=0)地面摩擦力均為零；丙(等加速 a≠0)具有水平加速度分量，地面摩擦力不為零！';
+      } else {
+        fb.className = 'feedback wrong';
+        fb.innerHTML = '❌ 不正確。提示：利用質心動量定律 ΣFx = m·ax。物體等速運動時，系統受水平合外力依然為 0！';
+      }
+    }
+
+    function toggleSolution() {
+      const sol = document.getElementById('solution');
+      const btn = document.getElementById('toggleBtn');
+      if (sol.classList.contains('show')) {
+        sol.classList.remove('show');
+        btn.textContent = '📖 查看系統質心運動與摩擦力解析';
+      } else {
+        sol.classList.add('show');
+        btn.textContent = '🔼 收起解析';
+        renderMathInElement(sol, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ]
+        });
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+      renderMathInElement(document.body, {
+        delimiters: [
+          {left: '$$', right: '$$', display: true},
+          {left: '$', right: '$', display: false}
+        ]
+      });
+    });
+  </script>
+</body>
+</html>

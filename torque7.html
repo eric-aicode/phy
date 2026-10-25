@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>力矩練習 7：107指考均勻直尺支撐與未知質量力矩平衡 | 高中物理靜力學</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+  <link rel="stylesheet" href="shared.css">
+</head>
+<body>
+  <div class="bg-glow"></div>
+  <div class="bg-grid"></div>
+
+  <div class="container">
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+      <div class="nav-links">
+        <a href="index.html" class="nav-btn primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          回目錄
+        </a>
+        <a href="torque6.html" class="nav-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          上一題 (力矩 6)
+        </a>
+        <a href="equil1.html" class="nav-btn">
+          下一題 (平衡 1)
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+      <div class="badge-wrapper">
+        <span class="badge badge-page">講義 靜力學-23</span>
+        <span class="badge badge-exam">107 指考</span>
+        <span class="badge badge-accent">力矩篇・練習 7</span>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+      <h1 class="main-title">力矩練習 7：<span class="gradient-text">107指考均勻直尺力矩平衡</span></h1>
+      <p class="subtitle">均勻剛體自身重心定位・支點力臂對稱性・槓桿原理求剛體質量</p>
+    </header>
+
+    <!-- Problem Showcase Card -->
+    <section class="card problem-card">
+      <div class="card-header">
+        <div class="card-icon">📖</div>
+        <div>
+          <h2>題目內容</h2>
+          <span class="card-tag">107 年大學指考物理試題</span>
+        </div>
+      </div>
+
+      <div class="problem-body">
+        <p>
+          一支均勻直尺的長度為 <strong>$30\text{ cm}$</strong>，若在直尺上距離直尺左端 <strong>$25\text{ cm}$</strong> 處放置一質量為 <strong>$50\text{ g}$</strong> 的小物體，則須於直尺上距離直尺左端 <strong>$20\text{ cm}$</strong> 處支撐直尺，方可使其維持水平平衡狀態。該直尺的質量為多少 $\text{g}$？
+        </p>
+
+        <!-- Dynamic Ruler SVG Diagram -->
+        <div class="diagram-container" style="text-align: center; margin: 24px 0;">
+          <svg viewBox="0 0 760 320" style="width: 100%; max-width: 740px; background: rgba(15, 23, 42, 0.6); border-radius: 12px; border: 1px solid rgba(255,255,255,0.08);">
+            <defs>
+              <marker id="arr-rose" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#f43f5e"/>
+              </marker>
+              <marker id="arr-sky" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#38bdf8"/>
+              </marker>
+              <marker id="arr-emerald" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#10b981"/>
+              </marker>
+            </defs>
+
+            <!-- Coordinate Scale: Ruler 30 cm = 600 px (20 px per cm) -->
+            <!-- Left end x = 80 (0 cm), Right end x = 680 (30 cm) -->
+            <!-- 0 cm -> 80 -->
+            <!-- 5 cm -> 180 -->
+            <!-- 10 cm -> 280 -->
+            <!-- 15 cm (COM) -> 380 -->
+            <!-- 20 cm (Fulcrum) -> 480 -->
+            <!-- 25 cm (Weight) -> 580 -->
+            <!-- 30 cm -> 680 -->
+
+            <!-- Ruler Body -->
+            <rect x="80" y="110" width="600" height="28" rx="4" fill="rgba(30, 41, 59, 0.9)" stroke="#94a3b8" stroke-width="2"/>
+
+            <!-- Ruler Tick Marks -->
+            <g stroke="#64748b" stroke-width="1.5">
+              <!-- 0 cm -->
+              <line x1="80" y1="110" x2="80" y2="124"/>
+              <text x="76" y="102" fill="#64748b" font-size="11">0</text>
+              <!-- 5 cm -->
+              <line x1="180" y1="110" x2="180" y2="120"/>
+              <text x="176" y="102" fill="#64748b" font-size="11">5</text>
+              <!-- 10 cm -->
+              <line x1="280" y1="110" x2="280" y2="120"/>
+              <text x="274" y="102" fill="#64748b" font-size="11">10</text>
+              <!-- 15 cm -->
+              <line x1="380" y1="110" x2="380" y2="125" stroke="#ef4444" stroke-width="2"/>
+              <text x="371" y="102" fill="#ef4444" font-size="12" font-weight="bold">15</text>
+              <!-- 20 cm -->
+              <line x1="480" y1="110" x2="480" y2="125" stroke="#10b981" stroke-width="2"/>
+              <text x="472" y="102" fill="#10b981" font-size="12" font-weight="bold">20</text>
+              <!-- 25 cm -->
+              <line x1="580" y1="110" x2="580" y2="125" stroke="#38bdf8" stroke-width="2"/>
+              <text x="572" y="102" fill="#38bdf8" font-size="12" font-weight="bold">25</text>
+              <!-- 30 cm -->
+              <line x1="680" y1="110" x2="680" y2="124"/>
+              <text x="668" y="102" fill="#64748b" font-size="11">30 cm</text>
+            </g>
+
+            <!-- 1. Center of Mass of Ruler (at 15 cm -> x = 380) -->
+            <circle cx="380" cy="124" r="5" fill="#ef4444"/>
+            <text x="330" y="80" fill="#ef4444" font-size="13" font-weight="bold">直尺重心 (15 cm)</text>
+            <line x1="380" y1="85" x2="380" y2="110" stroke="#ef4444" stroke-width="1.2" stroke-dasharray="2,2"/>
+            <!-- Downward force W of ruler -->
+            <line x1="380" y1="138" x2="380" y2="230" stroke="#f43f5e" stroke-width="3" marker-end="url(#arr-rose)"/>
+            <text x="390" y="215" fill="#f43f5e" font-size="15" font-weight="bold">W (直尺重)</text>
+
+            <!-- 2. Fulcrum / Wedge support at 20 cm -> x = 480 -->
+            <!-- Triangular Wedge -->
+            <polygon points="480,138 462,175 498,175" fill="#10b981" stroke="#059669" stroke-width="2"/>
+            <!-- Stand base -->
+            <rect x="455" y="175" width="50" height="15" rx="2" fill="#334155"/>
+            <text x="445" y="210" fill="#10b981" font-size="13" font-weight="bold">支撐點 (20 cm)</text>
+            <!-- Upward support force N -->
+            <line x1="480" y1="138" x2="480" y2="70" stroke="#10b981" stroke-width="2.5" marker-end="url(#arr-emerald)"/>
+            <text x="490" y="85" fill="#10b981" font-size="13" font-weight="bold">N</text>
+
+            <!-- 3. Small Object at 25 cm -> x = 580 -->
+            <!-- Object Block -->
+            <rect x="565" y="80" width="30" height="30" rx="3" fill="rgba(56, 189, 248, 0.3)" stroke="#38bdf8" stroke-width="2"/>
+            <text x="572" y="100" fill="#38bdf8" font-size="11" font-weight="bold">50g</text>
+            <!-- Downward gravity of object 50 gw -->
+            <line x1="580" y1="138" x2="580" y2="230" stroke="#f43f5e" stroke-width="3" marker-end="url(#arr-rose)"/>
+            <text x="590" y="215" fill="#f43f5e" font-size="14" font-weight="bold">50 gw</text>
+
+            <!-- Dimension: Lever Arm d1 = 20 - 15 = 5 cm -->
+            <line x1="380" y1="265" x2="480" y2="265" stroke="#fbbf24" stroke-width="2"/>
+            <line x1="380" y1="258" x2="380" y2="272" stroke="#fbbf24" stroke-width="2"/>
+            <line x1="480" y1="258" x2="480" y2="272" stroke="#fbbf24" stroke-width="2"/>
+            <line x1="380" y1="230" x2="380" y2="265" stroke="#fbbf24" stroke-width="1" stroke-dasharray="2,3"/>
+            <line x1="480" y1="190" x2="480" y2="265" stroke="#fbbf24" stroke-width="1" stroke-dasharray="2,3"/>
+            <text x="408" y="285" fill="#fbbf24" font-size="13" font-weight="bold">d₁ = 5 cm</text>
+
+            <!-- Dimension: Lever Arm d2 = 25 - 20 = 5 cm -->
+            <line x1="480" y1="265" x2="580" y2="265" stroke="#38bdf8" stroke-width="2"/>
+            <line x1="580" y1="258" x2="580" y2="272" stroke="#38bdf8" stroke-width="2"/>
+            <line x1="580" y1="230" x2="580" y2="265" stroke="#38bdf8" stroke-width="1" stroke-dasharray="2,3"/>
+            <text x="508" y="285" fill="#38bdf8" font-size="13" font-weight="bold">d₂ = 5 cm</text>
+          </svg>
+        </div>
+
+        <!-- Options Container -->
+        <div class="options-container" id="optionsContainer">
+          <button class="option-card" data-option="A">
+            <span class="option-letter">A</span>
+            <span class="option-text">$20\text{ g}$</span>
+          </button>
+          <button class="option-card" data-option="B">
+            <span class="option-letter">B</span>
+            <span class="option-text">$30\text{ g}$</span>
+          </button>
+          <button class="option-card" data-option="C">
+            <span class="option-letter">C</span>
+            <span class="option-text">$50\text{ g}$</span>
+          </button>
+          <button class="option-card" data-option="D">
+            <span class="option-letter">D</span>
+            <span class="option-text">$60\text{ g}$</span>
+          </button>
+          <button class="option-card" data-option="E">
+            <span class="option-letter">E</span>
+            <span class="option-text">$70\text{ g}$</span>
+          </button>
+        </div>
+
+        <!-- Real-time Feedback -->
+        <div class="feedback-box" id="feedbackBox">
+          <div class="feedback-icon" id="feedbackIcon"></div>
+          <div class="feedback-text" id="feedbackText"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Collapsible Solution Card -->
+    <section class="card solution-card collapsed" id="solutionCard">
+      <div class="card-header clickable" id="solutionToggle">
+        <div class="card-icon">💡</div>
+        <div style="flex: 1;">
+          <h2>107 指考完整物理剖析與解題思維</h2>
+          <span class="solution-status">點擊展開完整剖析</span>
+        </div>
+        <span class="badge badge-accent">大考中心公佈詳解</span>
+      </div>
+
+      <div class="solution-body">
+        <!-- 步驟 1 -->
+        <div class="step-card">
+          <div class="step-header">
+            <span class="step-badge">觀念 1</span>
+            <h3>確定各作用力的位置與「均勻直尺重心」</h3>
+          </div>
+          <p>
+            題目明述為「<strong>均勻直尺</strong>」，長度為 $30\text{ cm}$：
+          </p>
+          <ul>
+            <li>均勻物體的重心即為其幾何中心，因此直尺重心位置在距離左端：
+              $$x_C = \frac{30}{2} = 15\text{ cm}$$
+              直尺自重 $W$ 視為集中作用在此重心處，方向鉛直向下。
+            </li>
+            <li>小物體質量 $m = 50\text{ g}$，其重力為 $50\text{ gw}$，作用於距離左端 $x_m = 25\text{ cm}$ 處，方向鉛直向下。</li>
+            <li>支撐點位於距離左端 $x_O = 20\text{ cm}$ 處，桌面或支架提供向上正向支持力 $N$。</li>
+          </ul>
+        </div>
+
+        <!-- 步驟 2 -->
+        <div class="step-card">
+          <div class="step-header">
+            <span class="step-badge">觀念 2</span>
+            <h3>選取支點並計算力臂</h3>
+          </div>
+          <p>
+            選取<strong>支撐點（距離左端 $20\text{ cm}$ 處）為支點</strong>：<br>
+            好處是支撐力 $N$ 通過支點，其力臂為 $0$，力矩為 $0$，不必計算未知支持力 $N$！
+          </p>
+          <ul>
+            <li><strong>直尺重力的力臂 $d_W$：</strong>
+              $$d_W = 20\text{ cm} - 15\text{ cm} = 5\text{ cm} \quad (\text{在支點左側，產生逆時鐘力矩})$$
+            </li>
+            <li><strong>小物體重力的力臂 $d_m$：</strong>
+              $$d_m = 25\text{ cm} - 20\text{ cm} = 5\text{ cm} \quad (\text{在支點右側，產生順時鐘力矩})$$
+            </li>
+          </ul>
+        </div>
+
+        <!-- 步驟 3 -->
+        <div class="step-card">
+          <div class="step-header">
+            <span class="step-badge">觀念 3</span>
+            <h3>力矩平衡方程式求解</h3>
+          </div>
+          <p>直尺維持水平平衡，逆時鐘力矩 = 順時鐘力矩：</p>
+          $$\Sigma \tau_O = 0 \implies W \cdot d_W = 50 \cdot d_m$$
+          $$W \times 5 = 50 \times 5$$
+          <p>等號兩邊同除以 $5\text{ cm}$：</p>
+          <div style="background: rgba(16, 185, 129, 0.15); border: 1px solid #10b981; border-radius: 8px; padding: 16px; margin: 12px 0; text-align: center;">
+            <span style="font-size: 1.35rem; font-weight: 800; color: #10b981;">
+              直尺重 $W = 50\text{ gw} \implies \text{直尺質量} = 50\text{ g}$
+            </span>
+          </div>
+          <p>
+            <strong>秒殺心法：</strong><br>
+            支點剛好在直尺重心（15 cm）與砝碼位置（25 cm）的<strong>正正中點（20 cm）</strong>！<br>
+            兩邊力臂長度均為 $5\text{ cm}$（力臂比 $1:1$），要達到平衡，兩邊重量必然也是 $1:1$！<br>
+            因此直尺質量直接等於物體質量 $50\text{ g}$！答案為 <strong>(C)</strong>。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Navigation Bar -->
+    <div class="bottom-nav">
+      <a href="torque6.html" class="nav-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+        上一題：均質木棒懸重臨界平衡
+      </a>
+      <a href="index.html" class="nav-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        回課程總目錄
+      </a>
+      <a href="equil1.html" class="nav-btn primary">
+        下一題：光滑斜面受力方向與正向力
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // KaTeX Rendering
+      if (typeof renderMathInElement === 'function') {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ],
+          throwOnError: false
+        });
+      }
+
+      const correctAnswer = "C";
+      const optionCards = document.querySelectorAll(".option-card");
+      const feedbackBox = document.getElementById("feedbackBox");
+      const feedbackIcon = document.getElementById("feedbackIcon");
+      const feedbackText = document.getElementById("feedbackText");
+      const solutionCard = document.getElementById("solutionCard");
+
+      optionCards.forEach(card => {
+        card.addEventListener("click", function() {
+          const selected = this.getAttribute("data-option");
+
+          optionCards.forEach(c => c.classList.remove("selected", "correct", "wrong"));
+          this.classList.add("selected");
+
+          feedbackBox.classList.remove("correct", "wrong");
+          feedbackBox.classList.add("show");
+
+          if (selected === correctAnswer) {
+            this.classList.add("correct");
+            feedbackBox.classList.add("correct");
+            feedbackIcon.innerHTML = "🎉";
+            feedbackText.innerHTML = "<strong>太神了！完全正確！</strong><br>直尺重心在 15 cm 處，支點在 20 cm 處，物體在 25 cm 處。<br>兩側力臂皆為 5 cm（力臂 1:1），由力矩平衡立得直尺質量必為 50 g！";
+            solutionCard.classList.remove("collapsed");
+            const tag = solutionCard.querySelector(".solution-status");
+            if (tag) tag.textContent = "點擊收合詳解";
+          } else {
+            this.classList.add("wrong");
+            feedbackBox.classList.add("wrong");
+            feedbackIcon.innerHTML = "💡";
+            if (selected === "B") {
+              feedbackText.innerHTML = "<strong>小心別忘了自重！</strong> 30 cm 是直尺長度，均勻直尺重心在 15 cm 處，力臂是 20 - 15 = 5 cm 喔！";
+            } else if (selected === "A") {
+              feedbackText.innerHTML = "<strong>算錯力臂囉！</strong> 20 cm 是支撐點離左端的距離，不是直尺重心到支點的距離喔！";
+            } else {
+              feedbackText.innerHTML = `<strong>選了 (${selected})，再想想看！</strong> 提示：直尺全長 30 cm，均勻材質的重心在哪個刻度？距離支點 20 cm 有多遠？`;
+            }
+          }
+
+          if (typeof renderMathInElement === 'function') {
+            renderMathInElement(feedbackText, {
+              delimiters: [
+                {left: '$$', right: '$$', display: true},
+                {left: '$', right: '$', display: false}
+              ],
+              throwOnError: false
+            });
+          }
+        });
+      });
+
+      // Solution toggle
+      const solutionToggle = document.getElementById("solutionToggle");
+      solutionToggle.addEventListener("click", function() {
+        solutionCard.classList.toggle("collapsed");
+        const isCollapsed = solutionCard.classList.contains("collapsed");
+        const statusSpan = solutionToggle.querySelector(".solution-status");
+        if (statusSpan) {
+          statusSpan.textContent = isCollapsed ? "點擊展開完整剖析" : "點擊收合詳解";
+        }
+      });
+    });
+  </script>
+</body>
+</html>

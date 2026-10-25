@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>靜力平衡 49：雙斜面夾光滑圓球的受力分析 | 高中物理靜力學</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    .method-toggle-container {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin: 16px auto;
+      max-width: 720px;
+    }
+    .method-btn {
+      flex: 1;
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      background: rgba(30, 41, 59, 0.7);
+      color: #94a3b8;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .method-btn:hover {
+      background: rgba(51, 65, 85, 0.9);
+      color: #f8fafc;
+      border-color: rgba(56, 189, 248, 0.4);
+    }
+    .method-btn.active {
+      background: linear-gradient(135deg, rgba(14, 165, 233, 0.35), rgba(59, 130, 246, 0.35));
+      border-color: #38bdf8;
+      color: #ffffff;
+      box-shadow: 0 0 16px rgba(56, 189, 248, 0.3);
+    }
+    .method-content-panel {
+      display: none;
+    }
+    .method-content-panel.active {
+      display: block;
+      animation: fadeIn 0.3s ease;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-glow"></div>
+  <div class="bg-grid"></div>
+
+  <div class="container">
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+      <div class="nav-links">
+        <a href="index.html" class="nav-btn primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          回目錄
+        </a>
+        <a href="equil48.html" class="nav-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          上一題 (平衡 48)
+        </a>
+        <a href="equil50.html" class="nav-btn">
+          下一題 (平衡 50)
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+      <div class="badge-wrapper">
+        <span class="badge badge-page">講義 靜力學-33</span>
+        <span class="badge badge-exam">拉密定理・共點三力</span>
+        <span class="badge badge-accent">靜力平衡・練習 49</span>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+      <h1 class="main-title">靜力平衡 49：<span class="gradient-text">雙斜面夾光滑圓球的受力分析</span></h1>
+      <p class="subtitle">同起點夾角斜面・共點三力閉合・等腰鈍角向量三角形與拉密定理</p>
+    </header>
+
+    <!-- Main Problem Showcase Card -->
+    <section class="card problem-card">
+      <div class="card-header">
+        <div class="card-icon">📖</div>
+        <div>
+          <h2>題目情境與物理圖解</h2>
+          <span class="card-tag">雙斜面夾角拘束・三力平衡</span>
+        </div>
+      </div>
+
+      <div class="problem-body">
+        <p>
+          如下圖所示，一質量均勻之光滑圓球置於 $A$、$B$ 兩光滑斜面間呈靜止平衡。已知球重為 <strong>$W$</strong>，斜面 $A$ 仰角為 $\theta_1 = 30^\circ$、斜面 $B$ 仰角為 $\theta_2 = 60^\circ$（兩斜面自同一起點出發），則斜面 $A$、$B$ 作用於球的正向力 $N_A$、$N_B$ 分別為何？
+        </p>
+
+        <!-- Two-Panel SVG Diagram -->
+        <div class="canvas-card" style="margin: 20px 0;">
+          <div class="canvas-title-bar">
+            <h3><span class="dot dot-blue"></span> 物理受力圖 與 封閉向量三角形</h3>
+            <span class="view-tag">Physical & Vector Closed Diagram</span>
+          </div>
+          <div class="svg-wrapper">
+            <svg viewBox="0 0 760 380" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <marker id="arr-red-49" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                  <path d="M0 1L10 5L0 9z" fill="#ef4444"/>
+                </marker>
+                <marker id="arr-green-49" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                  <path d="M0 1L10 5L0 9z" fill="#10b981"/>
+                </marker>
+                <marker id="arr-cyan-49" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                  <path d="M0 1L10 5L0 9z" fill="#00e5ff"/>
+                </marker>
+                <linearGradient id="wedgeGrad49" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.25"/>
+                  <stop offset="100%" stop-color="#1d4ed8" stop-opacity="0.05"/>
+                </linearGradient>
+                <radialGradient id="ballGrad49" cx="35%" cy="35%" r="65%">
+                  <stop offset="0%" stop-color="#93c5fd"/>
+                  <stop offset="60%" stop-color="#3b82f6"/>
+                  <stop offset="100%" stop-color="#1d4ed8"/>
+                </radialGradient>
+              </defs>
+
+              <!-- LEFT: Physical System -->
+              <g transform="translate(20, 20)">
+                <rect x="0" y="0" width="410" height="340" rx="10" fill="#0f172a" stroke="#1e293b" stroke-width="1.5"/>
+                <text x="20" y="28" fill="#94a3b8" font-size="13" font-weight="600">雙斜面夾球受力分析圖</text>
+
+                <!-- Ground -->
+                <line x1="30" y1="300" x2="380" y2="300" stroke="#64748b" stroke-width="2"/>
+
+                <!-- Wedge Vertex at (80, 300) -->
+                <!-- Surface A: 30° from horizontal: dx=280, dy=-161.6 => (360, 138) -->
+                <!-- Surface B: 60° from horizontal: dx=140, dy=-242.4 => (220, 58) -->
+                <polygon points="80,300 220,58 360,138" fill="url(#wedgeGrad49)" stroke="none"/>
+                <line x1="80" y1="300" x2="230" y2="40" stroke="#fbbf24" stroke-width="3"/>
+                <line x1="80" y1="300" x2="380" y2="127" stroke="#3b82f6" stroke-width="3"/>
+
+                <!-- Angle arcs at vertex -->
+                <path d="M130,300 A50,50 0 0,0 123,275" fill="none" stroke="#38bdf8" stroke-width="1.8"/>
+                <text x="135" y="293" fill="#38bdf8" font-size="12" font-weight="bold">θ₁=30°</text>
+
+                <path d="M155,300 A75,75 0 0,0 117,235" fill="none" stroke="#fbbf24" stroke-width="1.8"/>
+                <text x="100" y="228" fill="#fbbf24" font-size="12" font-weight="bold">θ₂=60°</text>
+
+                <!-- Sphere Center C(210, 160), R = 50 -->
+                <circle cx="210" cy="160" r="50" fill="url(#ballGrad49)" stroke="#60a5fa" stroke-width="2" opacity="0.9"/>
+                <circle cx="210" cy="160" r="4" fill="#ffffff"/>
+                <text x="210" y="152" fill="#ffffff" font-size="13" font-weight="bold" text-anchor="middle">球重 W</text>
+
+                <!-- Force 1: Gravity W straight down -->
+                <line x1="210" y1="160" x2="210" y2="250" stroke="#ef4444" stroke-width="3" marker-end="url(#arr-red-49)"/>
+                <text x="218" y="245" fill="#ef4444" font-size="13" font-weight="bold">W</text>
+
+                <!-- Force 2: Normal N_A from Surface A (30°) pointing up-left (120°) -->
+                <!-- dx = -80 * cos(60°) = -40, dy = -80 * sin(60°) = -69.3 -->
+                <line x1="210" y1="160" x2="155" y2="65" stroke="#10b981" stroke-width="3" marker-end="url(#arr-green-49)"/>
+                <text x="105" y="62" fill="#10b981" font-size="13" font-weight="bold">N_A = √3 W</text>
+
+                <!-- Force 3: Normal N_B from Surface B (60°) pointing down-right (330°) -->
+                <!-- dx = 70 * cos(30°) = 60.6, dy = 70 * sin(30°) = 35 -->
+                <line x1="210" y1="160" x2="280" y2="200" stroke="#00e5ff" stroke-width="3" marker-end="url(#arr-cyan-49)"/>
+                <text x="288" y="208" fill="#00e5ff" font-size="13" font-weight="bold">N_B = W</text>
+              </g>
+
+              <!-- RIGHT: Closed Vector Triangle -->
+              <g transform="translate(450, 20)">
+                <rect x="0" y="0" width="290" height="340" rx="10" fill="#0f172a" stroke="#1e293b" stroke-width="1.5"/>
+                <text x="20" y="28" fill="#38bdf8" font-size="13" font-weight="600">三力封閉向量三角形（首尾相接）</text>
+
+                <!-- Vector 1: W downwards from (145, 60) to (145, 160), length = 100 -->
+                <line x1="145" y1="60" x2="145" y2="152" stroke="#ef4444" stroke-width="3.5" marker-end="url(#arr-red-49)"/>
+                <text x="120" y="115" fill="#ef4444" font-size="13" font-weight="bold">W</text>
+
+                <!-- Vector 2: N_B down-right at 30° below horizontal, length = 100 -->
+                <!-- from (145, 160) to (145 + 100*cos30, 160 + 100*sin30) = (145 + 86.6, 160 + 50) = (231.6, 210) -->
+                <line x1="145" y1="160" x2="225" y2="206" stroke="#00e5ff" stroke-width="3.5" marker-end="url(#arr-cyan-49)"/>
+                <text x="195" y="180" fill="#00e5ff" font-size="13" font-weight="bold">N_B = W</text>
+
+                <!-- Vector 3: N_A up-left from (231.6, 210) back to (145, 60), length = 100*sqrt(3) = 173.2 -->
+                <!-- dx = -86.6, dy = -150. Angle is 120° from positive horizontal (60° above negative x) -->
+                <line x1="231.6" y1="210" x2="151" y2="70" stroke="#10b981" stroke-width="3.5" marker-end="url(#arr-green-49)"/>
+                <text x="205" y="125" fill="#10b981" font-size="13" font-weight="bold">N_A = √3 W</text>
+
+                <!-- Angle 60° between downward W and N_B -->
+                <path d="M145,185 A25,25 0 0,0 167,172" fill="none" stroke="#ffd54f" stroke-width="1.8"/>
+                <text x="155" y="195" fill="#ffd54f" font-size="11" font-weight="bold">60°</text>
+
+                <!-- Angle 30° at bottom (231.6, 210) -->
+                <path d="M210,197 A25,25 0 0,0 219,188" fill="none" stroke="#ffd54f" stroke-width="1.8"/>
+                <text x="238" y="222" fill="#ffd54f" font-size="11" font-weight="bold">30°</text>
+
+                <!-- Angle 30° at top (145, 60) -->
+                <path d="M145,85 A25,25 0 0,0 158,82" fill="none" stroke="#ffd54f" stroke-width="1.8"/>
+                <text x="158" y="78" fill="#ffd54f" font-size="11" font-weight="bold">30°</text>
+
+                <!-- Derivation Card with Horizontal Fraction Bars -->
+                <rect x="15" y="250" width="260" height="75" rx="8" fill="rgba(30, 41, 59, 0.8)" stroke="rgba(56, 189, 248, 0.25)"/>
+                <g transform="translate(25, 275)">
+                  <text x="0" y="0" fill="#cbd5e1" font-size="11" font-weight="bold">正弦定理：</text>
+                  <text x="65" y="-6" fill="#ef4444" font-size="11" text-anchor="middle">W</text>
+                  <line x1="55" y1="-2" x2="75" y2="-2" stroke="#cbd5e1" stroke-width="1.2"/>
+                  <text x="65" y="10" fill="#cbd5e1" font-size="10" text-anchor="middle">sin 30°</text>
+
+                  <text x="88" y="0" fill="#cbd5e1" font-size="11">=</text>
+
+                  <text x="115" y="-6" fill="#10b981" font-size="11" text-anchor="middle">N_A</text>
+                  <line x1="102" y1="-2" x2="128" y2="-2" stroke="#cbd5e1" stroke-width="1.2"/>
+                  <text x="115" y="10" fill="#cbd5e1" font-size="10" text-anchor="middle">sin 120°</text>
+
+                  <text x="140" y="0" fill="#cbd5e1" font-size="11">=</text>
+
+                  <text x="168" y="-6" fill="#00e5ff" font-size="11" text-anchor="middle">N_B</text>
+                  <line x1="155" y1="-2" x2="181" y2="-2" stroke="#cbd5e1" stroke-width="1.2"/>
+                  <text x="168" y="10" fill="#cbd5e1" font-size="10" text-anchor="middle">sin 30°</text>
+                </g>
+                <text x="25" y="312" fill="#10b981" font-size="12" font-weight="bold">➔ N_A = √3 W， N_B = W</text>
+              </g>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quiz Section -->
+    <section class="card worksheet-card">
+      <div class="card-header">
+        <div class="card-icon">✏️</div>
+        <div>
+          <h2>自我檢測與觀念選擇</h2>
+          <span class="card-tag">點選選項即時核對</span>
+        </div>
+      </div>
+      
+      <div class="question-box">
+        <p class="question-stem">
+          由共點三力平衡條件，斜面 $A$ 與斜面 $B$ 作用於球的正向力 $N_A$、$N_B$ 分別為多少？
+        </p>
+
+        <div class="options-list">
+          <label class="option-item" onclick="selectOption(0)">
+            <input type="radio" name="opt" value="0">
+            <span class="opt-letter">A</span>
+            <span class="opt-content">$N_A = \sqrt{3}W,\quad N_B = W$</span>
+          </label>
+          <label class="option-item" onclick="selectOption(1)">
+            <input type="radio" name="opt" value="1">
+            <span class="opt-letter">B</span>
+            <span class="opt-content">$N_A = \dfrac{\sqrt{3}}{2}W,\quad N_B = \dfrac{1}{2}W$</span>
+          </label>
+          <label class="option-item" onclick="selectOption(2)">
+            <input type="radio" name="opt" value="2">
+            <span class="opt-letter">C</span>
+            <span class="opt-content">$N_A = 2W,\quad N_B = W$</span>
+          </label>
+          <label class="option-item" onclick="selectOption(3)">
+            <input type="radio" name="opt" value="3">
+            <span class="opt-letter">D</span>
+            <span class="opt-content">$N_A = \sqrt{3}W,\quad N_B = \sqrt{3}W$</span>
+          </label>
+          <label class="option-item" onclick="selectOption(4)">
+            <input type="radio" name="opt" value="4">
+            <span class="opt-letter">E</span>
+            <span class="opt-content">$N_A = \dfrac{1}{2}W,\quad N_B = \dfrac{\sqrt{3}}{2}W$</span>
+          </label>
+        </div>
+
+        <div class="quiz-actions">
+          <button class="btn btn-primary" onclick="checkAnswer()">確認答案</button>
+          <button class="btn btn-secondary" onclick="toggleSolution()">查看多種解法詳解</button>
+        </div>
+
+        <div id="feedback" class="feedback-box"></div>
+      </div>
+    </section>
+
+    <!-- Detailed Solution Section with Dual Method Switcher -->
+    <section id="solutionBox" class="card solution-card" style="display: none; margin-top: 24px;">
+      <div class="card-header">
+        <div class="card-icon" style="background: rgba(0, 230, 118, 0.15); border-color: rgba(0, 230, 118, 0.3);">💡</div>
+        <div>
+          <h2>多視角詳盡解析與物理思維</h2>
+          <span class="card-tag">向量三角形・拉密定理・正交分解</span>
+        </div>
+      </div>
+
+      <!-- Method Switcher Container -->
+      <div class="method-toggle-container">
+        <button class="method-btn active" data-method="m1">
+          <span>📐 解法一：向量封閉三角形法（推薦幾何秒殺）</span>
+        </button>
+        <button class="method-btn" data-method="m2">
+          <span>🎯 解法二：拉密定理（Lami's Theorem）</span>
+        </button>
+        <button class="method-btn" data-method="m3">
+          <span>🏛️ 解法三：正交分解聯立法</span>
+        </button>
+      </div>
+
+      <!-- Method 1 -->
+      <div id="m1" class="method-content-panel active">
+        <div class="step-card">
+          <div class="step-header">
+            <span class="step-pill s1">向量三角形</span>
+            <h3>構建 $30^\circ-30^\circ-120^\circ$ 等腰封閉力三角形</h3>
+          </div>
+          <div class="step-content">
+            <p>
+              圓球靜止受三共點力：鉛直向下重力 $\vec{W}$、斜面 $A$ 正向力 $\vec{N}_A$（垂直斜面 $A$，指向左上方，與水平夾 $60^\circ$）、斜面 $B$ 正向力 $\vec{N}_B$（垂直斜面 $B$，指向右下方，與水平夾 $30^\circ$）。
+            </p>
+            <p>
+              三力首尾相接形成閉合三角形：
+            </p>
+            <ul>
+              <li>鉛直邊為重力 $W$。</li>
+              <li>重力端點接 $\vec{N}_B$（向右下方傾斜 $30^\circ$），其與鉛垂向下方向之夾角為 $60^\circ$。</li>
+              <li>$\vec{N}_B$ 端點接 $\vec{N}_A$（向左上方傾斜 $60^\circ$），接回起點。</li>
+            </ul>
+            <p>
+              在該力三角形中，三內角分別為 $30^\circ$、$30^\circ$ 與 $120^\circ$（對應頂角為 $120^\circ$ 的等腰三角形）：
+            </p>
+            <div class="formula-highlight">
+              $$\frac{W}{\sin 30^\circ} = \frac{N_B}{\sin 30^\circ} \implies N_B = W$$
+              $$\frac{N_A}{\sin 120^\circ} = \frac{W}{\sin 30^\circ} \implies N_A = W \cdot \frac{\sin 120^\circ}{\sin 30^\circ} = W \cdot \frac{\frac{\sqrt{3}}{2}}{\frac{1}{2}} = \mathbf{\sqrt{3}W}$$
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Method 2 -->
+      <div id="m2" class="method-content-panel">
+        <div class="step-card">
+          <div class="step-header">
+            <span class="step-pill s2">拉密定理</span>
+            <h3>由外角正弦對應關係極速求解</h3>
+          </div>
+          <div class="step-content">
+            <p>
+              三力共點平衡，檢視三力兩兩之間的夾角：
+            </p>
+            <ul>
+              <li>$\vec{N}_A$ 與 $\vec{N}_B$ 之夾角：兩斜面夾角為 $60^\circ - 30^\circ = 30^\circ$，其法線方向夾角為 $180^\circ - 30^\circ = 150^\circ$。</li>
+              <li>重力 $\vec{W}$ 與 $\vec{N}_A$ 之夾角：$\vec{N}_A$ 偏向左上方，與鉛直向上夾 $30^\circ$，故與鉛直向下夾角為 $180^\circ - 30^\circ = 150^\circ$。</li>
+              <li>重力 $\vec{W}$ 與 $\vec{N}_B$ 之夾角：$\vec{N}_B$ 偏向右下方，與水平夾 $30^\circ$，故與鉛直向下夾角為 $90^\circ - 30^\circ = 60^\circ$。</li>
+            </ul>
+            <p>由拉密定理列式：</p>
+            <div class="formula-highlight">
+              $$\frac{W}{\sin 150^\circ} = \frac{N_A}{\sin 60^\circ} = \frac{N_B}{\sin 150^\circ}$$
+            </div>
+            <p>
+              代入三角函數數值 $\sin 150^\circ = \frac{1}{2}$，$\sin 60^\circ = \frac{\sqrt{3}}{2}$：
+            </p>
+            <div class="formula-highlight">
+              $$N_B = W \cdot \frac{\sin 150^\circ}{\sin 150^\circ} = \mathbf{W}$$
+              $$N_A = W \cdot \frac{\sin 60^\circ}{\sin 150^\circ} = W \cdot \frac{\frac{\sqrt{3}}{2}}{\frac{1}{2}} = \mathbf{\sqrt{3}W}$$
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Method 3 -->
+      <div id="m3" class="method-content-panel">
+        <div class="step-card">
+          <div class="step-header">
+            <span class="step-pill s3">正交分解</span>
+            <h3>水平與鉛直獨立分量聯立求解</h3>
+          </div>
+          <div class="step-content">
+            <p>
+              將所有力分解至水平 ($x$) 與鉛直 ($y$) 軸：
+            </p>
+            <ul>
+              <li><strong>水平方向平衡 ($\Sigma F_x = 0$)：</strong>
+                $$N_B \cos 30^\circ = N_A \sin 30^\circ \implies N_B \cdot \frac{\sqrt{3}}{2} = N_A \cdot \frac{1}{2} \implies N_A = \sqrt{3}N_B$$
+              </li>
+              <li><strong>鉛直方向平衡 ($\Sigma F_y = 0$)：</strong>
+                $$N_A \cos 30^\circ = W + N_B \sin 30^\circ \implies N_A \cdot \frac{\sqrt{3}}{2} - N_B \cdot \frac{1}{2} = W$$
+              </li>
+            </ul>
+            <p>將 $N_A = \sqrt{3}N_B$ 代入鉛直平衡式：</p>
+            <div class="formula-highlight">
+              $$(\sqrt{3}N_B)\cdot\frac{\sqrt{3}}{2} - \frac{1}{2}N_B = W \implies \frac{3}{2}N_B - \frac{1}{2}N_B = W \implies \mathbf{N_B = W}$$
+              $$\mathbf{N_A = \sqrt{3}W}$$
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="summary-box" style="margin-top: 16px;">
+        ✅ <strong>精確答案：</strong> $N_A = \mathbf{\sqrt{3}W}$， $N_B = \mathbf{W}$（選項 A）。
+      </div>
+    </section>
+
+    <!-- Bottom Navigation -->
+    <div class="bottom-nav">
+      <a href="equil48.html" class="nav-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+        上一題 (平衡 48)
+      </a>
+      <a href="index.html" class="nav-btn primary">回到講義首頁</a>
+      <a href="equil50.html" class="nav-btn">
+        下一題 (平衡 50)
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <script>
+    const correctOpt = 0; // Option A is correct: N_A = sqrt(3)W, N_B = W
+
+    function selectOption(idx) {
+      const items = document.querySelectorAll('.option-item');
+      items.forEach((item, i) => {
+        const radio = item.querySelector('input');
+        if (i === idx) {
+          item.classList.add('selected');
+          radio.checked = true;
+        } else {
+          item.classList.remove('selected');
+          radio.checked = false;
+        }
+      });
+    }
+
+    function checkAnswer() {
+      const selected = document.querySelector('input[name="opt"]:checked');
+      const feedback = document.getElementById('feedback');
+      if (!selected) {
+        feedback.innerHTML = '<span style="color:#f59e0b;">請先點選一個選項！</span>';
+        return;
+      }
+      const val = parseInt(selected.value);
+      if (val === correctOpt) {
+        feedback.innerHTML = '<span style="color:#10b981; font-weight:bold;">🎉 答對了！精準運用封閉力三角形與拉密定理，答案為 (A)！</span>';
+      } else {
+        feedback.innerHTML = '<span style="color:#ef4444; font-weight:bold;">❌ 答案不正確，請注意 N_B 與向下垂直夾角為 60°，N_A 與向下垂直夾角為 150°，再重新列式。</span>';
+      }
+    }
+
+    function toggleSolution() {
+      const sol = document.getElementById('solutionBox');
+      if (sol.style.display === 'none' || sol.style.display === '') {
+        sol.style.display = 'block';
+        sol.scrollIntoView({ behavior: 'smooth' });
+        if (window.renderMathInElement) {
+          renderMathInElement(sol, {
+            delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false}
+            ],
+            throwOnError: false
+          });
+        }
+      } else {
+        sol.style.display = 'none';
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      if (window.renderMathInElement) {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ],
+          throwOnError: false
+        });
+      }
+
+      // Method switcher
+      const methodBtns = document.querySelectorAll('.method-btn');
+      const methodPanels = document.querySelectorAll('.method-content-panel');
+      methodBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const target = btn.dataset.method;
+          methodBtns.forEach(b => b.classList.remove('active'));
+          methodPanels.forEach(p => p.classList.remove('active'));
+          btn.classList.add('active');
+          const panel = document.getElementById(target);
+          if (panel) {
+            panel.classList.add('active');
+            if (window.renderMathInElement) {
+              renderMathInElement(panel, {
+                delimiters: [
+                  {left: '$$', right: '$$', display: true},
+                  {left: '$', right: '$', display: false}
+                ],
+                throwOnError: false
+              });
+            }
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,1280 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>高中物理靜力學・互動圖解題庫檢視器 (SPA)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;700;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+  <link rel="stylesheet" href="shared.css">
+  <script src="physics_problems_data.js"></script>
+  <style>
+    /* SPA Viewer Layout */
+    .viewer-layout {
+      max-width: 1400px;
+      margin: 0 auto;
+      transition: max-width 0.3s ease;
+    }
+
+    .viewer-layout.solution-wide-mode {
+      max-width: 1720px;
+    }
+
+    .viewer-layout.single-column-mode {
+      max-width: 960px;
+    }
+
+    /* Top Sticky Control Bar */
+    .viewer-header-bar {
+      position: sticky;
+      top: 10px;
+      z-index: 100;
+      background: rgba(20, 27, 45, 0.92);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 10px 16px;
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45);
+    }
+
+    .viewer-nav-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .select-dropdown {
+      background: var(--bg-surface-elevated);
+      color: #fff;
+      border: 1px solid var(--border-accent);
+      padding: 7px 12px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      outline: none;
+      transition: all 0.2s ease;
+    }
+
+    .select-dropdown:hover {
+      border-color: var(--accent-cyan);
+    }
+
+    .mode-switch-group {
+      display: flex;
+      background: rgba(0, 0, 0, 0.35);
+      padding: 3px;
+      border-radius: 8px;
+      border: 1px solid var(--border-subtle);
+    }
+
+    .mode-tab-btn {
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .mode-tab-btn.active {
+      background: var(--accent-blue);
+      color: #fff;
+      box-shadow: 0 2px 8px rgba(68, 138, 255, 0.35);
+    }
+
+    /* Main Multi-Column Grid System */
+    .viewer-main-grid {
+      display: grid;
+      gap: 20px;
+      align-items: flex-start;
+      transition: all 0.3s ease;
+    }
+
+    /* Problem Mode: 2 Columns (Question | Large Diagram) */
+    .viewer-main-grid.mode-problem {
+      grid-template-columns: 460px 1fr;
+    }
+
+    .viewer-main-grid.mode-problem .col-solution {
+      display: none !important;
+    }
+
+    /* Solution Mode: 3 Columns on Desktop (Question | Sticky Diagram | Scrollable Solution) */
+    .viewer-main-grid.mode-solution {
+      grid-template-columns: 360px minmax(380px, 480px) 1fr;
+    }
+
+    /* Sticky Question Column */
+    .col-question {
+      position: sticky;
+      top: 76px;
+      max-height: calc(100vh - 96px);
+      overflow-y: auto;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(68, 138, 255, 0.4) transparent;
+    }
+
+    /* Sticky Diagram Stage Column (NEVER scrolls away while reading solutions!) */
+    .col-diagram {
+      position: sticky;
+      top: 76px;
+      max-height: calc(100vh - 96px);
+      overflow-y: auto;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(56, 189, 248, 0.4) transparent;
+    }
+
+    /* Scrollable Solution Column */
+    .col-solution {
+      min-width: 0;
+    }
+
+    .solution-card-box {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+    }
+
+    /* Single Column Override */
+    .single-column-mode .viewer-main-grid {
+      display: block !important;
+    }
+
+    .single-column-mode .col-question,
+    .single-column-mode .col-diagram {
+      position: static !important;
+      max-height: none !important;
+      overflow-y: visible !important;
+      margin-bottom: 24px;
+    }
+
+    @media (max-width: 1200px) {
+      .viewer-main-grid.mode-solution {
+        grid-template-columns: 1fr 1fr;
+      }
+      .col-question {
+        position: static;
+        max-height: none;
+      }
+      .viewer-main-grid.mode-solution .col-solution {
+        grid-column: 1 / -1;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .viewer-main-grid.mode-problem,
+      .viewer-main-grid.mode-solution {
+        grid-template-columns: 1fr;
+      }
+      .col-question, .col-diagram {
+        position: static;
+        max-height: none;
+      }
+    }
+
+    .question-card-box {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 24px 26px;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+    }
+
+    .problem-meta-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .problem-header-title {
+      font-size: 1.32rem;
+      font-weight: 800;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .problem-content-text {
+      font-size: 1.12rem;
+      line-height: 1.85;
+      color: #f1f5f9;
+      margin-bottom: 16px;
+    }
+
+    .options-container {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin: 16px 0;
+      padding: 14px 18px;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 10px;
+      border-left: 4px solid var(--accent-cyan);
+      font-size: 1.05rem;
+      font-weight: 600;
+    }
+
+    /* Right Canvas & Solution Column */
+    .right-canvas-col {
+      min-width: 0;
+    }
+
+    .canvas-panel-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 24px 26px;
+      box-shadow: var(--shadow-lg);
+      margin-bottom: 22px;
+    }
+
+    /* Super-sized SVG Panel: Dark Mode High Contrast Neon Display */
+    .diagram-stage {
+      background: #090d16;
+      border: 1px solid rgba(56, 189, 248, 0.28);
+      border-radius: 14px;
+      padding: 18px 20px 20px;
+      margin-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+    }
+
+    .diagram-stage-header {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .diagram-tag {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--accent-cyan);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .diagram-switcher-bar {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .diagram-tab-btn {
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-size: 0.86rem;
+      font-weight: 700;
+      cursor: pointer;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      background: rgba(255, 255, 255, 0.06);
+      color: #94a3b8;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .diagram-tab-btn:hover {
+      background: rgba(255, 255, 255, 0.14);
+      color: #fff;
+      border-color: var(--accent-cyan);
+      transform: translateY(-1px);
+    }
+
+    .diagram-tab-btn.active {
+      background: rgba(0, 229, 255, 0.2);
+      color: #38bdf8;
+      border-color: #38bdf8;
+      box-shadow: 0 0 12px rgba(56, 189, 248, 0.35);
+    }
+
+    /* Diagram Header Controls & Zoom Tools */
+    .diagram-controls-bar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .diagram-zoom-tools {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 8px;
+      padding: 2px 6px;
+    }
+
+    .zoom-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-size: 0.82rem;
+      font-weight: 700;
+      padding: 3px 6px;
+      border-radius: 4px;
+      transition: all 0.2s ease;
+    }
+
+    .zoom-btn:hover {
+      background: rgba(255, 255, 255, 0.15);
+      color: #fff;
+    }
+
+    .zoom-level-text {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--accent-cyan);
+      min-width: 40px;
+      text-align: center;
+      font-family: 'Fira Code', monospace;
+    }
+
+    #pSvgWrapper {
+      width: 100%;
+      min-height: 280px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .zoomable-diagram-container {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      transform-origin: center center;
+    }
+
+    /* Side-by-Side Dual Diagram Comparison Grid */
+    .dual-diagram-comparison-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      width: 100%;
+      align-items: flex-start;
+    }
+
+    .dual-diagram-cell {
+      background: rgba(15, 23, 42, 0.65);
+      border: 1px solid rgba(56, 189, 248, 0.2);
+      border-radius: 10px;
+      padding: 10px;
+      text-align: center;
+    }
+
+    .dual-diagram-caption {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--accent-cyan);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+    }
+
+    /* Related Similar Problems Chips */
+    .related-problems-container {
+      margin-top: 20px;
+      padding-top: 16px;
+      border-top: 1px dashed rgba(255, 255, 255, 0.12);
+    }
+
+    .related-problems-title {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--accent-cyan);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .related-chips-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .related-problem-chip {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(68, 138, 255, 0.25);
+      border-radius: 8px;
+      padding: 5px 10px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #cbd5e1;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .related-problem-chip:hover {
+      background: rgba(0, 229, 255, 0.18);
+      border-color: var(--accent-cyan);
+      color: #fff;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0, 229, 255, 0.25);
+    }
+
+    .related-problem-chip .badge-mini {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.74rem;
+      color: var(--accent-yellow);
+    }
+
+    /* Dark Mode Comprehensive Line & Vector Adaptability for ALL SVGs */
+    .diagram-stage svg {
+      max-width: 620px;
+      width: 100%;
+      height: auto;
+      max-height: 460px;
+      display: block;
+      margin: 10px auto;
+    }
+
+    .diagram-stage svg text {
+      fill: #f1f5f9 !important;
+      font-family: inherit;
+    }
+
+    .diagram-stage svg [stroke="#000000"],
+    .diagram-stage svg [stroke="#000"],
+    .diagram-stage svg [stroke="black"],
+    .diagram-stage svg [stroke="#111827"],
+    .diagram-stage svg [stroke="#1e293b"],
+    .diagram-stage svg [stroke="#333"] {
+      stroke: #e2e8f0 !important;
+    }
+
+    .diagram-stage svg line:not([stroke]) {
+      stroke: #e2e8f0 !important;
+    }
+
+    .diagram-stage svg path:not([stroke]):not([fill]) {
+      stroke: #e2e8f0 !important;
+    }
+
+    .diagram-stage svg [fill="#000000"],
+    .diagram-stage svg [fill="#000"],
+    .diagram-stage svg [fill="black"] {
+      fill: #e2e8f0 !important;
+    }
+
+    .diagram-stage svg marker path {
+      fill: #e2e8f0 !important;
+      stroke: none !important;
+    }
+
+    .diagram-stage svg rect[fill="#ffffff"],
+    .diagram-stage svg rect[fill="#fff"],
+    .diagram-stage svg rect[fill="white"] {
+      fill: #1e293b !important;
+      stroke: #475569 !important;
+    }
+
+    /* Multi-Method Solutions Section */
+    .solution-wrapper {
+      margin-top: 10px;
+      transition: all 0.3s ease;
+    }
+
+    .solution-wrapper.hidden {
+      display: none;
+    }
+
+    .method-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      margin-bottom: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .method-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 5px;
+      height: 100%;
+    }
+
+    .method-card.textbook::before { background: var(--accent-yellow); }
+    .method-card.standard::before { background: var(--accent-cyan); }
+    .method-card.speed::before { background: var(--accent-purple); }
+
+    .method-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .method-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .method-steps {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .method-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 1.05rem;
+      line-height: 1.75;
+      color: #cbd5e1;
+    }
+
+    .step-num {
+      flex-shrink: 0;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #f8fafc;
+      margin-top: 3px;
+    }
+
+    /* Modal for Custom Quiz Builder */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-overlay.open {
+      display: flex;
+    }
+
+    .modal-box {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-accent);
+      border-radius: var(--radius-lg);
+      width: 100%;
+      max-width: 680px;
+      max-height: 85vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+    }
+
+    .modal-header {
+      padding: 18px 24px;
+      border-bottom: 1px solid var(--border-subtle);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .modal-body {
+      padding: 20px 24px;
+      overflow-y: auto;
+      flex: 1;
+    }
+
+    .modal-footer {
+      padding: 16px 24px;
+      border-top: 1px solid var(--border-subtle);
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+
+    .quiz-selector-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+      gap: 8px;
+    }
+
+    .quiz-item-chip {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid transparent;
+      user-select: none;
+    }
+
+    .quiz-item-chip.selected {
+      background: rgba(0, 229, 255, 0.15);
+      border-color: var(--accent-cyan);
+      color: #fff;
+    }
+
+    /* Print Styles: A4 Clean Print */
+    @media print {
+      body {
+        background: #fff !important;
+        color: #000 !important;
+        padding: 0 !important;
+      }
+      .bg-glow, .bg-grid, .viewer-header-bar, .modal-overlay {
+        display: none !important;
+      }
+      .viewer-layout {
+        max-width: 100% !important;
+        margin: 0 !important;
+      }
+      .viewer-main-grid {
+        display: block !important;
+      }
+      .col-question, .col-diagram, .col-solution {
+        position: static !important;
+        max-height: none !important;
+        overflow-y: visible !important;
+      }
+      .question-card-box, .diagram-stage, .solution-card-box {
+        background: #fff !important;
+        border: 1px solid #000 !important;
+        box-shadow: none !important;
+        padding: 14px !important;
+        margin-bottom: 12px !important;
+        page-break-inside: avoid;
+      }
+      .problem-header-title, .problem-content-text, .options-container {
+        color: #000 !important;
+      }
+      .options-container {
+        background: #f8fafc !important;
+        border-left: 4px solid #000 !important;
+      }
+      .diagram-stage {
+        background: #fff !important;
+        border: 1px solid #999 !important;
+      }
+      .method-card {
+        background: #fff !important;
+        border: 1px solid #999 !important;
+        color: #000 !important;
+        page-break-inside: avoid;
+      }
+      .method-step { color: #111 !important; }
+      .step-num { background: #eee !important; color: #000 !important; border-color: #000 !important; }
+      body.print-question-only .solution-wrapper {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-glow"></div>
+  <div class="bg-grid"></div>
+
+  <div class="container viewer-layout" id="viewerMainLayout">
+    <!-- Top Sticky Control Bar -->
+    <header class="viewer-header-bar">
+      <div class="viewer-nav-group">
+        <a href="index.html" class="nav-btn primary" title="返回大廳目錄">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          目錄
+        </a>
+
+        <!-- Section Filter Dropdown -->
+        <select id="sectionSelect" class="select-dropdown" onchange="onSectionChange(this.value)">
+          <option value="all">📚 全冊題庫 (104 題)</option>
+          <option value="範例">一、範例精選 (11 題)</option>
+          <option value="彈簧">二、彈簧與合力 (12 題)</option>
+          <option value="力矩">三、力矩專題 (7 題)</option>
+          <option value="平衡">四、靜力平衡 (51 題)</option>
+          <option value="摩擦力">五、摩擦力專題 (23 題)</option>
+        </select>
+
+        <!-- Problem Selector Dropdown -->
+        <select id="problemSelect" class="select-dropdown" style="max-width: 220px;" onchange="loadProblem(this.value)">
+          <!-- Populated by JS -->
+        </select>
+
+        <!-- Previous / Next Steppers -->
+        <button id="btnPrev" class="nav-btn" onclick="stepProblem(-1)" title="上一題 (鍵盤 ←)">
+          ◀
+        </button>
+        <button id="btnNext" class="nav-btn" onclick="stepProblem(1)" title="下一題 (鍵盤 →)">
+          ▶
+        </button>
+      </div>
+
+      <div class="viewer-nav-group">
+        <!-- Layout Mode Toggle (Side-by-Side vs. Single Column) -->
+        <button id="btnToggleLayout" class="nav-btn" onclick="toggleLayoutMode()" title="切換排版模式">
+          🖥️ 左右對照
+        </button>
+
+        <!-- Mode Switcher (Problem vs. Solution) -->
+        <div class="mode-switch-group">
+          <button id="tabProblem" class="mode-tab-btn active" onclick="setViewerMode('problem')">
+            📝 題目卷
+          </button>
+          <button id="tabSolution" class="mode-tab-btn" onclick="setViewerMode('solution')">
+            💡 解析卷
+          </button>
+        </div>
+
+        <!-- Print Actions -->
+        <button class="nav-btn" onclick="printCurrentExam('question')" title="列印純題目空白卷">
+          🖨️ 印題
+        </button>
+        <button class="nav-btn primary" onclick="printCurrentExam('solution')" title="列印完整圖解解析卷">
+          🖨️ 印解析
+        </button>
+        <button class="nav-btn" onclick="openQuizModal()" title="勾選多題組卷列印">
+          📑 組卷
+        </button>
+      </div>
+    </header>
+
+    <!-- Question View Area: Supports 2-Column Problem View & 3-Column Simultaneous Solution View -->
+    <main id="problemMainArea" class="viewer-main-grid mode-problem">
+      <!-- Column 1: Left Sticky Question Column -->
+      <aside class="col-question">
+        <div class="question-card-box">
+          <div class="problem-meta-bar">
+            <div class="problem-header-title">
+              <span style="display: inline-block; width: 12px; height: 12px; border-radius: 50%; background: #38bdf8;"></span>
+              <span id="pTitle">載入中...</span>
+            </div>
+            <div id="pTags" class="badge-wrapper"></div>
+          </div>
+
+          <div id="pContent" class="problem-content-text"></div>
+
+          <div id="pOptions" class="options-container" style="display: none;"></div>
+
+          <!-- Related Similar Problems Quick Jump -->
+          <div id="pRelated" class="related-problems-container" style="display: none;">
+            <div class="related-problems-title">
+              <span>🔗 相似觀念類似題速連：</span>
+            </div>
+            <div id="pRelatedChips" class="related-chips-grid"></div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Column 2: Center/Right Diagram Stage (Sticky so it's ALWAYS visible while scrolling solutions!) -->
+      <section class="col-diagram">
+        <div class="diagram-stage">
+          <div class="diagram-stage-header">
+            <div id="diagramTitleTag" class="diagram-tag">
+              <span>📐 物理情境與思考圖解</span>
+            </div>
+            <div class="diagram-controls-bar">
+              <div id="diagramSwitcherBar" class="diagram-switcher-bar"></div>
+              <div class="diagram-zoom-tools">
+                <button class="zoom-btn" onclick="adjustDiagramZoom(-0.15)" title="縮小 (Zoom Out)">🔍−</button>
+                <span id="zoomLevelText" class="zoom-level-text">100%</span>
+                <button class="zoom-btn" onclick="adjustDiagramZoom(0.15)" title="放大 (Zoom In)">🔍+</button>
+                <button class="zoom-btn" onclick="adjustDiagramZoom(0)" title="重置比例 (Reset)">⟲</button>
+              </div>
+            </div>
+          </div>
+          <div id="pSvgWrapper">
+            <div id="zoomableSvgContainer" class="zoomable-diagram-container"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Column 3: Dedicated Solution Column (Independent Scrollable Container) -->
+      <section id="solutionArea" class="col-solution hidden">
+        <div class="solution-card-box">
+          <div style="margin-bottom: 18px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding-bottom: 12px;">
+            <h2 style="font-size: 1.25rem; color: #fff; display: flex; align-items: center; gap: 8px;">
+              <span style="display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: #00e676;"></span>
+              重點解析與多種解法
+            </h2>
+            <div id="ansBadge" class="badge" style="background: rgba(0, 230, 118, 0.15); color: #00e676; border-color: rgba(0, 230, 118, 0.35); font-size: 0.95rem; font-weight: 700;">
+              答案：
+            </div>
+          </div>
+
+          <div id="methodsList"></div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Modal for Custom Quiz Builder -->
+  <div id="quizModal" class="modal-overlay">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 style="color: #fff; font-size: 1.2rem;">📑 自由勾選題號組卷</h3>
+        <button class="nav-btn" onclick="closeQuizModal()">✕</button>
+      </div>
+      <div class="modal-body">
+        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 14px;">
+          請勾選您希望輸出的題目，勾選後可一鍵合併排版列印為單份評量卷：
+        </p>
+        <div style="margin-bottom: 12px; display: flex; gap: 8px;">
+          <button class="nav-btn" onclick="toggleSelectAllQuiz(true)">全選本單元</button>
+          <button class="nav-btn" onclick="toggleSelectAllQuiz(false)">清空勾選</button>
+        </div>
+        <div id="quizSelectorGrid" class="quiz-selector-grid"></div>
+      </div>
+      <div class="modal-footer">
+        <span id="selectedCountText" style="color: var(--text-muted); font-size: 0.9rem; margin-right: auto; align-self: center;">已選 0 題</span>
+        <button class="nav-btn" onclick="closeQuizModal()">取消</button>
+        <button class="nav-btn primary" onclick="printSelectedQuiz()">🖨️ 產生評量卷列印</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let currentProblemIndex = 0;
+    let selectedQuizIds = new Set();
+    let isSideBySide = true;
+
+    document.addEventListener("DOMContentLoaded", function() {
+      initProblemDropdown();
+
+      // Check URL search param e.g. viewer.html?id=problem2
+      const urlParams = new URLSearchParams(window.location.search);
+      const reqId = urlParams.get('id');
+
+      if (reqId) {
+        const foundIdx = PHYSICS_PROBLEMS_DATA.findIndex(p => p.id.toLowerCase() === reqId.toLowerCase());
+        if (foundIdx !== -1) {
+          currentProblemIndex = foundIdx;
+        }
+      }
+
+      renderProblem(currentProblemIndex);
+
+      // Keyboard navigation
+      document.addEventListener("keydown", function(e) {
+        if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT' || e.target.tagName === 'TEXTAREA') return;
+        if (e.key === "ArrowLeft") stepProblem(-1);
+        if (e.key === "ArrowRight") stepProblem(1);
+        if (e.key === "s" || e.key === "S") {
+          const isSol = document.getElementById("tabSolution").classList.contains("active");
+          setViewerMode(isSol ? "problem" : "solution");
+        }
+      });
+    });
+
+    function toggleLayoutMode() {
+      const layout = document.getElementById("viewerMainLayout");
+      const btn = document.getElementById("btnToggleLayout");
+      isSideBySide = !isSideBySide;
+
+      if (isSideBySide) {
+        layout.classList.remove("single-column-mode");
+        btn.textContent = "🖥️ 左右對照";
+        btn.classList.remove("primary");
+      } else {
+        layout.classList.add("single-column-mode");
+        btn.textContent = "📜 單欄模式";
+        btn.classList.add("primary");
+      }
+    }
+
+    let currentZoomLevel = 1.0;
+    function adjustDiagramZoom(delta) {
+      const zoomContainer = document.getElementById("zoomableSvgContainer");
+      const zoomText = document.getElementById("zoomLevelText");
+      if (!zoomContainer || !zoomText) return;
+
+      if (delta === 0) {
+        currentZoomLevel = 1.0;
+      } else {
+        currentZoomLevel = Math.max(0.6, Math.min(2.5, currentZoomLevel + delta));
+      }
+
+      zoomText.textContent = Math.round(currentZoomLevel * 100) + "%";
+      zoomContainer.style.transform = `scale(${currentZoomLevel})`;
+    }
+
+    function initProblemDropdown(filterSection = 'all') {
+      const select = document.getElementById("problemSelect");
+      select.innerHTML = "";
+
+      PHYSICS_PROBLEMS_DATA.forEach((p, idx) => {
+        let match = true;
+        if (filterSection === "範例" && !p.id.startsWith("problem")) match = false;
+        if (filterSection === "彈簧" && !p.id.startsWith("exercise") && p.id !== "practice") match = false;
+        if (filterSection === "力矩" && !p.id.startsWith("torque")) match = false;
+        if (filterSection === "平衡" && !p.id.startsWith("equil")) match = false;
+        if (filterSection === "摩擦力" && !p.id.startsWith("frict")) match = false;
+
+        if (match) {
+          const opt = document.createElement("option");
+          opt.value = p.id;
+          opt.textContent = `${p.id.toUpperCase()} - ${p.title.replace(/^\d+\.\s*/, '')}`;
+          select.appendChild(opt);
+        }
+      });
+    }
+
+    function onSectionChange(sec) {
+      initProblemDropdown(sec);
+      const firstOpt = document.getElementById("problemSelect").querySelector("option");
+      if (firstOpt) {
+        loadProblem(firstOpt.value);
+      }
+    }
+
+    function loadProblem(id) {
+      const idx = PHYSICS_PROBLEMS_DATA.findIndex(p => p.id === id);
+      if (idx !== -1) {
+        currentProblemIndex = idx;
+        renderProblem(currentProblemIndex);
+        const newUrl = window.location.pathname + '?id=' + id;
+        window.history.replaceState({ path: newUrl }, '', newUrl);
+      }
+    }
+
+    function stepProblem(delta) {
+      const newIdx = currentProblemIndex + delta;
+      if (newIdx >= 0 && newIdx < PHYSICS_PROBLEMS_DATA.length) {
+        currentProblemIndex = newIdx;
+        const targetId = PHYSICS_PROBLEMS_DATA[currentProblemIndex].id;
+        document.getElementById("problemSelect").value = targetId;
+        renderProblem(currentProblemIndex);
+        const newUrl = window.location.pathname + '?id=' + targetId;
+        window.history.replaceState({ path: newUrl }, '', newUrl);
+      }
+    }
+
+    function renderProblem(idx) {
+      const p = PHYSICS_PROBLEMS_DATA[idx];
+      if (!p) return;
+
+      document.getElementById("pTitle").textContent = p.title;
+      document.getElementById("problemSelect").value = p.id;
+
+      // Badges
+      const tagsContainer = document.getElementById("pTags");
+      tagsContainer.innerHTML = "";
+      if (p.tags && p.tags.length > 0) {
+        p.tags.forEach(t => {
+          const span = document.createElement("span");
+          span.className = "badge";
+          span.textContent = t;
+          tagsContainer.appendChild(span);
+        });
+      }
+
+      // Content
+      document.getElementById("pContent").innerHTML = p.content;
+
+      // Options
+      const optContainer = document.getElementById("pOptions");
+      if (p.options && p.options.length > 0) {
+        optContainer.style.display = "flex";
+        optContainer.innerHTML = p.options.map(o => `<span>${o}</span>`).join("");
+      } else {
+        optContainer.style.display = "none";
+      }
+
+      // Related Similar Problems Quick Jump
+      const relContainer = document.getElementById("pRelated");
+      const relChips = document.getElementById("pRelatedChips");
+      if (p.related && p.related.length > 0) {
+        relContainer.style.display = "block";
+        relChips.innerHTML = p.related.map(r => `
+          <button class="related-problem-chip" onclick="loadProblem('${r.id}')" title="跳轉至 ${r.title}">
+            <span class="badge-mini">${r.badge || '相似題'}</span>
+            <span>${r.title}</span>
+            <span>➔</span>
+          </button>
+        `).join("");
+      } else {
+        relContainer.style.display = "none";
+      }
+
+      // SVG & Diagram Switcher & Zoom Reset
+      adjustDiagramZoom(0);
+      const switcherBar = document.getElementById("diagramSwitcherBar");
+      switcherBar.innerHTML = "";
+      const zoomContainer = document.getElementById("zoomableSvgContainer");
+
+      if (p.diagrams && p.diagrams.length > 1) {
+        switcherBar.style.display = "flex";
+        p.diagrams.forEach((diag, dIdx) => {
+          const btn = document.createElement("button");
+          btn.className = `diagram-tab-btn ${dIdx === 0 ? 'active' : ''}`;
+          btn.textContent = diag.label;
+          btn.onclick = () => {
+            switcherBar.querySelectorAll(".diagram-tab-btn").forEach(b => b.classList.remove("active"));
+            btn.classList.add("active");
+            zoomContainer.innerHTML = diag.svg;
+          };
+          switcherBar.appendChild(btn);
+        });
+
+        // Add Side-by-Side Dual Comparison Tab Button if not explicitly defined
+        const hasDual = p.diagrams.some(d => d.label.includes("並列"));
+        if (!hasDual) {
+          const dualBtn = document.createElement("button");
+          dualBtn.className = "diagram-tab-btn";
+          dualBtn.textContent = "⚖️ 原圖與圖解並列";
+          dualBtn.onclick = () => {
+            switcherBar.querySelectorAll(".diagram-tab-btn").forEach(b => b.classList.remove("active"));
+            dualBtn.classList.add("active");
+            const targetDiag = p.diagrams.length > 2 ? p.diagrams[1] : p.diagrams[1];
+            zoomContainer.innerHTML = `
+              <div class="dual-diagram-comparison-grid">
+                <div class="dual-diagram-cell">
+                  <div class="dual-diagram-caption">📐 原始題圖 (情境配置)</div>
+                  ${p.diagrams[0].svg}
+                </div>
+                <div class="dual-diagram-cell">
+                  <div class="dual-diagram-caption">${targetDiag.label}</div>
+                  ${targetDiag.svg}
+                </div>
+              </div>
+            `;
+          };
+          switcherBar.appendChild(dualBtn);
+        }
+
+        zoomContainer.innerHTML = p.diagrams[0].svg;
+      } else {
+        switcherBar.style.display = "none";
+        zoomContainer.innerHTML = p.svg || "<p style='color:var(--text-dim);'>〔 本題無題圖 〕</p>";
+      }
+
+      // Answer & Solutions
+      const ansBadge = document.getElementById("ansBadge");
+      const cleanAns = (p.answer || "見詳解").replace(/\\n|\n/g, "<br>");
+      ansBadge.innerHTML = `講義公佈答案：<div style="margin-top:6px; line-height:1.6;"><strong>${cleanAns}</strong></div>`;
+
+      const methodsList = document.getElementById("methodsList");
+      methodsList.innerHTML = "";
+
+      if (p.solutions && p.solutions.length > 0) {
+        p.solutions.forEach(m => {
+          const card = document.createElement("div");
+          card.className = `method-card ${m.type || 'standard'}`;
+          
+          let stepsHtml = "";
+          if (m.steps) {
+            stepsHtml = m.steps.map((st, sIdx) => `
+              <li class="method-step">
+                <span class="step-num">${sIdx + 1}</span>
+                <div>${st}</div>
+              </li>
+            `).join("");
+          }
+
+          card.innerHTML = `
+            <div class="method-header">
+              <div class="method-title">${m.title}</div>
+            </div>
+            <ul class="method-steps">${stepsHtml}</ul>
+          `;
+          methodsList.appendChild(card);
+        });
+      } else {
+        methodsList.innerHTML = `
+          <div class="method-card standard">
+            <div class="method-header">
+              <div class="method-title">💡 官方參考答案與重點提示</div>
+            </div>
+            <p style="color: #cbd5e1; font-size: 1.05rem; line-height: 1.8;">
+              本題講義公佈標準答案為：<strong style="color: var(--accent-cyan); font-size: 1.2rem;">${p.answer}</strong>。<br>
+              請根據圖示之受力平衡（封閉三角形／力矩平衡）進行分析求解。
+            </p>
+          </div>
+        `;
+      }
+
+      // Re-trigger KaTeX
+      if (window.renderMathInElement) {
+        renderMathInElement(document.getElementById("problemMainArea"), {
+          delimiters: [
+            { left: "$$", right: "$$", display: true },
+            { left: "$", right: "$", display: false }
+          ],
+          throwOnError: false
+        });
+      }
+    }
+
+    function setViewerMode(mode) {
+      const tabProb = document.getElementById("tabProblem");
+      const tabSol = document.getElementById("tabSolution");
+      const mainArea = document.getElementById("problemMainArea");
+      const mainLayout = document.getElementById("viewerMainLayout");
+      const solArea = document.getElementById("solutionArea");
+
+      if (mode === "solution") {
+        tabProb.classList.remove("active");
+        tabSol.classList.add("active");
+        mainArea.classList.remove("mode-problem");
+        mainArea.classList.add("mode-solution");
+        mainLayout.classList.add("solution-wide-mode");
+        solArea.classList.remove("hidden");
+        if (window.renderMathInElement) {
+          renderMathInElement(solArea, {
+            delimiters: [
+              { left: "$$", right: "$$", display: true },
+              { left: "$", right: "$", display: false }
+            ],
+            throwOnError: false
+          });
+        }
+      } else {
+        tabSol.classList.remove("active");
+        tabProb.classList.add("active");
+        mainArea.classList.remove("mode-solution");
+        mainArea.classList.add("mode-problem");
+        mainLayout.classList.remove("solution-wide-mode");
+        solArea.classList.add("hidden");
+      }
+    }
+
+    function printCurrentExam(type) {
+      if (type === 'question') {
+        document.body.classList.add('print-question-only');
+        document.getElementById('solutionArea').classList.add('hidden');
+      } else {
+        document.body.classList.remove('print-question-only');
+        document.getElementById('solutionArea').classList.remove('hidden');
+      }
+      window.print();
+    }
+
+    // Modal Quiz Builder
+    function openQuizModal() {
+      const modal = document.getElementById("quizModal");
+      const grid = document.getElementById("quizSelectorGrid");
+      grid.innerHTML = "";
+
+      PHYSICS_PROBLEMS_DATA.forEach(p => {
+        const chip = document.createElement("div");
+        chip.className = `quiz-item-chip ${selectedQuizIds.has(p.id) ? 'selected' : ''}`;
+        chip.innerHTML = `<input type="checkbox" ${selectedQuizIds.has(p.id) ? 'checked' : ''}> <span>${p.id}</span>`;
+        chip.onclick = (e) => {
+          if (selectedQuizIds.has(p.id)) {
+            selectedQuizIds.delete(p.id);
+            chip.classList.remove("selected");
+            chip.querySelector("input").checked = false;
+          } else {
+            selectedQuizIds.add(p.id);
+            chip.classList.add("selected");
+            chip.querySelector("input").checked = true;
+          }
+          document.getElementById("selectedCountText").textContent = `已選 ${selectedQuizIds.size} 題`;
+        };
+        grid.appendChild(chip);
+      });
+
+      document.getElementById("selectedCountText").textContent = `已選 ${selectedQuizIds.size} 題`;
+      modal.classList.add("open");
+    }
+
+    function closeQuizModal() {
+      document.getElementById("quizModal").classList.remove("open");
+    }
+
+    function toggleSelectAllQuiz(select) {
+      const currentSec = document.getElementById("sectionSelect").value;
+      PHYSICS_PROBLEMS_DATA.forEach(p => {
+        let match = true;
+        if (currentSec === "範例" && !p.id.startsWith("problem")) match = false;
+        if (currentSec === "彈簧" && !p.id.startsWith("exercise") && p.id !== "practice") match = false;
+        if (currentSec === "力矩" && !p.id.startsWith("torque")) match = false;
+        if (currentSec === "平衡" && !p.id.startsWith("equil")) match = false;
+        if (currentSec === "摩擦力" && !p.id.startsWith("frict")) match = false;
+
+        if (match) {
+          if (select) selectedQuizIds.add(p.id);
+          else selectedQuizIds.delete(p.id);
+        }
+      });
+      openQuizModal();
+    }
+
+    function printSelectedQuiz() {
+      if (selectedQuizIds.size === 0) {
+        alert("請先至少勾選 1 題！");
+        return;
+      }
+      closeQuizModal();
+      window.location.href = `print.html`;
+    }
+  </script>
+</body>
+</html>

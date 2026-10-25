@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>靜摩擦力 20：斜角漸增未下滑斜面總作用力 | 高中物理靜力學</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+  <link rel="stylesheet" href="shared.css">
+</head>
+<body>
+  <div class="bg-glow"></div>
+  <div class="bg-grid"></div>
+
+  <div class="container">
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+      <div class="nav-links">
+        <a href="index.html" class="nav-btn primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          回目錄
+        </a>
+        <a href="frict19.html" class="nav-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          上一題 (摩擦 19)
+        </a>
+        <a href="frict21.html" class="nav-btn">
+          下一題 (摩擦 21)
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+      <div class="badge-wrapper">
+        <span class="badge badge-page">講義 靜力學-38</span>
+        <span class="badge badge-exam">總約束力與二力平衡本質</span>
+        <span class="badge badge-accent">靜摩擦力・練習 20</span>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+      <h1 class="main-title">靜摩擦力 20：<span class="gradient-text">斜面總作用力恆定性分析</span></h1>
+      <p class="subtitle">傾角 θ 由 0 漸增至 θ0・物體未滑動狀態・正向力與摩擦力合成向量二力平衡</p>
+    </header>
+
+    <!-- Main Problem Layout -->
+    <div class="problem-layout">
+      <!-- Left Column: Problem & Visualizer -->
+      <div class="problem-card">
+        <h2 class="section-title">
+          <span class="step-num">1</span>
+          題目情境與物理圖解
+        </h2>
+        <div class="problem-text">
+          <p>
+            將重量為 $W$ 的物體置放於一粗糙斜面上，已知物體與粗糙斜面間靜摩擦係數為 $\mu_s$，物體與粗糙斜面間動摩擦係數為 $\mu_k$，將斜面的斜角 $\theta$ 由零度漸漸增加到 $\theta_0$，但物體仍未沿斜面下滑，則在此過程中，下列敘述何者正確？
+          </p>
+        </div>
+
+        <!-- SVG Diagram -->
+        <div class="svg-container">
+          <svg viewBox="0 0 540 300" xmlns="http://www.w3.org/2000/svg">
+            <!-- Ground -->
+            <line x1="40" y1="240" x2="500" y2="240" stroke="#94a3b8" stroke-width="3"/>
+            <path d="M50 240 l-10 12 M80 240 l-10 12 M110 240 l-10 12 M140 240 l-10 12 M170 240 l-10 12 M200 240 l-10 12 M230 240 l-10 12 M260 240 l-10 12 M290 240 l-10 12 M320 240 l-10 12 M350 240 l-10 12 M380 240 l-10 12 M410 240 l-10 12 M440 240 l-10 12 M470 240 l-10 12" stroke="#64748b" stroke-width="1.5"/>
+
+            <!-- Incline: base from (460,240) to (140,240), height (140,110), inclined down-right ~ 22 deg -->
+            <polygon points="140,110 140,240 460,240" fill="rgba(30, 41, 59, 0.75)" stroke="#38bdf8" stroke-width="2.5"/>
+            <!-- Angle theta at right corner (460, 240) -->
+            <path d="M 410 240 A 50 50 0 0 1 418 219" fill="none" stroke="#facc15" stroke-width="2"/>
+            <text x="390" y="233" fill="#facc15" font-size="14" font-weight="bold">θ</text>
+
+            <!-- Block on Incline: center at (280, 167), slope angle 22 deg down-right -->
+            <g transform="translate(280, 167) rotate(22.1)">
+              <rect x="-35" y="-45" width="70" height="45" fill="rgba(56, 189, 248, 0.3)" stroke="#38bdf8" stroke-width="2.5" rx="3"/>
+              <text x="-8" y="-18" fill="#f1f5f9" font-size="16" font-weight="bold">W</text>
+
+              <!-- Normal force N: perpendicular upwards -->
+              <line x1="0" y1="-22.5" x2="0" y2="-75" stroke="#00e5ff" stroke-width="2" marker-end="url(#arrow-cyan-20)"/>
+              <text x="6" y="-60" fill="#00e5ff" font-size="12">N = W cosθ</text>
+
+              <!-- Static friction f: up-slope (pointing left in rotated frame) -->
+              <line x1="0" y1="0" x2="-45" y2="0" stroke="#00e676" stroke-width="2" marker-end="url(#arrow-green-20)"/>
+              <text x="-48" y="15" fill="#00e676" font-size="12">f = W sinθ</text>
+            </g>
+
+            <!-- Gravity W: from center (280, 150) straight down -->
+            <line x1="280" y1="150" x2="280" y2="230" stroke="#ef4444" stroke-width="3" marker-end="url(#arrow-red-20)"/>
+            <text x="290" y="210" fill="#ef4444" font-size="15" font-weight="bold">W (重力)</text>
+
+            <!-- Resultant Contact Force R: from center (280, 150) straight up! -->
+            <line x1="280" y1="150" x2="280" y2="60" stroke="#facc15" stroke-width="3.5" marker-end="url(#arrow-yellow-20)"/>
+            <text x="290" y="80" fill="#facc15" font-size="15" font-weight="bold">R = N + f = W (鉛直向上)</text>
+
+            <defs>
+              <marker id="arrow-cyan-20" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+                <polygon points="0 0, 8 4, 0 8" fill="#00e5ff"/>
+              </marker>
+              <marker id="arrow-green-20" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+                <polygon points="0 0, 8 4, 0 8" fill="#00e676"/>
+              </marker>
+              <marker id="arrow-red-20" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+                <polygon points="0 0, 8 4, 0 8" fill="#ef4444"/>
+              </marker>
+              <marker id="arrow-yellow-20" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+                <polygon points="0 0, 8 4, 0 8" fill="#facc15"/>
+              </marker>
+            </defs>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Right Column: Interactive Quiz & Solution -->
+      <div class="interactive-card">
+        <h2 class="section-title">
+          <span class="step-num">2</span>
+          即時作答與選項判斷
+        </h2>
+
+        <div class="options-grid" id="options">
+          <button class="option-btn" onclick="checkAnswer('A')">
+            <span class="opt-letter">A</span>
+            <span class="opt-text">斜面對物體的靜摩擦力不變</span>
+          </button>
+          <button class="option-btn" onclick="checkAnswer('B')">
+            <span class="opt-letter">B</span>
+            <span class="opt-text">斜面對物體的靜摩擦力漸減</span>
+          </button>
+          <button class="option-btn" onclick="checkAnswer('C')">
+            <span class="opt-letter">C</span>
+            <span class="opt-text">斜面對物體接觸面垂直的正向力漸增</span>
+          </button>
+          <button class="option-btn" onclick="checkAnswer('D')">
+            <span class="opt-letter">D</span>
+            <span class="opt-text">斜面對物體的作用力為 $W$</span>
+          </button>
+          <button class="option-btn" onclick="checkAnswer('E')">
+            <span class="opt-letter">E</span>
+            <span class="opt-text">「斜面對物體的作用力」和「物體所受重力」互為作用力與反作用力</span>
+          </button>
+        </div>
+
+        <div class="feedback" id="feedback"></div>
+
+        <button class="toggle-btn" id="toggleBtn" onclick="toggleSolution()">
+          📖 查看二力平衡與合力向量解析
+        </button>
+
+        <div class="solution-content" id="solution">
+          <h3 style="color: #38bdf8; margin-bottom: 0.75rem;">💡 核心物理觀念詳解</h3>
+          
+          <div class="step-box">
+            <strong>1. 物體靜止之二力平衡本質：</strong>
+            <p>
+              物體在斜面上維持靜止，僅受到兩大來源的外力：
+              <ul>
+                <li>地球對物體之向下重力 $\vec{W}$</li>
+                <li>斜面施於物體之總接觸作用力 $\vec{R}$（由垂直斜面的正向力 $\vec{N}$ 與平行斜面的靜摩擦力 $\vec{f}$ 合成）</li>
+              </ul>
+              由二力平衡條件：
+              $$\sum \vec{F} = \vec{R} + \vec{W} = 0 \implies \vec{R} = -\vec{W}$$
+              因此，不論傾角 $\theta$ 如何改變（只要物體仍保持靜止），斜面對物體的總作用力 $\vec{R}$ 大小永遠等於 $W$，方向永遠鉛直向上！
+              $$|\vec{R}| = \sqrt{N^2 + f^2} = \sqrt{(W\cos\theta)^2 + (W\sin\theta)^2} = W$$
+            </p>
+          </div>
+
+          <div class="step-box">
+            <strong>2. 各選項錯誤分析：</strong>
+            <p>
+              <ul>
+                <li><strong>(A)(B) 錯誤：</strong>靜摩擦力 $f = W\sin\theta$。當 $\theta$ 由 $0^\circ$ 漸增至 $\theta_0$ 時，$\sin\theta$ 增大，因此靜摩擦力 $f$ 逐漸增大。</li>
+                <li><strong>(C) 錯誤：</strong>正向力 $N = W\cos\theta$。隨 $\theta$ 增大，$\cos\theta$ 變小，故正向力漸減。</li>
+                <li><strong>(E) 錯誤：</strong>「斜面對物體的作用力」的反作用力是「物體對斜面的作用力」；而重力的反作用力是「物體吸引地球的萬有引力」。兩者作用受體不同，絕非作用力與反作用力。</li>
+              </ul>
+              故唯一正確選項為 <strong>(D)</strong>。
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const correctAns = 'D';
+
+    function checkAnswer(chosen) {
+      const fb = document.getElementById('feedback');
+      const btns = document.querySelectorAll('.option-btn');
+      
+      btns.forEach(btn => {
+        btn.classList.remove('selected', 'correct', 'wrong');
+        const letter = btn.querySelector('.opt-letter').textContent;
+        if (letter === chosen) {
+          btn.classList.add('selected');
+          if (chosen === correctAns) {
+            btn.classList.add('correct');
+          } else {
+            btn.classList.add('wrong');
+          }
+        }
+        if (letter === correctAns && chosen !== correctAns) {
+          btn.classList.add('correct');
+        }
+      });
+
+      if (chosen === correctAns) {
+        fb.className = 'feedback correct';
+        fb.innerHTML = '🎉 正確！物體只受重力 W 與斜面作用力 R。由二力平衡，R 必與 W 大小相等方向相反，故 R = W 恆成立！';
+      } else {
+        fb.className = 'feedback wrong';
+        fb.innerHTML = '❌ 不正確。注意：斜面作用力是正向力 N 與靜摩擦力 f 的合力，R = √(N² + f²) = W 恆等於重力！';
+      }
+    }
+
+    function toggleSolution() {
+      const sol = document.getElementById('solution');
+      const btn = document.getElementById('toggleBtn');
+      if (sol.classList.contains('show')) {
+        sol.classList.remove('show');
+        btn.textContent = '📖 查看二力平衡與合力向量解析';
+      } else {
+        sol.classList.add('show');
+        btn.textContent = '🔼 收起解析';
+        renderMathInElement(sol, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ]
+        });
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+      renderMathInElement(document.body, {
+        delimiters: [
+          {left: '$$', right: '$$', display: true},
+          {left: '$', right: '$', display: false}
+        ]
+      });
+    });
+  </script>
+</body>
+</html>

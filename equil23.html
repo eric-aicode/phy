@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>靜力平衡 23：均勻桿子重心力矩平衡懸繩張力分析 | 高中物理靜力學</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+  <link rel="stylesheet" href="shared.css">
+</head>
+<body>
+  <div class="bg-glow"></div>
+  <div class="bg-grid"></div>
+
+  <div class="container">
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+      <div class="nav-links">
+        <a href="index.html" class="nav-btn primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          回目錄
+        </a>
+        <a href="equil22.html" class="nav-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          上一題 (平衡 22)
+        </a>
+        <a href="equil24.html" class="nav-btn">
+          下一題 (平衡 24)
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+      <div class="badge-wrapper">
+        <span class="badge badge-page">講義 靜力學-27</span>
+        <span class="badge badge-exam">角度獨立性・力矩消去</span>
+        <span class="badge badge-accent">靜力平衡・練習 23</span>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+      <h1 class="main-title">靜力平衡 23：<span class="gradient-text">均勻桿傾斜懸掛之細繩張力分析</span></h1>
+      <p class="subtitle">桿重力臂與繩張力力臂等比縮放・傾角因子 cosθ 相消・懸繩張力與傾角無關</p>
+    </header>
+
+    <!-- Problem Showcase Card -->
+    <section class="card problem-card">
+      <div class="card-header">
+        <div class="card-icon">📖</div>
+        <div>
+          <h2>題目內容</h2>
+          <span class="card-tag">力學力矩平衡經典思維陷阱題</span>
+        </div>
+      </div>
+
+      <div class="problem-body">
+        <p>
+          有一支粗細各處相同且重量均勻分布的桿子，以重量不計的細繩，懸掛成三種不同傾斜角度，如圖所示。則圖中 $a$、$b$、$c$ 三條細繩的張力大小關係為：
+        </p>
+
+        <!-- SVG Diagram: 3 cases a, b, c -->
+        <div class="diagram-wrapper">
+          <svg viewBox="0 0 760 340" class="physics-svg" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="arrow-blue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#38bdf8"/>
+              </marker>
+              <marker id="arrow-red" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#f43f5e"/>
+              </marker>
+              <pattern id="diag-hatch" width="8" height="8" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse">
+                <line x1="0" y1="0" x2="0" y2="8" stroke="rgba(255,255,255,0.2)" stroke-width="1.2"/>
+              </pattern>
+            </defs>
+
+            <!-- Horizontal Ceiling across top -->
+            <rect x="30" y="25" width="400" height="14" fill="url(#diag-hatch)" stroke="#64748b" stroke-width="1.5"/>
+            <line x1="20" y1="39" x2="440" y2="39" stroke="#94a3b8" stroke-width="2"/>
+
+            <!-- Right suspension string: drops vertically from ceiling at x = 390 to rod's right end -->
+            <line x1="390" y1="39" x2="390" y2="240" stroke="#cbd5e1" stroke-width="2.5"/>
+            <circle cx="390" cy="39" r="3.5" fill="#e2e8f0"/>
+            <circle cx="390" cy="240" r="3.5" fill="#e2e8f0"/>
+
+            <!-- Three configurations of string on the left:
+                 Left ceiling anchors:
+                 a: at x = 70, drops down to rod end
+                 b: at x = 150, drops vertically down
+                 c: at x = 230, drops down-left
+            -->
+
+            <!-- Rod: extends from left end to right end (390, 240) -->
+            <!-- Case b (horizontal standard): from (150, 240) to (390, 240) -->
+            <!-- The diagram shows the rod at different tilted angles or three strings to same rod:
+                 Notice in handout: "以重量不計的細繩，懸掛成三種不同角度，如圖所示，則圖中 a、b、c 三條細繩的張力大小關係為："
+                 Right end is suspended by vertical string. Left end suspended by a (tilted left), b (vertical), c (tilted right).
+                 Let's draw the rod tilted, or show the three suspension strings a, b, c clearly!
+            -->
+            <!-- Rod representation -->
+            <line x1="120" y1="200" x2="390" y2="240" stroke="#38bdf8" stroke-width="8" stroke-linecap="round"/>
+            <text x="255" y="240" fill="#38bdf8" font-size="14" font-weight="800" text-anchor="middle">均勻桿 (重 W，長 L)</text>
+
+            <!-- String a: from ceiling (60, 39) down to left end (120, 200) -->
+            <line x1="60" y1="39" x2="120" y2="200" stroke="#f59e0b" stroke-width="3"/>
+            <circle cx="60" cy="39" r="4" fill="#f59e0b"/>
+            <text x="80" y="110" fill="#f59e0b" font-size="15" font-weight="800">a</text>
+
+            <!-- String b: from ceiling (120, 39) straight down to left end (120, 200) -->
+            <line x1="120" y1="39" x2="120" y2="200" stroke="#10b981" stroke-width="3"/>
+            <circle cx="120" cy="39" r="4" fill="#10b981"/>
+            <text x="130" y="110" fill="#10b981" font-size="15" font-weight="800">b</text>
+
+            <!-- String c: from ceiling (180, 39) down-left to left end (120, 200) -->
+            <line x1="180" y1="39" x2="120" y2="200" stroke="#a855f7" stroke-width="3"/>
+            <circle cx="180" cy="39" r="4" fill="#a855f7"/>
+            <text x="160" y="110" fill="#a855f7" font-size="15" font-weight="800">c</text>
+
+            <!-- Rod Center of Gravity -->
+            <circle cx="255" cy="220" r="5" fill="#f43f5e"/>
+            <line x1="255" y1="220" x2="255" y2="285" stroke="#f43f5e" stroke-width="2.5" marker-end="url(#arrow-red)"/>
+            <text x="265" y="280" fill="#f43f5e" font-size="13" font-weight="700">W (重力)</text>
+
+            <!-- Right suspension string label -->
+            <text x="405" y="140" fill="#cbd5e1" font-size="13">右端懸繩</text>
+            <text x="405" y="160" fill="#94a3b8" font-size="12">鉛直懸掛</text>
+
+            <!-- Right Box: Mathematical Proof of Invariance -->
+            <g transform="translate(450, 20)">
+              <rect x="0" y="0" width="290" height="300" rx="12" fill="rgba(15, 23, 42, 0.75)" stroke="#334155" stroke-width="1.5"/>
+              <text x="145" y="26" fill="#38bdf8" font-size="15" font-weight="700" text-anchor="middle">力矩平衡角度無關性證明</text>
+
+              <!-- Proof Content -->
+              <rect x="15" y="42" width="260" height="135" rx="6" fill="rgba(30, 41, 59, 0.6)" stroke="#475569" stroke-width="1"/>
+              <text x="25" y="65" fill="#10b981" font-size="13" font-weight="700">以右端支點列力矩平衡：</text>
+              <text x="35" y="88" fill="#cbd5e1" font-size="12">設桿傾角為 θ，長度為 L：</text>
+              <text x="35" y="110" fill="#38bdf8" font-size="13" font-family="'Fira Code', monospace">T·L·cos θ = W·(L/2)·cos θ</text>
+              <text x="35" y="134" fill="#cbd5e1" font-size="12">關鍵：兩側力臂之 cos θ 完美相消！</text>
+              <text x="35" y="158" fill="#f59e0b" font-size="14" font-weight="800">⇒ T = (1/2) W</text>
+
+              <!-- Summary Card Inside -->
+              <rect x="15" y="190" width="260" height="95" rx="6" fill="rgba(56, 189, 248, 0.1)" stroke="rgba(56, 189, 248, 0.25)" stroke-width="1"/>
+              <text x="25" y="215" fill="#cbd5e1" font-size="12">同理，以重心為支點時兩側力臂相等：</text>
+              <text x="25" y="238" fill="#f8fafc" font-size="13" font-weight="700">兩端懸繩張力必等值對稱</text>
+              <text x="25" y="262" fill="#38bdf8" font-size="15" font-weight="800">a = b = c = (1/2) W</text>
+            </g>
+          </svg>
+        </div>
+
+        <p class="question-prompt">
+          試問圖中 $a$、$b$、$c$ 三條細繩的張力大小關係為何？
+        </p>
+
+        <!-- Options Container -->
+        <div class="options-container">
+          <div class="option-card" data-option="A">
+            <span class="option-label">A</span>
+            <div class="option-content">
+              <span class="katex-text">$a > b > c$</span>
+            </div>
+          </div>
+
+          <div class="option-card" data-option="B">
+            <span class="option-label">B</span>
+            <div class="option-content">
+              <span class="katex-text">$a = b = c$</span>
+            </div>
+          </div>
+
+          <div class="option-card" data-option="C">
+            <span class="option-label">C</span>
+            <div class="option-content">
+              <span class="katex-text">$a < b < c$</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Feedback Alert Box -->
+        <div class="feedback-box" id="feedbackBox">
+          <div class="feedback-icon" id="feedbackIcon"></div>
+          <div class="feedback-text" id="feedbackText"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Collapsible Solution Card -->
+    <section class="card solution-card collapsed" id="solutionCard">
+      <div class="card-header toggle-header" id="solutionToggle">
+        <div class="card-icon">💡</div>
+        <div>
+          <h2>核心解析與詳細推導</h2>
+          <span class="card-tag">點擊展開 / 收合完整解析</span>
+        </div>
+        <span class="solution-status">點擊展開完整剖析</span>
+      </div>
+
+      <div class="solution-content">
+        <div class="solution-step">
+          <span class="step-num">核心力學本質</span>
+          <h3>傾斜力臂因子 $\cos\theta$ 之相消原理</h3>
+          <p>
+            許多同學直覺上常認為桿子傾斜會改變懸繩張力，但只要列出力矩方程式即可發現真相：
+          </p>
+          <p>
+            設桿長為 $L$，重量為 $W$。<br>
+            因桿為<strong>均勻桿</strong>，其重心恰在正中央，距離兩端點皆為 $\frac{L}{2}$。<br>
+            以右端懸點為轉軸，此時右端繩張力力臂為 $0$，僅需考慮左端懸繩鉛直分量 $T$ 與桿重 $W$：
+            $$\tau_{\text{逆}} = \tau_{\text{順}}$$
+            $$T \times (L \cos\theta) = W \times \left(\frac{L}{2}\cos\theta\right)$$
+            觀察等式兩邊：
+            <ul>
+              <li>桿長 $L$ 相互約分消去。</li>
+              <li>水平投影力臂因子 $\cos\theta$ <strong>在等號兩側完全相消</strong>！</li>
+            </ul>
+            直接解得：
+            $$T = \frac{1}{2}W$$
+          </p>
+        </div>
+
+        <div class="solution-step">
+          <span class="step-num">重心對稱視角</span>
+          <h3>以重心為支點之分析</h3>
+          <p>
+            若改以桿之重心為支點：
+          </p>
+          <ul>
+            <li>重力 $W$ 通過支點，力矩為零。</li>
+            <li>左右兩端懸點距重心的力臂完全相等（皆為 $\frac{L}{2}\cos\theta$）。</li>
+            <li>因此欲達成轉動力矩平衡，兩端細繩之向上支撐力必嚴格相等，各分擔一半桿重：
+              $$T_{\text{左}} = T_{\text{右}} = \frac{1}{2}W$$
+            </li>
+          </ul>
+          <p>
+            因此，無論是 $a$、$b$ 還是 $c$ 狀態，細繩張力量值皆為 $\frac{1}{2}W$，大小完全相同！
+          </p>
+          <div class="conclusion-box">
+            <strong>結論：</strong> 本題正確答案為 <strong>(B) $a = b = c$</strong>。
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Navigation Footer -->
+    <footer class="footer-nav">
+      <a href="equil22.html" class="nav-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+        上一題 (平衡 22)
+      </a>
+      <a href="index.html" class="nav-btn primary">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        單元總覽
+      </a>
+      <a href="equil24.html" class="nav-btn">
+        下一題 (平衡 24)
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+    </footer>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // KaTeX Auto-render
+      if (typeof renderMathInElement === 'function') {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ],
+          throwOnError: false
+        });
+      }
+
+      // Quiz Interaction
+      const correctAnswer = "B";
+      const optionCards = document.querySelectorAll(".option-card");
+      const feedbackBox = document.getElementById("feedbackBox");
+      const feedbackIcon = document.getElementById("feedbackIcon");
+      const feedbackText = document.getElementById("feedbackText");
+      const solutionCard = document.getElementById("solutionCard");
+
+      optionCards.forEach(card => {
+        card.addEventListener("click", function() {
+          const selected = this.getAttribute("data-option");
+
+          optionCards.forEach(c => c.classList.remove("selected", "correct", "wrong"));
+          this.classList.add("selected");
+
+          feedbackBox.classList.remove("correct", "wrong");
+          feedbackBox.classList.add("show");
+
+          if (selected === correctAnswer) {
+            this.classList.add("correct");
+            feedbackBox.classList.add("correct");
+            feedbackIcon.innerHTML = "🎉";
+            feedbackText.innerHTML = "<strong>直擊本質！完全正確！</strong><br>以右端為轉軸：$T \\cdot L\\cos\\theta = W \\cdot \\frac{L}{2}\\cos\\theta$。<br>傾角力臂因子 $\\cos\\theta$ 兩邊完全相消，故張力均為 $T = \\frac{1}{2}W$，恆有 $a = b = c$！";
+            solutionCard.classList.remove("collapsed");
+            const tag = solutionCard.querySelector(".solution-status");
+            if (tag) tag.textContent = "點擊收合詳解";
+          } else {
+            this.classList.add("wrong");
+            feedbackBox.classList.add("wrong");
+            feedbackIcon.innerHTML = "💡";
+            feedbackText.innerHTML = `<strong>選了 (${selected})，落入直覺陷阱囉！</strong> 提示：列出以端點為轉軸之力矩平衡，觀察繩張力與重力力臂中的 $\\cos\\theta$ 是否會相消！`;
+          }
+
+          if (typeof renderMathInElement === 'function') {
+            renderMathInElement(feedbackText, {
+              delimiters: [
+                {left: '$$', right: '$$', display: true},
+                {left: '$', right: '$', display: false}
+              ],
+              throwOnError: false
+            });
+          }
+        });
+      });
+
+      // Solution toggle
+      const solutionToggle = document.getElementById("solutionToggle");
+      solutionToggle.addEventListener("click", function() {
+        solutionCard.classList.toggle("collapsed");
+        const isCollapsed = solutionCard.classList.contains("collapsed");
+        const statusSpan = solutionToggle.querySelector(".solution-status");
+        if (statusSpan) {
+          statusSpan.textContent = isCollapsed ? "點擊展開完整剖析" : "點擊收合詳解";
+        }
+      });
+    });
+  </script>
+</body>
+</html>

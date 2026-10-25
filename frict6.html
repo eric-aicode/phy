@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>靜摩擦力 06：小蟲爬半球碗壁之最大鉛直高度 | 高中物理靜力學</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+  <link rel="stylesheet" href="shared.css">
+</head>
+<body>
+  <div class="bg-glow"></div>
+  <div class="bg-grid"></div>
+
+  <div class="container">
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+      <div class="nav-links">
+        <a href="index.html" class="nav-btn primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          回目錄
+        </a>
+        <a href="frict5.html" class="nav-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          上一題 (摩擦 05)
+        </a>
+        <a href="frict7.html" class="nav-btn">
+          下一題 (摩擦 07)
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+      <div class="badge-wrapper">
+        <span class="badge badge-page">講義 靜力學-35</span>
+        <span class="badge badge-exam">曲面切向平衡・最大靜摩擦</span>
+        <span class="badge badge-accent">靜摩擦力・練習 06</span>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+      <h1 class="main-title">靜摩擦力 06：<span class="gradient-text">小蟲爬半球碗壁之最大鉛直高度</span></h1>
+      <p class="subtitle">圓弧切線滑動極限・正切摩擦角關係・幾何高度投影精準計算</p>
+    </header>
+
+    <!-- Main Problem Layout -->
+    <div class="problem-layout">
+      <!-- Left Column: Problem & Visualizer -->
+      <div class="problem-card">
+        <h2 class="section-title">
+          <span class="step-num">1</span>
+          題目情境與物理圖解
+        </h2>
+        <div class="problem-text">
+          <p>
+            一小蟲在半徑為 $R$ 之半球面碗壁沿壁上爬，若蟲與碗壁間的靜摩擦係數為 $\mu_s = \sqrt{3}$，則此小蟲可爬昇距碗底之最大鉛直高度為若干？
+          </p>
+        </div>
+
+        <div class="diagram-container">
+          <div class="diagram-header">
+            <span class="diagram-tag">半球碗力學切向分解圖解</span>
+            <span class="diagram-hint">當沿切線之下滑分力恰等於最大靜摩擦力時達到臨界極限</span>
+          </div>
+          <svg class="interactive-diagram" viewBox="0 0 540 360" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="arrowRed" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+                <path d="M0,0 L0,6 L9,3 z" fill="#ef4444" />
+              </marker>
+              <marker id="arrowGreen" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+                <path d="M0,0 L0,6 L9,3 z" fill="#10b981" />
+              </marker>
+              <marker id="arrowCyan" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+                <path d="M0,0 L0,6 L9,3 z" fill="#06b6d4" />
+              </marker>
+              <linearGradient id="bowlGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.15"/>
+                <stop offset="100%" stop-color="#1e3a8a" stop-opacity="0.3"/>
+              </linearGradient>
+            </defs>
+
+            <!-- Hemispherical Bowl: Center at (270, 90), Radius R = 180 -->
+            <!-- Bowl bottom at y = 90 + 180 = 270. Left rim (90, 90), Right rim (450, 90) -->
+            <path d="M90,90 A180,180 0 0,0 450,90 Z" fill="url(#bowlGrad)" stroke="#64748b" stroke-width="3"/>
+            <!-- Outer stand / rim -->
+            <line x1="70" y1="90" x2="470" y2="90" stroke="#94a3b8" stroke-width="4"/>
+
+            <!-- Center O of bowl -->
+            <circle cx="270" cy="90" r="4" fill="#f59e0b"/>
+            <text x="270" y="75" fill="#f59e0b" font-size="14" font-weight="bold" text-anchor="middle">球心 O</text>
+
+            <!-- Vertical center dashed line (radius) -->
+            <line x1="270" y1="90" x2="270" y2="270" stroke="#64748b" stroke-dasharray="4,4" stroke-width="1.5"/>
+            <text x="280" y="260" fill="#94a3b8" font-size="12">碗底</text>
+
+            <!-- Position of bug at critical angle θ = 60° from vertical -->
+            <!-- Center at (270, 90). Angle from downward vertical: 60° to left -->
+            <!-- x = 270 - 180 * sin(60°) = 270 - 155.88 = 114.1 -->
+            <!-- y = 90 + 180 * cos(60°) = 90 + 90 = 180 -->
+            <line x1="270" y1="90" x2="114" y2="180" stroke="#f59e0b" stroke-width="2"/>
+            <text x="200" y="125" fill="#f59e0b" font-size="13" font-weight="bold">R</text>
+
+            <!-- Angle θ arc at O -->
+            <path d="M270,140 A50,50 0 0,1 227,115" fill="none" stroke="#38bdf8" stroke-width="2"/>
+            <text x="240" y="150" fill="#38bdf8" font-size="13" font-weight="bold">θ=60°</text>
+
+            <!-- Bug at (114, 180) -->
+            <circle cx="114" cy="180" r="8" fill="#ef4444" stroke="#ffffff" stroke-width="2"/>
+            <text x="75" y="175" fill="#f8fafc" font-size="13" font-weight="bold">小蟲</text>
+
+            <!-- Forces on bug at (114, 180) -->
+            <!-- 1. Normal N pointing to center (up-right along radius) -->
+            <line x1="114" y1="180" x2="192" y2="135" stroke="#06b6d4" stroke-width="3" marker-end="url(#arrowCyan)"/>
+            <text x="175" y="125" fill="#06b6d4" font-size="13" font-weight="bold">N</text>
+
+            <!-- 2. Friction fs pointing along tangent (up-left, perpendicular to radius) -->
+            <!-- Radius vector: dx = -156, dy = 90. Tangent (up-left): dx = -90, dy = -156 -->
+            <!-- Unit tangent: (-0.5, -0.866). Length 60: dx = -30, dy = -52 => (84, 128) -->
+            <line x1="114" y1="180" x2="84" y2="128" stroke="#10b981" stroke-width="3" marker-end="url(#arrowGreen)"/>
+            <text x="50" y="125" fill="#10b981" font-size="13" font-weight="bold">fs (靜摩擦)</text>
+
+            <!-- 3. Gravity mg pointing DOWN -->
+            <line x1="114" y1="180" x2="114" y2="255" stroke="#ef4444" stroke-width="3" marker-end="url(#arrowRed)"/>
+            <text x="122" y="245" fill="#ef4444" font-size="13" font-weight="bold">mg</text>
+
+            <!-- Height dimensions on right -->
+            <line x1="390" y1="180" x2="480" y2="180" stroke="#38bdf8" stroke-dasharray="3,3" stroke-width="1.5"/>
+            <line x1="270" y1="270" x2="480" y2="270" stroke="#38bdf8" stroke-dasharray="3,3" stroke-width="1.5"/>
+
+            <line x1="470" y1="180" x2="470" y2="270" stroke="#38bdf8" stroke-width="2"/>
+            <line x1="465" y1="180" x2="475" y2="180" stroke="#38bdf8" stroke-width="2"/>
+            <line x1="465" y1="270" x2="475" y2="270" stroke="#38bdf8" stroke-width="2"/>
+            <text x="495" y="230" fill="#38bdf8" font-size="15" font-weight="bold">h = R/2</text>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Right Column: Interactive Quiz -->
+      <div class="quiz-card">
+        <h2 class="section-title">
+          <span class="step-num">2</span>
+          自我檢測與觀念選擇
+        </h2>
+        
+        <div class="question-box">
+          <p class="question-stem">
+            由切線與法線方向的靜力平衡極限，此小蟲可爬昇距碗底的最大鉛直高度 $h$ 為若干？
+          </p>
+
+          <div class="options-list">
+            <label class="option-item" onclick="selectOption(0)">
+              <input type="radio" name="opt" value="0">
+              <span class="opt-letter">A</span>
+              <span class="opt-content">$\dfrac{R}{\sqrt{2}}$</span>
+            </label>
+            <label class="option-item" onclick="selectOption(1)">
+              <input type="radio" name="opt" value="1">
+              <span class="opt-letter">B</span>
+              <span class="opt-content">$\dfrac{R}{\sqrt{3}}$</span>
+            </label>
+            <label class="option-item" onclick="selectOption(2)">
+              <input type="radio" name="opt" value="2">
+              <span class="opt-letter">C</span>
+              <span class="opt-content">$\dfrac{R}{2}$</span>
+            </label>
+            <label class="option-item" onclick="selectOption(3)">
+              <input type="radio" name="opt" value="3">
+              <span class="opt-letter">D</span>
+              <span class="opt-content">$\dfrac{R}{3}$</span>
+            </label>
+            <label class="option-item" onclick="selectOption(4)">
+              <input type="radio" name="opt" value="4">
+              <span class="opt-letter">E</span>
+              <span class="opt-content">$\dfrac{R}{6}$</span>
+            </label>
+          </div>
+
+          <div class="quiz-actions">
+            <button class="btn btn-primary" onclick="checkAnswer()">確認答案</button>
+            <button class="btn btn-secondary" onclick="toggleSolution()">查看完整詳解</button>
+          </div>
+
+          <div id="feedback" class="feedback-box"></div>
+        </div>
+
+        <!-- Detailed Solution (Collapsible) -->
+        <div id="solutionBox" class="solution-card">
+          <h3 class="solution-title">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            詳盡解析與物理思維
+          </h3>
+          <div class="solution-content">
+            <div class="step-card">
+              <h4>步驟一：沿切線與法線建立坐標軸</h4>
+              <p>
+                設小蟲所處位置的半徑與鉛直向下夾角為 $\theta$（即該處碗壁切線與水平面夾角亦為 $\theta$）：
+              </p>
+              <ul>
+                <li><strong>法線方向（沿半徑指向球心）：</strong>正向力 $N = mg\cos\theta$。</li>
+                <li><strong>切線方向（沿碗壁向上）：</strong>小蟲欲往上爬或受重力沿切線向下滑，下滑分力為 $mg\sin\theta$。</li>
+              </ul>
+            </div>
+
+            <div class="step-card">
+              <h4>步驟二：列出最大靜摩擦力之臨界條件</h4>
+              <p>
+                當小蟲爬到最高點臨界時，下滑分力恰好達到最大靜摩擦力極限：
+              </p>
+              $$mg\sin\theta = f_{s,\max} = \mu_s N = \mu_s (mg\cos\theta)$$
+              <p>等式兩邊同除以 $mg\cos\theta$：</p>
+              $$\tan\theta = \mu_s = \sqrt{3}$$
+              $$\therefore \theta = 60^\circ$$
+            </div>
+
+            <div class="step-card">
+              <h4>步驟三：計算距碗底之鉛直高度 $h$</h4>
+              <p>
+                由半球面幾何投影：
+              </p>
+              $$h = R - R\cos\theta = R(1 - \cos 60^\circ) = R\left(1 - \frac{1}{2}\right) = \frac{R}{2}$$
+            </div>
+
+            <div class="highlight-summary">
+              <strong>名師核心點撥：</strong><br>
+              曲面上每一點相當於一個局部斜面，斜角即為偏角 $\theta$。由斜面自滑臨界條件 $\tan\theta = \mu_s$，直接解得臨界角 $\theta = 60^\circ$，代入碗底高度公式 $h = R(1-\cos\theta) = \dfrac{R}{2}$，快速精準！正確答案為 <strong>(C)</strong>。
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const correctOpt = 2;
+
+    function selectOption(idx) {
+      const items = document.querySelectorAll('.option-item');
+      items.forEach((item, i) => {
+        const radio = item.querySelector('input');
+        if (i === idx) {
+          item.classList.add('selected');
+          radio.checked = true;
+        } else {
+          item.classList.remove('selected');
+          radio.checked = false;
+        }
+      });
+    }
+
+    function checkAnswer() {
+      const selected = document.querySelector('input[name="opt"]:checked');
+      const feedback = document.getElementById('feedback');
+      if (!selected) {
+        feedback.innerHTML = '<span style="color:#f59e0b;">請先點選一個選項！</span>';
+        return;
+      }
+      const val = parseInt(selected.value);
+      if (val === correctOpt) {
+        feedback.innerHTML = '<span style="color:#10b981; font-weight:bold;">🎉 答對了！tanθ = √3 得 θ=60°，爬升最大高度為 R/2 (C)！</span>';
+      } else {
+        feedback.innerHTML = '<span style="color:#ef4444; font-weight:bold;">❌ 答案不正確，請注意高度是距「碗底」的距離 h = R(1 - cosθ)。</span>';
+      }
+    }
+
+    function toggleSolution() {
+      const sol = document.getElementById('solutionBox');
+      sol.classList.toggle('show');
+      if (sol.classList.contains('show')) {
+        renderMathInElement(sol, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ],
+          throwOnError: false
+        });
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderMathInElement(document.body, {
+        delimiters: [
+          {left: '$$', right: '$$', display: true},
+          {left: '$', right: '$', display: false}
+        ],
+        throwOnError: false
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>靜力平衡 36：均質棒斜倚垂直壁與三力共點幾何 | 高中物理靜力學</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+  <link rel="stylesheet" href="shared.css">
+</head>
+<body>
+  <div class="bg-glow"></div>
+  <div class="bg-grid"></div>
+
+  <div class="container">
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+      <div class="nav-links">
+        <a href="index.html" class="nav-btn primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          回目錄
+        </a>
+        <a href="equil35.html" class="nav-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          上一題 (平衡 35)
+        </a>
+        <a href="equil37.html" class="nav-btn">
+          下一題 (平衡 37)
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+      <div class="badge-wrapper">
+        <span class="badge badge-page">講義 靜力學-30</span>
+        <span class="badge badge-exam">三力共點・等腰中線垂直</span>
+        <span class="badge badge-accent">靜力平衡・練習 36 (多選)</span>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+      <h1 class="main-title">靜力平衡 36：<span class="gradient-text">均質棒斜倚垂直壁與三力共點幾何</span></h1>
+      <p class="subtitle">等腰三角形幾何性質・重心中點延伸線・拉密定理與勾股正交合成</p>
+    </header>
+
+    <!-- Main Problem Layout -->
+    <div class="problem-layout">
+      <!-- Left Column: Problem & Visualizer -->
+      <div class="problem-card">
+        <h2 class="section-title">
+          <span class="step-num">1</span>
+          題目情境與物理圖解
+        </h2>
+        <div class="problem-text">
+          <p>
+            如圖所示，一均質棒 $AB$ 重 $W$，$B$ 端以細繩繫於鉛直壁 $C$ 點上，另一端 $A$ 則倚靠於鉛直壁且位於 $C$ 點之正下方。
+          </p>
+          <p>
+            已知 $\overline{AB}=\overline{AC}$，平衡時棒與鉛直壁成 $\alpha$ 夾角。下列敘述哪些正確？<strong>（多選）</strong>
+          </p>
+        </div>
+
+        <div class="interactive-container">
+          <div style="font-size: 0.88rem; color: var(--text-dim); margin-bottom: 8px; display: flex; justify-content: space-between;">
+            <span>📐 三力匯聚交點 D 與正交向量分析</span>
+            <span style="color: var(--accent-cyan);">AD ⊥ BC 且 D 為繩 BC 中點</span>
+          </div>
+          <svg viewBox="0 0 540 380" class="diagram-svg" style="background: rgba(15, 23, 42, 0.7); border-radius: 8px;">
+            <defs>
+              <marker id="arr-c" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#38bdf8"/>
+              </marker>
+              <marker id="arr-g" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#00e676"/>
+              </marker>
+              <marker id="arr-r" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#f43f5e"/>
+              </marker>
+              <marker id="arr-y" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#fbbf24"/>
+              </marker>
+            </defs>
+
+            <!-- Vertical Wall -->
+            <line x1="120" y1="40" x2="120" y2="340" stroke="#64748b" stroke-width="5"/>
+            <!-- Wall hatchings -->
+            <line x1="100" y1="60" x2="120" y2="80" stroke="#475569" stroke-width="2"/>
+            <line x1="100" y1="120" x2="120" y2="140" stroke="#475569" stroke-width="2"/>
+            <line x1="100" y1="180" x2="120" y2="200" stroke="#475569" stroke-width="2"/>
+            <line x1="100" y1="240" x2="120" y2="260" stroke="#475569" stroke-width="2"/>
+            <line x1="100" y1="300" x2="120" y2="320" stroke="#475569" stroke-width="2"/>
+
+            <!-- Points: A=(120, 280), C=(120, 80) => length AC = 200 -->
+            <!-- Rod AB: angle alpha with wall. Let alpha = 50 deg.
+                 length AB = 200. B = (120 + 200*sin(50), 280 - 200*cos(50)) = (120 + 153.2, 280 - 128.5) = (273, 151) -->
+            <!-- String BC: from C(120, 80) to B(273, 151) -->
+            <!-- Midpoint of BC is D: D = ((120+273)/2, (80+151)/2) = (196.5, 115.5) -->
+            <!-- Midpoint of AB is E: E = ((120+273)/2, (280+151)/2) = (196.5, 215.5) -->
+
+            <!-- String BC -->
+            <line x1="120" y1="80" x2="273" y2="151" stroke="#f43f5e" stroke-width="3" stroke-dasharray="6 3"/>
+            <!-- Tension arrow along BC towards C -->
+            <line x1="196.5" y1="115.5" x2="145" y2="92" stroke="#f43f5e" stroke-width="3" marker-end="url(#arr-r)"/>
+            <text x="145" y="75" fill="#f43f5e" font-size="14" font-weight="bold">張力 T</text>
+
+            <!-- Rod AB -->
+            <line x1="120" y1="280" x2="273" y2="151" stroke="#f8fafc" stroke-width="7" stroke-linecap="round"/>
+            <line x1="120" y1="280" x2="273" y2="151" stroke="#38bdf8" stroke-width="3" stroke-linecap="round"/>
+
+            <!-- Angle alpha at A -->
+            <path d="M 120 230 A 50 50 0 0 1 152 253" fill="none" stroke="#fbbf24" stroke-width="2"/>
+            <text x="135" y="240" fill="#fbbf24" font-size="14" font-weight="bold">α</text>
+
+            <!-- Gravity line from E(196.5, 215.5) down and up to D -->
+            <circle cx="196.5" cy="215.5" r="5" fill="#fbbf24"/>
+            <text x="205" y="222" fill="#fbbf24" font-size="13">E (中點)</text>
+            <!-- Vertical line passing through E and D -->
+            <line x1="196.5" y1="90" x2="196.5" y2="300" stroke="#fbbf24" stroke-width="2" stroke-dasharray="4 3"/>
+            <line x1="196.5" y1="215.5" x2="196.5" y2="290" stroke="#fbbf24" stroke-width="3" marker-end="url(#arr-y)"/>
+            <text x="205" y="285" fill="#fbbf24" font-size="14" font-weight="bold">重力 W</text>
+
+            <!-- Line AD: Median of isosceles triangle CAB -->
+            <!-- D is (196.5, 115.5) -->
+            <circle cx="196.5" cy="115.5" r="5" fill="#00e676"/>
+            <text x="205" y="115" fill="#00e676" font-size="13" font-weight="bold">D (三力共點)</text>
+            <line x1="120" y1="280" x2="235" y2="33" stroke="#00e676" stroke-width="2.5" stroke-dasharray="4 3"/>
+            <!-- Vector R along AD -->
+            <line x1="120" y1="280" x2="180" y2="151" stroke="#00e676" stroke-width="3.5" marker-end="url(#arr-g)"/>
+            <text x="110" y="170" fill="#00e676" font-size="14" font-weight="bold">作用力 R</text>
+
+            <!-- Right-angle mark at D between AD and BC -->
+            <rect x="195" y="115" width="12" height="12" fill="none" stroke="#f8fafc" stroke-width="1.5" transform="rotate(-25 196.5 115.5)"/>
+
+            <!-- Right-side Formula / Properties Card -->
+            <g transform="translate(300, 40)">
+              <rect x="0" y="0" width="220" height="230" fill="rgba(30, 41, 59, 0.9)" stroke="rgba(255,255,255,0.15)" rx="8"/>
+              <text x="14" y="26" fill="#38bdf8" font-size="13" font-weight="bold">幾何與力學核心關鍵</text>
+              <text x="14" y="55" fill="#e2e8f0" font-size="12">1. △CAB 為等腰 (AB = AC)</text>
+              <text x="14" y="80" fill="#e2e8f0" font-size="12">2. ED // 鉛直壁 AC 且 E 為中點</text>
+              <text x="28" y="100" fill="#fbbf24" font-size="11">⇒ D 必為 BC 之中點！</text>
+              <text x="14" y="125" fill="#e2e8f0" font-size="12">3. 等腰底邊中線 AD ⊥ BC</text>
+              <text x="28" y="145" fill="#00e676" font-size="11">⇒ 向量 R 必垂直張力 T！</text>
+              <text x="14" y="175" fill="#e2e8f0" font-size="12">4. 閉合直角力三角形：</text>
+              <text x="28" y="195" fill="#f43f5e" font-size="12">T² + R² = W²</text>
+              <text x="28" y="215" fill="#38bdf8" font-size="12">R = W cos(α/2)</text>
+            </g>
+
+            <!-- Point Labels -->
+            <text x="100" y="290" fill="#f8fafc" font-size="16" font-weight="bold">A</text>
+            <text x="100" y="80" fill="#f8fafc" font-size="16" font-weight="bold">C</text>
+            <text x="285" y="155" fill="#f8fafc" font-size="16" font-weight="bold">B</text>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Right Column: Interactive Quiz -->
+      <div class="problem-card">
+        <h2 class="section-title">
+          <span class="step-num">2</span>
+          自我檢測與即時核對 (多選題)
+        </h2>
+        <p style="color: var(--text-dim); font-size: 0.95rem; margin-bottom: 16px;">
+          請依據幾何對稱與力平衡條件，選出所有正確的敘述（可複選）：
+        </p>
+
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="toggleMultiOption(this, 'A')">
+            <span class="opt-letter">A</span>
+            <span class="opt-text">棒受重力、繩上張力 $T$ 及壁之作用力 $R$ 三力而平衡</span>
+          </div>
+          <div class="quiz-option" onclick="toggleMultiOption(this, 'B')">
+            <span class="opt-letter">B</span>
+            <span class="opt-text">$R$ 之方向與鉛直壁成垂直</span>
+          </div>
+          <div class="quiz-option" onclick="toggleMultiOption(this, 'C')">
+            <span class="opt-letter">C</span>
+            <span class="opt-text">$W$、$T$ 及 $R$ 必經過同一點</span>
+          </div>
+          <div class="quiz-option" onclick="toggleMultiOption(this, 'D')">
+            <span class="opt-letter">D</span>
+            <span class="opt-text">$R = W \cdot \sin\dfrac{\alpha}{2}$</span>
+          </div>
+          <div class="quiz-option" onclick="toggleMultiOption(this, 'E')">
+            <span class="opt-letter">E</span>
+            <span class="opt-text">$T = \sqrt{W^2 - R^2}$</span>
+          </div>
+        </div>
+
+        <div class="quiz-actions">
+          <button class="nav-btn primary" onclick="checkMultiAnswer()">核對答案</button>
+          <button class="nav-btn" onclick="toggleSolution()">查看解析</button>
+        </div>
+
+        <div id="feedback" class="quiz-feedback"></div>
+      </div>
+    </div>
+
+    <!-- Solution Section -->
+    <div id="solution-card" class="solution-card">
+      <h2 class="section-title">
+        <span class="step-num">3</span>
+        完整觀念解析與推導過程
+      </h2>
+      <div class="solution-content">
+        <div class="formula-box">
+          $$\triangle CAB \text{ 為等腰三角形 } (\overline{AB} = \overline{AC}) \implies \overline{AD} \perp \overline{BC}$$
+          $$\vec{W} + \vec{T} + \vec{R} = 0 \quad (\vec{T} \perp \vec{R}) \implies T^2 + R^2 = W^2$$
+          $$R = W \cos\frac{\alpha}{2}, \quad T = W \sin\frac{\alpha}{2}$$
+        </div>
+
+        <div class="step-card">
+          <h4>步驟一：三力平衡不平行必共點</h4>
+          <p>
+            木棒 $AB$ 處於靜止平衡狀態，受到三個力作用：
+          </p>
+          <ol>
+            <li>重力 $W$：均質棒的重心在其幾何中點 $E$ 上，方向鉛直向下。</li>
+            <li>細繩張力 $T$：沿著細繩 $BC$ 方向指向懸掛點 $C$。</li>
+            <li>壁之作用力 $R$：由牆面在 $A$ 點施加於棒的合力（包含正向力與靜摩擦力）。</li>
+          </ol>
+          <p>
+            三力彼此不平行，由靜力平衡之「三力匯聚原理」，此三力的作用線延長線必定<strong>相交於同一點 $D$</strong>。故 <strong>(A)、(C) 正確</strong>。
+          </p>
+        </div>
+
+        <div class="step-card">
+          <h4>步驟二：幾何幾何證明 —— 交點 D 與正交關係</h4>
+          <p>
+            重力作用線通過 $AB$ 之中點 $E$，且鉛直向下平行於垂直牆面 $AC$（$ED \parallel AC$）。
+          </p>
+          <p>
+            在 $\triangle CAB$ 中，因為 $ED \parallel AC$ 且 $E$ 為 $AB$ 之中點，由比例線段定理可知，<strong>$D$ 點必定亦為繩子 $BC$ 的中點</strong>！
+          </p>
+          <p>
+            已知 $\overline{AC} = \overline{AB}$，故 $\triangle CAB$ 為頂角為 $\alpha$ 的等腰三角形。由等腰三角形性質，底邊中線必定垂直於底邊：
+          </p>
+          $$\overline{AD} \perp \overline{BC}$$
+          <p>
+            這說明了牆面作用力 $R$（沿 $AD$ 方向）與繩子張力 $T$（沿 $BC$ 方向）<strong>互相垂直</strong>！
+          </p>
+        </div>
+
+        <div class="step-card">
+          <h4>步驟三：力的量值推導與選項判定</h4>
+          <p>
+            既然 $\vec{T} \perp \vec{R}$，則三力封閉三角形為以重力 $W$ 為斜邊的<strong>直角三角形</strong>！
+          </p>
+          <ol>
+            <li>
+              由畢氏定理：$T^2 + R^2 = W^2 \implies T = \sqrt{W^2 - R^2}$。故 <strong>(E) 正確</strong>。
+            </li>
+            <li>
+              因為 $\triangle CAB$ 為頂角為 $\alpha$ 的等腰三角形，底邊中線 $AD$ 亦為頂角的角平分線，故 $\angle CAD = \frac{\alpha}{2}$。
+            </li>
+            <li>
+              作用力 $R$ 沿 $AD$ 方向，其與鉛直壁 $AC$ 的夾角為 $\frac{\alpha}{2}$，並非垂直於鉛直壁。故 <strong>(B) 錯誤</strong>。
+            </li>
+            <li>
+              在直角力三角形中，$\vec{R}$ 與鉛直線（$\vec{W}$ 方向）的夾角即為 $\frac{\alpha}{2}$：
+              $$R = W \cos\frac{\alpha}{2}$$
+              而選項 (D) 寫成 $R = W \sin\frac{\alpha}{2}$，故 <strong>(D) 錯誤</strong>。
+            </li>
+          </ol>
+          <p>
+            綜合以上各點，正確選項為 <strong>(A)(C)(E)</strong>。
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const selectedOptions = new Set();
+    const correctAnswers = new Set(['A', 'C', 'E']);
+
+    function toggleMultiOption(element, opt) {
+      if (selectedOptions.has(opt)) {
+        selectedOptions.delete(opt);
+        element.classList.remove('selected');
+      } else {
+        selectedOptions.add(opt);
+        element.classList.add('selected');
+      }
+    }
+
+    function checkMultiAnswer() {
+      const feedback = document.getElementById('feedback');
+      if (selectedOptions.size === 0) {
+        feedback.innerHTML = '<span style="color: var(--accent-yellow);">⚠️ 請先點選選項（本題為多選題）！</span>';
+        feedback.className = 'quiz-feedback show';
+        return;
+      }
+
+      const isCorrect = selectedOptions.size === correctAnswers.size &&
+                        [...selectedOptions].every(opt => correctAnswers.has(opt));
+
+      if (isCorrect) {
+        feedback.innerHTML = '🎉 <strong>完全正確！</strong> 正確選出 (A)(C)(E)。利用等腰三角形中線 $AD \\perp BC$ 證明 $\\vec{R} \\perp \\vec{T}$，立即得到畢氏定理 $T = \\sqrt{W^2 - R^2}$ 與 $R = W\\cos\\frac{\\alpha}{2}$！';
+        feedback.className = 'quiz-feedback show correct';
+        document.getElementById('solution-card').classList.add('show');
+      } else {
+        feedback.innerHTML = '❌ <strong>還不完全正確喔！</strong> 提示：等腰三角形中線垂直底邊，使得張力 $T$ 與牆力 $R$ 互相垂直。再注意 $R$ 與鉛直壁夾角為 $\\frac{\\alpha}{2}$，投影應為餘弦函數 $\\cos$ 還是正弦函數 $\\sin$？';
+        feedback.className = 'quiz-feedback show incorrect';
+      }
+    }
+
+    function toggleSolution() {
+      const sol = document.getElementById('solution-card');
+      sol.classList.toggle('show');
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      if (window.renderMathInElement) {
+        renderMathInElement(document.body, {
+          delimiters: [
+            { left: "$$", right: "$$", display: true },
+            { left: "$", right: "$", display: false }
+          ]
+        });
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>靜力平衡 38：均勻木棍斜靠光滑半球面的切點力矩 | 高中物理靜力學</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+  <link rel="stylesheet" href="shared.css">
+</head>
+<body>
+  <div class="bg-glow"></div>
+  <div class="bg-grid"></div>
+
+  <div class="container">
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+      <div class="nav-links">
+        <a href="index.html" class="nav-btn primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          回目錄
+        </a>
+        <a href="equil37.html" class="nav-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          上一題 (平衡 37)
+        </a>
+        <a href="equil39.html" class="nav-btn">
+          下一題 (平衡 39)
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+      <div class="badge-wrapper">
+        <span class="badge badge-page">講義 靜力學-30</span>
+        <span class="badge badge-exam">幾何切線半徑力臂</span>
+        <span class="badge badge-accent">靜力平衡・練習 38</span>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+      <h1 class="main-title">靜力平衡 38：<span class="gradient-text">均勻木棍斜靠光滑半球面的切點力矩</span></h1>
+      <p class="subtitle">圓切線垂直於半徑・巧妙利用切線長度作為垂直力臂・一式精準求解</p>
+    </header>
+
+    <!-- Main Problem Layout -->
+    <div class="problem-layout">
+      <!-- Left Column: Problem & Visualizer -->
+      <div class="problem-card">
+        <h2 class="section-title">
+          <span class="step-num">1</span>
+          題目情境與物理圖解
+        </h2>
+        <div class="problem-text">
+          <p>
+            一均勻木棍重量為 $1.6\text{ kgw}$，長度為 $1.2\text{ 公尺}$，底端置於粗糙地面上，斜靠在半徑 $r = 0.4\text{ 公尺}$ 的光滑固定半球面上。
+          </p>
+          <p>
+            若平衡時木棍與粗糙地面的夾角為 $30^\circ$，則木棍作用於球面的力量值為多少 $\text{kgw}$？
+          </p>
+        </div>
+
+        <div class="interactive-container">
+          <div style="font-size: 0.88rem; color: var(--text-dim); margin-bottom: 8px; display: flex; justify-content: space-between;">
+            <span>📐 半球切線垂直幾何與轉軸力矩解析</span>
+            <span style="color: var(--accent-cyan);">切線長度 PQ = √3 r 恰為 N₁ 之垂直力臂</span>
+          </div>
+          <svg viewBox="0 0 540 370" class="diagram-svg" style="background: rgba(15, 23, 42, 0.7); border-radius: 8px;">
+            <defs>
+              <marker id="arr-c" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#38bdf8"/>
+              </marker>
+              <marker id="arr-g" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#00e676"/>
+              </marker>
+              <marker id="arr-r" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#f43f5e"/>
+              </marker>
+              <marker id="arr-y" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#fbbf24"/>
+              </marker>
+            </defs>
+
+            <!-- Ground line -->
+            <line x1="40" y1="300" x2="500" y2="300" stroke="#64748b" stroke-width="4"/>
+            <!-- Ground hatching -->
+            <line x1="70" y1="300" x2="55" y2="315" stroke="#475569" stroke-width="2"/>
+            <line x1="95" y1="300" x2="80" y2="315" stroke="#475569" stroke-width="2"/>
+            <line x1="120" y1="300" x2="105" y2="315" stroke="#475569" stroke-width="2"/>
+
+            <!-- Hemisphere Center O=(360, 300), Radius R=100 (represents 0.4m) -->
+            <!-- Path for hemisphere -->
+            <path d="M 260 300 A 100 100 0 0 1 460 300 Z" fill="rgba(56, 189, 248, 0.12)" stroke="#38bdf8" stroke-width="3"/>
+            <circle cx="360" cy="300" r="4" fill="#38bdf8"/>
+            <text x="355" y="325" fill="#38bdf8" font-size="14" font-weight="bold">O (球心)</text>
+
+            <!-- Radius indicator -->
+            <line x1="360" y1="300" x2="360" y2="200" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="4 3"/>
+            <text x="368" y="245" fill="#38bdf8" font-size="13">r = 0.4m</text>
+
+            <!-- Tangent contact point Q:
+                 Angle of normal is 120 deg (perpendicular to 30 deg tangent line).
+                 dx = -100 * cos(60) = -50, dy = -100 * sin(60) = -86.6.
+                 Q = (360 - 50, 300 - 86.6) = (310, 213.4).
+                 Tangent line passes through Q with slope -tan(30) = -1/√3.
+                 Intersection with ground (y=300):
+                 x - 310 = (300 - 213.4) * √3 = 86.6 * 1.732 = 150.
+                 P = (310 - 150, 300) = (160, 300).
+                 Distance PQ = 100 * √3 = 173.2!
+            -->
+            <!-- Contact Radius OQ -->
+            <line x1="360" y1="300" x2="310" y2="213.4" stroke="#94a3b8" stroke-width="2" stroke-dasharray="4 3"/>
+
+            <!-- Uniform rod: From P=(160, 300), length = 300 (represents 1.2m)
+                 Angle = 30 deg.
+                 Top end = (160 + 300*cos(30), 300 - 300*sin(30)) = (160 + 260, 300 - 150) = (420, 150) -->
+            <line x1="160" y1="300" x2="430" y2="144" stroke="#f8fafc" stroke-width="8" stroke-linecap="round"/>
+            <line x1="160" y1="300" x2="430" y2="144" stroke="#fbbf24" stroke-width="4" stroke-linecap="round"/>
+
+            <!-- 30 deg angle at ground -->
+            <path d="M 210 300 A 50 50 0 0 0 203 275" fill="none" stroke="#fbbf24" stroke-width="2"/>
+            <text x="215" y="292" fill="#fbbf24" font-size="13" font-weight="bold">30°</text>
+
+            <!-- Contact Point Q -->
+            <circle cx="310" cy="213.4" r="5" fill="#00e676"/>
+            <text x="310" y="195" fill="#00e676" font-size="14" font-weight="bold">Q (切點)</text>
+
+            <!-- Normal force N1 at Q perpendicular to rod: along OQ direction -->
+            <line x1="310" y1="213.4" x2="265" y2="135.5" stroke="#00e676" stroke-width="3.5" marker-end="url(#arr-g)"/>
+            <text x="215" y="130" fill="#00e676" font-size="14" font-weight="bold">N₁ (球面正向力)</text>
+
+            <!-- Right angle at Q -->
+            <rect x="306" y="208" width="10" height="10" fill="none" stroke="#f8fafc" stroke-width="1.5" transform="rotate(-30 310 213.4)"/>
+
+            <!-- Center of gravity: Midpoint of rod length (0.6m -> 150px from P)
+                 C = (160 + 130, 300 - 75) = (290, 225) -->
+            <circle cx="290" cy="225" r="5" fill="#f43f5e"/>
+            <line x1="290" y1="225" x2="290" y2="295" stroke="#f43f5e" stroke-width="3" marker-end="url(#arr-r)"/>
+            <text x="235" y="275" fill="#f43f5e" font-size="13" font-weight="bold">W = 1.6 kgw</text>
+
+            <!-- Lever arm dimension PQ -->
+            <line x1="160" y1="310" x2="310" y2="223.4" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="3 3"/>
+            <text x="200" y="245" fill="#94a3b8" font-size="12">力臂 √3 r</text>
+
+            <!-- Ground Contact Point P -->
+            <circle cx="160" cy="300" r="5" fill="#38bdf8"/>
+            <text x="135" y="325" fill="#38bdf8" font-size="15" font-weight="bold">P (支點)</text>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Right Column: Interactive Quiz -->
+      <div class="problem-card">
+        <h2 class="section-title">
+          <span class="step-num">2</span>
+          自我檢測與即時核對
+        </h2>
+        <p style="color: var(--text-dim); font-size: 0.95rem; margin-bottom: 16px;">
+          請依據切線垂直力臂與轉軸力矩平衡，選出正確的答案：
+        </p>
+
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="selectOption(this, 'A')">
+            <span class="opt-letter">A</span>
+            <span class="opt-text">$0.8\text{ kgw}$</span>
+          </div>
+          <div class="quiz-option" onclick="selectOption(this, 'B')">
+            <span class="opt-letter">B</span>
+            <span class="opt-text">$1.0\text{ kgw}$</span>
+          </div>
+          <div class="quiz-option" onclick="selectOption(this, 'C')">
+            <span class="opt-letter">C</span>
+            <span class="opt-text">$1.2\text{ kgw}$</span>
+          </div>
+          <div class="quiz-option" onclick="selectOption(this, 'D')">
+            <span class="opt-letter">D</span>
+            <span class="opt-text">$1.4\text{ kgw}$</span>
+          </div>
+          <div class="quiz-option" onclick="selectOption(this, 'E')">
+            <span class="opt-letter">E</span>
+            <span class="opt-text">$1.6\text{ kgw}$</span>
+          </div>
+        </div>
+
+        <div class="quiz-actions">
+          <button class="nav-btn primary" onclick="checkAnswer()">核對答案</button>
+          <button class="nav-btn" onclick="toggleSolution()">查看解析</button>
+        </div>
+
+        <div id="feedback" class="quiz-feedback"></div>
+      </div>
+    </div>
+
+    <!-- Solution Section -->
+    <div id="solution-card" class="solution-card">
+      <h2 class="section-title">
+        <span class="step-num">3</span>
+        完整觀念解析與推導過程
+      </h2>
+      <div class="solution-content">
+        <div class="formula-box">
+          $$\overline{PQ} = \frac{r}{\tan 30^\circ} = \sqrt{3}r$$
+          $$\sum \tau_P = 0 \implies N_1 \cdot (\sqrt{3}r) = W \cdot \left(\frac{L}{2}\cos 30^\circ\right)$$
+          $$\implies N_1 = \frac{L}{4r} W = \frac{1.2}{4 \times 0.4} \times 1.6 = 1.2\text{ kgw}$$
+        </div>
+
+        <div class="step-card">
+          <h4>步驟一：幾何切線長度與垂直力臂</h4>
+          <p>
+            木棍斜靠於固定半球表面，兩者接觸於切點 $Q$。因為半球表面完全光滑，故半球施加於木棍的正向力 $N_1$ 必定沿著半徑 $OQ$ 延伸方向向外，且<strong>嚴格垂直於木棍切線</strong>。
+          </p>
+          <p>
+            在直角三角形 $\triangle OPQ$ 中：
+          </p>
+          <ul>
+            <li>$\angle OPQ = 30^\circ$（木棍與地面仰角）</li>
+            <li>$\angle OQP = 90^\circ$（半徑垂直切線）</li>
+            <li>半徑 $\overline{OQ} = r = 0.4\text{ m}$</li>
+          </ul>
+          <p>
+            因此，底端支點 $P$ 到接觸點 $Q$ 的距離為：
+          </p>
+          $$\overline{PQ} = \frac{\overline{OQ}}{\tan 30^\circ} = \frac{r}{1/\sqrt{3}} = \sqrt{3}r$$
+          <p>
+            因為正向力 $N_1$ 垂直於木棍，所以<strong>$\overline{PQ}$ 本身即為 $N_1$ 對支點 $P$ 的精確力臂</strong>！
+          </p>
+        </div>
+
+        <div class="step-card">
+          <h4>步驟二：以底端 P 為支點列力矩平衡</h4>
+          <p>
+            選取地面接觸點 $P$ 為轉軸，完全消除地面未知的正向力與靜摩擦力之干擾：
+          </p>
+          <ul>
+            <li>球面正向力 $N_1$ 產生逆時針力矩：$\tau_{\text{逆}} = N_1 \cdot \overline{PQ} = N_1 \cdot (\sqrt{3}r)$。</li>
+            <li>木棍重力 $W$ 作用於中點（距離 $P$ 點 $\frac{L}{2}$），產生順時針力矩：$\tau_{\text{順}} = W \cdot \left(\frac{L}{2}\cos 30^\circ\right)$。</li>
+          </ul>
+          $$\begin{aligned}
+          N_1 \cdot (\sqrt{3}r) &= W \cdot \frac{L}{2} \cdot \cos 30^\circ \\
+          N_1 \cdot \sqrt{3}r &= W \cdot \frac{L}{2} \cdot \frac{\sqrt{3}}{2} = \frac{\sqrt{3}}{4} L W
+          \end{aligned}$$
+          <p>
+            等號兩側直接消去公因數 $\sqrt{3}$：
+          </p>
+          $$N_1 = \frac{L}{4r} W$$
+        </div>
+
+        <div class="step-card">
+          <h4>步驟三：代入數據求解與作用力反作用力定律</h4>
+          <p>
+            將題給數值代入簡潔公式：
+          </p>
+          $$N_1 = \frac{1.2}{4 \times 0.4} \times 1.6 = \frac{1.2}{1.6} \times 1.6 = 1.2\text{ kgw}$$
+          <p>
+            根據牛頓第三運動定律（作用力與反作用力），木棍作用於球面的力與球面對木棍的作用力大小相等、方向相反，因此木棍作用於球面之力量值亦為 <strong>$1.2\text{ kgw}$</strong>。正確選項為 <strong>(C)</strong>。
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let selectedOption = null;
+    const correctAnswer = 'C';
+
+    function selectOption(element, opt) {
+      document.querySelectorAll('.quiz-option').forEach(el => el.classList.remove('selected'));
+      element.classList.add('selected');
+      selectedOption = opt;
+    }
+
+    function checkAnswer() {
+      const feedback = document.getElementById('feedback');
+      if (!selectedOption) {
+        feedback.innerHTML = '<span style="color: var(--accent-yellow);">⚠️ 請先點擊選擇一個選項！</span>';
+        feedback.className = 'quiz-feedback show';
+        return;
+      }
+      if (selectedOption === correctAnswer) {
+        feedback.innerHTML = '🎉 <strong>完全正確！</strong> 利用半徑垂直切線，直接求出力臂 $\\overline{PQ} = \\sqrt{3}r$，一式解出 $N_1 = \\frac{L}{4r}W = 1.2\\text{ kgw}$！';
+        feedback.className = 'quiz-feedback show correct';
+        document.getElementById('solution-card').classList.add('show');
+      } else {
+        feedback.innerHTML = '❌ <strong>答案不對喔！</strong> 提示：直角三角形中 $\\overline{PQ} = \\frac{r}{\\tan 30^\\circ} = \\sqrt{3}r$。力矩平衡 $N_1 \\cdot \\sqrt{3}r = W \\cdot \\frac{L}{2}\\cos 30^\\circ$，消去 $\\sqrt{3}$ 算算看！';
+        feedback.className = 'quiz-feedback show incorrect';
+      }
+    }
+
+    function toggleSolution() {
+      const sol = document.getElementById('solution-card');
+      sol.classList.toggle('show');
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      if (window.renderMathInElement) {
+        renderMathInElement(document.body, {
+          delimiters: [
+            { left: "$$", right: "$$", display: true },
+            { left: "$", right: "$", display: false }
+          ]
+        });
+      }
+    });
+  </script>
+</body>
+</html>

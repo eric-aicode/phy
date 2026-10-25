@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>練習 1：彈簧懸掛重錘與木板支持力 | 高中物理靜力學</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+  <link rel="stylesheet" href="shared.css">
+</head>
+<body>
+  <div class="bg-glow"></div>
+  <div class="bg-grid"></div>
+
+  <div class="container">
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+      <div class="nav-links">
+        <a href="index.html" class="nav-btn primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          回目錄
+        </a>
+        <a href="problem11.html" class="nav-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          上一題 (範例 11)
+        </a>
+        <a href="exercise2.html" class="nav-btn">
+          下一題 (練習 2)
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+      <div class="badge-wrapper">
+        <span class="badge badge-page">講義 靜力學-18</span>
+        <span class="badge badge-accent">彈簧和合力・練習 1</span>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+      <h1 class="main-title">練習 1：<span class="gradient-text">懸掛彈簧與重錘壓木板作用力</span></h1>
+      <p class="subtitle">虎克定律伸長量求恢復力・鉛直三力平衡・牛頓第三定律作用力與反作用力</p>
+    </header>
+
+    <!-- Problem Showcase Card -->
+    <section class="card problem-card">
+      <div class="card-header">
+        <div class="card-icon">📖</div>
+        <div>
+          <h2>題目內容</h2>
+          <span class="card-tag">基礎觀念精準題</span>
+        </div>
+      </div>
+
+      <div class="problem-body">
+        <p>
+          一彈簧原長 <strong>$20\text{ cm}$</strong>，力常數為 <strong>$10\text{ kgw/m}$</strong>，一端懸於天花板，另一端懸掛 <strong>$3\text{ kgw}$</strong> 之重錘，如下圖所示。
+        </p>
+        <p>
+          當系統達靜力平衡時，量得彈簧長為 <strong>$30\text{ cm}$</strong>，則<strong>重錘作用於木板之力大小為多少？</strong>
+        </p>
+        <ul class="condition-list">
+          <li><strong>(A)</strong> $0.5\text{ kgw}$</li>
+          <li><strong>(B)</strong> $3\text{ kgw}$</li>
+          <li><strong>(C)</strong> $2\text{ kgw}$</li>
+          <li><strong>(D)</strong> $1\text{ kgw}$</li>
+        </ul>
+      </div>
+
+      <!-- Problem Physical Diagram (SVG) -->
+      <div class="canvas-card">
+        <div class="canvas-title-bar">
+          <h3><span class="dot dot-blue"></span> 物理裝置圖與重錘受力隔離體圖</h3>
+          <span class="view-tag">Physical Setup & Free Body Diagram</span>
+        </div>
+        <div class="svg-wrapper">
+          <svg viewBox="0 0 760 360" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="arr-ex1-red" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                <path d="M0 1L10 5L0 9z" fill="#f87171"/>
+              </marker>
+              <marker id="arr-ex1-cyan" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                <path d="M0 1L10 5L0 9z" fill="#38bdf8"/>
+              </marker>
+              <marker id="arr-ex1-green" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                <path d="M0 1L10 5L0 9z" fill="#4ade80"/>
+              </marker>
+            </defs>
+
+            <!-- LEFT: Physical Apparatus -->
+            <g transform="translate(40, 20)">
+              <rect x="0" y="0" width="320" height="315" rx="10" fill="#0f172a" stroke="#1e293b" stroke-width="1.5"/>
+              <text x="20" y="28" fill="#94a3b8" font-size="13" font-weight="600">實驗裝置情境圖</text>
+
+              <!-- Ceiling -->
+              <rect x="60" y="45" width="200" height="12" fill="#334155" stroke="#475569" stroke-width="1.5"/>
+              <g stroke="#64748b" stroke-width="1.5" opacity="0.4">
+                <line x1="70" y1="45" x2="60" y2="35"/><line x1="100" y1="45" x2="90" y2="35"/>
+                <line x1="130" y1="45" x2="120" y2="35"/><line x1="160" y1="45" x2="150" y2="35"/>
+                <line x1="190" y1="45" x2="180" y2="35"/><line x1="220" y1="45" x2="210" y2="35"/>
+                <line x1="250" y1="45" x2="240" y2="35"/>
+              </g>
+
+              <!-- Spring Coils (from y=57 to y=177, length 120px) -->
+              <path d="M 160,57 
+                       L 160,70
+                       L 175,76 L 145,88 L 175,100 L 145,112 L 175,124 L 145,136 L 175,148 L 145,160
+                       L 160,166 L 160,175"
+                    fill="none" stroke="#38bdf8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+
+              <!-- Weight (Bob): 3 kgw at y=175 to 225 -->
+              <rect x="130" y="175" width="60" height="50" rx="4" fill="rgba(56, 189, 248, 0.2)" stroke="#38bdf8" stroke-width="2"/>
+              <text x="160" y="205" fill="#ffffff" font-size="13" font-weight="bold" text-anchor="middle">重錘 3kgw</text>
+
+              <!-- Wooden Board: at y=225 -->
+              <rect x="50" y="225" width="220" height="18" rx="2" fill="#854d0e" stroke="#ca8a04" stroke-width="2"/>
+              <text x="160" y="238" fill="#fef08a" font-size="11" font-weight="bold" text-anchor="middle">水平木板</text>
+
+              <!-- Dimension Annotations -->
+              <line x1="225" y1="57" x2="225" y2="175" stroke="#fbbf24" stroke-width="1.5"/>
+              <line x1="220" y1="57" x2="230" y2="57" stroke="#fbbf24" stroke-width="1.5"/>
+              <line x1="220" y1="175" x2="230" y2="175" stroke="#fbbf24" stroke-width="1.5"/>
+              <text x="235" y="115" fill="#fbbf24" font-size="11" font-weight="600">長度 30cm</text>
+              <text x="235" y="130" fill="#94a3b8" font-size="10">(原長 20cm)</text>
+              <text x="235" y="145" fill="#4ade80" font-size="10.5">Δx = 10cm</text>
+            </g>
+
+            <!-- RIGHT: Free Body Diagram (FBD) of Weight -->
+            <g transform="translate(390, 20)">
+              <rect x="0" y="0" width="330" height="315" rx="10" fill="#0f172a" stroke="#1e293b" stroke-width="1.5"/>
+              <text x="20" y="28" fill="#94a3b8" font-size="13" font-weight="600">重錘受力隔離體圖 (FBD)</text>
+
+              <!-- Center Bob Box -->
+              <rect x="120" y="130" width="80" height="60" rx="6" fill="#1e293b" stroke="#38bdf8" stroke-width="2"/>
+              <text x="160" y="165" fill="#e2e8f0" font-size="12" font-weight="bold" text-anchor="middle">重錘 m</text>
+
+              <!-- Force 1: Gravity W straight down -->
+              <line x1="160" y1="190" x2="160" y2="280" stroke="#f87171" stroke-width="3" marker-end="url(#arr-ex1-red)"/>
+              <text x="175" y="270" fill="#f87171" font-size="12" font-weight="bold">重力 W = 3 kgw (向下)</text>
+
+              <!-- Force 2: Spring tension F_spring straight up -->
+              <line x1="160" y1="130" x2="160" y2="50" stroke="#38bdf8" stroke-width="3" marker-end="url(#arr-ex1-cyan)"/>
+              <text x="175" y="65" fill="#38bdf8" font-size="12" font-weight="bold">彈力 F = 1 kgw (向上)</text>
+              <text x="175" y="80" fill="#94a3b8" font-size="10.5">k·Δx = 10 × 0.1m</text>
+
+              <!-- Force 3: Board normal force N straight up -->
+              <line x1="135" y1="190" x2="135" y2="105" stroke="#4ade80" stroke-width="3" marker-end="url(#arr-ex1-green)"/>
+              <text x="35" y="115" fill="#4ade80" font-size="12" font-weight="bold">木板支持力 N</text>
+              <text x="50" y="130" fill="#a7f3d0" font-size="10.5">N = 2 kgw (向上)</text>
+
+              <!-- Equilibrium Equation Box -->
+              <g transform="translate(25, 235)">
+                <rect x="0" y="0" width="280" height="65" rx="6" fill="rgba(15, 23, 42, 0.9)" stroke="#334155" stroke-width="1"/>
+                <text x="15" y="22" fill="#cbd5e1" font-size="11.5">鉛直平衡：ΣF_y = F + N - W = 0</text>
+                <text x="15" y="40" fill="#4ade80" font-size="11.5">⟹ N = W - F = 3 - 1 = 2 kgw</text>
+                <text x="15" y="56" fill="#fbbf24" font-size="11">反作用力：重錘壓木板 = 2 kgw (向下)</text>
+              </g>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Worksheet -->
+    <section class="card challenge-card">
+      <div class="card-header">
+        <div class="card-icon">✍️</div>
+        <div>
+          <h2>學生實戰單選作答區</h2>
+          <span class="card-tag">請選擇正確選項</span>
+        </div>
+      </div>
+
+      <div class="card-body">
+        <div class="option-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin-bottom: 20px;">
+          <button class="choice-btn" data-choice="A">
+            <span class="choice-label">A</span>
+            <span class="choice-text">$0.5\text{ kgw}$</span>
+          </button>
+          <button class="choice-btn" data-choice="B">
+            <span class="choice-label">B</span>
+            <span class="choice-text">$3\text{ kgw}$</span>
+          </button>
+          <button class="choice-btn" data-choice="C">
+            <span class="choice-label">C</span>
+            <span class="choice-text">$2\text{ kgw}$</span>
+          </button>
+          <button class="choice-btn" data-choice="D">
+            <span class="choice-label">D</span>
+            <span class="choice-text">$1\text{ kgw}$</span>
+          </button>
+        </div>
+
+        <div style="display: flex; gap: 12px; margin-top: 10px; flex-wrap: wrap;">
+          <button id="btnCheck" class="action-btn check-btn">
+            <span>核對答案</span>
+          </button>
+          <button id="btnToggleSolution" class="action-btn toggle-btn">
+            <span>顯示完整解析</span>
+          </button>
+        </div>
+
+        <div id="feedbackMessage" class="feedback-box" style="display: none;"></div>
+      </div>
+    </section>
+
+    <!-- Detailed Solution Section (Initially Hidden) -->
+    <section id="solutionSection" class="card solution-card" style="display: none;">
+      <div class="card-header">
+        <div class="card-icon">💡</div>
+        <div>
+          <h2>完整精闢觀念解析與公式推導</h2>
+          <span class="card-tag">名師詳解</span>
+        </div>
+      </div>
+
+      <div class="solution-body">
+        <!-- Step 1 -->
+        <div class="step-card">
+          <div class="step-header">
+            <span class="step-num">Step 1</span>
+            <h3>計算彈簧伸長量與向上恢復力</h3>
+          </div>
+          <div class="step-content">
+            <p>
+              依題意，彈簧原長 $L_0 = 20\text{ cm}$，平衡時長度 $L = 30\text{ cm}$：
+              $$\Delta x = L - L_0 = 30\text{ cm} - 20\text{ cm} = 10\text{ cm} = 0.10\text{ m}$$
+            </p>
+            <p>
+              彈簧力常數 $k = 10\text{ kgw/m}$，由虎克定律，彈簧向上拉重錘的恢復力：
+              $$F = k \cdot \Delta x = 10\text{ kgw/m} \times 0.10\text{ m} = 1\text{ kgw} \quad (\text{鉛直向上})$$
+            </p>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="step-card">
+          <div class="step-header">
+            <span class="step-num">Step 2</span>
+            <h3>隔離重錘，由鉛直靜力平衡求木板支持力</h3>
+          </div>
+          <div class="step-content">
+            <p>
+              隔離重錘，重錘共受三個鉛直方向的外力：
+            </p>
+            <ul style="color: #cbd5e1; font-size: 14.5px; line-height: 1.8; margin-bottom: 12px;">
+              <li>向下重力：$W = 3\text{ kgw}$</li>
+              <li>向上彈力：$F = 1\text{ kgw}$</li>
+              <li>木板向上支持力：$N$</li>
+            </ul>
+            <p>
+              由平衡條件 $\sum F_y = 0$：
+              $$F + N = W \implies 1 + N = 3$$
+              $$N = 3 - 1 = 2\text{ kgw} \quad (\text{木板對重錘向上的正向力})$$
+            </p>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="step-card">
+          <div class="step-header">
+            <span class="step-num">Step 3</span>
+            <h3>牛頓第三運動定律（作用力與反作用力）</h3>
+          </div>
+          <div class="step-content">
+            <p>
+              題目詢問的是<strong>「重錘作用於木板之力」</strong>：
+            </p>
+            <p>
+              依牛頓第三運動定律，「木板給重錘的向上支持力 $N$」與「重錘給木板的向下壓力 $N'$」互為一對作用力與反作用力，其大小必相等、方向相反：
+              $$N' = N = 2\text{ kgw} \quad (\text{鉛直向下})$$
+            </p>
+            <p style="color: #4ade80; font-weight: bold;">
+              故本題正確選項為 (C)。
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Navigation -->
+    <div class="bottom-nav">
+      <a href="problem11.html" class="nav-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+        上一題 (範例 11)
+      </a>
+      <a href="index.html" class="nav-btn primary">回到講義首頁</a>
+      <a href="exercise2.html" class="nav-btn">
+        下一題 (練習 2)
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      if (window.renderMathInElement) {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ],
+          throwOnError: false
+        });
+      }
+
+      let selectedChoice = null;
+      const buttons = document.querySelectorAll('.choice-btn');
+      buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          buttons.forEach(b => b.classList.remove('selected'));
+          btn.classList.add('selected');
+          selectedChoice = btn.getAttribute('data-choice');
+        });
+      });
+
+      const btnCheck = document.getElementById('btnCheck');
+      const btnToggle = document.getElementById('btnToggleSolution');
+      const solutionSection = document.getElementById('solutionSection');
+      const feedback = document.getElementById('feedbackMessage');
+
+      btnCheck.addEventListener('click', function() {
+        feedback.style.display = 'block';
+        if (!selectedChoice) {
+          feedback.className = 'feedback-box warning';
+          feedback.innerHTML = '⚠️ 請先點選一個選項再核對！';
+          return;
+        }
+
+        if (selectedChoice === 'C') {
+          feedback.className = 'feedback-box success';
+          feedback.innerHTML = '🎉 <strong>恭喜答對！正確答案為 (C) 2 kgw！</strong><br>彈簧向上提供 1 kgw，其餘 2 kgw 由木板向上支撐；依作用力與反作用力，重錘壓木板之力即為 2 kgw！';
+          solutionSection.style.display = 'block';
+          btnToggle.querySelector('span').textContent = '收合完整解析';
+        } else {
+          feedback.className = 'feedback-box error';
+          feedback.innerHTML = `❌ <strong>答案錯誤（您選擇了 ${selectedChoice}）！</strong><br>提示：注意單位換算 10cm = 0.10m，彈簧拉力 kΔx = 1 kgw，再由重錘鉛直合力為 0 求解！`;
+        }
+      });
+
+      btnToggle.addEventListener('click', function() {
+        if (solutionSection.style.display === 'none' || solutionSection.style.display === '') {
+          solutionSection.style.display = 'block';
+          btnToggle.querySelector('span').textContent = '收合完整解析';
+        } else {
+          solutionSection.style.display = 'none';
+          btnToggle.querySelector('span').textContent = '顯示完整解析';
+        }
+      });
+    });
+  </script>
+</body>
+</html>

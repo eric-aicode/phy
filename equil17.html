@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>靜力平衡 17：半球形碗內雙球受力與支持力 | 高中物理靜力學</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    .method-toggle-container {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin: 18px 0 14px;
+      flex-wrap: wrap;
+    }
+    .method-btn {
+      padding: 7px 18px;
+      border-radius: 20px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      cursor: pointer;
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #94a3b8;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+    .method-btn:hover {
+      color: #fff;
+      border-color: rgba(0, 229, 255, 0.4);
+      background: rgba(0, 229, 255, 0.08);
+    }
+    .method-btn.active {
+      background: rgba(0, 229, 255, 0.18);
+      border-color: #00e5ff;
+      color: #00e5ff;
+      box-shadow: 0 0 14px rgba(0, 229, 255, 0.35);
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-glow"></div>
+  <div class="bg-grid"></div>
+
+  <div class="container">
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+      <div class="nav-links">
+        <a href="index.html" class="nav-btn primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          回目錄
+        </a>
+        <a href="equil16.html" class="nav-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          上一題 (平衡 16)
+        </a>
+        <a href="equil18.html" class="nav-btn">
+          下一題 (平衡 18)
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+      <div class="badge-wrapper">
+        <span class="badge badge-page">講義 靜力學-26</span>
+        <span class="badge badge-exam">正三角形球心幾何</span>
+        <span class="badge badge-accent">靜力平衡・練習 17</span>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+      <h1 class="main-title">靜力平衡 17：<span class="gradient-text">半球形碗內雙球平衡作用力</span></h1>
+      <p class="subtitle">球心與碗心幾何關係・等邊正三角形構成・正交平衡推導球間互推力與碗壁支持力</p>
+    </header>
+
+    <!-- Problem Showcase Card -->
+    <section class="card problem-card">
+      <div class="card-header">
+        <div class="card-icon">📖</div>
+        <div>
+          <h2>題目內容</h2>
+          <span class="card-tag">聯考與競賽碗內置球經典題</span>
+        </div>
+      </div>
+
+      <div class="problem-body">
+        <p>
+          如圖所示，光滑半球形碗之內半徑為 $3r$。碗內水平放置兩個半徑均為 $r$、重量均為 $W$ 之相同小球。<br>
+          當兩球在碗底呈靜止平衡時，試求：<br>
+          (1) 兩球之間的相互作用力量值為何？<br>
+          (2) 球對碗壁之作用力量值為何？
+        </p>
+
+        <!-- Method Toggle Buttons -->
+        <div class="method-toggle-container">
+          <button id="btnMethodTriangle" class="method-btn active" onclick="switchMethod('triangle')">
+            <span>📐 解法一：向量封閉三角形法</span>
+          </button>
+          <button id="btnMethodLami" class="method-btn" onclick="switchMethod('lami')">
+            <span>🎯 解法二：拉密定理 (Lami's Theorem)</span>
+          </button>
+        </div>
+
+        <!-- SVG Diagram -->
+        <div class="diagram-wrapper">
+          <svg viewBox="0 0 760 380" class="physics-svg" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="arrow-blue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#38bdf8"/>
+              </marker>
+              <marker id="arrow-red" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#f43f5e"/>
+              </marker>
+              <marker id="arrow-green" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#10b981"/>
+              </marker>
+              <marker id="arrow-amber" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#f59e0b"/>
+              </marker>
+              <radialGradient id="sphere1" cx="35%" cy="35%" r="65%">
+                <stop offset="0%" stop-color="#bae6fd"/>
+                <stop offset="50%" stop-color="#38bdf8"/>
+                <stop offset="100%" stop-color="#0284c7"/>
+              </radialGradient>
+              <radialGradient id="sphere2" cx="35%" cy="35%" r="65%">
+                <stop offset="0%" stop-color="#fed7aa"/>
+                <stop offset="50%" stop-color="#f97316"/>
+                <stop offset="100%" stop-color="#c2410c"/>
+              </radialGradient>
+            </defs>
+
+            <!-- Bowl Center O at (240, 110). Radius R = 3r = 180 px. r = 60 px. -->
+            <!-- Bowl lip from (60, 110) to (420, 110) -->
+            <line x1="40" y1="110" x2="440" y2="110" stroke="#94a3b8" stroke-width="2"/>
+
+            <!-- Hemispherical Bowl inner surface: arc from (60, 110) to (420, 110), center (240, 110), R=180 -->
+            <path d="M 60 110 A 180 180 0 0 0 420 110" fill="rgba(30, 41, 59, 0.4)" stroke="#64748b" stroke-width="4"/>
+
+            <!-- Bowl Base Support -->
+            <path d="M 180 290 L 300 290 L 320 330 L 160 330 Z" fill="rgba(15, 23, 42, 0.8)" stroke="#475569" stroke-width="1.5"/>
+            <line x1="140" y1="330" x2="340" y2="330" stroke="#94a3b8" stroke-width="2"/>
+
+            <!-- Bowl center O dot -->
+            <circle cx="240" cy="110" r="4.5" fill="#f8fafc"/>
+            <text x="240" y="95" fill="#cbd5e1" font-size="13" font-weight="700" text-anchor="middle">碗心 O</text>
+
+            <!-- Geometry Triangle O-A-B lines -->
+            <polygon points="240,110 180,214 300,214" fill="rgba(56, 189, 248, 0.08)" stroke="#f59e0b" stroke-dasharray="3,3" stroke-width="1.5"/>
+            <text x="240" y="145" fill="#f59e0b" font-size="12" font-weight="700" text-anchor="middle">60°</text>
+
+            <!-- Sphere A (Left) -->
+            <circle cx="180" cy="214" r="60" fill="url(#sphere1)" stroke="#38bdf8" stroke-width="1.5" opacity="0.85"/>
+            <circle cx="180" cy="214" r="4" fill="#ffffff"/>
+            <text x="180" y="219" fill="#ffffff" font-size="14" font-weight="800" text-anchor="middle">A</text>
+
+            <!-- Sphere B (Right) -->
+            <circle cx="300" cy="214" r="60" fill="url(#sphere2)" stroke="#f97316" stroke-width="1.5" opacity="0.85"/>
+            <circle cx="300" cy="214" r="4" fill="#ffffff"/>
+            <text x="300" y="219" fill="#ffffff" font-size="14" font-weight="800" text-anchor="middle">B</text>
+
+            <!-- Force vectors on Right Sphere B: -->
+            <!-- 1. Gravity W downwards -->
+            <line x1="300" y1="214" x2="300" y2="295" stroke="#f43f5e" stroke-width="2.5" marker-end="url(#arrow-red)"/>
+            <text x="310" y="285" fill="#f43f5e" font-size="13" font-weight="700">W (重力)</text>
+
+            <!-- 2. Interaction from A to B: X to the right -->
+            <line x1="300" y1="214" x2="370" y2="214" stroke="#10b981" stroke-width="2.5" marker-end="url(#arrow-green)"/>
+            <text x="375" y="210" fill="#10b981" font-size="13" font-weight="700">X (球間力)</text>
+
+            <!-- 3. Normal force from Bowl: along line from contact through B to O:
+                 Contact is at (390, 266). Direction up-left towards O(240, 110).
+                 Angle is 30 deg to vertical (60 deg to horizontal).
+            -->
+            <line x1="300" y1="214" x2="235" y2="101" stroke="#38bdf8" stroke-width="3" marker-end="url(#arrow-blue)"/>
+            <text x="210" y="160" fill="#38bdf8" font-size="14" font-weight="800">Y (碗壁力)</text>
+
+            <!-- Right Panel: Dual-Method Display Container -->
+            <g transform="translate(450, 25)">
+              <rect x="0" y="0" width="285" height="330" rx="12" fill="rgba(15, 23, 42, 0.75)" stroke="#334155" stroke-width="1.5"/>
+
+              <!-- ================= METHOD 1: CLOSED VECTOR TRIANGLE ================= -->
+              <g id="groupTriangle">
+                <text x="142" y="26" fill="#38bdf8" font-size="15" font-weight="800" text-anchor="middle">解法一：向量封閉三角形</text>
+                <text x="142" y="44" fill="#94a3b8" font-size="11" text-anchor="middle">首尾相接平移（方向與左圖 100% 一致）</text>
+
+                <!-- Vector W (Down) -->
+                <line x1="100" y1="58" x2="100" y2="198" stroke="#f43f5e" stroke-width="3" marker-end="url(#arrow-red)"/>
+                <text x="82" y="130" fill="#f43f5e" font-size="14" font-weight="700" text-anchor="end">W (重力)</text>
+
+                <!-- Vector X (Right) -->
+                <line x1="100" y1="198" x2="181" y2="198" stroke="#10b981" stroke-width="3" marker-end="url(#arrow-green)"/>
+                <text x="140" y="222" fill="#10b981" font-size="14" font-weight="700" text-anchor="middle">X (球間力 →)</text>
+
+                <!-- Vector Y (Up-Left) -->
+                <line x1="181" y1="198" x2="103" y2="63" stroke="#38bdf8" stroke-width="3" marker-end="url(#arrow-blue)"/>
+                <text x="155" y="118" fill="#38bdf8" font-size="14" font-weight="800">Y (碗壁力 ↖)</text>
+
+                <!-- Top Angle 30 deg between W and Y -->
+                <path d="M 100 98 A 40 40 0 0 0 120 93" fill="none" stroke="#f59e0b" stroke-width="1.5"/>
+                <text x="115" y="88" fill="#f59e0b" font-size="12" font-weight="700">30°</text>
+
+                <!-- Bottom left right-angle mark -->
+                <path d="M 100 183 L 115 183 L 115 198" fill="none" stroke="#94a3b8" stroke-width="1.2"/>
+
+                <!-- Vector Loop Order Indicator -->
+                <text x="142" y="238" fill="#94a3b8" font-size="11" text-anchor="middle">封閉迴圈：W(↓) + X(→) + Y(↖) = 0</text>
+
+                <!-- Calculations Card for Triangle with horizontal fraction lines -->
+                <rect x="15" y="246" width="255" height="74" rx="6" fill="rgba(56, 189, 248, 0.1)" stroke="rgba(56, 189, 248, 0.25)" stroke-width="1"/>
+                <text x="25" y="268" fill="#cbd5e1" font-size="12" font-family="'Fira Code', monospace">Y·cos 30° = W ⇒ Y =</text>
+                <g transform="translate(192, 265)">
+                  <text x="0" y="-4" fill="#38bdf8" font-size="11" font-family="'Fira Code', monospace" font-weight="700" text-anchor="middle">2W</text>
+                  <line x1="-12" y1="-1" x2="12" y2="-1" stroke="#38bdf8" stroke-width="1.2"/>
+                  <text x="0" y="10" fill="#38bdf8" font-size="11" font-family="'Fira Code', monospace" font-weight="700" text-anchor="middle">√3</text>
+                </g>
+
+                <text x="25" y="293" fill="#cbd5e1" font-size="12" font-family="'Fira Code', monospace">X = Y·sin 30° =</text>
+                <g transform="translate(152, 290)">
+                  <text x="0" y="-4" fill="#10b981" font-size="11" font-family="'Fira Code', monospace" font-weight="700" text-anchor="middle">W</text>
+                  <line x1="-10" y1="-1" x2="10" y2="-1" stroke="#10b981" stroke-width="1.2"/>
+                  <text x="0" y="10" fill="#10b981" font-size="11" font-family="'Fira Code', monospace" font-weight="700" text-anchor="middle">√3</text>
+                </g>
+
+                <text x="25" y="312" fill="#38bdf8" font-size="11.5" font-weight="700">比值：X : Y = 1 : 2</text>
+              </g>
+
+              <!-- ================= METHOD 2: LAMI'S THEOREM ================= -->
+              <g id="groupLami" style="display: none;">
+                <text x="142" y="26" fill="#f59e0b" font-size="15" font-weight="800" text-anchor="middle">解法二：拉密定理 (Lami)</text>
+                <text x="142" y="44" fill="#94a3b8" font-size="11" text-anchor="middle">共點三力輻射與對角正弦成正比</text>
+
+                <!-- Central Origin at (142, 135) -->
+                <line x1="55" y1="135" x2="235" y2="135" stroke="rgba(255,255,255,0.12)" stroke-dasharray="2,2" stroke-width="1"/>
+                <line x1="142" y1="55" x2="142" y2="225" stroke="rgba(255,255,255,0.12)" stroke-dasharray="2,2" stroke-width="1"/>
+                <circle cx="142" cy="135" r="4.5" fill="#ffffff"/>
+                <text x="135" y="126" fill="#ffffff" font-size="11" font-weight="700">B</text>
+
+                <!-- Vector W: Downward (142, 135) -> (142, 218) -->
+                <line x1="142" y1="135" x2="142" y2="218" stroke="#f43f5e" stroke-width="3" marker-end="url(#arrow-red)"/>
+                <text x="150" y="195" fill="#f43f5e" font-size="13" font-weight="700">W (重力)</text>
+
+                <!-- Vector X: Rightward (142, 135) -> (225, 135) -->
+                <line x1="142" y1="135" x2="223" y2="135" stroke="#10b981" stroke-width="3" marker-end="url(#arrow-green)"/>
+                <text x="205" y="123" fill="#10b981" font-size="13" font-weight="700">X (球間力)</text>
+
+                <!-- Vector Y: Up-Left (142, 135) -> (96, 56) (angle 120° from +x) -->
+                <line x1="142" y1="135" x2="98" y2="58" stroke="#38bdf8" stroke-width="3" marker-end="url(#arrow-blue)"/>
+                <text x="70" y="75" fill="#38bdf8" font-size="13" font-weight="800">Y (碗壁力)</text>
+
+                <!-- Angle 1: 90° between W(down) and X(right) -> Opposes Y -->
+                <path d="M 142 153 L 160 153 L 160 135" fill="none" stroke="#94a3b8" stroke-width="1.2"/>
+                <text x="168" y="158" fill="#94a3b8" font-size="12" font-weight="700">90°</text>
+
+                <!-- Angle 2: 120° between X(right) and Y(up-left) -> Opposes W -->
+                <path d="M 178 135 A 36 36 0 0 0 124 104" fill="none" stroke="#f59e0b" stroke-width="2"/>
+                <text x="162" y="98" fill="#f59e0b" font-size="13" font-weight="800">120°</text>
+
+                <!-- Angle 3: 150° between Y(up-left) and W(down) -> Opposes X -->
+                <path d="M 127 109 A 30 30 0 0 0 142 165" fill="none" stroke="#c084fc" stroke-width="2"/>
+                <text x="96" y="145" fill="#c084fc" font-size="13" font-weight="800">150°</text>
+
+                <!-- Calculations Card for Lami with horizontal lines -->
+                <rect x="12" y="238" width="261" height="82" rx="6" fill="rgba(245, 158, 11, 0.08)" stroke="rgba(245, 158, 11, 0.3)" stroke-width="1"/>
+                <text x="18" y="254" fill="#fbbf24" font-size="11.5" font-weight="700">拉密公式：</text>
+                <g transform="translate(90, 252)">
+                  <text x="0" y="-4" fill="#f43f5e" font-size="10" font-weight="700" text-anchor="middle">W</text>
+                  <line x1="-14" y1="-1" x2="14" y2="-1" stroke="#f43f5e" stroke-width="1"/>
+                  <text x="0" y="10" fill="#f43f5e" font-size="9" text-anchor="middle">sin120°</text>
+                </g>
+                <text x="110" y="254" fill="#cbd5e1" font-size="11">=</text>
+                <g transform="translate(132, 252)">
+                  <text x="0" y="-4" fill="#10b981" font-size="10" font-weight="700" text-anchor="middle">X</text>
+                  <line x1="-14" y1="-1" x2="14" y2="-1" stroke="#10b981" stroke-width="1"/>
+                  <text x="0" y="10" fill="#10b981" font-size="9" text-anchor="middle">sin150°</text>
+                </g>
+                <text x="152" y="254" fill="#cbd5e1" font-size="11">=</text>
+                <g transform="translate(174, 252)">
+                  <text x="0" y="-4" fill="#38bdf8" font-size="10" font-weight="700" text-anchor="middle">Y</text>
+                  <line x1="-12" y1="-1" x2="12" y2="-1" stroke="#38bdf8" stroke-width="1"/>
+                  <text x="0" y="10" fill="#38bdf8" font-size="9" text-anchor="middle">sin90°</text>
+                </g>
+
+                <text x="18" y="278" fill="#cbd5e1" font-size="11">⇒</text>
+                <text x="30" y="278" fill="#10b981" font-size="12" font-family="'Fira Code', monospace" font-weight="700">X =</text>
+                <g transform="translate(64, 275)">
+                  <text x="0" y="-4" fill="#10b981" font-size="11" font-family="'Fira Code', monospace" font-weight="700" text-anchor="middle">W</text>
+                  <line x1="-10" y1="-1" x2="10" y2="-1" stroke="#10b981" stroke-width="1.2"/>
+                  <text x="0" y="10" fill="#10b981" font-size="11" font-family="'Fira Code', monospace" font-weight="700" text-anchor="middle">√3</text>
+                </g>
+                <text x="82" y="278" fill="#cbd5e1" font-size="12">，</text>
+                <text x="94" y="278" fill="#38bdf8" font-size="12" font-family="'Fira Code', monospace" font-weight="700">Y =</text>
+                <g transform="translate(130, 275)">
+                  <text x="0" y="-4" fill="#38bdf8" font-size="11" font-family="'Fira Code', monospace" font-weight="700" text-anchor="middle">2W</text>
+                  <line x1="-12" y1="-1" x2="12" y2="-1" stroke="#38bdf8" stroke-width="1.2"/>
+                  <text x="0" y="10" fill="#38bdf8" font-size="11" font-family="'Fira Code', monospace" font-weight="700" text-anchor="middle">√3</text>
+                </g>
+
+                <text x="18" y="306" fill="#10b981" font-size="11" font-weight="700">比值：X : Y = 1 : 2</text>
+              </g>
+            </g>
+          </svg>
+
+          <!-- Vector Translation Educational Guide Box (Method 1) -->
+          <div id="guideTriangle" style="max-width: 740px; margin: 12px auto 0; background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.25); border-radius: 8px; padding: 12px 18px; text-align: left; font-size: 0.88rem; line-height: 1.6; color: #cbd5e1;">
+            <div style="font-weight: 700; color: #38bdf8; display: flex; align-items: center; gap: 6px; margin-bottom: 4px;">
+              <span>🧭 解法一【向量平移】：左圖「共點力」如何變成右圖「封閉三角形」？</span>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 4px; font-size: 0.84rem;">
+              <div>• <strong>左圖（共點力）</strong>：三個力起點都在球心 $B$，分別為 <span style="color:#f43f5e; font-weight:700;">W (向下 ↓)</span>、<span style="color:#10b981; font-weight:700;">X (向右 →)</span>、<span style="color:#38bdf8; font-weight:700;">Y (向左上 ↖)</span>。</div>
+              <div>• <strong>平移步驟（首尾相接）</strong>：從起點畫 <span style="color:#f43f5e; font-weight:700;">W(↓)</span>，從其箭頭接續畫 <span style="color:#10b981; font-weight:700;">X(→)</span>，再從 X 箭頭接續畫 <span style="color:#38bdf8; font-weight:700;">Y(↖)</span>。</div>
+              <div>• <strong>閉合回到起點</strong>：三個箭頭首尾相接剛好繞一圈封閉回到出發點，代表<strong>合力為零 $\Sigma \vec{F} = \vec{0}$</strong>，直角三角形邊長比直接為 $1 : \sqrt{3} : 2$！</div>
+            </div>
+          </div>
+
+          <!-- Lami Theorem Educational Guide Box (Method 2) -->
+          <div id="guideLami" style="display: none; max-width: 740px; margin: 12px auto 0; background: rgba(245, 158, 11, 0.08); border: 1px solid rgba(245, 158, 11, 0.25); border-radius: 8px; padding: 12px 18px; text-align: left; font-size: 0.88rem; line-height: 1.6; color: #cbd5e1;">
+            <div style="font-weight: 700; color: #fbbf24; display: flex; align-items: center; gap: 6px; margin-bottom: 4px;">
+              <span>🎯 解法二【拉密定理】：三力共點平衡，各力與其「對角正弦」成正比！</span>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 4px; font-size: 0.84rem;">
+              <div>• <strong>三力夾角判定</strong>：水平向右與鉛直向下夾 <span style="color:#94a3b8; font-weight:700;">90°</span>；碗壁力向左上夾 <span style="color:#f59e0b; font-weight:700;">120°</span>（與水平）及 <span style="color:#c084fc; font-weight:700;">150°</span>（與鉛直）。</div>
+              <div>• <strong>力與對角配對（看對面）</strong>：
+                $$\frac{W}{\sin 120^\circ} = \frac{X}{\sin 150^\circ} = \frac{Y}{\sin 90^\circ}$$
+              </div>
+              <div>• <strong>秒殺求值</strong>：
+                $$\frac{W}{\frac{\sqrt{3}}{2}} = \frac{X}{\frac{1}{2}} = \frac{Y}{1} \implies \mathbf{X = \frac{W}{\sqrt{3}} = \frac{\sqrt{3}}{3}W} \quad , \quad \mathbf{Y = \frac{2W}{\sqrt{3}} = \frac{2\sqrt{3}}{3}W}$$
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <p class="question-prompt">
+          依據平衡受力推導，二球間相互作用力 $X$ 及球對碗壁作用力 $Y$ 分別為何？
+        </p>
+
+        <!-- Options Container -->
+        <div class="options-container">
+          <div class="option-card" data-option="A">
+            <span class="option-label">A</span>
+            <div class="option-content">
+              <span class="katex-text">二球間：$\frac{W}{\sqrt{3}}$，球對碗壁：$\frac{2W}{\sqrt{3}}$</span>
+            </div>
+          </div>
+
+          <div class="option-card" data-option="B">
+            <span class="option-label">B</span>
+            <div class="option-content">
+              <span class="katex-text">二球間：$\frac{2W}{\sqrt{3}}$，球對碗壁：$\frac{W}{\sqrt{3}}$</span>
+            </div>
+          </div>
+
+          <div class="option-card" data-option="C">
+            <span class="option-label">C</span>
+            <div class="option-content">
+              <span class="katex-text">二球間：$\frac{W}{2}$，球對碗壁：$\sqrt{3}W$</span>
+            </div>
+          </div>
+
+          <div class="option-card" data-option="D">
+            <span class="option-label">D</span>
+            <div class="option-content">
+              <span class="katex-text">二球間：$\frac{\sqrt{3}W}{2}$，球對碗壁：$W$</span>
+            </div>
+          </div>
+
+          <div class="option-card" data-option="E">
+            <span class="option-label">E</span>
+            <div class="option-content">
+              <span class="katex-text">二球間：$W$，球對碗壁：$2W$</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Feedback Alert Box -->
+        <div class="feedback-box" id="feedbackBox">
+          <div class="feedback-icon" id="feedbackIcon"></div>
+          <div class="feedback-text" id="feedbackText"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Collapsible Solution Card -->
+    <section class="card solution-card collapsed" id="solutionCard">
+      <div class="card-header toggle-header" id="solutionToggle">
+        <div class="card-icon">💡</div>
+        <div>
+          <h2>核心解析與詳細推導</h2>
+          <span class="card-tag">點擊展開 / 收合完整解析</span>
+        </div>
+        <span class="solution-status">點擊展開完整剖析</span>
+      </div>
+
+      <div class="solution-content">
+        <div class="solution-step">
+          <span class="step-num">步驟 1</span>
+          <h3>球心幾何連線分析（正三角形性質）</h3>
+          <p>
+            設碗心為 $O$，兩小球球心分別為 $A$ 與 $B$：
+          </p>
+          <ul>
+            <li>碗的內半徑為 $3r$，小球半徑為 $r$。</li>
+            <li>碗心 $O$ 到各小球球心之距離為：
+              $$OA = OB = 3r - r = 2r$$
+            </li>
+            <li>兩小球相互接觸，兩球心間之距離為：
+              $$AB = r + r = 2r$$
+            </li>
+          </ul>
+          <p>
+            因此 $\triangle OAB$ 之三邊長均為 $2r$，為一<strong>正三角形</strong>！<br>
+            由對稱性，通過 $O$ 與兩球切點的鉛垂線平分頂角：
+            $$\angle AOB = 60^\circ \implies \text{各球心連線 } OA、OB \text{ 與鉛直線夾角均為 } 30^\circ$$
+          </p>
+        </div>
+
+        <div class="solution-step">
+          <span class="step-num">步驟 2</span>
+          <h3>隔離右球（B 球）受力分析</h3>
+          <p>
+            $B$ 球處於靜止平衡，共受三個共點力作用：
+          </p>
+          <ul>
+            <li><strong>重力 $W$</strong>：鉛直向下。</li>
+            <li><strong>碗壁正向支持力 $Y$</strong>：沿法線方向通過碗心 $O$ 與球心 $B$，方向斜向左上，與鉛垂線夾角為 $30^\circ$。</li>
+            <li><strong>左球 $A$ 對 $B$ 之推力 $X$</strong>：水平向右。</li>
+          </ul>
+        </div>
+
+        <div class="solution-step">
+          <span class="step-num">步驟 3</span>
+          <h3>列平衡方程式求解（兩種解法對照）</h3>
+          <div style="margin-bottom: 14px;">
+            <strong style="color: #38bdf8;">【方法一：直角三角形幾何邊長比】</strong>
+            <p style="margin: 4px 0 10px;">
+              由向量閉合三角形，邊長比例為 $1 : \sqrt{3} : 2$：
+              $$\frac{X}{W} = \tan 30^\circ = \frac{1}{\sqrt{3}} \implies X = \frac{W}{\sqrt{3}} = \frac{\sqrt{3}}{3}W$$
+              $$\frac{Y}{W} = \frac{1}{\cos 30^\circ} = \frac{2}{\sqrt{3}} \implies Y = \frac{2W}{\sqrt{3}} = \frac{2\sqrt{3}}{3}W$$
+            </p>
+          </div>
+
+          <div style="margin-bottom: 14px; background: rgba(245, 158, 11, 0.06); border: 1px solid rgba(245, 158, 11, 0.2); border-radius: 8px; padding: 12px 14px;">
+            <strong style="color: #fbbf24;">【方法二：拉密定理（Lami's Theorem）】</strong>
+            <p style="margin: 4px 0;">
+              三力共點平衡時，每一力與另外兩力夾角的正弦成正比：
+              $$\frac{W}{\sin 120^\circ} = \frac{X}{\sin 150^\circ} = \frac{Y}{\sin 90^\circ}$$
+              代入正弦函數特殊角數值：
+              $$\frac{W}{\frac{\sqrt{3}}{2}} = \frac{X}{\frac{1}{2}} = \frac{Y}{1}$$
+              $$\implies X = \frac{W \cdot \frac{1}{2}}{\frac{\sqrt{3}}{2}} = \frac{W}{\sqrt{3}}, \qquad Y = \frac{W \cdot 1}{\frac{\sqrt{3}}{2}} = \frac{2W}{\sqrt{3}}$$
+              兩種方法推導結果完全一致！
+            </p>
+          </div>
+
+          <div class="conclusion-box">
+            <strong>結論：</strong> 本題正確答案為 <strong>(A) 二球間作用力 $\frac{W}{\sqrt{3}}$，球對碗壁作用力 $\frac{2W}{\sqrt{3}}$</strong>。
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Navigation Footer -->
+    <footer class="footer-nav">
+      <a href="equil16.html" class="nav-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+        上一題 (平衡 16)
+      </a>
+      <a href="index.html" class="nav-btn primary">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        單元總覽
+      </a>
+      <a href="equil18.html" class="nav-btn">
+        下一題 (平衡 18)
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+    </footer>
+  </div>
+
+  <script>
+    // Method switcher
+    function switchMethod(method) {
+      const btnTri = document.getElementById('btnMethodTriangle');
+      const btnLami = document.getElementById('btnMethodLami');
+      const grpTri = document.getElementById('groupTriangle');
+      const grpLami = document.getElementById('groupLami');
+      const guideTri = document.getElementById('guideTriangle');
+      const guideLami = document.getElementById('guideLami');
+
+      if (method === 'triangle') {
+        btnTri.classList.add('active');
+        btnLami.classList.remove('active');
+        grpTri.style.display = 'inline';
+        grpLami.style.display = 'none';
+        guideTri.style.display = 'block';
+        guideLami.style.display = 'none';
+      } else {
+        btnLami.classList.add('active');
+        btnTri.classList.remove('active');
+        grpTri.style.display = 'none';
+        grpLami.style.display = 'inline';
+        guideTri.style.display = 'none';
+        guideLami.style.display = 'block';
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+      // KaTeX Auto-render
+      if (typeof renderMathInElement === 'function') {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ],
+          throwOnError: false
+        });
+      }
+
+      // Quiz Interaction
+      const correctAnswer = "A";
+      const optionCards = document.querySelectorAll(".option-card");
+      const feedbackBox = document.getElementById("feedbackBox");
+      const feedbackIcon = document.getElementById("feedbackIcon");
+      const feedbackText = document.getElementById("feedbackText");
+      const solutionCard = document.getElementById("solutionCard");
+
+      optionCards.forEach(card => {
+        card.addEventListener("click", function() {
+          const selected = this.getAttribute("data-option");
+
+          optionCards.forEach(c => c.classList.remove("selected", "correct", "wrong"));
+          this.classList.add("selected");
+
+          feedbackBox.classList.remove("correct", "wrong");
+          feedbackBox.classList.add("show");
+
+          if (selected === correctAnswer) {
+            this.classList.add("correct");
+            feedbackBox.classList.add("correct");
+            feedbackIcon.innerHTML = "🎉";
+            feedbackText.innerHTML = "<strong>太優秀了！完全正確！</strong><br>球心距離 $OA=OB=AB=2r$ 構成正三角形，連線與鉛垂線夾 $30^\\circ$。<br>鉛直平衡 $Y\\cos 30^\\circ = W \\implies Y = \\frac{2W}{\\sqrt{3}}$，水平平衡 $X = Y\\sin 30^\\circ = \\frac{W}{\\sqrt{3}}$！";
+            solutionCard.classList.remove("collapsed");
+            const tag = solutionCard.querySelector(".solution-status");
+            if (tag) tag.textContent = "點擊收合詳解";
+          } else {
+            this.classList.add("wrong");
+            feedbackBox.classList.add("wrong");
+            feedbackIcon.innerHTML = "💡";
+            if (selected === "B") {
+              feedbackText.innerHTML = "<strong>小心兩力寫反囉！</strong> 碗壁支持力斜向提供鉛直支撐，所以量值較大（$\\frac{2W}{\\sqrt{3}}$），水平互推力為 $X = \\frac{W}{\\sqrt{3}}$！";
+            } else {
+              feedbackText.innerHTML = `<strong>選了 (${selected})，再想想看！</strong> 提示：由 $OA=OB=AB=2r$ 證明為正三角形，半頂角為 $30^\\circ$，再列正交平衡！`;
+            }
+          }
+
+          if (typeof renderMathInElement === 'function') {
+            renderMathInElement(feedbackText, {
+              delimiters: [
+                {left: '$$', right: '$$', display: true},
+                {left: '$', right: '$', display: false}
+              ],
+              throwOnError: false
+            });
+          }
+        });
+      });
+
+      // Solution toggle
+      const solutionToggle = document.getElementById("solutionToggle");
+      solutionToggle.addEventListener("click", function() {
+        solutionCard.classList.toggle("collapsed");
+        const isCollapsed = solutionCard.classList.contains("collapsed");
+        const statusSpan = solutionToggle.querySelector(".solution-status");
+        if (statusSpan) {
+          statusSpan.textContent = isCollapsed ? "點擊展開完整剖析" : "點擊收合詳解";
+        }
+      });
+    });
+  </script>
+</body>
+</html>
