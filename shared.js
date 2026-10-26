@@ -142,3 +142,84 @@
     initAllDiagramContainers();
   }
 })();
+
+
+// ========================================================
+// 【類題 9】逆風帆船逐步動態播放器 (Step-by-Step Interactive Player)
+// ========================================================
+window.sailboatCurrentStep = 1;
+window.sailboatTotalSteps = 5;
+window.sailboatAutoPlayTimer = null;
+
+window.sailboatStepTexts = [
+  "",
+  "<strong>【步驟 1：建立基準線與航向】</strong><br>• 風向垂直向下吹（<span style=\'color:#38bdf8;\'>天藍色線 ↓</span>），以此作為鉛垂基準線。<br>• 船身前進方向朝向左上方西北（<span style=\'color:#fbbf24;\'>金黃色虛線 ↖</span>），題給其與向下風向夾角為 <strong style=\'color:#fbbf24;\'>135°</strong>。",
+  "<strong>【步驟 2：放上船面（帆板）】</strong><br>• 穿過船體的細長木板為「<strong>船面（帆板）</strong>」（<span style=\'color:#facc15;\'>金黃色長板</span>）。<br>• 題給帆板與鉛垂風向線夾角為 <strong style=\'color:#facc15;\'>15°</strong>（由波浪引線標註）。",
+  "<strong>【步驟 3：風力生成・垂直作用力 F 彈出】</strong><br>• 空氣打在帆板上，反作用力必定<strong>垂直於帆板</strong>（<span style=\'color:#ff007f;\'>粉紅色向量 F ↗</span>，帶直角記號 ⟂）。<br>• 幾何互餘：因為帆板偏鉛垂 15°，故垂直帆板的風力線偏鉛垂 <strong style=\'color:#ff007f;\'>90° - 15° = 75°</strong>！",
+  "<strong>【步驟 4：關鍵幾何相減・核心夾角 60° 一秒得出】</strong><br>• 船身方向偏鉛垂線：<strong style=\'color:#fbbf24;\'>135°</strong>。<br>• 風力作用線偏鉛垂線：<strong style=\'color:#ff007f;\'>75°</strong>。<br>• 兩條線都在同一平面內，夾角直接相減：<strong style=\'color:#00e676; font-size:1.15rem;\'>Δθ = 135° - 75° = 60°</strong>！",
+  "<strong>【步驟 5：正交投影求順著船頭推力】</strong><br>• 將風力 F 沿著朝向西北的船頭方向投影：<strong style=\'color:#00e5ff; font-size:1.15rem;\'>F_前進 = F · cos 60° = ½ F</strong>（即 0.5F）！<br>• 垂直於船身的橫向側滑力，被船底深水龍骨的水阻力完全抵消（✕ 相消），故船隻只順著船頭向前破浪！"
+];
+
+window.gotoSailboatStep = function(s) {
+  window.sailboatCurrentStep = s;
+  window.updateSailboatStepUI();
+};
+
+window.stepSailboatPrev = function() {
+  window.sailboatCurrentStep = (window.sailboatCurrentStep > 1) ? window.sailboatCurrentStep - 1 : window.sailboatTotalSteps;
+  window.updateSailboatStepUI();
+};
+
+window.stepSailboatNext = function() {
+  window.sailboatCurrentStep = (window.sailboatCurrentStep < window.sailboatTotalSteps) ? window.sailboatCurrentStep + 1 : 1;
+  window.updateSailboatStepUI();
+};
+
+window.toggleSailboatAutoPlay = function() {
+  const btn = document.getElementById("btnAutoPlay");
+  if (window.sailboatAutoPlayTimer) {
+    clearInterval(window.sailboatAutoPlayTimer);
+    window.sailboatAutoPlayTimer = null;
+    if (btn) {
+      btn.textContent = "▶ 自動播放";
+      btn.style.background = "#0284c7";
+    }
+  } else {
+    if (btn) {
+      btn.textContent = "⏸ 暫停播放";
+      btn.style.background = "#e11d48";
+    }
+    window.sailboatAutoPlayTimer = setInterval(() => {
+      window.stepSailboatNext();
+    }, 2400);
+  }
+};
+
+window.updateSailboatStepUI = function() {
+  for (let i = 1; i <= window.sailboatTotalSteps; i++) {
+    const btn = document.getElementById("btnStep" + i);
+    if (btn) {
+      if (i === window.sailboatCurrentStep) {
+        btn.style.background = "rgba(56, 189, 248, 0.25)";
+        btn.style.borderColor = "#00e5ff";
+        btn.style.color = "#00e5ff";
+      } else {
+        btn.style.background = "rgba(255, 255, 255, 0.05)";
+        btn.style.borderColor = "rgba(255, 255, 255, 0.15)";
+        btn.style.color = "#94a3b8";
+      }
+    }
+  }
+
+  for (let i = 1; i <= window.sailboatTotalSteps; i++) {
+    const layer = document.getElementById("layerStep" + i);
+    if (layer) {
+      layer.style.opacity = (i <= window.sailboatCurrentStep) ? "1" : "0";
+    }
+  }
+
+  const box = document.getElementById("stepExplanationBox");
+  if (box && window.sailboatStepTexts[window.sailboatCurrentStep]) {
+    box.innerHTML = window.sailboatStepTexts[window.sailboatCurrentStep];
+  }
+};

@@ -11,6 +11,7 @@
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
   <link rel="stylesheet" href="shared.css">
+  <script src="shared.js"></script>
   <script src="physics_problems_data.js"></script>
   <style>
     /* SPA Viewer Layout */
@@ -413,7 +414,8 @@
       filter: drop-shadow(0 4px 18px rgba(0, 0, 0, 0.6));
     }
 
-    .zoomable-diagram-container .dual-diagram-comparison-grid {
+    .zoomable-diagram-container .dual-diagram-comparison-grid,
+    .zoomable-diagram-container .stepper-stage-wrapper {
       height: 94%;
       max-height: 94%;
       pointer-events: auto;
@@ -1233,6 +1235,7 @@
         }
 
         zoomContainer.innerHTML = p.diagrams[0].svg;
+        if (p.id === 'exercise9') { setTimeout(() => { if (typeof window.updateSailboatStepUI === 'function') window.updateSailboatStepUI(); }, 60); }
       } else {
         switcherBar.style.display = "none";
         zoomContainer.innerHTML = p.svg || "<p style='color:var(--text-dim);'>〔 本題無題圖 〕</p>";
