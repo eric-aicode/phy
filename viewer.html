@@ -373,21 +373,68 @@
 
     #pSvgWrapper {
       width: 100%;
-      min-height: 280px;
+      height: calc(100vh - 230px);
+      min-height: 520px;
+      max-height: 840px;
       display: flex;
       justify-content: center;
       align-items: center;
       overflow: hidden;
       position: relative;
+      cursor: grab;
+      user-select: none;
+      touch-action: none;
+      background: radial-gradient(circle at center, rgba(30, 41, 59, 0.45) 0%, rgba(9, 13, 22, 0.95) 100%);
+      border-radius: 12px;
+      border: 1px solid rgba(56, 189, 248, 0.15);
+    }
+
+    #pSvgWrapper:active {
+      cursor: grabbing;
     }
 
     .zoomable-diagram-container {
       width: 100%;
+      height: 100%;
       display: flex;
       justify-content: center;
       align-items: center;
-      transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: transform 0.05s ease-out;
       transform-origin: center center;
+      will-change: transform;
+      pointer-events: none;
+    }
+
+    .zoomable-diagram-container svg {
+      max-width: 96%;
+      max-height: 94%;
+      width: auto;
+      height: auto;
+      filter: drop-shadow(0 4px 18px rgba(0, 0, 0, 0.6));
+    }
+
+    .zoomable-diagram-container .dual-diagram-comparison-grid {
+      height: 94%;
+      max-height: 94%;
+      pointer-events: auto;
+    }
+
+    .zoomable-diagram-container .dual-diagram-cell svg {
+      max-height: 85%;
+    }
+
+    .diagram-pan-hint {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.76rem;
+      font-weight: 600;
+      color: #94a3b8;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 3px 8px;
+      border-radius: 6px;
+      user-select: none;
     }
 
     /* Side-by-Side Dual Diagram Comparison Grid */
@@ -846,8 +893,9 @@
                 <button class="zoom-btn" onclick="adjustDiagramZoom(-0.15)" title="縮小 (Zoom Out)">🔍−</button>
                 <span id="zoomLevelText" class="zoom-level-text">100%</span>
                 <button class="zoom-btn" onclick="adjustDiagramZoom(0.15)" title="放大 (Zoom In)">🔍+</button>
-                <button class="zoom-btn" onclick="adjustDiagramZoom(0)" title="重置比例 (Reset)">⟲</button>
+                <button class="zoom-btn" onclick="adjustDiagramZoom(0)" title="重置比例與位置 (Reset)">⟲</button>
               </div>
+              <span class="diagram-pan-hint" title="按住滑鼠左鍵可任意拖曳移動・滾輪可縮放・雙擊置中">🖐️ 拖曳移動</span>
             </div>
           </div>
           <div id="pSvgWrapper">
@@ -931,6 +979,8 @@
           setViewerMode(isSol ? "problem" : "solution");
         }
       });
+
+      initDiagramPanAndZoom();
     });
 
     function toggleLayoutMode() {
@@ -950,19 +1000,92 @@
     }
 
     let currentZoomLevel = 1.0;
-    function adjustDiagramZoom(delta) {
-      const zoomContainer = document.getElementById("zoomableSvgContainer");
-      const zoomText = document.getElementById("zoomLevelText");
-      if (!zoomContainer || !zoomText) return;
+    let panX = 0;
+    let panY = 0;
+    let isDragging = false;
+    let dragStartX = 0;
+    let dragStartY = 0;
 
+    function updateDiagramTransform(smooth = false) {
+      const zoomContainer = document.getElementById("zoomableSvgContainer");
+      if (!zoomContainer) return;
+      zoomContainer.style.transition = smooth ? "transform 0.2s cubic-bezier(0.2, 0, 0, 1)" : "none";
+      zoomContainer.style.transform = `translate(${panX}px, ${panY}px) scale(${currentZoomLevel})`;
+    }
+
+    function adjustDiagramZoom(delta) {
+      const zoomText = document.getElementById("zoomLevelText");
       if (delta === 0) {
         currentZoomLevel = 1.0;
+        panX = 0;
+        panY = 0;
       } else {
-        currentZoomLevel = Math.max(0.6, Math.min(2.5, currentZoomLevel + delta));
+        currentZoomLevel = Math.max(0.5, Math.min(3.5, currentZoomLevel + delta));
       }
 
-      zoomText.textContent = Math.round(currentZoomLevel * 100) + "%";
-      zoomContainer.style.transform = `scale(${currentZoomLevel})`;
+      if (zoomText) zoomText.textContent = Math.round(currentZoomLevel * 100) + "%";
+      updateDiagramTransform(true);
+    }
+
+    function initDiagramPanAndZoom() {
+      const wrapper = document.getElementById("pSvgWrapper");
+      if (!wrapper) return;
+
+      wrapper.addEventListener("mousedown", (e) => {
+        if (e.button !== 0) return;
+        isDragging = true;
+        dragStartX = e.clientX - panX;
+        dragStartY = e.clientY - panY;
+        wrapper.style.cursor = "grabbing";
+        e.preventDefault();
+      });
+
+      window.addEventListener("mousemove", (e) => {
+        if (!isDragging) return;
+        panX = e.clientX - dragStartX;
+        panY = e.clientY - dragStartY;
+        updateDiagramTransform(false);
+      });
+
+      window.addEventListener("mouseup", () => {
+        if (isDragging) {
+          isDragging = false;
+          if (wrapper) wrapper.style.cursor = "grab";
+        }
+      });
+
+      // Mouse wheel zoom
+      wrapper.addEventListener("wheel", (e) => {
+        e.preventDefault();
+        const delta = e.deltaY < 0 ? 0.15 : -0.15;
+        adjustDiagramZoom(delta);
+      }, { passive: false });
+
+      // Double-click to reset zoom & pan position
+      wrapper.addEventListener("dblclick", () => {
+        adjustDiagramZoom(0);
+      });
+
+      // Touch pan for mobile
+      let touchStartX = 0, touchStartY = 0;
+      wrapper.addEventListener("touchstart", (e) => {
+        if (e.touches.length === 1) {
+          isDragging = true;
+          touchStartX = e.touches[0].clientX - panX;
+          touchStartY = e.touches[0].clientY - panY;
+        }
+      }, { passive: true });
+
+      window.addEventListener("touchmove", (e) => {
+        if (!isDragging || e.touches.length !== 1) return;
+        panX = e.touches[0].clientX - touchStartX;
+        panY = e.touches[0].clientY - touchStartY;
+        updateDiagramTransform(false);
+      }, { passive: true });
+
+      window.addEventListener("touchend", () => {
+        isDragging = false;
+      });
     }
 
     function initProblemDropdown(filterSection = 'all') {

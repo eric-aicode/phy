@@ -1152,4 +1152,45 @@ body {
   }
 }
 
+/* High-Stage Visualizer Canvas & Pan-Zoom Global Integration */
+.container {
+  max-width: 1140px;
+}
+
+.diagram-container {
+  width: 100% !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  margin: 16px auto 24px auto !important;
+  position: relative !important;
+  min-height: 480px !important;
+  max-height: calc(100vh - 220px) !important;
+  height: clamp(480px, 58vh, 760px) !important;
+  background: radial-gradient(circle at center, rgba(30, 41, 59, 0.45) 0%, rgba(9, 13, 22, 0.95) 100%) !important;
+  border-radius: 14px !important;
+  border: 1px solid rgba(56, 189, 248, 0.22) !important;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.5) !important;
+  overflow: hidden !important;
+  cursor: grab;
+  user-select: none;
+  touch-action: none;
+}
+
+.diagram-container:active {
+  cursor: grabbing;
+}
+
+.diagram-container svg {
+  width: 100% !important;
+  max-width: 940px !important;
+  height: 94% !important;
+  max-height: 94% !important;
+  transition: transform 0.05s ease-out;
+  transform-origin: center center;
+  filter: drop-shadow(0 4px 18px rgba(0, 0, 0, 0.6)) !important;
+  pointer-events: none;
+}
+
+
 
